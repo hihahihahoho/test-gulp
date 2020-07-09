@@ -1,0 +1,171 @@
+//=========
+//===MENU============================================
+//===MENU-GENERAL============================================
+//===menu-simplified option
+$menu-color-text          :  white;
+$menu-color-hover         :  $menu-color-text;
+$menu-color-bg            :  white;
+$menu-height              :  40px;              //height of menu
+$menu-height-mobile       :  70px;              //height of menu on mobile
+$menu-font-size           :  15px;
+$menu-font-weight         :  500;
+$menu-space               :  0;              // space of of menu to inside to outside menu
+$menu-item-space          :  15px;              // space between menu item on desktop (note: x2)
+$menu-boder-color-mobile  :  #eaeff5;
+//===menu logo height
+$menu-logo-height  :  10px;
+$menu-logo-height-mobile  :  15px;
+
+//===menu options general
+$menu-mobile-mode-on-desktop        :  false;
+$menu-box-shadow                    :  false;
+$menu-content-absolute-center-mode  :  false;
+$menu-content-inline-right-mode     :  true;
+$menu-content-scroll-mode           :  touch;                    //touch or auto, for ios
+$menu-item-align                    :  left;
+$menu-mobile-item-minwidth          :  50px;
+$menu-iscroll-mode                  :  auto;
+$menu-transition                    :  background 0.35s linear, height 0.35s ease-in;
+$menu-item-ani-time       :  0.6s;
+$menu-center-mobile-mode  :  false;
+$menu-z-index             :  100;
+
+//===Menu Burger================================================  
+$hamburger-padding-x                         :  0;
+$hamburger-padding-y                         :  0 !default;
+$hamburger-layer-width                       :  22px !default;
+$hamburger-layer-height                      :  2px !default;
+$hamburger-layer-spacing                     :  4px !default;
+$hamburger-layer-color                       :  $color-base !default;
+$hamburger-layer-border-radius               :  4px !default;
+$hamburger-hover-opacity                     :  1 !default;
+$hamburger-hover-transition-duration         :  1.2s !default;
+$hamburger-hover-transition-timing-function  :  linear !default;
+$hambeger-active-color                       :  $color-base;
+//===MENU-DESKTOP============================================
+//===menu sign--for multiply, plus, minus-etc
+$menu-sign-width   :  16px;
+$menu-sign-height  :  16px;
+$menu-sign-thick   :  2px;
+$menu-sign-bgc     :  $color-base;
+//===menu color and background color
+$menu-bg-color-active  :  $menu-color-bg;
+$menu-color-focus      :  $menu-color-text;
+$menu-color-visited    :  $menu-color-text;
+$menu-color-active     :  $menu-color-text;
+$menu-color            :  $menu-color-text;
+//===menu color and background color change and box shadow
+$menu-bg-color-change   :  transparent;
+$menu-change-color      :  $color-white;
+$menu-change-boxshadow  :  false;
+//===menu font
+
+//===menu width
+$menu-max-width  :  1170px;  //width of menu
+//===menu space
+
+$menu-bg-color     :  $menu-color-bg;
+//===menu item icon====
+$menu-item-ic-img-width  :  22px;
+$menu-item-ic-width      :  22px;
+$menu-item-ic-align      :  right;
+//===menu icon box=====
+$menu-ic-box-size  :  40px;
+//===Menu sub==========================================
+$menu-sub-shadow         :  0 3px 5px 0 rgba(0, 0, 0, 0.2);
+$menu-sub-border-radius  :  6px;
+$menu-sub-border         :  1px solid $color-grey-2;
+//===menu sub color and background color
+$menu-sub-bg-color  :  $menu-color-bg;
+$menu-sub-color     :  $menu-color-text;
+//===menu sub font
+$menu-sub-font-size    :  15px;
+$menu-sub-font-weight  :  500;
+//===menu sub height
+$menu-sub-padding-y  :  14px;  // height of menu sub item
+//===menu sub width
+$menu-sub-min-width  :  200px;
+$menu-sub-width      :  auto;   //chose 100% for mega menu
+//===menu sub space
+$menu-sub-indent     :  20px;   //space at start of sub menu
+$menu-sub-space-top  :  0;
+$menu-sub-padding-x  :  15px;
+$menu-sub-display    :  block;
+//===MENU-MOBILE============================================
+//===menu color and background color
+$menu-color-mobile        :  #000;
+//===menu font
+$menu-font-size-mobile    :  15px;
+$menu-font-weight-mobile  :  500;
+//===menu height
+$menu-padding-y-mobile  :  16px;  // height of menu item on mobile
+//===menu space
+$menu-space-mobile              :  0;     // space of of menu to inside to outside menu mobile
+$menu-space-sub-wrap-y-mobile   :  15px;  //space y top bottom of sub mobile menu
+$menu-content-padding-x-mobile  :  45px;  // space top of mobile content
+$menu-content-padding-y-mobile  :  20px;  // space left of mobile content
+//===menu logo height
+//===Menu sub==========================================
+//===menu sub color and background color
+$menu-sub-color-mobile        :  $menu-color-text;
+$menu-sub-boder-color-mobile  :  transparent;
+$menu-sub-bg-color-mobile     :  transparent;
+//===menu sub font
+$menu-sub-font-size-mobile    :  14px;
+$menu-sub-font-weight-mobile  :  400;
+//===menu sub height
+$menu-sub-padding-y-mobile  :  15px;  // height of menu sub item on mobile
+//===menu sub space
+$menu-sub-padding-x-mobile  :  15px;
+//===Menu active, hover =====
+.menu-hover {
+   @include media(">menu-break-point") {
+      .menu__item__block {
+         &:after {
+            position: absolute;
+            content: "";
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 12px;
+            margin: auto;
+            height: 6px;
+            display: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath id='Path_1531' data-name='Path 1531' d='M1733.833-798.987l6-6,6,6h-12' transform='translate(-1733.833 804.987)' fill='%23fff'/%3E%3C/svg%3E%0A");
+         }
+      }
+      &:hover {
+         .menu__item__block:after {
+            display: block;
+         }
+      }
+   }
+}
+
+.menu-active {
+   @include media(">menu-break-point") {
+      &:after {
+         position: absolute;
+            content: "";
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 12px;
+            margin: auto;
+            height: 6px;
+            display: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath id='Path_1531' data-name='Path 1531' d='M1733.833-798.987l6-6,6,6h-12' transform='translate(-1733.833 804.987)' fill='%23fff'/%3E%3C/svg%3E%0A");
+      }
+      &.active {
+         &:after {
+            display: block;
+         }
+      }
+   }
+}
+
+.menu-sub-hover {
+   @include media(">menu-break-point") {
+      background-color: $color-grey-3;
+   }
+}

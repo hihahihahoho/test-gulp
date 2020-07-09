@@ -1,0 +1,31 @@
+$map-input-size: (
+  xs: 36px,
+  sm: 44px,
+  md: 50px,
+  lg: 60px
+);
+
+
+$input-label-font-weight: 400;
+$input-label-font-size: 14px;
+$input-label-color: #707C93;
+
+$input-border-radius            : 6px;
+$input-placeholder-color        : #707C93;
+$input-font-size                : $font-size-default + 1;
+$input-space-left               : 15px;
+$input-error-font-size          : 12px;
+$input-label-margin-bottom      : 7px;
+$input-disabled-opacity         : 0.6;
+$input-disabled-background      : $border-base-color;
+$input-border-color-focus       : rgba($color-primary, 0.5);
+//input border - input-material
+$input-line-border-color        : $border-base-color;
+$input-line-border-background   : transparent;
+
+//===input line bar===
+$input-line-bar-color           : $color-primary;
+$input-line-bar-height          : 2px;
+
+$textarea-autosize-max-height   : 200px;
+$textarea-line-height           : 1.4;

@@ -1,0 +1,23 @@
+.lg-outer .lg-has-vimeo .lg-video-play {
+   background: url(../images/light-gallery/vimeo-play.png) no-repeat
+}
+
+.lg-outer .lg-has-vimeo:hover .lg-video-play {
+   background: url(../images/light-gallery/vimeo-play.png) 0 -58px no-repeat
+}
+
+.lg-outer .lg-has-html5 .lg-video-play {
+   background: url(../images/light-gallery/video-play.png) no-repeat;
+}
+
+.lg-outer .lg-has-youtube .lg-video-play {
+   background: url(../images/light-gallery/youtube-play.png) no-repeat
+}
+
+.lg-outer .lg-has-youtube:hover .lg-video-play {
+   background: url(../images/light-gallery/youtube-play.png) 0 -60px no-repeat
+}
+
+.lg-outer .lg-item {
+   background: url(../images/light-gallery/loading.gif) center center no-repeat;
+}

@@ -1,0 +1,46 @@
+.filepond--root {
+   font-family: inherit;
+}
+
+.filepond--panel-root {
+   background-color: $color-grey-3
+}
+
+.filepond--drop-label {
+   color: $color-base
+}
+
+.filepond--root {
+   margin-bottom: 0;
+}
+
+.filepond--item-panel {
+   background: $color-base;
+}
+
+// .filepond--image-preview-wrapper {
+//    .filepond--file-info-main,
+//    .filepond--file-info-sub {
+//       color: white;
+//    }
+// }
+
+// .filepond--file-info-main,
+// .filepond--file-info-sub {
+//    color: $color-base
+// }
+
+.filepond--panel-root {
+    background-color: $color-grey-3;
+}
+
+
+.filepond--drop-label.filepond--drop-label label{
+   padding: 15px
+}
+
+.filepond--label-action{
+   color: $color-primary;
+   text-decoration: none;
+   font-weight: 500
+}

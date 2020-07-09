@@ -1,0 +1,1268 @@
+//=== INPUT ========================
+$input-size-xs: 30px;
+$input-size-sm: 36px;
+$input-size-md: 44px;
+$input-size-lg: 50px;
+$input-border-radius: 6px;
+$input-placeholder-color: $color-base;
+$input-font-size: $font-size-default + 1;
+$input-space-left: 15px;
+$input-error-font-size: 12px;
+$input-label-margin-bottom: 7px;
+
+//===Input border===
+$input-border-color: $border-base-color;
+$input-border-background: transparent;
+$input-disabled-opacity: 0.6;
+$input-disabled-background: $border-base-color;
+$input-border-color-focus: $color-primary;
+
+//===Input line===
+$input-line-border-color: $border-base-color;
+$input-line-border-background: transparent;
+$input-line-disabled-opacity: 0.6;
+$input-line-disabled-background: $color-grey-2;
+$input-line-border-color-focus: $color-primary;
+
+//===input line bar===
+$input-line-bar-color: $color-primary;
+$input-line-bar-height: 2px;
+
+//===Input clean===
+$input-clean-background: $color-grey-3;
+
+//===Input material===
+$input-material-font-size: 16px;
+$input-material-font-size-sm: 13px;
+$input-material-font-weight-sm: 500;
+
+//===Input material===
+$input-material-2-font-size: $input-material-font-size;
+$input-material-2-font-size-sm: $input-material-font-size-sm;
+$input-material-2-font-weight-sm: 500;
+$input-material-2-border: 1px solid $color-grey-2;
+$input-material-2-background: $color-grey-4;
+$input-material-2-height-xs: 50px;
+$input-material-2-height-sm: 60px;
+$input-material-2-height-md: 70px;
+$input-material-2-height-lg: 80px;
+$input-material-2-padding-left: 15px;
+$input-material-2-space-between: 5px;
+
+.form {
+  &-horizontal {
+    .input-label {
+      margin-bottom: $input-label-margin-bottom;
+    }
+    .input-label[class*="col-lg"] {
+      &:first-child {
+        @include media(">=1200px") {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .input-label[class*="col-md"] {
+      &:first-child {
+        @include media(">=992px") {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .input-label[class*="col-sm"] {
+      &:first-child {
+        @include media(">=768px") {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .input-label[class*="col-xs"] {
+      &:first-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &-vertical {
+    .input-label {
+      margin-bottom: $input-label-margin-bottom;
+    }
+  }
+}
+
+label.error {
+  display: block;
+  margin-top: 7px;
+  font-size: $input-error-font-size;
+  color: map-get($map-color-level, false);
+}
+
+.error {
+  border-color: map-get($map-color-level, false) !important;
+  & ~ .select2-container--default .select2-selection--single,
+  & ~ .select2-container--default .select2-selection--multiple {
+    border-color: map-get($map-color-level, false) !important;
+  }
+}
+
+.input {
+  width: 100%;
+  border-radius: $input-border-radius;
+  padding-left: $input-space-left;
+  padding-right: 10px;
+  font-size: $input-font-size;
+  &.multiselect {
+    display: none;
+  }
+  &::-ms-clear {
+    display: none;
+  }
+  &.input-ic-right {
+    &.input-ic-xs {
+      padding-left: $input-size-xs;
+    }
+    &.input-ic-sm {
+      padding-left: $input-size-sm;
+    }
+    &.input-ic-md {
+      padding-left: $input-size-md;
+    }
+    &.input-ic-lg {
+      padding-left: $input-size-lg;
+    }
+    & ~ .input-ic {
+      left: 0;
+      right: auto;
+    }
+  }
+  &-upload {
+    display: table;
+    width: 100%;
+    &-input {
+      &:focus {
+        & ~ .input-upload .input-line-bar {
+          width: 100%;
+        }
+      }
+    }
+    > .input {
+      display: table-cell;
+      vertical-align: middle;
+      &-sm,
+      &-xs {
+        padding-left: 6px;
+      }
+      &-lg,
+      &-md {
+        padding-left: 8px;
+      }
+      &-line,
+      &-material,
+      &-material-2 {
+        padding-left: 0;
+      }
+      > .btn {
+        > .btn-text {
+          white-space: nowrap;
+          display: block;
+          padding-left: 0;
+          padding-right: 0;
+        }
+        &-xs {
+          height: $input-size-xs - 12px;
+        }
+        &-sm {
+          height: $input-size-sm - 12px;
+        }
+        &-md {
+          height: $input-size-md - 16px;
+        }
+        &-lg {
+          height: $input-size-lg - 16px;
+        }
+      }
+    }
+  }
+  &-multiselect-search {
+    border: 1px solid #e6edf6;
+    background-color: #f6f7f9;
+    font-size: 14px;
+  }
+  &-hadval {
+    &.input-magerial {
+      & ~ .input-label {
+        font-weight: $input-material-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+    }
+    &.input-magerial-2 {
+      & ~ .input-label {
+        font-weight: $input-material-2-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+    }
+  }
+  &:disabled {
+    opacity: $input-disabled-opacity;
+    background: $input-disabled-background;
+    & ~ .input-ic {
+      opacity: $input-disabled-opacity;
+    }
+  }
+  &-border {
+    border: 1px solid $input-border-color;
+    background-color: $input-border-background;
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      border: 1px solid $input-border-color;
+      background-color: $input-border-background;
+    }
+    &:focus,
+    &.light-pick-focus {
+      border-color: $input-border-color-focus;
+    }
+    & ~ .select2-container--default .select2-selection--single[aria-expanded="true"],
+    & ~ .select2-container--default .select2-selection--multiple[aria-expanded="true"],
+    & ~ .btn-group.open .multiselect {
+      border-color: $input-border-color-focus;
+    }
+  }
+  &-line {
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid $input-line-border-color;
+    background-color: $input-line-border-background;
+    padding-left: 0;
+    &:disabled,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--single,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--multiple {
+      background-color: transparent;
+    }
+    & ~ .select2-container--default .select2-search--inline .select2-search__field {
+      padding-left: 0;
+    }
+    &-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background-color: $input-line-bar-color;
+      height: $input-line-bar-height;
+      width: 0;
+      @include transition(0.15s ease-in-out);
+      @include z-index(input-line-bar);
+    }
+    & ~ .input-ic {
+      text-align: right;
+    }
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      border: 0;
+      border-radius: 0;
+      border-bottom: 1px solid $input-line-border-color;
+      background-color: $input-line-border-background;
+      &:after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: $input-line-bar-color;
+        height: $input-line-bar-height;
+        width: 0;
+        bottom: 0;
+        @include transition(0.15s ease-in-out);
+        content: "";
+      }
+      .select2-selection__rendered {
+        padding-left: 0;
+      }
+    }
+    & ~ .btn-group .multiselect {
+      padding-left: 0;
+    }
+    & ~ .select2-container--open {
+      .select2-selection--multiple,
+      .select2-selection--single {
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+    &:focus,
+    &.light-pick-focus,
+    & ~ .btn-group.open {
+      & ~ .input-line-bar {
+        width: 100%;
+      }
+    }
+    & ~ .select2-container--default .select2-selection--single[aria-expanded="true"],
+    & ~ .select2-container--default .select2-selection--multiple[aria-expanded="true"] {
+      border-color: $input-border-color-focus;
+    }
+  }
+  &-material {
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid $input-line-border-color;
+    background-color: $input-line-border-background;
+    padding-left: 0;
+    position: relative;
+    font-size: $input-material-font-size;
+    @include z-index(input-material);
+    & ~ .btn-group {
+      [title="Chọn"],
+      [title="Select"] {
+        .multiselect-selected-text {
+          opacity: 0;
+        }
+      }
+    }
+    &:disabled,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--single,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--multiple {
+      background-color: transparent;
+    }
+    & ~ .select2-container--default .select2-search--inline .select2-search__field {
+      padding-left: 0;
+    }
+    & ~ .input-ic {
+      text-align: right;
+    }
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      border: 0;
+      border-radius: 0;
+      border-bottom: 1px solid $input-line-border-color;
+      background-color: $input-line-border-background;
+      &:after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: $input-line-bar-color;
+        height: $input-line-bar-height;
+        width: 0;
+        bottom: 0;
+        @include transition(0.15s ease-in-out);
+        content: "";
+      }
+      .select2-selection__rendered {
+        padding-left: 0;
+      }
+    }
+    & ~ .btn-group .multiselect {
+      padding-left: 0;
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open {
+      & ~ .input-label {
+        font-weight: $input-material-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+      .select2-selection--multiple,
+      .select2-selection--single {
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+    &:focus,
+    &.light-pick-focus,
+    & ~ .btn-group.open {
+      & ~ .input-line-bar {
+        width: 100%;
+      }
+      & ~ .input-label {
+        font-weight: $input-material-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+    }
+    & ~ .input-label {
+      color: $input-placeholder-color;
+      position: absolute;
+      left: 0;
+      @include transition(0.2s all ease-in-out);
+      font-size: $input-material-font-size;
+      @include transform-origin(top left);
+      line-height: 1.2;
+      pointer-events: none;
+    }
+    &.input-ic-right {
+      & ~ .input-label {
+        left: 36px;
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          left: 0;
+        }
+      }
+    }
+    &.input-ic-right.input-hadval {
+      & ~ .input-label {
+        left: 0;
+      }
+    }
+  }
+  &-material-2 {
+    border: $input-material-2-border;
+    border-radius: $input-border-radius;
+    background-color: $input-material-2-background;
+    padding-left: $input-material-2-padding-left;
+    font-size: $input-material-2-font-size;
+    position: relative;
+    line-height: 1.2;
+    @include z-index(input-material);
+    & ~ .btn-group {
+      [title="Chọn"],
+      [title="Select"] {
+        .multiselect-selected-text {
+          opacity: 0;
+        }
+      }
+    }
+    &:disabled,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--single,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--multiple {
+      background-color: transparent;
+    }
+    & ~ .select2-container--default .select2-search--inline .select2-search__field {
+      padding-left: $input-material-2-padding-left;
+    }
+    & ~ .input-ic {
+      text-align: center;
+    }
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      border: $input-material-2-border;
+      border-radius: $input-border-radius;
+      background-color: $input-material-2-background;
+      padding-left: $input-material-2-padding-left;
+      &:after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: $input-line-bar-color;
+        height: $input-line-bar-height;
+        width: 0;
+        bottom: 0;
+        @include transition(0.15s ease-in-out);
+        content: "";
+      }
+      .select2-selection__rendered {
+        padding-left: 0;
+      }
+    }
+    & ~ .btn-group .multiselect {
+      padding-left: $input-material-2-padding-left;
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open {
+      & ~ .input-label {
+        font-weight: $input-material-2-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+      .select2-selection--multiple,
+      .select2-selection--single {
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+    &:focus,
+    &.light-pick-focus,
+    & ~ .btn-group.open {
+      & ~ .input-line-bar {
+        width: 100%;
+      }
+      & ~ .input-label {
+        font-weight: $input-material-2-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+    }
+    & ~ .input-label {
+      color: $input-placeholder-color;
+      position: absolute;
+      left: $input-material-2-padding-left;
+      @include transition(0.2s all ease-in-out);
+      font-size: $input-material-font-size;
+      @include transform-origin(top left);
+      line-height: 1.2;
+      pointer-events: none;
+      z-index: 1;
+    }
+    &.input-ic-right {
+      & ~ .input-label {
+        left: 36px;
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          left: 0;
+        }
+      }
+    }
+    &.input-ic-right.input-hadval {
+      & ~ .input-label {
+        left: 0;
+      }
+    }
+  }
+  &-material-3 {
+    border: 0;
+    border: 1px solid $input-line-border-color;
+    background-color: $input-line-border-background;
+    position: relative;
+    font-size: $input-material-font-size;
+    @include z-index(input-material);
+    & ~ .btn-group {
+      [title="Chọn"],
+      [title="Select"] {
+        .multiselect-selected-text {
+          opacity: 0;
+        }
+      }
+    }
+    &:disabled,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--single,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--multiple {
+      background-color: transparent;
+    }
+    & ~ .select2-container--default .select2-search--inline .select2-search__field {
+      padding-left: 0;
+    }
+    & ~ .input-ic {
+      text-align: center;
+    }
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      border: 0;
+      border: 1px solid $input-line-border-color;
+      background-color: $input-line-border-background;
+      &:after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: $input-line-bar-color;
+        height: $input-line-bar-height;
+        width: 0;
+        bottom: 0;
+        @include transition(0.15s ease-in-out);
+        content: "";
+      }
+    }
+    & ~ .select2-container--default .select2-selection--multiple {
+      padding-top: 7px;
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open {
+      & ~ .input-label {
+        font-weight: $input-material-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+      .select2-selection--multiple,
+      .select2-selection--single {
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+    &:focus,
+    &.light-pick-focus,
+    & ~ .btn-group.open {
+      & ~ .input-line-bar {
+        width: 100%;
+      }
+      & ~ .input-label {
+        font-weight: $input-material-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+    }
+    & ~ .input-label {
+      color: $input-placeholder-color;
+      position: absolute;
+      left: $input-space-left - floor(4px * ($input-material-font-size-sm/$input-material-font-size));
+      @include transition(0.2s all ease-in-out);
+      font-size: $input-material-font-size;
+      @include transform-origin(top left);
+      line-height: 1.2;
+      pointer-events: none;
+      padding: 0 4px;
+      display: inline-block;
+      z-index: 2;
+      width: auto;
+    }
+    &.input-ic-right {
+      & ~ .input-label {
+        left: 36px;
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          left: 0;
+        }
+      }
+    }
+    &.input-ic-right.input-hadval {
+      & ~ .input-label {
+        left: 0;
+      }
+    }
+  }
+  &-clean {
+    border: 1px solid $input-clean-background;
+    background-color: $input-clean-background;
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      border: 1px solid transparent;
+      background-color: $input-clean-background;
+    }
+  }
+  &-time {
+    &:before {
+      position: absolute;
+      left: -16px;
+      line-height: 36px;
+      height: 36px;
+      font-size: 14px;
+      content: ":";
+      top: 0;
+    }
+    &:after {
+      position: absolute;
+      right: -16px;
+      line-height: 36px;
+      height: 36px;
+      font-size: 14px;
+      content: ":";
+      top: 0;
+    }
+  }
+  &-xs {
+    &:not(textarea) {
+      &.input-material-2 {
+        height: $input-material-2-height-xs;
+        padding-top: material2InsideInputCalRound($input-material-2-height-xs);
+      }
+      height: $input-size-xs;
+    }
+    &.input-rounded {
+      border-radius: $input-size-xs/2;
+      & ~ .select2-container .select2-selection--single,
+      & ~ .select2-container .select2-selection--multiple,
+      & ~ .btn-group .multiselect {
+        border-radius: $input-size-xs/2;
+      }
+    }
+    &.input-material {
+      & ~ .input-label {
+        top: ceil(($input-size-xs - labelHeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($input-size-xs))
+          );
+        }
+      }
+    }
+    &.input-material-3 {
+      & ~ .input-label {
+        top: ceil(($input-size-xs - labelHeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal2($input-size-xs))
+          );
+        }
+      }
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open,
+    &.input-hadval {
+      &.input-material {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($input-size-xs))
+          );
+        }
+      }
+      &.input-material-3 {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal2($input-size-xs))
+          );
+        }
+      }
+    }
+    &.input-material-2 {
+      & ~ .input-label {
+        top: ceil(($input-material-2-height-xs - label2HeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-2-font-size-sm/$input-material-2-font-size)
+              translateY(material2LabelCal($input-material-2-height-xs))
+          );
+        }
+      }
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open,
+    &.input-hadval {
+      &.input-material-2 {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-2-font-size-sm/$input-material-2-font-size)
+              translateY(material2LabelCal($input-material-2-height-xs))
+          );
+        }
+      }
+    }
+    & ~ .input-line-bar {
+      top: $input-size-xs - 2;
+    }
+    &.input-material-2 ~ .input-line-bar {
+      top: $input-material-2-height-xs - 2;
+    }
+    & ~ .input-ic {
+      height: $input-size-xs;
+      line-height: $input-material-2-height-xs;
+    }
+    &.input-material-2 ~ .input-ic {
+      height: $input-material-2-height-xs;
+      line-height: $input-material-2-height-xs;
+    }
+    & ~ .select2-container .select2-selection--single,
+    & ~ .btn-group .multiselect {
+      height: $input-size-xs;
+      .select2-selection__rendered {
+        line-height: $input-size-xs - 2px;
+      }
+    }
+    & ~ .select2-container .select2-selection--multiple {
+      min-height: $input-size-xs;
+      .select2-search__field {
+        height: $input-size-xs - 2px;
+      }
+    }
+    &.input-material-2 ~ .select2-container .select2-selection--single,
+    &.input-material-2 ~ .btn-group .multiselect {
+      height: $input-material-2-height-xs;
+      padding-top: material2InsideInputCalRound($input-material-2-height-xs);
+      .select2-selection__rendered {
+        line-height: $input-material-2-height-xs - 2px - material2InsideInputCalRound($input-material-2-height-xs);
+      }
+    }
+    &.input-material-2 ~ .select2-container .select2-selection--multiple {
+      min-height: $input-material-2-height-xs;
+      padding-top: material2InsideInputCalRound($input-material-2-height-xs) + 5px;
+      .select2-search__field {
+        height: $input-material-2-height-xs - material2InsideInputCalRound($input-material-2-height-xs) -5px - 2px;
+      }
+    }
+  }
+  &-sm {
+    &:not(textarea) {
+      &.input-material-2 {
+        height: $input-material-2-height-sm;
+        padding-top: material2InsideInputCalRound($input-material-2-height-sm);
+      }
+      height: $input-size-sm;
+    }
+    &.input-rounded {
+      border-radius: $input-size-sm/2;
+      & ~ .select2-container .select2-selection--single,
+      & ~ .select2-container .select2-selection--multiple,
+      & ~ .btn-group .multiselect {
+        border-radius: $input-size-sm/2;
+      }
+    }
+    &.input-material {
+      & ~ .input-label {
+        top: ceil(($input-size-sm - label2HeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($input-size-sm))
+          );
+        }
+      }
+    }
+    &.input-material-3 {
+      & ~ .input-label {
+        top: ceil(($input-size-sm - label2HeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal2($input-size-sm))
+          );
+        }
+      }
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open,
+    &.input-hadval {
+      &.input-material {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($input-size-sm))
+          );
+        }
+      }
+      &.input-material-3 {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal2($input-size-sm))
+          );
+        }
+      }
+    }
+    &.input-material-2 {
+      & ~ .input-label {
+        top: ceil(($input-material-2-height-sm - labelHeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-2-font-size-sm/$input-material-2-font-size)
+              translateY(material2LabelCal($input-material-2-height-sm))
+          );
+        }
+      }
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open,
+    &.input-hadval {
+      &.input-material-2 {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-2-font-size-sm/$input-material-2-font-size)
+              translateY(material2LabelCal($input-material-2-height-sm))
+          );
+        }
+      }
+    }
+    & ~ .input-line-bar {
+      top: $input-size-sm - 2;
+    }
+    &.input-material-2 ~ .input-line-bar {
+      top: $input-material-2-height-sm - 2;
+    }
+    & ~ .input-ic {
+      height: $input-size-sm;
+      line-height: $input-size-sm;
+    }
+    &.input-material-2 ~ .input-ic {
+      height: $input-material-2-height-sm;
+      line-height: $input-material-2-height-sm;
+    }
+    & ~ .select2-container .select2-selection--single,
+    & ~ .btn-group .multiselect {
+      height: $input-size-sm;
+      .select2-selection__rendered {
+        line-height: $input-size-sm - 2px;
+      }
+    }
+    & ~ .select2-container .select2-selection--multiple {
+      min-height: $input-size-sm;
+      .select2-search__field {
+        height: $input-size-sm - 2px;
+      }
+    }
+    &.input-material-2 ~ .select2-container .select2-selection--single,
+    &.input-material-2 ~ .btn-group .multiselect {
+      height: $input-material-2-height-sm;
+      padding-top: material2InsideInputCalRound($input-material-2-height-sm);
+      .select2-selection__rendered {
+        line-height: $input-material-2-height-sm - 2px - material2InsideInputCalRound($input-material-2-height-sm);
+      }
+    }
+    &.input-material-2 ~ .select2-container .select2-selection--multiple {
+      min-height: $input-material-2-height-sm;
+      padding-top: material2InsideInputCalRound($input-material-2-height-sm) + 5px;
+      .select2-search__field {
+        height: $input-material-2-height-sm - material2InsideInputCalRound($input-material-2-height-sm) -5px - 2px;
+      }
+    }
+  }
+  &-md {
+    &:not(textarea) {
+      &.input-material-2 {
+        height: $input-material-2-height-md;
+        padding-top: material2InsideInputCalRound($input-material-2-height-md);
+      }
+      height: $input-size-md;
+    }
+    &.input-rounded {
+      border-radius: $input-size-md/2;
+      & ~ .select2-container .select2-selection--single,
+      & ~ .select2-container .select2-selection--multiple,
+      & ~ .btn-group .multiselect {
+        border-radius: $input-size-md/2;
+      }
+    }
+    &.input-material {
+      & ~ .input-label {
+        top: ceil(($input-size-md - labelHeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($input-size-md))
+          );
+        }
+      }
+    }
+    &.input-material-3 {
+      & ~ .input-label {
+        top: ceil(($input-size-md - labelHeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal2($input-size-md))
+          );
+        }
+      }
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open,
+    &.input-hadval {
+      &.input-material {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($input-size-md))
+          );
+        }
+      }
+      &.input-material-3 {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal2($input-size-md))
+          );
+        }
+      }
+    }
+    &.input-material-2 {
+      & ~ .input-label {
+        top: ceil(($input-material-2-height-md - label2HeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-2-font-size-sm/$input-material-2-font-size)
+              translateY(material2LabelCal($input-material-2-height-md))
+          );
+        }
+      }
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open,
+    &.input-hadval {
+      &.input-material-2 {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-2-font-size-sm/$input-material-2-font-size)
+              translateY(material2LabelCal($input-material-2-height-md))
+          );
+        }
+      }
+    }
+    & ~ .input-line-bar {
+      top: $input-size-md - 2;
+    }
+    &.input-material-2 ~ .input-line-bar {
+      top: $input-material-2-height-md - 2;
+    }
+    & ~ .input-ic {
+      height: $input-size-md;
+      line-height: $input-size-md;
+    }
+    &.input-material-2 ~ .input-ic {
+      height: $input-material-2-height-md;
+      line-height: $input-material-2-height-md;
+    }
+    & ~ .select2-container .select2-selection--single,
+    & ~ .btn-group .multiselect {
+      height: $input-size-md;
+      .select2-selection__rendered {
+        line-height: $input-size-md - 2px;
+      }
+    }
+    & ~ .select2-container .select2-selection--multiple {
+      min-height: $input-size-md;
+      .select2-search__field {
+        height: $input-size-md - 2px;
+      }
+    }
+    &.input-material-2 ~ .select2-container .select2-selection--single,
+    &.input-material-2 ~ .btn-group .multiselect {
+      height: $input-material-2-height-md;
+      padding-top: material2InsideInputCalRound($input-material-2-height-md);
+      .select2-selection__rendered {
+        line-height: $input-material-2-height-md - 2px - material2InsideInputCalRound($input-material-2-height-md);
+      }
+    }
+    &.input-material-2 ~ .select2-container .select2-selection--multiple {
+      min-height: $input-material-2-height-md;
+      padding-top: material2InsideInputCalRound($input-material-2-height-md) + 5px;
+      .select2-search__field {
+        height: $input-material-2-height-md - material2InsideInputCalRound($input-material-2-height-md) -5px - 2px;
+      }
+    }
+  }
+  &-lg {
+    &:not(textarea) {
+      &.input-material-2 {
+        height: $input-material-2-height-lg;
+        padding-top: material2InsideInputCalRound($input-material-2-height-lg);
+      }
+      height: $input-size-lg;
+    }
+    &.input-rounded {
+      border-radius: $input-size-lg/2;
+      & ~ .select2-container .select2-selection--single,
+      & ~ .select2-container .select2-selection--multiple,
+      & ~ .btn-group .multiselect {
+        border-radius: $input-size-lg/2;
+      }
+    }
+    &.input-material {
+      & ~ .input-label {
+        top: ceil(($input-size-lg - labelHeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($input-size-lg))
+          );
+        }
+      }
+    }
+    &.input-material-3 {
+      & ~ .input-label {
+        top: ceil(($input-size-lg - labelHeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal2($input-size-lg))
+          );
+        }
+      }
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open,
+    &.input-hadval {
+      &.input-material {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($input-size-lg))
+          );
+        }
+      }
+      &.input-material-3 {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal2($input-size-lg))
+          );
+        }
+      }
+    }
+    &.input-material-2 {
+      & ~ .input-label {
+        top: ceil(($input-material-2-height-lg - label2HeightCal())/2);
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-2-font-size-sm/$input-material-2-font-size)
+              translateY(material2LabelCal($input-material-2-height-lg))
+          );
+        }
+      }
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open,
+    &.input-hadval {
+      &.input-material-2 {
+        & ~ .input-label {
+          @include transform(
+            scale($input-material-2-font-size-sm/$input-material-2-font-size)
+              translateY(material2LabelCal($input-material-2-height-lg))
+          );
+        }
+      }
+    }
+    & ~ .input-line-bar {
+      top: $input-size-lg - 2;
+    }
+    &.input-material-2 ~ .input-line-bar {
+      top: $input-material-2-height-lg - 2;
+    }
+    & ~ .input-ic {
+      height: $input-size-lg;
+      line-height: $input-size-lg;
+    }
+    &.input-material-2 ~ .input-ic {
+      height: $input-material-2-height-lg;
+      line-height: $input-material-2-height-lg;
+    }
+    & ~ .select2-container .select2-selection--single,
+    & ~ .btn-group .multiselect {
+      height: $input-size-lg;
+      .select2-selection__rendered {
+        line-height: $input-size-lg - 2px;
+      }
+    }
+    & ~ .select2-container .select2-selection--multiple {
+      min-height: $input-size-lg;
+      .select2-search__field {
+        height: $input-size-lg - 2px;
+      }
+    }
+    &.input-material-2 ~ .select2-container .select2-selection--single,
+    &.input-material-2 ~ .btn-group .multiselect {
+      height: $input-material-2-height-lg;
+      padding-top: material2InsideInputCalRound($input-material-2-height-lg);
+      .select2-selection__rendered {
+        line-height: $input-material-2-height-lg - 2px - material2InsideInputCalRound($input-material-2-height-lg);
+      }
+    }
+    &.input-material-2 ~ .select2-container .select2-selection--multiple {
+      min-height: $input-material-2-height-lg;
+      padding-top: material2InsideInputCalRound($input-material-2-height-lg) + 5px;
+      .select2-search__field {
+        height: $input-material-2-height-lg - material2InsideInputCalRound($input-material-2-height-lg) -5px - 2px;
+      }
+    }
+  }
+  &-white {
+    border: transparent;
+  }
+  &-group {
+    position: relative;
+    &-material {
+      margin-top: labelHeightCal($input-material-font-size-sm);
+    }
+  }
+  &-ic {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    pointer-events: none;
+    font-size: 0;
+    font-weight: 600;
+    &-xs {
+      ~ .input-ic {
+        width: $input-size-xs;
+      }
+    }
+    &-sm {
+      ~ .input-ic {
+        width: $input-size-sm;
+      }
+    }
+    &-md {
+      ~ .input-ic {
+        width: $input-size-md;
+      }
+    }
+    &-lg {
+      ~ .input-ic {
+        width: $input-size-lg;
+      }
+    }
+  }
+  &-shadow {
+    border: 0;
+    @include box-shadow(0 2px 4px 0 rgba(black, 0.16));
+  }
+  &-no-border {
+    border: 0;
+    padding: 0;
+  }
+  &-pointer {
+    pointer-events: all;
+    cursor: pointer;
+  }
+}
+
+input {
+  &::placeholder {
+    color: $input-placeholder-color;
+  }
+}
+
+.input-no-border {
+  & ~ .select2-container--default {
+    .select2-selection--single {
+      border: 0;
+    }
+    .select2-selection__rendered {
+      padding-left: 0;
+    }
+  }
+}
+
+.input-white {
+  & ~ .select2-container--default {
+    .select2-selection--single {
+      border: 1px solid transparent;
+    }
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+textarea {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+  & ~ .input-line-bar {
+    bottom: 0;
+    top: auto !important;
+  }
+}
+
+.upload-file {
+  border-radius: $upload-border-radius;
+  border: $upload-border;
+  position: relative;
+  display: block;
+  padding: 15px;
+  &-type {
+    .inline-block {
+      font-size: 12px;
+      color: $color-grey;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+}

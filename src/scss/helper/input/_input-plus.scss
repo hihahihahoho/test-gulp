@@ -1,0 +1,46 @@
+$input-plus-map: (
+  xs: 36px,
+  sm: 44px,
+  md: 56px,
+  lg: 60px
+);
+@mixin modifiers-input-plus($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-input-plus($value, $separator);
+      } @else {
+        width: $value;
+        height: $value;
+      }
+    }
+  }
+}
+.input-plus {
+  display: flex;
+  font-size: $font-size-default;
+  align-items: center;
+  .ic {
+    @include modifiers-input-plus($input-plus-map);
+    border-radius: 50%;
+    border: 1px solid #afb3bc;
+    cursor: pointer;
+    background-size: 16px 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    &:active {
+       background-color: #F7F8FA
+    }
+    &-minus {
+       background-image: url(../images/base/icons/minus/square/base.svg)
+    }
+    &-plus {
+       background-image: url(../images/base/icons/plus/square/base.svg)
+    }
+  }
+  .txt{
+     width: 44px;
+     text-align: center
+  }
+}

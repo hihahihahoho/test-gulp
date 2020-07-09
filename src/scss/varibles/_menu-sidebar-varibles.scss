@@ -1,0 +1,37 @@
+//===sidebar===
+$sidebar-width             : 240px;
+$sidebar-width-mobile      : 80vw;
+$sidebar-bg-color          : $color-base;
+$sidebar-text-color        : $color-grey;
+$sidebar-item-height       : 46px;
+$sidebar-item-height-mobile: 46px;
+$sidebar-header-height     : 56px;
+
+//---sidebar-active----
+$sidebar-active-color: $color-primary;
+
+//---sidebar-hover----
+$sidebar-hover-background-color: rgba(223, 228, 235, 0.1);
+
+//---sidebar-icon----
+$sidebar-ic-main-width       : 56px;
+$sidebar-ic-sub-width        : 40px;
+$sidebar-dropdown-ic-width   : 22px;
+$sidebar-ic-sub-padding-right: 12px;
+
+//---sidebar-title----
+$sidebar-title-font-size  : 11px;
+$sidebar-title-font-weight: 500;
+$sidebar-title-color      : inherit;
+$sidebar-title-border     : 1px solid #172C43;
+$sidebar-title-padding    : 20px 17px 10px 17px;
+$sidebar-title-margin-top : 0;
+
+//sidebar-sub---
+$sidebar-first-sub-space           : 18px;
+$sidebar-sub-bg-color              : $color-black;
+$sidebar-sub-item-height            : 40px;
+$sidebar-sub-item-height-mobile    : 40px;
+$sidebar-sub-space                 : 10px;
+$sidebar-sub-sub-space-left        : 10px;
+$sidebar-item-open-background-color: inherit;

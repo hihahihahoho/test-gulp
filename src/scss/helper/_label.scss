@@ -1,0 +1,90 @@
+//===========Label===========//
+
+$label-xs-font-size      :  9px;
+$label-xs-height         :  18px;
+$label-xs-min-width      :  0;
+$label-xs-padding        :  0 6px;
+$label-xs-border-radius  :  3px;
+
+$label-sm-font-size      :  10px;
+$label-sm-height         :  20px;
+$label-sm-min-width      :  0;
+$label-sm-padding        :  0 7px;
+$label-sm-border-radius  :  3px;
+
+$label-md-font-size      :  11px;
+$label-md-height         :  22px;
+$label-md-min-width      :  0;
+$label-md-padding        :  0 8px;
+$label-md-border-radius  :  3px;
+
+$label-lg-font-size      :  12px;
+$label-lg-height         :  24px;
+$label-lg-min-width      :  0;
+$label-lg-padding        :  0 9px;
+$label-lg-border-radius  :  3px;
+
+label {
+   margin-bottom: 0;
+}
+.ulabel {
+  &-status {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  &-xs {
+    border-radius: $label-xs-border-radius;
+    height: $label-xs-height;
+    line-height: $label-xs-height;
+    min-width: $label-xs-min-width;
+    font-size: $label-xs-font-size;
+    padding: $label-xs-padding;
+  }
+  &-sm {
+    border-radius: $label-sm-border-radius;
+    height: $label-sm-height;
+    line-height: $label-sm-height;
+    min-width: $label-sm-min-width;
+    font-size: $label-sm-font-size;
+    padding: $label-sm-padding;
+  }
+  &-md {
+    border-radius: $label-md-border-radius;
+    height: $label-md-height;
+    line-height: $label-md-height;
+    min-width: $label-md-min-width;
+    font-size: $label-md-font-size;
+    padding: $label-md-padding;
+  }
+  &-lg {
+    border-radius: $label-lg-border-radius;
+    height: $label-lg-height;
+    line-height: $label-lg-height;
+    min-width: $label-lg-min-width;
+    font-size: $label-lg-font-size;
+    padding: $label-lg-padding;
+  }
+  &-round {
+    &.label-xs {
+      border-radius: $label-xs-height/2;
+    }
+    &.label-sm {
+      border-radius: $label-sm-height/2;
+    }
+    &.label-md {
+      border-radius: $label-md-height/2;
+    }
+    &.label-lg {
+      border-radius: $label-lg-height/2;
+    }
+  }
+  &-full {
+    width: 100%;
+    display: block;
+  }
+  &-sub {
+    font-size: 12px;
+    padding-top: 5px;
+    display: block;
+  }
+}

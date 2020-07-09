@@ -1,0 +1,216 @@
+$btn-borderer-radius: 4px;
+$btn-font-weight: 500;
+$btn-ic-width: 22px;
+$btn-font-size: $font-size-default;
+$btn-line-border-thick: 1px;
+$btn-disable-opactiy: 0.4;
+$btn-shadow: true;
+$map-btn-width: (
+  full: (
+    0: 100%,
+    480: 100%
+  ),
+  xs: (
+    0: 50%,
+    480: 100px
+  ),
+  sm: (
+    0: 50%,
+    480: 120px
+  ),
+  md: (
+    0: 50%,
+    480: 140px
+  ),
+  md-100: (
+    0: 100%,
+    480: 140px
+  ),
+  lg: (
+    0: 50%,
+    480: 180px
+  ),
+  lg-100: (
+    0: 100%,
+    480: 180px
+  ),
+  xl-100: (
+    0: 100%,
+    480: 200px
+  )
+);
+$map-btn-height: (
+  xs: 30px,
+  sm: 36px,
+  md: 40px,
+  lg: 50px,
+  xl: 60px
+);
+$map-btn-color-modify: (
+  yellow: $color-base
+);
+
+@mixin modifiers-btn-width($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @if ($key2 != 0) {
+            @include media(">=#{$key2}px") {
+              min-width: $value2;
+              width: auto;
+            }
+          } @else {
+            width: $value2;
+          }
+        }
+      }
+      display: inline-block;
+      > * {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@mixin modifiers-btn-height($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-btn-height($value, $attribute, $separator);
+      } @else {
+        #{$attribute}: $value;
+        padding: 0 10px;
+        &.btn-rounded {
+          border-radius: $value/2;
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-btn-circle($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-btn-circle($value, $attribute, $separator);
+      } @else {
+        #{$attribute}: $value;
+        width: $value;
+        border-radius: 50%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@mixin modifiers-btn-line($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-btn-line($value);
+      } @else {
+        border: $btn-line-border-thick solid $value;
+        box-shadow: none;
+        background: transparent;
+        > * {
+          color: $value;
+        }
+        .legitRipple-ripple {
+          background: lighten($value, 42%);
+        }
+      }
+    }
+  }
+}
+button::after,
+button::before {
+  content: "";
+  flex: 1 0 auto;
+}
+.ubtn {
+  vertical-align: middle;
+  border: 0;
+  outline: none !important;
+  cursor: pointer;
+  text-decoration: none !important;
+  border-radius: $btn-borderer-radius;
+  font-weight: $btn-font-weight;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  text-align: center;
+  @include modifiers-btn-height($map-btn-height, "height");
+  &-wrap-width {
+    @include modifiers-btn-width($map-btn-width);
+  }
+  &-circle {
+    @include modifiers-btn-circle($map-btn-height, "height");
+  }
+  &-line {
+    @include modifiers-btn-line($map-color);
+    @include modifiers-btn-line($map-color-level);
+  }
+}
+
+.ubtn {
+  margin: 5px 0;
+  img {
+    @include z-index(btn-img);
+    position: relative;
+  }
+  &-ic {
+    width: $btn-ic-width;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  & .mdi {
+    vertical-align: middle;
+    line-height: 1;
+  }
+  &-text {
+    padding: 0 10px;
+    @include z-index(btn-text);
+    position: relative;
+    font-size: $btn-font-size;
+    vertical-align: middle;
+  }
+  &-file {
+    padding-left: 85px;
+    line-height: 24px;
+    font-weight: 400;
+    text-align: left;
+    &-btn {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 36px;
+      line-height: 36px;
+      font-weight: normal;
+      padding: 0 10px;
+      border-radius: 4px 0 0 4px;
+      background: $color-primary;
+      color: white;
+      & ~ .btn-text {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+        display: block;
+      }
+    }
+  }
+  &-full {
+    width: 100%;
+  }
+}
+
+.btn-group {
+  position: relative;
+}
+
+button:disabled,
+button[disabled] {
+  opacity: $btn-disable-opactiy;
+}

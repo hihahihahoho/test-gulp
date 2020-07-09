@@ -1,0 +1,265 @@
+//===========Table===========//
+$table-zebra-bg-color: $color-grey-4;
+$table-zebra-color: $color-base;
+$table-thead-color: $color-grey-1;
+$table-thead-font-weight: 500;
+$table-thead-padding: 12px 5px;
+$table-thead-font-size: 13px;
+$table-font-size: 14px;
+$table-body-padding: 12px 5px;
+$table-border: 1px solid $color-grey-2;
+$table-hover-bg-color: $color-grey-3;
+
+//===========pagination===========//
+$page-font: 13px;
+$page-color: $color-base;
+$page-item-space: 0;
+$page-bg-color: transparent;
+$page-dots: $color-grey-1;
+$page-border: 1px solid transparent;
+$page-border-radius: 50%;
+$page-color-active: white;
+$page-bg-color-active: $color-primary;
+$page-border-active: 1px solid $color-grey-3;
+$page-number-size: 30px;
+$page-first-last-size-width: 40px;
+$page-box-shadow: none;
+$page-hover-color: $color-grey-3;
+
+// default
+$table-zebra-bg-color: #b7c0cd !default;
+$table-thead-color: #b7c0cd !default;
+$table-border: 1px solid #b7c0cd !default;
+$table-hover-bg-color: #b7c0cd !default;
+$page-dots: #b7c0cd !default;
+$page-border-active: 1px solid #b7c0cd !default;
+$page-hover-color: #b7c0cd !default;
+
+$map-table-wrapper-size: (
+  xs: 500px,
+  sm: 600px,
+  md: 700px,
+  lg: 800px
+);
+
+$map-table-td-breakpoint: (
+  xs: 480px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px
+);
+
+@mixin modifiers-table-wraper($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers($value, $separator);
+      } @else {
+        @include media("<=#{$value}") {
+          &:not(.data-table-wraper) {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+          &.data-table-wraper {
+            .table-wraper {
+              overflow-x: auto;
+              -webkit-overflow-scrolling: touch;
+            }
+          }
+          > table,
+          .data-table {
+            min-width: $value;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-td($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers($value, $separator);
+      } @else {
+        @include media(">=#{$value}") {
+          display: table-cell;
+          vertical-align: middle;
+        }
+        @include media("<#{$value}") {
+          text-align: left !important;
+        }
+        position: relative;
+      }
+    }
+  }
+}
+.table td, .table th {
+    padding: inherit;
+    vertical-align: inherit;
+    border-top: inherit;
+}
+.table {
+  display: table;
+  width: 100%;
+  margin-bottom: 0;
+  &-auto {
+    width: auto;
+    display: table;
+  }
+}
+.tr {
+  display: table-row;
+}
+
+.td {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  &-left {
+    padding-left: 15px !important;
+  }
+//   @include modifiers-td($map-table-td-breakpoint);
+}
+
+.table {
+  &-fixed {
+    table-layout: fixed;
+  }
+  &-wraper {
+    @include modifiers-table-wraper($map-table-wrapper-size);
+    & ~ .bottom {
+      overflow: hidden;
+      padding-top: 20px;
+      padding-bottom: 10px;
+      & > .table {
+        & > .td {
+          &:first-child {
+            width: 90%;
+            padding-right: 50px;
+            @include media("<750px") {
+              padding-right: 0;
+              width: 100%;
+            }
+          }
+          white-space: nowrap;
+          @include media("<750px") {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  &-basic {
+    font-size: $table-font-size;
+    & > thead > tr > th {
+      color: $table-thead-color;
+      font-weight: $table-thead-font-weight;
+      text-align: left;
+      padding: $table-thead-padding;
+      font-size: $table-thead-font-size;
+    }
+    & > tbody > tr {
+      &:nth-of-type(odd) {
+        background-color: $table-zebra-bg-color;
+        color: $table-zebra-color;
+      }
+    }
+    & > tbody > tr > td {
+      padding: 13px 5px;
+    }
+    & tr.read {
+      background-color: $color-grey-2 !important;
+    }
+  }
+  &-border {
+    &-v {
+      & > tbody > tr > td,
+      & > thead > tr > th,
+      & > tfoot > tr > td {
+        border-right: $table-border;
+        border-left: $table-border;
+      }
+    }
+    &-h {
+      & > tbody > tr > td,
+      & > thead > tr > th,
+      & > tfoot > tr > td {
+        border-top: $table-border;
+        border-bottom: $table-border;
+      }
+    }
+    &-all {
+      & > tbody > tr > td,
+      & > thead > tr > th,
+      & > tfoot > tr > td {
+        border: $table-border;
+      }
+    }
+  }
+  &-hover {
+    tr,
+    .tr {
+      cursor: pointer;
+      &:hover {
+        background-color: $table-hover-bg-color !important;
+      }
+    }
+  }
+  &-no-zebra {
+    & > tbody > tr:nth-of-type(odd) {
+      background-color: #ffffff;
+    }
+  }
+}
+
+.table-record {
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.table-wraper-inner {
+  position: relative;
+  &:before {
+    content: "";
+    background-color: transparent;
+    background-image: -ms-linear-gradient(right, transparent, rgba(0, 0, 0, 0.1));
+    background-image: -webkit-linear-gradient(right, transparent, rgba(0, 0, 0, 0.1));
+    background-image: -moz-linear-gradient(right, transparent, rgba(0, 0, 0, 0.1));
+    background-image: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.1));
+    transition: opacity 0.15s linear;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    left: 0;
+    z-index: 10;
+    opacity: 1;
+  }
+  &:after {
+    content: "";
+    background-color: transparent;
+    background-image: -ms-linear-gradient(left, transparent, rgba(0, 0, 0, 0.1));
+    background-image: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.1));
+    background-image: -moz-linear-gradient(left, transparent, rgba(0, 0, 0, 0.1));
+    background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1));
+    transition: opacity 0.15s linear;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    right: 0;
+    z-index: 10;
+  }
+  &.right-none {
+    &:after {
+      opacity: 0;
+    }
+  }
+  &.left-none {
+    &:before {
+      opacity: 0;
+    }
+  }
+}

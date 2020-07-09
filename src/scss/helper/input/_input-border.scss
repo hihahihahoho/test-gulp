@@ -1,0 +1,25 @@
+
+.input {
+  &-border {
+    border: 1px solid $input-line-border-color;
+    background-color: $input-line-border-background;
+    ~ .input-ic:after {
+      background: linear-gradient(90deg, rgba(white, 0) 0%, rgba(white, 1) 30%);
+    }
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      border: 1px solid $input-line-border-color;
+      background-color: $input-line-border-background;
+    }
+    &:focus,
+    &.light-pick-focus {
+      border-color: $input-border-color-focus;
+    }
+    & ~ .select2-container--default .select2-selection--single[aria-expanded="true"],
+    & ~ .select2-container--default .select2-selection--multiple[aria-expanded="true"],
+    & ~ .btn-group.open .multiselect {
+      border-color: $input-border-color-focus;
+    }
+  }
+}

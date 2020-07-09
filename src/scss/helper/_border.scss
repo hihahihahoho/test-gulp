@@ -1,0 +1,123 @@
+//============Border===========//
+$border-color  :  $border-base-color;
+
+$map-border: (
+  xs  :  1px,
+  sm  :  2px,
+  md  :  3px,
+  lg  :  4px
+);
+
+$map-border-radius: (
+  xs  :  3px,
+  sm  :  4px,
+  md  :  6px,
+  lg  :  10px
+);
+
+@mixin modifiers-border($map, $orient, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @include media(">=#{$key2}px") {
+            @if $orient == "vh" {
+              border: $value solid $border-color;
+            }
+            @if $orient == "h" {
+              border: 0;
+              border-left: $value2 solid $border-color;
+              border-right: $value2 solid $border-color;
+            }
+            @if $orient == "v" {
+              border: 0;
+              border-top: $value2 solid $border-color;
+              border-bottom: $value2 solid $border-color;
+            }
+            @if $orient == "l" {
+              border: 0;
+              border-left: $value2 solid $border-color;
+            }
+            @if $orient == "r" {
+              border: 0;
+              border-right: $value2 solid $border-color;
+            }
+            @if $orient == "t" {
+              border: 0;
+              border-top: $value2 solid $border-color;
+            }
+            @if $orient == "b" {
+              border: 0;
+              border-bottom: $value2 solid $border-color;
+            }
+          }
+        }
+      } @else {
+        @if $orient == "vh" {
+          border: $value solid $border-color;
+        }
+        @if $orient == "h" {
+          border: 0;
+          border-left: $value solid $border-color;
+          border-right: $value solid $border-color;
+        }
+        @if $orient == "v" {
+          border: 0;
+          border-top: $value solid $border-color;
+          border-bottom: $value solid $border-color;
+        }
+        @if $orient == "l" {
+          border: 0;
+          border-left: $value solid $border-color;
+        }
+        @if $orient == "r" {
+          border: 0;
+          border-right: $value solid $border-color;
+        }
+        @if $orient == "t" {
+          border: 0;
+          border-top: $value solid $border-color;
+        }
+        @if $orient == "b" {
+          border: 0;
+          border-bottom: $value solid $border-color;
+        }
+      }
+    }
+  }
+}
+
+.border {
+  &-dashed {
+    border-style: dashed !important;
+  }
+  &-dotted {
+    border-style: dotted !important;
+  }
+  &-vh {
+    @include modifiers-border($map-border, "vh");
+  }
+  &-h {
+    @include modifiers-border($map-border, "h");
+  }
+  &-r {
+    @include modifiers-border($map-border, "r");
+  }
+  &-l {
+    @include modifiers-border($map-border, "l");
+  }
+  &-v {
+    @include modifiers-border($map-border, "v");
+  }
+  &-b {
+    @include modifiers-border($map-border, "b");
+  }
+  &-t {
+    @include modifiers-border($map-border, "t");
+  }
+  @include modifiers($map-color, "border-color");
+  @include modifiers($map-color-level, "border-color");
+  .radius {
+    @include modifiers($map-border-radius, "border-radius");
+  }
+}

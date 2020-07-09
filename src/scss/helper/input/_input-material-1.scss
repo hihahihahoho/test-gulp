@@ -1,0 +1,162 @@
+//===Input material===
+$input-material-font-size: 16px;
+$input-material-font-size-sm: 13px;
+$input-material-font-weight-sm: 500;
+
+@mixin modifiers-input-material-1($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-input-material-1($value, $separator);
+      } @else {
+        &.input-material {
+          & ~ .input-label {
+            top: ceil(($value - labelHeightCal())/2);
+          }
+          &:focus,
+          &.light-pick-focus {
+            & ~ .input-label {
+              @include transform(
+                scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($value))
+              );
+            }
+          }
+          & ~ .select2-container--open {
+            & ~ .input-label {
+              @include transform(
+                scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($value))
+              );
+            }
+          }
+        }
+        & ~ .btn-group.open,
+        &.input-hadval {
+          &.input-material {
+            & ~ .input-label {
+              @include transform(
+                scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($value))
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.input {
+  &-hadval {
+    &.input-magerial {
+      & ~ .input-label {
+        font-weight: $input-material-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+    }
+  }
+  &-group-material {
+    margin-top: labelHeightCal($input-material-font-size-sm);
+  }
+  &-material {
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid $input-line-border-color;
+    background-color: $input-line-border-background;
+    padding-left: 0;
+    position: relative;
+    font-size: $input-material-font-size;
+    @include z-index(input-material);
+    ~ .input-ic:after {
+      background: linear-gradient(90deg, rgba(white, 0) 0%, rgba(white, 1) 30%);
+    }
+    & ~ .btn-group {
+      [title="Chọn"],
+      [title="Select"] {
+        .multiselect-selected-text {
+          opacity: 0;
+        }
+      }
+    }
+    &:disabled,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--single,
+    & ~ .select2-container--default.select2-container--disabled .select2-selection--multiple {
+      background-color: transparent;
+    }
+    & ~ .select2-container--default .select2-search--inline .select2-search__field {
+      padding-left: 0;
+    }
+    & ~ .input-ic {
+      text-align: right;
+      .arrow-down-anim{
+         left: auto;
+      }
+    }
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      border: 0;
+      border-radius: 0;
+      border-bottom: 1px solid $input-line-border-color;
+      background-color: $input-line-border-background;
+      &:after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: $input-line-bar-color;
+        height: $input-line-bar-height;
+        width: 0;
+        bottom: 0;
+        @include transition(0.15s ease-in-out);
+        content: "";
+      }
+      .select2-selection__rendered {
+        padding-left: 0;
+      }
+    }
+    & ~ .btn-group .multiselect {
+      padding-left: 0;
+    }
+    & ~ .select2-container--open,
+    & ~ .btn-group.open {
+      & ~ .input-label {
+        font-weight: $input-material-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+    }
+    &:focus,
+    &.light-pick-focus,
+    & ~ .btn-group.open {
+      & ~ .input-label {
+        font-weight: $input-material-font-weight-sm;
+        color: $input-line-bar-color;
+      }
+    }
+    & ~ .input-label {
+      color: $input-placeholder-color;
+      position: absolute;
+      left: 0;
+      @include transition(0.3s cubic-bezier(0.25, 0.8, 0.5, 1));
+      font-size: $input-material-font-size;
+      @include transform-origin(top left);
+      line-height: 1.2;
+      pointer-events: none;
+    }
+    &.input-ic-right {
+      & ~ .input-label {
+        left: 36px;
+      }
+      &:focus,
+      &.light-pick-focus {
+        & ~ .input-label {
+          left: 0;
+        }
+      }
+    }
+    &.input-ic-right.input-hadval {
+      & ~ .input-label {
+        left: 0;
+      }
+    }
+  }
+  @include modifiers-input-material-1($map-input-size);
+}

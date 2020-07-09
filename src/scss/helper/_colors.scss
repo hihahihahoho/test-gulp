@@ -1,0 +1,123 @@
+$map-color: (
+  grey: (
+    basic: #AFB3BC,
+    1: #AFB3BC,
+    2: #E0E4EB,
+    3: #eaeff3,
+    4: #F7F8FA 
+  ),
+  base: #121f3e,
+  base-2: #707C93,
+  white: #ffffff,
+  red: #FF3D4E,
+  blue: #3F3BEC,
+  orange: #FF7544,
+  yellow: #3F3BEC,
+  teal: #0E5C22,
+  green: #2ED573,
+  purple: #4527a0
+);
+
+$map-color-level: (
+  primary: map-get($map-color, blue),
+  cancel: map-deep-get($map-color, grey, 4),
+  secondary: map-get($map-color, green),
+  tertiary: map-deep-get($map-color, grey, 3),
+  success: map-get($map-color, green),
+  false: map-get($map-color, red)
+);
+$bg-op-opacity: 0.2;
+$color-primary: map-get($map-color-level, primary);
+$link-color: map-get($map-color-level, primary);
+$color-grey: map-deep-get($map-color, grey, basic);
+$color-grey-1: map-deep-get($map-color, grey, 1);
+$color-grey-2: map-deep-get($map-color, grey, 2);
+$color-grey-3: map-deep-get($map-color, grey, 3);
+$color-grey-4: map-deep-get($map-color, grey, 4);
+$color-base: map-get($map-color, base);
+$border-base-color: $color-grey-2;
+$color-white: white;
+$color-black: map-get($map-color, base);
+
+$map-bg-op-color-modify: (
+  yellow: $color-base,
+  tertiary: $color-base,
+  cancel: $color-base
+);
+
+$map-bg-color-modify: (
+  yellow: $color-base,
+  tertiary: $color-base,
+  cancel: $color-base  
+);
+
+@mixin modifiers-bg-op-color($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-bg-op-color($value, $separator);
+      } @else {
+        background-color: rgba($color: $value, $alpha: $bg-op-opacity);
+        &.bg-shadow { 
+          box-shadow: 0px 5px 30px 0 rgba($value, 0.3);
+        }
+        .legitRipple-ripple {
+          background: lighten($value, 34%);
+        }
+        @if map-has-key($map-bg-op-color-modify, $key) {
+          color: map-get($map-bg-op-color-modify, $key);
+        } @else {
+          color: $value;
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-bg-color($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-bg-color($value, $separator);
+      } @else {
+        background-color: $value;
+        .legitRipple-ripple {
+          background: lighten($value, 14%);
+        }
+        &.bg-shadow {
+          box-shadow: 0px 5px 30px 0 rgba($value, 0.3);
+        }
+        @if map-has-key($map-bg-color-modify, $key) {
+          color: map-get($map-bg-color-modify, $key);
+        } @else {
+          color: white; 
+        }
+      }
+    }
+  }
+}
+
+.ripple .legitRipple-ripple,
+.ripple-100 .legitRipple-ripple {
+  background-color: $ripple-default-color;
+}
+
+.color {
+  @include modifiers($map-color, "color");
+  @include modifiers($map-color-level, "color");
+  &-blank {
+    color: transparent;
+  }
+}
+
+.ubg {
+  @include modifiers-bg-color($map-color);
+  @include modifiers-bg-color($map-color-level);
+  &-op {
+    @include modifiers-bg-op-color($map-color);
+    @include modifiers-bg-op-color($map-color-level);
+  }
+  &-blank {
+    background: transparent;
+  }
+}

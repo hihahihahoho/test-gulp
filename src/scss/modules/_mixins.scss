@@ -1,0 +1,638 @@
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+/*-------------vertical align-----------------*/
+
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin no-select2 {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin centerAbsolute($align: both, $pos: absolute) {
+  position: $pos;
+  @if $align==both {
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  } @else if $align==top {
+    left: 0;
+    top: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  } @else if $align==left {
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  } @else if $align==right {
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  } @else if $align==bot {
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@mixin centerAbsoluteWidth {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+/*-------------centered inline-----------------*/
+
+@mixin centerInline {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/*-------------------transition-------------------*/
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transition-delay($delay...) {
+  -moz-transition-delay: $delay;
+  -o-transition-delay: $delay;
+  -webkit-transition-delay: $delay;
+  transition-delay: $delay;
+}
+
+// generic transform
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+// rotate
+@mixin rotate($deg) {
+  @include transform(rotate($deg));
+}
+
+// scale
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
+
+// translate
+@mixin translate($x, $y) {
+  @include transform(translate($x, $y));
+}
+
+// skew
+@mixin skew($x, $y) {
+  @include transform(skew($x, $y));
+}
+
+//transform origin
+@mixin transform-origin($origin) {
+  moz-transform-origin: $origin;
+  -o-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  -webkit-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+/*-------------------place-holder---------------*/
+
+@mixin input-placeholder {
+  &:placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+// ---------------------- centering-content------------------------------
+@mixin grid(
+  $grid-class-name,
+  $grid-col-number: "null",
+  $grid-gutter-number: "null",
+  $grid-margin: "null",
+  $grid-vertical-align: null
+) {
+  @if $grid-col-number != "null" {
+    .grid {
+      &--#{$grid-class-name} {
+        > .grid__item {
+          @include col(1, $grid-col-number);
+        }
+      }
+    }
+  }
+  .grid {
+    &--#{$grid-class-name} {
+      @if $grid-gutter-number != "null" {
+        @include wrap("gutter", $grid-gutter-number);
+      }
+      > .grid__item {
+        @if $grid-vertical-align != "null" {
+          vertical-align: $grid-vertical-align;
+        }
+        &:nth-of-type(-n + #{$grid-col-number}) {
+          margin-top: 0;
+        }
+        &:nth-of-type(n + #{$grid-col-number + 1}) {
+          margin-top: #{$grid-margin}px;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------grid2---------------------------------------------
+@mixin grid2($grid2-classname, $grid-col-number, $grid-space-bottom) {
+  .grid {
+    &-#{$grid2-classname} {
+      > * {
+        width: 100% / $grid-col-number;
+        padding-bottom: $grid-space-bottom;
+      }
+    }
+  }
+}
+
+//-----------------pseudo---------------------
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+//-----------------responsive video ratio---------------------
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+  $padding: unquote($y / $x * 100 + "%");
+  @if $pseudo {
+    &:before {
+      @include pseudo($pos: relative);
+      width: 100%;
+      padding-top: $padding;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}
+
+//------------------z-index-----------------------------
+@function z($name) {
+  @if index($z-indexes, $name) {
+    @return length($z-indexes) - index($z-indexes, $name) + 1;
+  } @else {
+    @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+    @return null;
+  }
+}
+
+$z-indexes: "outdated-browser", "modal", "site-header", "page-wrapper", "site-footer";
+//-------------------font-----------------------
+@mixin font($f-size, $f-weight, $f-color, $f-line-height: 1.6em) {
+  font-size: $f-size;
+  font-weight: $f-weight;
+  color: $f-color;
+  line-height: $f-line-height;
+}
+
+//------------------full-fix----------------
+@mixin full-fix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin full-absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+
+//-------------------photoshop-box-shadow----------------
+@function pow($number, $exp) {
+  $value: 1;
+  @if $exp>0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  } @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+  @return $value;
+}
+
+@function fact($number) {
+  $value: 1;
+  @if $number>0 {
+    @for $i from 1 through $number {
+      $value: $value * $i;
+    }
+  }
+  @return $value;
+}
+
+@function pi() {
+  @return 3.14159;
+}
+
+@function rad($angle) {
+  $unit: unit($angle);
+  $unitless: $angle / ($angle * 0 + 1); // If the angle has 'deg' as unit, convert to radians.
+  @if $unit==deg {
+    $unitless: $unitless / 180 * pi();
+  }
+  @return $unitless;
+}
+
+@function sin($angle) {
+  $sin: 0;
+  $angle: rad($angle); // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $sin: $sin + pow(-1, $i) * pow($angle, 2 * $i + 1) / fact(2 * $i + 1);
+  }
+  @return $sin;
+}
+
+@function cos($angle) {
+  $cos: 0;
+  $angle: rad($angle); // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+  }
+  @return $cos;
+}
+
+@function tan($angle) {
+  @return sin($angle) / cos($angle);
+}
+
+@function drop-shadow-converter(
+  $color: #000,
+  $opacity: 100,
+  $angle: 0,
+  $distance: 0,
+  $spread: 0,
+  $size: 0,
+  $is-text-shadow: false,
+  $inset: null
+) {
+  // calculate angle Γêá
+  $__ang: (180 - $angle) * 3.14 / 180; //convert to radians
+  // vertical shadow: offset-y = Sin(Γêá) * Hypotenuse
+  $__offset-y: round(sin($__ang) * $distance); // horizontal shadow: offset-x = Cos(Γêá) * Hypotenuse
+  $__offset-x: round(
+    cos($__ang) * $distance
+  ); // spread-radius equals the Photoshop Size multiplied by the Photoshop Spread percentage
+  $__spread-rad: $size * $spread / 100; // blur-radius is equal to the Photoshop Size minus the <spread-radius>
+  $__blur-rad: $size - $__spread-rad; // variable for scope context
+  @if $is-text-shadow {
+    @return $__offset-x $__offset-y $__blur-rad $__spread-rad
+      rgba(red($color), green($color), blue($color), $opacity / 100) $inset;
+  } @else {
+    @return $__offset-x $__offset-y $__blur-rad rgba(red($color), green($color), blue($color), $opacity / 100) $inset;
+  }
+}
+
+@mixin opacity-border($color, $size, $opacity) {
+  @include box-shadow(0 0 0 $size rgba(red($color), green($color), blue($color), $opacity / 100));
+}
+
+//---------------------------mixin background image--------------------------------
+@mixin background-image($url, $pos: "center center", $rep: "no-repeat", $siz: "100% 100%", $bgc: "transparent") {
+  background-position: unquote($pos);
+  background-repeat: unquote($rep);
+  background-image: url($url);
+  background-size: unquote($siz);
+  background-color: unquote($bgc);
+}
+
+@mixin backgroundCenter() {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+//--------------------------mixin circle-----------------------------------------------------
+@mixin circle($width, $color, $border: 0 0 0) {
+  width: $width;
+  height: $width;
+  background: $color;
+  -webkit-border-radius: ($width / 2) + (nth($border, 1));
+  -moz-border-radius: ($width / 2) + (nth($border, 1));
+  border-radius: ($width / 2) + (nth($border, 1));
+  border: nth($border, 1) nth($border, 2) nth($border, 3);
+}
+
+//--------------------------------keyframe mixin------------------------------------------
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+@mixin animation($animation, $duration, $timing, $delay, $count, $derection, $fillmode) {
+  -webkit-animation: $animation $duration $timing $delay $count $derection $fillmode;
+  -moz-animation: $animation $duration $timing $delay $count $derection $fillmode;
+  -o-animation: $animation $duration $timing $delay $count $derection $fillmode;
+  animation: $animation $duration $timing $delay $count $derection $fillmode;
+}
+
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin pseudoCenterInline {
+  @include pseudo($display: null, $pos: null);
+  @include size(0, 100%);
+  @include centerInline;
+}
+
+@mixin pseudoJustify {
+  &::after {
+    content: "";
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0;
+  }
+}
+
+//----bs4----------
+@mixin math-symbol($width, $height, $thick, $bgc, $pos: "relative") {
+  position: $pos;
+  width: $width;
+  height: $height;
+  &:before {
+    top: 0;
+    left: 50%;
+    width: $thick;
+    height: 100%;
+    margin-left: $thick / (-2);
+  }
+  /* horizontal line */
+  &:after {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: $thick;
+    margin-top: $thick/ (-2);
+  }
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: $bgc;
+  }
+}
+
+//scroollbar
+@mixin scrollbar() {
+  @include media(">1080px") {
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      height: 56px;
+      background: rgba($color: #afb3bc, $alpha: 0.6);
+      border-radius: 4px;
+      position: absolute;
+      right: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      width: 17px;
+    }
+  }
+}
+
+@mixin scrollbardark() {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    position: absolute;
+    right: 0;
+  }
+  &::-webkit-scrollbar-track {
+    width: 17px;
+  }
+}
+
+@mixin gradient($direction, $list) {
+  background-image: linear-gradient($direction, $list);
+  background-image: -moz-linear-gradient($direction, $list);
+  background-image: -o-linear-gradient($direction, $list);
+  background-image: -ms-linear-gradient($direction, $list);
+}
+
+//string replace
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@function labelHeightCal($label-font-size: $input-material-font-size) {
+  @return floor($label-font-size * 1.2);
+}
+
+@function label2HeightCal($label-font-size: $input-material-2-font-size) {
+  @return floor($label-font-size * 1.2);
+}
+
+@function materialLabelCal($input-size) {
+  $labelHeight: labelHeightCal();
+  $labelScale: $input-material-font-size-sm/$input-material-font-size;
+  @return ceil(
+    (-($input-size - $labelHeight)/2 - $labelHeight - $labelHeight * (1 - $labelScale)/2) / $labelHeight * 100%
+  );
+}
+
+@function materialLabelCal2($input-size) {
+  $labelHeight: labelHeightCal();
+  $labelScale: $input-material-font-size-sm/$input-material-font-size;
+  @return ceil(
+    (-($input-size - $labelHeight)/2 - $labelHeight/2 - $labelHeight * (1 - $labelScale)/2 - 3) / $labelHeight * 100%
+  );
+}
+
+@function material2InsideInputCal($input-size) {
+  @return (
+      $input-size - $input-material-2-font-size-sm * 1.2 - $input-material-2-space-between - $input-material-2-font-size *
+        1.2
+    )/2;
+}
+
+@function material2InsideInputCalRound($input-size) {
+  @return floor(
+    $input-size -
+      (
+        (
+            $input-size - $input-material-2-font-size-sm * 1.2 - $input-material-2-space-between -
+              $input-material-2-font-size * 1.2
+          )/2
+      ) * 2 - $input-material-2-font-size * 1.2
+  );
+}
+
+@function material2LabelCal($input-size) {
+  $labelHeight: label2HeightCal();
+  $labelSpaceTop: material2InsideInputCal($input-size);
+  $labelScale: $input-material-2-font-size-sm/$input-material-2-font-size;
+  @return ceil(
+    (-($input-size - $labelHeight)/2 + $labelSpaceTop - $labelHeight * (1 - $labelScale)/2) / $labelHeight * 100%
+  );
+}
+
+// zindex
+$z-index: (
+  calendar-container: 3200,
+  modal-alert: 3001,
+  progress: 3000,
+  progress-backdrop: 2999,
+  btn-img: 2,
+  btn-text: 2,
+  input-line-bar: 2,
+  input-material: 1,
+  datepicker: -1
+);
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
+
+@mixin z-index($key) {
+  z-index: z-index($key);
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+@mixin modifiers($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers($value, $attribute, $separator);
+      } @else {
+        #{$attribute}: $value;
+      }
+    }
+  }
+}
+
+@mixin modifiers-gradient($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-gradient($value, $separator);
+      } @else {
+        @include gradient(to left, unquote($value));
+      }
+    }
+  }
+}
+
+@function map-deep-has-key($map, $keys...) {
+  @if type-of($map) != "map" {
+    @error 'The argument $map: `#{$map}` is of incorrect type: `#{type-of($map)}`. Type of `Map` is required!';
+  }
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+  @return true;
+}

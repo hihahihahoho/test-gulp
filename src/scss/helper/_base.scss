@@ -1,0 +1,65 @@
+button,
+input,
+select,
+textarea,
+label,
+a,
+span,
+section,
+[data-accordion] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none !important;
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
+    color: undefined;
+  }
+}
+
+a:focus,
+input:focus {
+  outline: none;
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select {
+  border: 0;
+}
+
+select:focus::-ms-value {
+  background-color: inherit;
+  color: #000;
+}

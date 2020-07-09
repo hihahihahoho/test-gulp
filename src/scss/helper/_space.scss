@@ -1,0 +1,619 @@
+$map-form-group: (
+  xs: (
+    0: 50%,
+    1200: 118px
+  ),
+  sm: (
+    0: 50%,
+    1200: 162px
+  ),
+  md: (
+    0: 50%,
+    1200: 185px
+  ),
+  lg: (
+    0: 100%,
+    1200: 298px
+  ),
+  xl: (
+    0: 100%,
+    1200: 393px
+  )
+);
+
+$map-space-h: (
+  5: 5px,
+  7: 7px,
+  10: 10px,
+  15: 15px,
+  20: (
+    0: 15px,
+    1200: 20px
+  ),
+  25: (
+    0: 15px,
+    1200: 25px
+  ),
+  30: (
+    0: 15px,
+    1200: 30px
+  )
+);
+
+$map-space-v: (
+  5: 5px,
+  7: 7px,
+  10: 10px,
+  15: 15px,
+  20: 20px,
+  25: 25px,
+  30: 30px,
+  40: (
+    0: 30px,
+    1200: 40px
+  ),
+  50: (
+    0: 30px,
+    1200: 50px
+  ),
+  60: (
+    0: 30px,
+    1200: 60px
+  )
+);
+
+$map-pos: (
+  5: 5px,
+  7: 7px,
+  10: 10px,
+  15: 15px,
+  20: (
+    0: 15px,
+    1200: 20px
+  ),
+  25: (
+    0: 15px,
+    1200: 25px
+  )
+);
+
+@mixin modifiers-form-space($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @include media(">=#{$key2}px") {
+            display: inline-block;
+            width: $value2;
+          }
+        }
+      } @else {
+        display: inline-block;
+        width: $value;
+      }
+    }
+  }
+}
+
+@mixin modifiers-space($map, $orient, $prefix: "", $separator: "", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @include media(">=#{$key2}px") {
+            @if $orient == "h" {
+              padding-left: $value2;
+              padding-right: $value2;
+            }
+            @if $orient == "v" {
+              padding-top: $value2;
+              padding-bottom: $value2;
+            }
+            @if $orient == "l" {
+              padding-left: $value2;
+            }
+            @if $orient == "r" {
+              padding-right: $value2;
+            }
+            @if $orient == "t" {
+              padding-top: $value2;
+            }
+            @if $orient == "b" {
+              padding-bottom: $value2;
+            }
+          }
+        }
+      } @else {
+        @if $orient == "h" {
+          padding-left: $value;
+          padding-right: $value;
+        }
+        @if $orient == "v" {
+          padding-top: $value;
+          padding-bottom: $value;
+        }
+        @if $orient == "l" {
+          padding-left: $value;
+        }
+        @if $orient == "r" {
+          padding-right: $value;
+        }
+        @if $orient == "t" {
+          padding-top: $value;
+        }
+        @if $orient == "b" {
+          padding-bottom: $value;
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-pos($map, $orient, $prefix: "", $separator: "", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @include media(">=#{$key2}px") {
+            @if $orient == "tl" {
+              left: $value2;
+              top: $value2;
+            }
+            @if $orient == "tr" {
+              top: $value2;
+              right: $value2;
+            }
+            @if $orient == "bl" {
+              top: $value2;
+              left: $value2;
+            }
+            @if $orient == "br" {
+              bottom: $value2;
+              right: $value2;
+            }
+            @if $orient == "ct" {
+              top: 0;
+              width: 100%;
+              padding: $value2 $value2 0 $value2;
+            }
+            @if $orient == "cb" {
+              bottom: 0;
+              width: 100%;
+              padding:  0 $value2 $value2 $value2;
+            }
+          }
+        }
+      } @else {
+        @if $orient == "tl" {
+          left: $value;
+          top: $value;
+        }
+        @if $orient == "tr" {
+          top: $value;
+          right: $value;
+        }
+        @if $orient == "bl" {
+          top: $value;
+          left: $value;
+        }
+        @if $orient == "br" {
+          bottom: $value;
+          right: $value;
+        }
+        @if $orient == "ct" {
+          top: 0;
+          width: 100%;
+          padding: $value $value 0 $value;
+        }
+        @if $orient == "cb" {
+          bottom: 0;
+          width: 100%;
+          padding:  0 $value $value $value;
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-list-space($map, $orient, $prefix: "", $separator: "", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @include media(">=#{$key2}px") {
+            @if $orient == "h" {
+              > * {
+                padding-left: $value2;
+                padding-right: $value2;
+              }
+            }
+            @if $orient == "v" {
+              > * {
+                padding-top: $value2;
+                padding-bottom: $value2;
+              }
+            }
+            @if $orient == "l" {
+              > * {
+                padding-left: $value2;
+              }
+            }
+            @if $orient == "r" {
+              > * {
+                padding-right: $value2;
+              }
+            }
+            @if $orient == "t" {
+              > * {
+                padding-top: $value2;
+              }
+            }
+            @if $orient == "b" {
+              > * {
+                padding-bottom: $value2;
+              }
+            }
+          }
+        }
+      } @else {
+        @if $orient == "h" {
+          > * {
+            padding-left: $value;
+            padding-right: $value;
+          }
+        }
+        @if $orient == "v" {
+          > * {
+            padding-top: $value;
+            padding-bottom: $value;
+          }
+        }
+        @if $orient == "l" {
+          > * {
+            padding-left: $value;
+          }
+        }
+        @if $orient == "r" {
+          > * {
+            padding-right: $value;
+          }
+        }
+        @if $orient == "t" {
+          > * {
+            padding-top: $value;
+          }
+        }
+        @if $orient == "b" {
+          > * {
+            padding-bottom: $value;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-margin($map, $orient, $prefix: "", $separator: "", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @include media(">=#{$key2}px") {
+            @if $orient == "h" {
+              margin-left: $value2;
+              margin-right: $value2;
+            }
+            @if $orient == "v" {
+              margin-top: $value2;
+              margin-bottom: $value2;
+            }
+            @if $orient == "l" {
+              margin-left: $value2;
+            }
+            @if $orient == "r" {
+              margin-right: $value2;
+            }
+            @if $orient == "t" {
+              margin-top: $value2;
+            }
+            @if $orient == "b" {
+              margin-bottom: $value2;
+            }
+          }
+        }
+      } @else {
+        @if $orient == "h" {
+          margin-left: $value;
+          margin-right: $value;
+        }
+        @if $orient == "v" {
+          margin-top: $value;
+          margin-bottom: $value;
+        }
+        @if $orient == "l" {
+          margin-left: $value;
+        }
+        @if $orient == "r" {
+          margin-right: $value;
+        }
+        @if $orient == "t" {
+          margin-top: $value;
+        }
+        @if $orient == "b" {
+          margin-bottom: $value;
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-list-margin($map, $orient, $prefix: "", $separator: "", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @include media(">=#{$key2}px") {
+            @if $orient == "h" {
+              > * {
+                margin-left: $value2;
+                margin-right: $value2;
+              }
+            }
+            @if $orient == "v" {
+              > * {
+                margin-top: $value2;
+                margin-bottom: $value2;
+              }
+            }
+            @if $orient == "l" {
+              > * {
+                margin-left: $value2;
+              }
+            }
+            @if $orient == "r" {
+              > * {
+                margin-right: $value2;
+              }
+            }
+            @if $orient == "t" {
+              > * {
+                margin-top: $value2;
+              }
+            }
+            @if $orient == "b" {
+              > * {
+                margin-bottom: $value2;
+              }
+            }
+          }
+        }
+      } @else {
+        @if $orient == "h" {
+          > * {
+            margin-left: $value;
+            margin-right: $value;
+          }
+        }
+        @if $orient == "v" {
+          > * {
+            margin-top: $value;
+            margin-bottom: $value;
+          }
+        }
+        @if $orient == "l" {
+          > * {
+            margin-left: $value;
+          }
+        }
+        @if $orient == "r" {
+          > * {
+            margin-right: $value;
+          }
+        }
+        @if $orient == "t" {
+          > * {
+            margin-top: $value;
+          }
+        }
+        @if $orient == "b" {
+          > * {
+            margin-bottom: $value;
+          }
+        }
+      }
+    }
+  }
+}
+
+.p {
+  &h {
+    @include modifiers-space($map-space-h, "h");
+  }
+  &r {
+    @include modifiers-space($map-space-h, "r");
+  }
+  &l {
+    @include modifiers-space($map-space-h, "l");
+  }
+  &v {
+    @include modifiers-space($map-space-v, "v");
+  }
+  &b {
+    @include modifiers-space($map-space-v, "b");
+  }
+  &t {
+    @include modifiers-space($map-space-v, "t");
+  }
+}
+
+.pos {
+  &-tl {
+    @include modifiers-pos($map-pos, "tl");
+  }
+  &-tr {
+    @include modifiers-pos($map-pos, "tr");
+  }
+  &-bl {
+    @include modifiers-pos($map-pos, "bl");
+  }
+  &-br {
+    @include modifiers-pos($map-pos, "br");
+  }
+  &-ct {
+    @include modifiers-pos($map-pos, "ct");
+  }
+  &-cb {
+    @include modifiers-pos($map-pos, "cb");
+  }
+}
+
+.m {
+  &h {
+    @include modifiers-margin($map-space-h, "h");
+  }
+  &r {
+    @include modifiers-margin($map-space-h, "r");
+  }
+  &l {
+    @include modifiers-margin($map-space-h, "l");
+  }
+  &v {
+    @include modifiers-margin($map-space-v, "v");
+  }
+  &b {
+    @include modifiers-margin($map-space-v, "b");
+  }
+  &t {
+    @include modifiers-margin($map-space-v, "t");
+  }
+}
+
+.list {
+  &-last {
+    &-m {
+      &v {
+        > *:last-child {
+          margin-bottom: 0;
+        }
+        > *:first-child {
+          margin-top: 0;
+        }
+      }
+      &h {
+        > *:last-child {
+          margin-right: 0;
+        }
+        > *:first-child {
+          margin-left: 0;
+        }
+      }
+      &t {
+        > *:first-child {
+          margin-top: 0;
+        }
+      }
+      &r {
+        > *:last-child {
+          margin-right: 0;
+        }
+      }
+      &b {
+        > *:last-child {
+          margin-bottom: 0;
+        }
+      }
+      &l {
+        > *:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+    &-p {
+      &v {
+        > *:last-child {
+          padding-bottom: 0;
+        }
+        > *:first-child {
+          padding-top: 0;
+        }
+      }
+      &h {
+        > *:last-child {
+          padding-right: 0;
+        }
+        > *:first-child {
+          padding-left: 0;
+        }
+      }
+      &t {
+        > *:first-child {
+          padding-top: 0;
+        }
+      }
+      &r {
+        > *:last-child {
+          padding-right: 0;
+        }
+      }
+      &b {
+        > *:last-child {
+          padding-bottom: 0;
+        }
+      }
+      &l {
+        > *:first-child {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+  &-p {
+    &h {
+      @include modifiers-list-space($map-space-h, "h");
+    }
+    &r {
+      @include modifiers-list-space($map-space-h, "r");
+    }
+    &l {
+      @include modifiers-list-space($map-space-h, "l");
+    }
+    &v {
+      @include modifiers-list-space($map-space-v, "v");
+    }
+    &b {
+      @include modifiers-list-space($map-space-v, "b");
+    }
+    &t {
+      @include modifiers-list-space($map-space-v, "t");
+    }
+  }
+  &-m {
+    &h {
+      @include modifiers-list-margin($map-space-h, "h");
+    }
+    &r {
+      @include modifiers-list-margin($map-space-h, "r");
+    }
+    &l {
+      @include modifiers-list-margin($map-space-h, "l");
+    }
+    &v {
+      @include modifiers-list-margin($map-space-v, "v");
+    }
+    &b {
+      @include modifiers-list-margin($map-space-v, "b");
+    }
+    &t {
+      @include modifiers-list-margin($map-space-v, "t");
+    }
+  }
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 0;
+  @include modifiers-form-space($map-form-group);
+  & > * {
+    font-size: $font-size-default;
+  }
+}

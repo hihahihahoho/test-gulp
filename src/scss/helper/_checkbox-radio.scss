@@ -1,0 +1,376 @@
+//=== RADIO AND CHECKBOX ========================
+$rnc-xs: 16px;
+$rnc-sm: 18px;
+$rnc-md: 20px;
+$rnc-lg: 22px;
+$checkbox-border-radius: 50%;
+$rnc-default-border: 1px solid $color-grey-2;
+$rnc-ic-margin: 10px;
+$rnc-default-bg-color: transparent;
+$rnc-active-color: $color-primary;
+$rnc-checkbox-ic-color: $color-primary;
+$rnc-active-border-color: rgba($color-primary, 0.2);
+$rnc-active-bg-color: rgba($color-primary, 0.1);
+$rnc-active-bg-color-radio: rgba($color-primary, 0.1);
+$rnc-ripple-color: rgba($rnc-active-color, 0.1);
+//=====Swich-ios======
+$switch-ic-size: 20px;
+$switch-ic-border-radius: $switch-ic-size / 2;
+$switch-bg-height: 26px;
+$switch-bg-width: 44px;
+$switch-bg-border-radius: $switch-bg-height / 2;
+$switch-bg-color: $color-grey-2;
+$switch-bg-color-active: map-get($map-color, green);
+$switch-text-color: $color-grey-1;
+$switch-text-color-active: $color-base;
+$switch-ic-bg-color: white;
+$switch-ic-active-bg-color: white;
+
+//=====Swich Android======
+
+// $switch-ic-size: 20px;
+// $switch-ic-border-radius: $switch-ic-size / 2;
+// $switch-bg-height: 14px;
+// $switch-bg-width: 36px;
+// $switch-bg-border-radius: $switch-bg-height / 2;
+// $switch-bg-color: rgba($color-grey-2,0.6);
+// $switch-bg-color-active: rgba(map-get($map-color, green),0.4);
+// $switch-text-color: $color-grey-1;
+// $switch-text-color-active: $color-base;
+// $switch-ic-bg-color: $color-grey-2;
+// $switch-ic-active-bg-color: map-get($map-color, green);
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  .table {
+    width: auto;
+  }
+  &-xs {
+    width: $rnc-xs;
+    height: $rnc-xs;
+    .radio-check {
+      width: ($rnc-xs / 2) - 1;
+      height: ($rnc-xs / 2) - 1;
+    }
+  }
+  &-sm {
+    width: $rnc-sm;
+    height: $rnc-sm;
+    .radio-check {
+      width: ($rnc-sm / 2) - 1;
+      height: ($rnc-sm / 2) - 1;
+    }
+  }
+  &-md {
+    width: $rnc-md;
+    height: $rnc-md;
+    .radio-check {
+      width: ($rnc-md / 2) - 1;
+      height: ($rnc-md / 2) - 1;
+    }
+  }
+  &-lg {
+    width: $rnc-lg;
+    height: $rnc-lg;
+    .radio-check {
+      width: ($rnc-lg / 2) - 1;
+      height: ($rnc-lg / 2) - 1;
+    }
+  }
+  cursor: pointer;
+  @include no-select();
+  &-ic {
+    flex-shrink: 0;
+    border: $rnc-default-border;
+    -var-: #{"$rnc-default-border"};
+    border-radius: $checkbox-border-radius;
+    background-color: $rnc-default-bg-color;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    position: relative;
+    color: transparent;
+    margin-right: $rnc-ic-margin;
+    line-height: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90% auto;
+    @include transition(0.2s all ease-in-out);
+    overflow: visible;
+    .legitRipple-ripple {
+      background: $rnc-ripple-color;
+    }
+    &:not(.no-animation):before {
+      position: absolute; // content: "";
+      width: 100%;
+      height: 100%;
+      background: $rnc-ripple-color;
+      transform: scale(0);
+      opacity: 1;
+      border-radius: 50%;
+    }
+  }
+  &-text {
+    font-size: 14px;
+    vertical-align: middle;
+    line-height: 1.3;
+  }
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  .table {
+    width: auto;
+  }
+  cursor: pointer;
+  .table {
+    .td {
+      &:first-child {
+        width: $rnc-xs + 10;
+      }
+    }
+  }
+  @include no-select();
+  &-xs {
+    width: $rnc-xs;
+    height: $rnc-xs;
+    .radio-check,
+    &:after {
+      width: ($rnc-xs / 2) + 1;
+      height: ($rnc-xs / 2) + 1;
+    }
+  }
+  &-sm {
+    width: $rnc-sm;
+    height: $rnc-sm;
+    .radio-check,
+    &:after {
+      width: ($rnc-sm / 2) + 1;
+      height: ($rnc-sm / 2) + 1;
+    }
+  }
+  &-md {
+    width: $rnc-md;
+    height: $rnc-md;
+    .radio-check,
+    &:after {
+      width: ($rnc-md / 2) + 1;
+      height: ($rnc-md / 2) + 1;
+    }
+  }
+  &-lg {
+    width: $rnc-lg;
+    height: $rnc-lg;
+    .radio-check,
+    &:after {
+      width: ($rnc-lg / 2) + 1;
+      height: ($rnc-lg / 2) + 1;
+    }
+  }
+  &-ic {
+    flex-shrink: 0;
+    border: $rnc-default-border;
+    -var-: #{"$rnc-default-border"};
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: $rnc-ic-margin;
+    font-size: 14px;
+    position: relative;
+    color: transparent;
+    @include transition(0.2s all ease-in-out);
+    overflow: visible;
+    z-index: 1;
+  }
+  &-style-1 {
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      background: transparent;
+      border-radius: 50%;
+      background: $rnc-active-color;
+      -var-: #{"$rnc-active-color"};
+      @include transition(0.2s all ease-in-out);
+      @include scale(0);
+    }
+    .legitRipple-ripple {
+      background: $rnc-ripple-color;
+    }
+    &:before {
+      position: absolute; // content: "";
+      width: 100%;
+      height: 100%;
+      background: $rnc-ripple-color;
+      transform: scale(0);
+      opacity: 1;
+      border-radius: 50%;
+    }
+  }
+  &-check {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    background: transparent;
+    border-radius: 50%;
+    background: $rnc-active-color;
+    -var-: #{"$rnc-active-color"};
+    @include transition(0.2s all ease-in-out);
+    @include scale(0);
+  }
+  &-text {
+    font-size: 14px;
+    vertical-align: middle;
+    line-height: 1.3;
+  }
+}
+
+.switch {
+  cursor: pointer;
+  &-wrap {
+    position: relative;
+  }
+  &-text {
+    font-size: 14px;
+    color: $switch-text-color;
+    @include no-select();
+  }
+  &-off {
+    color: $switch-text-color-active;
+  }
+  &-ic {
+    border-radius: $switch-ic-border-radius;
+    height: $switch-ic-size;
+    background-color: $switch-ic-bg-color;
+    position: absolute;
+    left: ($switch-bg-height - $switch-ic-size)/2 + 1;
+    right: $switch-bg-width - $switch-ic-size - ($switch-bg-height - $switch-ic-size)/2 - 1;
+    top: ($switch-bg-height - $switch-ic-size)/2;
+    @include transition(0.2s all ease-in-out);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  }
+  &-bg {
+    width: $switch-bg-width;
+    height: $switch-bg-height;
+    border-radius: $switch-bg-border-radius;
+    background-color: $switch-bg-color;
+    @include transition(0.2s all ease-in-out);
+  }
+  &-stretch {
+    &:active {
+      .switch-ic {
+        right: $switch-bg-width - $switch-ic-size - ($switch-bg-height - $switch-ic-size)/2 - $switch-ic-size / 4;
+      }
+      input[type="checkbox"]:checked {
+        & ~ .table {
+          .switch-ic {
+            left: $switch-bg-width - $switch-ic-size - ($switch-bg-height - $switch-ic-size)/2 - $switch-ic-size / 4;
+          }
+        }
+      }
+    }
+  }
+}
+
+input[type="checkbox"]:checked {
+  & ~ .table {
+    .switch-ic {
+      right: ($switch-bg-height - $switch-ic-size)/2 + 1;
+      left: $switch-bg-width - $switch-ic-size - ($switch-bg-height - $switch-ic-size)/2 - 1;
+      background-color: $switch-ic-active-bg-color;
+    }
+    .switch-bg {
+      background-color: $switch-bg-color-active;
+    }
+    .switch-on {
+      color: $switch-text-color-active;
+    }
+    .switch-off {
+      color: $switch-text-color;
+    }
+  }
+}
+
+input[type="checkbox"]:checked {
+  & ~ {
+    .checkbox-ic {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 64 64'%3E%3Cdefs%3E%3Cstyle%3E .cls-1 %7B clip-path: url(%23clip-ic-check-white); %7D .cls-2 %7B fill: none; %7D .cls-3 %7B fill: %23"+str-replace(
+          "" + $rnc-checkbox-ic-color,
+          "#",
+          ""
+        )+"; stroke: %23"+str-replace("" + $rnc-checkbox-ic-color, "#", "")+"; stroke-width: 3.5px; %7D %3C/style%3E%3CclipPath id='clip-ic-check-white'%3E%3Crect width='64' height='64'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg id='ic-check-white' class='cls-1'%3E%3Cg id='Group_24' data-name='Group 24'%3E%3Cpath id='Path_5' data-name='Path 5' class='cls-2' d='M0,64V0H64V64Z'/%3E%3Cg id='Group_23' data-name='Group 23' transform='translate(15.549 18.305)'%3E%3Cpath id='Path_6' data-name='Path 6' class='cls-3' d='M67.413,55.576,45.6,77.389,37.307,69.1l-2.731,2.731L45.6,82.852,70.144,58.307Z' transform='translate(-34.576 -55.576)'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+      &:before {
+        transform: scale(3.5);
+        opacity: 0;
+        transition: all 0.6s ease;
+      }
+    }
+    .checkbox-ic {
+      border-color: $rnc-active-border-color;
+      -var-: #{"$rnc-active-border-color"};
+      background-color: $rnc-active-bg-color;
+      -var-: #{"$rnc-active-bg-color"};
+    }
+    .checkbox-green {
+      border-color: map-get($map-color, green);
+      background-color: map-get($map-color, green);
+    }
+    .checkbox-blue {
+      border-color: $color-primary;
+      background-color: $color-primary;
+    }
+  }
+}
+
+input[type="radio"]:checked {
+  & ~ {
+    .radio-ic {
+      border-color: $rnc-active-border-color;
+      -var-: #{"$rnc-active-border-color"};
+      background-color: $rnc-active-bg-color-radio;
+      -var-: #{"$rnc-active-bg-color-radio"};
+    }
+    .checkbox-text-change {
+      color: $color-primary;
+    }
+    .radio-style-2 {
+      &.radio-ic {
+        border-color: $rnc-active-color;
+        -var-: #{"$rnc-active-color"};
+        background-color: transparent;
+      }
+      &.radio-xs {
+        border-width: ceil($rnc-xs / 4) + 1;
+      }
+      &.radio-sm {
+        border-width: ceil($rnc-sm / 4) + 1;
+      }
+      &.radio-md {
+        border-width: ceil($rnc-md / 4) + 1;
+      }
+      &.radio-lg {
+        border-width: ceil($rnc-lg / 4) + 1;
+      }
+    }
+    .radio-style-1 {
+      .radio-check,
+      &:after {
+        @include scale(1);
+      }
+      &:before {
+        transform: scale(3.5);
+        opacity: 0;
+        transition: all 0.6s ease;
+      }
+    }
+  }
+}

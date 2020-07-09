@@ -1,0 +1,14 @@
+$owl-dots-size: 10px;
+$owl-dots-space-v: 5px;
+$owl-dots-space-h: 7px;
+$owl-dots-active-color: $color-primary;
+$owl-dots-default-color: $color-grey-2;
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span{
+   background: $owl-dots-active-color;
+}
+.owl-theme .owl-dots .owl-dot span {
+   width: $owl-dots-size;
+   height: $owl-dots-size;
+   margin: $owl-dots-space-v $owl-dots-space-h;
+   background: $owl-dots-default-color;
+}
