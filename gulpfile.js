@@ -1,7 +1,5 @@
 const gulp = require('gulp');
 const cache = require('gulp-cache');
-const cached = require('gulp-cached');
-const remember = require('gulp-remember');
 const { series, parallel } = require('gulp');
 const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
@@ -14,7 +12,6 @@ const data = require('gulp-data');
 const path = require('path');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
-const newer = require('gulp-newer');
 
 
 var del = require('del');
@@ -65,10 +62,8 @@ plugins.bundles.forEach((item) => {
 
 function pluginsBundlesJS () {
   return gulp.src(pluginsBundlesJsVal)
-    .pipe(cached('pluginsBundlesJS'))
-    .pipe(remember('pluginsBundlesJS'))
+    .pipe(cache(uglify()))
     .pipe(concat('bundles.js'))
-    .pipe(uglify())
     .pipe(gulp.dest('./dist/plugins/bundles'));
 }
 
