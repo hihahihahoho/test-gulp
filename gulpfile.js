@@ -1,3 +1,4 @@
+var plugins = require('./gulp_plugins_config.js').plugins
 const gulp = require('gulp');
 const cache = require('gulp-cache');
 const { series, parallel } = require('gulp');
@@ -13,7 +14,6 @@ const path = require('path');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 
-
 var del = require('del');
 var imgSrc = [];
 var imgDes = 'dist';
@@ -21,46 +21,17 @@ var imgDes = 'dist';
 var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 
-var pluginsDetail = {
-  'lightpick': {
-    "scripts": [
-      "src/plugins/bundles/lightpick/1moment.min.js",
-      "src/plugins/bundles/lightpick/lightpick.js",
-    ]
-  },
-  'bootstrap': {
-    "styles": [
-      "node_modules/bootstrap/dist/css/bootstrap.min.css"
-    ],
-    "scripts": [
-      "node_modules/bootstrap/js/dist/util.js",
-      "node_modules/bootstrap/js/dist/modal.js",
-      "node_modules/bootstrap/js/dist/dropdown.js",
-      "node_modules/bootstrap/js/dist/popover.js",
-      "node_modules/bootstrap/js/dist/tooltip.js",
-      "node_modules/bootstrap/js/dist/tab.js",
-    ]
-  }
-}
 
-var plugins = {
-  'bundles': [
-    pluginsDetail.bootstrap,
-    pluginsDetail.lightpick,
-  ]
-}
-
-plugins.bundles.forEach((item) => {
-  if (item.scripts != undefined) {
-    pluginsBundlesJsVal = pluginsBundlesJsVal.concat(item.scripts);
-  }
-  if (item.styles != undefined) {
-    pluginsBundlesCssVal = pluginsBundlesCssVal.concat(item.styles)
-
-  }
-});
 
 function pluginsBundlesJS () {
+  delete require.cache[require.resolve('./gulp_plugins_config.js')];
+  plugins = require('./gulp_plugins_config.js').plugins
+  pluginsBundlesJsVal = [];
+  plugins.bundles.forEach((item) => {
+    if (item.scripts != undefined) {
+      pluginsBundlesJsVal = pluginsBundlesJsVal.concat(item.scripts);
+    }
+  });
   return gulp.src(pluginsBundlesJsVal)
     .pipe(cache(uglify()))
     .pipe(concat('bundles.js'))
@@ -68,11 +39,16 @@ function pluginsBundlesJS () {
 }
 
 function pluginsBundlesCss () {
+  plugins.bundles.forEach((item) => {
+    if (item.styles != undefined) {
+      pluginsBundlesCssVal = pluginsBundlesCssVal.concat(item.styles)
+
+    }
+  });
   return gulp.src(pluginsBundlesCssVal)
     .pipe(concat('bundles.css'))
     .pipe(gulp.dest('./dist/plugins/bundles'));
 }
-
 
 function style () {
   //1. where is my scss file
@@ -139,7 +115,9 @@ function watch () {
       baseDir: './dist/'
     }
   });
-  gulp.watch('src/scss/**/*.scss', style)
+  gulp.watch('src/scss/**/*.scss', style);
+  gulp.watch(pluginsBundlesJsVal, pluginsBundlesJS);
+  gulp.watch('gulp_plugins_config.js', pluginsBundlesJS)
   gulp.watch('dist/**/*.html').on('change', browserSync.reload);
   gulp.watch('dist/js/**/*.js').on('change', browserSync.reload);
 }
@@ -149,12 +127,12 @@ function clearCache () {
 }
 
 exports.style = style;
-exports.watch = watch;
 exports.cleanMedia = cleanMedia;
 exports.media = media;
 exports.imageMinify = imageMinify;
 exports.clearCache = clearCache;
 exports.dataTest = dataTest;
 exports.pluginsBundles = parallel(pluginsBundlesCss, pluginsBundlesJS);
+exports.watch = watch;
 
-exports.dev = series(parallel(series(cleanMedia, imageMinify), style), watch);
+exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS)), watch);

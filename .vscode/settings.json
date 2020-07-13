@@ -1,0 +1,26 @@
+{
+  "workbench.editor.closeEmptyGroups": false,
+  "vscode-opn.perLang": {
+    "opnOptions": [
+      {
+        "forLang": "html",
+        "openInApp": "chrome",
+        "isUseWebServer": true,
+        "isUseFsPath": false,
+        "isWaitForAppExit": true,
+        "trimPath" : "src/"
+      },
+      {
+        "forLang": "plaintext",
+        "openInApp": "notepad++",
+        "openInAppArgs": [],
+        "isUseWebServer": false,
+        "isUseFsPath": true,
+        "isWaitForAppExit": true
+      }
+    ]
+  },
+  "vscode-opn.webServerProtocol": "http",
+  "vscode-opn.webServerHostname": "localhost",
+  "vscode-opn.webServerPort": 3000
+}
