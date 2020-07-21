@@ -1,5 +1,17 @@
 {
   "workbench.editor.closeEmptyGroups": false,
+  "path-intellisense.mappings": {
+    "/": "${workspaceRoot}/src/media/",
+    "media": "${workspaceRoot}/src/media",
+  },
+  "path-autocomplete.pathMappings": {
+    "media": "${folder}/src/media", // alias for /test
+    "/": "${folder}/src", // the absolute root folder is now /
+    "$root": [
+      "${folder}/p1/src",
+      "${folder}/p2/src"
+    ] // the root is now relative to both p1/src and p2/src
+  },
   "vscode-opn.perLang": {
     "opnOptions": [
       {
@@ -8,15 +20,15 @@
         "isUseWebServer": true,
         "isUseFsPath": false,
         "isWaitForAppExit": true,
-        "trimPath" : "src/"
+        "trimPath": "src/"
       },
       {
-        "forLang": "plaintext",
-        "openInApp": "notepad++",
-        "openInAppArgs": [],
-        "isUseWebServer": false,
-        "isUseFsPath": true,
-        "isWaitForAppExit": true
+        "forLang": "njk",
+        "openInApp": "chrome",
+        "isUseWebServer": true,
+        "isUseFsPath": false,
+        "isWaitForAppExit": true,
+        "trimPath": "src/"
       }
     ]
   },

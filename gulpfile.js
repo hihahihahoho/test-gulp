@@ -13,6 +13,7 @@ const data = require('gulp-data');
 const path = require('path');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
+const nunjucksRender = require('gulp-nunjucks-render');
 
 var del = require('del');
 var imgSrc = [];
@@ -109,6 +110,19 @@ function dataTest () {
     })))
 }
 
+function nunjucks () {
+  return gulp.src('src/**/*.njk')
+    .pipe(data(function (file) {
+      return {
+        baseLink: path.relative(process.cwd(), file.path).replace(/([^\\]+)/g, '..').slice(0, -4)
+      }
+    }))
+    .pipe(nunjucksRender({
+      path: ['src/_imports/']
+    }))
+    .pipe(gulp.dest('dist'));
+}
+
 function watch () {
   browserSync.init({
     server: {
@@ -118,7 +132,8 @@ function watch () {
   gulp.watch('src/scss/**/*.scss', style);
   gulp.watch(pluginsBundlesJsVal, pluginsBundlesJS);
   gulp.watch('gulp_plugins_config.js', pluginsBundlesJS)
-  gulp.watch('dist/**/*.html').on('change', browserSync.reload);
+  gulp.watch('src/**/*.{html,njk}', nunjucks)
+  gulp.watch('dist/**/*.{html,njk}').on('change', browserSync.reload);
   gulp.watch('dist/js/**/*.js').on('change', browserSync.reload);
 }
 
@@ -133,6 +148,7 @@ exports.imageMinify = imageMinify;
 exports.clearCache = clearCache;
 exports.dataTest = dataTest;
 exports.pluginsBundles = parallel(pluginsBundlesCss, pluginsBundlesJS);
+exports.nunjucks = nunjucks;
 exports.watch = watch;
 
-exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS)), watch);
+exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), nunjucks), watch);
