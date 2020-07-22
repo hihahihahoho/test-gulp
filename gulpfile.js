@@ -28,8 +28,13 @@ var imgDes = 'dist';
 var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 
+function cleanVendorsJs (cb) {
+  del('dist/css/vendors/**');
+  del('dist/js/vendors/**');
+  cb()
+}
+
 function pluginsVendorsJS (cb) {
-  del('dist/plugins/vendors/**');
   delete require.cache[require.resolve('./gulp_plugins_config.js')];
   plugins = require('./gulp_plugins_config.js').plugins
   plugins.vendors.map((file, index) => {
@@ -37,7 +42,7 @@ function pluginsVendorsJS (cb) {
       gulp.src(file.scripts, { allowEmpty: true })
         .pipe(gulpif('!**/*.min.js', cache(uglify())))
         .pipe(concat(file.name + '.bundles.js'))
-        .pipe(gulp.dest('./dist/plugins/vendors/' + file.name));
+        .pipe(gulp.dest('./dist/js/vendors/' + file.name));
     }
   })
   return cb()
@@ -49,8 +54,8 @@ function pluginsVendorsCss (cb) {
   plugins.vendors.map((file, index) => {
     if (file.styles != undefined) {
       gulp.src(file.styles, { allowEmpty: true })
-        .pipe(concat(file.name + 'bundles.css'))
-        .pipe(gulp.dest('./dist/plugins/vendors/' + file.name));
+        .pipe(concat(file.name + '.bundles.css'))
+        .pipe(gulp.dest('./dist/css/vendors/' + file.name));
     }
   })
   return cb()
@@ -69,7 +74,7 @@ function pluginsBundlesJS (cb) {
     return gulp.src(pluginsBundlesJsVal, { allowEmpty: true })
       .pipe(gulpif('!**/*.min.js', cache(uglify())))
       .pipe(concat('bundles.js'))
-      .pipe(gulp.dest('./dist/plugins/bundles'));
+      .pipe(gulp.dest('./dist/js'));
   }
   cb();
 }
@@ -86,7 +91,7 @@ function pluginsBundlesCss (cb) {
   if (pluginsBundlesCssVal.length > 0) {
     return gulp.src(pluginsBundlesCssVal, { allowEmpty: true })
       .pipe(concat('bundles.css'))
-      .pipe(gulp.dest('./dist/plugins/bundles'));
+      .pipe(gulp.dest('./dist/css'));
   }
   cb();
 }
@@ -109,23 +114,28 @@ function pluginsInitJS (cb) {
 }
 
 function pluginsVendorsInitJS (cb) {
-  del('dist/js/vendors/*');
   delete require.cache[require.resolve('./gulp_plugins_config.js')];
   plugins = require('./gulp_plugins_config.js').plugins
   plugins.vendors.map((file, index) => {
     if (file.init != undefined) {
       gulp.src(file.init, { allowEmpty: true })
         .pipe(concat(file.name + '.init.js'))
-        .pipe(gulp.dest('./dist/js/vendors/'));
+        .pipe(gulp.dest('./dist/js/vendors/' + file.name));
     }
   })
   return cb()
 }
 
-function custom () {
-  return gulp.src('./src/custom/**/*')
-    .pipe(changed('./src/custom/**/*'))
-    .pipe(gulp.dest('./dist/custom'))
+function customCss () {
+  return gulp.src('./src/custom/css/*.css')
+    .pipe(changed('./src/custom/css/*.css'))
+    .pipe(gulp.dest('./dist/css'))
+}
+
+function customJs () {
+  return gulp.src('./src/custom/js/*.js')
+    .pipe(changed('./src/custom/js/*.js'))
+    .pipe(gulp.dest('./dist/js'))
 }
 
 function style () {
@@ -256,11 +266,12 @@ function watch () {
   });
   gulp.watch('src/scss/**/*.scss', style);
   gulp.watch(pluginsBundlesJsVal, pluginsBundlesJS)
-  gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, pluginsVendorsInitJS, series(pluginsVendorsJS, pluginsVendorsCss)))
-  gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, series(pluginsVendorsJS, pluginsVendorsCss)))
+  gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss,pluginsVendorsInitJS))))
+  gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
   gulp.watch('src/media/**/*', series(media, imageMinify))
   gulp.watch('src/js/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
-  gulp.watch('src/custom/**/*', custom)
+  gulp.watch('src/custom/**/*.js', customJs)
+  gulp.watch('src/custom/**/*.css', customCss)
   gulp.watch('src/**/*.{html,njk}', nunjucks)
   gulp.watch('dist/**/*.html').on('change', browserSync.reload);
   gulp.watch('dist/custom/js/**/*.js').on('change', browserSync.reload);
@@ -279,7 +290,7 @@ exports.dataTest = dataTest;
 exports.pluginsBundles = parallel(pluginsBundlesCss, pluginsBundlesJS);
 exports.nunjucks = nunjucks;
 exports.nunjucksForce = nunjucksForce;
-exports.custom = custom;
+exports.customCss = customCss;
 exports.htmlBeauty = htmlBeauty;
 exports.watch = watch;
 exports.purgeCss = series(purge, minifyCss);
@@ -288,6 +299,6 @@ exports.pluginsVendors = series(pluginsVendorsJS, pluginsVendorsCss);
 exports.pluginsInitJS = pluginsInitJS;
 exports.pluginsVendorsInitJS = pluginsVendorsInitJS;
 
-exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(pluginsVendorsJS, pluginsVendorsCss), pluginsInitJS, pluginsVendorsInitJS, custom, series(nunjucks,htmlBeauty)), watch);
+exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss,pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(nunjucks, htmlBeauty)), watch);
 
-exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge , minifyCss), cleanMedia)
+exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
