@@ -34,7 +34,7 @@ function pluginsVendorsJS (cb) {
   plugins = require('./gulp_plugins_config.js').plugins
   plugins.vendors.map((file, index) => {
     if (file.scripts != undefined) {
-      gulp.src(file.scripts, { allowEmpty: 'true' })
+      gulp.src(file.scripts, { allowEmpty: true })
         .pipe(gulpif('!**/*.min.js', cache(uglify())))
         .pipe(concat(file.name + '.bundles.js'))
         .pipe(gulp.dest('./dist/plugins/vendors/' + file.name));
@@ -48,7 +48,7 @@ function pluginsVendorsCss (cb) {
   plugins = require('./gulp_plugins_config.js').plugins
   plugins.vendors.map((file, index) => {
     if (file.styles != undefined) {
-      gulp.src(file.styles, { allowEmpty: 'true' })
+      gulp.src(file.styles, { allowEmpty: true })
         .pipe(concat(file.name + 'bundles.css'))
         .pipe(gulp.dest('./dist/plugins/vendors/' + file.name));
     }
@@ -84,11 +84,42 @@ function pluginsBundlesCss (cb) {
     }
   });
   if (pluginsBundlesCssVal.length > 0) {
-    return gulp.src(pluginsBundlesCssVal, { allowEmpty: 'true' })
+    return gulp.src(pluginsBundlesCssVal, { allowEmpty: true })
       .pipe(concat('bundles.css'))
       .pipe(gulp.dest('./dist/plugins/bundles'));
   }
   cb();
+}
+
+function pluginsInitJS (cb) {
+  delete require.cache[require.resolve('./gulp_plugins_config.js')];
+  plugins = require('./gulp_plugins_config.js').plugins
+  var pluginsInitJsVal = [];
+  plugins.bundles.forEach((item) => {
+    if (item.init != [] && item.init != undefined) {
+      pluginsInitJsVal = pluginsInitJsVal.concat(item.init);
+    }
+  });
+  if (pluginsInitJsVal.length > 0) {
+    return gulp.src(pluginsInitJsVal, { allowEmpty: true })
+      .pipe(concat('bundles.init.js'))
+      .pipe(gulp.dest('./dist/js'));
+  }
+  cb();
+}
+
+function pluginsVendorsInitJS (cb) {
+  del('dist/js/vendors/*');
+  delete require.cache[require.resolve('./gulp_plugins_config.js')];
+  plugins = require('./gulp_plugins_config.js').plugins
+  plugins.vendors.map((file, index) => {
+    if (file.init != undefined) {
+      gulp.src(file.init, { allowEmpty: true })
+        .pipe(concat(file.name + '.init.js'))
+        .pipe(gulp.dest('./dist/js/vendors/'));
+    }
+  })
+  return cb()
 }
 
 function custom () {
@@ -225,10 +256,10 @@ function watch () {
   });
   gulp.watch('src/scss/**/*.scss', style);
   gulp.watch(pluginsBundlesJsVal, pluginsBundlesJS)
-  gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, series(pluginsVendorsJS, pluginsVendorsCss)))
-  gulp.watch('src/plugins/bundles/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS))
-  gulp.watch('src/plugins/vendors/**/*', series(pluginsVendorsJS, pluginsVendorsCss))
+  gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, pluginsVendorsInitJS, series(pluginsVendorsJS, pluginsVendorsCss)))
+  gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, series(pluginsVendorsJS, pluginsVendorsCss)))
   gulp.watch('src/media/**/*', series(media, imageMinify))
+  gulp.watch('src/js/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
   gulp.watch('src/custom/**/*', custom)
   gulp.watch('src/**/*.{html,njk}', nunjucks)
   gulp.watch('dist/**/*.html').on('change', browserSync.reload);
@@ -254,7 +285,9 @@ exports.watch = watch;
 exports.purgeCss = series(purge, minifyCss);
 exports.prefixCss = prefixCss;
 exports.pluginsVendors = series(pluginsVendorsJS, pluginsVendorsCss);
+exports.pluginsInitJS = pluginsInitJS;
+exports.pluginsVendorsInitJS = pluginsVendorsInitJS;
 
-exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(pluginsVendorsJS, pluginsVendorsCss), custom, nunjucks), watch);
+exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(pluginsVendorsJS, pluginsVendorsCss), pluginsInitJS, pluginsVendorsInitJS, custom, series(nunjucks,htmlBeauty)), watch);
 
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge , minifyCss), cleanMedia)
