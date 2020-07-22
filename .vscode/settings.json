@@ -1,9 +1,8 @@
 {
-  "workbench.editor.closeEmptyGroups": false,
-  "path-intellisense.mappings": {
-    "/": "${workspaceRoot}/src/media/",
-    "media": "${workspaceRoot}/src/media",
+  "search.exclude": {
+    "**/dist": true
   },
+  "workbench.editor.closeEmptyGroups": false,
   "path-autocomplete.pathMappings": {
     "media": "${folder}/src/media",
     "custom": "${folder}/src/custom",
