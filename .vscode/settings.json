@@ -5,12 +5,15 @@
     "media": "${workspaceRoot}/src/media",
   },
   "path-autocomplete.pathMappings": {
-    "media": "${folder}/src/media", // alias for /test
-    "/": "${folder}/src", // the absolute root folder is now /
+    "media": "${folder}/src/media",
+    "custom": "${folder}/src/custom",
+    "plugins": "${folder}/src/plugins",
+    "src": "${folder}/src",
+    "/": "${folder}",
     "$root": [
       "${folder}/p1/src",
       "${folder}/p2/src"
-    ] // the root is now relative to both p1/src and p2/src
+    ]
   },
   "vscode-opn.perLang": {
     "opnOptions": [
