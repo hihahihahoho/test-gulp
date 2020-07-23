@@ -293,6 +293,11 @@ function gitCommit () {
     }));
 }
 
+function gitCommitAll () {
+  return gulp.src('.')
+    .pipe(git.commit('test commit'));
+}
+
 function gitPull (cb) {
   git.pull('origin', 'master', function (err) {
     if (err) throw err;
@@ -400,6 +405,7 @@ function lwatch () {
       baseDir: './dist/'
     }
   });
+  gulp.watch('src/scss/**/*.scss', style);
   gulp.watch('src/media/**/*', series(media, imageMinify))
   gulp.watch('src/custom/**/*.js', customJs)
   gulp.watch('src/custom/**/*.css', customCss)
@@ -446,3 +452,4 @@ exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), styl
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
 exports.deploy = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
+exports.deployAll = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommitAll, gitPull, gitPush), pushFtp))
