@@ -298,6 +298,13 @@ function gitPull (cb) {
   cb()
 }
 
+function gitPush (cb) {
+  git.push('origin', 'master', function (err) {
+    if (err) throw err;
+  });
+  cb()
+}
+
 function yarnInstall () {
   return gulp.src(['./package.json', './yarn.lock'])
     .pipe(cache(yarn()));
@@ -427,6 +434,7 @@ exports.pushFtp = pushFtp;
 exports.yarnInstall = yarnInstall;
 exports.gitCommit = gitCommit;
 exports.gitPull = gitPull;
+exports.gitPush = gitPush;
 
 exports.ldev = series(yarnInstall, parallel(series(nunjucks, htmlBeauty), customCss, customJs, imageMinify, lwatch));
 
@@ -434,4 +442,4 @@ exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), styl
 
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
-exports.deploy = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia))
+exports.deploy = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitCommit, gitPull, gitPush), pushFtp))
