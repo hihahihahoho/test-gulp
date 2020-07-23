@@ -280,9 +280,11 @@ function icon2fontVcb () {
 
 // end test section
 // production task
-gulp.task('commit', function () {
 
-});
+function gitAdd () {
+  return gulp.src('dist/**/*.css')
+    .pipe(git.add({args: ''}));
+}
 
 function gitCommit () {
   return gulp.src('.')
@@ -299,7 +301,7 @@ function gitPull (cb) {
 }
 
 function gitPush (cb) {
-  git.push('origin', 'master', function (err) {
+  git.push('origin', 'master', {args: " -f"}, function (err) {
     if (err) throw err;
   });
   cb()
@@ -435,11 +437,12 @@ exports.yarnInstall = yarnInstall;
 exports.gitCommit = gitCommit;
 exports.gitPull = gitPull;
 exports.gitPush = gitPush;
+exports.gitAdd = gitAdd;
 
-exports.ldev = series(yarnInstall, parallel(series(nunjucks, htmlBeauty), customCss, customJs, imageMinify, lwatch));
+exports.ldev = series(yarnInstall, parallel(series(nunjucks, htmlBeauty), customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
 exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
-exports.deploy = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitCommit, gitPull, gitPush), pushFtp))
+exports.deploy = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
