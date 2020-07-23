@@ -20,7 +20,11 @@ const purgecss = require('gulp-purgecss')
 const cleanCSS = require('gulp-clean-css');
 const gulpif = require('gulp-if');
 const autoprefixer = require('gulp-autoprefixer');
+var favicons = require('gulp-favicons');
 var del = require('del');
+var iconfont = require('gulp-iconfont');
+var runTimestamp = Math.round(Date.now() / 1000);
+var iconfontCss = require('gulp-iconfont-css');
 
 var imgSrc = [];
 var imgDes = 'dist';
@@ -223,7 +227,49 @@ function nunjucksForce () {
     }))
     .pipe(gulp.dest('dist'));
 }
+// test section
+function favicon () {
+  return gulp.src('src/media/favicon/favicon.png')
+    .pipe(favicons())
+    .pipe(gulp.dest('dist/media/favicon'))
+}
 
+function icon2font () {
+  return gulp.src(['src/font-ic/*.svg'])
+    .pipe(iconfontCss({
+      fontName: 'base-ic-font',
+      fontPath: '',
+      cssClass: 'ic-base'
+    }))
+    .pipe(iconfont({
+      fontName: 'base-ic-font',
+      prependUnicode: true,
+      formats: ['ttf', 'eot', 'woff'],
+      timestamp: runTimestamp,
+     }))
+    .pipe(gulp.dest('dist/fonts/'));
+}
+
+function icon2fontVcb () {
+  return gulp.src(['src/font-ic-vcb/*.svg'])
+    .pipe(iconfontCss({
+      fontName: 'ic-font-vcb',
+      fontPath: '',
+      cssClass: 'ic-vcb'
+    }))
+    .pipe(iconfont({
+      fontName: 'ic-font-vcb',
+      prependUnicode: true,
+      formats: ['ttf', 'eot', 'woff'],
+      timestamp: runTimestamp,
+      normalize:true,
+      fontHeight: 1001,
+      centerHorizontally: true
+     }))
+    .pipe(gulp.dest('dist/fonts-vcb/'));
+}
+
+// end test section
 // production task
 function htmlBeauty () {
   var options = {
@@ -266,7 +312,7 @@ function watch () {
   });
   gulp.watch('src/scss/**/*.scss', style);
   gulp.watch(pluginsBundlesJsVal, pluginsBundlesJS)
-  gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss,pluginsVendorsInitJS))))
+  gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS))))
   gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
   gulp.watch('src/media/**/*', series(media, imageMinify))
   gulp.watch('src/js/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
@@ -298,7 +344,10 @@ exports.prefixCss = prefixCss;
 exports.pluginsVendors = series(pluginsVendorsJS, pluginsVendorsCss);
 exports.pluginsInitJS = pluginsInitJS;
 exports.pluginsVendorsInitJS = pluginsVendorsInitJS;
+exports.favicon = favicon;
+exports.icon2font = icon2font;
+exports.icon2fontVcb = icon2fontVcb;
 
-exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss,pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(nunjucks, htmlBeauty)), watch);
+exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)

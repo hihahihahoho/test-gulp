@@ -2,14 +2,18 @@
   "search.exclude": {
     "**/dist": true
   },
+  "html.suggest.html5": true,
+  "emmet.includeLanguages": {
+    "njk": "html"
+  },
+  "files.associations": {
+    "*.njk": "html"
+  },
   "editor.tabSize": 2,
   "scssFormatter.printWidth": 12000,
   "html.format.wrapLineLength": 1200,
   "html.format.wrapAttributes": "preserve",
   "workbench.editor.closeEmptyGroups": false,
-  "emmet.includeLanguages": {
-    "njk": "html"
-  },
   "path-autocomplete.pathMappings": {
     "media": "${folder}/src/media",
     "custom": "${folder}/src/custom",
