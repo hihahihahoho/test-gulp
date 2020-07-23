@@ -285,7 +285,16 @@ gulp.task('commit', function () {
 
 function gitCommit () {
   return gulp.src('.')
-    .pipe(git.commit('test commit'));
+    .pipe(git.commit('test commit', {
+      disableAppendPaths: true
+    }));
+}
+
+function gitPull (cb) {
+  git.pull('origin', 'master', function (err) {
+    if (err) throw err;
+  });
+  cb()
 }
 
 function yarnInstall () {
@@ -325,7 +334,7 @@ function minifyCss () {
 }
 
 
-function deploy () {
+function pushFtp () {
   const f = filter(['**/*.html'], { restore: true });
 
   var conn = ftp.create({
@@ -374,6 +383,21 @@ function watch () {
   gulp.watch('dist/custom/js/**/*.js').on('change', browserSync.reload);
 }
 
+function lwatch () {
+  browserSync.init({
+    open: false,
+    server: {
+      baseDir: './dist/'
+    }
+  });
+  gulp.watch('src/media/**/*', series(media, imageMinify))
+  gulp.watch('src/custom/**/*.js', customJs)
+  gulp.watch('src/custom/**/*.css', customCss)
+  gulp.watch('src/**/*.{html,njk}', nunjucks)
+  gulp.watch('dist/**/*.html').on('change', browserSync.reload);
+  gulp.watch('dist/custom/js/**/*.js').on('change', browserSync.reload);
+}
+
 function clearCache () {
   return cache.clearAll()
 }
@@ -398,10 +422,15 @@ exports.pluginsVendorsInitJS = pluginsVendorsInitJS;
 exports.favicon = favicon;
 exports.icon2font = icon2font;
 exports.icon2fontVcb = icon2fontVcb;
-exports.deploy = deploy;
+exports.pushFtp = pushFtp;
 exports.yarnInstall = yarnInstall;
 exports.gitCommit = gitCommit;
+exports.gitPull = gitPull;
+
+exports.ldev = series(yarnInstall, parallel(series(nunjucks, htmlBeauty), customCss, customJs, imageMinify, lwatch));
 
 exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
+
+exports.deploy = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia))
