@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 var plugins = require('./gulp_plugins_config.js').plugins
 const gulp = require('gulp');
 const cache = require('gulp-cache');
@@ -25,6 +27,12 @@ var del = require('del');
 var iconfont = require('gulp-iconfont');
 var runTimestamp = Math.round(Date.now() / 1000);
 var iconfontCss = require('gulp-iconfont-css');
+var gutil = require('gulp-util');
+var ftp = require('vinyl-ftp');
+var cachebust = require('gulp-cache-bust');
+const filter = require('gulp-filter');
+var yarn = require('gulp-yarn');
+var git = require('gulp-git');
 
 var imgSrc = [];
 var imgDes = 'dist';
@@ -246,7 +254,7 @@ function icon2font () {
       prependUnicode: true,
       formats: ['ttf', 'eot', 'woff'],
       timestamp: runTimestamp,
-     }))
+    }))
     .pipe(gulp.dest('dist/fonts/'));
 }
 
@@ -262,15 +270,29 @@ function icon2fontVcb () {
       prependUnicode: true,
       formats: ['ttf', 'eot', 'woff'],
       timestamp: runTimestamp,
-      normalize:true,
+      normalize: true,
       fontHeight: 1001,
       centerHorizontally: true
-     }))
+    }))
     .pipe(gulp.dest('dist/fonts-vcb/'));
 }
 
 // end test section
 // production task
+gulp.task('commit', function () {
+
+});
+
+function gitCommit () {
+  return gulp.src('.')
+    .pipe(git.commit('test commit'));
+}
+
+function yarnInstall () {
+  return gulp.src(['./package.json', './yarn.lock'])
+    .pipe(cache(yarn()));
+}
+
 function htmlBeauty () {
   var options = {
     indent_size: 2,
@@ -301,6 +323,35 @@ function minifyCss () {
     .pipe(cleanCSS())
     .pipe(gulp.dest('dist'));
 }
+
+
+function deploy () {
+  const f = filter(['**/*.html'], { restore: true });
+
+  var conn = ftp.create({
+    host: process.env.FTP_HOST,
+    user: process.env.FTP_USER,
+    password: process.env.FTP_PASS,
+    parallel: 3,
+    log: gutil.log
+  });
+
+  var globs = [
+    'dist/**/*'
+  ];
+
+  // using base = '.' will transfer everything to /public_html correctly
+  // turn off buffering in gulp.src for best performance
+
+  return gulp.src(globs, { base: '.' })
+    .pipe(f)
+    .pipe(cachebust({
+      type: 'timestamp'
+    }))
+    .pipe(f.restore)
+    .pipe(conn.dest('/testgulp'));
+}
+
 
 // end production task
 function watch () {
@@ -347,7 +398,10 @@ exports.pluginsVendorsInitJS = pluginsVendorsInitJS;
 exports.favicon = favicon;
 exports.icon2font = icon2font;
 exports.icon2fontVcb = icon2fontVcb;
+exports.deploy = deploy;
+exports.yarnInstall = yarnInstall;
+exports.gitCommit = gitCommit;
 
-exports.dev = series(parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
