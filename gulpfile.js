@@ -290,9 +290,9 @@ function promptMes (cb) {
       name: 'task',
       message: 'Please enter commit message:'
     }, function (res) {
-      return commitMessage = res.task
+      commitMessage = res.task
+      cb()
     }));
-  cb()
 }
 
 function gitAdd () {
