@@ -404,6 +404,7 @@ function pushFtp () {
     .pipe(indexHtmlFilter)
     .pipe(rev())
     .pipe(indexHtmlFilter.restore)
+    .pipe(revReplace())
     .pipe(conn.dest(process.env.FTP_PATH));
 }
 
