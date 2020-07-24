@@ -482,4 +482,4 @@ exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), styl
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
 exports.deploy = series(promptMes, parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
-exports.deployAll = series(promptMes, parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deployAll = series(promptMes, parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitCommitAll, gitPull, gitPush), pushFtp))
