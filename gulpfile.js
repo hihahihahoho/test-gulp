@@ -405,7 +405,7 @@ function pushFtp () {
   //   }))
   //   .pipe(f.restore)
   //   .pipe(conn.dest(process.env.FTP_PATH));
-  return gulp.src(globs, { base: '.' })
+  return gulp.src(globs)
     .pipe(indexHtmlFilter)
     .pipe(rev())
     .pipe(indexHtmlFilter.restore)
