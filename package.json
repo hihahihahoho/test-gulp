@@ -33,6 +33,7 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-nunjucks-render": "^2.2.3",
     "gulp-plumber": "^1.2.1",
+    "gulp-prompt": "^1.2.0",
     "gulp-purgecss": "^2.3.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.1.0",
@@ -43,6 +44,7 @@
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-pngquant": "^9.0.0",
     "imagemin-zopfli": "^7.0.0",
+    "prompt": "^1.0.0",
     "vinyl-ftp": "^0.6.1"
   }
 }

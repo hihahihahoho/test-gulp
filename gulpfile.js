@@ -35,13 +35,15 @@ const filter = require('gulp-filter');
 var yarn = require('gulp-yarn');
 var git = require('gulp-git');
 var prompt = require('gulp-prompt')
-
+var process = require("process");
+var prompt = require('prompt');
 
 var imgSrc = [];
 var imgDes = 'dist';
 
 var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
+var commitMessage = '';
 
 function cleanVendorsJs (cb) {
   del('dist/css/vendors/**');
@@ -282,17 +284,12 @@ function icon2fontVcb () {
 
 // end test section
 // production task
-var commitMessage = '';
 function promptMes (cb) {
-  gulp.src('package.json')
-    .pipe(prompt.prompt({
-      type: 'input',
-      name: 'task',
-      message: 'Please enter commit message:'
-    }, function (res) {
-      commitMessage = res.task
-      return cb()
-    }));
+  var prompt = require('prompt');
+  prompt.get(['message'], function (err, result) {
+    commitMessage = result.message
+    cb()
+  });
 }
 
 function gitAdd () {
@@ -467,4 +464,4 @@ exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), styl
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
 exports.deploy = series(promptMes, parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
-exports.deployAll = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deployAll = series(promptMes, parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommitAll, gitPull, gitPush), pushFtp))
