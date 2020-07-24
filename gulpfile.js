@@ -23,7 +23,7 @@ const purgecss = require('gulp-purgecss')
 const cleanCSS = require('gulp-clean-css');
 const gulpif = require('gulp-if');
 const autoprefixer = require('gulp-autoprefixer');
-var favicons = require('gulp-favicons');
+// var favicons = require('gulp-favicons');
 var del = require('del');
 var iconfont = require('gulp-iconfont');
 var runTimestamp = Math.round(Date.now() / 1000);
@@ -34,10 +34,8 @@ var cachebust = require('gulp-cache-bust');
 const filter = require('gulp-filter');
 var yarn = require('gulp-yarn');
 var git = require('gulp-git');
-var prompt = require('gulp-prompt')
 var process = require("process");
 var prompt = require('prompt');
-
 var imgSrc = [];
 var imgDes = 'dist';
 
@@ -244,11 +242,11 @@ function nunjucksForce () {
     .pipe(gulp.dest('dist'));
 }
 // test section
-function favicon () {
-  return gulp.src('src/media/favicon/favicon.png')
-    .pipe(favicons())
-    .pipe(gulp.dest('dist/media/favicon'))
-}
+// function favicon () {
+//   return gulp.src('src/media/favicon/favicon.png')
+//     .pipe(favicons())
+//     .pipe(gulp.dest('dist/media/favicon'))
+// }
 
 function icon2font () {
   return gulp.src(['src/font-ic/*.svg'])
@@ -458,7 +456,6 @@ exports.prefixCss = prefixCss;
 exports.pluginsVendors = series(pluginsVendorsJS, pluginsVendorsCss);
 exports.pluginsInitJS = pluginsInitJS;
 exports.pluginsVendorsInitJS = pluginsVendorsInitJS;
-exports.favicon = favicon;
 exports.icon2font = icon2font;
 exports.icon2fontVcb = icon2fontVcb;
 exports.pushFtp = pushFtp;
