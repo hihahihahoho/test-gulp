@@ -399,6 +399,7 @@ function pushFtp () {
   //   .pipe(f.restore)
   //   .pipe(conn.dest(process.env.FTP_PATH));
   return gulp.src(globs, { base: '.' })
+    .pipe(RevAll.revision())
     .pipe(conn.dest(process.env.FTP_PATH));
 }
 
