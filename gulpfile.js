@@ -306,7 +306,7 @@ function promptMes (cb) {
 
 function gitAdd () {
   return gulp.src('dist/**/*.css')
-    .pipe(git.add({ args: '' }));
+    .pipe(git.add({ args: '-A' }));
 }
 
 function gitCommit () {
