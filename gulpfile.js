@@ -391,7 +391,7 @@ function pushFtp () {
   });
 
   var globs = [
-    'dist/**'
+    'dist/**/*'
   ];
 
   // using base = '.' will transfer everything to /public_html correctly
@@ -404,8 +404,8 @@ function pushFtp () {
   //   }))
   //   .pipe(f.restore)
   //   .pipe(conn.dest(process.env.FTP_PATH));
-  return gulp.src(globs, { base: '.' })
-    .pipe(RevAll.revision())
+  return gulp.src(globs)
+    .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, /^\/index.html/g] }))
     .pipe(conn.dest(process.env.FTP_PATH));
 }
 
