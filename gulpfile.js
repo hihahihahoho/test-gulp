@@ -391,7 +391,7 @@ function pushFtp () {
   });
 
   var globs = [
-    'dist/**/*'
+    'dist/**'
   ];
 
   // using base = '.' will transfer everything to /public_html correctly
@@ -404,7 +404,7 @@ function pushFtp () {
   //   }))
   //   .pipe(f.restore)
   //   .pipe(conn.dest(process.env.FTP_PATH));
-  return gulp.src(globs)
+  return gulp.src(globs, { base: '.' })
     .pipe(RevAll.revision())
     .pipe(conn.dest(process.env.FTP_PATH));
 }
