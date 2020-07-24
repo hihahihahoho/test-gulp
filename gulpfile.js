@@ -400,8 +400,7 @@ function pushFtp () {
   //   .pipe(conn.dest(process.env.FTP_PATH));
   return gulp.src(globs, { base: '.' })
     .pipe(RevAll.revision())
-    .pipe(RevAll.manifestFile())
-    .pipe(conn.dest(process.env.FTP_PATH));
+    .pipe(gulp.dest('test-rev'));
 }
 
 
