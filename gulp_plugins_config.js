@@ -25,8 +25,8 @@ var pluginsDetail = {
       "src/plugins/select2/select2.min.css"
     ],
     "scripts": [
+      "node_modules/select2/dist/js/select2.min.js",
       "node_modules/select2/dist/js/i18n/vi.js",
-      "node_modules/select2/dist/js/select2.min.js"
     ],
     "init": [
       "src/js/select2.init.js"

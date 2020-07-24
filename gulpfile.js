@@ -89,8 +89,11 @@ function pluginsBundlesJS (cb) {
   });
   if (pluginsBundlesJsVal.length > 0) {
     return gulp.src(pluginsBundlesJsVal, { allowEmpty: true })
-      .pipe(gulpif('!**/*.min.js', cache(uglify())))
       .pipe(concat('bundles.js'))
+      .pipe(gulpif('!**/*.min.js', cache(uglify({
+        output: {comments: true},
+        compress: { hoist_funs: false }
+      }))))
       .pipe(gulp.dest('./dist/js'));
   }
   cb();
@@ -407,7 +410,6 @@ function watch () {
     }
   });
   gulp.watch('src/scss/**/*.scss', style);
-  gulp.watch(pluginsBundlesJsVal, pluginsBundlesJS)
   gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS))))
   gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
   gulp.watch('src/media/**/*', series(media, imageMinify))
