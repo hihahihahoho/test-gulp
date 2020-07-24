@@ -410,7 +410,7 @@ function pushFtp () {
     .pipe(rev())
     .pipe(indexHtmlFilter.restore)
     .pipe(revReplace())
-    .pipe(gulp.dest('terasdf'));
+    .pipe(conn.dest(process.env.FTP_PATH));
 }
 
 
