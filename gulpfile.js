@@ -291,7 +291,7 @@ function promptMes (cb) {
       message: 'Please enter commit message:'
     }, function (res) {
       commitMessage = res.task
-      cb()
+      return cb()
     }));
 }
 
