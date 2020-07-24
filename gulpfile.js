@@ -285,7 +285,6 @@ function icon2fontVcb () {
 // end test section
 // production task
 function promptMes (cb) {
-  var prompt = require('prompt');
   prompt.get(['message'], function (err, result) {
     commitMessage = result.message
     cb()
