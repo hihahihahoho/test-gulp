@@ -391,9 +391,9 @@ function pushFtp () {
 
   return gulp.src(globs, { base: '.' })
     .pipe(f)
-    .pipe(cache(cachebust({
+    .pipe(cachebust({
       type: 'timestamp'
-    })))
+    }))
     .pipe(f.restore)
     .pipe(conn.dest(process.env.FTP_PATH));
 }
