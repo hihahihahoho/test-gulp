@@ -37,6 +37,7 @@ var git = require('gulp-git');
 var process = require("process");
 var prompt = require('prompt');
 var RevAll = require("gulp-rev-all");
+var revReplace = require('gulp-rev-replace');
 
 var imgSrc = [];
 var imgDes = 'dist';
@@ -375,6 +376,7 @@ function minifyCss () {
 
 function pushFtp () {
   const f = filter(['**/*.html'], { restore: true });
+  var indexHtmlFilter = filter(['**/*', '!**/index.html'], { restore: true });
 
   var conn = ftp.create({
     host: process.env.FTP_HOST,
@@ -399,8 +401,10 @@ function pushFtp () {
   //   .pipe(f.restore)
   //   .pipe(conn.dest(process.env.FTP_PATH));
   return gulp.src(globs, { base: '.' })
+    .pipe(indexHtmlFilter)
     .pipe(RevAll.revision())
-    .pipe(gulp.dest('test-rev'));
+    .pipe(indexHtmlFilter.restore)
+    .pipe(conn.dest(process.env.FTP_PATH));
 }
 
 
