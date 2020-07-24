@@ -34,6 +34,8 @@ var cachebust = require('gulp-cache-bust');
 const filter = require('gulp-filter');
 var yarn = require('gulp-yarn');
 var git = require('gulp-git');
+var prompt = require('gulp-prompt')
+
 
 var imgSrc = [];
 var imgDes = 'dist';
@@ -280,15 +282,27 @@ function icon2fontVcb () {
 
 // end test section
 // production task
+var commitMessage = '';
+function promt () {
+  gulp.src('package.json')
+    .pipe(prompt.prompt({
+      type: 'input',
+      name: 'task',
+      message: 'Please enter commit message:'
+    }, function (res) {
+      return commitMessage = res.task
+    }))
+}
 
 function gitAdd () {
   return gulp.src('dist/**/*.css')
-    .pipe(git.add({args: ''}));
+    .pipe(git.add({ args: '' }));
 }
 
 function gitCommit () {
+  commitMessage != '' ? commitMessage : commitMessage = 'commit'
   return gulp.src('.')
-    .pipe(git.commit('test commit', {
+    .pipe(git.commit(commitMessage, {
       disableAppendPaths: true
     }));
 }
@@ -306,7 +320,7 @@ function gitPull (cb) {
 }
 
 function gitPush (cb) {
-  git.push('origin', 'master', {args: " -f"}, function (err) {
+  git.push('origin', 'master', { args: " -f" }, function (err) {
     if (err) throw err;
   });
   cb()
@@ -373,7 +387,7 @@ function pushFtp () {
       type: 'timestamp'
     }))
     .pipe(f.restore)
-    .pipe(conn.dest('/testgulp'));
+    .pipe(conn.dest(process.env.FTP_PATH));
 }
 
 
