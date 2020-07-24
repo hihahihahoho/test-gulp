@@ -369,7 +369,7 @@ function prefixCss () {
     .pipe(autoprefixer({
       cascade: false
     }))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('dist/'));
 }
 function minifyCss () {
   return gulp.src('dist/**/*.css')
