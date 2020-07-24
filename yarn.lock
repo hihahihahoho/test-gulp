@@ -3174,27 +3174,18 @@ gulp-replace@^1.0.0:
     readable-stream "^2.0.1"
     replacestream "^4.0.0"
 
-gulp-rev-replace@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/gulp-rev-replace/-/gulp-rev-replace-0.4.4.tgz#9696854131024baf264010b1f51ff8a1382ab94a"
-  integrity sha512-2yiDel/TGamn/HgHyo8H1rYEEL2zLsOYODerItoX8batOo0gPAe7uX7t6NlaqB7FEHpS5tGzUr5CKUEmrgdHyQ==
+gulp-rev-all@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/gulp-rev-all/-/gulp-rev-all-2.0.3.tgz#9b6284cdf650fa8722fc6d0758d82291d444ff67"
+  integrity sha512-fYgu3fnhaWm29iSbertL5Vf2HauEhj0IzPp7RRp9eSQBS3zwgyFrKK2OhgSEJzmNfkFLEkmlqJ2k54AnJvH5Sw==
   dependencies:
-    plugin-error "^0.1.2"
-    through2 "^2.0.0"
-
-gulp-rev@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-rev/-/gulp-rev-9.0.0.tgz#fe51b181c5fbbebfe740b64748d6980827e82878"
-  integrity sha512-Ytx/uzDA2xNxHlPG8GReS1ut00msd0HlKDk9Ai/0xF2yvg+DAeGRAviCFlQzQmdZtqAoXznYspwWoGEoxDvhyA==
-  dependencies:
-    modify-filename "^1.1.0"
+    chalk "^3.0.0"
+    fancy-log "^1.3.2"
+    isbinaryfile "^4.0.5"
+    merge "^1.2.0"
     plugin-error "^1.0.1"
-    rev-hash "^2.0.0"
-    rev-path "^2.0.0"
-    sort-keys "^2.0.0"
-    through2 "^2.0.0"
+    through2 "^3.0.1"
     vinyl "^2.1.0"
-    vinyl-file "^3.0.0"
 
 gulp-sass@^4.1.0:
   version "4.1.0"
@@ -4038,6 +4029,11 @@ isarray@2.0.1:
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-2.0.1.tgz#a37d94ed9cda2d59865c9f76fe596ee1f338741e"
   integrity sha1-o32U7ZzaLVmGXJ92/llu4fM4dB4=
 
+isbinaryfile@^4.0.5:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/isbinaryfile/-/isbinaryfile-4.0.6.tgz#edcb62b224e2b4710830b67498c8e4e5a4d2610b"
+  integrity sha512-ORrEy+SNVqUhrCaal4hA4fBzhggQQ+BaLntyPOdoEiwlKZW9BZiJXjg3RMiruE4tPEI3pyVPpySHQF/dKWperg==
+
 isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
@@ -4664,6 +4660,11 @@ merge2@^1.2.3, merge2@^1.3.0:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
+merge@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/merge/-/merge-1.2.1.tgz#38bebf80c3220a8a487b6fcfb3941bb11720c145"
+  integrity sha512-VjFo4P5Whtj4vsLzsYBu5ayHhoHJ0UqNm7ibvShmbmoz7tGi0vXaoJbGdB+GmDMLUdg8DpQXEIeVDAe8MaABvQ==
+
 microbuffer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/microbuffer/-/microbuffer-1.0.0.tgz#8b3832ed40c87d51f47bb234913a698a756d19d2"
@@ -4781,11 +4782,6 @@ mkdirp@~1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
-
-modify-filename@^1.0.0, modify-filename@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/modify-filename/-/modify-filename-1.1.0.tgz#9a2dec83806fbb2d975f22beec859ca26b393aa1"
-  integrity sha1-mi3sg4Bvuy2XXyK+7IWcoms5OqE=
 
 mozjpeg@^6.0.0:
   version "6.0.1"
@@ -6097,18 +6093,6 @@ reusify@^1.0.4:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
-rev-hash@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/rev-hash/-/rev-hash-2.0.0.tgz#7720a236ed0c258df3e64bec03ec048b05b924c4"
-  integrity sha1-dyCiNu0MJY3z5kvsA+wEiwW5JMQ=
-
-rev-path@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/rev-path/-/rev-path-2.0.0.tgz#10c978e824d76ce7dd1f7e66e88f50f5e71a0a6a"
-  integrity sha512-G5R2L9gYu9kEuqPfIFgO9gO+OhBWOAT83HyauOQmGHO6y9Fsa4acv+XsmNhNDrod0HDh1/VxJRmsffThzeHJlQ==
-  dependencies:
-    modify-filename "^1.0.0"
-
 revalidator@0.1.x:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/revalidator/-/revalidator-0.1.8.tgz#fece61bfa0c1b52a206bd6b18198184bdd523a3b"
@@ -6758,14 +6742,6 @@ strip-bom-buf@^1.0.0:
   integrity sha1-HLRar1dTD0yvhsf3UXnSyaUd1XI=
   dependencies:
     is-utf8 "^0.2.1"
-
-strip-bom-stream@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/strip-bom-stream/-/strip-bom-stream-2.0.0.tgz#f87db5ef2613f6968aa545abfe1ec728b6a829ca"
-  integrity sha1-+H217yYT9paKpUWr/h7HKLaoKco=
-  dependencies:
-    first-chunk-stream "^2.0.0"
-    strip-bom "^2.0.0"
 
 strip-bom-stream@^3.0.0:
   version "3.0.0"
@@ -7443,17 +7419,6 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
-
-vinyl-file@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/vinyl-file/-/vinyl-file-3.0.0.tgz#b104d9e4409ffa325faadd520642d0a3b488b365"
-  integrity sha1-sQTZ5ECf+jJfqt1SBkLQo7SIs2U=
-  dependencies:
-    graceful-fs "^4.1.2"
-    pify "^2.3.0"
-    strip-bom-buf "^1.0.0"
-    strip-bom-stream "^2.0.0"
-    vinyl "^2.0.1"
 
 vinyl-fs@^3.0.0:
   version "3.0.3"
