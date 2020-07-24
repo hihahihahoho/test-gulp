@@ -405,7 +405,7 @@ function pushFtp () {
   //   .pipe(f.restore)
   //   .pipe(conn.dest(process.env.FTP_PATH));
   return gulp.src(globs, { base: '.' })
-    .pipe(RevAll.revision())
+    .pipe(RevAll.revision({prefix: "http://1234.cloudfront.net/"}))
     .pipe(conn.dest(process.env.FTP_PATH));
 }
 
