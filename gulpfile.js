@@ -91,7 +91,7 @@ function pluginsBundlesJS (cb) {
     return gulp.src(pluginsBundlesJsVal, { allowEmpty: true })
       .pipe(concat('bundles.js'))
       .pipe(gulpif('!**/*.min.js', cache(uglify({
-        output: {comments: true},
+        // output: {comments: true},
         compress: { hoist_funs: false }
       }))))
       .pipe(gulp.dest('./dist/js'));
