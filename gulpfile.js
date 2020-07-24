@@ -36,6 +36,8 @@ var yarn = require('gulp-yarn');
 var git = require('gulp-git');
 var process = require("process");
 var prompt = require('prompt');
+var RevAll = require("gulp-rev-all");
+
 var imgSrc = [];
 var imgDes = 'dist';
 
@@ -389,12 +391,15 @@ function pushFtp () {
   // using base = '.' will transfer everything to /public_html correctly
   // turn off buffering in gulp.src for best performance
 
+  // return gulp.src(globs, { base: '.' })
+  //   .pipe(f)
+  //   .pipe(cachebust({
+  //     type: 'timestamp'
+  //   }))
+  //   .pipe(f.restore)
+  //   .pipe(conn.dest(process.env.FTP_PATH));
   return gulp.src(globs, { base: '.' })
-    .pipe(f)
-    .pipe(cachebust({
-      type: 'timestamp'
-    }))
-    .pipe(f.restore)
+    .pipe(RevAll.revision())
     .pipe(conn.dest(process.env.FTP_PATH));
 }
 
