@@ -314,8 +314,9 @@ function gitCommit () {
 }
 
 function gitCommitAll () {
+  commitMessage != '' ? commitMessage : commitMessage = 'commit'
   return gulp.src('.')
-    .pipe(git.commit('test commit'));
+    .pipe(git.commit(commitMessage));
 }
 
 function gitPull (cb) {
