@@ -405,7 +405,7 @@ function pushFtp () {
   //   .pipe(f.restore)
   //   .pipe(conn.dest(process.env.FTP_PATH));
   return gulp.src(globs)
-    .pipe(RevAll.revision({ dontRenameFile: [/^\/[^\/]+\.html$/g] }))
+    .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"] }))
     .pipe(conn.dest(process.env.FTP_PATH));
 }
 
