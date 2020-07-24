@@ -283,7 +283,7 @@ function icon2fontVcb () {
 // end test section
 // production task
 var commitMessage = '';
-function promt () {
+function promptMes (cb) {
   gulp.src('package.json')
     .pipe(prompt.prompt({
       type: 'input',
@@ -291,7 +291,8 @@ function promt () {
       message: 'Please enter commit message:'
     }, function (res) {
       return commitMessage = res.task
-    }))
+    }));
+  cb()
 }
 
 function gitAdd () {
@@ -465,5 +466,5 @@ exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), styl
 
 exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
-exports.deploy = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
+exports.deploy = series(promptMes, parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
 exports.deployAll = series(parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommitAll, gitPull, gitPush), pushFtp))
