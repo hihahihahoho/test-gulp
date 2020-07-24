@@ -285,8 +285,17 @@ function icon2fontVcb () {
 // end test section
 // production task
 function promptMes (cb) {
-  prompt.get(['message'], function (err, result) {
-    commitMessage = result.message
+  var schema = {
+    properties: {
+      commit: {
+        message: 'Enter commit message: ',
+        required: true
+      }
+    }
+  };
+  prompt.start();
+  prompt.get(schema, function (err, result) {
+    commitMessage = result.commit
     cb()
   });
 }
