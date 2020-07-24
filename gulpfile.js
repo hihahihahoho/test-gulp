@@ -36,7 +36,7 @@ var yarn = require('gulp-yarn');
 var git = require('gulp-git');
 var process = require("process");
 var prompt = require('prompt');
-const rev = require('gulp-rev');
+var RevAll = require("gulp-rev-all");
 
 var imgSrc = [];
 var imgDes = 'dist';
@@ -399,7 +399,8 @@ function pushFtp () {
   //   .pipe(f.restore)
   //   .pipe(conn.dest(process.env.FTP_PATH));
   return gulp.src(globs, { base: '.' })
-    .pipe(rev())
+    .pipe(RevAll.revision())
+    .pipe(RevAll.manifestFile())
     .pipe(conn.dest(process.env.FTP_PATH));
 }
 
