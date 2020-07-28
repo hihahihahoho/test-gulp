@@ -23,6 +23,8 @@ const purgecss = require('gulp-purgecss')
 const cleanCSS = require('gulp-clean-css');
 const gulpif = require('gulp-if');
 const autoprefixer = require('gulp-autoprefixer');
+const babel = require('gulp-babel');
+
 // var favicons = require('gulp-favicons');
 var del = require('del');
 var iconfont = require('gulp-iconfont');
@@ -314,6 +316,14 @@ function icon2fontVcb () {
 
 // end test section
 // production task
+function babeljs () {
+  return gulp.src('src/custom/**/*.js')
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
+    .pipe(gulp.dest('dist'))
+}
+
 function promptMes (cb) {
   var schema = {
     properties: {
@@ -453,8 +463,8 @@ function watch () {
   gulp.watch('src/custom/**/*.js', customJs)
   gulp.watch('src/custom/**/*.css', customCss)
   gulp.watch('src/**/*.{html,njk}', nunjucks)
-  gulp.watch('src/**/*.{html,njk}').on('unlink', function(path){
-    del(path.replace('src\\','dist\\').replace('.njk','.html'))
+  gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
+    del(path.replace('src\\', 'dist\\').replace('.njk', '.html'))
   });
   gulp.watch('dist/**/*.html').on('change', browserSync.reload);
   gulp.watch('dist/custom/js/**/*.js').on('change', browserSync.reload);
@@ -506,12 +516,13 @@ exports.gitCommit = gitCommit;
 exports.gitPull = gitPull;
 exports.gitPush = gitPush;
 exports.gitAdd = gitAdd;
+exports.babeljs = babeljs;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), series(cleanHtml, nunjucks, htmlBeauty), customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(cleanHtml,nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
-exports.deploy = series(promptMes, parallel(series(cleanHtml,nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
-exports.deployAll = series(promptMes, parallel(series(cleanHtml,nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deploy = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
+exports.deployAll = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
