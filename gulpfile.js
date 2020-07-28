@@ -45,6 +45,10 @@ var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 var commitMessage = '';
 
+Array.prototype.diff = function (a) {
+  return this.filter(function (i) { return a.indexOf(i) < 0; });
+};
+
 function cleanVendorsJs (cb) {
   del('dist/css/vendors/**');
   del('dist/js/vendors/**');
@@ -187,6 +191,29 @@ function cleanMedia () {
     )
     .catch(error => console.error(error));
 }
+
+function cleanHtml () {
+  // var options = {
+  //   function (entry1, entry2, state, level, relativePath, options, statistics, diffSet, reason)
+  // };
+  var right = [];
+  var left = [];
+  return dircompare.compare('./src/pages/', './dist/pages/')
+    .then(res => {
+      res.diffSet.forEach(dif => {
+        var nameMain = dif.state == 'left' ? dif.name1 : dif.name2;
+        var name = dif.relativePath.replace(/(\\)/, '') + '/' + nameMain;
+        dif.state == 'left' && dif.type1 == 'file' ? left.push(name.replace('.njk', '')) : '';
+        dif.state == 'right' && dif.type2 == 'file' ? right.push(name.replace('.html', '')) : '';
+      });
+      right.diff(left).forEach(item => {
+        del('./dist/pages' + item + '.html')
+      });
+    }
+    )
+    .catch(error => console.error(error));
+}
+
 
 function media () {
   return gulp.src('./src/media/**/*', { allowEmpty: true })
@@ -426,6 +453,9 @@ function watch () {
   gulp.watch('src/custom/**/*.js', customJs)
   gulp.watch('src/custom/**/*.css', customCss)
   gulp.watch('src/**/*.{html,njk}', nunjucks)
+  gulp.watch('src/**/*.{html,njk}').on('unlink', function(path){
+    del(path.replace('src\\','dist\\').replace('.njk','.html'))
+  });
   gulp.watch('dist/**/*.html').on('change', browserSync.reload);
   gulp.watch('dist/custom/js/**/*.js').on('change', browserSync.reload);
 }
@@ -452,6 +482,7 @@ function clearCache () {
 
 exports.style = style;
 exports.cleanMedia = cleanMedia;
+exports.cleanHtml = cleanHtml;
 exports.media = media;
 exports.imageMinify = imageMinify;
 exports.clearCache = clearCache;
@@ -476,11 +507,11 @@ exports.gitPull = gitPull;
 exports.gitPush = gitPush;
 exports.gitAdd = gitAdd;
 
-exports.ldev = series(yarnInstall, parallel(series(nunjucks, htmlBeauty), customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
+exports.ldev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), series(cleanHtml, nunjucks, htmlBeauty), customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(cleanHtml,nunjucks, htmlBeauty)), watch);
 
-exports.prod = parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
+exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
-exports.deploy = series(promptMes, parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
-exports.deployAll = series(promptMes, parallel(series(nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deploy = series(promptMes, parallel(series(cleanHtml,nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
+exports.deployAll = series(promptMes, parallel(series(cleanHtml,nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
