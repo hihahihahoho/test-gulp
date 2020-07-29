@@ -397,7 +397,7 @@ function purge () {
   return gulp.src('dist/**/*.css')
     .pipe(purgecss({
       content: ['dist/**/*.{html,js,xml}'],
-      whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /col/]
+      whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /col/, /select2/]
     }))
     .pipe(gulp.dest('dist'))
 }
