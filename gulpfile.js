@@ -314,6 +314,14 @@ function icon2fontVcb () {
     .pipe(gulp.dest('dist/fonts-vcb/'));
 }
 
+function fontSrc () {
+  del('./dist/fonts/main/*')
+  return gulp
+    .src('./src/fonts/**/*')
+    .pipe(gulp.dest('./dist/fonts/main'));
+}
+
+
 // end test section
 // production task
 function babeljs () {
@@ -461,6 +469,7 @@ function watch () {
   gulp.watch('src/media/**/*', series(media, imageMinify))
   gulp.watch('src/js/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
   gulp.watch('src/custom/**/*.js', customJs)
+  gulp.watch('src/fonts/**/*', fontSrc)
   gulp.watch('src/custom/**/*.css', customCss)
   gulp.watch('src/**/*.{html,njk}', nunjucks)
   gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
@@ -517,10 +526,11 @@ exports.gitPull = gitPull;
 exports.gitPush = gitPush;
 exports.gitAdd = gitAdd;
 exports.babeljs = babeljs;
+exports.fontSrc = fontSrc;
 
-exports.ldev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), series(cleanHtml, nunjucks, htmlBeauty), customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
+exports.ldev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), series(cleanHtml, nunjucks, htmlBeauty),fontSrc , customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)),fontSrc , pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
