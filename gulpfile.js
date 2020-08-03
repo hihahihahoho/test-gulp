@@ -156,6 +156,7 @@ function customCss () {
   return gulp.src('./src/custom/css/*.css')
     .pipe(changed('./src/custom/css/*.css'))
     .pipe(gulp.dest('./dist/css'))
+    .pipe(browserSync.stream());
 }
 
 function customJs () {
