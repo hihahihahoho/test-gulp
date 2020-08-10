@@ -467,7 +467,7 @@ function watch () {
     del(path.replace('src\\', 'dist\\').replace('.njk', '.html'))
   });
   gulp.watch('dist/**/*.html').on('change', browserSync.reload);
-  gulp.watch('dist/custom/js/**/*.js').on('change', browserSync.reload);
+  gulp.watch('dist/js/**/*.js').on('change', browserSync.reload);
 }
 
 function lwatch () {
