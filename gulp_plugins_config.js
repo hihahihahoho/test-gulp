@@ -5,8 +5,22 @@ var pluginsDetail = {
       "src/plugins/jquery/jquery.min.js",
     ],
     "init": [
-      "src/js/jquery.init.js",
-      "src/js/jquery-live-search.init.js"
+      "src/js/jquery.init.js"
+    ]
+  },
+  'parsley': {
+    "name": 'parsley',
+    "scripts": [
+      "node_modules/parsleyjs/dist/parsley.min.js",
+    ],
+    "init": [
+      "src/js/parsley-init.js",
+    ]
+  },
+  'momentjs': {
+    "name": 'momentjs',
+    "scripts": [
+      "src/plugins/momentjs/moment.min.js",
     ]
   },
   'lightpick': {
@@ -53,22 +67,82 @@ var pluginsDetail = {
       "node_modules/bootstrap/js/dist/tooltip.js",
       "node_modules/bootstrap/js/dist/popover.js",
       "node_modules/bootstrap/js/dist/tab.js",
+      "node_modules/bootstrap/js/dist/toast.js"
     ],
     "init": [
       "src/js/bootstrap.init.js"
+    ]
+  },
+  'swiper': {
+    "name": 'swiper',
+    "styles": [
+      "src/plugins/swiper/swiper.min.css"
+    ],
+    "scripts": [
+      "src/plugins/swiper/swiper.min.js"
+    ]
+  },
+  'popper': {
+    "name": 'popper',
+    "scripts": [
+      "src/plugins/popper/popper.min.js"
+    ]
+  },
+  'cleave': {
+    "name": 'cleave',
+    "scripts": [
+      "node_modules/cleave.js/dist/cleave.min.js"
+    ],
+    "init": [
+      "src/js/cleave.init.js"
+    ]
+  },
+  'sortablejs': {
+    "name": 'sortablejs',
+    "scripts": [
+      "node_modules/sortablejs/dist/sortable.umd.js"
+    ]
+  },
+  'autosize': {
+    "name": 'autosize',
+    "scripts": [
+      "src/plugins/autosize/autosize.min.js"
+    ],
+    "init": [
+      "src/js/autosize.init.js"
+    ]
+  },
+  'croppie': {
+    "name": 'croppie',
+    "styles": [
+      "node_modules/croppie/croppie.css"
+    ],
+    "scripts": [
+      "node_modules/croppie/croppie.min.js"
+    ],
+    "init": [
+      "src/js/croppie.init.js"
     ]
   }
 }
 
 var plugins = {
   'bundles': [
-    pluginsDetail.bootstrap,
-    pluginsDetail.lightpick,
-    pluginsDetail.jqueryAccordion,
-    pluginsDetail.select2
   ],
   'vendors': [
+    pluginsDetail.momentjs,
+    pluginsDetail.lightpick,
     pluginsDetail.jquery,
+    pluginsDetail.popper,
+    pluginsDetail.bootstrap,
+    pluginsDetail.jqueryAccordion,
+    pluginsDetail.select2,
+    pluginsDetail.parsley,
+    pluginsDetail.swiper,
+    pluginsDetail.cleave,
+    pluginsDetail.sortablejs,
+    pluginsDetail.autosize,
+    pluginsDetail.croppie
   ]
 }
 

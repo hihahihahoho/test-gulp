@@ -1,30 +1,28 @@
 {
   "search.exclude": {
-    "**/dist": true
+    "**/dist/**/*": true
   },
   "html.suggest.html5": true,
   "emmet.includeLanguages": {
-    "njk": "html"
+    "nunjucks": "html"
   },
   "files.associations": {
-    "*.njk": "html"
+    "*.njk": "nunjucks"
   },
   "editor.tabSize": 2,
   "scssFormatter.printWidth": 12000,
   "html.format.wrapLineLength": 1200,
   "html.format.wrapAttributes": "preserve",
   "workbench.editor.closeEmptyGroups": false,
+  "editor.occurrencesHighlight": false,
   "path-autocomplete.pathMappings": {
     "media": "${folder}/src/media",
     "custom": "${folder}/src/custom",
     "plugins": "${folder}/src/plugins",
     "src": "${folder}/src",
-    "/": "${folder}",
-    "$root": [
-      "${folder}/p1/src",
-      "${folder}/p2/src"
-    ]
+    "/": "${folder}"
   },
+  "path-autocomplete.ignoredFilesPattern": "**/*.{css,scss,html}",
   "vscode-opn.perLang": {
     "opnOptions": [
       {
@@ -36,7 +34,7 @@
         "trimPath": "src/"
       },
       {
-        "forLang": "njk",
+        "forLang": "nunjucks",
         "openInApp": "chrome",
         "isUseWebServer": true,
         "isUseFsPath": false,

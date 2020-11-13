@@ -24,6 +24,7 @@ const cleanCSS = require('gulp-clean-css');
 const gulpif = require('gulp-if');
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
+const rename = require('gulp-rename');
 
 // var favicons = require('gulp-favicons');
 var del = require('del');
@@ -51,10 +52,14 @@ Array.prototype.diff = function (a) {
   return this.filter(function (i) { return a.indexOf(i) < 0; });
 };
 
+var options = {
+  indent_size: 2,
+  max_preserve_newlines: 0
+};
+
 function cleanVendorsJs (cb) {
-  del('dist/css/vendors/**');
-  del('dist/js/vendors/**');
-  cb()
+  del('dist/css/vendors/**', { force: true });
+  return del('dist/js/vendors/**', { force: true });
 }
 
 function pluginsVendorsJS (cb) {
@@ -68,7 +73,7 @@ function pluginsVendorsJS (cb) {
         .pipe(gulp.dest('./dist/js/vendors/' + file.name));
     }
   })
-  return cb()
+  cb()
 }
 
 function pluginsVendorsCss (cb) {
@@ -152,9 +157,18 @@ function pluginsVendorsInitJS (cb) {
   return cb()
 }
 
+var customCssFiles = [
+  './src/custom/css/custom.css',
+  './src/custom/css/component.css',
+]
+
 function customCss () {
-  return gulp.src('./src/custom/css/*.css')
+  return gulp.src(customCssFiles)
+    .pipe(sourcemaps.init())
     .pipe(changed('./src/custom/css/*.css'))
+    .pipe(replace('/dist/', '../'))
+    .pipe(concat('custom.bundles.css'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/css'))
     .pipe(browserSync.stream());
 }
@@ -231,12 +245,14 @@ function imageMinify () {
       optipng: false,
       zopflipng: true,
       jpegRecompress: false,
-      mozjpeg: ['-quality', 73],
+      mozjpeg: ['-quality', 90],
       gifsicle: true,
-      svgo: true,
+      svgo: false,
       concurrent: 10,
       quiet: true // defaults to false
     })))
+    .pipe(replace('vector-effect="non-scaling-stroke"', ''))
+    .pipe(replace('stroke-width="1.5"', 'stroke-width="1.5" vector-effect="non-scaling-stroke"'))
     .pipe(gulp.dest('dist/media/'))
 }
 
@@ -256,8 +272,14 @@ function nunjucks () {
       }
     }))
     .pipe(nunjucksRender({
-      path: ['src/_imports/']
+      path: ['src/_imports/', 'src/pages/']
     }))
+    .pipe(replace('/dist/', ''))
+    .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
+    .pipe(replace(/  +/g, ' '))
+    .pipe(replace(' "', '"'))
+    .pipe(replace('"/pages', '"pages'))
+    .pipe(htmlbeautify(options))
     .pipe(gulp.dest('dist'));
 }
 
@@ -269,8 +291,14 @@ function nunjucksForce () {
       }
     }))
     .pipe(nunjucksRender({
-      path: ['src/_imports/']
+      path: ['src/_imports/', 'src/pages/']
     }))
+    .pipe(replace('/dist/', ''))
+    .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
+    .pipe(replace(/  +/g, ' '))
+    .pipe(replace(' "', '"'))
+    .pipe(replace('"/pages', '"pages'))
+    .pipe(htmlbeautify(options))
     .pipe(gulp.dest('dist'));
 }
 // test section
@@ -279,6 +307,8 @@ function nunjucksForce () {
 //     .pipe(favicons())
 //     .pipe(gulp.dest('dist/media/favicon'))
 // }
+
+
 
 function icon2font () {
   return gulp.src(['src/font-ic/*.svg'])
@@ -320,6 +350,16 @@ function fontSrc () {
   return gulp
     .src('./src/fonts/**/*')
     .pipe(gulp.dest('./dist/fonts/main'));
+}
+
+
+function lowercaseFiles () {
+  return gulp.src('./src/media/svg-new/**/*')
+    .pipe(rename(function (path) {
+      path.basename = path.basename.toLowerCase().replace(' 24px', '');
+      path.extname = path.extname.toLowerCase();
+    }))
+    .pipe(gulp.dest('./src/media/svg-export/dark'));
 }
 
 
@@ -393,10 +433,6 @@ function yarnInstall () {
 }
 
 function htmlBeauty () {
-  var options = {
-    indent_size: 2,
-    max_preserve_newlines: 0
-  };
   return gulp.src('dist/**/*.html')
     .pipe(htmlbeautify(options))
     .pipe(gulp.dest('./dist'))
@@ -406,12 +442,13 @@ function purge () {
   return gulp.src('dist/**/*.css')
     .pipe(purgecss({
       content: ['dist/**/*.{html,js,xml}'],
-      whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /col/, /select2/]
+      whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /d-block/, /col/, /select2/, /cr-vp-circle/, /swiper/]
     }))
     .pipe(gulp.dest('dist'))
 }
 function prefixCss () {
   return gulp.src('src/custom/**/*.css')
+    .pipe(replace('/dist/', '../'))
     .pipe(autoprefixer({
       cascade: false
     }))
@@ -473,6 +510,7 @@ function watch () {
   gulp.watch('src/fonts/**/*', fontSrc)
   gulp.watch('src/custom/**/*.css', customCss)
   gulp.watch('src/**/*.{html,njk}', nunjucks)
+  gulp.watch('src/_imports/**/*.{html,njk}', nunjucksForce)
   gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
     del(path.replace('src\\', 'dist\\').replace('.njk', '.html'))
   });
@@ -518,8 +556,6 @@ exports.prefixCss = prefixCss;
 exports.pluginsVendors = series(pluginsVendorsJS, pluginsVendorsCss);
 exports.pluginsInitJS = pluginsInitJS;
 exports.pluginsVendorsInitJS = pluginsVendorsInitJS;
-exports.icon2font = icon2font;
-exports.icon2fontVcb = icon2fontVcb;
 exports.pushFtp = pushFtp;
 exports.yarnInstall = yarnInstall;
 exports.gitCommit = gitCommit;
@@ -528,12 +564,14 @@ exports.gitPush = gitPush;
 exports.gitAdd = gitAdd;
 exports.babeljs = babeljs;
 exports.fontSrc = fontSrc;
+exports.lowercaseFiles = lowercaseFiles;
 
-exports.ldev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), series(cleanHtml, nunjucks, htmlBeauty),fontSrc , customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
+exports.ldev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), series(cleanHtml, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)),fontSrc , pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify, cleanMedia), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 
 exports.deploy = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
+
 exports.deployAll = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
