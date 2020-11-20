@@ -271,6 +271,11 @@ function nunjucks () {
         baseLink: path.relative(process.cwd(), file.path).replace(/([^\\]+)/g, '..').slice(0, -4)
       }
     }))
+    .pipe(data(function (file) {
+      return {
+        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk','.html')
+      }
+    }))
     .pipe(nunjucksRender({
       path: ['src/_imports/', 'src/pages/']
     }))
@@ -288,6 +293,11 @@ function nunjucksForce () {
     .pipe(data(function (file) {
       return {
         baseLink: path.relative(process.cwd(), file.path).replace(/([^\\]+)/g, '..').slice(0, -4)
+      }
+    }))
+    .pipe(data(function (file) {
+      return {
+        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk','.html')
       }
     }))
     .pipe(nunjucksRender({

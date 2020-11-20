@@ -21,11 +21,40 @@ body {
   margin: 0;
   width: 100%;
   font-size: 14px;
-  background-color: blue;
+  background-color: #dcdee4;
   overflow-x: hidden;
   line-height: 1.5;
 }
 /*end init*/
+/* sidebar-top */
+.sidebar-top__trigger {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 3px 10px 30px rgba(36, 40, 65, 0.3);
+}
+.sidebar-top {
+  padding-left: 84px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+@media (max-width: 1200px) {
+  .sidebar-top__trigger {
+    z-index: 1069;
+  }
+}
+@media (min-width: 1200px) {
+  .sidebar-top__logo {
+    display: none;
+  }
+}
+/*end sidebar-top */
 /*sidebar*/
 
 .main--with-sidebar {
@@ -133,20 +162,6 @@ body {
   position: relative;
 }
 
-.sidebar__list.open > .sidebar__item .mdi-chevron-down::before {
-  -webkit-transform: rotate(-180deg);
-  transform: rotate(-180deg);
-}
-
-.sidebar__list.open > .sidebar__item .sidebar__dropdown {
-  -webkit-transform: rotate(-180deg);
-  transform: rotate(-180deg);
-}
-
-.sidebar__list.active .mdi:not(.mdi-chevron-down) {
-  color: #3f3bec;
-}
-
 .sidebar__list.active:after {
   /* background: #3F3BEC; */
   width: 2px;
@@ -157,23 +172,7 @@ body {
   content: "";
 }
 
-.sidebar__list:before {
-  background: #afb3bc;
-  width: 6px;
-  border-radius: 3px;
-  height: 6px;
-  position: absolute;
-  left: 17px;
-  top: 0;
-  margin: auto;
-  bottom: 0;
-  z-index: 1;
-  content: "";
-}
-.sidebar__list.active:before {
-  background: #3f3bec;
-  box-shadow: 0 0 10px rgba(63, 59, 236, 0.7);
-}
+
 
 @media (max-width: 1200px) {
   .sidebar__list.active:after {
@@ -234,14 +233,16 @@ body {
 }
 
 .sidebar__item {
-  height: 30px;
+  min-height: 30px;
   color: #242841;
   cursor: pointer;
   text-decoration: none !important;
   background-color: transparent;
   position: relative;
-  padding-left: 36px;
+  padding-left: 17px;
   padding-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 1200px) {
@@ -272,10 +273,61 @@ body {
   }
 }
 
-.sidebar__item .ic:first-child {
-  width: 17px;
+.sidebar__item .ic {
+  width: 16px;
   text-align: center;
+  flex: 0 0 auto;
+  position: relative;
 }
+.sidebar__item .ic-blank{
+  height: 16px;
+}
+.sidebar__item .ic-blank:after {
+  background: #afb3bc;
+  width: 6px;
+  border-radius: 3px;
+  height: 6px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: auto;
+  bottom: 0;
+  z-index: 1;
+  content: "";
+}
+
+.sidebar__list.active > .sidebar__item > .ic-blank:after,
+.sidebar__list.open > .sidebar__item > .ic-blank:after {
+  background: #3f3bec;
+  box-shadow: 0 0 10px rgba(63, 59, 236, 0.7);
+}
+
+.sidebar__item .ic-arrow {
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  flex: 0 0 auto;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-chevron-right' width='24' height='24' viewBox='0 0 24 24' stroke-width='1.5' stroke='%233F4254' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpolyline points='9 6 15 12 9 18' /%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  transition: 00.2s all ease;
+}
+
+.open > .sidebar__item > .ic-arrow {
+  transform: rotate(90deg);
+}
+.sidebar__item .txt {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 3px 0;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
 
 .sidebar__item .ic:last-child {
   text-align: right;
@@ -284,16 +336,7 @@ body {
 }
 
 .sidebar__sub {
-  background-color: #121f3e;
-}
-
-.sidebar__sub__wrap {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.sidebar__sub__wrap .ic:first-child {
-  width: 18px;
+  /* background-color: #121f3e; */
 }
 
 .sidebar__sub__wrap > .sidebar__list > [data-content] {
@@ -302,8 +345,6 @@ body {
 
 .sidebar__sub .sidebar__item {
   opacity: 0;
-  height: 40px;
-  padding: 10px 0;
   -webkit-transform: translate(0, -30%);
   transform: translate(0, -30%);
   -webkit-transition: 0.3s opacity ease-in-out, 0.3s transform ease-in-out;
@@ -323,10 +364,6 @@ body {
   -webkit-transform: translate(0, 0);
   transform: translate(0, 0);
   opacity: 1;
-}
-
-[data-accordion].open > .sidebar__item {
-  background-color: inherit;
 }
 
 .sidebar__list .notify {

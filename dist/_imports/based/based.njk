@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <base href="..\..\.">
+  <base href="{{ baseLink }}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
@@ -19,14 +19,14 @@
   <!-- croppie -->
   <link rel="stylesheet" href="css/vendors/croppie/croppie.bundles.css">
   <!-- end croppie -->
+  {% block pageCss %}{% endblock %}
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/custom.bundles.css">
   <link rel="shortcut icon" type="text/html" href="media/favicon/favicon.png">
 </head>
 
 <body>
-  <h1 class="color-primary">Test form</h1>
-  <img src="media/img/1491086209404.png" alt="">
+  {% block main %}{% endblock %}
 </body>
 <!-- jquery -->
 <script src="js/vendors/jquery/jquery.bundles.js"></script>
@@ -73,6 +73,8 @@
 <script src="js/vendors/croppie/croppie.bundles.js"></script>
 <script src="js/vendors/croppie/croppie.init.js"></script>
 <!-- croppie -->
+{% block script %}{% endblock %}
 <script src="js/custom.js"></script>
+{% block pageScript %}{% endblock %}
 
 </html>

@@ -1,0 +1,10 @@
+{% extends 'based/based.njk' %}
+{% block main %}
+{% include"layout/menu/sidebar/sidebar.njk" %}
+<div class="main main--with-sidebar">
+  <div class="container">
+    <div class="h1 b pv30">{{ sidebar.pageTitle }}</div>
+    {% block mainBody %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
