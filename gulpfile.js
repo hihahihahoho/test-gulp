@@ -163,9 +163,9 @@ var customCssFiles = [
 ]
 
 function customCss () {
-  return gulp.src(customCssFiles)
+  return gulp.src('./src/custom/css/**/*.css')
     .pipe(sourcemaps.init())
-    .pipe(changed('./src/custom/css/*.css'))
+    .pipe(changed('./src/custom/css/**/*.css'))
     .pipe(replace('/dist/', '../'))
     .pipe(concat('custom.bundles.css'))
     .pipe(sourcemaps.write())

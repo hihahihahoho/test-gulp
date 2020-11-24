@@ -21,7 +21,7 @@
   {
     ic: 'plannet.svg',
     txt: 'Clean | Border | Line',
-    link: '1-1-forms-clean-border.html'
+    link: 'forms/1-1-forms-clean-border.html'
   },
   {
     ic: 'plannet.svg',
@@ -232,7 +232,7 @@
       <div class="sidebar__title">{{ itemVal.txt }}</div>
     {% else %}
       <div class="sidebar__list {{ activeTxt }}">
-        <a class="sidebar__item" href="page/{{ itemVal.link }}">
+        <a class="sidebar__item" href="pages/{{ itemVal.link }}">
           {% if itemVal.ic %}
             <div class="ic">
               {% if (itemVal.link in pageLink) and (itemVal.link | length) %}
@@ -306,6 +306,3 @@
 </div>
 
 {% set pageTitleTxt = pageTitleLoop(menuVal) %}
-{% set pageTitleTxt %}
-{{ pageTitleTxt }} ádfasdf
-{% endset %}

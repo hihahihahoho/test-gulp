@@ -1,0 +1,122 @@
+{% macro input(inputType = 'border', label, value = '', size = 'sm', icSize = 'xs', icon = '', iconPos = "right", type = 'text', id = '', iconType = '', iconText = '', extendAttr, extendClass, note = '', subBlock = '', textarea, autocomplete = '', placeholder = '', inputClearOpt = 'true') %}
+  <!-- forms.input -->
+  {% if not note == '' %}
+    {% set noteContent %}
+    <div class="note-text h7">
+      {{ note }}
+    </div>
+    {% endset %}
+  {% endif %}
+
+  {% if type == 'password' %}
+    {% set eye %}
+    <div class="eye-wrap">
+      <input type="checkbox" name="" class="hidden" checked="" id="eye-{{id}}">
+      <label class="eye text-right ic-pos-right" for="eye-{{id}}">
+        <div class="eye-slash"></div>
+      </label>
+    </div>
+    {% endset %}
+  {% endif %}
+
+  {% set ic %}
+  {% if iconType == 'btn' %}
+    <div class="input-ic input-btn text-center d-flex">
+      <button class="ubtn-sm ubtn no-m ubg-white hover-bg-grey no-p width-full"><img src="{{ icon }}" class="ic-lg" alt=""></button>
+    </div>
+  {% elif iconType == 'link' %}
+    <div class="input-ic input-btn text-center d-flex">
+      <a class="ubtn-sm ubtn no-m ubg-white hover-bg-grey no-p width-full"><img src="{{ icon }}" class="ic-lg" alt=""></a>
+    </div>
+  {% elif iconText == 'true' %}
+    <div class="input-ic text-{{iconPos}}">
+      <span class="p ic-text">{{ icon }}</span>
+    </div>
+  {% else %}
+    <div class="input-ic text-{{iconPos}}">
+      <img src="{{ icon }}" class="ic-lg" alt="">
+    </div>
+  {% endif %}
+  {% endset %}
+
+  {% if not subBlock == '' %}
+    {% set subBlockContent = subBlock %}
+  {% endif %}
+
+  {% set inputClear %}
+  <div class="input-ic input-clear pointer">
+    <img src="media/icons/svg/dark/close.svg" alt="" class="ic-xs">
+  </div>
+  {% endset %}
+
+  {% if textarea == 'true' %}
+    {% set inputClear = '' %}
+  {% endif %}
+
+  {% if type == 'password' %}
+    {% set inputClear = '' %}
+  {% endif %}
+
+  {% if inputClearOpt == 'false' %}
+    {% set inputClear = '' %}
+  {% endif %}
+
+  {% if id %}
+    {% set idText = 'id="' + id + '"' %}
+  {% endif %}
+
+  {% set inputArtt %}
+  {{ idText }}
+  type="{{ type }}" class="input input-{{ size }}
+  input-material input-ic-{{iconPos}}
+  input-ic-{{ icSize }} input-has-clear
+  {{ extendClass }}" autocorrect="off" placeholder="{{ placeholder }}"
+  {{ extendAttr }}
+  {% endset %}
+  <div class="form-group">
+    <div class="input-group input-group-material">
+      {% if textarea == 'true' %}
+        <textarea spellcheck="false" {{ inputArtt | safe | trim }} rows="1">{{ value }}</textarea>
+      {% else %}
+        <input {{ inputArtt | safe | trim}} value="{{ value }}">
+      {% endif %}
+      <div class="input-line-bar"></div>
+      <label class="input-label">{{ label }}</label>
+      {% if autocomplete == 'true' %}
+        <ul class="live-search-result live-search-result-2">
+          <li>
+            <span>2,000</span>
+          </li>
+          <li>
+            <span>20,000</span>
+          </li>
+          <li>
+            <span>200,000</span>
+          </li>
+          <li>
+            <span>2,000,000</span>
+          </li>
+          <li>
+            <span>20,000,000</span>
+          </li>
+        </ul>
+      {% endif %}
+      {% if icon %}
+        {{ ic |safe }}
+      {% endif %}
+      {{ eye | safe }}
+      {% if subBlock == '' %}
+        {{ inputClear | safe }}
+      {% else %}
+        <div class="input-sub input-material-sub">
+          {{ inputClear | safe }}
+          {{ subBlockContent | safe }}
+        </div>
+      {% endif %}
+
+    </div>
+    {{ noteContent | safe }}
+    <div class="errorBlock"></div>
+  </div>
+  <!-- end forms.input -->
+{% endmacro %}

@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-  <base href="..\.">
+  <base href="..\..\.">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
-  <title>Ultimate HTML - Initialization</title>
+  <title>Ultimate HTML - Clean | Border | Line</title>
   <!-- bootstrap -->
   <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.bundles.css">
   <!-- end bootstrap -->
@@ -61,10 +61,10 @@
         <div class="txt">Landing page (comming soon)</div>
       </a>
     </div>
-    <div class="sidebar__list active">
+    <div class="sidebar__list">
       <a class="sidebar__item" href="pages/index.html">
         <div class="ic">
-          <img src="media/icons/svg/primary/plannet.svg" alt="">
+          <img src="media/icons/svg/dark/plannet.svg" alt="">
         </div>
         <div class="txt">Initialization</div>
       </a>
@@ -325,40 +325,30 @@
       <div class="main-inner main-inner-page">
         <div class="container">
           <div class="title-section">
-            <div class="h1 b pv30">Initialization</div>
+            <div class="h1 b pv30">Clean | Border | Line</div>
           </div>
           <div class="box">
             <div class="box__body">
-              <div class="pb20">
-                <h5>
-                  Modify library:
-                </h5>
-                <p>
-                  ps1/bundles.ps1
-                  <br>
-                </p>
-              </div>
-              <div class="">
-                <h5>
-                  Modify scss:
-                </h5>
-                <p>
-                  _colors.scss
-                  <br>
-                  _fontstyles.scss
-                  <br>
-                  _input.scss
-                  <br>
-                  _buttons.scss
-                  <br>
-                </p>
-                <h5>
-                  Modify components.css:
-                </h5>
-                <p>
-                  com-init
-                  <br>
-                </p>
+              <h5 class="pb30">Input border</h5>
+              <div class="row">
+                <div class="col-md-3 col-sm-4">
+                  <!-- forms.input -->
+                  <div class="form-group">
+                    <div class="input-group input-group-material">
+                      <input type="text" class="input input-sm input-material input-ic-right input-ic-xs input-has-clear" autocorrect="off" placeholder="" value="">
+                      <div class="input-line-bar"></div>
+                      <label class="input-label">Input border</label>
+                      <div class="input-ic text-right">
+                        <img src="media/icons/svg/dark/plannet.svg" class="ic-lg" alt="">
+                      </div>
+                      <div class="input-ic input-clear pointer">
+                        <img src="media/icons/svg/dark/close.svg" alt="" class="ic-xs">
+                      </div>
+                    </div>
+                    <div class="errorBlock"></div>
+                  </div>
+                  <!-- end forms.input -->
+                </div>
               </div>
             </div>
           </div>

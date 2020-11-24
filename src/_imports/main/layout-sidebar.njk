@@ -2,9 +2,18 @@
 {% block main %}
   {% include "layout/menu/sidebar/sidebar.njk" %}
   <div class="main main--with-sidebar">
-    <div class="container">
-      <div class="h1 b pv30">{{ pageTitleTxt }}</div>
+
+    <div class="main-wrap">
       {% block mainBody %}{% endblock %}
+      <div class="main-inner main-inner-page">
+        <div class="container">
+          <div class="title-section">
+            <div class="h1 b pv30">{{ pageTitle }}</div>
+          </div>
+          {% block mainInner %}{% endblock %}
+        </div>
+      </div>
+      {% include 'layout/footer/footer.njk' %}
     </div>
   </div>
 {% endblock %}

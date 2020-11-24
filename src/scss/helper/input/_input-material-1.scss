@@ -141,7 +141,7 @@ $input-material-font-weight-sm: 500;
       line-height: 1.2;
       pointer-events: none;
     }
-    &.input-ic-right {
+    &.input-ic-left {
       & ~ .input-label {
         left: 36px;
       }
@@ -152,7 +152,7 @@ $input-material-font-weight-sm: 500;
         }
       }
     }
-    &.input-ic-right.input-hadval {
+    &.input-ic-left.input-hadval {
       & ~ .input-label {
         left: 0;
       }
