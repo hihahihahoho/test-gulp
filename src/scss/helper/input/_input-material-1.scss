@@ -59,7 +59,6 @@ $input-material-font-weight-sm: 500;
   &-material {
     border: 0;
     border-radius: 0;
-    border-bottom: 1px solid $input-line-border-color;
     background-color: $input-line-border-background;
     padding-left: 0;
     position: relative;
@@ -90,29 +89,7 @@ $input-material-font-weight-sm: 500;
          left: auto;
       }
     }
-    & ~ .select2-container--default .select2-selection--single,
-    & ~ .select2-container--default .select2-selection--multiple,
-    & ~ .btn-group .multiselect {
-      border: 0;
-      border-radius: 0;
-      border-bottom: 1px solid $input-line-border-color;
-      background-color: $input-line-border-background;
-      &:after {
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: auto;
-        background-color: $input-line-bar-color;
-        height: $input-line-bar-height;
-        width: 0;
-        bottom: 0;
-        @include transition(0.15s ease-in-out);
-        content: "";
-      }
-      .select2-selection__rendered {
-        padding-left: 0;
-      }
-    }
+    
     & ~ .btn-group .multiselect {
       padding-left: 0;
     }

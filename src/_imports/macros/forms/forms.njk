@@ -1,4 +1,10 @@
-{% macro input(inputType = 'border', label, value = '', size = 'sm', icSize = 'xs', icon = '', iconPos = "right", type = 'text', id = '', iconType = '', iconText = '', extendAttr, extendClass, note = '', subBlock = '', textarea, autocomplete = '', placeholder = '', inputClearOpt = 'true') %}
+{% set settingDefault = {
+  inputType: 'border',
+  inputSize: 'sm',
+  icSize: 'xs'
+} %}
+{% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
+{% macro input(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, icSize = settingDefault.icSize, icon = '', iconPos = "right", type = 'text', id = '', iconType = '', iconText = '', extendAttr, extendClass, note = '', subBlock = '', textarea, autocomplete = '', placeholder = '', inputClearOpt = 'true') %}
   <!-- forms.input -->
   {% if not note == '' %}
     {% set noteContent %}
@@ -29,11 +35,11 @@
       <a class="ubtn-sm ubtn no-m ubg-white hover-bg-grey no-p width-full"><img src="{{ icon }}" class="ic-lg" alt=""></a>
     </div>
   {% elif iconText == 'true' %}
-    <div class="input-ic text-{{iconPos}}">
+    <div class="input-ic input-ic-{{iconPos}}">
       <span class="p ic-text">{{ icon }}</span>
     </div>
   {% else %}
-    <div class="input-ic text-{{iconPos}}">
+    <div class="input-ic input-ic-{{iconPos}}">
       <img src="{{ icon }}" class="ic-lg" alt="">
     </div>
   {% endif %}
@@ -68,20 +74,22 @@
   {% set inputArtt %}
   {{ idText }}
   type="{{ type }}" class="input input-{{ size }}
-  input-material input-ic-{{iconPos}}
-  input-ic-{{ icSize }} input-has-clear
+  input-{{ inputType }}
+  input-ic-{{iconPos}}
+  input-ic-{{ icSize }}
+  input-has-clear
   {{ extendClass }}" autocorrect="off" placeholder="{{ placeholder }}"
   {{ extendAttr }}
   {% endset %}
   <div class="form-group">
-    <div class="input-group input-group-material">
+    <div class="input-group input-group-{{ inputType }}">
       {% if textarea == 'true' %}
         <textarea spellcheck="false" {{ inputArtt | safe | trim }} rows="1">{{ value }}</textarea>
       {% else %}
         <input {{ inputArtt | safe | trim}} value="{{ value }}">
       {% endif %}
-      <div class="input-line-bar"></div>
-      <label class="input-label">{{ label }}</label>
+      <div class="input-frame"></div>
+      <label class="input-label">{{ title }}</label>
       {% if autocomplete == 'true' %}
         <ul class="live-search-result live-search-result-2">
           <li>
@@ -119,4 +127,50 @@
     <div class="errorBlock"></div>
   </div>
   <!-- end forms.input -->
+{% endmacro %}
+
+{% macro select(title, inputType = settingDefault.inputType, size = settingDefault.inputSize, type = 'text', noSearch = "", value = dataSelectDefualt, selected = '', id = '', extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingDefault.icSize) %}
+  <!-- formsM1.select -->
+  {% if not note == '' %}
+    {% set noteContent %}
+    <div class="note-text h7 color-base-3">
+      {{ note }}
+    </div>
+    {% endset %}
+  {% endif %}
+  {% if icon %}
+    {% set ic %}
+    <div class="input-ic text-{{iconPos}}">
+      <img src="{{ icon }}" class="ic-lg" alt="">
+    </div>
+    {% endset %}
+    {% set icClass = 'input-ic-' + iconPos %}
+  {% endif %}
+  <div class="form-group">
+    <div class="input-group input-group-{{ inputType }}">
+      <select id="{{ id }}" name="" class="select-2 {{ extendClass }} input input-{{ size }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" data-minimum-results-for-search="{{ noSearch }}" data-placeholder="" {{ extendAttr }}>
+        <option value=""></option>
+        {% if not customOption == '' %}
+          {{ customOption | safe }}
+        {% else %}
+          {% for item in value %}
+            {% set selectedText = '' %}
+            {% if loop.index == selected %}
+              {% set selectedText = 'selected' %}
+            {% endif %}
+            <option value="{{ loop.index }}" {{ selectedText }}>{{ item }}</option>
+          {% endfor %}
+        {% endif %}
+      </select>
+      <div class="input-frame"></div>
+      <label class="input-label">{{ title }}</label>
+      {{ ic | safe }}
+      <div class="input-ic">
+        <div class="arrow-down-anim"></div>
+      </div>
+    </div>
+    {{ noteContent | safe}}
+    <div class="errorBlock"></div>
+  </div>
+  <!-- end formsM1.select -->
 {% endmacro %}

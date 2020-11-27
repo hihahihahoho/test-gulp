@@ -8,9 +8,15 @@
   <div class="box">
     <div class="box__body">
       <h5 class="pb30">Input border</h5>
-      <div class="row">
-        <div class="col-md-3 col-sm-4">
-          {{ form.input(label = 'Input border', icon = 'media/icons/svg/dark/plannet.svg') }}
+      <div class="form-vertical">
+        <div class="row row-20">
+          <div class="col-md-3 col-sm-6">
+            {{ form.input('Input border', icon = 'media/icons/svg/dark/plannet.svg') }}
+          </div>
+          <div class="col-md-3 col-sm-6">
+            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
+            {{ form.select('Select border', value = dataSelect) }}
+          </div>
         </div>
       </div>
     </div>

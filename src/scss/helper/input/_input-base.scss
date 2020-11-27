@@ -29,7 +29,7 @@
           padding-top: ($value - $input-font-size * 1.5)/2;
           padding-bottom: ($value - $input-font-size * 1.5)/2;
         }
-        &:not(textarea) ~ .input-line-bar {
+        &:not(textarea) ~ .input-frame {
           height: $value;
           :after {
             top: $value;
@@ -133,6 +133,7 @@ label.error,
   padding-right: 10px;
   font-size: $input-font-size;
   transition: all 0.15s ease-in-out;
+  order: 2;
   @include modifiers-input-linebar-ic($map-input-size);
   ~ .input-ic:after {
     content: "";
@@ -149,14 +150,16 @@ label.error,
     font-size: $input-label-font-size;
     color: $input-label-color;
     line-height: 1.2;
+    order: 1;
   }
-  &-line-bar {
+  &-frame {
     pointer-events: none;
     position: absolute;
     overflow: hidden;
     width: 100%;
-    top: 0;
+    bottom: 0;
     border-radius: $input-border-radius;
+    z-index: 2;
     &:after {
       content: "";
       position: absolute;
@@ -173,8 +176,24 @@ label.error,
   }
   &-line,
   &-material {
-    & ~ .input-line-bar {
+    .input-ic-right {
+      text-align: right;
+    }
+    .input-ic-left {
+      text-align: left;
+    }
+    & ~ .input-frame {
+      border-bottom: 1px solid $input-line-border-color;
       border-radius: 0;
+    }
+  }
+  &-border,
+  &-clean,
+  &-material-2,
+  &-material-3 {
+    & ~ .input-frame {
+      border: 1px solid $input-line-border-color;
+      border-radius: $input-border-radius;
     }
   }
   &.multiselect {
@@ -196,7 +215,7 @@ label.error,
     }
     &-input {
       &:focus {
-        & ~ .input-upload .input-line-bar {
+        & ~ .input-upload .input-frame {
           &:after {
             width: 100%;
           }
@@ -260,7 +279,7 @@ label.error,
   }
   &-ic {
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
     text-align: center;
     font-size: 0;
@@ -307,8 +326,9 @@ label.error,
   }
   &:focus,
   &.light-pick-focus,
-  & ~ .btn-group.open {
-    & ~ .input-line-bar {
+  & ~ .btn-group.open,
+  & ~ .select2-container--open {
+    & ~ .input-frame {
       &:after {
         width: 100%;
       }
@@ -350,11 +370,11 @@ textarea {
   padding-bottom: 10px;
   display: block;
   &:focus {
-    & ~ .input-line-bar {
+    & ~ .input-frame {
       width: 100%;
     }
   }
-  & ~ .input-line-bar {
+  & ~ .input-frame {
     bottom: 0;
     height: 10px;
     top: auto !important;
@@ -399,4 +419,13 @@ textarea {
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
+}
+
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple,
+.btn-group .multiselect {
+  border: 0;
+}
+.select2-container {
+  order: 3
 }
