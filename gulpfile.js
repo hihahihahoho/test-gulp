@@ -222,6 +222,7 @@ function cleanHtml () {
         var name = dif.relativePath.replace(/(\\)/, '') + '/' + nameMain;
         dif.state == 'left' && dif.type1 == 'file' ? left.push(name.replace('.njk', '')) : '';
         dif.state == 'right' && dif.type2 == 'file' ? right.push(name.replace('.html', '')) : '';
+        dif.state == 'right' && dif.type2 == 'directory' ? del('./dist/pages/' + dif.name2 ) : '';
       });
       right.diff(left).forEach(item => {
         del('./dist/pages' + item + '.html')
@@ -456,14 +457,16 @@ function purge () {
     }))
     .pipe(gulp.dest('dist'))
 }
+
 function prefixCss () {
-  return gulp.src('src/custom/**/*.css')
+  return gulp.src('dist/**/*.css')
     .pipe(replace('/dist/', '../'))
     .pipe(autoprefixer({
       cascade: false
     }))
     .pipe(gulp.dest('dist/'));
 }
+
 function minifyCss () {
   return gulp.src('dist/**/*.css')
     .pipe(cleanCSS())
@@ -498,7 +501,7 @@ function pushFtp () {
   //   .pipe(f.restore)
   //   .pipe(conn.dest(process.env.FTP_PATH));
   return gulp.src(globs)
-    .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"] }))
+    .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"], dontUpdateReference: [/^\/favicon.ico$/g, ".html"] }))
     .pipe(conn.dest(process.env.FTP_PATH));
 }
 
