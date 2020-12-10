@@ -195,6 +195,7 @@ $(document).ready(function () {
     var input = $(this).closest('.input-group').find('input');
   });
   $('.input-focus').on('touchend', function () {
+    var input = $(this).closest('.input-group').find('input');
     input.focus();
   })
   //end input focus
