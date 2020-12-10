@@ -11,7 +11,10 @@
       <div class="form-vertical">
         <div class="row row-20">
           <div class="col-md-3 col-sm-6">
-            {{ form.input('Input border', icon = 'media/icons/svg/dark/plannet.svg') }}
+            {{ form.input('Input border', iconLeft = 'media/icons/svg/dark/plannet.svg') }}
+          </div>
+          <div class="col-md-3 col-sm-6">
+            {{ form.input('Input border', icTxt = 'Not required' ) }}
           </div>
           <div class="col-md-3 col-sm-6">
             {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}

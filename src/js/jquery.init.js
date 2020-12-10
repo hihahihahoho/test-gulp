@@ -172,15 +172,15 @@ $(document).ready(function () {
 
   //End Input material
   //input clear
-  $('.input-clear').on('click', function () {
-    var input = $(this).siblings().closest('input');
+  $('.input-clear').on('mousedown', function () {
+    var input = $(this).closest('.input-group').find('input');
     input.val('')
     input.trigger('change');
     input.keyup();
     input.focus();
   })
   $('.input-has-clear').on('paste keyup change', function () {
-    var inputClear = $(this).siblings().closest('.input-clear');
+    var inputClear = $(this).closest('.input-group').find('.input-clear');
     if ($(this).val()) {
       inputClear.addClass('show');
     }
@@ -189,6 +189,17 @@ $(document).ready(function () {
     }
   });
   //end input clear
+
+  //input focus
+  $('.input-focus').on('mousedown', function () {
+    var input = $(this).closest('.input-group').find('input');
+    window.setTimeout(function () {
+      input.focus();
+    }, 0);
+    
+  });
+  //end input focus
+
   $('.isolated-scroll').isolatedScroll();
   if ($(window).width() <= menuSettings.breakpoint) {
     $("#sidebar-trigger").on('change', function () {

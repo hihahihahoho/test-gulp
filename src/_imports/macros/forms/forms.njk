@@ -1,10 +1,11 @@
 {% set settingDefault = {
   inputType: 'border',
   inputSize: 'sm',
-  icSize: 'xs'
+  icSize: 'sm',
+  inputClear: 'true'
 } %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
-{% macro input(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, icSize = settingDefault.icSize, icon = '', iconPos = "right", type = 'text', id = '', iconType = '', iconText = '', extendAttr, extendClass, note = '', subBlock = '', textarea, autocomplete = '', placeholder = '', inputClearOpt = 'true') %}
+{% macro input(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, icon = '', icSize = settingDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', textarea, autocomplete = '', placeholder = '', inputClear = settingDefault.inputClear, disabled = 'false', icTxt) %}
   <!-- forms.input -->
   {% if not note == '' %}
     {% set noteContent %}
@@ -26,59 +27,72 @@
   {% endif %}
 
   {% set ic %}
-  {% if iconType == 'btn' %}
-    <div class="input-ic input-btn text-center d-flex">
-      <button class="ubtn-sm ubtn no-m ubg-white hover-bg-grey no-p width-full"><img src="{{ icon }}" class="ic-lg" alt=""></button>
-    </div>
-  {% elif iconType == 'link' %}
-    <div class="input-ic input-btn text-center d-flex">
-      <a class="ubtn-sm ubtn no-m ubg-white hover-bg-grey no-p width-full"><img src="{{ icon }}" class="ic-lg" alt=""></a>
-    </div>
-  {% elif iconText == 'true' %}
-    <div class="input-ic input-ic-{{iconPos}}">
-      <span class="p ic-text">{{ icon }}</span>
-    </div>
-  {% else %}
-    <div class="input-ic input-ic-{{iconPos}}">
-      <img src="{{ icon }}" class="ic-lg" alt="">
-    </div>
-  {% endif %}
+  <div class="input-ic input-focus">
+    <img src="{{ icon }}" class="ic-lg" alt="">
+  </div>
+  {% endset %}
+
+  {% set icLeft %}
+  <div class="input-ic input-focus">
+    <img src="{{ iconLeft }}" class="ic-lg" alt="">
+  </div>
   {% endset %}
 
   {% if not subBlock == '' %}
     {% set subBlockContent = subBlock %}
   {% endif %}
 
-  {% set inputClear %}
+  {% set inputClearIc %}
   <div class="input-ic input-clear pointer">
     <img src="media/icons/svg/dark/close.svg" alt="" class="ic-xs">
   </div>
   {% endset %}
 
   {% if textarea == 'true' %}
-    {% set inputClear = '' %}
+    {% set inputClearIc = '' %}
   {% endif %}
 
   {% if type == 'password' %}
-    {% set inputClear = '' %}
+    {% set inputClearIc = '' %}
   {% endif %}
 
-  {% if inputClearOpt == 'false' %}
-    {% set inputClear = '' %}
+  {% if inputClear == 'false' %}
+    {% set inputClearIc = '' %}
   {% endif %}
 
   {% if id %}
     {% set idText = 'id="' + id + '"' %}
   {% endif %}
 
+  {% set disabledAttr = '' %}
+  {% if disabled == 'true' %}
+    {% set disabledAttr = 'disabled = disabled' %}
+  {% endif %}
+
+  {% if icTxt %}
+    {% set icTxtContent %}
+    <div class="input-ic-txt input-focus color-base-2">
+      {{ icTxt | safe }}
+    </div>
+    {% endset %}
+  {% endif %}
+
   {% set inputArtt %}
   {{ idText }}
   type="{{ type }}" class="input input-{{ size }}
   input-{{ inputType }}
-  input-ic-{{iconPos}}
   input-ic-{{ icSize }}
-  input-has-clear
+  {% if inputClear == 'true' %}
+    input-has-clear
+    {% if icon %}
+      input-ic-right
+    {% endif %}
+    {% if iconLeft %}
+      input-ic-left
+    {% endif %}
+  {% endif %}
   {{ extendClass }}" autocorrect="off" placeholder="{{ placeholder }}"
+  {{ disabledAttr }}
   {{ extendAttr }}
   {% endset %}
   <div class="form-group">
@@ -109,19 +123,21 @@
           </li>
         </ul>
       {% endif %}
-      {% if icon %}
-        {{ ic |safe }}
-      {% endif %}
-      {{ eye | safe }}
-      {% if subBlock == '' %}
-        {{ inputClear | safe }}
-      {% else %}
-        <div class="input-sub input-material-sub">
-          {{ inputClear | safe }}
-          {{ subBlockContent | safe }}
+      {% if iconLeft %}
+        <div class="input-flex-content input-flex-content-left">
+          {{ icLeft | safe }}
         </div>
       {% endif %}
-
+      {% if icon or eye or inputClear %}
+        <div class="input-flex-content">
+          {{ inputClearIc | safe }}
+          {% if icon %}
+            {{ ic | safe }}
+          {% endif %}
+          {{ eye | safe }}
+          {{ icTxtContent | safe }}
+        </div>
+      {% endif %}
     </div>
     {{ noteContent | safe }}
     <div class="errorBlock"></div>
@@ -140,7 +156,7 @@
   {% endif %}
   {% if icon %}
     {% set ic %}
-    <div class="input-ic text-{{iconPos}}">
+    <div class="input-ic">
       <img src="{{ icon }}" class="ic-lg" alt="">
     </div>
     {% endset %}
