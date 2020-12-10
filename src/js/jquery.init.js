@@ -191,13 +191,7 @@ $(document).ready(function () {
   //end input clear
 
   //input focus
-  $('.input-focus').on('mousedown', function () {
-    var input = $(this).closest('.input-group').find('input');
-  });
-  $('.input-focus').on('touchend', function () {
-    var input = $(this).closest('.input-group').find('input');
-    input.focus();
-  })
+  
   //end input focus
 
   $('.isolated-scroll').isolatedScroll();
