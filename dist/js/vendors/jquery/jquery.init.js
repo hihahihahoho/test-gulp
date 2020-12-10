@@ -193,8 +193,10 @@ $(document).ready(function () {
   //input focus
   $('.input-focus').on('mousedown', function () {
     var input = $(this).closest('.input-group').find('input');
-    input.focus();
-
+    document.body.ontouchend = function() { input.focus(); };
+    window.setTimeout(function () {
+      input.focus();
+    }, 0);
     
   });
   //end input focus
