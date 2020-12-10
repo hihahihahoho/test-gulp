@@ -71,9 +71,9 @@
 
   {% if icTxt %}
     {% set icTxtContent %}
-    <div class="input-ic-txt input-focus color-base-2">
+    <button class="input-ic-txt input-focus color-base-2">
       {{ icTxt | safe }}
-    </div>
+    </button>
     {% endset %}
   {% endif %}
 
@@ -103,7 +103,7 @@
         <input {{ inputArtt | safe | trim}} value="{{ value }}">
       {% endif %}
       <div class="input-frame"></div>
-      <label class="input-label">{{ title }}</label>
+      <div class="input-label">{{ title }}</div>
       {% if autocomplete == 'true' %}
         <ul class="live-search-result live-search-result-2">
           <li>
