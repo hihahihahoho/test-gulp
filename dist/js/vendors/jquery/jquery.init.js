@@ -193,9 +193,10 @@ $(document).ready(function () {
   //input focus
   $('.input-focus').on('mousedown', function () {
     var input = $(this).closest('.input-group').find('input');
-    document.body.ontouchend = function() { input.focus(); };
-    
   });
+  $('.input-focus').on('touchend', function () {
+    input.focus();
+  })
   //end input focus
 
   $('.isolated-scroll').isolatedScroll();
