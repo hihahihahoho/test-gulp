@@ -1,6 +1,6 @@
-{% extends 'based/based.njk' %}
+{% extends 'based/_based.njk' %}
 {% block main %}
-  {% include "layout/menu/sidebar/sidebar.njk" %}
+  {% include "layout/menu/sidebar/_sidebar.njk" %}
   <div class="main main--with-sidebar">
 
     <div class="main-wrap">
@@ -13,7 +13,7 @@
           {% block mainInner %}{% endblock %}
         </div>
       </div>
-      {% include 'layout/footer/footer.njk' %}
+      {% include 'layout/footer/_footer.njk' %}
     </div>
   </div>
 {% endblock %}

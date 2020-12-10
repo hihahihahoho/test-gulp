@@ -265,7 +265,7 @@ function dataTest () {
 }
 
 function nunjucks () {
-  return gulp.src('src/**/*.njk')
+  return gulp.src(['src/**/*.njk', '!src/_imports/**/*.njk'])
     .pipe(cached())
     .pipe(data(function (file) {
       return {
@@ -290,7 +290,7 @@ function nunjucks () {
 }
 
 function nunjucksForce () {
-  return gulp.src('src/**/*.njk')
+  return gulp.src(['src/**/*.njk', '!src/_imports/**/*.njk'])
     .pipe(data(function (file) {
       return {
         baseLink: path.relative(process.cwd(), file.path).replace(/([^\\]+)/g, '..').slice(0, -4)
