@@ -190,10 +190,6 @@ $(document).ready(function () {
   });
   //end input clear
 
-  //input focus
-  
-  //end input focus
-
   $('.isolated-scroll').isolatedScroll();
   if ($(window).width() <= menuSettings.breakpoint) {
     $("#sidebar-trigger").on('change', function () {

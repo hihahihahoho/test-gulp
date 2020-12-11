@@ -17,6 +17,12 @@ var pluginsDetail = {
       "src/js/parsley-init.js",
     ]
   },
+  'pollyfill': {
+    "name": 'pollyfill',
+    "scripts": [
+      "src/plugins/pollyfill/lightpick-polyfill.min.js",
+    ]
+  },
   'momentjs': {
     "name": 'momentjs',
     "scripts": [
@@ -130,6 +136,7 @@ var plugins = {
   'bundles': [
   ],
   'vendors': [
+    pluginsDetail.pollyfill,
     pluginsDetail.momentjs,
     pluginsDetail.lightpick,
     pluginsDetail.jquery,

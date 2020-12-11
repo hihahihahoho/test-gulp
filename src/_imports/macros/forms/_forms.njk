@@ -5,7 +5,7 @@
   inputClear: 'true'
 } %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
-{% macro input(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, icon = '', icSize = settingDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', textarea, autocomplete = '', placeholder = '', inputClear = settingDefault.inputClear, disabled = 'false', icTxt) %}
+{% macro input(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, icon = '', icSize = settingDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', textarea, autocomplete = '', placeholder = '', inputClear = settingDefault.inputClear, disabled = 'false', icTxt, extendContent, extendContentPos = 'inside') %}
   <!-- forms.input -->
   {% if not note == '' %}
     {% set noteContent %}
@@ -71,10 +71,14 @@
 
   {% if icTxt %}
     {% set icTxtContent %}
-    <button class="input-ic-txt input-focus color-base-2">
+    <div class="input-ic-txt input-focus color-base-2">
       {{ icTxt | safe }}
-    </button>
+    </div>
     {% endset %}
+  {% endif %}
+
+  {% if extendContentPos == 'outside' %}
+    {% set extendContentPosTxt = 'input-extend-outside' %}
   {% endif %}
 
   {% set inputArtt %}
@@ -96,49 +100,56 @@
   {{ extendAttr }}
   {% endset %}
   <div class="form-group">
-    <label class="input-group input-group-{{ inputType }}">
-      {% if textarea == 'true' %}
-        <textarea spellcheck="false" {{ inputArtt | safe | trim }} rows="1">{{ value }}</textarea>
-      {% else %}
-        <input {{ inputArtt | safe | trim}} value="{{ value }}">
-      {% endif %}
-      <div class="input-frame"></div>
-      <div class="input-label">{{ title }}</div>
-      {% if autocomplete == 'true' %}
-        <ul class="live-search-result live-search-result-2">
-          <li>
-            <span>2,000</span>
-          </li>
-          <li>
-            <span>20,000</span>
-          </li>
-          <li>
-            <span>200,000</span>
-          </li>
-          <li>
-            <span>2,000,000</span>
-          </li>
-          <li>
-            <span>20,000,000</span>
-          </li>
-        </ul>
-      {% endif %}
-      {% if iconLeft %}
-        <div class="input-flex-content input-flex-content-left">
-          {{ icLeft | safe }}
+    <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
+      <label class="input-group">
+        {% if textarea == 'true' %}
+          <textarea spellcheck="false" {{ inputArtt | safe | trim }} rows="1">{{ value }}</textarea>
+        {% else %}
+          <input {{ inputArtt | safe | trim}} value="{{ value }}">
+        {% endif %}
+        <div class="input-frame"></div>
+        <div class="input-label">{{ title }}</div>
+        {% if autocomplete == 'true' %}
+          <ul class="live-search-result live-search-result-2">
+            <li>
+              <span>2,000</span>
+            </li>
+            <li>
+              <span>20,000</span>
+            </li>
+            <li>
+              <span>200,000</span>
+            </li>
+            <li>
+              <span>2,000,000</span>
+            </li>
+            <li>
+              <span>20,000,000</span>
+            </li>
+          </ul>
+        {% endif %}
+        {% if iconLeft %}
+          <div class="input-flex-content input-flex-content-left">
+            {{ icLeft | safe }}
+          </div>
+        {% endif %}
+        {% if icon or eye or inputClear %}
+          <div class="input-flex-content">
+            {{ inputClearIc | safe }}
+            {% if icon %}
+              {{ ic | safe }}
+            {% endif %}
+            {{ eye | safe }}
+            {{ icTxtContent | safe }}
+          </div>
+        {% endif %}
+      </label>
+      {% if extendContent %}
+        <div class="input-{{ size }} input-group-extend">
+          {{ extendContent | safe }}
         </div>
       {% endif %}
-      {% if icon or eye or inputClear %}
-        <div class="input-flex-content">
-          {{ inputClearIc | safe }}
-          {% if icon %}
-            {{ ic | safe }}
-          {% endif %}
-          {{ eye | safe }}
-          {{ icTxtContent | safe }}
-        </div>
-      {% endif %}
-    </label>
+    </div>
     {{ noteContent | safe }}
     <div class="errorBlock"></div>
   </div>
@@ -146,7 +157,7 @@
 {% endmacro %}
 
 {% macro select(title, inputType = settingDefault.inputType, size = settingDefault.inputSize, type = 'text', noSearch = "", value = dataSelectDefualt, selected = '', id = '', extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingDefault.icSize) %}
-  <!-- formsM1.select -->
+  <!-- forms.select -->
   {% if not note == '' %}
     {% set noteContent %}
     <div class="note-text h7 color-base-3">
@@ -163,30 +174,57 @@
     {% set icClass = 'input-ic-' + iconPos %}
   {% endif %}
   <div class="form-group">
-    <div class="input-group input-group-{{ inputType }}">
-      <select id="{{ id }}" name="" class="select-2 {{ extendClass }} input input-{{ size }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" data-minimum-results-for-search="{{ noSearch }}" data-placeholder="" {{ extendAttr }}>
-        <option value=""></option>
-        {% if not customOption == '' %}
-          {{ customOption | safe }}
-        {% else %}
-          {% for item in value %}
-            {% set selectedText = '' %}
-            {% if loop.index == selected %}
-              {% set selectedText = 'selected' %}
-            {% endif %}
-            <option value="{{ loop.index }}" {{ selectedText }}>{{ item }}</option>
-          {% endfor %}
-        {% endif %}
-      </select>
-      <div class="input-frame"></div>
-      <label class="input-label">{{ title }}</label>
-      {{ ic | safe }}
-      <div class="input-ic">
-        <div class="arrow-down-anim"></div>
+    <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
+      <div class="input-group">
+        <select id="{{ id }}" name="" class="select-2 {{ extendClass }} input input-{{ size }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" data-minimum-results-for-search="{{ noSearch }}" data-placeholder="" {{ extendAttr }}>
+          <option value=""></option>
+          {% if not customOption == '' %}
+            {{ customOption | safe }}
+          {% else %}
+            {% for item in value %}
+              {% set selectedText = '' %}
+              {% if loop.index == selected %}
+                {% set selectedText = 'selected' %}
+              {% endif %}
+              <option value="{{ loop.index }}" {{ selectedText }}>{{ item }}</option>
+            {% endfor %}
+          {% endif %}
+        </select>
+        <div class="input-frame"></div>
+        <div class="input-label">{{ title }}</div>
+        {{ ic | safe }}
+        <div class="input-ic">
+          <div class="arrow-down-anim"></div>
+        </div>
       </div>
+      {{ noteContent | safe}}
     </div>
-    {{ noteContent | safe}}
     <div class="errorBlock"></div>
   </div>
-  <!-- end formsM1.select -->
+  <!-- end forms.select -->
+{% endmacro %}
+
+{% macro datepicker(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingDefault.icSize) %}
+  <!-- forms.datepicker -->
+  {% if range == 'true' %}
+    {% set lpTxt = 'light-pick-range' %}
+  {% else %}
+    {% set lpTxt = 'light-pick' %}
+  {% endif %}
+  <div class="form-group">
+    <div class="input-group-wrap input-group-{{ inputType }}">
+      <label class="input-group">
+        <input id="{{ id }}" type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} input-{{ size }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}}>
+        <div class="input-frame"></div>
+        <div class="input-label">{{ title }}</div>
+        <div class="input-flex-content">
+          <div class="input-ic input-focus">
+            <img src="/dist/media/icons/svg/dark/calendar.svg" class="ic-lg" alt="">
+          </div>
+        </div>
+      </label>
+    </div>
+    <div class="errorBlock"></div>
+  </div>
+  <!-- end forms.datepicker -->
 {% endmacro %}

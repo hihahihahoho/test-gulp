@@ -1,24 +1,24 @@
 $map-form-group: (
   xs: (
     0: 50%,
-    1200: 118px
+    1200: 118px,
   ),
   sm: (
     0: 50%,
-    1200: 162px
+    1200: 162px,
   ),
   md: (
     0: 50%,
-    1200: 185px
+    1200: 185px,
   ),
   lg: (
     0: 100%,
-    1200: 298px
+    1200: 298px,
   ),
   xl: (
     0: 100%,
-    1200: 393px
-  )
+    1200: 393px,
+  ),
 );
 
 $map-space-h: (
@@ -28,16 +28,16 @@ $map-space-h: (
   15: 15px,
   20: (
     0: 15px,
-    1200: 20px
+    1200: 20px,
   ),
   25: (
     0: 15px,
-    1200: 25px
+    1200: 25px,
   ),
   30: (
     0: 15px,
-    1200: 30px
-  )
+    1200: 30px,
+  ),
 );
 
 $map-space-v: (
@@ -50,16 +50,16 @@ $map-space-v: (
   30: 30px,
   40: (
     0: 30px,
-    1200: 40px
+    1200: 40px,
   ),
   50: (
     0: 30px,
-    1200: 50px
+    1200: 50px,
   ),
   60: (
     0: 30px,
-    1200: 60px
-  )
+    1200: 60px,
+  ),
 );
 
 $map-pos: (
@@ -69,12 +69,12 @@ $map-pos: (
   15: 15px,
   20: (
     0: 15px,
-    1200: 20px
+    1200: 20px,
   ),
   25: (
     0: 15px,
-    1200: 25px
-  )
+    1200: 25px,
+  ),
 );
 
 @mixin modifiers-form-space($map, $prefix: "-", $separator: "-", $base: "basic") {
@@ -179,7 +179,7 @@ $map-pos: (
             @if $orient == "cb" {
               bottom: 0;
               width: 100%;
-              padding:  0 $value2 $value2 $value2;
+              padding: 0 $value2 $value2 $value2;
             }
           }
         }
@@ -208,7 +208,7 @@ $map-pos: (
         @if $orient == "cb" {
           bottom: 0;
           width: 100%;
-          padding:  0 $value $value $value;
+          padding: 0 $value $value $value;
         }
       }
     }
@@ -611,7 +611,7 @@ $map-pos: (
 
 .form-group {
   text-align: left;
-  margin-bottom: 0;
+  margin-bottom: 11px;
   @include modifiers-form-space($map-form-group);
   & > * {
     font-size: $font-size-default;

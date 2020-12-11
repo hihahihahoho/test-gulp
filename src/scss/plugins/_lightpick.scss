@@ -171,11 +171,11 @@ $lp-days-of-the-weeks-color: #707c93;
 
 .lightpick__next-action {
   float: right;
-  background-image: url(../images/base/icons/arrow-right/square/base.svg);
+  background-image: url(../media/icons/svg/dark/chevron-right.svg);
 }
 
 .lightpick__previous-action {
-  background-image: url(../images/base/icons/arrow-left/square/base.svg);
+  background-image: url(../media/icons/svg/dark/chevron-left.svg);
 }
 
 .lightpick__previous-action,
@@ -216,7 +216,7 @@ $lp-days-of-the-weeks-color: #707c93;
 .lightpick__day-of-the-week {
   font-size: $lp-days-name-font-size;
   float: left;
-  width: 100/7 + "%";
+  width: 100/7 * 1%;
   height: $lp-base-size;
   line-height: $lp-base-size;
   text-align: center;
@@ -580,7 +580,7 @@ select:not([disabled]).lightpick__select {
   line-height: 44px;
   border-radius: 5px;
   background-color: rgba(#eaeff3, 0.6);
-  background-image: url("../images/base/icons/arrow-down/square/primary.svg");
+  background-image: url("../media/icons/svg/dark/chevron-down.svg");
   background-size: 24px 24px;
   background-repeat: no-repeat;
   background-position: center right 5px;
