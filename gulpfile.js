@@ -274,7 +274,7 @@ function nunjucks () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk','.html')
+        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk','.html').replace('\\','\/')
       }
     }))
     .pipe(nunjucksRender({
@@ -298,7 +298,7 @@ function nunjucksForce () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk','.html')
+        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk','.html').replace('\\','\/')
       }
     }))
     .pipe(nunjucksRender({
