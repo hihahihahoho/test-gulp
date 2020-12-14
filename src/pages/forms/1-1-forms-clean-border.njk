@@ -1,5 +1,6 @@
 {% extends "main/_layout-sidebar.njk" %}
 {% import "macros/forms/_forms.njk" as form %}
+{% import "macros/forms/_buttons.njk" as button %}
 
 {% set pageLink = file_path %}
 {% set pageTitle = 'Clean | Border | Line' %}
@@ -21,7 +22,7 @@
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
-              <a class="link">Demo link</a>
+              <a class="link">Demo link </a>
             {% endset %}
             {{ form.input('Input border', extendContent = extendContentCon ) }}
           </div>

@@ -5,73 +5,25 @@ $btn-font-size: $font-size-default;
 $btn-line-border-thick: 1px;
 $btn-disable-opactiy: 0.4;
 $btn-shadow: true;
+
 $map-btn-width: (
-  full: (
-    0: 100%,
-    480: 100%
-  ),
-  xs: (
-    0: 50%,
-    480: 100px
-  ),
-  sm: (
-    0: 50%,
-    480: 120px
-  ),
-  md: (
-    0: 50%,
-    480: 140px
-  ),
-  md-100: (
-    0: 100%,
-    480: 140px
-  ),
-  lg: (
-    0: 50%,
-    480: 180px
-  ),
-  lg-100: (
-    0: 100%,
-    480: 180px
-  ),
-  xl-100: (
-    0: 100%,
-    480: 200px
-  )
+  full: 100%,
+  xs: 80px,
+  sm: 100px,
+  md: 120px,
+  lg: 140px,
+  xl: 200px,
 );
 $map-btn-height: (
   xs: 30px,
   sm: 36px,
   md: 40px,
   lg: 50px,
-  xl: 60px
+  xl: 60px,
 );
 $map-btn-color-modify: (
-  yellow: $color-base
+  yellow: $color-base,
 );
-
-@mixin modifiers-btn-width($map, $prefix: "-", $separator: "-", $base: "basic") {
-  @each $key, $value in $map {
-    &#{if($key != $base, #{$prefix}#{$key}, '')} {
-      @if type-of($value) == "map" {
-        @each $key2, $value2 in $value {
-          @if ($key2 != 0) {
-            @include media(">=#{$key2}px") {
-              min-width: $value2;
-              width: auto;
-            }
-          } @else {
-            width: $value2;
-          }
-        }
-      }
-      display: inline-block;
-      > * {
-        width: 100%;
-      }
-    }
-  }
-}
 
 @mixin modifiers-btn-height($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
@@ -142,8 +94,8 @@ button::before {
   font-size: 0;
   text-align: center;
   @include modifiers-btn-height($map-btn-height, "height");
-  &-wrap-width {
-    @include modifiers-btn-width($map-btn-width);
+  &-min-width {
+    @include modifiers($map-btn-width, "min-width");
   }
   &-circle {
     @include modifiers-btn-circle($map-btn-height, "height");
@@ -155,6 +107,7 @@ button::before {
 }
 
 .ubtn {
+  max-width: 100%;
   margin: 5px 0;
   img {
     @include z-index(btn-img);

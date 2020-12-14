@@ -1,0 +1,21 @@
+{% extends "main/_layout-sidebar.njk" %}
+{% import "macros/forms/_forms.njk" as form %}
+{% import "macros/forms/_buttons.njk" as button %}
+
+{% set pageLink = file_path %}
+{% set pageTitle = 'Buttons' %}
+
+{% block mainInner %}
+  <div class="box">
+    <div class="box__body">
+      <div class="btn-groups">
+        <div class="row row-10">
+          <div class="col-auto">
+            {{ button.btn('Buttons') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

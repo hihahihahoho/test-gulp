@@ -1,0 +1,42 @@
+{% set settingDefault = {
+  type: 'button',
+  color: 'primary',
+  size: 'md',
+  width: 'full'
+} %}
+
+{% macro btn(title, id='', type=settingDefault.type, color=settingDefault.color, size=settingDefault.size, width=settingDefault.width, modal, href, extendAttr, extendClass, circle, custom = '') %}
+  <!-- button.btn -->
+  {% if modal %}
+    {% set modalAttr %}
+    data-toggle="modal" data-target="{{ modal }}"
+    {% endset %}
+  {% endif %}
+  {% if circle %}
+    {% set btnCircle = 'ubtn-circle-' + circle %}
+  {% else %}
+    {% set btnNormal = 'ubtn-' + size %}
+  {% endif %}
+
+  {% set btnWidth = 'ubtn-min-width-' + width %}
+
+  {% if custom == 'true' %}
+    {% set btnContent %}
+    {{ title }}
+    {% endset %}
+  {% else %}
+    {% set btnContent %}
+    <span class="ubtn-text">{{ title }}</span>
+    {% endset %}
+  {% endif %}
+
+  {% if href %}
+    {% set hrefAttr %}
+    href ="{{ href }}"
+    {% endset %}
+  {% endif %}
+  <{{ type }} id="{{ id }}" class="ubtn ubg-{{ color }} {{btnNormal}}{{ btnCircle }} ripple {{ btnWidth }} {{ extendClass }}" {{ modalAttr | safe}} {{ hrefAttr | safe}} {{ extendAttr }}>
+    {{ btnContent | safe }}
+  </{{ type }}>
+  <!-- end button.btn -->
+{% endmacro %}

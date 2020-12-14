@@ -229,7 +229,7 @@ $lp-days-of-the-weeks-color: #707c93;
 .lightpick__days {
   //  display: grid;
   > div {
-    width: 100/7 + "%";
+    width: 100/7 * 1%;
     float: left;
     min-height: 1px;
   }

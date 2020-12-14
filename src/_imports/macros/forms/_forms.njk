@@ -27,13 +27,13 @@
   {% endif %}
 
   {% set ic %}
-  <div class="input-ic input-focus">
+  <div class="input-ic">
     <img src="{{ icon }}" class="ic-lg" alt="">
   </div>
   {% endset %}
 
   {% set icLeft %}
-  <div class="input-ic input-focus">
+  <div class="input-ic">
     <img src="{{ iconLeft }}" class="ic-lg" alt="">
   </div>
   {% endset %}
@@ -71,7 +71,7 @@
 
   {% if icTxt %}
     {% set icTxtContent %}
-    <div class="input-ic-txt input-focus color-base-2">
+    <div class="input-ic-txt color-base-2">
       {{ icTxt | safe }}
     </div>
     {% endset %}
@@ -217,10 +217,8 @@
         <input id="{{ id }}" type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} input-{{ size }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}}>
         <div class="input-frame"></div>
         <div class="input-label">{{ title }}</div>
-        <div class="input-flex-content">
-          <div class="input-ic input-focus">
-            <img src="/dist/media/icons/svg/dark/calendar.svg" class="ic-lg" alt="">
-          </div>
+        <div class="input-ic">
+          <img src="/dist/media/icons/svg/dark/calendar.svg" class="ic-lg" alt="">
         </div>
       </label>
     </div>
