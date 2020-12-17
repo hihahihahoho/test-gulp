@@ -1,7 +1,7 @@
 {% set settingDefault = {
-  inputType: 'border',
+  inputType: 'material',
   inputSize: 'sm',
-  icSize: 'sm',
+  icSize: 'xs',
   inputClear: 'true'
 } %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
@@ -145,7 +145,7 @@
         {% endif %}
       </label>
       {% if extendContent %}
-        <div class="input-{{ size }} input-group-extend {{ extendContentClass }}">
+        <div class="input-{{ size }} input-group-extend {{ extendContentClass }} input-ic-{{icSize}}">
           {{ extendContent | safe }}
         </div>
       {% endif %}

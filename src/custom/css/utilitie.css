@@ -1,6 +1,5 @@
 /* macros eye */
 .eye {
-  width: 44px;
   height: 44px;
   border-radius: 6px;
   display: flex;
@@ -11,6 +10,7 @@
   background-position: center;
   position: relative;
   cursor: pointer;
+  pointer-events: all !important;
 }
 .eye-slash {
   width: 60%;

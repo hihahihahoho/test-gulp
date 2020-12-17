@@ -1,10 +1,10 @@
 //===Input material===
 $input-material-2-font-size: 16px;
 $input-material-2-font-size-sm: 13px;
-$input-material-2-font-weight-sm: 500;
+$input-material-2-font-weight-sm: $input-label-font-weight;
 $input-material-2-border: 1px solid $color-grey-2;
 $input-material-2-background: $color-grey-4;
-$input-material-2-padding-left: 15px;
+$input-material-2-padding-left: $input-space-left ;
 $input-material-2-space-between: 5px;
 
 @mixin modifiers-input-material-2($map, $prefix: "-", $separator: "-", $base: "basic") {
@@ -26,16 +26,12 @@ $input-material-2-space-between: 5px;
           &:focus,
           &.light-pick-focus {
             & ~ .input-label {
-              @include transform(
-                scale($input-material-2-font-size-sm/$input-material-2-font-size) translateY(material2LabelCal($value))
-              );
+              @include transform(scale($input-material-2-font-size-sm/$input-material-2-font-size) translateY(material2LabelCal($value)));
             }
           }
           & ~ .select2-container--open {
             & ~ .input-label {
-              @include transform(
-                scale($input-material-2-font-size-sm/$input-material-2-font-size) translateY(material2LabelCal($value))
-              );
+              @include transform(scale($input-material-2-font-size-sm/$input-material-2-font-size) translateY(material2LabelCal($value)));
             }
           }
         }
@@ -44,15 +40,14 @@ $input-material-2-space-between: 5px;
         &.input-hadval {
           &.input-material-2 {
             & ~ .input-label {
-              @include transform(
-                scale($input-material-2-font-size-sm/$input-material-2-font-size) translateY(material2LabelCal($value))
-              );
+              @include transform(scale($input-material-2-font-size-sm/$input-material-2-font-size) translateY(material2LabelCal($value)));
             }
           }
         }
         &.input-material-2 ~ .select2-container .select2-selection--single,
         &.input-material-2 ~ .btn-group .multiselect {
           padding-top: material2InsideInputCalRound($value);
+          background-color: $input-material-2-background;
           .select2-selection__rendered {
             line-height: $value - 2px - material2InsideInputCalRound($value);
           }
@@ -74,7 +69,6 @@ $input-material-2-space-between: 5px;
     border: 0;
     border-radius: $input-border-radius;
     background-color: $input-material-2-background;
-    padding-left: $input-material-2-padding-left;
     font-size: $input-material-2-font-size;
     position: relative;
     line-height: 1.2;
@@ -134,19 +128,30 @@ $input-material-2-space-between: 5px;
     }
     &.input-ic-left {
       & ~ .input-label {
-        left: 36px;
+        left: 44px;
       }
-      &:focus,
-      &.light-pick-focus {
-        & ~ .input-label {
-          left: 0;
-        }
-      }
+      // &:focus,
+      // &.light-pick-focus {
+      //   & ~ .input-label {
+      //     left: 0;
+      //   }
+      // }
     }
     &.input-ic-left.input-hadval {
       & ~ .input-label {
         left: 0;
       }
+    }
+  }
+  &-group-material-2 {
+    & .input-flex-content,
+    & .input-group-extend {
+      background-color: $input-material-2-background;
+    }
+  }
+  &-extend-outside {
+    & .input-group-extend {
+      background-color: transparent;
     }
   }
   @include modifiers-input-material-2($map-input-size);

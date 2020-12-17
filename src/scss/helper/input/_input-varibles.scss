@@ -1,4 +1,5 @@
 $map-input-size: (
+  xs-1: 24px,
   xs: 36px,
   sm: 44px,
   md: 50px,
@@ -30,3 +31,17 @@ $input-line-bar-height          : 2px;
 
 $textarea-autosize-max-height   : 200px;
 $textarea-line-height           : 1.4;
+
+// input material 2
+$input-material-2-font-size: 16px;
+$input-material-2-font-size-sm: 13px;
+$input-material-2-font-weight-sm: $input-label-font-weight;
+$input-material-2-border: 1px solid $color-grey-2;
+$input-material-2-background: $color-grey-4;
+$input-material-2-padding-left: $input-space-left ;
+$input-material-2-space-between: 5px;
+
+//===Input material===
+$input-material-font-size: 16px;
+$input-material-font-size-sm: 13px;
+$input-material-font-weight-sm: $input-label-font-weight;

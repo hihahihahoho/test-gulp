@@ -171,6 +171,68 @@ $(document).ready(function () {
   });
 
   //End Input material
+  //Input material-2
+  $('.select-2').each(function () {
+    if ($(this).val().length == 0) {
+      $(this).removeClass('input-hadval');
+    } else {
+      $(this).addClass('input-hadval');
+    }
+  })
+  $('.select-2').change(function () {
+    if ($(this).val().length == 0) {
+      $(this).removeClass('input-hadval');
+    } else {
+      $(this).addClass('input-hadval');
+    }
+  })
+  $('.input-material-2:not(.static)').each(function () {
+    if ($(this).val().length == 0) {
+      $(this).removeClass('input-hadval');
+    } else {
+      $(this).addClass('input-hadval');
+    }
+    $(this).on('blur change', function () {
+      if ($(this).val().length == 0) {
+        $(this).removeClass('input-hadval');
+      } else {
+        $(this).addClass('input-hadval');
+      }
+    })
+  });
+
+  //End Input material-2
+  //Input material-3
+  $('.select-2').each(function () {
+    if ($(this).val().length == 0) {
+      $(this).removeClass('input-hadval');
+    } else {
+      $(this).addClass('input-hadval');
+    }
+  })
+  $('.select-2').change(function () {
+    if ($(this).val().length == 0) {
+      $(this).removeClass('input-hadval');
+    } else {
+      $(this).addClass('input-hadval');
+    }
+  })
+  $('.input-material-3:not(.static)').each(function () {
+    if ($(this).val().length == 0) {
+      $(this).removeClass('input-hadval');
+    } else {
+      $(this).addClass('input-hadval');
+    }
+    $(this).on('blur change', function () {
+      if ($(this).val().length == 0) {
+        $(this).removeClass('input-hadval');
+      } else {
+        $(this).addClass('input-hadval');
+      }
+    })
+  });
+
+  //End Input material-3
   //input clear
   $('.input-clear').on('mousedown', function () {
     var input = $(this).closest('.input-group').find('input');

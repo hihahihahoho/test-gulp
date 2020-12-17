@@ -30,4 +30,15 @@ $input-clean-background: $color-grey-4;
       background: linear-gradient(90deg, rgba($input-clean-background, 0) 0%, rgba($input-clean-background, 1) 30%);
     }
   }
+  &-group-clean {
+    & .input-flex-content,
+    & .input-group-extend {
+      background-color: $input-clean-background;
+    }
+  }
+  &-extend-outside {
+    & .input-group-extend {
+      background-color: transparent;
+    }
+  }
 }
