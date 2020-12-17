@@ -5,7 +5,7 @@
   inputClear: 'true'
 } %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
-{% macro input(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, icon = '', icSize = settingDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', textarea, autocomplete = '', placeholder = '', inputClear = settingDefault.inputClear, disabled = 'false', icTxt, extendContent, extendContentPos = 'inside') %}
+{% macro input(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, icon = '', icSize = settingDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', textarea, autocomplete = '', placeholder = '', inputClear = settingDefault.inputClear, disabled = 'false', icTxt, extendContent, extendContentPos = 'inside', extendContentClass) %}
   <!-- forms.input -->
   {% if not note == '' %}
     {% set noteContent %}
@@ -145,7 +145,7 @@
         {% endif %}
       </label>
       {% if extendContent %}
-        <div class="input-{{ size }} input-group-extend">
+        <div class="input-{{ size }} input-group-extend {{ extendContentClass }}">
           {{ extendContent | safe }}
         </div>
       {% endif %}

@@ -1,0 +1,35 @@
+/* macros eye */
+.eye {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../media/icons/svg/dark/eye.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  cursor: pointer;
+}
+.eye-slash {
+  width: 60%;
+  -webkit-transition: 0.2s all ease-in-out;
+  -o-transition: 0.2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
+  -webkit-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+  position: absolute;
+  height: 1px;
+  background-color: #242526;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.eye input:checked ~ .eye-slash {
+  width: 0%;
+}
+/* end macros eye */

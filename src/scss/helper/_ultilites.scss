@@ -1,5 +1,5 @@
-$tooltip-color: white;
-$tooltip-bg-color: $color-base;
+$tooltip-color: $color-base;
+$tooltip-bg-color: white;
 
 $map-row: (
   basic: 30px,
@@ -403,11 +403,13 @@ body {
 .tooltip-inner {
   color: $tooltip-color;
   background-color: $tooltip-bg-color;
+  box-shadow: 0 4px 16px 0 rgba(#000000, 0.2);
 }
 
 .bs-tooltip-auto[x-placement^="top"] .arrow::before,
 .bs-tooltip-top .arrow::before {
   border-top-color: $tooltip-bg-color;
+  
 }
 
 //sticky sidebar

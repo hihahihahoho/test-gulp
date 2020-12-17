@@ -9,7 +9,8 @@ $(document).on('show.bs.modal', '.modal', function (event) {
 });
 $(document).ready(function () {
   $('[data-tooltip]').tooltip({
-    container: 'body'
+    container: 'body',
+    html: true
   });
   $('[data-toast=toast]').on('click', function () {
     var id = $(this).attr('toast-target');

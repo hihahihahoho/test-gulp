@@ -15,6 +15,21 @@ $map-btn-width: (
   xl: 200px,
 );
 $map-btn-height: (
+  xs-3: (
+    height: 18px,
+    font-size: 12px,
+    padding: 5px
+  ),
+  xs-2: (
+    height: 20px,
+    font-size: 12px,
+    padding: 5px
+  ),
+  xs-1: (
+    height: 24px,
+    font-size: 12px,
+    padding: 5px
+  ),
   xs: 30px,
   sm: 36px,
   md: 40px,
@@ -29,11 +44,22 @@ $map-btn-color-modify: (
   @each $key, $value in $map {
     &#{if($key != $base, #{$prefix}#{$key}, '')} {
       @if type-of($value) == "map" {
-        @include modifiers-btn-height($value, $attribute, $separator);
+        @each $key2, $value2 in $value {
+          #{$key2}: $value2;
+          @if $key2 == 'height' {
+            min-width: $value2;
+          }
+          @if $key2 == 'font-size' {
+            .ubtn-inner {
+              #{$key2}: $value2;
+            }
+          }
+        }
       } @else {
         #{$attribute}: $value;
         padding: 0 10px;
-        &.btn-rounded {
+        min-width: $value;
+        &.ubtn-rounded {
           border-radius: $value/2;
         }
       }
@@ -45,7 +71,17 @@ $map-btn-color-modify: (
   @each $key, $value in $map {
     &#{if($key != $base, #{$prefix}#{$key}, '')} {
       @if type-of($value) == "map" {
-        @include modifiers-btn-circle($value, $attribute, $separator);
+        @each $key2, $value2 in $value {
+          #{$key2}: $value2;
+          @if $key2 == 'height' {
+            width: $value2;
+          }
+          @if $key2 == 'font-size' {
+            .ubtn-inner {
+              #{$key2}: $value2;
+            }
+          }
+        }
       } @else {
         #{$attribute}: $value;
         width: $value;
@@ -56,31 +92,13 @@ $map-btn-color-modify: (
   }
 }
 
-@mixin modifiers-btn-line($map, $prefix: "-", $separator: "-", $base: "basic") {
-  @each $key, $value in $map {
-    &#{if($key != $base, #{$prefix}#{$key}, '')} {
-      @if type-of($value) == "map" {
-        @include modifiers-btn-line($value);
-      } @else {
-        border: $btn-line-border-thick solid $value;
-        box-shadow: none;
-        background: transparent;
-        > * {
-          color: $value;
-        }
-        .legitRipple-ripple {
-          background: lighten($value, 42%);
-        }
-      }
-    }
-  }
-}
 button::after,
 button::before {
   content: "";
   flex: 1 0 auto;
 }
 .ubtn {
+  overflow: hidden;
   vertical-align: middle;
   border: 0;
   outline: none !important;
@@ -93,6 +111,7 @@ button::before {
   justify-content: center;
   font-size: 0;
   text-align: center;
+  width: 100%;
   @include modifiers-btn-height($map-btn-height, "height");
   &-min-width {
     @include modifiers($map-btn-width, "min-width");
@@ -100,21 +119,18 @@ button::before {
   &-circle {
     @include modifiers-btn-circle($map-btn-height, "height");
   }
-  &-line {
-    @include modifiers-btn-line($map-color);
-    @include modifiers-btn-line($map-color-level);
+  &-square {
+    border-radius: $btn-borderer-radius;
   }
 }
 
 .ubtn {
   max-width: 100%;
-  margin: 5px 0;
   img {
     @include z-index(btn-img);
     position: relative;
   }
   &-ic {
-    width: $btn-ic-width;
     display: inline-block;
     vertical-align: middle;
   }
@@ -126,8 +142,9 @@ button::before {
     padding: 0 10px;
     @include z-index(btn-text);
     position: relative;
-    font-size: $btn-font-size;
     vertical-align: middle;
+    display: flex;
+    align-items: center;
   }
   &-file {
     padding-left: 85px;
@@ -156,6 +173,11 @@ button::before {
   }
   &-full {
     width: 100%;
+  }
+  &-inner {
+    align-items: center;
+    justify-content: center;
+    font-size: $btn-font-size;
   }
 }
 

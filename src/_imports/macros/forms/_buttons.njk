@@ -2,41 +2,96 @@
   type: 'button',
   color: 'primary',
   size: 'md',
-  width: 'full'
+  icSize: 'lg',
+  space: 10
 } %}
 
-{% macro btn(title, id='', type=settingDefault.type, color=settingDefault.color, size=settingDefault.size, width=settingDefault.width, modal, href, extendAttr, extendClass, circle, custom = '') %}
+{% macro btn(title, id = '', type = settingDefault.type, color = settingDefault.color, size = settingDefault.size, width, modal, href, extendAttr, extendClass, shape, custom, icon, icLeft, icSize = settingDefault.icSize, disabled = 'false', spaceBetween, tooltip, fontSize, textColor, space = settingDefault.space) %}
   <!-- button.btn -->
   {% if modal %}
     {% set modalAttr %}
     data-toggle="modal" data-target="{{ modal }}"
     {% endset %}
   {% endif %}
-  {% if circle %}
-    {% set btnCircle = 'ubtn-circle-' + circle %}
-  {% else %}
-    {% set btnNormal = 'ubtn-' + size %}
+  {% if shape == 'circle' %}
+    {% set btnShape = 'ubtn-circle-' + size %}
+  {% elseif shape == 'square' %}
+    {% set btnShape = 'ubtn-circle-' + size + 'ubtn-square'%}
+  {% else%}
+    {% set btnShape = 'ubtn-' + size %}
+  {% endif %}
+  {% if width %}
+    {% set btnWidth = 'ubtn-min-width-' + width %}
   {% endif %}
 
-  {% set btnWidth = 'ubtn-min-width-' + width %}
+  {% if icLeft %}
+    {% set icLeftContent %}
+    <span class="ubtn-ic auto">
+      <img src="{{icLeft}}" alt="" class="ic-{{ icSize }}">
+    </span>
+    {% endset %}
+  {% endif %}
 
-  {% if custom == 'true' %}
+  {% if icon %}
+    {% set iconContent %}
+    <span class="ubtn-ic auto">
+      <img src="{{icon}}" alt="" class="ic-{{ icSize }}">
+    </span>
+    {% endset %}
+  {% endif %}
+
+  {% if fontSize %}
+    {% set fontSizeText = fontSize %}
+  {% endif %}
+  
+  {% if textColor %}
+    {% set textColorText = 'color' + textColor %}
+  {% endif %}
+
+  {% if title %}
+    {% set titleText %}
+    <span class="ubtn-text auto {{ fontSizeText }} {{ textColorText }}">{{ title }}</span>
+    {% endset %}
+  {% endif %}
+
+  {% if spaceBetween %}
+    {% set spaceBetweenText = 'justify-content-between' %}
+  {% endif %}
+
+  {% if tooltip %}
+    {% set tooltipContent %}
+    data-tooltip="tooltip" title = "{{ tooltip | safe}}"
+    {% endset %}
+  {% endif %}
+
+  {% if custom %}
     {% set btnContent %}
-    {{ title }}
+    {{ custom | safe }}
     {% endset %}
   {% else %}
     {% set btnContent %}
-    <span class="ubtn-text">{{ title }}</span>
+    <div class="row row-{{ space }} ubtn-inner {{ spaceBetweenText }}">
+      {{ icLeftContent | safe }}
+      {{ titleText | safe }}
+      {{ iconContent | safe }}
+    </div>
     {% endset %}
+  {% endif %}
+
+  {% if disabled == 'true' %}
+    {% set disabledText = 'disabled' %}
   {% endif %}
 
   {% if href %}
+    {% set type = 'a' %}
     {% set hrefAttr %}
     href ="{{ href }}"
     {% endset %}
   {% endif %}
-  <{{ type }} id="{{ id }}" class="ubtn ubg-{{ color }} {{btnNormal}}{{ btnCircle }} ripple {{ btnWidth }} {{ extendClass }}" {{ modalAttr | safe}} {{ hrefAttr | safe}} {{ extendAttr }}>
-    {{ btnContent | safe }}
+  <{{ type }} id="{{ id }}" class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ extendClass }}" {{ modalAttr | safe}} {{ hrefAttr | safe}} {{ extendAttr }} {{disabledText}} {{ tooltipContent | safe }}>
+    <div class="ubtn-full">
+      {{ btnContent | safe }}
+    </div>
   </{{ type }}>
   <!-- end button.btn -->
 {% endmacro %}
