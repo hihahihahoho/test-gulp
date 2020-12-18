@@ -1,12 +1,24 @@
-{% set settingDefault = {
-  inputType: 'material',
-  inputSize: 'sm',
-  icSize: 'xs',
-  inputClear: 'true'
-} %}
+{% extends "_varibles.njk" %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
-{% macro input(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, icon = '', icSize = settingDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', textarea, autocomplete = '', placeholder = '', inputClear = settingDefault.inputClear, disabled = 'false', icTxt, extendContent, extendContentPos = 'inside', extendContentClass) %}
+{% macro input(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', textarea, autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom) %}
   <!-- forms.input -->
+  {% if settingInputCustom %}
+    {% if settingInputCustom.inputType %}
+      {% set inputType = settingInputCustom.inputType %}
+    {% endif %}
+    {% if settingInputCustom.inputSize %}
+      {% set inputSize = settingInputCustom.inputSize %}
+    {% endif %}
+    {% if settingInputCustom.icSize %}
+      {% set icSize = settingInputCustom.icSize %}
+    {% endif %}
+    {% if settingInputCustom.inputClear %}
+      {% set inputClear = settingInputCustom.inputClear %}
+    {% endif %}
+    {% if settingInputCustom.inputClear %}
+      {% set inputClear = settingInputCustom.inputClear %}
+    {% endif %}
+  {% endif %}
   {% if not note == '' %}
     {% set noteContent %}
     <div class="note-text h7">
@@ -83,7 +95,7 @@
 
   {% set inputArtt %}
   {{ idText }}
-  type="{{ type }}" class="input input-{{ size }}
+  type="{{ type }}" class="input input-{{ inputSize }}
   input-{{ inputType }}
   input-ic-{{ icSize }}
   {% if inputClear == 'true' %}
@@ -145,7 +157,7 @@
         {% endif %}
       </label>
       {% if extendContent %}
-        <div class="input-{{ size }} input-group-extend {{ extendContentClass }} input-ic-{{icSize}}">
+        <div class="input-{{ inputSize }} input-group-extend {{ extendContentClass }} input-ic-{{icSize}}">
           {{ extendContent | safe }}
         </div>
       {% endif %}
@@ -156,8 +168,29 @@
   <!-- end forms.input -->
 {% endmacro %}
 
-{% macro select(title, inputType = settingDefault.inputType, size = settingDefault.inputSize, type = 'text', noSearch = "", value = dataSelectDefualt, selected = '', id = '', extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingDefault.icSize) %}
+{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.inputSize, type = 'text', noSearch = "", value = dataSelectDefualt, selected = '', id = '', extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom) %}
   <!-- forms.select -->
+  {% if settingInputCustom %}
+    {% if settingInputCustom.inputType %}
+      {% set inputType = settingInputCustom.inputType %}
+    {% endif %}
+    {% if settingInputCustom.inputSize %}
+      {% set inputSize = settingInputCustom.inputSize %}
+    {% endif %}
+    {% if settingInputCustom.icSize %}
+      {% set icSize = settingInputCustom.icSize %}
+    {% endif %}
+    {% if settingInputCustom.inputClear %}
+      {% set inputClear = settingInputCustom.inputClear %}
+    {% endif %}
+    {% if settingInputCustom.inputClear %}
+      {% set inputClear = settingInputCustom.inputClear %}
+    {% endif %}
+  {% endif %}
+  {% set disabledAttr = '' %}
+  {% if disabled == 'true' %}
+    {% set disabledAttr = 'disabled = disabled' %}
+  {% endif %}
   {% if not note == '' %}
     {% set noteContent %}
     <div class="note-text h7 color-base-3">
@@ -176,7 +209,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
       <div class="input-group">
-        <select id="{{ id }}" name="" class="select-2 {{ extendClass }} input input-{{ size }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" data-minimum-results-for-search="{{ noSearch }}" data-placeholder="" {{ extendAttr }}>
+        <select id="{{ id }}" name="" class="select-2 {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" data-minimum-results-for-search="{{ noSearch }}" data-placeholder="" {{ extendAttr }} {{ disabledAttr }}>
           <option value=""></option>
           {% if not customOption == '' %}
             {{ customOption | safe }}
@@ -204,8 +237,29 @@
   <!-- end forms.select -->
 {% endmacro %}
 
-{% macro datepicker(title, inputType = settingDefault.inputType, value = '', size = settingDefault.inputSize, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingDefault.icSize) %}
+{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', size = settingInputDefault.inputSize, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom) %}
+  {% if settingInputCustom %}
+    {% if settingInputCustom.inputType %}
+      {% set inputType = settingInputCustom.inputType %}
+    {% endif %}
+    {% if settingInputCustom.inputSize %}
+      {% set inputSize = settingInputCustom.inputSize %}
+    {% endif %}
+    {% if settingInputCustom.icSize %}
+      {% set icSize = settingInputCustom.icSize %}
+    {% endif %}
+    {% if settingInputCustom.inputClear %}
+      {% set inputClear = settingInputCustom.inputClear %}
+    {% endif %}
+    {% if settingInputCustom.inputClear %}
+      {% set inputClear = settingInputCustom.inputClear %}
+    {% endif %}
+  {% endif %}
   <!-- forms.datepicker -->
+  {% set disabledAttr = '' %}
+  {% if disabled == 'true' %}
+    {% set disabledAttr = 'disabled = disabled' %}
+  {% endif %}
   {% if range == 'true' %}
     {% set lpTxt = 'light-pick-range' %}
   {% else %}
@@ -214,7 +268,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }}">
       <label class="input-group">
-        <input id="{{ id }}" type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} input-{{ size }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}}>
+        <input id="{{ id }}" type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} input-{{ inputSize }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
         <div class="input-frame"></div>
         <div class="input-label">{{ title }}</div>
         <div class="input-ic">

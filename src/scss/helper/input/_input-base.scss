@@ -106,6 +106,9 @@
       display: block;
       margin-bottom: $input-label-margin-bottom;
     }
+    .input-line ~ .input-label {
+      margin-bottom: 0;
+    }
   }
 }
 .parsley-errors-list {
@@ -190,6 +193,9 @@ label.error,
     & ~ .input-frame {
       border-bottom: 1px solid $input-line-border-color;
       border-radius: 0;
+    }
+    & ~ .input-flex-content {
+      min-width: 0;
     }
   }
   &-border,
@@ -327,6 +333,7 @@ label.error,
     cursor: pointer;
   }
   &-border,
+  &-material-3,
   &-clean {
     &:focus,
     &.light-pick-focus,
@@ -342,8 +349,7 @@ label.error,
   }
   &-line,
   &-material,
-  &-material-2,
-  &-material-3 {
+  &-material-2 {
     &:focus,
     &.light-pick-focus,
     & ~ .btn-group.open,
@@ -389,14 +395,17 @@ label.error,
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    padding-right: 10px;
+    padding-right: $input-space-right;
     align-self: flex-end;
     &-left {
       order: 2;
     }
+    & .input-ic {
+      position: relative;
+    }
   }
   &-flex-content {
-    min-width: 10px;
+    min-width: $input-space-right;
     position: relative;
     order: 4;
     display: flex;
@@ -422,11 +431,8 @@ label.error,
       top: 1px;
       width: 20px;
       height: calc(100% - 5px);
-      z-index: 0;
+      z-index: 1;
       pointer-events: none;
-      &:not(.input-clean):not(.input-material-2) {
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 70%);
-      }
     }
     & .input-ic-txt {
       padding-left: $input-space-right;
@@ -441,6 +447,17 @@ label.error,
         margin-right: -10px;
       }
       height: 100%;
+    }
+  }
+  &:not(.input-clean):not(.input-material-2) {
+    & ~ .input-flex-content::after {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 70%);
+    }
+  }
+  &.input-clean,
+  &.input-material-2 {
+    & ~ .input-flex-content::after {
+      background: linear-gradient(90deg, rgba($input-background, 0) 0%, $input-background 70%);
     }
   }
 }
@@ -541,4 +558,16 @@ textarea {
 
 .errorBlock {
   min-height: 19px;
+}
+
+// custom
+.input-ic-xs-1 {
+  & ~ .input-flex-content-left {
+    padding-right: $input-space-left;
+  }
+  & ~ .input-flex-content {
+    .input-clear:not(:only-child) {
+      margin-right: 5px;
+    }
+  }
 }

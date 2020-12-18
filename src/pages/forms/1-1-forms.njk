@@ -1,0 +1,97 @@
+{% extends "main/_layout-sidebar.njk" %}
+{% import "macros/_utilities.njk" as ult %}
+{% import "macros/forms/_forms.njk" as form %}
+{% import "macros/forms/_buttons.njk" as button %}
+
+{% set pageLink = file_path %}
+{% set pageTitle = 'Forms' %}
+
+{% macro localMacros(settingInputCustom) %}
+  <div class="box">
+    <div class="box__body pb-0">
+      <h5 class="pb30">Input {{ settingInputCustom.inputType }}</h5>
+      <div class="from-section form-vertical">
+        <div class="row row-20">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.input('Input icon right', value = 'test', icon = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.input('Input icon left', iconLeft = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.input('Input icon left text', icTxt = 'Not required', settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set extendContentCon %}
+            {{ button.btn('Button', size = 'xs-2', color = 'line-primary') }}
+            {% endset %}
+            {{ form.input('Input icon left button', extendContent = extendContentCon, settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set extendContentCon %}
+            <div class="input-ic">
+              {{ ult.eye() }}
+            </div>
+            {% endset %}
+            {{ form.input('Input password', iconLeft = 'media/icons/svg/dark/plannet.svg', extendContent = extendContentCon, extendContentClass = 'pr0', settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set extendContentCon %}
+            <a class="link">Demo link</a>
+            {% endset %}
+            {{ form.input('Input content outside', extendContent = extendContentCon, extendContentPos = 'outside', settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
+            {{ form.select('Select', value = dataSelect, selected = 2, settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.datepicker('Datepicker single', settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.datepicker('Datepicker range', range = 'true', settingInputCustom = settingInputCustom) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% block mainInner %}
+  {% set settingInputCustomBorder = {
+    inputType: 'border',
+    inputSize: 'sm',
+    icSize: 'sm'
+  } %}
+  {{ localMacros(settingInputCustomBorder) }}
+  {% set settingInputCustomClean = {
+    inputType: 'clean',
+    inputSize: 'sm',
+    icSize: 'sm'
+  } %}
+  {{ localMacros(settingInputCustomClean) }}
+  {% set settingInputLine = {
+    inputType: 'line',
+    inputSize: 'sm',
+    icSize: 'xs-1'
+  } %}
+  {{ localMacros(settingInputLine) }}
+  {% set settingMaterial = {
+    inputType: 'material',
+    inputSize: 'sm',
+    icSize: 'xs-1'
+  } %}
+  {{ localMacros(settingMaterial) }}
+  {% set settingMaterial2 = {
+    inputType: 'material-2',
+    inputSize: 'lg',
+    icSize: 'sm'
+  } %}
+  {{ localMacros(settingMaterial2) }}
+  {% set settingMaterial3 = {
+    inputType: 'material-3',
+    inputSize: 'sm',
+    icSize: 'sm'
+  } %}
+  {{ localMacros(settingMaterial3) }}
+{% endblock %}

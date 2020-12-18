@@ -1,6 +1,13 @@
 /* macros eye */
+.eye-wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .eye {
-  height: 44px;
+  height: 24px;
+  width: 24px;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -13,7 +20,7 @@
   pointer-events: all !important;
 }
 .eye-slash {
-  width: 60%;
+  width: 100%;
   -webkit-transition: 0.2s all ease-in-out;
   -o-transition: 0.2s all ease-in-out;
   transition: 0.2s all ease-in-out;

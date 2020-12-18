@@ -109,7 +109,7 @@
     }
     &.input-ic-left {
       & ~ .input-label {
-        left: 36px;
+        left: 34px;
       }
       // &:focus,
       // &.light-pick-focus {
@@ -132,6 +132,7 @@
     .input-group-extend,
     .input-ic-txt {
       padding-right: 0;
+      padding-left: $input-space-left
     }
   }
   @include modifiers-input-material-1($map-input-size);

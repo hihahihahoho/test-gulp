@@ -1,12 +1,6 @@
-{% set settingDefault = {
-  type: 'button',
-  color: 'primary',
-  size: 'md',
-  icSize: 'lg',
-  space: 10
-} %}
+{% extends "_varibles.njk" %}
 
-{% macro btn(title, id = '', type = settingDefault.type, color = settingDefault.color, size = settingDefault.size, width, modal, href, extendAttr, extendClass, shape, custom, icon, icLeft, icSize = settingDefault.icSize, disabled = 'false', spaceBetween, tooltip, fontSize, textColor, space = settingDefault.space) %}
+{% macro btn(title, id = '', type = settingButtonDefault.type, color = settingButtonDefault.color, size = settingButtonDefault.size, width, modal, href, extendAttr, extendClass, shape, custom, icon, icLeft, icSize = settingButtonDefault.icSize, disabled = 'false', spaceBetween, tooltip, fontSize, textColor, space = settingButtonDefault.space) %}
   <!-- button.btn -->
   {% if modal %}
     {% set modalAttr %}

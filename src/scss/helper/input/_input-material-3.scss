@@ -1,8 +1,3 @@
-//===Input material===
-$input-material-font-size: 16px;
-$input-material-font-size-sm: 13px;
-$input-material-font-weight-sm: 500;
-
 @mixin modifiers-input-material-3($map, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
     &#{if($key != $base, #{$prefix}#{$key}, '')} {
@@ -104,21 +99,11 @@ $input-material-font-weight-sm: 500;
       display: inline-block;
       z-index: 2;
       width: auto;
+      background-color: white;
     }
     &.input-ic-left {
       & ~ .input-label {
-        left: 36px;
-      }
-      &:focus,
-      &.light-pick-focus {
-        & ~ .input-label {
-          left: 0;
-        }
-      }
-    }
-    &.input-ic-left.input-hadval {
-      & ~ .input-label {
-        left: 0;
+        left: 40px;
       }
     }
   }

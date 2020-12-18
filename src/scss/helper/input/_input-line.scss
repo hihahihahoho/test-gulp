@@ -1,16 +1,12 @@
-//===Input line===
-$input-line-border-color        : $border-base-color;
-$input-line-disabled-opacity    : 0.6;
-$input-line-disabled-background : $color-grey-2;
-$input-line-border-color-focus  : $color-primary;
-
 .input {
   &-line {
     border: 0;
     border-radius: 0;
-    border-bottom: 1px solid $input-line-border-color;
     background-color: $input-line-border-background;
     padding-left: 0;
+    &.input-has-clear {
+      padding-right: 1px !important;
+    }
     ~ .input-ic:after {
       background: linear-gradient(90deg, rgba(white, 0) 0%, rgba(white, 1) 30%);
     }
@@ -57,8 +53,10 @@ $input-line-border-color-focus  : $color-primary;
     }
   }
   &-group-line {
-    .input-group-extend {
-      padding-right: 0
+    .input-group-extend,
+    .input-ic-txt {
+      padding-right: 0;
+      padding-left: $input-space-left;
     }
   }
 }
