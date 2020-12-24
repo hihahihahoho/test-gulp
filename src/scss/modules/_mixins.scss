@@ -564,6 +564,18 @@ $z-indexes: "outdated-browser", "modal", "site-header", "page-wrapper", "site-fo
   );
 }
 
+@function textareaMaterial2InsideInputCalRound($input-size) {
+  @return floor(
+    $input-size -
+      (
+        (
+            $input-size - $input-material-2-font-size-sm * 1.2 - $input-material-2-space-between -
+              $input-material-2-font-size * 1.2
+          )/3
+      ) * 2 - $input-material-2-font-size * 1.2
+  );
+}
+
 @function material2LabelCal($input-size) {
   $labelHeight: label2HeightCal();
   $labelSpaceTop: material2InsideInputCal($input-size);

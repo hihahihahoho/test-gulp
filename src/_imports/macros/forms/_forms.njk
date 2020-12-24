@@ -1,6 +1,6 @@
 {% extends "_varibles.njk" %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
-{% macro input(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', textarea, autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom) %}
+{% macro input(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom, textarea, textareaAutoSize = 'true') %}
   <!-- forms.input -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -83,7 +83,7 @@
 
   {% if icTxt %}
     {% set icTxtContent %}
-    <div class="input-ic-txt color-base-2">
+    <div class="input-ic-txt color-base-2 input-ic">
       {{ icTxt | safe }}
     </div>
     {% endset %}
@@ -91,6 +91,12 @@
 
   {% if extendContentPos == 'outside' %}
     {% set extendContentPosTxt = 'input-extend-outside' %}
+  {% endif %}
+
+  {% if textarea == 'true' %}
+    {% if textareaAutoSize == 'true' %}
+      {% set textareaAutoSizeTxt = 'textarea-autosize' %}
+    {% endif %}
   {% endif %}
 
   {% set inputArtt %}
@@ -106,6 +112,7 @@
     {% if iconLeft %}
       input-ic-left
     {% endif %}
+    {{ textareaAutoSizeTxt }}
   {% endif %}
   {{ extendClass }}" autocorrect="off" placeholder="{{ placeholder }}"
   {{ disabledAttr }}
@@ -115,7 +122,12 @@
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
       <label class="input-group">
         {% if textarea == 'true' %}
-          <textarea spellcheck="false" {{ inputArtt | safe | trim }} rows="1">{{ value }}</textarea>
+          {% if textareaAutoSize == 'true' %}
+            {% set textareaRow = '1' %}
+          {% else %}
+            {% set textareaRow = '3' %}
+          {% endif %}
+          <textarea spellcheck="false" {{ inputArtt | safe | trim }} rows="{{ textareaRow }}">{{ value }}</textarea>
         {% else %}
           <input {{ inputArtt | safe | trim}} value="{{ value }}">
         {% endif %}

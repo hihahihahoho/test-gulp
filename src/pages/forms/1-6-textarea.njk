@@ -9,8 +9,7 @@
 {% macro localMacros(settingInputCustom) %}
   <div class="box">
     <div class="box__body pb-0">
-      <h5 class="pb30">Input
-        {{ settingInputCustom.inputType }}</h5>
+      <h5 class="pb30">Input {{ settingInputCustom.inputType }}</h5>
       <div class="from-section form-vertical">
         <div class="row row-20">
           <div class="col-lg-3 col-md-4 col-sm-6">
@@ -53,14 +52,6 @@
             {{ form.datepicker('Datepicker range', range = 'true', settingInputCustom = settingInputCustom) }}
           </div>
         </div>
-        <div class="row row-20">
-          <div class="col-lg-6 col-sm-12">
-            {{ form.input('Input icon right', value = 'test', icTxt = '10/240', settingInputCustom = settingInputCustom, textarea = 'true', textareaAutoSize = 'false') }}
-          </div>
-          <div class="col-lg-6 col-sm-12">
-            {{ form.input('Input icon right', value = 'test', icTxt = '10/240', settingInputCustom = settingInputCustom, textarea = 'true') }}
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -93,7 +84,7 @@
   {{ localMacros(settingMaterial) }}
   {% set settingMaterial2 = {
     inputType: 'material-2',
-    inputSize: 'md',
+    inputSize: 'lg',
     icSize: 'sm'
   } %}
   {{ localMacros(settingMaterial2) }}

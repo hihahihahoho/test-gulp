@@ -7,9 +7,12 @@
       } @else {
         // padding-right: $value;
         ~ .input-ic,
-        ~ .input-flex-content .input-ic,
         .input-ic {
           #{$attribute}: $value;
+        }
+        ~ .input-flex-content .input-ic {
+          #{$attribute}: $value;
+          height: $value;
         }
       }
     }
@@ -296,9 +299,11 @@ label.error,
     bottom: 0;
     right: 0;
     text-align: center;
-    font-size: 0;
-    font-weight: 600;
     z-index: 1;
+    &:not(.input-ic-txt) {
+      font-weight: 600;
+      font-size: 0;
+    }
     @include modifiers-input-ic($map-input-size, "min-width");
     &-left {
       padding-left: 0;
@@ -492,9 +497,86 @@ input[type="file"] {
 }
 
 textarea {
+  line-height: $textarea-line-height;
+  resize: none;
+  line-height: 1.5;
   padding-top: 10px;
   padding-bottom: 10px;
   display: block;
+  position: relative;
+  & ~ .input-flex-content {
+    align-items: flex-start;
+  }
+  & ~ .input-frame {
+    min-height: 10px;
+    z-index: 9;
+  }
+  &.input-material-2,
+  &.input-material-3 {
+    & ~ .input-frame {
+      height: 100%;
+      z-index: 1;
+    }
+  }
+  &.input-border,
+  &.input-clean {
+    border-left: 1px solid $input-line-border-color;
+    padding-right: $input-space-right !important;
+    & ~ .input-flex-content {
+      min-width: 0;
+      &::before {
+        border-right: 1px solid $input-line-border-color;
+        border-radius: $input-border-radius;
+        transition: 0.15s all linear;
+        width: 20px;
+        height: 100%;
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      &::after {
+        display: none;
+      }
+    }
+    & ~ .input-frame {
+      height: 15px;
+      border-top: 0 !important;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    & ~ .input-label {
+      position: relative;
+      z-index: 3;
+      &::after {
+        transition: 0.15s all linear;
+        content: "";
+        border-radius: $input-border-radius;
+        position: absolute;
+        border: 1px solid $input-line-border-color;
+        border-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%;
+        height: 100%;
+        top: calc(100% + #{$input-label-margin-bottom});
+        left: 0;
+      }
+    }
+    &:focus {
+      border-left: 1px solid $input-line-border-color-focus;
+      & ~ .input-flex-content {
+        &::before {
+          border-right: 1px solid $input-line-border-color-focus;
+        }
+      }
+      & ~ .input-label {
+        &::after {
+          border-color: $input-line-border-color-focus;
+        }
+      }
+    }
+  }
   &:focus {
     & ~ .input-frame {
       width: 100%;
@@ -502,7 +584,6 @@ textarea {
   }
   & ~ .input-frame {
     bottom: 0;
-    height: 10px;
     top: auto !important;
   }
 }
@@ -525,7 +606,8 @@ textarea {
 
 .textarea-autosize {
   max-height: $textarea-autosize-max-height;
-  overflow: auto !important;
+
+  transition: none;
   &:after {
     content: "";
     position: relative;
@@ -534,13 +616,6 @@ textarea {
     display: block;
   }
 }
-
-textarea {
-  line-height: $textarea-line-height;
-  resize: none;
-  line-height: 1.5;
-}
-
 .input-group-flex {
   display: flex;
   flex-wrap: nowrap;
