@@ -146,6 +146,7 @@ button::before {
     display: flex;
     align-items: center;
     height: 100%;
+    line-height: 1;
   }
   &-file {
     padding-left: 85px;
