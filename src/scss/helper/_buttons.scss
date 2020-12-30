@@ -112,6 +112,8 @@ button::before {
   font-size: 0;
   text-align: center;
   width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
   @include modifiers-btn-height($map-btn-height, "height");
   &-min-width {
     @include modifiers($map-btn-width, "min-width");
@@ -146,7 +148,6 @@ button::before {
     display: flex;
     align-items: center;
     height: 100%;
-    line-height: 1;
   }
   &-file {
     padding-left: 85px;
