@@ -180,7 +180,7 @@
   <!-- end forms.input -->
 {% endmacro %}
 
-{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.inputSize, type = 'text', noSearch = "", value = dataSelectDefualt, selected = '', id = '', extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom) %}
+{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.inputSize, type = 'text', noSearch = "", value = dataSelectDefualt, selected = '', id = '', extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, valueTemplate, dataimgClass) %}
   <!-- forms.select -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -218,13 +218,29 @@
     {% endset %}
     {% set icClass = 'input-ic-' + iconPos %}
   {% endif %}
+
+  {% if valueTemplate %}
+    {% set selectTxt = 'select-2-template' %}
+  {% endif %}
+
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
       <div class="input-group">
-        <select id="{{ id }}" name="" class="select-2 {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" data-minimum-results-for-search="{{ noSearch }}" data-placeholder="" {{ extendAttr }} {{ disabledAttr }}>
+        <select id="{{ id }}" name="" class="select-2 {{selectTxt}} {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" data-minimum-results-for-search="{{ noSearch }}" data-placeholder="{{placeholder}}" {{ extendAttr }} {{ disabledAttr }}>
           <option value=""></option>
           {% if not customOption == '' %}
             {{ customOption | safe }}
+          {% elseif valueTemplate %}
+            {% for item in valueTemplate %}
+              {% set selectedText = '' %}
+              {% if loop.index == selected %}
+                {% set selectedText = 'selected' %}
+              {% endif %}
+              {% if dataimgClass %}
+                {% set dataimgClassTxt = 'dataimgclass="'+ dataimgClass +'"' %}
+              {% endif %}
+              <option value="{{ loop.index }}" {{ dataimgClassTxt | safe }} dataimg="{{ item.img }}" datasub="{{ item.sub }}" {{ selectedText }}>{{ item.val }}</option>
+            {% endfor %}
           {% else %}
             {% for item in value %}
               {% set selectedText = '' %}

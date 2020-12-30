@@ -47,6 +47,39 @@
             {{ form.select('Select', value = dataSelect, selected = 2, settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set dataSelect = [
+              {
+                val: 'Vietcombank',
+                img: 'media/icons/svg/dark/plannet.svg',
+                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
+              }, {
+                val: 'Vietinbank',
+                img: 'media/icons/svg/dark/plannet.svg',
+                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
+              }, {
+                val: 'Agribank',
+                img: 'media/icons/svg/dark/plannet.svg',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }
+            ] %}
+            {{ form.select('Select Custom Image', valueTemplate = dataSelect, dataimgClass = 'circle-md', selected = 2, settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set dataSelect = [
+              {
+                val: 'Vietcombank',
+                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
+              }, {
+                val: 'Vietinbank',
+                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
+              }, {
+                val: 'Agribank',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }
+            ] %}
+            {{ form.select('Select Custom Text', valueTemplate = dataSelect, selected = 2, settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
             {{ form.datepicker('Datepicker single', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">

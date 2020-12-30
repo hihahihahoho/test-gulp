@@ -2,8 +2,12 @@ $map-circle: (
   6  :  6px,
   xs  :  8px,
   sm  :  14px,
-  md  :  20px,
-  lg  :  50px
+  md  :  24px,
+  lg  :  28px,
+  lg-1  :  32px,
+  lg-2  :  36px,
+  lg-3  :  40px,
+  lg-4  :  50px
 );
 
 @mixin modifiers-circle($map, $prefix: "-", $separator: "-", $base: "basic") {
