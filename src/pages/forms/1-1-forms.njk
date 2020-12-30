@@ -11,22 +11,25 @@
     <div class="box__body pb-0">
       <h5 class="pb30">Input
         {{ settingInputCustom.inputType }}</h5>
-      <div class="from-section form-vertical">
+      <form class="from-section form-vertical pb30">
         <div class="row row-20">
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon right', value = 'test', icon = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', iconLeft = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left text', icTxt = 'Not required', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg', note = 'This is an input note', settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.input('Input icon left text', extendAttr = 'required', icTxt = 'Not required', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
             {{ button.btn('Button', size = 'xs-2', color = 'line-primary') }}
             {% endset %}
-            {{ form.input('Input icon left button', extendContent = extendContentCon, settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon, settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
@@ -34,17 +37,17 @@
               {{ ult.eye() }}
             </div>
             {% endset %}
-            {{ form.input('Input password', iconLeft = 'media/icons/svg/dark/plannet.svg', extendContent = extendContentCon, extendContentClass = 'pr0', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input password', iconLeft = 'media/icons/svg/dark/plannet.svg', extendAttr = 'required', extendContent = extendContentCon, extendContentClass = 'pr0', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
             <a class="link">Demo link</a>
             {% endset %}
-            {{ form.input('Input content outside', extendContent = extendContentCon, extendContentPos = 'outside', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input content outside', extendContent = extendContentCon, extendAttr = 'required', extendContentPos = 'outside', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
-            {{ form.select('Select', value = dataSelect, selected = 2, settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select', value = dataSelect, extendAttr = 'required',settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set dataSelect = [
@@ -74,7 +77,7 @@
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }
             ] %}
-            {{ form.select('Select Custom Image', valueTemplate = dataSelect, dataimgClass = 'circle-md', selected = 2, settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select Custom Image', valueTemplate = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set dataSelect = [
@@ -101,24 +104,29 @@
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }
             ] %}
-            {{ form.select('Select Custom Text', valueTemplate = dataSelect, selected = 2, settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select Custom Text', valueTemplate = dataSelect, extendAttr = 'required', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Datepicker single', settingInputCustom = settingInputCustom) }}
+            {{ form.datepicker('Datepicker single', note = 'This is an input note', extendAttr = 'required', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Datepicker range', range = 'true', settingInputCustom = settingInputCustom) }}
+            {{ form.datepicker('Datepicker range', extendAttr = 'required', range = 'true', settingInputCustom = settingInputCustom) }}
           </div>
         </div>
         <div class="row row-20">
           <div class="col-lg-6 col-sm-12">
-            {{ form.input('Input icon right', value = 'test', icTxt = '10/240', settingInputCustom = settingInputCustom, textarea = 'true', textareaAutoSize = 'false') }}
+            {{ form.input('Input icon right', icTxt = '10/240', settingInputCustom = settingInputCustom, textarea = 'true', extendAttr = 'required', textareaAutoSize = 'false') }}
           </div>
           <div class="col-lg-6 col-sm-12">
-            {{ form.input('Input icon right', value = 'test', icTxt = '10/240', settingInputCustom = settingInputCustom, textarea = 'true') }}
+            {{ form.input('Input icon right', icTxt = '10/240', settingInputCustom = settingInputCustom, extendAttr = 'required', textarea = 'true') }}
           </div>
         </div>
-      </div>
+        <div class="row row-20 justify-content-center">
+          <div class="col-sm-4">
+            {{ button.btn('Validate') }}
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 {% endmacro %}

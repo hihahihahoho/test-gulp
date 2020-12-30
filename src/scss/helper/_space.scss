@@ -617,7 +617,4 @@ $map-pos: (
   text-align: left;
   margin-bottom: 11px;
   @include modifiers-form-space($map-form-group);
-  & > * {
-    font-size: $font-size-default;
-  }
 }
