@@ -145,6 +145,7 @@ button::before {
     vertical-align: middle;
     display: flex;
     align-items: center;
+    height: 100%;
   }
   &-file {
     padding-left: 85px;
@@ -178,6 +179,7 @@ button::before {
     align-items: center;
     justify-content: center;
     font-size: $btn-font-size;
+    flex-wrap: nowrap;
   }
 }
 
