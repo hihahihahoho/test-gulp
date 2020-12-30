@@ -20,7 +20,7 @@
 
   {% if icLeft %}
     {% set icLeftContent %}
-    <span class="ubtn-ic auto">
+    <span class="ubtn-ic col-auto">
       <img src="{{icLeft}}" alt="" class="ic-{{ icSize }}">
     </span>
     {% endset %}
@@ -28,7 +28,7 @@
 
   {% if icon %}
     {% set iconContent %}
-    <span class="ubtn-ic auto">
+    <span class="ubtn-ic col-auto">
       <img src="{{icon}}" alt="" class="ic-{{ icSize }}">
     </span>
     {% endset %}
@@ -44,7 +44,7 @@
 
   {% if title %}
     {% set titleText %}
-    <span class="ubtn-text auto {{ fontSizeText }} {{ textColorText }}">{{ title }}</span>
+    <span class="ubtn-text col-auto {{ fontSizeText }} {{ textColorText }}">{{ title }}</span>
     {% endset %}
   {% endif %}
 
