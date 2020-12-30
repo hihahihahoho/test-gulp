@@ -112,8 +112,8 @@ button::before {
   font-size: 0;
   text-align: center;
   width: 100%;
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   @include modifiers-btn-height($map-btn-height, "height");
   &-min-width {
     @include modifiers($map-btn-width, "min-width");
