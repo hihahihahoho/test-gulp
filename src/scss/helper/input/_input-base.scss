@@ -12,7 +12,6 @@
         }
         ~ .input-flex-content .input-ic {
           #{$attribute}: $value;
-          height: $value;
         }
       }
     }
@@ -28,6 +27,9 @@
       } @else {
         &:not(textarea),
         &.textarea-autosize {
+          height: $value;
+        }
+        ~ .input-flex-content .input-ic {
           height: $value;
         }
         &.textarea-autosize {
