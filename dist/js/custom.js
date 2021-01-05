@@ -1,7 +1,9 @@
 $(document).ready(function () {
-  var multiply = (x, y) => { return x * y };
-  const arrayTest = [10,29,39,49,55];
-  arrayTest.forEach((item, index) => {
-    console.log(item + index)
+  $('.input-file-basic').each(function () {
+    var uploadTxt = $(this).parent('.input-group').find('.file-txt')
+    $(this).on('change', function (e) {
+      uploadTxt.addClass('color-input')
+      uploadTxt.text(e.target.files[0].name)
+    })
   })
 })

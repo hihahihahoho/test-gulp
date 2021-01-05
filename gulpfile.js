@@ -222,7 +222,7 @@ function cleanHtml () {
         var name = dif.relativePath.replace(/(\\)/, '') + '/' + nameMain;
         dif.state == 'left' && dif.type1 == 'file' ? left.push(name.replace('.njk', '')) : '';
         dif.state == 'right' && dif.type2 == 'file' ? right.push(name.replace('.html', '')) : '';
-        dif.state == 'right' && dif.type2 == 'directory' ? del('./dist/pages/' + dif.name2 ) : '';
+        dif.state == 'right' && dif.type2 == 'directory' ? del('./dist/pages/' + dif.name2) : '';
       });
       right.diff(left).forEach(item => {
         del('./dist/pages' + item + '.html')
@@ -264,6 +264,12 @@ function dataTest () {
     })))
 }
 
+var manageEnvironment = function (environment) {
+  environment.addFilter('isStr', something => typeof something == 'string')
+  environment.addFilter('isArr', something => Array.isArray(something))
+  environment.addFilter('isDict', something => something.constructor == Object ? true : false) 
+}
+
 function nunjucks () {
   return gulp.src(['src/**/*.njk', '!src/_imports/**/*.njk'])
     .pipe(cached())
@@ -274,11 +280,12 @@ function nunjucks () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk','.html').replace('\\','\/')
+        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace('\\', '\/')
       }
     }))
     .pipe(nunjucksRender({
-      path: ['src/_imports/', 'src/pages/']
+      path: ['src/_imports/', 'src/pages/'],
+      manageEnv: manageEnvironment
     }))
     .pipe(replace('/dist/', ''))
     .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
@@ -298,11 +305,12 @@ function nunjucksForce () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk','.html').replace('\\','\/')
+        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace('\\', '\/')
       }
     }))
     .pipe(nunjucksRender({
-      path: ['src/_imports/', 'src/pages/']
+      path: ['src/_imports/', 'src/pages/'],
+      manageEnv: manageEnvironment
     }))
     .pipe(replace('/dist/', ''))
     .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))

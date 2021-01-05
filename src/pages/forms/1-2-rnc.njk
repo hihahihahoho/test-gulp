@@ -1,6 +1,6 @@
 {% extends "main/_layout-sidebar.njk" %}
 {% set pageLink = file_path %}
-{% set pageTitle = 'Forms' %}
+{% set pageTitle = 'Radio | Checkbox | Switch' %}
 
 {% macro localMacros(settingInputCustom) %}
   <div class="box">
@@ -73,7 +73,7 @@
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }
             ] %}
-            {{ form.select('Select Custom Image', value = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', search='false', settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select Custom Image', valueTemplate = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', search='false', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set dataSelect = [
@@ -100,10 +100,7 @@
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }
             ] %}
-            {{ form.select('Select Custom Text', value = dataSelect, extendAttr = 'required', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.select('Select', multiple = 'true', extendAttr = 'required',settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select Custom Text', valueTemplate = dataSelect, extendAttr = 'required', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {{ form.datepicker('Datepicker single', note = 'This is an input note', extendAttr = 'required', settingInputCustom = settingInputCustom) }}
@@ -142,34 +139,4 @@
     icSize: 'sm'
   } %}
   {{ localMacros(settingInputCustomBorder) }}
-  {% set settingInputCustomClean = {
-    inputType: 'clean',
-    inputSize: 'sm',
-    icSize: 'sm'
-  } %}
-  {{ localMacros(settingInputCustomClean) }}
-  {% set settingInputLine = {
-    inputType: 'line',
-    inputSize: 'sm',
-    icSize: 'xs-1'
-  } %}
-  {{ localMacros(settingInputLine) }}
-  {% set settingMaterial = {
-    inputType: 'material',
-    inputSize: 'sm',
-    icSize: 'xs-1'
-  } %}
-  {{ localMacros(settingMaterial) }}
-  {% set settingMaterial2 = {
-    inputType: 'material-2',
-    inputSize: 'lg',
-    icSize: 'sm'
-  } %}
-  {{ localMacros(settingMaterial2) }}
-  {% set settingMaterial3 = {
-    inputType: 'material-3',
-    inputSize: 'sm',
-    icSize: 'sm'
-  } %}
-  {{ localMacros(settingMaterial3) }}
 {% endblock %}

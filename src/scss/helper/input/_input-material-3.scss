@@ -18,7 +18,8 @@
               );
             }
           }
-          &.input-hadval {
+          &.input-hadval,
+          &.input-hadval-def {
             &.input-material-3 {
               & ~ .input-label {
                 @include transform(
@@ -64,6 +65,9 @@
     & ~ .select2-container--default.select2-container--disabled .select2-selection--single,
     & ~ .select2-container--default.select2-container--disabled .select2-selection--multiple {
       background-color: transparent;
+    }
+    & ~ .select2-container--default .select2-selection--multiple {
+      border: 1px solid $input-border-color;
     }
     & ~ .select2-container--default .select2-search--inline .select2-search__field {
       padding-left: 0;

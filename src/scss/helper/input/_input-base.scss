@@ -128,7 +128,11 @@ label.error,
 .errorBlock {
   margin-top: 2px;
 }
-
+input, textarea {
+  color: $input-color;
+  font-weight: $input-font-weight;
+  font-size: $input-font-size;
+}
 .input {
   flex-grow: 1;
   flex-basis: 0;
@@ -136,10 +140,13 @@ label.error,
   border-radius: $input-border-radius;
   padding-left: $input-space-left;
   padding-right: $input-space-right;
-  font-size: $input-font-size;
   transition: all 0.15s ease-in-out;
   order: 3;
   @include modifiers-input-linebar-ic($map-input-size);
+  &-holder {
+    align-items: center;
+    display: flex;
+  }
   ~ .input-ic:after {
     content: "";
     position: absolute;
@@ -189,7 +196,7 @@ label.error,
       text-align: left;
     }
     & ~ .input-frame {
-      border-bottom: 1px solid $input-line-border-color;
+      border-bottom: 1px solid $input-border-color;
       border-radius: 0;
     }
     & ~ .input-flex-content {
@@ -201,7 +208,7 @@ label.error,
   &-material-2,
   &-material-3 {
     & ~ .input-frame {
-      border: 1px solid $input-line-border-color;
+      border: 1px solid $input-border-color;
       border-radius: $input-border-radius;
     }
   }
@@ -488,6 +495,7 @@ input {
 }
 
 input[type="file"] {
+  opacity: 0;
   display: none;
 }
 
@@ -515,12 +523,12 @@ textarea {
   }
   &.input-border,
   &.input-clean {
-    border-left: 1px solid $input-line-border-color;
+    border-left: 1px solid $input-border-color;
     padding-right: $input-space-right !important;
     & ~ .input-flex-content {
       min-width: 0;
       &::before {
-        border-right: 1px solid $input-line-border-color;
+        border-right: 1px solid $input-border-color;
         border-radius: $input-border-radius;
         transition: 0.15s all linear;
         width: 20px;
@@ -548,7 +556,7 @@ textarea {
         content: "";
         border-radius: $input-border-radius;
         position: absolute;
-        border: 1px solid $input-line-border-color;
+        border: 1px solid $input-border-color;
         border-bottom: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
@@ -559,15 +567,15 @@ textarea {
       }
     }
     &:focus {
-      border-left: 1px solid $input-line-border-color-focus;
+      border-left: 1px solid $input-border-color-focus;
       & ~ .input-flex-content {
         &::before {
-          border-right: 1px solid $input-line-border-color-focus;
+          border-right: 1px solid $input-border-color-focus;
         }
       }
       & ~ .input-label {
         &::after {
-          border-color: $input-line-border-color-focus;
+          border-color: $input-border-color-focus;
         }
       }
     }
@@ -601,8 +609,13 @@ textarea {
 
 .textarea-autosize {
   max-height: $textarea-autosize-max-height;
-
-  transition: none;
+  transition: none !important;
+  & ~ *,
+  & ~ .input-frame:after,
+  & ~ .input-label::after,
+  & ~ .input-flex-content::before {
+    transition: none !important;
+  }
   &:after {
     content: "";
     position: relative;
@@ -644,4 +657,32 @@ textarea {
 
 .note-text{
   margin-top: 3px;
+}
+
+.file-txt {
+  font-size: $input-font-size;
+  font-weight: normal;
+  color: $input-placeholder-color
+}
+.file-txt.color-input {
+  color: $input-color;
+}
+.input-flex-content-left {
+  .input-group-extend {
+    padding-left: 0 !important;
+    padding-right: 0;
+  }
+}
+
+.input-group-border,
+.input-group-clean,
+.input-group-material-2,
+.input-group-material-3 {
+  .input-flex-content-file {
+    padding-left: 10px;
+  }
+}
+
+.input-flex-content-left::after {
+  display: none;
 }

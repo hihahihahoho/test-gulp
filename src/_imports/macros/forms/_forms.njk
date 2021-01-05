@@ -1,6 +1,8 @@
+{% import "macros/forms/_buttons.njk" as button %}
+
 {% extends "_varibles.njk" %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
-{% macro input(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id = '', iconText = '', extendAttr, extendClass, note = '', autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom, textarea, textareaAutoSize = 'true') %}
+{% macro input(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id, iconText = '', extendAttr, extendClass, note = '', autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom, textarea, textareaAutoSize = 'true', addFlex, fakeInput, customFlexContent) %}
   <!-- forms.input -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -127,6 +129,11 @@
           <textarea spellcheck="false" {{ inputArtt | safe | trim }} rows="{{ textareaRow }}">{{ value }}</textarea>
         {% else %}
           <input {{ inputArtt | safe | trim}} value="{{ value }}">
+          {% if fakeInput %}
+            <div class="input input-{{ inputSize }} input-{{ inputType }} input-holder">
+              {{ fakeInput }}
+            </div>
+          {% endif %}
         {% endif %}
         <div class="input-frame"></div>
         <div class="input-label">{{ title }}</div>
@@ -154,8 +161,12 @@
             {{ icLeft | safe }}
           </div>
         {% endif %}
-        {% if icon or eye or inputClear %}
+        {% if addFlex %}
+          {{ addFlex | safe }}
+        {% endif %}
+        {% if icon or eye or inputClear or icTxt or customFlexContent %}
           <div class="input-flex-content">
+            {{ customFlexContent | safe }}
             {{ inputClearIc | safe }}
             {% if icon %}
               {{ ic | safe }}
@@ -177,7 +188,7 @@
   <!-- end forms.input -->
 {% endmacro %}
 
-{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.inputSize, type = 'text', noSearch = "", value = dataSelectDefualt, selected = '', id = '', extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, valueTemplate, dataimgClass) %}
+{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.inputSize, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple) %}
   <!-- forms.select -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -213,25 +224,43 @@
     {% set icClass = 'input-ic-' + iconPos %}
   {% endif %}
 
-  {% if valueTemplate %}
-    {% set selectTxt = 'select-2-template' %}
+  {% if search == 'false'%}
+    {% set searchText = 'data-minimum-results-for-search="Infinity"' %}
+  {% endif %}
+
+  {% if id %}
+    {% set idText = 'id="' + id + '"' %}
+  {% endif %}
+
+  {% set selectTemp = {'foo': False} %}
+
+  {% set selectTxt = '' %}
+
+  {% for item in value %}
+    {% if item | string == '[object Object]' %}
+      {% set selectTxt = 'select-2-template' %}
+    {% endif %}
+  {% endfor %}
+
+  {% if multiple == 'true' %}
+    {% set multipleText = 'multiple' %}
   {% endif %}
 
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
       <div class="input-group">
-        <select id="{{ id }}" name="" class="select-2 {{selectTxt}} {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" data-minimum-results-for-search="{{ noSearch }}" data-placeholder="{{placeholder}}" {{ extendAttr }} {{ disabledAttr }}>
+        <select {{ idText }} name="" class="select-2 {{ selectTxt }} {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr }} {{ disabledAttr }} {{ multipleText }}>
           <option value=""></option>
           {% if not customOption == '' %}
             {{ customOption | safe }}
-          {% elseif valueTemplate %}
-            {% for item in valueTemplate %}
+          {% elseif selectTxt == 'select-2-template' %}
+            {% for item in value %}
               {% set selectedText = '' %}
               {% if loop.index == selected %}
                 {% set selectedText = 'selected' %}
               {% endif %}
               {% if dataimgClass %}
-                {% set dataimgClassTxt = 'dataimgclass="'+ dataimgClass +'"' %}
+                {% set dataimgClassTxt = 'dataimgclass="' + dataimgClass + '"' %}
               {% endif %}
               <option value="{{ loop.index }}" {{ dataimgClassTxt | safe }} dataimg="{{ item.img }}" datasub="{{ item.sub }}" {{ selectedText }}>{{ item.val }}</option>
             {% endfor %}
@@ -291,10 +320,13 @@
   {% else %}
     {% set lpTxt = 'light-pick' %}
   {% endif %}
+  {% if id %}
+    {% set idText = 'id="' + id + '"' %}
+  {% endif %}
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }}">
       <label class="input-group">
-        <input id="{{ id }}" type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} input-{{ inputSize }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
+        <input {{ idText }} type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} input-{{ inputSize }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
         <div class="input-frame"></div>
         <div class="input-label">{{ title }}</div>
         <div class="input-ic">
@@ -306,4 +338,31 @@
     <div class="errorBlock"></div>
   </div>
   <!-- end forms.datepicker -->
+{% endmacro %}
+
+{% macro file(title, extendAttr, extendClass = '', note, settingInputCustom, btnTitle = 'Upload', txtTitle = 'Chose file', pos = 'right') %}
+  {% if pos == 'right' %}
+    {% set customFlexContent %}
+    <div class="input-group-extend">
+      {{ button.btn(btnTitle, size = 'xs-1', color = 'op-primary', type = 'div') }}
+    </div>
+    {% endset %}
+    {% set fakeInput %}
+    <div class="p file-txt">{{ txtTitle }}</div>
+    {% endset %}
+    {{ input(title, extendAttr = extendAttr, extendClass = extendClass + 'input-hadval-def input-file-basic', note = note, customFlexContent = customFlexContent, settingInputCustom = settingInputCustom, type = 'file', inputClear = 'false', fakeInput = fakeInput | safe) }}
+  {% else %}
+    {% set extendContentCon %}
+    <div class="input-flex-content input-flex-content-left input-flex-content-file">
+      <div class="input-group-extend">
+        {{ button.btn(btnTitle, size = 'xs-1', color = 'op-primary', type = 'div') }}
+      </div>
+    </div>
+    {% endset %}
+    {% set fakeInput %}
+    <div class="p file-txt">{{ txtTitle }}</div>
+    {% endset %}
+    {{ input(title, extendAttr = extendAttr, extendClass = extendClass + 'input-hadval-def input-file-basic', note = note, addFlex = extendContentCon, settingInputCustom = settingInputCustom, type = 'file', inputClear = 'false', fakeInput = fakeInput | safe) }}
+  {% endif %}
+
 {% endmacro %}

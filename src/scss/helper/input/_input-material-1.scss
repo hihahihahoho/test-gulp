@@ -21,7 +21,8 @@
           }
         }
         & ~ .btn-group.open,
-        &.input-hadval {
+        &.input-hadval,
+        &.input-hadval-def {
           &.input-material {
             & ~ .input-label {
               @include transform(scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($value)));
@@ -101,6 +102,7 @@
       color: $input-placeholder-color;
       position: absolute;
       left: 0;
+      width: auto;
       @include transition(0.3s cubic-bezier(0.25, 0.8, 0.5, 1));
       font-size: $input-material-font-size;
       @include transform-origin(top left);

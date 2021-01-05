@@ -1,6 +1,6 @@
 {% extends "_varibles.njk" %}
 
-{% macro btn(title, id = '', type = settingButtonDefault.type, color = settingButtonDefault.color, size = settingButtonDefault.size, width, modal, href, extendAttr, extendClass, shape, custom, icon, icLeft, icSize = settingButtonDefault.icSize, disabled = 'false', spaceBetween, tooltip, fontSize, textColor, space = settingButtonDefault.space) %}
+{% macro btn(title, id, type = settingButtonDefault.type, color = settingButtonDefault.color, size = settingButtonDefault.size, width, modal, href, extendAttr, extendClass, shape, custom, icon, icLeft, icSize = settingButtonDefault.icSize, disabled = 'false', spaceBetween, tooltip, fontSize, textColor, space = settingButtonDefault.space) %}
   <!-- button.btn -->
   {% if modal %}
     {% set modalAttr %}
@@ -58,6 +58,10 @@
     {% endset %}
   {% endif %}
 
+  {% if id %}
+    {% set idTxt = 'id="'+ id + '"' %}
+  {% endif %}
+
   {% if custom %}
     {% set btnContent %}
     {{ custom | safe }}
@@ -82,7 +86,7 @@
     href ="{{ href }}"
     {% endset %}
   {% endif %}
-  <{{ type }} id="{{ id }}" class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ extendClass }}" {{ modalAttr | safe}} {{ hrefAttr | safe}} {{ extendAttr }} {{disabledText}} {{ tooltipContent | safe }}>
+  <{{ type }} {{idTxt}} class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ extendClass }}" {{ modalAttr | safe}} {{ hrefAttr | safe}} {{ extendAttr }} {{disabledText}} {{ tooltipContent | safe }}>
     <div class="ubtn-full">
       {{ btnContent | safe }}
     </div>

@@ -6,6 +6,8 @@ $map-input-size: (
   lg: 60px
 );
 
+$input-color: $color-base;
+$input-font-weight: 500;
 
 $input-label-font-weight: 400;
 $input-label-font-size: 14px;
@@ -24,7 +26,7 @@ $input-border-color-focus       : lighten($color-primary, 0.5);
 $input-background               : $color-grey-4;
 
 //input border - input-material
-$input-line-border-color        : $border-base-color;
+$input-border-color        : $border-base-color;
 $input-line-border-background   : transparent;
 
 //===input line bar===

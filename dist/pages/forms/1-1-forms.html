@@ -6,7 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
-  <title>Ultimate HTML - Forms</title>
+  <title>Ultimate HTML -
+    Forms</title>
   <!-- bootstrap -->
   <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.bundles.css">
   <!-- end bootstrap -->
@@ -19,6 +20,10 @@
   <!-- croppie -->
   <link rel="stylesheet" href="css/vendors/croppie/croppie.bundles.css">
   <!-- end croppie -->
+  <!-- css use for this page only -->
+  <!-- end css use for this page only -->
+  <!-- css use for this page only -->
+  <!-- end css use for this page only -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/custom.bundles.css">
   <link rel="shortcut icon" type="text/html" href="media/favicon/favicon.png">
@@ -79,11 +84,27 @@
       </a>
     </div>
     <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/forms/1-2-rnc.html">
+        <div class="ic">
+          <img src="media/icons/svg/dark/plannet.svg" alt="">
+        </div>
+        <div class="txt">Radio | Checkbox | Switch</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
       <a class="sidebar__item" href="pages/forms/1-3-forms-range.html">
         <div class="ic">
           <img src="media/icons/svg/dark/plannet.svg" alt="">
         </div>
         <div class="txt">Range (Comming soon)</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/forms/1-4-uppy.html">
+        <div class="ic">
+          <img src="media/icons/svg/dark/plannet.svg" alt="">
+        </div>
+        <div class="txt">File upload (Uppy)</div>
       </a>
     </div>
     <div class="sidebar__list">
@@ -420,7 +441,7 @@
                         </label>
                         <div class="input-sm input-group-extend input-ic-sm">
                           <!-- button.btn -->
-                          <button id="" class="ubtn ubg-line-primary ubtn-xs-2">
+                          <button class="ubtn ubg-line-primary ubtn-xs-2">
                             <div class="ubtn-full">
                               <div class="row row-10 ubtn-inner">
                                 <span class="ubtn-text">Button</span>
@@ -495,7 +516,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-border">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 input input-sm input-ic-sm input-border" header-text="Select" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 input input-sm input-ic-sm input-border" header-text="Select" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1">Option 11</option>
                             <option value="2">Option 2</option>
@@ -517,7 +538,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-border">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-sm input-border" header-text="Select Custom Image" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-sm input-border" header-text="Select Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -545,7 +566,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-border">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-sm input-border" header-text="Select Custom Text" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-sm input-border" header-text="Select Custom Text" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -567,11 +588,33 @@
                     <!-- end forms.select -->
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-sm input-ic-sm input-border" header-text="Select" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select</div>
+                          <div class="input-ic">
+                            <div class="arrow-down-anim"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
                     <!-- forms.datepicker -->
                     <div class="form-group">
                       <div class="input-group-wrap input-group-border">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick input input-border input-sm input-ic-sm" value="" placeholder="" required>
+                          <input type="" class="light-pick input input-border input-sm input-ic-sm" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker single</div>
                           <div class="input-ic">
@@ -591,7 +634,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-border">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick-range input input-border input-sm input-ic-sm" value="" placeholder="" required>
+                          <input type="" class="light-pick-range input input-border input-sm input-ic-sm" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker range</div>
                           <div class="input-ic">
@@ -610,9 +653,41 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-border">
                         <label class="input-group">
+                          <input type="file" class="input input-sm input-border input-ic-sm input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-sm input-border input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-xs-1">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-border input-ic-sm input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Default</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -631,7 +706,7 @@
                         <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-border input-ic-sm input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Autosize</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -647,7 +722,7 @@
                 <div class="row row-20 justify-content-center">
                   <div class="col-sm-4">
                     <!-- button.btn -->
-                    <button id="" class="ubtn ubg-primary ubtn-md">
+                    <button class="ubtn ubg-primary ubtn-md">
                       <div class="ubtn-full">
                         <div class="row row-10 ubtn-inner">
                           <span class="ubtn-text">Validate</span>
@@ -777,7 +852,7 @@
                         </label>
                         <div class="input-sm input-group-extend input-ic-sm">
                           <!-- button.btn -->
-                          <button id="" class="ubtn ubg-line-primary ubtn-xs-2">
+                          <button class="ubtn ubg-line-primary ubtn-xs-2">
                             <div class="ubtn-full">
                               <div class="row row-10 ubtn-inner">
                                 <span class="ubtn-text">Button</span>
@@ -852,7 +927,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-clean">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 input input-sm input-ic-sm input-clean" header-text="Select" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 input input-sm input-ic-sm input-clean" header-text="Select" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1">Option 11</option>
                             <option value="2">Option 2</option>
@@ -874,7 +949,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-clean">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-sm input-clean" header-text="Select Custom Image" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-sm input-clean" header-text="Select Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -902,7 +977,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-clean">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-sm input-clean" header-text="Select Custom Text" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-sm input-clean" header-text="Select Custom Text" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -924,11 +999,33 @@
                     <!-- end forms.select -->
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-sm input-ic-sm input-clean" header-text="Select" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select</div>
+                          <div class="input-ic">
+                            <div class="arrow-down-anim"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
                     <!-- forms.datepicker -->
                     <div class="form-group">
                       <div class="input-group-wrap input-group-clean">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick input input-clean input-sm input-ic-sm" value="" placeholder="" required>
+                          <input type="" class="light-pick input input-clean input-sm input-ic-sm" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker single</div>
                           <div class="input-ic">
@@ -948,7 +1045,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-clean">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick-range input input-clean input-sm input-ic-sm" value="" placeholder="" required>
+                          <input type="" class="light-pick-range input input-clean input-sm input-ic-sm" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker range</div>
                           <div class="input-ic">
@@ -967,9 +1064,41 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-clean">
                         <label class="input-group">
+                          <input type="file" class="input input-sm input-clean input-ic-sm input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-sm input-clean input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-xs-1">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-clean input-ic-sm input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Default</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -988,7 +1117,7 @@
                         <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-clean input-ic-sm input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Autosize</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -1004,7 +1133,7 @@
                 <div class="row row-20 justify-content-center">
                   <div class="col-sm-4">
                     <!-- button.btn -->
-                    <button id="" class="ubtn ubg-primary ubtn-md">
+                    <button class="ubtn ubg-primary ubtn-md">
                       <div class="ubtn-full">
                         <div class="row row-10 ubtn-inner">
                           <span class="ubtn-text">Validate</span>
@@ -1134,7 +1263,7 @@
                         </label>
                         <div class="input-sm input-group-extend input-ic-xs-1">
                           <!-- button.btn -->
-                          <button id="" class="ubtn ubg-line-primary ubtn-xs-2">
+                          <button class="ubtn ubg-line-primary ubtn-xs-2">
                             <div class="ubtn-full">
                               <div class="row row-10 ubtn-inner">
                                 <span class="ubtn-text">Button</span>
@@ -1209,7 +1338,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-line">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 input input-sm input-ic-xs-1 input-line" header-text="Select" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 input input-sm input-ic-xs-1 input-line" header-text="Select" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1">Option 11</option>
                             <option value="2">Option 2</option>
@@ -1231,7 +1360,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-line">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-xs-1 input-line" header-text="Select Custom Image" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-xs-1 input-line" header-text="Select Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -1259,7 +1388,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-line">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-xs-1 input-line" header-text="Select Custom Text" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-xs-1 input-line" header-text="Select Custom Text" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -1281,11 +1410,33 @@
                     <!-- end forms.select -->
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-sm input-ic-xs-1 input-line" header-text="Select" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select</div>
+                          <div class="input-ic">
+                            <div class="arrow-down-anim"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
                     <!-- forms.datepicker -->
                     <div class="form-group">
                       <div class="input-group-wrap input-group-line">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick input input-line input-sm input-ic-xs-1" value="" placeholder="" required>
+                          <input type="" class="light-pick input input-line input-sm input-ic-xs-1" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker single</div>
                           <div class="input-ic">
@@ -1305,7 +1456,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-line">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick-range input input-line input-sm input-ic-xs-1" value="" placeholder="" required>
+                          <input type="" class="light-pick-range input input-line input-sm input-ic-xs-1" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker range</div>
                           <div class="input-ic">
@@ -1324,9 +1475,41 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-line">
                         <label class="input-group">
+                          <input type="file" class="input input-sm input-line input-ic-xs-1 input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-sm input-line input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-xs-1">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-line input-ic-xs-1 input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Default</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -1345,7 +1528,7 @@
                         <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-line input-ic-xs-1 input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Autosize</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -1361,7 +1544,7 @@
                 <div class="row row-20 justify-content-center">
                   <div class="col-sm-4">
                     <!-- button.btn -->
-                    <button id="" class="ubtn ubg-primary ubtn-md">
+                    <button class="ubtn ubg-primary ubtn-md">
                       <div class="ubtn-full">
                         <div class="row row-10 ubtn-inner">
                           <span class="ubtn-text">Validate</span>
@@ -1491,7 +1674,7 @@
                         </label>
                         <div class="input-sm input-group-extend input-ic-xs-1">
                           <!-- button.btn -->
-                          <button id="" class="ubtn ubg-line-primary ubtn-xs-2">
+                          <button class="ubtn ubg-line-primary ubtn-xs-2">
                             <div class="ubtn-full">
                               <div class="row row-10 ubtn-inner">
                                 <span class="ubtn-text">Button</span>
@@ -1566,7 +1749,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 input input-sm input-ic-xs-1 input-material" header-text="Select" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 input input-sm input-ic-xs-1 input-material" header-text="Select" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1">Option 11</option>
                             <option value="2">Option 2</option>
@@ -1588,7 +1771,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-xs-1 input-material" header-text="Select Custom Image" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-xs-1 input-material" header-text="Select Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -1616,7 +1799,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-xs-1 input-material" header-text="Select Custom Text" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-xs-1 input-material" header-text="Select Custom Text" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -1638,11 +1821,33 @@
                     <!-- end forms.select -->
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-sm input-ic-xs-1 input-material" header-text="Select" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select</div>
+                          <div class="input-ic">
+                            <div class="arrow-down-anim"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
                     <!-- forms.datepicker -->
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick input input-material input-sm input-ic-xs-1" value="" placeholder="" required>
+                          <input type="" class="light-pick input input-material input-sm input-ic-xs-1" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker single</div>
                           <div class="input-ic">
@@ -1662,7 +1867,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick-range input input-material input-sm input-ic-xs-1" value="" placeholder="" required>
+                          <input type="" class="light-pick-range input input-material input-sm input-ic-xs-1" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker range</div>
                           <div class="input-ic">
@@ -1681,9 +1886,41 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material">
                         <label class="input-group">
+                          <input type="file" class="input input-sm input-material input-ic-xs-1 input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-sm input-material input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-xs-1">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material">
+                        <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-material input-ic-xs-1 input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Default</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -1702,7 +1939,7 @@
                         <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-material input-ic-xs-1 input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Autosize</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -1718,7 +1955,7 @@
                 <div class="row row-20 justify-content-center">
                   <div class="col-sm-4">
                     <!-- button.btn -->
-                    <button id="" class="ubtn ubg-primary ubtn-md">
+                    <button class="ubtn ubg-primary ubtn-md">
                       <div class="ubtn-full">
                         <div class="row row-10 ubtn-inner">
                           <span class="ubtn-text">Validate</span>
@@ -1742,7 +1979,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <input type="text" class="input input-md input-material-2 input-ic-sm input-has-clear input-ic-right" autocorrect="off" placeholder="" required value="test">
+                          <input type="text" class="input input-lg input-material-2 input-ic-sm input-has-clear input-ic-right" autocorrect="off" placeholder="" required value="test">
                           <div class="input-frame"></div>
                           <div class="input-label">Input icon right</div>
                           <div class="input-flex-content">
@@ -1764,7 +2001,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <input type="text" class="input input-md input-material-2 input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <input type="text" class="input input-lg input-material-2 input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
                           <div class="input-frame"></div>
                           <div class="input-label">Input icon left</div>
                           <div class="input-flex-content input-flex-content-left">
@@ -1788,7 +2025,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <input type="text" class="input input-md input-material-2 input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <input type="text" class="input input-lg input-material-2 input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
                           <div class="input-frame"></div>
                           <div class="input-label">Input icon left</div>
                           <div class="input-flex-content input-flex-content-left">
@@ -1815,7 +2052,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <input type="text" class="input input-md input-material-2 input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <input type="text" class="input input-lg input-material-2 input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
                           <div class="input-frame"></div>
                           <div class="input-label">Input icon left text</div>
                           <div class="input-flex-content">
@@ -1837,7 +2074,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <input type="text" class="input input-md input-material-2 input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <input type="text" class="input input-lg input-material-2 input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
                           <div class="input-frame"></div>
                           <div class="input-label">Input icon left button</div>
                           <div class="input-flex-content">
@@ -1846,9 +2083,9 @@
                             </div>
                           </div>
                         </label>
-                        <div class="input-md input-group-extend input-ic-sm">
+                        <div class="input-lg input-group-extend input-ic-sm">
                           <!-- button.btn -->
-                          <button id="" class="ubtn ubg-line-primary ubtn-xs-2">
+                          <button class="ubtn ubg-line-primary ubtn-xs-2">
                             <div class="ubtn-full">
                               <div class="row row-10 ubtn-inner">
                                 <span class="ubtn-text">Button</span>
@@ -1867,7 +2104,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <input type="text" class="input input-md input-material-2 input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <input type="text" class="input input-lg input-material-2 input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
                           <div class="input-frame"></div>
                           <div class="input-label">Input password</div>
                           <div class="input-flex-content input-flex-content-left">
@@ -1881,7 +2118,7 @@
                             </div>
                           </div>
                         </label>
-                        <div class="input-md input-group-extend pr0 input-ic-sm">
+                        <div class="input-lg input-group-extend pr0 input-ic-sm">
                           <div class="input-ic">
                             <div class="eye-wrap">
                               <label class="eye">
@@ -1901,7 +2138,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2 input-extend-outside">
                         <label class="input-group">
-                          <input type="text" class="input input-md input-material-2 input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <input type="text" class="input input-lg input-material-2 input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
                           <div class="input-frame"></div>
                           <div class="input-label">Input content outside</div>
                           <div class="input-flex-content">
@@ -1910,7 +2147,7 @@
                             </div>
                           </div>
                         </label>
-                        <div class="input-md input-group-extend input-ic-sm">
+                        <div class="input-lg input-group-extend input-ic-sm">
                           <a class="link">Demo link</a>
                         </div>
                       </div>
@@ -1923,7 +2160,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 input input-md input-ic-sm input-material-2" header-text="Select" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 input input-lg input-ic-sm input-material-2" header-text="Select" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1">Option 11</option>
                             <option value="2">Option 2</option>
@@ -1945,7 +2182,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-md input-ic-sm input-material-2" header-text="Select Custom Image" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-lg input-ic-sm input-material-2" header-text="Select Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -1973,7 +2210,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-md input-ic-sm input-material-2" header-text="Select Custom Text" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-lg input-ic-sm input-material-2" header-text="Select Custom Text" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -1995,11 +2232,33 @@
                     <!-- end forms.select -->
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-lg input-ic-sm input-material-2" header-text="Select" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select</div>
+                          <div class="input-ic">
+                            <div class="arrow-down-anim"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
                     <!-- forms.datepicker -->
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick input input-material-2 input-md input-ic-sm" value="" placeholder="" required>
+                          <input type="" class="light-pick input input-material-2 input-lg input-ic-sm" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker single</div>
                           <div class="input-ic">
@@ -2019,7 +2278,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick-range input input-material-2 input-md input-ic-sm" value="" placeholder="" required>
+                          <input type="" class="light-pick-range input input-material-2 input-lg input-ic-sm" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker range</div>
                           <div class="input-ic">
@@ -2038,9 +2297,41 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <textarea spellcheck="false" type="text" class="input input-md input-material-2 input-ic-sm input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
+                          <input type="file" class="input input-lg input-material-2 input-ic-sm input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-lg input-material-2 input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-xs-1">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-lg input-material-2 input-ic-sm input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Default</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -2057,9 +2348,9 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-2">
                         <label class="input-group">
-                          <textarea spellcheck="false" type="text" class="input input-md input-material-2 input-ic-sm input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
+                          <textarea spellcheck="false" type="text" class="input input-lg input-material-2 input-ic-sm input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Autosize</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -2075,7 +2366,7 @@
                 <div class="row row-20 justify-content-center">
                   <div class="col-sm-4">
                     <!-- button.btn -->
-                    <button id="" class="ubtn ubg-primary ubtn-md">
+                    <button class="ubtn ubg-primary ubtn-md">
                       <div class="ubtn-full">
                         <div class="row row-10 ubtn-inner">
                           <span class="ubtn-text">Validate</span>
@@ -2205,7 +2496,7 @@
                         </label>
                         <div class="input-sm input-group-extend input-ic-sm">
                           <!-- button.btn -->
-                          <button id="" class="ubtn ubg-line-primary ubtn-xs-2">
+                          <button class="ubtn ubg-line-primary ubtn-xs-2">
                             <div class="ubtn-full">
                               <div class="row row-10 ubtn-inner">
                                 <span class="ubtn-text">Button</span>
@@ -2280,7 +2571,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-3">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 input input-sm input-ic-sm input-material-3" header-text="Select" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 input input-sm input-ic-sm input-material-3" header-text="Select" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1">Option 11</option>
                             <option value="2">Option 2</option>
@@ -2302,7 +2593,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-3">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-sm input-material-3" header-text="Select Custom Image" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-sm input-material-3" header-text="Select Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimgclass="circle-md" dataimg="media/icons/svg/dark/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -2330,7 +2621,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-3">
                         <div class="input-group">
-                          <select id="" name="" class="select-2 select-2-template input input-sm input-ic-sm input-material-3" header-text="Select Custom Text" data-minimum-results-for-search="" data-placeholder="" required>
+                          <select name="" class="select-2 select-2-template input input-sm input-ic-sm input-material-3" header-text="Select Custom Text" data-placeholder="" required>
                             <option value=""></option>
                             <option value="1" dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
                             <option value="2" dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
@@ -2352,11 +2643,33 @@
                     <!-- end forms.select -->
                   </div>
                   <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-sm input-ic-sm input-material-3" header-text="Select" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select</div>
+                          <div class="input-ic">
+                            <div class="arrow-down-anim"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
                     <!-- forms.datepicker -->
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-3">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick input input-material-3 input-sm input-ic-sm" value="" placeholder="" required>
+                          <input type="" class="light-pick input input-material-3 input-sm input-ic-sm" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker single</div>
                           <div class="input-ic">
@@ -2376,7 +2689,7 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-3">
                         <label class="input-group">
-                          <input id="" type="" class="light-pick-range input input-material-3 input-sm input-ic-sm" value="" placeholder="" required>
+                          <input type="" class="light-pick-range input input-material-3 input-sm input-ic-sm" value="" placeholder="" required>
                           <div class="input-frame"></div>
                           <div class="input-label">Datepicker range</div>
                           <div class="input-ic">
@@ -2395,9 +2708,41 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-group-material-3">
                         <label class="input-group">
+                          <input type="file" class="input input-sm input-material-3 input-ic-sm input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-sm input-material-3 input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-xs-1">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-material-3 input-ic-sm input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Default</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -2416,7 +2761,7 @@
                         <label class="input-group">
                           <textarea spellcheck="false" type="text" class="input input-sm input-material-3 input-ic-sm input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
                           <div class="input-frame"></div>
-                          <div class="input-label">Input icon right</div>
+                          <div class="input-label">Textarea Autosize</div>
                           <div class="input-flex-content">
                             <div class="input-ic-txt color-base-2 input-ic">
                               10/240
@@ -2432,7 +2777,7 @@
                 <div class="row row-20 justify-content-center">
                   <div class="col-sm-4">
                     <!-- button.btn -->
-                    <button id="" class="ubtn ubg-primary ubtn-md">
+                    <button class="ubtn ubg-primary ubtn-md">
                       <div class="ubtn-full">
                         <div class="row row-10 ubtn-inner">
                           <span class="ubtn-text">Validate</span>
@@ -2549,6 +2894,10 @@
 <script src="js/vendors/croppie/croppie.bundles.js"></script>
 <script src="js/vendors/croppie/croppie.init.js"></script>
 <!-- croppie -->
+<!-- script use for this page only -->
+<!-- end script for this page only -->
 <script src="js/custom.js"></script>
+<!-- script use for this page only -->
+<!-- end script for this page only -->
 
 </html>
