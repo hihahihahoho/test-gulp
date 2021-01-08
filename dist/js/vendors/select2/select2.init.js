@@ -136,6 +136,12 @@ $(document).ready(function () {
     templateSelection: templateImg,
     width: '100%'
   });
+  $('.select-2-template[multiple]').select2({
+    templateResult: templateImgRes,
+    templateSelection: templateImg,
+    closeOnSelect: false,
+    width: '100%'
+  });
   //end template select-2
 });
 //====================END SELECT2 INIT=================//
