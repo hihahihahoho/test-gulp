@@ -2,124 +2,46 @@
 {% set pageLink = file_path %}
 {% set pageTitle = 'Radio | Checkbox | Switch' %}
 
-{% macro localMacros(settingInputCustom) %}
+{% block mainInner %}
   <div class="box">
     <div class="box__body pb-0">
-      <h5 class="pb30">Input
-        {{ settingInputCustom.inputType }}</h5>
+      <h5 class="pb30">Checkbox
+      </h5>
       <form class="from-section form-vertical pb30">
         <div class="row row-20">
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
+          <div class="col-auto">
+            {{ rnc.checkbox('Checkbox 1', name = 'checkbox') }}
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg', note = 'This is an input note', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left text', extendAttr = 'required', icTxt = 'Not required', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set extendContentCon %}
-            {{ button.btn('Button', size = 'xs-2', color = 'line-primary') }}
-            {% endset %}
-            {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon, settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set extendContentCon %}
-            <div class="input-ic">
-              {{ ult.eye() }}
-            </div>
-            {% endset %}
-            {{ form.input('Input password', iconLeft = 'media/icons/svg/dark/plannet.svg', extendAttr = 'required', extendContent = extendContentCon, extendContentClass = 'pr0', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set extendContentCon %}
-            <a class="link">Demo link</a>
-            {% endset %}
-            {{ form.input('Input content outside', extendContent = extendContentCon, extendAttr = 'required', extendContentPos = 'outside', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
-            {{ form.select('Select', value = dataSelect, extendAttr = 'required',settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set dataSelect = [
-              {
-                val: 'Vietcombank',
-                img: 'media/icons/svg/dark/plannet.svg',
-                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
-              }, {
-                val: 'Vietinbank',
-                img: 'media/icons/svg/dark/plannet.svg',
-                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
-              }, {
-                val: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                val: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                val: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                val: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }
-            ] %}
-            {{ form.select('Select Custom Image', valueTemplate = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', search='false', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set dataSelect = [
-              {
-                val: 'Vietcombank',
-                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
-              }, {
-                val: 'Vietinbank',
-                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
-              }, {
-                val: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                val: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                val: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                val: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                val: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }
-            ] %}
-            {{ form.select('Select Custom Text', valueTemplate = dataSelect, extendAttr = 'required', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Datepicker single', note = 'This is an input note', extendAttr = 'required', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Datepicker range', extendAttr = 'required', range = 'true', settingInputCustom = settingInputCustom) }}
+          <div class="col-auto">
+            {{ rnc.radio('Radio', subTitle = 'This is subtitle', align='start', fontSize = 'p', name = 'radio1') }}
           </div>
         </div>
+      </form>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body pb-0">
+      <h5 class="pb30">Checkbox group</h5>
+      <form class="from-section form-vertical pb30">
         <div class="row row-20">
-          <div class="col-lg-6 col-sm-12">
-            {{ form.file(title = 'File Upload', settingInputCustom = settingInputCustom, extendAttr = 'required') }}
+          <div class="col-sm-6">
+            {% set checkboxValue = ['checkbox 1', 'checkbox 2', 'checkbox 3'] %}
+            {{ rnc.checkbox(checkboxValue, name = 'checkboxTest', extendAttr = ' required') }}
           </div>
-        </div>
-        <div class="row row-20">
-          <div class="col-lg-6 col-sm-12">
-            {{ form.input('Textarea Default', icTxt = '10/240', settingInputCustom = settingInputCustom, textarea = 'true', extendAttr = 'required', textareaAutoSize = 'false') }}
-          </div>
-          <div class="col-lg-6 col-sm-12">
-            {{ form.input('Textarea Autosize', icTxt = '10/240', settingInputCustom = settingInputCustom, extendAttr = 'required', textarea = 'true') }}
+          <div class="col-sm-6">
+            {% set radioValue = [
+              {
+                main: 'Radio 1',
+                sub: 'This is subtitle 1'
+              }, {
+                main: 'Radio 2',
+                sub: 'This is subtitle 2'
+              }, {
+                main: 'Radio 3',
+                sub: 'This is subtitle 3'
+              }
+            ] %}
+            {{ rnc.radio(radioValue, align='start', fontSize = 'p', name = 'radio1', groupCol = 'auto', extendAttr = ' required', style = '2') }}
           </div>
         </div>
         <div class="row row-20 justify-content-center">
@@ -130,13 +52,53 @@
       </form>
     </div>
   </div>
-{% endmacro %}
-
-{% block mainInner %}
-  {% set settingInputCustomBorder = {
-    inputType: 'border',
-    inputSize: 'sm',
-    icSize: 'sm'
-  } %}
-  {{ localMacros(settingInputCustomBorder) }}
+  <div class="box">
+    <div class="box__body pb-0">
+      <h5 class="pb30">Checkbox Long
+      </h5>
+      <form class="from-section form-vertical pb30">
+        <div class="row row-20 list-mb10">
+          <div class="col-auto">
+            {{ rnc.checkbox('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet.', name = 'checkbox') }}
+          </div>
+          <div class="col-auto">
+            {{ rnc.radio('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet.', subTitle = 'This is subtitle', align='start', fontSize = 'p', name = 'radio1') }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body pb-0">
+      <h5 class="pb30">Checkbox group Long</h5>
+      <form class="from-section form-vertical pb30">
+        <div class="row row-20">
+          <div class="col-sm-6">
+            {% set checkboxValue = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 3'] %}
+            {{ rnc.checkbox(checkboxValue, name = 'checkboxTest', extendAttr = ' required') }}
+          </div>
+          <div class="col-sm-6">
+            {% set radioValue = [
+              {
+                main: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 1',
+                sub: 'This is subtitle 1'
+              }, {
+                main: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 2',
+                sub: 'This is subtitle 2'
+              }, {
+                main: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 3',
+                sub: 'This is subtitle 3'
+              }
+            ] %}
+            {{ rnc.radio(radioValue, align='start', fontSize = 'p', name = 'radio1', groupCol = 'auto', extendAttr = ' required', style = '2') }}
+          </div>
+        </div>
+        <div class="row row-20 justify-content-center">
+          <div class="col-sm-4">
+            {{ button.btn('Validate') }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

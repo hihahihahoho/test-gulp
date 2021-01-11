@@ -1,0 +1,83 @@
+{% extends "_varibles.njk" %}
+
+{% macro rnc(title, subTitle, color = 'base', fontSize, extendClass = '', extendAttr = '', type = 'radio', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = '1', icSize) %}
+  <!-- formsM1.radio -->
+  {% if checked %}
+    {% set checkedText = 'checked' %}
+  {% endif %}
+  {% if id %}
+    {% set idText = 'id="' + id + '"' %}
+  {% endif %}
+  {% if icPos == 'right' %}
+    {% set order = 'order-1' %}
+  {% endif %}
+  {% if not custom == '' %}
+    {% set customContent = custom %}
+  {% else %}
+    {% set customContent %}
+    <span class="radio-text">
+      <div class="txt-main">{{ title }}</div>
+      {% if not subTitle == '' %}
+        <div class="txt-sub h6">
+          <span class="color-base-3">{{ subTitle }}</span>
+        </div>
+      {% endif %}
+    </span>
+    {% endset %}
+  {% endif %}
+
+  <label class="{{ type }} align-items-{{ align }} color-{{ color }} {{ extendClass }} {{ fontSize }}">
+    <input type="{{ type }}" class="hidden" name="{{ name }}" {{ checkedText }} value="{{ value }}" {{ idText | safe }} {{ extendAttr }}>
+    <div class="rnc-ic-wrap">
+      <span class="{{ type }}-ic {{ type }}-{{ icSize }} {{ type }}-style-{{ style }} ripple-{{ type }} {{ mr }} {{order}}"></span>
+    </div>
+    {{ customContent | safe }}
+  </label>
+  <!-- end formsM1.radio -->
+{% endmacro %}
+
+{% macro checkbox(title, subTitle, color = 'base', extendClass = '', extendAttr = '', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = settingRncDefault.style, fontSize, icSize = settingRncDefault.icSize, groupGutter = '20', groupCol = '12', groupSpace = '10') %}
+  {% if (title | isStr) %}
+    {{ rnc(title = title, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'checkbox', align = align, mr = mr, checked = checked, name = name, value = value, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
+  {% else %}
+    <div class="form-group">
+      <div class="row row-{{ groupGutter }} list-mb{{groupSpace}} list-last-mb">
+        {% for item in title %}
+          {% if item | string == '[object Object]' %}
+            <div class="col-{{ groupCol }}">
+              {{ rnc(title = item.main, subTitle = item.sub, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'checkbox', align = align, mr = mr, checked = checked, name = name, value = name + loop.index, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
+            </div>
+          {% else %}
+            <div class="col-{{ groupCol }}">
+              {{ rnc(title = item, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'checkbox', align = align, mr = mr, checked = checked, name = name, value = name + loop.index, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="errorBlock"></div>
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro radio(title, subTitle, color = 'base', extendClass = '', extendAttr = '', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = settingRncDefault.style, fontSize, icSize = settingRncDefault.icSize, groupGutter = '20', groupCol = '12', groupSpace = '10') %}
+  {% if (title | isStr) %}
+    {{ rnc(title = title, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'radio', align = align, mr = mr, checked = checked, name = name, value = value, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
+  {% else %}
+    <div class="form-group">
+      <div class="row row-{{ groupGutter }} list-mb{{groupSpace}} list-last-mb">
+        {% for item in title %}
+          {% if item | string == '[object Object]' %}
+            <div class="col-{{ groupCol }}">
+              {{ rnc(title = item.main, subTitle = item.sub, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'radio', align = align, mr = mr, checked = checked, name = name, value = name + loop.index, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
+            </div>
+          {% else %}
+            <div class="col-{{ groupCol }}">
+              {{ rnc(title = item, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'radio', align = align, mr = mr, checked = checked, name = name, value = name + loop.index, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="errorBlock"></div>
+    </div>
+  {% endif %}
+{% endmacro %}
