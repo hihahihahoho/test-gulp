@@ -610,8 +610,7 @@ textarea {
 .textarea-autosize {
   max-height: $textarea-autosize-max-height;
   transition: none !important;
-  & ~ *,
-  & ~ .input-frame:after,
+  & ~ *:not(.input-label),
   & ~ .input-label::after,
   & ~ .input-flex-content::before {
     transition: none !important;

@@ -120,13 +120,26 @@ var pluginsDetail = {
   'croppie': {
     "name": 'croppie',
     "styles": [
-      "node_modules/croppie/croppie.css"
+      "node_modules/croppie/croppie.css"   
     ],
     "scripts": [
       "node_modules/croppie/croppie.min.js"
     ],
     "init": [
       "src/js/croppie.init.js"
+    ]
+  },
+  'uppy': {
+    "name": 'uppy',
+    "styles": [
+      "node_modules/@uppy/core/dist/style.min.css",
+      "node_modules/@uppy/dashboard/dist/style.min.css"
+    ],
+    "scripts": [
+      "./src/plugins-browserify/uppy/uppy.js"
+    ],
+    "init": [
+      "src/js/uppy.init.js"
     ]
   }
 }
@@ -148,7 +161,8 @@ var plugins = {
     pluginsDetail.cleave,
     pluginsDetail.sortablejs,
     pluginsDetail.autosize,
-    pluginsDetail.croppie
+    pluginsDetail.croppie,
+    pluginsDetail.uppy
   ]
 }
 

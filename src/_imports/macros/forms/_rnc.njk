@@ -81,3 +81,36 @@
     </div>
   {% endif %}
 {% endmacro %}
+
+{% macro switch (title, subTitle, color = 'base', fontSize, extendClass = '', extendAttr = '', align = 'center', checked, name = '', value = '', custom = '', icPos = 'right', id, custom, groupGutter = '10') %}
+  {% if icPos == 'left' %}
+    {% set order = 'order-1' %}
+  {% endif %}
+  {% if id %}
+    {% set idText = 'id="' + id + '"' %}
+  {% endif %}
+  <label class="switch switch-stretch block switch-item-bg ripple {{ fontSize }} {{ extendClass }}">
+    <input type="checkbox" class="hidden" name="{{ name }}" {{ extendAttr  | safe }} value="{{ value }}" {{ idText | safe }}>
+    <div class="switch-inner">
+      <div class="row row-{{ groupGutter }} align-items-{{ align }}">
+        {% if title or subTitle %}
+          <div class="col color-{{ color }} {{ order }}">
+            {% if title %}
+              <div class="txt-main">{{ title }}</div>
+            {% endif %}
+            {% if subTitle %}
+              <div class="txt-sub h6">{{ subTitle }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="col-auto">
+          <div class="switch-wrap block-right">
+            <div class="switch-ic"></div>
+            <div class="switch-bg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ custom | safe }}
+  </label>
+{% endmacro %}

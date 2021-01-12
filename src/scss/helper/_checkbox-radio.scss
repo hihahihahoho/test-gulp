@@ -14,7 +14,7 @@ $rnc-active-bg-color: rgba($color-primary, 0.1);
 $rnc-active-bg-color-radio: rgba($color-primary, 0.1);
 $rnc-ripple-color: rgba($rnc-active-color, 0.1);
 //=====Swich-ios======
-$switch-ic-size: 20px;
+$switch-ic-size: 22px;
 $switch-ic-border-radius: $switch-ic-size / 2;
 $switch-bg-height: 26px;
 $switch-bg-width: 44px;
@@ -48,6 +48,7 @@ $switch-ic-active-bg-color: white;
   }
   &-xs {
     width: $rnc-xs;
+    min-width: $rnc-xs;
     height: $rnc-xs;
     .radio-check {
       width: ($rnc-xs / 2) - 1;
@@ -56,6 +57,7 @@ $switch-ic-active-bg-color: white;
   }
   &-sm {
     width: $rnc-sm;
+    min-width: $rnc-sm;
     height: $rnc-sm;
     .radio-check {
       width: ($rnc-sm / 2) - 1;
@@ -64,6 +66,7 @@ $switch-ic-active-bg-color: white;
   }
   &-md {
     width: $rnc-md;
+    min-width: $rnc-md;
     height: $rnc-md;
     .radio-check {
       width: ($rnc-md / 2) - 1;
@@ -72,6 +75,7 @@ $switch-ic-active-bg-color: white;
   }
   &-lg {
     width: $rnc-lg;
+    min-width: $rnc-lg;
     height: $rnc-lg;
     .radio-check {
       width: ($rnc-lg / 2) - 1;
@@ -135,6 +139,7 @@ $switch-ic-active-bg-color: white;
   @include no-select();
   &-xs {
     width: $rnc-xs;
+    min-width: $rnc-xs;
     height: $rnc-xs;
     .radio-check,
     &:after {
@@ -144,6 +149,7 @@ $switch-ic-active-bg-color: white;
   }
   &-sm {
     width: $rnc-sm;
+    min-width: $rnc-sm;
     height: $rnc-sm;
     .radio-check,
     &:after {
@@ -153,6 +159,7 @@ $switch-ic-active-bg-color: white;
   }
   &-md {
     width: $rnc-md;
+    min-width: $rnc-md;
     height: $rnc-md;
     .radio-check,
     &:after {
@@ -162,6 +169,7 @@ $switch-ic-active-bg-color: white;
   }
   &-lg {
     width: $rnc-lg;
+    min-width: $rnc-lg;
     height: $rnc-lg;
     .radio-check,
     &:after {
@@ -238,6 +246,7 @@ $switch-ic-active-bg-color: white;
   cursor: pointer;
   &-wrap {
     position: relative;
+    width: $switch-bg-width;
   }
   &-text {
     font-size: 14px;
@@ -282,7 +291,7 @@ $switch-ic-active-bg-color: white;
 }
 
 input[type="checkbox"]:checked {
-  & ~ .table {
+  & ~ * {
     .switch-ic {
       right: ($switch-bg-height - $switch-ic-size)/2 + 1;
       left: $switch-bg-width - $switch-ic-size - ($switch-bg-height - $switch-ic-size)/2 - 1;
@@ -376,7 +385,5 @@ input[type="radio"]:checked {
     }
     align-items: center;
     display: flex;
-    display: inline-block;
-    line-height: 0;
   }
 }

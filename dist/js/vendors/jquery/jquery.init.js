@@ -141,21 +141,21 @@ function menu () {
 
 $(document).ready(function () {
   //Input material
-  $('.select-2').each(function () {
+  $('.select-2.input-label-change').each(function () {
     if ($(this).val().length == 0) {
       $(this).removeClass('input-hadval');
     } else {
       $(this).addClass('input-hadval');
     }
   })
-  $('.select-2').change(function () {
+  $('.select-2.input-label-change').change(function () {
     if ($(this).val().length == 0) {
       $(this).removeClass('input-hadval');
     } else {
       $(this).addClass('input-hadval');
     }
   })
-  $('.input-material:not(.static)').each(function () {
+  $('.input-label-change:not(.static):not(.select-normal)').each(function () {
     if ($(this).val().length == 0) {
       $(this).removeClass('input-hadval');
     } else {
@@ -169,70 +169,21 @@ $(document).ready(function () {
       }
     })
   });
-
+  $('.select-normal.input-label-change').each(function () {
+    if ($(this).find(':selected').length == 0) {
+      $(this).removeClass('input-hadval');
+    } else {
+      $(this).addClass('input-hadval');
+    }
+    $(this).on('blur change', function () {
+      if ($(this).find(':selected').length == 0) {
+        $(this).removeClass('input-hadval');
+      } else {
+        $(this).addClass('input-hadval');
+      }
+    })
+  });
   //End Input material
-  //Input material-2
-  $('.select-2').each(function () {
-    if ($(this).val().length == 0) {
-      $(this).removeClass('input-hadval');
-    } else {
-      $(this).addClass('input-hadval');
-    }
-  })
-  $('.select-2').change(function () {
-    if ($(this).val().length == 0) {
-      $(this).removeClass('input-hadval');
-    } else {
-      $(this).addClass('input-hadval');
-    }
-  })
-  $('.input-material-2:not(.static)').each(function () {
-    if ($(this).val().length == 0) {
-      $(this).removeClass('input-hadval');
-    } else {
-      $(this).addClass('input-hadval');
-    }
-    $(this).on('blur change', function () {
-      if ($(this).val().length == 0) {
-        $(this).removeClass('input-hadval');
-      } else {
-        $(this).addClass('input-hadval');
-      }
-    })
-  });
-
-  //End Input material-2
-  //Input material-3
-  $('.select-2').each(function () {
-    if ($(this).val().length == 0) {
-      $(this).removeClass('input-hadval');
-    } else {
-      $(this).addClass('input-hadval');
-    }
-  })
-  $('.select-2').change(function () {
-    if ($(this).val().length == 0) {
-      $(this).removeClass('input-hadval');
-    } else {
-      $(this).addClass('input-hadval');
-    }
-  })
-  $('.input-material-3:not(.static)').each(function () {
-    if ($(this).val().length == 0) {
-      $(this).removeClass('input-hadval');
-    } else {
-      $(this).addClass('input-hadval');
-    }
-    $(this).on('blur change', function () {
-      if ($(this).val().length == 0) {
-        $(this).removeClass('input-hadval');
-      } else {
-        $(this).addClass('input-hadval');
-      }
-    })
-  });
-
-  //End Input material-3
   //input clear
   $('.input-clear').on('mousedown', function () {
     var input = $(this).closest('.input-group').find('input');

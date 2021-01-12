@@ -43,7 +43,11 @@
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
-            {{ form.select('Select', value = dataSelect, extendAttr = 'required',settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select normal', value = dataSelect, extendAttr = 'required', selectLib = 'none', placeholder = 'Select your option' ,settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
+            {{ form.select('Select-2', value = dataSelect, extendAttr = 'required',settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set dataSelect = [
@@ -73,7 +77,7 @@
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }
             ] %}
-            {{ form.select('Select Custom Image', value = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', search='false', settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select-2 Custom Image', value = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', search='false', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set dataSelect = [
@@ -100,10 +104,10 @@
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }
             ] %}
-            {{ form.select('Select Custom Text', value = dataSelect, extendAttr = 'required', settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select-2 Custom Text', value = dataSelect, extendAttr = 'required', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.select('Select Multiple', value = dataSelect, multiple = 'true', extendAttr = 'required',settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select-2 Multiple', value = dataSelect, multiple = 'true', extendAttr = 'required',settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {{ form.datepicker('Datepicker single', note = 'This is an input note', extendAttr = 'required', settingInputCustom = settingInputCustom) }}

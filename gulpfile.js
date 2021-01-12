@@ -16,7 +16,7 @@ const image = require('gulp-image');
 const data = require('gulp-data');
 const path = require('path');
 const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
+const uglify = require('gulp-uglify-es').default;
 const nunjucksRender = require('gulp-nunjucks-render');
 const htmlbeautify = require('gulp-html-beautify');
 const purgecss = require('gulp-purgecss')
@@ -25,6 +25,9 @@ const gulpif = require('gulp-if');
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
 const rename = require('gulp-rename');
+const browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 
 // var favicons = require('gulp-favicons');
 var del = require('del');
@@ -57,6 +60,14 @@ var options = {
   max_preserve_newlines: 0
 };
 
+function browserifyJs (cb) {
+  return browserify('./src/plugins-browserify/uppy/uppy.js')
+    .bundle()
+    .pipe(source('bundle.js'))
+    // Start piping stream to tasks!
+    .pipe(gulp.dest('./dist/js/vendors/plugins-browserify/'));
+};
+
 function cleanVendorsJs (cb) {
   del('dist/css/vendors/**', { force: true });
   return del('dist/js/vendors/**', { force: true });
@@ -67,10 +78,21 @@ function pluginsVendorsJS (cb) {
   plugins = require('./gulp_plugins_config.js').plugins
   plugins.vendors.map((file, index) => {
     if (file.scripts != undefined) {
-      gulp.src(file.scripts, { allowEmpty: true })
-        .pipe(gulpif('!**/*.min.js', cache(uglify())))
-        .pipe(concat(file.name + '.bundles.js'))
-        .pipe(gulp.dest('./dist/js/vendors/' + file.name));
+      if (file.scripts.toString().includes("browserify")) {
+        browserify(file.scripts)
+          .bundle()
+          .pipe(source(file.name + '.bundles.js'))
+          .pipe(buffer())
+          .pipe(gulpif('!**/*.min.js', cache(uglify())))
+          // Start piping stream to tasks!
+          .pipe(gulp.dest('./dist/js/vendors/' + file.name));
+      }
+      else {
+        gulp.src(file.scripts, { allowEmpty: true })
+          .pipe(gulpif('!**/*.min.js', cache(uglify())))
+          .pipe(concat(file.name + '.bundles.js'))
+          .pipe(gulp.dest('./dist/js/vendors/' + file.name));
+      }
     }
   })
   cb()
@@ -267,7 +289,7 @@ function dataTest () {
 var manageEnvironment = function (environment) {
   environment.addFilter('isStr', something => typeof something == 'string')
   environment.addFilter('isArr', something => Array.isArray(something))
-  environment.addFilter('isDict', something => something.constructor == Object ? true : false) 
+  environment.addFilter('isDict', something => something.constructor == Object ? true : false)
 }
 
 function nunjucks () {
@@ -574,6 +596,7 @@ exports.htmlBeauty = htmlBeauty;
 exports.watch = watch;
 exports.purgeCss = series(purge, minifyCss);
 exports.prefixCss = prefixCss;
+exports.pluginsVendorsJS = pluginsVendorsJS;
 exports.pluginsVendors = series(pluginsVendorsJS, pluginsVendorsCss);
 exports.pluginsInitJS = pluginsInitJS;
 exports.pluginsVendorsInitJS = pluginsVendorsInitJS;
@@ -586,6 +609,7 @@ exports.gitAdd = gitAdd;
 exports.babeljs = babeljs;
 exports.fontSrc = fontSrc;
 exports.lowercaseFiles = lowercaseFiles;
+exports.browserifyJs = browserifyJs;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), series(cleanHtml, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 

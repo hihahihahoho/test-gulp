@@ -98,10 +98,15 @@
     {% endif %}
   {% endif %}
 
+  {% if inputType == 'material' or inputType == 'material-2' or inputType == 'material-3' %}
+    {% set inputTypeText = 'input-label-change' %}
+  {% endif %}
+
   {% set inputArtt %}
   {{ idText }}
   type="{{ type }}" class="input input-{{ inputSize }}
   input-{{ inputType }}
+  {{ inputTypeText }}
   input-ic-{{ icSize }}
   {% if inputClear == 'true' %}
     input-has-clear
@@ -130,7 +135,7 @@
         {% else %}
           <input {{ inputArtt | safe | trim}} value="{{ value }}">
           {% if fakeInput %}
-            <div class="input input-{{ inputSize }} input-{{ inputType }} input-holder">
+            <div class="input input-{{ inputSize }} input-{{ inputType }} {{ inputTypeText }} input-holder">
               {{ fakeInput }}
             </div>
           {% endif %}
@@ -188,7 +193,7 @@
   <!-- end forms.input -->
 {% endmacro %}
 
-{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.inputSize, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple) %}
+{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.inputSize, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple, selectLib = settingInputDefault.selectLib) %}
   <!-- forms.select -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -232,7 +237,13 @@
     {% set idText = 'id="' + id + '"' %}
   {% endif %}
 
-  {% set selectTemp = {'foo': False} %}
+  {% set selectTemp = {
+    'foo': False
+  } %}
+
+  {% if inputType == 'material' or inputType == 'material-2' or inputType == 'material-3' %}
+    {% set inputTypeText = 'input-label-change' %}
+  {% endif %}
 
   {% set selectTxt = '' %}
 
@@ -245,12 +256,22 @@
   {% if multiple == 'true' %}
     {% set multipleText = 'multiple' %}
   {% endif %}
+  {% set selectLibText = '' %}
+  {% if selectLib == 'select-2' %}
+    {% set selectLibText = 'select-2' %}
+  {% elseif selectLib == 'none' %}
+    {% set selectLibText = 'select-normal' %}
+  {% endif %}
 
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
       <div class="input-group">
-        <select {{ idText }} name="" class="select-2 {{ selectTxt }} {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr }} {{ disabledAttr }} {{ multipleText }}>
-          <option value=""></option>
+        <select {{ idText }} name="" class="{{ selectLibText }} {{ selectTxt }} {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{ inputTypeText }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr }} {{ disabledAttr }} {{ multipleText }}>
+          {% if selectLib == 'select-2' %}
+            <option value=""></option>
+          {% elseif selectLib == 'none' %}
+            <option value="" disabled="disabled" selected="selected">{{ placeholder }}</option>
+          {% endif %}
           {% if not customOption == '' %}
             {{ customOption | safe }}
           {% elseif selectTxt == 'select-2-template' %}
@@ -289,6 +310,7 @@
 {% endmacro %}
 
 {% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', size = settingInputDefault.inputSize, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '') %}
+  <!-- forms.datepicker -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
       {% set inputType = settingInputCustom.inputType %}
@@ -303,7 +325,11 @@
       {% set inputClear = settingInputCustom.inputClear %}
     {% endif %}
   {% endif %}
-  <!-- forms.datepicker -->
+
+  {% if inputType == 'material' or inputType == 'material-2' or inputType == 'material-3' %}
+    {% set inputTypeText = 'input-label-change' %}
+  {% endif %}
+
   {% if not note == '' %}
     {% set noteContent %}
     <div class="note-text h6 color-base-3">
@@ -326,7 +352,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }}">
       <label class="input-group">
-        <input {{ idText }} type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} input-{{ inputSize }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
+        <input {{ idText }} type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-{{ inputSize }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
         <div class="input-frame"></div>
         <div class="input-label">{{ title }}</div>
         <div class="input-ic">
