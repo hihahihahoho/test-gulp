@@ -619,4 +619,4 @@ exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(pre
 
 exports.deploy = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
 
-exports.deployAll = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deployAll = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp, parallel(pluginsBundlesCss, customCss, pluginsVendorsCss, style)))
