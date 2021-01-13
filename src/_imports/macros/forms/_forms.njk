@@ -367,6 +367,7 @@
 {% endmacro %}
 
 {% macro file(title, extendAttr, extendClass = '', note, settingInputCustom, btnTitle = 'Upload', txtTitle = 'Chose file', pos = 'right') %}
+  <!-- forms.file -->
   {% if pos == 'right' %}
     {% set customFlexContent %}
     <div class="input-group-extend">
@@ -390,5 +391,5 @@
     {% endset %}
     {{ input(title, extendAttr = extendAttr, extendClass = extendClass + 'input-hadval-def input-file-basic', note = note, addFlex = extendContentCon, settingInputCustom = settingInputCustom, type = 'file', inputClear = 'false', fakeInput = fakeInput | safe) }}
   {% endif %}
-
+  <!-- forms.file -->
 {% endmacro %}

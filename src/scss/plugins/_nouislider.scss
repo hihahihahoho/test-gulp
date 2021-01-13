@@ -1,0 +1,125 @@
+.noUi-target {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.noUi-target {
+  position: relative;
+  &::after {
+    height: 3px;
+    background-color: $color-grey-2;
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: auto;
+    bottom: 0;
+    content: "";
+  }
+}
+
+.noUi-connect {
+  &::after {
+    height: 3px;
+    background-color: $color-primary;
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: auto;
+    bottom: 0;
+    content: "";
+  }
+  background: transparent;
+}
+
+.noUi-horizontal .noUi-handle {
+  &::after,
+  &:before {
+    display: none;
+  }
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+}
+
+.noUi-touch-area {
+  background: transparent;
+  border: 0;
+  &::after {
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background-color: $color-primary;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+    content: "";
+  }
+}
+
+.noUi-horizontal .noUi-handle {
+  top: -5px;
+  border: 0;
+  outline: none !important;
+}
+
+.noUi-tooltip {
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  font-size: 11px;
+  width: 30px;
+  height: 40px;
+  line-height: 20px;
+  border: 0;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='40' viewBox='0 0 30 40'%3E%3Cpath id='Path_244' data-name='Path 244' d='M15,0A15,15,0,0,1,30,15c0,8.284-15,25-15,25S0,23.284,0,15A15,15,0,0,1,15,0Z' fill='%23" + str-replace("" + $color-primary, "#", "") + "'/%3E%3C/svg%3E%0A");
+}
+.noUi-horizontal .noUi-tooltip {
+  transform: scale(0) translate(-50%, 0);
+  transition: 0.2s transform ease-in-out;
+  transform-origin: 0 100%;
+}
+.noUi-active {
+  .noUi-tooltip {
+    border-radius: 0;
+    transform: scale(1) translate(-50%, 0);
+  }
+}
+.noUi-horizontal .noUi-tooltip {
+  bottom: 90%;
+}
+
+.noUi-marker-horizontal.noUi-marker {
+  height: 3px;
+  width: 1px;
+  margin-left: -0.5px;
+  background-color: $color-grey-2;
+}
+
+.noUi-marker-horizontal.noUi-marker-large {
+  height: 5px;
+  width: 1px;
+  margin-left: -0.5px;
+  background-color: $color-grey-2;
+}
+
+.noUi-value-horizontal {
+  font-size: 11px;
+}
+
+.noUi-pips-horizontal {
+  padding-top: 2px;
+}
+
+.ui-slider-pip {
+  margin-bottom: 22px;
+}

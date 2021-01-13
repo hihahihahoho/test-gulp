@@ -1,0 +1,72 @@
+{% extends "main/_layout-sidebar.njk" %}
+{% set pageLink = file_path %}
+{% set pageTitle = 'Range - NoUiSlider' %}
+
+{% block css %}
+  <!-- uppy -->
+  <link rel="stylesheet" href="/dist/css/vendors/nouislider/nouislider.bundles.css">
+  <!-- end uppy -->
+{% endblock %}
+
+{% block mainInner %}
+  <div class="box">
+    <div class="box__body pb-0">
+      <h5 class="pb30">Material Style</h5>
+      <form class="from-section form-vertical pb30">
+        <div class="row row-20">
+          <div class="col-sm-6">
+            <div id="slider" class="ui-slider-basic"></div>
+          </div>
+          <div class="col-sm-6">
+            <div id="slider2" class="ui-slider-pip"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <!-- uppy -->
+  <script src="/dist/js/vendors/nouislider/nouislider.bundles.js"></script>
+  <script src="/dist/js/vendors/wnumb/wnumb.bundles.js"></script>
+  <script src="/dist/js/vendors/nouislider/nouislider.init.js"></script>
+  <!-- uppy -->
+{% endblock %}
+
+{% block pageScript %}
+  <script>
+    var slider = document.getElementById('slider');
+    noUiSlider.create(slider, {
+      start: [20],
+      connect: 'lower',
+      tooltips: true,
+      step: 1,
+      range: {
+        'min': 0,
+        'max': 100
+      },
+      format: wNumb({decimals: 0})
+    });
+    var slider2 = document.getElementById('slider2');
+    noUiSlider.create(slider2, {
+      start: [
+        20, 80
+      ],
+      pips: {
+        mode: 'count',
+        density: 5,
+        values: 10
+      },
+      behaviour: 'drag',
+      connect: true,
+      tooltips: true,
+      step: 1,
+      range: {
+        'min': 0,
+        'max': 100
+      },
+      format: wNumb({decimals: 0})
+    });
+  </script>
+{% endblock %}

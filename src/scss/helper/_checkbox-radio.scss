@@ -14,7 +14,7 @@ $rnc-active-bg-color: rgba($color-primary, 0.1);
 $rnc-active-bg-color-radio: rgba($color-primary, 0.1);
 $rnc-ripple-color: rgba($rnc-active-color, 0.1);
 //=====Swich-ios======
-$switch-ic-size: 22px;
+$switch-ic-size: 24px;
 $switch-ic-border-radius: $switch-ic-size / 2;
 $switch-bg-height: 26px;
 $switch-bg-width: 44px;
@@ -261,8 +261,8 @@ $switch-ic-active-bg-color: white;
     height: $switch-ic-size;
     background-color: $switch-ic-bg-color;
     position: absolute;
-    left: ($switch-bg-height - $switch-ic-size)/2 + 1;
-    right: $switch-bg-width - $switch-ic-size - ($switch-bg-height - $switch-ic-size)/2 - 1;
+    left: ($switch-bg-height - $switch-ic-size)/2;
+    right: $switch-bg-width - $switch-ic-size - ($switch-bg-height - $switch-ic-size)/2;
     top: ($switch-bg-height - $switch-ic-size)/2;
     @include transition(0.2s all ease-in-out);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
@@ -293,8 +293,8 @@ $switch-ic-active-bg-color: white;
 input[type="checkbox"]:checked {
   & ~ * {
     .switch-ic {
-      right: ($switch-bg-height - $switch-ic-size)/2 + 1;
-      left: $switch-bg-width - $switch-ic-size - ($switch-bg-height - $switch-ic-size)/2 - 1;
+      right: ($switch-bg-height - $switch-ic-size)/2;
+      left: $switch-bg-width - $switch-ic-size - ($switch-bg-height - $switch-ic-size)/2;
       background-color: $switch-ic-active-bg-color;
     }
     .switch-bg {

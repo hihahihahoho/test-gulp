@@ -40,3 +40,90 @@
   width: 0%;
 }
 /* end macros eye */
+
+/*pagination*/
+.pagination {
+  font-size: 0;
+}
+
+.pagination-item {
+  font-size: 13px;
+  display: inline-block;
+  background-color: transparent;
+  margin: 0 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 28px;
+  color: #121f3e;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.pagination-item img {
+  width: 16px;
+}
+
+.pagination-item:first-child,
+.pagination-item:last-child {
+  margin: 0;
+}
+
+.pagination-item:not(.pagination-active):hover {
+  background-color: #f3f6f8;
+}
+
+.pagination-dots {
+  color: #b7c0cd;
+  cursor: default;
+}
+
+.pagination-last,
+.pagination-first {
+  width: 40px;
+  height: 30px;
+}
+
+.pagination-dots,
+.pagination-number,
+.pagination-next,
+.pagination-back {
+  width: 30px;
+  height: 30px;
+}
+
+.pagination-active {
+  background-color: #3b52fd;
+  color: white;
+}
+
+.pagination-next,
+.pagination-back {
+  position: relative;
+}
+
+.pagination-next:before,
+.pagination-back:before {
+  background-size: 16px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  content: "";
+}
+
+.pagination-next:before {
+  background-image: url("/dist/media/icons/svg/dark/chevron-right.svg");
+}
+
+.pagination-back:before {
+  background-image: url("/dist/media/icons/svg/dark/chevron-left.svg");
+}
+
+.pagination-active .legitRipple-ripple {
+  background: #3b52fd;
+}
+/*end pagination*/

@@ -1,8 +1,26 @@
 {% macro eye() %}
+  <!-- utl.eye -->
   <div class="eye-wrap">
     <label class="eye">
       <input type="checkbox" class="hidden">
       <div class="eye-slash"></div>
     </label>
   </div>
+  <!-- end utl.eye -->
+{% endmacro %}
+
+{% macro pagination(justify = 'center') %}
+  <!-- utl.pagination -->
+  <div class="pagination justify-content-{{ justify }}">
+    <div class="ripple pagination-item pagination-first legitRipple">Đầu</div>
+    <div class="ripple pagination-item pagination-back legitRipple"></div>
+    <div class="ripple pagination-item pagination-number legitRipple">1</div>
+    <div class="ripple pagination-item pagination-number legitRipple">2</div>
+    <div class="ripple pagination-item pagination-number pagination-active legitRipple">3</div>
+    <div class="pagination-item pagination-dots">...</div>
+    <div class="ripple pagination-item pagination-number legitRipple">102</div>
+    <div class="ripple pagination-item pagination-next legitRipple"></div>
+    <div class="ripple pagination-item pagination-last legitRipple">Cuối</div>
+  </div>
+  <!-- utl.pagination -->
 {% endmacro %}

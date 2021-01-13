@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>Ultimate HTML -
-    Uppy</title>
+    Range - NoUiSlider</title>
   <!-- bootstrap -->
   <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.bundles.css">
   <!-- end bootstrap -->
@@ -22,7 +22,7 @@
   <!-- end croppie -->
   <!-- css use for this page only -->
   <!-- uppy -->
-  <link rel="stylesheet" href="css/vendors/uppy/uppy.bundles.css">
+  <link rel="stylesheet" href="css/vendors/nouislider/nouislider.bundles.css">
   <!-- end uppy -->
   <!-- end css use for this page only -->
   <!-- css use for this page only -->
@@ -94,18 +94,18 @@
         <div class="txt">Radio | Checkbox | Switch</div>
       </a>
     </div>
-    <div class="sidebar__list">
+    <div class="sidebar__list active">
       <a class="sidebar__item" href="pages/forms/1-3-forms-range.html">
         <div class="ic">
-          <img src="media/icons/svg/dark/plannet.svg" alt="">
+          <img src="media/icons/svg/primary/plannet.svg" alt="">
         </div>
         <div class="txt">Range (NoUiSlider)</div>
       </a>
     </div>
-    <div class="sidebar__list active">
+    <div class="sidebar__list">
       <a class="sidebar__item" href="pages/forms/1-4-uppy.html">
         <div class="ic">
-          <img src="media/icons/svg/primary/plannet.svg" alt="">
+          <img src="media/icons/svg/dark/plannet.svg" alt="">
         </div>
         <div class="txt">File upload (Uppy)</div>
       </a>
@@ -317,16 +317,18 @@
       <div class="main-inner main-inner-page">
         <div class="container">
           <div class="title-section">
-            <div class="h1 b pv30">Uppy</div>
+            <div class="h1 b pv30">Range - NoUiSlider</div>
           </div>
           <div class="box">
             <div class="box__body pb-0">
-              <h5 class="pb30">Checkbox
-              </h5>
+              <h5 class="pb30">Material Style</h5>
               <form class="from-section form-vertical pb30">
                 <div class="row row-20">
                   <div class="col-sm-6">
-                    <div id="uppy"></div>
+                    <div id="slider" class="ui-slider-basic"></div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div id="slider2" class="ui-slider-pip"></div>
                   </div>
                 </div>
               </form>
@@ -438,24 +440,50 @@
 <!-- croppie -->
 <!-- script use for this page only -->
 <!-- uppy -->
-<script src="js/vendors/uppy/uppy.bundles.js"></script>
+<script src="js/vendors/nouislider/nouislider.bundles.js"></script>
+<script src="js/vendors/wnumb/wnumb.bundles.js"></script>
+<script src="js/vendors/nouislider/nouislider.init.js"></script>
 <!-- uppy -->
 <!-- end script for this page only -->
 <script src="js/custom.js"></script>
 <!-- script use for this page only -->
 <script>
-  var uppy = Uppy.Core();
-  uppy
-    .use(Uppy.Dashboard, {
-      target: '#uppy',
-      inline: true,
-      proudlyDisplayPoweredByUppy: false,
-      height: 300,
-      width: 'auto'
+  var slider = document.getElementById('slider');
+  noUiSlider.create(slider, {
+    start: [20],
+    connect: 'lower',
+    tooltips: true,
+    step: 1,
+    range: {
+      'min': 0,
+      'max': 100
+    },
+    format: wNumb({
+      decimals: 0
     })
-    .use(Uppy.Tus, {
-      endpoint: 'https://tusd.tusdemo.net/files/'
+  });
+  var slider2 = document.getElementById('slider2');
+  noUiSlider.create(slider2, {
+    start: [
+      20, 80
+    ],
+    pips: {
+      mode: 'count',
+      density: 5,
+      values: 10
+    },
+    behaviour: 'drag',
+    connect: true,
+    tooltips: true,
+    step: 1,
+    range: {
+      'min': 0,
+      'max': 100
+    },
+    format: wNumb({
+      decimals: 0
     })
+  });
 </script>
 <!-- end script for this page only -->
 

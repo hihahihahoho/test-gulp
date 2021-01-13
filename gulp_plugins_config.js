@@ -141,6 +141,24 @@ var pluginsDetail = {
     "init": [
       "src/js/uppy.init.js"
     ]
+  },
+  'nouislider': {
+    "name": 'nouislider',
+    "styles": [
+      "node_modules/nouislider/distribute/nouislider.min.css"
+    ],
+    "scripts": [
+      "node_modules/nouislider/distribute/nouislider.min.js"
+    ],
+    "init": [
+      "src/js/nouislider.init.js"
+    ]
+  },
+  'wnumb': {
+    "name": 'wnumb',
+    "scripts": [
+      "node_modules/wnumb/wNumb.min.js"
+    ]
   }
 }
 
@@ -162,7 +180,9 @@ var plugins = {
     pluginsDetail.sortablejs,
     pluginsDetail.autosize,
     pluginsDetail.croppie,
-    pluginsDetail.uppy
+    pluginsDetail.uppy,
+    pluginsDetail.nouislider,
+    pluginsDetail.wnumb
   ]
 }
 
