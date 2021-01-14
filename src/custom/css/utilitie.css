@@ -127,3 +127,11 @@
   background: #3b52fd;
 }
 /*end pagination*/
+/*table-simple*/
+.table-simple td,
+.table-simple th,
+.table-simple {
+  border: 1px solid #b7c0cd;
+  padding: 10px;
+}
+/*end table-simple*/

@@ -5,11 +5,32 @@
 {% block mainInner %}
   <div class="box">
     <div class="box__body">
-      <div class="btn-groups">
-        <div class="row row-10 list-mv5">
-          <div class="col">
-            {{ ult.pagination() }}
-          </div>
+      <h5 class="pb30">Pagination</h5>
+      <div class="row row-10 list-mv5">
+        <div class="col">
+          {{ ult.pagination() }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Table basic</h5>
+      <div class="row row-10 list-mv5">
+        <div class="col">
+          {% set tableValue =
+            {
+              thead: [
+                ['Collumn 1', 'Collumn 2', 'Collumn 3']
+              ],
+              tbody: [
+                ['Collumn 1', 'Collumn 2', 'Collumn 3'],
+                ['Collumn 1', 'Collumn 2', 'Collumn 3'],
+                ['Collumn 1', 'Collumn 2', 'Collumn 3']
+              ]
+            }
+          %}
+          {{ ult.table(tableValue) }}
         </div>
       </div>
     </div>

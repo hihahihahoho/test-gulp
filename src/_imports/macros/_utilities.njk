@@ -24,3 +24,51 @@
   </div>
   <!-- utl.pagination -->
 {% endmacro %}
+
+{% macro tableRow(type, value, indexNum) %}
+  <tr>
+    {% if indexNum %}
+      {% if type == 'th' %}
+        <th>STT</th>
+      {% else  %}
+        <{{ type }}>{{indexNum}}</{{ type }}>
+      {% endif %}
+    {% endif %}
+    {% for i in value %}
+      <{{ type }}>
+        {{ i | safe }}
+      </{{ type }}>
+    {% endfor %}
+  </tr>
+{% endmacro %}
+
+{% macro table(value, index = 'true') %}
+  <!-- utl.table -->
+  <table class="table table-simple">
+    {% if value.thead %}
+      <thead>
+        {% for item in value.thead %}
+          {{ tableRow('th', value = item, indexNum = loop.index) }}
+        {% endfor %}
+      </thead>
+    {% endif %}
+
+    {% if value.tbody %}
+      <tbody>
+        {% for item in value.tbody %}
+          {{ tableRow('td', value = item, indexNum = loop.index) }}
+        {% endfor %}
+      </tbody>
+    {% endif %}
+
+    {% if value.tfoot %}
+      <tfoot>
+        {% for item in value.tfoot %}
+          {{ tableRow('td', value = item, indexNum = loop.index) }}
+        {% endfor %}
+      </tfoot>
+    {% endif %}
+
+  </table>
+  <!-- emd utl.table -->
+{% endmacro %}
