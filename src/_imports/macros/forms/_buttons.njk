@@ -90,7 +90,7 @@
     href ="{{ href }}"
     {% endset %}
   {% endif %}
-  <{{ type }} {{idTxt}} class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ roundedText }} {{ extendClass }}" {{ modalAttr | safe}} {{ hrefAttr | safe}} {{ extendAttr }} {{disabledText}} {{ tooltipContent | safe }}>
+  <{{ type }} {{idTxt}} class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ roundedText }} {{ extendClass }}" {{ modalAttr | safe}} {{ hrefAttr | safe}} {{ extendAttr | safe }} {{disabledText}} {{ tooltipContent | safe }}>
     <div class="ubtn-full">
       {{ btnContent | safe }}
     </div>

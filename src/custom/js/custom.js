@@ -6,4 +6,6 @@ $(document).ready(function () {
       uploadTxt.text(e.target.files[0].name)
     })
   })
+  $('.dropdown').dropdown({
+  })
 })

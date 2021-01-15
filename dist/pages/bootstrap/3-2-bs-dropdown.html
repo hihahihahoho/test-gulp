@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>Ultimate HTML -
-    Uppy</title>
+    Dropdown</title>
   <!-- bootstrap -->
   <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.bundles.css">
   <!-- end bootstrap -->
@@ -21,9 +21,6 @@
   <link rel="stylesheet" href="css/vendors/croppie/croppie.bundles.css">
   <!-- end croppie -->
   <!-- css use for this page only -->
-  <!-- uppy -->
-  <link rel="stylesheet" href="css/vendors/uppy/uppy.bundles.css">
-  <!-- end uppy -->
   <!-- end css use for this page only -->
   <!-- css use for this page only -->
   <!-- end css use for this page only -->
@@ -102,10 +99,10 @@
         <div class="txt">Range (NoUiSlider)</div>
       </a>
     </div>
-    <div class="sidebar__list active">
+    <div class="sidebar__list">
       <a class="sidebar__item" href="pages/forms/1-4-uppy.html">
         <div class="ic">
-          <img src="media/icons/svg/primary/plannet.svg" alt="">
+          <img src="media/icons/svg/dark/plannet.svg" alt="">
         </div>
         <div class="txt">File upload (Uppy)</div>
       </a>
@@ -136,10 +133,10 @@
         <div class="txt">Modals</div>
       </a>
     </div>
-    <div class="sidebar__list">
+    <div class="sidebar__list active">
       <a class="sidebar__item" href="pages/bootstrap/3-2-bs-dropdown.html">
         <div class="ic">
-          <img src="media/icons/svg/dark/plannet.svg" alt="">
+          <img src="media/icons/svg/primary/plannet.svg" alt="">
         </div>
         <div class="txt">Dropdowns</div>
       </a>
@@ -324,19 +321,27 @@
       <div class="main-inner main-inner-page">
         <div class="container">
           <div class="title-section">
-            <div class="h1 b pv30">Uppy</div>
+            <div class="h1 b pv30">Dropdown</div>
           </div>
           <div class="box">
-            <div class="box__body pb-0">
-              <h5 class="pb30">Checkbox
-              </h5>
-              <form class="from-section form-vertical pb30">
-                <div class="row row-20">
-                  <div class="col-sm-6">
-                    <div id="uppy"></div>
+            <div class="box__body">
+              <h5 class="pb30">Dropdown basic</h5>
+              <div class="dropdown2">
+                <!-- button.btn -->
+                <button class="ubtn ubg-primary ubtn-md ubtn-min-width-auto" data-toggle="dropdown">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-text">Dropdown</span>
+                    </div>
                   </div>
+                </button>
+                <!-- end button.btn -->
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -444,26 +449,9 @@
 <script src="js/vendors/croppie/croppie.init.js"></script>
 <!-- croppie -->
 <!-- script use for this page only -->
-<!-- uppy -->
-<script src="js/vendors/uppy/uppy.bundles.js"></script>
-<!-- uppy -->
 <!-- end script for this page only -->
 <script src="js/custom.js"></script>
 <!-- script use for this page only -->
-<script>
-  var uppy = Uppy.Core();
-  uppy
-    .use(Uppy.Dashboard, {
-      target: '#uppy',
-      inline: true,
-      proudlyDisplayPoweredByUppy: false,
-      height: 300,
-      width: 'auto'
-    })
-    .use(Uppy.Tus, {
-      endpoint: 'https://tusd.tusdemo.net/files/'
-    })
-</script>
 <!-- end script for this page only -->
 
 </html>

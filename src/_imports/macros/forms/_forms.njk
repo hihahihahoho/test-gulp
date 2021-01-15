@@ -120,7 +120,7 @@
   {% endif %}
   {{ extendClass }}" autocorrect="off" placeholder="{{ placeholder }}"
   {{ disabledAttr }}
-  {{ extendAttr }}
+  {{ extendAttr | safe }}
   {% endset %}
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
@@ -266,7 +266,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
       <div class="input-group">
-        <select {{ idText }} name="" class="{{ selectLibText }} {{ selectTxt }} {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{ inputTypeText }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr }} {{ disabledAttr }} {{ multipleText }}>
+        <select {{ idText }} name="" class="{{ selectLibText }} {{ selectTxt }} {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{ inputTypeText }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr | safe }} {{ disabledAttr }} {{ multipleText }}>
           {% if selectLib == 'select-2' %}
             <option value=""></option>
           {% elseif selectLib == 'none' %}
