@@ -18,15 +18,16 @@
       <h5 class="pb30">Table basic</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
+          {% set value = ['info', 'edit', 'trash', 'lock', 'unlock'] %}
           {% set tableValue =
             {
               thead: [
-                ['Collumn 1', 'Collumn 2', 'Collumn 3']
+                ['Collumn 1', 'Collumn 2', 'Collumn 3', 'ults']
               ],
               tbody: [
-                ['Collumn 1', 'Collumn 2', 'Collumn 3'],
-                ['Collumn 1', 'Collumn 2', 'Collumn 3'],
-                ['Collumn 1', 'Collumn 2', 'Collumn 3']
+                ['Collumn 1', 'Collumn 2', 'Collumn 3', ult.tableUlt(value)],
+                ['Collumn 1', 'Collumn 2', 'Collumn 3', ult.tableUlt(value)],
+                ['Collumn 1', 'Collumn 2', 'Collumn 3', ult.tableUlt(value)]
               ]
             }
           %}
