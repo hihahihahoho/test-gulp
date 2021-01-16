@@ -1,11 +1,9 @@
 $map-color: (
-  grey: (
-    basic: #afb3bc,
-    1: #afb3bc,
-    2: #e0e4eb,
-    3: #eaeff3,
-    4: #f7f8fa,
-  ),
+  grey-basic: #afb3bc,
+  grey-1: #afb3bc,
+  grey-2: #e0e4eb,
+  grey-3: #eaeff3,
+  grey-4: #f7f8fa,
   base: #121f3e,
   base-2: #707c93,
   white: #ffffff,
@@ -20,9 +18,9 @@ $map-color: (
 
 $map-color-level: (
   primary: map-get($map-color, blue),
-  cancel: map-deep-get($map-color, grey, 4),
+  cancel: map-get($map-color, grey-4),
   secondary: map-get($map-color, green),
-  tertiary: map-deep-get($map-color, grey, 3),
+  tertiary: map-get($map-color, grey-3),
   success: map-get($map-color, green),
   false: map-get($map-color, red),
 );
@@ -30,11 +28,11 @@ $bg-line-border-thick: 1px;
 $bg-op-opacity: 0.2;
 $color-primary: map-get($map-color-level, primary);
 $link-color: map-get($map-color-level, primary);
-$color-grey: map-deep-get($map-color, grey, basic);
-$color-grey-1: map-deep-get($map-color, grey, 1);
-$color-grey-2: map-deep-get($map-color, grey, 2);
-$color-grey-3: map-deep-get($map-color, grey, 3);
-$color-grey-4: map-deep-get($map-color, grey, 4);
+$color-grey: map-get($map-color, grey-basic);
+$color-grey-1: map-get($map-color, grey-1);
+$color-grey-2: map-get($map-color, grey-2);
+$color-grey-3: map-get($map-color, grey-3);
+$color-grey-4: map-get($map-color, grey-4);
 $color-base: map-get($map-color, base);
 $border-base-color: $color-grey-2;
 $color-white: white;
@@ -156,4 +154,3 @@ $map-bg-color-modify: (
 .ubg-transparent {
   background-color: transparent;
 }
-

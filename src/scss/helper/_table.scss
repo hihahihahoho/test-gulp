@@ -1,10 +1,11 @@
 //===========Table===========//
-$table-zebra-bg-color: $color-grey-4;
-$table-zebra-color: $color-base;
+$table-striped-bg-color: $color-grey-4;
+$table-striped-color: $color-base;
 $table-thead-color: $color-grey-1;
 $table-thead-font-weight: 500;
 $table-thead-padding: 12px 5px;
 $table-thead-font-size: 13px;
+$table-thead-bg-color: $color-white;
 $table-font-size: 14px;
 $table-body-padding: 12px 5px;
 $table-border: 1px solid $color-grey-2;
@@ -27,7 +28,7 @@ $page-box-shadow: none;
 $page-hover-color: $color-grey-3;
 
 // default
-$table-zebra-bg-color: #b7c0cd !default;
+$table-striped-bg-color: #b7c0cd !default;
 $table-thead-color: #b7c0cd !default;
 $table-border: 1px solid #b7c0cd !default;
 $table-hover-bg-color: #b7c0cd !default;
@@ -35,18 +36,20 @@ $page-dots: #b7c0cd !default;
 $page-border-active: 1px solid #b7c0cd !default;
 $page-hover-color: #b7c0cd !default;
 
+$table-shadow: -5px 0 5px 0px rgba(82, 63, 105, 0.08);
+
 $map-table-wrapper-size: (
   xs: 500px,
   sm: 600px,
   md: 700px,
-  lg: 800px
+  lg: 800px,
 );
 
 $map-table-td-breakpoint: (
   xs: 480px,
   sm: 768px,
   md: 992px,
-  lg: 1200px
+  lg: 1200px,
 );
 
 @mixin modifiers-table-wraper($map, $prefix: "-", $separator: "-", $base: "basic") {
@@ -55,11 +58,11 @@ $map-table-td-breakpoint: (
       @if type-of($value) == "map" {
         @include modifiers($value, $separator);
       } @else {
+        &:not(.data-table-wraper) {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
         @include media("<=#{$value}") {
-          &:not(.data-table-wraper) {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-          }
           &.data-table-wraper {
             .table-wraper {
               overflow-x: auto;
@@ -94,10 +97,11 @@ $map-table-td-breakpoint: (
     }
   }
 }
-.table td, .table th {
-    padding: inherit;
-    vertical-align: inherit;
-    border-top: inherit;
+.table td,
+.table th {
+  padding: inherit;
+  vertical-align: inherit;
+  border-top: inherit;
 }
 .table {
   display: table;
@@ -119,50 +123,36 @@ $map-table-td-breakpoint: (
   &-left {
     padding-left: 15px !important;
   }
-//   @include modifiers-td($map-table-td-breakpoint);
+  //   @include modifiers-td($map-table-td-breakpoint);
 }
 
 .table {
+  &-min-width-lg {
+    min-width: 1300px;
+  }
   &-fixed {
     table-layout: fixed;
   }
   &-wraper {
     @include modifiers-table-wraper($map-table-wrapper-size);
-    & ~ .bottom {
-      overflow: hidden;
-      padding-top: 20px;
-      padding-bottom: 10px;
-      & > .table {
-        & > .td {
-          &:first-child {
-            width: 90%;
-            padding-right: 50px;
-            @include media("<750px") {
-              padding-right: 0;
-              width: 100%;
-            }
-          }
-          white-space: nowrap;
-          @include media("<750px") {
-            display: block;
-          }
-        }
-      }
-    }
   }
   &-basic {
     font-size: $table-font-size;
     & > thead > tr > th {
+      vertical-align: middle;
       color: $table-thead-color;
       font-weight: $table-thead-font-weight;
       text-align: left;
       padding: $table-thead-padding;
       font-size: $table-thead-font-size;
+      background-color: $table-thead-bg-color;
     }
-    & > tbody > tr {
-      &:nth-of-type(odd) {
-        background-color: $table-zebra-bg-color;
-        color: $table-zebra-color;
+    &.table-striped {
+      & > tbody > tr {
+        &:nth-of-type(odd) {
+          background-color: $table-striped-bg-color;
+          color: $table-striped-color;
+        }
       }
     }
     & > tbody > tr > td {
@@ -174,41 +164,99 @@ $map-table-td-breakpoint: (
   }
   &-border {
     &-v {
-      & > tbody > tr > td,
-      & > thead > tr > th,
-      & > tfoot > tr > td {
-        border-right: $table-border;
-        border-left: $table-border;
+      & > .table-wraper-size table {
+        & > tbody > tr > td,
+        & > thead > tr > th,
+        & > tfoot > tr > td {
+          border-right: $table-border;
+          border-left: $table-border;
+        }
       }
     }
     &-h {
-      & > tbody > tr > td,
-      & > thead > tr > th,
-      & > tfoot > tr > td {
-        border-top: $table-border;
-        border-bottom: $table-border;
+      & > .table-wraper-size table {
+        & > tbody > tr > td,
+        & > thead > tr > th,
+        & > tfoot > tr > td {
+          border-top: $table-border;
+          border-bottom: $table-border;
+        }
       }
     }
-    &-all {
-      & > tbody > tr > td,
-      & > thead > tr > th,
-      & > tfoot > tr > td {
-        border: $table-border;
+    &-vh {
+      & > .table-wraper-size table {
+        & > tbody > tr > td,
+        & > thead > tr > th,
+        & > tfoot > tr > td {
+          border: $table-border;
+        }
       }
     }
   }
   &-hover {
-    tr,
-    .tr {
-      cursor: pointer;
-      &:hover {
-        background-color: $table-hover-bg-color !important;
+    > *:not(thead) {
+      tr,
+      .tr {
+        &:hover {
+          background-color: $table-hover-bg-color !important;
+        }
       }
     }
   }
-  &-no-zebra {
+  &-no-striped {
     & > tbody > tr:nth-of-type(odd) {
       background-color: #ffffff;
+    }
+  }
+  &-fake-border {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    border-right: $table-border;
+  }
+  &-sticky-ult {
+    .table-utls {
+      position: sticky;
+      right: 0;
+      box-shadow: $table-shadow;
+      &:not(th) {
+        background-color: white;
+      }
+    }
+    border-right: $table-border;
+    &.right-none {
+      border-right: 0;
+      > * > *:not(.dataTables_wrapper) .table-utls {
+        box-shadow: none;
+      }
+    }
+    .table-hover > *:not(thead) tr:hover,
+    .table-hover > *:not(thead) .tr:hover {
+      .table-utls {
+        background-color: $table-hover-bg-color !important;
+      }
+    }
+    .table-striped > tbody > tr:nth-of-type(odd) .table-utls {
+      background-color: $table-striped-bg-color;
+    }
+  }
+  &-sticky-footer {
+    .table-footer,
+    ~ .table-footer  {
+      position: sticky;
+      bottom: 17px;
+      background-color: white;
+      z-index: 99;
+    }
+  }
+  &-footer {
+    overflow: hidden;
+    .form-group {
+      margin-bottom: 0;
+    }
+    .errorBlock {
+      display: none;
     }
   }
 }
@@ -221,7 +269,8 @@ $map-table-td-breakpoint: (
 
 .table-wraper-inner {
   position: relative;
-  &:before {
+  &:before,
+  .dataTables_scroll::before {
     content: "";
     background-color: transparent;
     background-image: -ms-linear-gradient(right, transparent, rgba(0, 0, 0, 0.1));
@@ -237,12 +286,9 @@ $map-table-td-breakpoint: (
     z-index: 10;
     opacity: 1;
   }
-  &:after {
+  &:not(.table-wraper-inner):after {
     content: "";
     background-color: transparent;
-    background-image: -ms-linear-gradient(left, transparent, rgba(0, 0, 0, 0.1));
-    background-image: -webkit-linear-gradient(left, transparent, rgba(0, 0, 0, 0.1));
-    background-image: -moz-linear-gradient(left, transparent, rgba(0, 0, 0, 0.1));
     background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1));
     transition: opacity 0.15s linear;
     position: absolute;

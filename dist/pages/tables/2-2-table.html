@@ -8,6 +8,8 @@
   <meta name="format-detection" content="telephone=no">
   <title>Ultimate HTML -
     Tables</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
   <!-- bootstrap -->
   <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.bundles.css">
   <!-- end bootstrap -->
@@ -21,6 +23,12 @@
   <link rel="stylesheet" href="css/vendors/croppie/croppie.bundles.css">
   <!-- end croppie -->
   <!-- css use for this page only -->
+  <!-- datatables -->
+  <link rel="stylesheet" href="css/vendors/datatables/datatables.bundles.css">
+  <!-- end datatables -->
+  <!-- floatingScroll -->
+  <link rel="stylesheet" href="css/vendors/floatingScroll/floatingScroll.bundles.css">
+  <!-- endScroll -->
   <!-- end css use for this page only -->
   <!-- css use for this page only -->
   <!-- end css use for this page only -->
@@ -351,29 +359,232 @@
               <div class="row row-10 list-mv5">
                 <div class="col">
                   <!-- utl.table -->
-                  <table class="table table-simple">
-                    <thead>
-                      <tr>
-                        <th>STT</th>
-                        <th>
-                          Collumn 1
-                        </th>
-                        <th>
-                          Collumn 2
-                        </th>
-                        <th>
-                          Collumn 3
-                        </th>
-                        <th width="100">
-                          ults
-                        </th>
+                  <div class="table-wraper">
+                    <div class="table-wraper-inner table-sticky-ult table-border-vh table-sticky-footer">
+                      <div class="table-wraper-size table-wraper-sm">
+                        <table class="table table-basic table-striped table-hover table-min-width-lg">
+                          <thead>
+                            <tr>
+                              <th width="50" class="text-center">STT</th>
+                              <th>
+                                Collumn 1
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 3
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 3
+                              </th>
+                              <th>
+                                Collumn 2
+                              </th>
+                              <th>
+                                Collumn 3
+                              </th>
+                              <th width="100" class="table-utls">
+                                Thao tác
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="text-center">1</td>
+                              <td>
+                                Collumn 1
+                              </td>
+                              <td>
+                                Collumn 2 Collumn 2 Collumn 2 Collumn 2 Collumn 2 Collumn 2
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 3
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 3
+                              </td>
+                              <td>
+                                Collumn 2
+                              </td>
+                              <td>
+                                Collumn 3
+                              </td>
+                              <td class="table-utls">
+                                <!-- utl.table -->
+                                <div class="row row-5 flex-nowrap">
+                                  <div class="col-auto">
+                                    <!-- button.btn -->
+                                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                                      <div class="ubtn-full">
+                                        <div class="row row-10 ubtn-inner">
+                                          <span class="ubtn-ic col-auto">
+                                            <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </a>
+                                    <!-- end button.btn -->
+                                  </div>
+                                  <div class="col-auto">
+                                    <!-- button.btn -->
+                                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                                      <div class="ubtn-full">
+                                        <div class="row row-10 ubtn-inner">
+                                          <span class="ubtn-ic col-auto">
+                                            <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </a>
+                                    <!-- end button.btn -->
+                                  </div>
+                                  <div class="col-auto">
+                                    <!-- button.btn -->
+                                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                                      <div class="ubtn-full">
+                                        <div class="row row-10 ubtn-inner">
+                                          <span class="ubtn-ic col-auto">
+                                            <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </a>
+                                    <!-- end button.btn -->
+                                  </div>
+                                  <div class="col-auto">
+                                    <!-- button.btn -->
+                                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                                      <div class="ubtn-full">
+                                        <div class="row row-10 ubtn-inner">
+                                          <span class="ubtn-ic col-auto">
+                                            <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </a>
+                                    <!-- end button.btn -->
+                                  </div>
+                                  <div class="col-auto">
+                                    <!-- button.btn -->
+                                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                                      <div class="ubtn-full">
+                                        <div class="row row-10 ubtn-inner">
+                                          <span class="ubtn-ic col-auto">
+                                            <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </a>
+                                    <!-- end button.btn -->
+                                  </div>
+                                  <div class="col-auto">
+                                    <div class="dropdown">
+                                      <!-- button.btn -->
+                                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                                        <div class="ubtn-full">
+                                          <div class="row row-10 ubtn-inner">
+                                            <span class="ubtn-ic col-auto">
+                                              <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </a>
+                                      <!-- end button.btn -->
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                      </div>
+                      <!-- emd utl.table -->
+                      </td>
                       </tr>
-                    </thead>
-                    <tbody>
                       <tr>
-                        <td>1</td>
+                        <td class="text-center">2</td>
                         <td>
                           Collumn 1
+                        </td>
+                        <td>
+                          Collumn 2
+                        </td>
+                        <td>
+                          Collumn 2
+                        </td>
+                        <td>
+                          Collumn 2
+                        </td>
+                        <td>
+                          Collumn 2
+                        </td>
+                        <td>
+                          Collumn 2
+                        </td>
+                        <td>
+                          Collumn 2
+                        </td>
+                        <td>
+                          Collumn 2
+                        </td>
+                        <td>
+                          Collumn 2
                         </td>
                         <td>
                           Collumn 2
@@ -382,6 +593,18 @@
                           Collumn 3
                         </td>
                         <td>
+                          Collumn 2
+                        </td>
+                        <td>
+                          Collumn 3
+                        </td>
+                        <td>
+                          Collumn 2
+                        </td>
+                        <td>
+                          Collumn 3
+                        </td>
+                        <td class="table-utls">
                           <!-- utl.table -->
                           <div class="row row-5 flex-nowrap">
                             <div class="col-auto">
@@ -449,237 +672,3582 @@
                               </a>
                               <!-- end button.btn -->
                             </div>
-                          </div>
-                          <!-- emd utl.table -->
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>
-                          Collumn 1
-                        </td>
-                        <td>
-                          Collumn 2
-                        </td>
-                        <td>
-                          Collumn 3
-                        </td>
-                        <td>
-                          <!-- utl.table -->
-                          <div class="row row-5 flex-nowrap">
                             <div class="col-auto">
-                              <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
-                                <div class="ubtn-full">
-                                  <div class="row row-10 ubtn-inner">
-                                    <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
-                                    </span>
+                              <div class="dropdown">
+                                <!-- button.btn -->
+                                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                                  <div class="ubtn-full">
+                                    <div class="row row-10 ubtn-inner">
+                                      <span class="ubtn-ic col-auto">
+                                        <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                                      </span>
+                                    </div>
                                   </div>
+                                </a>
+                                <!-- end button.btn -->
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="#">Action</a>
+                                  <a class="dropdown-item" href="#">Another action</a>
+                                  <a class="dropdown-item" href="#">Something else here</a>
                                 </div>
-                              </a>
-                              <!-- end button.btn -->
-                            </div>
-                            <div class="col-auto">
-                              <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
-                                <div class="ubtn-full">
-                                  <div class="row row-10 ubtn-inner">
-                                    <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
-                                    </span>
-                                  </div>
-                                </div>
-                              </a>
-                              <!-- end button.btn -->
-                            </div>
-                            <div class="col-auto">
-                              <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
-                                <div class="ubtn-full">
-                                  <div class="row row-10 ubtn-inner">
-                                    <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
-                                    </span>
-                                  </div>
-                                </div>
-                              </a>
-                              <!-- end button.btn -->
-                            </div>
-                            <div class="col-auto">
-                              <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
-                                <div class="ubtn-full">
-                                  <div class="row row-10 ubtn-inner">
-                                    <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
-                                    </span>
-                                  </div>
-                                </div>
-                              </a>
-                              <!-- end button.btn -->
-                            </div>
-                            <div class="col-auto">
-                              <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
-                                <div class="ubtn-full">
-                                  <div class="row row-10 ubtn-inner">
-                                    <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
-                                    </span>
-                                  </div>
-                                </div>
-                              </a>
-                              <!-- end button.btn -->
+                              </div>
                             </div>
                           </div>
-                          <!-- emd utl.table -->
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>
-                          Collumn 1
-                        </td>
-                        <td>
-                          Collumn 2
-                        </td>
-                        <td>
-                          Collumn 3
-                        </td>
-                        <td>
-                          <!-- utl.table -->
-                          <div class="row row-5 flex-nowrap">
-                            <div class="col-auto">
+                    </div>
+                    <!-- emd utl.table -->
+                    </td>
+                    </tr>
+                    <tr>
+                      <td class="text-center">3</td>
+                      <td>
+                        Collumn 1
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 3
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 3
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 3
+                      </td>
+                      <td class="table-utls">
+                        <!-- utl.table -->
+                        <div class="row row-5 flex-nowrap">
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <div class="dropdown">
                               <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
                                 <div class="ubtn-full">
                                   <div class="row row-10 ubtn-inner">
                                     <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                                      <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
                                     </span>
                                   </div>
                                 </div>
                               </a>
                               <!-- end button.btn -->
-                            </div>
-                            <div class="col-auto">
-                              <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
-                                <div class="ubtn-full">
-                                  <div class="row row-10 ubtn-inner">
-                                    <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
-                                    </span>
-                                  </div>
-                                </div>
-                              </a>
-                              <!-- end button.btn -->
-                            </div>
-                            <div class="col-auto">
-                              <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
-                                <div class="ubtn-full">
-                                  <div class="row row-10 ubtn-inner">
-                                    <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
-                                    </span>
-                                  </div>
-                                </div>
-                              </a>
-                              <!-- end button.btn -->
-                            </div>
-                            <div class="col-auto">
-                              <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
-                                <div class="ubtn-full">
-                                  <div class="row row-10 ubtn-inner">
-                                    <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
-                                    </span>
-                                  </div>
-                                </div>
-                              </a>
-                              <!-- end button.btn -->
-                            </div>
-                            <div class="col-auto">
-                              <!-- button.btn -->
-                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
-                                <div class="ubtn-full">
-                                  <div class="row row-10 ubtn-inner">
-                                    <span class="ubtn-ic col-auto">
-                                      <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
-                                    </span>
-                                  </div>
-                                </div>
-                              </a>
-                              <!-- end button.btn -->
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                              </div>
                             </div>
                           </div>
-                          <!-- emd utl.table -->
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                        </div>
+                  </div>
                   <!-- emd utl.table -->
+                  </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">4</td>
+                    <td>
+                      Collumn 1
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 3
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 3
+                    </td>
+                    <td>
+                      Collumn 2
+                    </td>
+                    <td>
+                      Collumn 3
+                    </td>
+                    <td class="table-utls">
+                      <!-- utl.table -->
+                      <div class="row row-5 flex-nowrap">
+                        <div class="col-auto">
+                          <!-- button.btn -->
+                          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner">
+                                <span class="ubtn-ic col-auto">
+                                  <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                                </span>
+                              </div>
+                            </div>
+                          </a>
+                          <!-- end button.btn -->
+                        </div>
+                        <div class="col-auto">
+                          <!-- button.btn -->
+                          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner">
+                                <span class="ubtn-ic col-auto">
+                                  <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                                </span>
+                              </div>
+                            </div>
+                          </a>
+                          <!-- end button.btn -->
+                        </div>
+                        <div class="col-auto">
+                          <!-- button.btn -->
+                          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner">
+                                <span class="ubtn-ic col-auto">
+                                  <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                                </span>
+                              </div>
+                            </div>
+                          </a>
+                          <!-- end button.btn -->
+                        </div>
+                        <div class="col-auto">
+                          <!-- button.btn -->
+                          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner">
+                                <span class="ubtn-ic col-auto">
+                                  <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                                </span>
+                              </div>
+                            </div>
+                          </a>
+                          <!-- end button.btn -->
+                        </div>
+                        <div class="col-auto">
+                          <!-- button.btn -->
+                          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner">
+                                <span class="ubtn-ic col-auto">
+                                  <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                                </span>
+                              </div>
+                            </div>
+                          </a>
+                          <!-- end button.btn -->
+                        </div>
+                        <div class="col-auto">
+                          <div class="dropdown">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
+                <!-- emd utl.table -->
+                </td>
+                </tr>
+                <tr>
+                  <td class="text-center">5</td>
+                  <td>
+                    Collumn 1
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 3
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 3
+                  </td>
+                  <td>
+                    Collumn 2
+                  </td>
+                  <td>
+                    Collumn 3
+                  </td>
+                  <td class="table-utls">
+                    <!-- utl.table -->
+                    <div class="row row-5 flex-nowrap">
+                      <div class="col-auto">
+                        <!-- button.btn -->
+                        <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                          <div class="ubtn-full">
+                            <div class="row row-10 ubtn-inner">
+                              <span class="ubtn-ic col-auto">
+                                <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                        <!-- end button.btn -->
+                      </div>
+                      <div class="col-auto">
+                        <!-- button.btn -->
+                        <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                          <div class="ubtn-full">
+                            <div class="row row-10 ubtn-inner">
+                              <span class="ubtn-ic col-auto">
+                                <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                        <!-- end button.btn -->
+                      </div>
+                      <div class="col-auto">
+                        <!-- button.btn -->
+                        <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                          <div class="ubtn-full">
+                            <div class="row row-10 ubtn-inner">
+                              <span class="ubtn-ic col-auto">
+                                <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                        <!-- end button.btn -->
+                      </div>
+                      <div class="col-auto">
+                        <!-- button.btn -->
+                        <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                          <div class="ubtn-full">
+                            <div class="row row-10 ubtn-inner">
+                              <span class="ubtn-ic col-auto">
+                                <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                        <!-- end button.btn -->
+                      </div>
+                      <div class="col-auto">
+                        <!-- button.btn -->
+                        <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                          <div class="ubtn-full">
+                            <div class="row row-10 ubtn-inner">
+                              <span class="ubtn-ic col-auto">
+                                <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                        <!-- end button.btn -->
+                      </div>
+                      <div class="col-auto">
+                        <div class="dropdown">
+                          <!-- button.btn -->
+                          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner">
+                                <span class="ubtn-ic col-auto">
+                                  <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                                </span>
+                              </div>
+                            </div>
+                          </a>
+                          <!-- end button.btn -->
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              <!-- emd utl.table -->
+              </td>
+              </tr>
+              <tr>
+                <td class="text-center">6</td>
+                <td>
+                  Collumn 1
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 3
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 3
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 3
+                </td>
+                <td class="table-utls">
+                  <!-- utl.table -->
+                  <div class="row row-5 flex-nowrap">
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <div class="dropdown">
+                        <!-- button.btn -->
+                        <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                          <div class="ubtn-full">
+                            <div class="row row-10 ubtn-inner">
+                              <span class="ubtn-ic col-auto">
+                                <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                        <!-- end button.btn -->
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <!-- emd utl.table -->
+            </td>
+            </tr>
+            <tr>
+              <td class="text-center">7</td>
+              <td>
+                Collumn 1
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 3
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 3
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 3
+              </td>
+              <td class="table-utls">
+                <!-- utl.table -->
+                <div class="row row-5 flex-nowrap">
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <div class="dropdown">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <!-- emd utl.table -->
+          </td>
+          </tr>
+          <tr>
+            <td class="text-center">8</td>
+            <td>
+              Collumn 1
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 3
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 3
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 3
+            </td>
+            <td class="table-utls">
+              <!-- utl.table -->
+              <div class="row row-5 flex-nowrap">
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <div class="dropdown">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <!-- emd utl.table -->
+        </td>
+        </tr>
+        <tr>
+          <td class="text-center">9</td>
+          <td>
+            Collumn 1
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 3
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 3
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 3
+          </td>
+          <td class="table-utls">
+            <!-- utl.table -->
+            <div class="row row-5 flex-nowrap">
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <div class="dropdown">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <!-- emd utl.table -->
+      </td>
+      </tr>
+      <tr>
+        <td class="text-center">10</td>
+        <td>
+          Collumn 1
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 3
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 3
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 3
+        </td>
+        <td class="table-utls">
+          <!-- utl.table -->
+          <div class="row row-5 flex-nowrap">
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <div class="dropdown">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!-- emd utl.table -->
+    </td>
+    </tr>
+    <tr>
+      <td class="text-center">11</td>
+      <td>
+        Collumn 1
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 3
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 3
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 3
+      </td>
+      <td class="table-utls">
+        <!-- utl.table -->
+        <div class="row row-5 flex-nowrap">
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <div class="dropdown">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+  <!-- emd utl.table -->
+  </td>
+  </tr>
+  <tr>
+    <td class="text-center">12</td>
+    <td>
+      Collumn 1
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td class="table-utls">
+      <!-- utl.table -->
+      <div class="row row-5 flex-nowrap">
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <div class="dropdown">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- emd utl.table -->
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center">13</td>
+    <td>
+      Collumn 1
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td class="table-utls">
+      <!-- utl.table -->
+      <div class="row row-5 flex-nowrap">
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <div class="dropdown">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- emd utl.table -->
+    </td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  <div class="table-footer">
+    <div class="row row-10 align-items-center justify-content-md-between justify-content-center list-mv10">
+      <div class="col-auto">
+        <div class="row row-10 flex-nowrap align-items-center">
+          <div class="col-auto">
+            <div class="p">Hiển thị</div>
+          </div>
+          <div class="col-auto">
+            <!-- forms.select -->
+            <div class="form-group">
+              <div class="input-group-wrap input-group-line">
+                <div class="input-group">
+                  <select name="" class="select-normal input input-xs input-ic-xs-1 input-line" header-text="" data-placeholder="">
+                    <option value="" disabled="disabled" selected="selected"></option>
+                    <option value="1">5</option>
+                    <option value="2" selected> 10</option>
+                    <option value="3">20</option>
+                    <option value="4">50, 100</option>
+                  </select>
+                  <div class="input-frame"></div>
+                  <div class="input-label"></div>
+                  <div class="input-ic">
+                    <div class="arrow-down-anim"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="errorBlock"></div>
+            </div>
+            <!-- end forms.select -->
+          </div>
+          <div class="col-auto">
+            <div class="p">Bản ghi</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-auto">
+        <!-- utl.pagination -->
+        <div class="pagination justify-content-center">
+          <div class="ripple pagination-item pagination-first legitRipple">Đầu</div>
+          <div class="ripple pagination-item pagination-back legitRipple"></div>
+          <div class="ripple pagination-item pagination-number legitRipple">1</div>
+          <div class="ripple pagination-item pagination-number legitRipple">2</div>
+          <div class="ripple pagination-item pagination-number pagination-active legitRipple">3</div>
+          <div class="pagination-item pagination-dots">...</div>
+          <div class="ripple pagination-item pagination-number legitRipple">102</div>
+          <div class="ripple pagination-item pagination-next legitRipple"></div>
+          <div class="ripple pagination-item pagination-last legitRipple">Cuối</div>
+        </div>
+        <!-- utl.pagination -->
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- emd utl.table -->
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Table basic</h5>
+      <div class="row row-10 list-mv5">
+        <div class="col">
+          <!-- utl.table -->
+          <div class="table-wraper">
+            <div class="table-wraper-inner table-sticky-ult table-border-vh table-sticky-footer">
+              <div class="table-wraper-size table-wraper-none">
+                <table class="table table-basic table-striped table-hover data-table">
+                  <thead>
+                    <tr>
+                      <th width="50" class="text-center">STT</th>
+                      <th>
+                        Collumn 1
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 3
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 3
+                      </th>
+                      <th>
+                        Collumn 2
+                      </th>
+                      <th>
+                        Collumn 3
+                      </th>
+                      <th width="100" class="table-utls">
+                        Thao tác
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-center">1</td>
+                      <td>
+                        Collumn 1
+                      </td>
+                      <td>
+                        Collumn 2 Collumn 2 Collumn 2 Collumn 2 Collumn 2 Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 3
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 3
+                      </td>
+                      <td>
+                        Collumn 2
+                      </td>
+                      <td>
+                        Collumn 3
+                      </td>
+                      <td class="table-utls">
+                        <!-- utl.table -->
+                        <div class="row row-5 flex-nowrap">
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <!-- button.btn -->
+                            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                              <div class="ubtn-full">
+                                <div class="row row-10 ubtn-inner">
+                                  <span class="ubtn-ic col-auto">
+                                    <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
+                            <!-- end button.btn -->
+                          </div>
+                          <div class="col-auto">
+                            <div class="dropdown">
+                              <!-- button.btn -->
+                              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner">
+                                    <span class="ubtn-ic col-auto">
+                                      <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                                    </span>
+                                  </div>
+                                </div>
+                              </a>
+                              <!-- end button.btn -->
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+              </div>
+              <!-- emd utl.table -->
+              </td>
+              </tr>
+              <tr>
+                <td class="text-center">2</td>
+                <td>
+                  Collumn 1
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 3
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 3
+                </td>
+                <td>
+                  Collumn 2
+                </td>
+                <td>
+                  Collumn 3
+                </td>
+                <td class="table-utls">
+                  <!-- utl.table -->
+                  <div class="row row-5 flex-nowrap">
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                    </div>
+                    <div class="col-auto">
+                      <div class="dropdown">
+                        <!-- button.btn -->
+                        <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                          <div class="ubtn-full">
+                            <div class="row row-10 ubtn-inner">
+                              <span class="ubtn-ic col-auto">
+                                <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                        <!-- end button.btn -->
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <!-- emd utl.table -->
+            </td>
+            </tr>
+            <tr>
+              <td class="text-center">3</td>
+              <td>
+                Collumn 1
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 3
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 3
+              </td>
+              <td>
+                Collumn 2
+              </td>
+              <td>
+                Collumn 3
+              </td>
+              <td class="table-utls">
+                <!-- utl.table -->
+                <div class="row row-5 flex-nowrap">
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <div class="dropdown">
+                      <!-- button.btn -->
+                      <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                        <div class="ubtn-full">
+                          <div class="row row-10 ubtn-inner">
+                            <span class="ubtn-ic col-auto">
+                              <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                      <!-- end button.btn -->
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <!-- emd utl.table -->
+          </td>
+          </tr>
+          <tr>
+            <td class="text-center">4</td>
+            <td>
+              Collumn 1
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 3
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 3
+            </td>
+            <td>
+              Collumn 2
+            </td>
+            <td>
+              Collumn 3
+            </td>
+            <td class="table-utls">
+              <!-- utl.table -->
+              <div class="row row-5 flex-nowrap">
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                </div>
+                <div class="col-auto">
+                  <div class="dropdown">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-ic col-auto">
+                            <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <!-- emd utl.table -->
+        </td>
+        </tr>
+        <tr>
+          <td class="text-center">5</td>
+          <td>
+            Collumn 1
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 3
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 3
+          </td>
+          <td>
+            Collumn 2
+          </td>
+          <td>
+            Collumn 3
+          </td>
+          <td class="table-utls">
+            <!-- utl.table -->
+            <div class="row row-5 flex-nowrap">
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+              </div>
+              <div class="col-auto">
+                <div class="dropdown">
+                  <!-- button.btn -->
+                  <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                    <div class="ubtn-full">
+                      <div class="row row-10 ubtn-inner">
+                        <span class="ubtn-ic col-auto">
+                          <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- end button.btn -->
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <!-- emd utl.table -->
+      </td>
+      </tr>
+      <tr>
+        <td class="text-center">6</td>
+        <td>
+          Collumn 1
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 3
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 3
+        </td>
+        <td>
+          Collumn 2
+        </td>
+        <td>
+          Collumn 3
+        </td>
+        <td class="table-utls">
+          <!-- utl.table -->
+          <div class="row row-5 flex-nowrap">
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+            </div>
+            <div class="col-auto">
+              <div class="dropdown">
+                <!-- button.btn -->
+                <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                  <div class="ubtn-full">
+                    <div class="row row-10 ubtn-inner">
+                      <span class="ubtn-ic col-auto">
+                        <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <!-- end button.btn -->
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!-- emd utl.table -->
+    </td>
+    </tr>
+    <tr>
+      <td class="text-center">7</td>
+      <td>
+        Collumn 1
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 3
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 3
+      </td>
+      <td>
+        Collumn 2
+      </td>
+      <td>
+        Collumn 3
+      </td>
+      <td class="table-utls">
+        <!-- utl.table -->
+        <div class="row row-5 flex-nowrap">
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-auto">
+            <div class="dropdown">
+              <!-- button.btn -->
+              <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+                <div class="ubtn-full">
+                  <div class="row row-10 ubtn-inner">
+                    <span class="ubtn-ic col-auto">
+                      <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <!-- end button.btn -->
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+  <!-- emd utl.table -->
+  </td>
+  </tr>
+  <tr>
+    <td class="text-center">8</td>
+    <td>
+      Collumn 1
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td class="table-utls">
+      <!-- utl.table -->
+      <div class="row row-5 flex-nowrap">
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <div class="dropdown">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- emd utl.table -->
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center">9</td>
+    <td>
+      Collumn 1
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td class="table-utls">
+      <!-- utl.table -->
+      <div class="row row-5 flex-nowrap">
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <div class="dropdown">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- emd utl.table -->
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center">10</td>
+    <td>
+      Collumn 1
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td class="table-utls">
+      <!-- utl.table -->
+      <div class="row row-5 flex-nowrap">
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <div class="dropdown">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- emd utl.table -->
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center">11</td>
+    <td>
+      Collumn 1
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td class="table-utls">
+      <!-- utl.table -->
+      <div class="row row-5 flex-nowrap">
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <div class="dropdown">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- emd utl.table -->
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center">12</td>
+    <td>
+      Collumn 1
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td class="table-utls">
+      <!-- utl.table -->
+      <div class="row row-5 flex-nowrap">
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <div class="dropdown">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- emd utl.table -->
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center">13</td>
+    <td>
+      Collumn 1
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td>
+      Collumn 2
+    </td>
+    <td>
+      Collumn 3
+    </td>
+    <td class="table-utls">
+      <!-- utl.table -->
+      <div class="row row-5 flex-nowrap">
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalInfo" data-tooltip="tooltip" title="Info">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/info.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalEdit" data-tooltip="tooltip" title="Edit">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/edit.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalTrash" data-tooltip="tooltip" title="Delete">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/trash.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalLock" data-tooltip="tooltip" title="Lock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/lock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <!-- button.btn -->
+          <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="modal" data-target="#modalUnlock" data-tooltip="tooltip" title="Unlock">
+            <div class="ubtn-full">
+              <div class="row row-10 ubtn-inner">
+                <span class="ubtn-ic col-auto">
+                  <img src="media/icons/svg2/unlock.svg" alt="" class="ic-sm">
+                </span>
+              </div>
+            </div>
+          </a>
+          <!-- end button.btn -->
+        </div>
+        <div class="col-auto">
+          <div class="dropdown">
+            <!-- button.btn -->
+            <a class="ubtn ubg-grey-4 ubtn-circle-xs-2 ubtn-square" data-toggle="dropdown" data-tooltip="tooltip" title="Download">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-ic col-auto">
+                    <img src="media/icons/svg2/download.svg" alt="" class="ic-sm">
+                  </span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- emd utl.table -->
+    </td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+  <!-- emd utl.table -->
+  </div>
+  </div>
+  </div>
+  </div>
+  <div class="box" style="height: 1000px"></div>
+  </div>
+  </div>
+  <footer class="login-footer main-footer no-ph color-grey">
+    <div class="login-footer-inner">
+      <div class="container">
+        <div class="row align-items-center justify-content-lg-between justify-content-center">
+          <div class="col-md-auto">
+            <div class="login-footer-left">
+              <div class="row justify-content-center align-items-center">
+                <div class="col-auto">
+                  <a href="" class="block list-item row-10">
+                    <div class="ic col-auto">
+                      <div class="ic-inner">
+                        <img src="media/icons/svg/dark/plannet.svg" alt="" class="ic-md">
+                      </div>
+                    </div>
+                    <div class="txt col-auto color-grey">Footer 1</div>
+                  </a>
+                </div>
+                <div class="col-auto">
+                  <a href="" class="block list-item row-10">
+                    <div class="ic col-auto">
+                      <div class="ic-inner">
+                        <img src="media/icons/svg/dark/plannet.svg" alt="" class="ic-md">
+                      </div>
+                    </div>
+                    <div class="txt col-auto color-grey">Footer 2</div>
+                  </a>
+                </div>
+                <div class="col-auto">
+                  <a href="" class="block list-item row-10">
+                    <div class="ic col-auto">
+                      <div class="ic-inner">
+                        <img src="media/icons/svg/dark/plannet.svg" alt="" class="ic-md">
+                      </div>
+                    </div>
+                    <div class="txt col-auto color-grey">Footer 3</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-auto">
+            <div class="login-footer-right">
+              <div class="text-center">
+                © 2020 Tùng Nguyễn
               </div>
             </div>
           </div>
         </div>
       </div>
-      <footer class="login-footer main-footer no-ph color-grey">
-        <div class="login-footer-inner">
-          <div class="container">
-            <div class="row align-items-center justify-content-lg-between justify-content-center">
-              <div class="col-md-auto">
-                <div class="login-footer-left">
-                  <div class="row justify-content-center align-items-center">
-                    <div class="col-auto">
-                      <a href="" class="block list-item row-10">
-                        <div class="ic col-auto">
-                          <div class="ic-inner">
-                            <img src="media/icons/svg/dark/plannet.svg" alt="" class="ic-md">
-                          </div>
-                        </div>
-                        <div class="txt col-auto color-grey">Footer 1</div>
-                      </a>
-                    </div>
-                    <div class="col-auto">
-                      <a href="" class="block list-item row-10">
-                        <div class="ic col-auto">
-                          <div class="ic-inner">
-                            <img src="media/icons/svg/dark/plannet.svg" alt="" class="ic-md">
-                          </div>
-                        </div>
-                        <div class="txt col-auto color-grey">Footer 2</div>
-                      </a>
-                    </div>
-                    <div class="col-auto">
-                      <a href="" class="block list-item row-10">
-                        <div class="ic col-auto">
-                          <div class="ic-inner">
-                            <img src="media/icons/svg/dark/plannet.svg" alt="" class="ic-md">
-                          </div>
-                        </div>
-                        <div class="txt col-auto color-grey">Footer 3</div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-auto">
-                <div class="login-footer-right">
-                  <div class="text-center">
-                    © 2020 Tùng Nguyễn
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
+  </footer>
+  </div>
   </div>
 </body>
 <!-- jquery -->
@@ -731,6 +4299,14 @@
 <script src="js/vendors/croppie/croppie.init.js"></script>
 <!-- croppie -->
 <!-- script use for this page only -->
+<!-- floatingScroll -->
+<script src="js/vendors/floatingScroll/floatingScroll.bundles.js"></script>
+<script src="js/vendors/floatingScroll/floatingScroll.init.js"></script>
+<!-- endScroll -->
+<!-- datatables -->
+<script src="js/vendors/datatables/datatables.bundles.js"></script>
+<script src="js/vendors/datatables/datatables.init.js"></script>
+<!-- datatables -->
 <!-- end script for this page only -->
 <script src="js/custom.js"></script>
 <!-- script use for this page only -->

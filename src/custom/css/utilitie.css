@@ -93,7 +93,7 @@
 }
 
 .pagination-active {
-  background-color: #3b52fd;
+  background-color: #3f3bec;
   color: white;
 }
 
@@ -124,14 +124,6 @@
 }
 
 .pagination-active .legitRipple-ripple {
-  background: #3b52fd;
+  background: #3f3bec;
 }
 /*end pagination*/
-/*table-simple*/
-.table-simple td,
-.table-simple th,
-.table-simple {
-  border: 1px solid #b7c0cd;
-  padding: 10px;
-}
-/*end table-simple*/

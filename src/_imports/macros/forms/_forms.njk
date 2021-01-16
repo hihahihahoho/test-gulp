@@ -193,7 +193,7 @@
   <!-- end forms.input -->
 {% endmacro %}
 
-{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.inputSize, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple, selectLib = settingInputDefault.selectLib) %}
+{% macro select(title, inputType = settingInputDefault.inputType, inputSize = settingInputDefault.inputSize, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple, selectLib = settingInputDefault.selectLib) %}
   <!-- forms.select -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}

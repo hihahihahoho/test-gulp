@@ -1,4 +1,4 @@
-//====================JQUERY INIT=================//
+//====================JQUERY BASIC INIT=================//
 
 var deviceIsMobile = false; //At the beginning we set this flag as false. If we can detect the device is a mobile device in the next line, then we set it as true.
 if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) ||
@@ -24,6 +24,8 @@ function iOS () {
 
   return false;
 }
+//====================END JQUERY BASIC INIT=================//
+//====================MENU=================//
 (function (name) {
   function BNS () {
     var settings = {
@@ -140,6 +142,34 @@ function menu () {
 })(jQuery);
 
 $(document).ready(function () {
+  $('.isolated-scroll').isolatedScroll();
+  if ($(window).width() <= menuSettings.breakpoint) {
+    $("#sidebar-trigger").on('change', function () {
+      if ($(this).is(':checked')) {
+        BNS.on();
+      }
+      else {
+        BNS.off();
+      }
+    });
+    $("#sidebar-right-trigger").on('change', function () {
+      if ($(this).is(':checked')) {
+        BNS.on();
+      }
+      else {
+        BNS.off();
+      }
+    })
+  };
+  window.addEventListener('resize', function (event) {
+    menu();
+  });
+  menu();
+});
+
+//====================END MENU=================//
+//====================JQUERY INPUT=================//
+$(document).ready(function () {
   //Input material
   $('.select-2.input-label-change').each(function () {
     if ($(this).val().length == 0) {
@@ -202,32 +232,34 @@ $(document).ready(function () {
     }
   });
   //end input clear
-
-  $('.isolated-scroll').isolatedScroll();
-  if ($(window).width() <= menuSettings.breakpoint) {
-    $("#sidebar-trigger").on('change', function () {
-      if ($(this).is(':checked')) {
-        BNS.on();
-      }
-      else {
-        BNS.off();
-      }
-    });
-    $("#sidebar-right-trigger").on('change', function () {
-      if ($(this).is(':checked')) {
-        BNS.on();
-      }
-      else {
-        BNS.off();
-      }
+  
+  //input file upload
+  $('.input-file-basic').each(function () {
+    var uploadTxt = $(this).parent('.input-group').find('.file-txt')
+    $(this).on('change', function (e) {
+      uploadTxt.addClass('color-input')
+      uploadTxt.text(e.target.files[0].name)
     })
-  }
-
-  //menu
-  window.addEventListener('resize', function (event) {
-    menu();
-  });
-  menu();
-  //end menu
+  })
+  //end input file upload
 });
-//====================END JQUERY INIT=================//
+
+//====================END JQUERY INPUT=================//
+//====================TABLES=================//
+$('.table-wraper-size').scroll(function (e) {
+  var _this = this;
+  if (_this.scrollWidth === (_this.scrollLeft + _this.clientWidth)) {
+    $(_this).parent('.table-wraper-inner').addClass('right-none');
+  }
+  else {
+    $(_this).parent('.table-wraper-inner').removeClass('right-none');
+  };
+
+  if (_this.scrollLeft === 0) {
+    $(_this).parent('.table-wraper-inner').addClass('left-none');
+  }
+  else {
+    $(_this).parent('.table-wraper-inner').removeClass('left-none');
+  };
+}).scroll();
+//====================END TABLES=================//

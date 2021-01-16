@@ -5,7 +5,10 @@ var pluginsDetail = {
       "src/plugins/jquery/jquery.min.js",
     ],
     "init": [
-      "src/js/jquery.init.js"
+      "src/js/jquery/jqueryBasic.init.js",
+      "src/js/jquery/jqueryMenu.init.js",
+      "src/js/jquery/jqueryInput.init.js",
+      "src/js/jquery/jqueryTable.init.js"
     ]
   },
   'parsley': {
@@ -159,7 +162,34 @@ var pluginsDetail = {
     "scripts": [
       "node_modules/wnumb/wNumb.min.js"
     ]
-  }
+  },
+  'datatables': {
+    "name": 'datatables',
+    "styles": [
+      "node_modules/datatables.net-dt/css/jquery.dataTables.min.css",
+      "node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
+    ],
+    "scripts": [
+      "node_modules/datatables.net/js/jquery.dataTables.min.js",
+      "node_modules/datatables.net-responsive/js/dataTables.responsive.min.js",
+      "node_modules/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"
+    ],
+    "init": [
+      "src/js/datatables.init.js"
+    ]
+  },
+  'floatingScroll': {
+    "name": 'floatingScroll',
+    "styles": [
+      "node_modules/floating-scroll/dist/jquery.floatingscroll.css"
+    ],
+    "scripts": [
+      "node_modules/floating-scroll/dist/jquery.floatingscroll.min.js"
+    ],
+    "init": [
+      "src/js/floaingScroll.init.js"
+    ]
+  },
 }
 
 var plugins = {
@@ -182,7 +212,9 @@ var plugins = {
     pluginsDetail.croppie,
     pluginsDetail.uppy,
     pluginsDetail.nouislider,
-    pluginsDetail.wnumb
+    pluginsDetail.wnumb,
+    pluginsDetail.datatables,
+    pluginsDetail.floatingScroll
   ]
 }
 

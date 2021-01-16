@@ -1,5 +1,5 @@
 /*init*/
-@font-face {
+/* @font-face {
   font-family: "SF Pro Display";
   src: url(../fonts/main/SF-Pro-Display-Regular.ttf);
   font-weight: regular;
@@ -15,7 +15,7 @@
   font-family: "SF Pro Display";
   src: url(../fonts/main/SF-Pro-Display-Bold.ttf);
   font-weight: 600;
-}
+} */
 body {
   font: 100% "SF Pro Display", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   margin: 0;
@@ -25,6 +25,7 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   line-height: 1.5;
+  letter-spacing: -0.03em;
 }
 /*end init*/
 

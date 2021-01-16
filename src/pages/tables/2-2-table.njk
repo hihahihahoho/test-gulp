@@ -2,6 +2,16 @@
 {% set pageLink = file_path %}
 {% set pageTitle = 'Tables' %}
 
+{% block css %}
+  <!-- datatables -->
+  <link rel="stylesheet" href="css/vendors/datatables/datatables.bundles.css">
+  <!-- end datatables -->
+
+  <!-- floatingScroll -->
+  <link rel="stylesheet" href="/dist/css/vendors/floatingScroll/floatingScroll.bundles.css">
+  <!-- endScroll -->
+{% endblock %}
+
 {% block mainInner %}
   <div class="box">
     <div class="box__body">
@@ -18,23 +28,292 @@
       <h5 class="pb30">Table basic</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
-          {% set value = ['info', 'edit', 'trash', 'lock', 'unlock'] %}
-          {% set tableValue =
-            {
-              thead: [
-                ['Collumn 1', 'Collumn 2', 'Collumn 3', 'ults']
-              ],
-              tbody: [
-                ['Collumn 1', 'Collumn 2', 'Collumn 3', ult.tableUlt(value)],
-                ['Collumn 1', 'Collumn 2', 'Collumn 3', ult.tableUlt(value)],
-                ['Collumn 1', 'Collumn 2', 'Collumn 3', ult.tableUlt(value)]
+          {% set value = ['info', 'edit', 'trash', 'lock', 'unlock', 'download'] %}
+          {% set tableValue = {
+            thead: [
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'ults'
               ]
-            }
-          %}
-          {{ ult.table(tableValue) }}
+            ],
+            tbody: [
+              [
+                'Collumn 1',
+                'Collumn 2 Collumn 2 Collumn 2 Collumn 2 Collumn 2 Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ],
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                'Collumn 2',
+                'Collumn 3',
+                ult.tableUlt(value)
+              ]
+            ]
+          }%}
+          {{ ult.table(tableValue, stickyUlt = 'true', stickyFooter = 'true', extendClass = 'table-min-width-lg') }}
         </div>
       </div>
     </div>
   </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Table basic</h5>
+      <div class="row row-10 list-mv5">
+        <div class="col">
+          {{ ult.table(tableValue, stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true') }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box" style="height: 1000px"></div>
 
+{% endblock %}
+
+{% block script %}
+  <!-- floatingScroll -->
+  <script src="/dist/js/vendors/floatingScroll/floatingScroll.bundles.js"></script>
+  <script src="/dist/js/vendors/floatingScroll/floatingScroll.init.js"></script>
+  <!-- endScroll -->
+
+  <!-- datatables -->
+  <script src="/dist/js/vendors/datatables/datatables.bundles.js"></script>
+  <script src="/dist/js/vendors/datatables/datatables.init.js"></script>
+  <!-- datatables -->
 {% endblock %}

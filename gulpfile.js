@@ -548,7 +548,7 @@ function watch () {
   gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS))))
   gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
   gulp.watch('src/media/**/*', series(media, imageMinify))
-  gulp.watch('src/js/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
+  gulp.watch('src/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
   gulp.watch('src/custom/**/*.js', customJs)
   gulp.watch('src/fonts/**/*', fontSrc)
   gulp.watch('src/custom/**/*.css', customCss)
