@@ -34,10 +34,8 @@ $(document).ready(function () {
   $(document).on('click', '.dropdown-click', function (e) {
     e.stopPropagation();
   });
-  $('.dropdown').on('show.bs.dropdown', function () {
-    $(this).parents('.table-ults').css('z-index', '2')
-  }).on('hide.bs.dropdown', function () {
-    $(this).parents('.table-ults').css('z-index', '')
+  $('.ubtn-square').dropdown({
+     boundary: 'window'
   })
 });
 (function () {
