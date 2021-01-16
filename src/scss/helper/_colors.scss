@@ -10,7 +10,7 @@ $map-color: (
   red: #ff3d4e,
   blue: #3f3bec,
   orange: #ff7544,
-  yellow: #3f3bec,
+  yellow: #e9ec3b,
   teal: #0e5c22,
   green: #2ed573,
   purple: #4527a0,
@@ -33,6 +33,7 @@ $color-grey-1: map-get($map-color, grey-1);
 $color-grey-2: map-get($map-color, grey-2);
 $color-grey-3: map-get($map-color, grey-3);
 $color-grey-4: map-get($map-color, grey-4);
+$color-yellow: map-get($map-color, yellow);
 $color-base: map-get($map-color, base);
 $border-base-color: $color-grey-2;
 $color-white: white;

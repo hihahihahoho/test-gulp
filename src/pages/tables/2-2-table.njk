@@ -28,7 +28,14 @@
       <h5 class="pb30">Table basic</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
-          {% set value = ['info', 'edit', 'trash', 'lock', 'unlock', 'download'] %}
+          {% set value = [
+            'info',
+            'edit',
+            'trash',
+            'lock',
+            'unlock',
+            'download'
+          ] %}
           {% set tableValue = {
             thead: [
               [
@@ -42,18 +49,18 @@
                 'Collumn 2',
                 'Collumn 2',
                 'Collumn 2',
-                'Collumn 3',
                 'Collumn 2',
-                'Collumn 3',
                 'Collumn 2',
-                'Collumn 3',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
                 'ults'
               ]
             ],
             tbody: [
               [
                 'Collumn 1',
-                'Collumn 2 Collumn 2 Collumn 2 Collumn 2 Collumn 2 Collumn 2',
+                '',
                 'Collumn 2',
                 'Collumn 2',
                 'Collumn 2',
@@ -62,242 +69,78 @@
                 'Collumn 2',
                 'Collumn 2',
                 'Collumn 2',
-                'Collumn 3',
                 'Collumn 2',
-                'Collumn 3',
                 'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
                 'Collumn 2',
                 'Collumn 2',
                 'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                ult.tableUlt(value)
-              ],
-              [
-                'Collumn 1',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
-                'Collumn 2',
-                'Collumn 3',
                 ult.tableUlt(value)
               ]
             ]
           }%}
-          {{ ult.table(tableValue, stickyUlt = 'true', stickyFooter = 'true', extendClass = 'table-min-width-lg') }}
+          {{ ult.table(tableValue, stickyUlt = 'true', stickyFooter = 'true', extendClass = 'table-min-width-lg', rowLoop = 1) }}
         </div>
       </div>
     </div>
   </div>
   <div class="box">
     <div class="box__body">
-      <h5 class="pb30">Table basic</h5>
+      <h5 class="pb30">Table datatables</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
-          {{ ult.table(tableValue, stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true') }}
+          {{ ult.table(tableValue, stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true', rowLoop = 11) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Table datatable accordion</h5>
+      <div class="row row-10 list-mv5">
+        <div class="col">
+          {% set customTable %}
+          <thead>
+            <tr>
+              <th class="no_sort"></th>
+              <th>data 1a</th>
+              <th>data 1b</th>
+              <th>data 1c</th>
+              <th>data 1d</th>
+              <th>data 1a</th>
+              <th>data 1b</th>
+              <th>data 1c</th>
+              <th>data 1d</th>
+              <th class="table-ults">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="details-control"></td>
+              <td>data 1a</td>
+              <td>data 1b</td>
+              <td>data 1c</td>
+              <td>data 1d</td>
+              <td>data 1a</td>
+              <td>data 1b</td>
+              <td>data 1c</td>
+              <td>data 1d</td>
+              <td class="table-ults">{{ ult.tableUlt(value) }}</td>
+            </tr>
+            <tr>
+              <td class="details-control"></td>
+              <td>data 1a</td>
+              <td>data 1b</td>
+              <td>data 1c</td>
+              <td>data 1d</td>
+              <td>data 1a</td>
+              <td>data 1b</td>
+              <td>data 1c</td>
+              <td>data 1d</td>
+              <td class="table-ults">{{ ult.tableUlt(value) }}</td>
+            </tr>
+          </tbody>
+          {% endset %}
+          {{ ult.table(stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true', id = 'example1', custom = customTable) }}
         </div>
       </div>
     </div>
@@ -316,4 +159,35 @@
   <script src="/dist/js/vendors/datatables/datatables.bundles.js"></script>
   <script src="/dist/js/vendors/datatables/datatables.init.js"></script>
   <!-- datatables -->
+{% endblock %}
+
+{% block pageScript %}
+  <script>
+    function format(value) {
+      return '<table><tr><td>Text 1</td><td>Value 1</td></tr><tr><td>Text 1</td><td>Value 1</td></tr><tr><td>Text 1</td><td>Value 1</td></tr></table>';
+    }
+    $(document).ready(function () {
+      var table = $('#example1').DataTable();
+
+      // Add event listener for opening and closing details
+      $('#example1').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+          // This row is already open - close it
+          row
+            .child
+            .hide();
+          tr.removeClass('shown');
+        } else {
+          // Open this row
+          row
+            .child(format(tr.data('child-value')))
+            .show();
+          tr.addClass('shown');
+        }
+      });
+    });
+  </script>
 {% endblock %}

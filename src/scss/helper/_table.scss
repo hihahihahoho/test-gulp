@@ -1,6 +1,6 @@
 //===========Table===========//
-$table-striped-bg-color: $color-grey-4;
-$table-striped-color: $color-base;
+$table-zebra-bg-color: $color-grey-4;
+$table-zebra-color: $color-base;
 $table-thead-color: $color-grey-1;
 $table-thead-font-weight: 500;
 $table-thead-padding: 12px 5px;
@@ -9,7 +9,7 @@ $table-thead-bg-color: $color-white;
 $table-font-size: 14px;
 $table-body-padding: 12px 5px;
 $table-border: 1px solid $color-grey-2;
-$table-hover-bg-color: $color-grey-3;
+$table-hover-bg-color: lighten($color-yellow, 36);
 
 //===========pagination===========//
 $page-font: 13px;
@@ -28,7 +28,7 @@ $page-box-shadow: none;
 $page-hover-color: $color-grey-3;
 
 // default
-$table-striped-bg-color: #b7c0cd !default;
+$table-zebra-bg-color: #b7c0cd !default;
 $table-thead-color: #b7c0cd !default;
 $table-border: 1px solid #b7c0cd !default;
 $table-hover-bg-color: #b7c0cd !default;
@@ -147,11 +147,11 @@ $map-table-td-breakpoint: (
       font-size: $table-thead-font-size;
       background-color: $table-thead-bg-color;
     }
-    &.table-striped {
+    &.table-zebra:not(.dataTable) {
       & > tbody > tr {
         &:nth-of-type(odd) {
-          background-color: $table-striped-bg-color;
-          color: $table-striped-color;
+          background-color: $table-zebra-bg-color;
+          color: $table-zebra-color;
         }
       }
     }
@@ -203,7 +203,7 @@ $map-table-td-breakpoint: (
       }
     }
   }
-  &-no-striped {
+  &-no-zebra {
     & > tbody > tr:nth-of-type(odd) {
       background-color: #ffffff;
     }
@@ -216,7 +216,7 @@ $map-table-td-breakpoint: (
     border-right: $table-border;
   }
   &-sticky-ult {
-    .table-utls {
+    .table-ults {
       position: sticky;
       right: 0;
       box-shadow: $table-shadow;
@@ -227,25 +227,26 @@ $map-table-td-breakpoint: (
     border-right: $table-border;
     &.right-none {
       border-right: 0;
-      > * > *:not(.dataTables_wrapper) .table-utls {
+      > * > *:not(.dataTables_wrapper) .table-ults {
         box-shadow: none;
       }
     }
     .table-hover > *:not(thead) tr:hover,
     .table-hover > *:not(thead) .tr:hover {
-      .table-utls {
+      .table-ults {
         background-color: $table-hover-bg-color !important;
       }
     }
-    .table-striped > tbody > tr:nth-of-type(odd) .table-utls {
-      background-color: $table-striped-bg-color;
+    .table-zebra:not(.dataTable) > tbody > tr:nth-of-type(odd) .table-ults {
+      background-color: $table-zebra-bg-color;
     }
   }
   &-sticky-footer {
     .table-footer,
     ~ .table-footer  {
       position: sticky;
-      bottom: 17px;
+      bottom: 0;
+      padding-bottom: 17px;
       background-color: white;
       z-index: 99;
     }
@@ -308,4 +309,8 @@ $map-table-td-breakpoint: (
       opacity: 0;
     }
   }
+}
+
+.fl-scrolls {
+  z-index: 999;
 }

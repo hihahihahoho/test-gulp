@@ -89,11 +89,11 @@
   {% endif %}
   {% for i in value %}
     {% if tableUlt and loop.index == value.length%}
-      {% set addAttr = 'class="table-utls"' %}
+      {% set addAttr = 'class="table-ults"' %}
     {% endif %}
 
     {% if i == 'ults' %}
-      {% set addAttr = 'width="' + ultsWidth + '" class="table-utls"' %}
+      {% set addAttr = 'width="' + ultsWidth + '" class="table-ults"' %}
     {% endif %}
 
     <{{ type }} {{ addAttr | safe }}>
@@ -107,8 +107,11 @@
 </tr>
 {% endmacro %}
 
-{% macro table(value, index = 'true', style = settingTableDefault.style, border = settingTableDefault.border, striped = settingTableDefault.striped, hover = settingTableDefault.hover, tableWrapSize = settingTableDefault.tableWrapSize, stickyUlt = 'false', stickyHeader = settingTableDefault.stickyHeader, stickyFooter = settingTableDefault.stickyFooter, extendClass, extendAttr, tableLib = settingTableDefault.tableLib, tableFooter = settingTableDefault.tableFooter) %}
+{% macro table(value, index = 'true', id, style = settingTableDefault.style, border = settingTableDefault.border, striped = settingTableDefault.striped, hover = settingTableDefault.hover, tableWrapSize = settingTableDefault.tableWrapSize, stickyUlt = 'false', stickyHeader = settingTableDefault.stickyHeader, stickyFooter = settingTableDefault.stickyFooter, extendClass, extendAttr, tableLib = settingTableDefault.tableLib, tableFooter = settingTableDefault.tableFooter, rowLoop = 1, custom) %}
 <!-- utl.table -->
+{% if id %}
+  {% set idText = 'id="' + id + '"' %}
+{% endif %}
 {% if stickyUlt == 'true' %}
   {% set stickyUltText = 'table-sticky-ult' %}
 {% endif %}
@@ -122,7 +125,7 @@
   {% set hoverText = 'table-hover' %}
 {% endif %}
 {% if striped == 'true' %}
-  {% set stripedText = 'table-striped' %}
+  {% set stripedText = 'table-zebra' %}
 {% endif %}
 {% if tableLib == 'datatables' %}
   {% set tableLibText = 'data-table' %}
@@ -131,35 +134,40 @@
 <div class="table-wraper">
   <div class="table-wraper-inner {{ stickyUltText }} {{ stickyHeaderText }} table-border-{{ border }} {{ stickyFooterText }}">
     <div class="table-wraper-size table-wraper-{{ tableWrapSize }}">
-      <table class="table table-{{ style }} {{ stripedText }} {{ hoverText }} {{ tableLibText }} {{ extendClass }}" {{ extendAttr | safe }}>
-        {% set tableUlt = 'false' %}
-        {% if 'ults' in value.thead %}
-          {% set tableUlt = 'true' %}
-        {% endif %}
-        {% if value.thead %}
-          <thead>
-            {% for item in value.thead %}
-              {{ tableRow('th', value = item, indexNum = loop.index) }}
-            {% endfor %}
-          </thead>
-        {% endif %}
+      <table class="table table-{{ style }} {{ stripedText }} {{ hoverText }} {{ tableLibText }} {{ extendClass }}" {{ extendAttr | safe }} {{ idText | safe }}>
+        {% if custom %}
+          {{ custom | safe }}
+        {% else %}
+          {% set tableUlt = 'false' %}
+          {% if 'ults' in value.thead %}
+            {% set tableUlt = 'true' %}
+          {% endif %}
+          {% if value.thead %}
+            <thead>
+              {% for item in value.thead %}
+                {{ tableRow('th', value = item, indexNum = loop.index) }}
+              {% endfor %}
+            </thead>
+          {% endif %}
 
-        {% if value.tbody %}
-          <tbody>
-            {% for item in value.tbody %}
-              {{ tableRow('td', value = item, indexNum = loop.index, tableUlt = tableUlt) }}
-            {% endfor %}
-          </tbody>
-        {% endif %}
+          {% if value.tbody %}
+            <tbody>
+              {% for i in range(0, rowLoop) -%}
+                {% for item in value.tbody %}
+                  {{ tableRow('td', value = item, indexNum = loop.index, tableUlt = tableUlt) }}
+                {% endfor %}
+              {% endfor %}
+            </tbody>
+          {% endif %}
 
-        {% if value.tfoot %}
-          <tfoot>
-            {% for item in value.tfoot %}
-              {{ tableRow('td', value = item, indexNum = loop.index) }}
-            {% endfor %}
-          </tfoot>
+          {% if value.tfoot %}
+            <tfoot>
+              {% for item in value.tfoot %}
+                {{ tableRow('td', value = item, indexNum = loop.index) }}
+              {% endfor %}
+            </tfoot>
+          {% endif %}
         {% endif %}
-
       </table>
     </div>
   </div>
