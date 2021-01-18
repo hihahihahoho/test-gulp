@@ -77,8 +77,10 @@ function themeColorMapFunction (mapName, propName, propKey) {
 
 function themeColorValueFunction (mapName, propName, propKey) {
   if (mapName[propName]) {
+    var propNameTxt = propName + '-';
     !themeColorValueTextArr[propName] ? themeColorValueTextArr[propName] = '' : ''
-    return themeColorValueTextArr[propName] += '$color-' + propName + '-' + propKey + ': ' + mapName[propName] + ';\n';
+    propName == 'color' ? propNameTxt = '' : ''
+    return themeColorValueTextArr[propName] += '$color-' + propNameTxt + propKey + ': ' + mapName[propName] + ';\n';
   }
 }
 
@@ -93,7 +95,9 @@ function theme () {
     }
   }
   for (var property in themeColorTextArr) {
-    themeColorText += '\n\n$map-color-' + property + ': (\n' + themeColorTextArr[property] + ');'
+    var propertyTxt = '-' +property 
+    property == 'color' ? propertyTxt = '' : ''
+    themeColorText += '\n\n$map-color' + propertyTxt + ': (\n' + themeColorTextArr[property] + ');'
   }
 
   for (var property in themeColorValueTextArr) {
