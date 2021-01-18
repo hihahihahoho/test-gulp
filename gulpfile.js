@@ -51,6 +51,14 @@ var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 var commitMessage = '';
 
+var themeColor = [];
+
+var themeColorText = '';
+var themeColorTextArr = {};
+
+var themeColorValueText = '';
+var themeColorValueTextArr = {};
+
 Array.prototype.diff = function (a) {
   return this.filter(function (i) { return a.indexOf(i) < 0; });
 };
@@ -59,6 +67,48 @@ var options = {
   indent_size: 2,
   max_preserve_newlines: 0
 };
+
+function themeColorMapFunction (mapName, propName, propKey) {
+  if (mapName[propName]) {
+    !themeColorTextArr[propName] ? themeColorTextArr[propName] = '' : ''
+    return themeColorTextArr[propName] += '\t' + propKey + ': ' + mapName[propName] + ',\n';
+  }
+}
+
+function themeColorValueFunction (mapName, propName, propKey) {
+  if (mapName[propName]) {
+    !themeColorValueTextArr[propName] ? themeColorValueTextArr[propName] = '' : ''
+    return themeColorValueTextArr[propName] += '$color-' + propName + '-' + propKey + ': ' + mapName[propName] + ';\n';
+  }
+}
+
+function theme () {
+  delete require.cache[require.resolve('./gulp_themes_config.js')];
+  themeColor = require('./gulp_themes_config.js').themeColor
+  for (var property in themeColor.default.normal) {
+    var themeColorMap = themeColor.default.normal[property]
+    for (var property1 in themeColorMap) {
+      themeColorMapFunction(themeColorMap, property1, property);
+      property1 != 'text' ? themeColorValueFunction(themeColorMap, property1, property) : ''
+    }
+  }
+  for (var property in themeColorTextArr) {
+    themeColorText += '\n\n$map-color-' + property + ': (\n' + themeColorTextArr[property] + ');'
+  }
+
+  for (var property in themeColorValueTextArr) {
+    themeColorValueText += '\n' + themeColorValueTextArr[property] + '\n'
+  }
+
+  // themeColorTextType = '$map-color-level: (\n' +  themeColorTypeText + ');'
+
+  themeColorTextAll = '//gtc-scss\n' + themeColorText + '\n\n' + themeColorValueText + '\n//end-gtc-scss'
+
+  return gulp.src('./src/scss/helper/_colors.scss')
+    .pipe(replace(/(\/\/gtc-scss)([\S\s]*?)(\/\/end-gtc-scss)/, themeColorTextAll))
+    .pipe(gulp.dest('./src/scss/helper/'))
+};
+
 
 function browserifyJs (cb) {
   return browserify('./src/plugins-browserify/uppy/uppy.js')
@@ -610,6 +660,7 @@ exports.babeljs = babeljs;
 exports.fontSrc = fontSrc;
 exports.lowercaseFiles = lowercaseFiles;
 exports.browserifyJs = browserifyJs;
+exports.theme = theme;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), series(cleanHtml, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 

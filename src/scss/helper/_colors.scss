@@ -1,6 +1,40 @@
-// gulp-themes-config
+//gtc-scss
 
-// en gulp-themes-config
+
+$map-color-color: (
+	blue: #3f3bec,
+	purple: #4527a0,
+);
+
+$map-color-hover: (
+	blue: #3f3bef,
+	purple: #4527a1,
+);
+
+$map-color-active: (
+	blue: #3f3bea,
+	purple: #4527a2,
+);
+
+$map-color-text: (
+	blue: #ffffff,
+	purple: #ffffff,
+);
+
+
+$color-color-blue: #3f3bec;
+$color-color-purple: #4527a0;
+
+
+$color-hover-blue: #3f3bef;
+$color-hover-purple: #4527a1;
+
+
+$color-active-blue: #3f3bea;
+$color-active-purple: #4527a2;
+
+
+//end-gtc-scss
 
 $map-color: (
   grey-basic: #afb3bc,
