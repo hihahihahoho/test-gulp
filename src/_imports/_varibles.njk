@@ -35,3 +35,76 @@
   ultsWidth: '100',
   ultsTxt: 'Thao tác'
 } %}
+
+{% set settingDropdownDefault = {
+  icSize: 'sm'
+} %}
+
+{% set settingLabelStatusDefault = {
+  size: 'xs'
+} %}
+
+{% set labelStatusCustomVal = {
+  choDuyet: {
+    main: 'Chờ duyệt',
+    color: 'orange'
+  },
+  choHachToan: {
+    main: 'Chờ hoạch toán',
+    color: 'orange'
+  },
+  daHachToan: {
+    main: 'Đã hoạch toán',
+    color: 'green'
+  }
+} %}
+
+{% set settingTableUltVal = {
+  info: {
+    ic: 'info.svg',
+    tooltip: 'Info',
+    href: '#'
+  },
+  edit: {
+    ic: 'edit.svg',
+    tooltip: 'Edit',
+    modal: '#modalEdit'
+  },
+  delete: {
+    ic: 'trash.svg',
+    tooltip: 'Delete',
+    modal: '#modalDelete'
+  },
+  lock: {
+    ic: 'lock.svg',
+    tooltip: 'Lock',
+    modal: '#modalLock'
+  },
+  unlock: {
+    ic: 'unlock.svg',
+    tooltip: 'Unlock',
+    modal: '#modalUnlock'
+  },
+  download: {
+    ic: 'download.svg',
+    tooltip: 'Download',
+    dropdown: [
+      {
+        main: 'Dropdown 1',
+        sub: 'This is a sub text',
+        ic: 'media/icons/svg/dark/plannet.svg',
+        href: '#'
+      }, {
+        main: 'Dropdown 2',
+        sub: 'This is a sub text',
+        ic: 'media/icons/svg/dark/plannet.svg',
+        modal: '#modalTest'
+      }, {
+        main: 'Dropdown 3',
+        sub: 'This is a sub text',
+        ic: 'media/icons/svg/dark/plannet.svg',
+        modal: '#modalTest'
+      }
+    ]
+  }
+} %}

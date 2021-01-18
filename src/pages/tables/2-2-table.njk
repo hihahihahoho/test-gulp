@@ -18,7 +18,7 @@
       <h5 class="pb30">Pagination</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
-          {{ ult.pagination() }}
+          {{ table.pagination() }}
         </div>
       </div>
     </div>
@@ -28,10 +28,11 @@
       <h5 class="pb30">Table basic</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
-          {% set value = [
+          {% set tableUltValue = [
             'info',
             'edit',
-            'trash',
+            'delete',
+            '',
             'lock',
             'unlock',
             'download'
@@ -63,6 +64,7 @@
                 '',
                 'Collumn 2',
                 'Collumn 2',
+                ult.labelStatusCustom('daHachToan'),
                 'Collumn 2',
                 'Collumn 2',
                 'Collumn 2',
@@ -73,12 +75,11 @@
                 'Collumn 2',
                 'Collumn 2',
                 'Collumn 2',
-                'Collumn 2',
-                ult.tableUlt(value)
+                table.tableUlt(tableUltValue)
               ]
             ]
           }%}
-          {{ ult.table(tableValue, stickyUlt = 'true', stickyFooter = 'true', extendClass = 'table-min-width-lg', rowLoop = 1) }}
+          {{ table.table(tableValue, stickyUlt = 'true', stickyFooter = 'true', extendClass = 'table-min-width-lg', rowLoop = 1) }}
         </div>
       </div>
     </div>
@@ -88,7 +89,7 @@
       <h5 class="pb30">Table datatables</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
-          {{ ult.table(tableValue, stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true', rowLoop = 11) }}
+          {{ table.table(tableValue, stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true', rowLoop = 11) }}
         </div>
       </div>
     </div>
@@ -98,49 +99,27 @@
       <h5 class="pb30">Table datatable accordion</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
-          {% set customTable %}
-          <thead>
-            <tr>
-              <th class="no_sort"></th>
-              <th>data 1a</th>
-              <th>data 1b</th>
-              <th>data 1c</th>
-              <th>data 1d</th>
-              <th>data 1a</th>
-              <th>data 1b</th>
-              <th>data 1c</th>
-              <th>data 1d</th>
-              <th class="table-ults">Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="details-control"></td>
-              <td>data 1a</td>
-              <td>data 1b</td>
-              <td>data 1c</td>
-              <td>data 1d</td>
-              <td>data 1a</td>
-              <td>data 1b</td>
-              <td>data 1c</td>
-              <td>data 1d</td>
-              <td class="table-ults">{{ ult.tableUlt(value) }}</td>
-            </tr>
-            <tr>
-              <td class="details-control"></td>
-              <td>data 1a</td>
-              <td>data 1b</td>
-              <td>data 1c</td>
-              <td>data 1d</td>
-              <td>data 1a</td>
-              <td>data 1b</td>
-              <td>data 1c</td>
-              <td>data 1d</td>
-              <td class="table-ults">{{ ult.tableUlt(value) }}</td>
-            </tr>
-          </tbody>
-          {% endset %}
-          {{ ult.table(stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true', id = 'example1', custom = customTable) }}
+          {% set tableValue = {
+            thead: [
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'ults'
+              ]
+            ],
+            tbody: [
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                ult.labelStatus('Status'),
+                table.tableUlt(tableUltValue)
+              ]
+            ]
+          }%}
+          {{ table.table(value = tableValue, stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true', id = 'example1', rowChild = 'true', rowLoop = '2' ) }}
         </div>
       </div>
     </div>

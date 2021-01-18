@@ -283,7 +283,7 @@
               {% if dataimgClass %}
                 {% set dataimgClassTxt = 'dataimgclass="' + dataimgClass + '"' %}
               {% endif %}
-              <option value="{{ loop.index }}" {{ dataimgClassTxt | safe }} dataimg="{{ item.img }}" datasub="{{ item.sub }}" {{ selectedText }}>{{ item.val }}</option>
+              <option value="{{ loop.index }}" {{ dataimgClassTxt | safe }} dataimg="{{ item.img }}" datasub="{{ item.sub }}" {{ selectedText }}>{{ item.main }}</option>
             {% endfor %}
           {% else %}
             {% for item in value %}

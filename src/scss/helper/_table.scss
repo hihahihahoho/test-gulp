@@ -156,7 +156,8 @@ $map-table-td-breakpoint: (
       }
     }
     & > tbody > tr > td {
-      padding: 13px 5px;
+      padding: 5px;
+      height: 30px;
     }
     & tr.read {
       background-color: $color-grey-2 !important;

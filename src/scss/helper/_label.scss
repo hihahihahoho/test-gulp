@@ -31,6 +31,7 @@ label {
   &-status {
     display: inline-block;
     white-space: nowrap;
+    vertical-align: middle;
   }
   &-xs {
     border-radius: $label-xs-border-radius;
