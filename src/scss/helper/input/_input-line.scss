@@ -26,7 +26,7 @@
     & ~ .btn-group .multiselect {
       border: 0;
       border-radius: 0;
-      border-bottom: 1px solid $input-line-border-color;
+      border-bottom: 1px solid $input-border-color;
       background-color: $input-line-border-background;
       &:after {
         position: absolute;

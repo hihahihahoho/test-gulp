@@ -1,3 +1,8 @@
+//===Input material===
+$input-material-font-size: 16px !default;
+$input-material-font-size-sm: 13px !default;
+$input-material-font-weight-sm: $input-label-font-weight !default;
+
 @mixin modifiers-input-material-3($map, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
     &#{if($key != $base, #{$prefix}#{$key}, '')} {

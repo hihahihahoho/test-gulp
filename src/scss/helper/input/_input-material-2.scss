@@ -1,4 +1,14 @@
 //===Input material===
+$input-material-font-size: 16px !default;
+$input-material-font-size-sm: 13px !default;
+$input-material-font-weight-sm: $input-label-font-weight !default;
+
+// input material 2
+$input-material-2-padding-left: $input-space-left !default;
+$input-material-2-space-between: 5px !default;
+
+
+//===Input material===
 @mixin modifiers-input-material-2($map, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
     &#{if($key != $base, #{$prefix}#{$key}, '')} {
@@ -43,7 +53,7 @@
         &.input-material-2 ~ .select2-container .select2-selection--single,
         &.input-material-2 ~ .btn-group .multiselect {
           padding-top: material2InsideInputCalRound($value);
-          background-color: $input-material-2-background;
+          background-color: $input-background;
           .select2-selection__rendered {
             line-height: $value - 2px - material2InsideInputCalRound($value);
           }
@@ -64,13 +74,13 @@
   &-material-2 {
     border: 0;
     border-radius: $input-border-radius;
-    background-color: $input-material-2-background;
+    background-color: $input-background;
     font-size: $input-material-font-size;
     position: relative;
     line-height: 1.2;
     @include z-index(input-material);
     ~ .input-ic:after {
-      background: linear-gradient(90deg, rgba($input-material-2-background, 0) 0%, rgba($input-material-2-background, 1) 30%);
+      background: linear-gradient(90deg, rgba($input-background, 0) 0%, rgba($input-background, 1) 30%);
     }
     & ~ .btn-group {
       [title="Chọn"],
@@ -86,7 +96,7 @@
       background-color: transparent;
     }
     & ~ .select2-container--default .select2-selection--multiple {
-      background-color: $input-material-2-background;
+      background-color: $input-background;
       border: 1px solid $input-border-color;
     }
     & ~ .select2-container--default .select2-search--inline .select2-search__field {
@@ -101,7 +111,7 @@
     & ~ .select2-container--open,
     & ~ .btn-group.open {
       & ~ .input-label {
-        font-weight: $input-material-2-font-weight-sm;
+        font-weight: $input-material-font-weight-sm;
         color: $input-line-bar-color;
       }
     }
@@ -109,13 +119,13 @@
     &.light-pick-focus,
     & ~ .btn-group.open {
       & ~ .input-label {
-        font-weight: $input-material-2-font-weight-sm;
+        font-weight: $input-material-font-weight-sm;
         color: $input-line-bar-color;
       }
     }
     & ~ .input-label {
       color: $input-placeholder-color;
-      background-color: $input-material-2-background;
+      background-color: $input-background;
       position: absolute;
       left: $input-material-2-padding-left;
       @include transition(0.3s cubic-bezier(0.25, 0.8, 0.5, 1));
@@ -147,7 +157,7 @@
   &-group-material-2 {
     & .input-flex-content,
     & .input-group-extend {
-      background-color: $input-material-2-background;
+      background-color: $input-background;
     }
   }
   &-extend-outside {
