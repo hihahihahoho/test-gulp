@@ -390,11 +390,11 @@ body {
 }
 
 .out .progress-bar {
-  background: map-get($map-color-level, success);
+  background: $color-green;
 }
 
 .error .progress-bar {
-  background: map-get($map-color-level, false);
+  background: $color-red;
 }
 
 //tooltip

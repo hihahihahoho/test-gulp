@@ -93,7 +93,7 @@
 }
 
 .pagination-active {
-  background-color: #3f3bec;
+  background-color: var(--color-primary);
   color: white;
 }
 
@@ -124,6 +124,6 @@
 }
 
 .pagination-active .legitRipple-ripple {
-  background: #3f3bec;
+  background: var(--color-primary);
 }
 /*end pagination*/

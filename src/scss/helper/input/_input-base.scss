@@ -123,7 +123,7 @@ label.error,
 .parsley-errors-list.filled {
   display: block;
   font-size: $input-error-font-size;
-  color: map-get($map-color-level, false);
+  color: $color-red;
 }
 .errorBlock {
   margin-top: 2px;

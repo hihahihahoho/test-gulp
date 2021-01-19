@@ -8,7 +8,7 @@ $lp-today-color: $color-primary;
 $lpe-color-grey: $color-grey-3;
 $lp-disable-day-opacity: 0;
 $lp-picked-box-shadow: none;
-$lp-weekend-color: map-get($map-color, base);
+$lp-weekend-color: $color-base;
 $lp-month-year-title-font-size: $font-size-default;
 $lp-max-width: 334px;
 $lp-days-of-the-weeks-color: #707c93;

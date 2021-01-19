@@ -9,22 +9,22 @@
    width: 80px; // Success icon
    &.f-modal-success {
       .f-modal-placeholder {
-         background: rgba(map-get($map-color, green), 0.2);
+         background: rgba($color-green, 0.2);
       }
    }
    &.f-modal-error {
       .f-modal-placeholder {
-         background: rgba(map-get($map-color, red), 0.1);
+         background: rgba($color-red, 0.1);
       }
    }
    &.f-modal-warning {
       .f-modal-placeholder {
-         background: rgba(map-get($map-color, orange), 0.2);
+         background: rgba($color-orange, 0.2);
       }
    }
    &.f-modal-success,
    &.f-modal-error {
-      border-color: map-get($map-color, green);
+      border-color: $color-green;
       &:after,
       &:before {
          background: #fff;
@@ -70,7 +70,7 @@
          z-index: 1;
       }
       .f-modal-line {
-         background-color: map-get($map-color, green);
+         background-color: $color-green;
          border-radius: 2px;
          display: block;
          height: 5px;
@@ -91,7 +91,7 @@
       }
    } // Error icon
    &.f-modal-error {
-      border-color: map-get($map-color, red);
+      border-color: $color-red;
       .f-modal-x-mark {
          display: block;
          position: relative;
@@ -101,7 +101,7 @@
          border: 4px solid transparent;
       }
       .f-modal-line {
-         background-color: map-get($map-color, red);
+         background-color: $color-red;
          top: 37px;
          width: 47px;
          &.f-modal-left {
@@ -129,7 +129,7 @@
          left: 0;
       }
       &:after {
-         background-color: rgba(map-get($map-color, orange),0.2);
+         background-color: rgba($color-orange,0.2);
          border-radius: 50%;
          content: '';
          display: block;
@@ -140,7 +140,7 @@
       }
    }
    &.f-modal-warning .f-modal-body {
-      background-color: map-get($map-color, orange);
+      background-color: $color-orange;
       border-radius: 2px;
       height: 47px;
       left: 50%;
@@ -151,7 +151,7 @@
       z-index: 2;
    }
    &.f-modal-warning .f-modal-dot {
-      background-color: map-get($map-color, orange);
+      background-color: $color-orange;
       border-radius: 50%;
       bottom: 10px;
       height: 7px;
@@ -329,7 +329,7 @@
       opacity: 0.5;
    }
    100% {
-      background-color: map-get($map-color, orange);
+      background-color: $color-orange;
       transform: scale(2);
       opacity: 0;
    }
@@ -340,7 +340,7 @@
       background-color: #F8D486;
    }
    100% {
-      background-color: map-get($map-color, orange);
+      background-color: $color-orange;
    }
 }
 

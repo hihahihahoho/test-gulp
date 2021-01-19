@@ -1,3 +1,27 @@
+/*gtc-css*/
+:root {
+
+	--color-base: #121f3e;
+	--color-blue: #3f3bec;
+	--color-light-blue: #b3b1ff;
+	--color-purple: #4527a0;
+	--color-primary: #3f3bec;
+
+
+	--color-hover-blue: #3f3bef;
+	--color-hover-primary: #3f3bef;
+
+
+	--color-active-blue: #3f3bea;
+	--color-active-primary: #3f3bea;
+
+
+	--color-shadowOp-blue: 0.3;
+	--color-shadowOp-primary: 0.3;
+
+}
+/*end-gtc-css*/
+
 /*init*/
 /* @font-face {
   font-family: "SF Pro Display";
@@ -17,7 +41,7 @@
   font-weight: 600;
 } */
 body {
-  font: 100% 'Inter', "SF Pro Display", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font: 100% "Inter", "SF Pro Display", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   margin: 0;
   width: 100%;
   font-size: 14px;
@@ -67,7 +91,6 @@ body {
 .main-footer {
   margin-top: auto;
 }
-
 
 .sticky-menu .accordion-arrow__content,
 .sticky-menu .accordion-plus__content {

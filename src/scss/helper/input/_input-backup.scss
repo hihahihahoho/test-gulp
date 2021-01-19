@@ -92,14 +92,14 @@ label.error {
   display: block;
   margin-top: 7px;
   font-size: $input-error-font-size;
-  color: map-get($map-color-level, false);
+  color: $color-red;
 }
 
 .error {
-  border-color: map-get($map-color-level, false) !important;
+  border-color: $color-red !important;
   & ~ .select2-container--default .select2-selection--single,
   & ~ .select2-container--default .select2-selection--multiple {
-    border-color: map-get($map-color-level, false) !important;
+    border-color: $color-red !important;
   }
 }
 

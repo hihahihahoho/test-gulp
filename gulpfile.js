@@ -25,9 +25,16 @@ const gulpif = require('gulp-if');
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
 const rename = require('gulp-rename');
+
 const browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+
+const cssbeautify = require('gulp-cssbeautify');
+
+var postcss = require('gulp-postcss');
+var cssvariables = require("postcss-css-variables");
+var posCssRgb = require("postcss-rgb");
 
 // var favicons = require('gulp-favicons');
 var del = require('del');
@@ -68,10 +75,36 @@ var options = {
   max_preserve_newlines: 0
 };
 
+var postCssPlugins = [
+    cssvariables(),
+    posCssRgb()
+  ];
+
+function postCss() {
+  return gulp.src('./dist/css/custom.bundles.css')
+    .pipe(postcss(postCssPlugins))
+    .pipe(gulp.dest('./dist/css/'));
+}
+
+
+function themeGenerator () {
+  return gulp.src('./dist/css/style.css')
+    .pipe(cssbeautify())
+    .pipe(replace(/^((?!3f3bec|{|}|^(.*[^,])\,$).)*$/gm, ''))
+    .pipe(replace(/.*(transition|transform).*/gm, ''))
+    .pipe(replace(/\/\*\!/g, ''))
+    .pipe(cleanCSS({ level: 2 }))
+    .pipe(gulp.dest('./dist/css-test'));
+}
+
 function themeColorMapFunction (mapName, propName, propKey) {
   if (mapName[propName]) {
     !themeColorTextArr[propName] ? themeColorTextArr[propName] = '' : ''
-    return themeColorTextArr[propName] += '\t' + propKey + ': ' + mapName[propName] + ',\n';
+    if (!/#|\./.test(mapName[propName])) {
+      return themeColorTextArr[propName] += '\t' + propKey + ': $color-' + mapName[propName] + ',\n';
+    } else {
+      return themeColorTextArr[propName] += '\t' + propKey + ': ' + mapName[propName] + ',\n';
+    }
   }
 }
 
@@ -85,8 +118,14 @@ function themeColorValueFunction (mapName, propName, propKey) {
 }
 
 function theme () {
+  themeColorText = '';
+  themeColorTextArr = {};
+
+  themeColorValueText = '';
+  themeColorValueTextArr = {};
+
   delete require.cache[require.resolve('./gulp_themes_config.js')];
-  themeColor = require('./gulp_themes_config.js').themeColor
+  themeColor = require('./gulp_themes_config.js').themeColor;
   for (var property in themeColor.default.normal) {
     var themeColorMap = themeColor.default.normal[property]
     for (var property1 in themeColorMap) {
@@ -94,10 +133,18 @@ function theme () {
       property1 != 'text' ? themeColorValueFunction(themeColorMap, property1, property) : ''
     }
   }
+  for (var property in themeColor.default.level) {
+    var colorMap = themeColor.default.level[property]
+    var colorMap = themeColor.default.normal[colorMap]
+    for (var property1 in colorMap) {
+      themeColorMapFunction(colorMap, property1, property);
+      property1 != 'text' ? themeColorValueFunction(colorMap, property1, property) : ''
+    }
+  }
   for (var property in themeColorTextArr) {
-    var propertyTxt = '-' +property 
+    var propertyTxt = '-' + property
     property == 'color' ? propertyTxt = '' : ''
-    themeColorText += '\n\n$map-color' + propertyTxt + ': (\n' + themeColorTextArr[property] + ');'
+    themeColorText += '\n$map-color' + propertyTxt + ': (\n' + themeColorTextArr[property] + ');\n'
   }
 
   for (var property in themeColorValueTextArr) {
@@ -106,11 +153,12 @@ function theme () {
 
   // themeColorTextType = '$map-color-level: (\n' +  themeColorTypeText + ');'
 
-  themeColorTextAll = '//gtc-scss\n' + themeColorText + '\n\n' + themeColorValueText + '\n//end-gtc-scss'
-
-  return gulp.src('./src/scss/helper/_colors.scss')
+  themeColorTextAll = '//gtc-scss\n' + themeColorValueText + themeColorText + '\n//end-gtc-scss'
+  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorValueText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/'
+  return gulp.src(['./src/scss/helper/_colors.scss', './src/custom/css/1-init.css'], { base: './src/' })
     .pipe(replace(/(\/\/gtc-scss)([\S\s]*?)(\/\/end-gtc-scss)/, themeColorTextAll))
-    .pipe(gulp.dest('./src/scss/helper/'))
+    .pipe(replace(/(\/\*gtc-css\*\/)([\S\s]*?)(\/\*end-gtc-css\*\/)/, themeColorTextAllCss))
+    .pipe(gulp.dest('./src/'))
 };
 
 
@@ -244,6 +292,7 @@ function customCss () {
     .pipe(changed('./src/custom/css/**/*.css'))
     .pipe(replace('/dist/', '../'))
     .pipe(concat('custom.bundles.css'))
+    .pipe(postcss(postCssPlugins))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/css'))
     .pipe(browserSync.stream());
@@ -600,6 +649,7 @@ function watch () {
   });
   gulp.watch('src/scss/**/*.scss', style);
   gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS))))
+  gulp.watch('gulp_themes_config.js', theme)
   gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
   gulp.watch('src/media/**/*', series(media, imageMinify))
   gulp.watch('src/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
@@ -665,10 +715,12 @@ exports.fontSrc = fontSrc;
 exports.lowercaseFiles = lowercaseFiles;
 exports.browserifyJs = browserifyJs;
 exports.theme = theme;
+exports.themeGenerator = themeGenerator;
+exports.postCss = postCss;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, imageMinify), series(cleanHtml, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, parallel(series(cleanMedia, imageMinify, cleanMedia), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, theme, parallel(series(cleanMedia, imageMinify, cleanMedia), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), cleanMedia)
 

@@ -20,7 +20,7 @@ $switch-bg-height: 26px;
 $switch-bg-width: 44px;
 $switch-bg-border-radius: $switch-bg-height / 2;
 $switch-bg-color: $color-grey-2;
-$switch-bg-color-active: map-get($map-color, green);
+$switch-bg-color-active: $color-green;
 $switch-text-color: $color-grey-1;
 $switch-text-color-active: $color-base;
 $switch-ic-bg-color: white;
@@ -34,11 +34,11 @@ $switch-ic-active-bg-color: white;
 // $switch-bg-width: 36px;
 // $switch-bg-border-radius: $switch-bg-height / 2;
 // $switch-bg-color: rgba($color-grey-2,0.6);
-// $switch-bg-color-active: rgba(map-get($map-color, green),0.4);
+// $switch-bg-color-active: rgba($color-green,0.4);
 // $switch-text-color: $color-grey-1;
 // $switch-text-color-active: $color-base;
 // $switch-ic-bg-color: $color-grey-2;
-// $switch-ic-active-bg-color: map-get($map-color, green);
+// $switch-ic-active-bg-color: $color-green;
 
 .checkbox {
   display: flex;
@@ -321,8 +321,8 @@ input[type="checkbox"]:checked {
       -var-: #{"$rnc-active-bg-color"};
     }
     .checkbox-green {
-      border-color: map-get($map-color, green);
-      background-color: map-get($map-color, green);
+      border-color: $color-green;
+      background-color: $color-green;
     }
     .checkbox-blue {
       border-color: $color-primary;

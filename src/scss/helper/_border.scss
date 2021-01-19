@@ -116,7 +116,6 @@ $map-border-radius: (
     @include modifiers-border($map-border, "t");
   }
   @include modifiers($map-color, "border-color");
-  @include modifiers($map-color-level, "border-color");
   .radius {
     @include modifiers($map-border-radius, "border-radius");
   }

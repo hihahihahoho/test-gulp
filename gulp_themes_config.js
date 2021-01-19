@@ -4,17 +4,21 @@ var themeColor = {
       'primary': 'blue'         
     },
     normal: {
+      'base': {
+        color: '#121f3e'
+      },
       'blue': {
         color: '#3f3bec',
         hover: '#3f3bef',
         active: '#3f3bea',
-        text: '#ffffff'
+        shadowOp: '0.3'
+      },
+      'light-blue': {
+        color: '#b3b1ff',
+        text: 'blue'
       },
       'purple': {
-        color: '#4527a0',
-        hover: '#4527a1',
-        active: '#4527a2',
-        text: '#ffffff'
+        color: '#4527a0'
       }
     }
 
