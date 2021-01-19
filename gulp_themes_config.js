@@ -26,9 +26,7 @@ var theme = {
     }
   },
   input: {
-    size: {
-
-    }
+    typeDefault: 'material-1'
   }
 }
 
