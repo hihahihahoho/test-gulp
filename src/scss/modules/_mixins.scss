@@ -525,7 +525,7 @@ $z-indexes: "outdated-browser", "modal", "site-header", "page-wrapper", "site-fo
   @return floor($label-font-size * 1.2);
 }
 
-@function label2HeightCal($label-font-size: $input-material-2-font-size) {
+@function label2HeightCal($label-font-size: $input-material-font-size) {
   @return floor($label-font-size * 1.2);
 }
 
@@ -547,7 +547,7 @@ $z-indexes: "outdated-browser", "modal", "site-header", "page-wrapper", "site-fo
 
 @function material2InsideInputCal($input-size) {
   @return (
-      $input-size - $input-material-2-font-size-sm * 1.2 - $input-material-2-space-between - $input-material-2-font-size *
+      $input-size - $input-material-font-size-sm * 1.2 - $input-material-2-space-between - $input-material-font-size *
         1.2
     )/2;
 }
@@ -557,10 +557,10 @@ $z-indexes: "outdated-browser", "modal", "site-header", "page-wrapper", "site-fo
     $input-size -
       (
         (
-            $input-size - $input-material-2-font-size-sm * 1.2 - $input-material-2-space-between -
-              $input-material-2-font-size * 1.2
+            $input-size - $input-material-font-size-sm * 1.2 - $input-material-2-space-between -
+              $input-material-font-size * 1.2
           )/2
-      ) * 2 - $input-material-2-font-size * 1.2
+      ) * 2 - $input-material-font-size * 1.2
   );
 }
 
@@ -569,17 +569,17 @@ $z-indexes: "outdated-browser", "modal", "site-header", "page-wrapper", "site-fo
     $input-size -
       (
         (
-            $input-size - $input-material-2-font-size-sm * 1.2 - $input-material-2-space-between -
-              $input-material-2-font-size * 1.2
+            $input-size - $input-material-font-size-sm * 1.2 - $input-material-2-space-between -
+              $input-material-font-size * 1.2
           )/3
-      ) * 2 - $input-material-2-font-size * 1.2
+      ) * 2 - $input-material-font-size * 1.2
   );
 }
 
 @function material2LabelCal($input-size) {
   $labelHeight: label2HeightCal();
   $labelSpaceTop: material2InsideInputCal($input-size);
-  $labelScale: $input-material-2-font-size-sm/$input-material-2-font-size;
+  $labelScale: $input-material-font-size-sm/$input-material-font-size;
   @return ceil(
     (-($input-size - $labelHeight)/2 + $labelSpaceTop - $labelHeight * (1 - $labelScale)/2) / $labelHeight * 100%
   );

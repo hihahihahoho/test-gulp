@@ -16,17 +16,17 @@
         }
         &.input-material-2 {
           & ~ .input-label {
-            top: ceil(($value - labelHeightCal($input-material-2-font-size))/2);
+            top: ceil(($value - labelHeightCal($input-material-font-size))/2);
           }
           &:focus,
           &.light-pick-focus {
             & ~ .input-label {
-              @include transform(scale($input-material-2-font-size-sm/$input-material-2-font-size) translateY(material2LabelCal($value)));
+              @include transform(scale($input-material-font-size-sm/$input-material-font-size) translateY(material2LabelCal($value)));
             }
           }
           & ~ .select2-container--open {
             & ~ .input-label {
-              @include transform(scale($input-material-2-font-size-sm/$input-material-2-font-size) translateY(material2LabelCal($value)));
+              @include transform(scale($input-material-font-size-sm/$input-material-font-size) translateY(material2LabelCal($value)));
             }
           }
         }
@@ -36,7 +36,7 @@
         &.input-hadval-def {
           &.input-material-2 {
             & ~ .input-label {
-              @include transform(scale($input-material-2-font-size-sm/$input-material-2-font-size) translateY(material2LabelCal($value)));
+              @include transform(scale($input-material-font-size-sm/$input-material-font-size) translateY(material2LabelCal($value)));
             }
           }
         }
@@ -65,7 +65,7 @@
     border: 0;
     border-radius: $input-border-radius;
     background-color: $input-material-2-background;
-    font-size: $input-material-2-font-size;
+    font-size: $input-material-font-size;
     position: relative;
     line-height: 1.2;
     @include z-index(input-material);
@@ -119,7 +119,7 @@
       position: absolute;
       left: $input-material-2-padding-left;
       @include transition(0.3s cubic-bezier(0.25, 0.8, 0.5, 1));
-      font-size: $input-material-2-font-size;
+      font-size: $input-material-font-size;
       @include transform-origin(top left);
       line-height: 1.2;
       pointer-events: none;
