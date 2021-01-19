@@ -58,13 +58,6 @@ var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 var commitMessage = '';
 
-var themeColor = [];
-
-var themeColorText = '';
-var themeColorTextArr = {};
-
-var themeColorValueText = '';
-var themeColorValueTextArr = {};
 
 Array.prototype.diff = function (a) {
   return this.filter(function (i) { return a.indexOf(i) < 0; });
@@ -97,70 +90,80 @@ function themeGenerator () {
     .pipe(gulp.dest('./dist/css-test'));
 }
 
-function themeColorMapFunction (mapName, propName, propKey) {
+// ----------------------------THEME----------------------------
+
+var themeColor = [];
+var themeColorMapText = '';
+var themeColorMapArr = {};
+var themeColorVarText = '';
+var themeColorVarTextArr = {};
+
+function themeMapFunction (mapName, propName, propKey, themeName) {
   if (mapName[propName]) {
-    !themeColorTextArr[propName] ? themeColorTextArr[propName] = '' : ''
+    !themeColorMapArr[propName] ? themeColorMapArr[propName] = '' : ''
     if (!/#|\./.test(mapName[propName])) {
-      return themeColorTextArr[propName] += '\t' + propKey + ': $color-' + mapName[propName] + ',\n';
+      return themeColorMapArr[propName] += '\t' + propKey + ': ' + themeName + '-' + mapName[propName] + ',\n';
     } else {
-      return themeColorTextArr[propName] += '\t' + propKey + ': ' + mapName[propName] + ',\n';
+      return themeColorMapArr[propName] += '\t' + propKey + ': ' + mapName[propName] + ',\n';
     }
   }
 }
 
-function themeColorValueFunction (mapName, propName, propKey) {
+function themeVarFunction (mapName, propName, propKey, themeName) {
   if (mapName[propName]) {
     var propNameTxt = propName + '-';
-    !themeColorValueTextArr[propName] ? themeColorValueTextArr[propName] = '' : ''
+    !themeColorVarTextArr[propName] ? themeColorVarTextArr[propName] = '' : ''
     propName == 'color' ? propNameTxt = '' : ''
-    return themeColorValueTextArr[propName] += '$color-' + propNameTxt + propKey + ': ' + mapName[propName] + ';\n';
+    return themeColorVarTextArr[propName] += themeName + '-' + propNameTxt + propKey + ': ' + mapName[propName] + ';\n';
   }
 }
 
 function theme () {
-  themeColorText = '';
-  themeColorTextArr = {};
+  // theme color
+  themeColorMapText = '';
+  themeColorMapArr = {};
 
-  themeColorValueText = '';
-  themeColorValueTextArr = {};
+  themeColorVarText = '';
+  themeColorVarTextArr = {};
 
   delete require.cache[require.resolve('./gulp_themes_config.js')];
   themeColor = require('./gulp_themes_config.js').themeColor;
   for (var property in themeColor.default.normal) {
     var themeColorMap = themeColor.default.normal[property]
     for (var property1 in themeColorMap) {
-      themeColorMapFunction(themeColorMap, property1, property);
-      property1 != 'text' ? themeColorValueFunction(themeColorMap, property1, property) : ''
+      themeMapFunction(themeColorMap, property1, property, '$color');
+      property1 != 'text' ? themeVarFunction(themeColorMap, property1, property, '$color') : ''
     }
   }
   for (var property in themeColor.default.level) {
     var colorMap = themeColor.default.level[property]
     var colorMap = themeColor.default.normal[colorMap]
     for (var property1 in colorMap) {
-      themeColorMapFunction(colorMap, property1, property);
-      property1 != 'text' ? themeColorValueFunction(colorMap, property1, property) : ''
+      themeMapFunction(colorMap, property1, property, '$color');
+      property1 != 'text' ? themeVarFunction(colorMap, property1, property, '$color') : ''
     }
   }
-  for (var property in themeColorTextArr) {
+  for (var property in themeColorMapArr) {
     var propertyTxt = '-' + property
     property == 'color' ? propertyTxt = '' : ''
-    themeColorText += '\n$map-color' + propertyTxt + ': (\n' + themeColorTextArr[property] + ');\n'
+    themeColorMapText += '\n$map-color' + propertyTxt + ': (\n' + themeColorMapArr[property] + ');\n'
   }
 
-  for (var property in themeColorValueTextArr) {
-    themeColorValueText += '\n' + themeColorValueTextArr[property] + '\n'
+  for (var property in themeColorVarTextArr) {
+    themeColorVarText += '\n' + themeColorVarTextArr[property] + '\n'
   }
+  // end theme color
+  
 
-  // themeColorTextType = '$map-color-level: (\n' +  themeColorTypeText + ');'
-
-  themeColorTextAll = '//gtc-scss\n' + themeColorValueText + themeColorText + '\n//end-gtc-scss'
-  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorValueText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/'
+  themeColorTextAll = '//gtc-scss\n' + themeColorVarText + themeColorMapText + '\n//end-gtc-scss'
+  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/'
   return gulp.src(['./src/scss/helper/_colors.scss', './src/custom/css/1-init.css'], { base: './src/' })
     .pipe(replace(/(\/\/gtc-scss)([\S\s]*?)(\/\/end-gtc-scss)/, themeColorTextAll))
     .pipe(replace(/(\/\*gtc-css\*\/)([\S\s]*?)(\/\*end-gtc-css\*\/)/, themeColorTextAllCss))
     .pipe(gulp.dest('./src/'))
 };
 
+// ----------------------------END THEME----------------------------
 
 function browserifyJs (cb) {
   return browserify('./src/plugins-browserify/uppy/uppy.js')
