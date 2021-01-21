@@ -24,9 +24,6 @@ var theme = {
       }
 
     }
-  },
-  input: {
-    typeDefault: 'material-1'
   }
 }
 

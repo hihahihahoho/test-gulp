@@ -142,25 +142,21 @@
 {% block mainInner %}
   {% set settingInputCustomBorder = {
     inputType: 'border',
-    inputSize: 'sm',
     icSize: 'sm'
   } %}
   {{ localMacros(settingInputCustomBorder) }}
   {% set settingInputCustomClean = {
     inputType: 'clean',
-    inputSize: 'sm',
     icSize: 'sm'
   } %}
   {{ localMacros(settingInputCustomClean) }}
   {% set settingInputLine = {
     inputType: 'line',
-    inputSize: 'sm',
     icSize: 'xs-1'
   } %}
   {{ localMacros(settingInputLine) }}
   {% set settingMaterial = {
-    inputType: 'material',
-    inputSize: 'sm',
+    inputType: 'default',
     icSize: 'xs-1'
   } %}
   {{ localMacros(settingMaterial) }}
@@ -172,7 +168,6 @@
   {{ localMacros(settingMaterial2) }}
   {% set settingMaterial3 = {
     inputType: 'material-3',
-    inputSize: 'sm',
     icSize: 'sm'
   } %}
   {{ localMacros(settingMaterial3) }}

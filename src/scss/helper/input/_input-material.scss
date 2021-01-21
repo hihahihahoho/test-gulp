@@ -9,7 +9,7 @@ $input-material-font-weight-sm: $input-label-font-weight !default;
       @if type-of($value) == "map" {
         @include modifiers-input-material-1($value, $separator);
       } @else {
-        &.input-material {
+        &.input-#{$inputMaterial} {
           & ~ .input-label {
             top: ceil(($value - labelHeightCal())/2);
           }
@@ -28,7 +28,7 @@ $input-material-font-weight-sm: $input-label-font-weight !default;
         & ~ .btn-group.open,
         &.input-hadval,
         &.input-hadval-def {
-          &.input-material {
+          &.input-#{$inputMaterial} {
             & ~ .input-label {
               @include transform(scale($input-material-font-size-sm/$input-material-font-size) translateY(materialLabelCal($value)));
             }
@@ -41,17 +41,17 @@ $input-material-font-weight-sm: $input-label-font-weight !default;
 
 .input {
   &-hadval {
-    &.input-magerial {
+    &.input-#{$inputMaterial} {
       & ~ .input-label {
         font-weight: $input-material-font-weight-sm;
         color: $input-line-bar-color;
       }
     }
   }
-  &-group-material {
+  &-group-#{$inputMaterial} {
     margin-top: labelHeightCal($input-material-font-size-sm);
   }
-  &-material {
+  &-#{$inputMaterial} {
     border: 0;
     border-radius: 0;
     background-color: $input-line-border-background;
@@ -130,17 +130,19 @@ $input-material-font-weight-sm: $input-label-font-weight !default;
     //     left: 0;
     //   }
     // }
-    &~ .select2-container--default .select2-selection--single .select2-selection__rendered,
-    &~ .select2-container--default .select2-search--inline .select2-search__field {
+    & ~ .select2-container--default .select2-selection--single .select2-selection__rendered,
+    & ~ .select2-container--default .select2-search--inline .select2-search__field {
       padding-left: 0;
     }
   }
-  &-group-material {
+  &-group-#{$inputMaterial} {
     .input-group-extend,
     .input-ic-txt {
       padding-right: 0;
-      padding-left: $input-space-left
+      padding-left: $input-space-left;
     }
   }
-  @include modifiers-input-material-1($map-input-size);
+  &-size {
+    @include modifiers-input-material-1($map-input-size);
+  }
 }

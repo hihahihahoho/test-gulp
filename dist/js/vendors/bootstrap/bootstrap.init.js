@@ -34,8 +34,16 @@ $(document).ready(function () {
   $(document).on('click', '.dropdown-click', function (e) {
     e.stopPropagation();
   });
-  $('.ubtn-square').dropdown({
-     boundary: 'window'
+  console.log($.fn.dropdown.Constructor.Default)
+  $('[data-toggle=dropdown]').dropdown({
+    popperConfig: {
+      modifiers: {
+        preventOverflow: {
+          boundariesElement: 'viewport',
+          escapeWithReference: true
+        }
+      },
+    }
   })
 });
 (function () {

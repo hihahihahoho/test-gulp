@@ -8,11 +8,11 @@
     {% endset %}
   {% endif %}
   {% if shape == 'circle' %}
-    {% set btnShape = 'ubtn-circle-' + size %}
+    {% set btnShape = 'ubtn-circle-size-' + size %}
   {% elseif shape == 'square' %}
-    {% set btnShape = 'ubtn-circle-' + size + ' ubtn-square'%}
+    {% set btnShape = 'ubtn-circle-size-' + size + ' ubtn-square'%}
   {% else%}
-    {% set btnShape = 'ubtn-' + size %}
+    {% set btnShape = 'ubtn-size-' + size %}
   {% endif %}
   {% if width %}
     {% set btnWidth = 'ubtn-min-width-' + width %}

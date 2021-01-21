@@ -98,13 +98,11 @@
     {% endif %}
   {% endif %}
 
-  {% if inputType == 'material' or inputType == 'material-2' or inputType == 'material-3' %}
-    {% set inputTypeText = 'input-label-change' %}
-  {% endif %}
+  {% set inputTypeText = 'input-label-change' %}
 
   {% set inputArtt %}
   {{ idText }}
-  type="{{ type }}" class="input input-{{ inputSize }}
+  type="{{ type }}" class="input input-size-{{ inputSize }}
   input-{{ inputType }}
   {{ inputTypeText }}
   input-ic-{{ icSize }}
@@ -135,7 +133,7 @@
         {% else %}
           <input {{ inputArtt | safe | trim}} value="{{ value }}">
           {% if fakeInput %}
-            <div class="input input-{{ inputSize }} input-{{ inputType }} {{ inputTypeText }} input-holder">
+            <div class="input input-size-{{ inputSize }} input-{{ inputType }} {{ inputTypeText }} input-holder">
               {{ fakeInput }}
             </div>
           {% endif %}
@@ -182,7 +180,7 @@
         {% endif %}
       </label>
       {% if extendContent %}
-        <div class="input-{{ inputSize }} input-group-extend {{ extendContentClass }} input-ic-{{icSize}}">
+        <div class="input-size-{{ inputSize }} input-group-extend {{ extendContentClass }} input-ic-{{icSize}}">
           {{ extendContent | safe }}
         </div>
       {% endif %}
@@ -241,9 +239,7 @@
     'foo': False
   } %}
 
-  {% if inputType == 'material' or inputType == 'material-2' or inputType == 'material-3' %}
-    {% set inputTypeText = 'input-label-change' %}
-  {% endif %}
+  {% set inputTypeText = 'input-label-change' %}
 
   {% set selectTxt = '' %}
 
@@ -266,7 +262,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
       <div class="input-group">
-        <select {{ idText }} name="" class="{{ selectLibText }} {{ selectTxt }} {{ extendClass }} input input-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{ inputTypeText }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr | safe }} {{ disabledAttr }} {{ multipleText }}>
+        <select {{ idText }} name="" class="{{ selectLibText }} {{ selectTxt }} {{ extendClass }} input input-size-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{ inputTypeText }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr | safe }} {{ disabledAttr }} {{ multipleText }}>
           {% if selectLib == 'select-2' %}
             <option value=""></option>
           {% elseif selectLib == 'none' %}
@@ -309,7 +305,7 @@
   <!-- end forms.select -->
 {% endmacro %}
 
-{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', size = settingInputDefault.inputSize, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '') %}
+{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '') %}
   <!-- forms.datepicker -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -326,9 +322,7 @@
     {% endif %}
   {% endif %}
 
-  {% if inputType == 'material' or inputType == 'material-2' or inputType == 'material-3' %}
-    {% set inputTypeText = 'input-label-change' %}
-  {% endif %}
+  {% set inputTypeText = 'input-label-change' %}
 
   {% if not note == '' %}
     {% set noteContent %}
@@ -352,7 +346,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }}">
       <label class="input-group">
-        <input {{ idText }} type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-{{ inputSize }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
+        <input {{ idText }} type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-size-{{ inputSize }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
         <div class="input-frame"></div>
         <div class="input-label">{{ title }}</div>
         <div class="input-ic">

@@ -59,7 +59,7 @@
             height: $value;
           }
         }
-        &:not(.input-material-2):not(.input-material-3):not(.input-material) {
+        &:not(.input-#{$inputMaterial2}):not(.input-#{$inputMaterial3}):not(.input-#{$inputMaterial}) {
           ~ .select2-container .select2-selection--multiple {
             .select2-selection__placeholder {
               //   height: $value - 2px;
@@ -111,7 +111,7 @@
       display: block;
       margin-bottom: $input-label-margin-bottom;
     }
-    .input-line ~ .input-label {
+    .input-#{$inputLine} ~ .input-label {
       margin-bottom: 0;
     }
   }
@@ -128,10 +128,15 @@ label.error,
 .errorBlock {
   margin-top: 2px;
 }
-input, textarea {
+input,
+textarea,
+select {
   color: $input-color;
   font-weight: $input-font-weight;
   font-size: $input-font-size;
+  @include media("<992px") {
+    font-size: $input-font-size-mobile !important;
+  }
 }
 .input {
   flex-grow: 1;
@@ -142,7 +147,9 @@ input, textarea {
   padding-right: $input-space-right;
   transition: all 0.15s ease-in-out;
   order: 3;
-  @include modifiers-input-linebar-ic($map-input-size);
+  &-size {
+    @include modifiers-input-linebar-ic($map-input-size);
+  }
   &-holder {
     align-items: center;
     display: flex;
@@ -187,8 +194,8 @@ input, textarea {
       @include z-index(input-line-bar);
     }
   }
-  &-line,
-  &-material {
+  &-#{$inputLine},
+  &-#{$inputMaterial} {
     .input-ic-right {
       text-align: right;
     }
@@ -203,10 +210,10 @@ input, textarea {
       min-width: 0;
     }
   }
-  &-border,
-  &-clean,
-  &-material-2,
-  &-material-3 {
+  &-#{$inputBorder},
+  &-#{$inputClean},
+  &-#{$inputMaterial2},
+  &-#{$inputMaterial3} {
     & ~ .input-frame {
       border: 1px solid $input-border-color;
       border-radius: $input-border-radius;
@@ -249,9 +256,9 @@ input, textarea {
       &-md {
         padding-left: 8px;
       }
-      &-line,
-      &-material,
-      &-material-2 {
+      &-#{$inputLine},
+      &-#{$inputMaterial},
+      &-#{$inputMaterial2} {
         padding-left: 0;
       }
       > .btn {
@@ -339,9 +346,9 @@ input, textarea {
     pointer-events: all;
     cursor: pointer;
   }
-  &-border,
-  &-material-3,
-  &-clean {
+  &-#{$inputBorder},
+  &-#{$inputMaterial3},
+  &-#{$inputClean} {
     &:focus,
     &.light-pick-focus,
     & ~ .btn-group.open,
@@ -355,8 +362,8 @@ input, textarea {
     }
   }
   &-line,
-  &-material,
-  &-material-2 {
+  &-#{$inputMaterial},
+  &-#{$inputMaterial2} {
     &:focus,
     &.light-pick-focus,
     & ~ .btn-group.open,
@@ -456,13 +463,13 @@ input, textarea {
       height: 100%;
     }
   }
-  &:not(.input-clean):not(.input-material-2) {
+  &:not(.input-#{$inputClean}):not(.input-#{$inputMaterial2}) {
     & ~ .input-flex-content::after {
       background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 70%);
     }
   }
-  &.input-clean,
-  &.input-material-2 {
+  &.input-#{$inputClean},
+  &.input-#{$inputMaterial2} {
     & ~ .input-flex-content::after {
       background: linear-gradient(90deg, rgba($input-background, 0) 0%, $input-background 70%);
     }
@@ -514,15 +521,15 @@ textarea {
     min-height: 10px;
     z-index: 9;
   }
-  &.input-material-2,
-  &.input-material-3 {
+  &.input-#{$inputMaterial2},
+  &.input-#{$inputMaterial3} {
     & ~ .input-frame {
       height: 100%;
       z-index: 1;
     }
   }
-  &.input-border,
-  &.input-clean {
+  &.input-#{$inputBorder},
+  &.input-#{$inputClean} {
     border-left: 1px solid $input-border-color;
     padding-right: $input-space-right !important;
     & ~ .input-flex-content {
@@ -654,14 +661,17 @@ textarea {
   }
 }
 
-.note-text{
+.note-text {
   margin-top: 3px;
 }
 
 .file-txt {
   font-size: $input-font-size;
-  font-weight: normal;
-  color: $input-placeholder-color
+  font-weight: $input-font-weight;
+  color: $input-placeholder-color;
+  @include media("<992px") {
+    font-size: 16px !important;
+  }
 }
 .file-txt.color-input {
   color: $input-color;
@@ -673,10 +683,10 @@ textarea {
   }
 }
 
-.input-group-border,
-.input-group-clean,
-.input-group-material-2,
-.input-group-material-3 {
+.input-group-#{$inputBorder},
+.input-group-#{$inputClean},
+.input-group-#{$inputMaterial2},
+.input-group-#{$inputMaterial3} {
   .input-flex-content-file {
     padding-left: 10px;
   }

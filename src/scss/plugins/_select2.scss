@@ -8,7 +8,7 @@
   display: none;
 }
 
-.input-material-2 {
+.input-#{$inputMaterial2} {
   ~ .select2-container--default .select2-selection--multiple .select2-selection__rendered {
     &::after {
       height: 0;
@@ -109,8 +109,8 @@
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
   padding-left: $input-space-left;
   width: 100%;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   margin: auto;
   .select2-search__field {
     padding-left: 0;
@@ -123,6 +123,9 @@
   font-weight: $input-font-weight;
   padding-left: $input-space-left;
   color: $input-color;
+  @include media("<992px") {
+    font-size: $input-font-size-mobile !important;
+  }
 }
 
 .select2-search--dropdown {
@@ -234,24 +237,29 @@ body > .select2-container .select2-dropdown {
   border: 0;
 }
 .select-2[multiple] {
-  &:not(.input-line):not(.input-material) ~ .input-frame {
+  &:not(.input-#{$inputLine}):not(.input-#{$inputMaterial}) ~ .input-frame {
     display: none;
   }
-  &.input-border,
-  &.input-clean,
-  &.input-material-2,
-  &.input-material-3 {
+  &.input-#{$inputBorder},
+  &.input-#{$inputClean},
+  &.input-#{$inputMaterial2},
+  &.input-#{$inputMaterial3} {
     & ~ .select2-container--default.select2-container--focus .select2-selection--multiple {
       border: 1px solid $input-border-color;
     }
     & ~ .select2-container--default.select2-container--open .select2-selection--multiple {
-      border: 1px solid $input-border-color-focus
+      border: 1px solid $input-border-color-focus;
     }
   }
-  &.input-line,
-  &.input-material {
+  &.input-#{$inputLine},
+  &.input-#{$inputMaterial} {
     & ~ .select2-container--default .select2-selection--multiple .select2-selection__rendered {
       padding-left: 0;
+    }
+  }
+  &.input-#{$inputMaterial2} {
+    & ~ .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+      padding-bottom: 0;
     }
   }
   & ~ .select2 {

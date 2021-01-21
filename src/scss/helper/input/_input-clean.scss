@@ -1,5 +1,5 @@
 .input {
-  &-clean {
+  &-#{$inputClean} {
     border: 0;
     background-color: $input-background;
     & ~ .select2-container--default .select2-selection--single,
@@ -28,7 +28,7 @@
       background: linear-gradient(90deg, rgba($input-background, 0) 0%, rgba($input-background, 1) 30%);
     }
   }
-  &-group-clean {
+  &-group-#{$inputClean} {
     & .input-flex-content,
     & .input-group-extend {
       background-color: $input-background;

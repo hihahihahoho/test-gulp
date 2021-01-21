@@ -1,4 +1,5 @@
 $map-input-size: (
+  default: 44px,
   xs-1: 24px,
   xs: 36px,
   sm: 44px,
@@ -6,16 +7,26 @@ $map-input-size: (
   lg: 60px
 );
 
+$inputMaterial: 'default';
+
+$inputBorder: 'border' !default;
+$inputClean: 'clean' !default;
+$inputLine: 'line' !default;
+$inputMaterial: 'material' !default;
+$inputMaterial2: 'material-2' !default;
+$inputMaterial3: 'material-3' !default;
+
 $input-color: $color-base;
 $input-font-weight: 500;
 
 $input-label-font-weight: 400;
 $input-label-font-size: 14px;
+$input-font-size-mobile: 16px;
 $input-label-color: #707C93;
 
 $input-border-radius            : 6px;
 $input-placeholder-color        : #707C93;
-$input-font-size                : 16px;
+$input-font-size                : 14px;
 $input-error-font-size          : 12px;
 $input-label-margin-bottom      : 7px;
 $input-disabled-opacity         : 0.6;
@@ -37,8 +48,8 @@ $textarea-autosize-max-height   : 200px;
 $textarea-line-height           : 1.4;
 
 //===Input material===
-$input-material-font-size: 16px;
-$input-material-font-size-sm: 13px;
+$input-material-font-size: $input-font-size;
+$input-material-font-size-sm: 12px;
 $input-material-font-weight-sm: $input-label-font-weight;
 
 // input material 2

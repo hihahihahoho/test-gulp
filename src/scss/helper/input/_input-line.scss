@@ -1,5 +1,5 @@
 .input {
-  &-line {
+  &-#{$inputLine} {
     border: 0;
     border-radius: 0;
     background-color: $input-line-border-background;
@@ -52,7 +52,7 @@
       // border-color: $input-border-color-focus;
     }
   }
-  &-group-line {
+  &-group-#{$inputLine} {
     .input-group-extend,
     .input-ic-txt {
       padding-right: 0;

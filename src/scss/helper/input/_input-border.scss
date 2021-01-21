@@ -1,6 +1,5 @@
-
 .input {
-  &-border {
+  &-#{$inputBorder} {
     border: 0;
     background-color: $input-line-border-background;
     ~ .input-ic:after {
