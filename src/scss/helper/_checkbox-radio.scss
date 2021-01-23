@@ -7,6 +7,11 @@ $map-rnc-size: (
   lg: 24px,
 );
 
+$rncRadioStyle2Name: 'default';
+
+$rncRadioStyle2Name: '2' !default;
+$rncRadioStyle1Name: '1' !default;
+
 $checkbox-border-radius: 50%;
 $rnc-default-border: 1px solid $color-grey-2;
 $rnc-ic-margin: 10px;
@@ -44,7 +49,7 @@ $switch-ic-active-bg-color: white;
             width: ($value / 2) + 1;
             height: ($value / 2) + 1;
           }
-          @at-root input[type="radio"]:checked ~ .rnc-ic-wrap .radio-style-2#{&} {
+          @at-root input[type="radio"]:checked ~ .rnc-ic-wrap .radio-style-#{$rncRadioStyle2Name}#{&} {
             border-width: ceil($value / 4) + 1;
           }
         }
@@ -67,7 +72,6 @@ $switch-ic-active-bg-color: white;
   &-ic {
     flex-shrink: 0;
     border: $rnc-default-border;
-    -var-: #{"$rnc-default-border"};
     border-radius: $checkbox-border-radius;
     background-color: $rnc-default-bg-color;
     display: inline-block;
@@ -117,7 +121,6 @@ $switch-ic-active-bg-color: white;
   &-ic {
     flex-shrink: 0;
     border: $rnc-default-border;
-    -var-: #{"$rnc-default-border"};
     border-radius: 50%;
     display: inline-block;
     vertical-align: middle;
@@ -129,7 +132,7 @@ $switch-ic-active-bg-color: white;
     overflow: visible;
     z-index: 1;
   }
-  &-style-1 {
+  &-style-#{$rncRadioStyle1Name} {
     &:after {
       content: "";
       position: absolute;
@@ -138,9 +141,8 @@ $switch-ic-active-bg-color: white;
       left: 50%;
       border-radius: 50%;
       background: $rnc-active-color;
-      -var-: #{"$rnc-active-color"};
       transition: 0.2s all ease-in-out;
-      transform-origin: center;
+      transform-origin: 0 -12.5%;
       transform: scale(0) translate(-50%, -50%);
     }
     .legitRipple-ripple {
@@ -166,7 +168,6 @@ $switch-ic-active-bg-color: white;
     background: transparent;
     border-radius: 50%;
     background: $rnc-active-color;
-    -var-: #{"$rnc-active-color"};
     @include transition(0.2s all ease-in-out);
     transform: scale(0) translate(-50%, -50%);
   }
@@ -251,9 +252,7 @@ input[type="checkbox"]:checked {
     }
     .checkbox-ic {
       border-color: $rnc-active-border-color;
-      -var-: #{"$rnc-active-border-color"};
       background-color: $rnc-active-bg-color;
-      -var-: #{"$rnc-active-bg-color"};
     }
     .checkbox-green {
       border-color: $color-green;
@@ -270,21 +269,18 @@ input[type="radio"]:checked {
   & ~ .rnc-ic-wrap {
     .radio-ic {
       border-color: $rnc-active-border-color;
-      -var-: #{"$rnc-active-border-color"};
       background-color: $rnc-active-bg-color-radio;
-      -var-: #{"$rnc-active-bg-color-radio"};
     }
     .checkbox-text-change {
       color: $color-primary;
     }
-    .radio-style-2 {
+    .radio-style-#{$rncRadioStyle2Name} {
       &.radio-ic {
         border-color: $rnc-active-color;
-        -var-: #{"$rnc-active-color"};
         background-color: transparent;
       }
     }
-    .radio-style-1 {
+    .radio-style-#{$rncRadioStyle1Name} {
       .radio-check,
       &:after {
         transform: scale(1) translate(-50%, -50%);

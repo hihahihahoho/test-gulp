@@ -34,7 +34,7 @@
   </label>
 {% endmacro %}
 
-{% macro checkbox(title, subTitle, color = 'base', extendClass = '', extendAttr = '', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = settingRncDefault.style, fontSize, icSize = settingRncDefault.icSize, groupGutter = '20', groupCol = '12', groupSpace = '10') %}
+{% macro checkbox(title, subTitle, color = 'base', extendClass = '', extendAttr = '', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = settingRncDefault.checkboxStyle, fontSize, icSize = settingRncDefault.icSize, groupGutter = '20', groupCol = '12', groupSpace = '10') %}
   <!-- rnc.checkbox -->
   {% if (title | isStr) %}
     {{ rnc(title = title, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'checkbox', align = align, mr = mr, checked = checked, name = name, value = value, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
@@ -59,7 +59,7 @@
   <!-- end rnc.checkbox -->
 {% endmacro %}
 
-{% macro radio(title, subTitle, color = 'base', extendClass = '', extendAttr = '', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = settingRncDefault.style, fontSize, icSize = settingRncDefault.icSize, groupGutter = '20', groupCol = '12', groupSpace = '10') %}
+{% macro radio(title, subTitle, color = 'base', extendClass = '', extendAttr = '', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = settingRncDefault.radioStyle, fontSize, icSize = settingRncDefault.icSize, groupGutter = '20', groupCol = '12', groupSpace = '10') %}
   <!-- rnc.radio -->
   {% if (title | isStr) %}
     {{ rnc(title = title, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'radio', align = align, mr = mr, checked = checked, name = name, value = value, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
