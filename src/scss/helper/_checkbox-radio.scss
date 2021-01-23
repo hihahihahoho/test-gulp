@@ -1,8 +1,12 @@
 //=== RADIO AND CHECKBOX ========================
-$rnc-xs: 16px;
-$rnc-sm: 18px;
-$rnc-md: 20px;
-$rnc-lg: 22px;
+$map-rnc-size: (
+  default: 18px,
+  xs: 16px,
+  sm: 20px,
+  md: 22px,
+  lg: 24px,
+);
+
 $checkbox-border-radius: 50%;
 $rnc-default-border: 1px solid $color-grey-2;
 $rnc-ic-margin: 10px;
@@ -26,19 +30,28 @@ $switch-text-color-active: $color-base;
 $switch-ic-bg-color: white;
 $switch-ic-active-bg-color: white;
 
-//=====Swich Android======
-
-// $switch-ic-size: 20px;
-// $switch-ic-border-radius: $switch-ic-size / 2;
-// $switch-bg-height: 14px;
-// $switch-bg-width: 36px;
-// $switch-bg-border-radius: $switch-bg-height / 2;
-// $switch-bg-color: rgba($color-grey-2,0.6);
-// $switch-bg-color-active: rgba($color-green,0.4);
-// $switch-text-color: $color-grey-1;
-// $switch-text-color-active: $color-base;
-// $switch-ic-bg-color: $color-grey-2;
-// $switch-ic-active-bg-color: $color-green;
+@mixin modifiers-rnc($map, $prefix: "-", $separator: "-", $base: "basic", $name: "") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-rnc($value, $separator);
+      } @else {
+        width: $value;
+        min-width: $value;
+        height: $value;
+        @if $name == "radio" {
+          &:after {
+            width: ($value / 2) + 1;
+            height: ($value / 2) + 1;
+          }
+          @at-root input[type="radio"]:checked ~ .rnc-ic-wrap .radio-style-2#{&} {
+            border-width: ceil($value / 4) + 1;
+          }
+        }
+      }
+    }
+  }
+}
 
 .checkbox {
   display: flex;
@@ -46,41 +59,8 @@ $switch-ic-active-bg-color: white;
   .table {
     width: auto;
   }
-  &-xs {
-    width: $rnc-xs;
-    min-width: $rnc-xs;
-    height: $rnc-xs;
-    .radio-check {
-      width: ($rnc-xs / 2) - 1;
-      height: ($rnc-xs / 2) - 1;
-    }
-  }
-  &-sm {
-    width: $rnc-sm;
-    min-width: $rnc-sm;
-    height: $rnc-sm;
-    .radio-check {
-      width: ($rnc-sm / 2) - 1;
-      height: ($rnc-sm / 2) - 1;
-    }
-  }
-  &-md {
-    width: $rnc-md;
-    min-width: $rnc-md;
-    height: $rnc-md;
-    .radio-check {
-      width: ($rnc-md / 2) - 1;
-      height: ($rnc-md / 2) - 1;
-    }
-  }
-  &-lg {
-    width: $rnc-lg;
-    min-width: $rnc-lg;
-    height: $rnc-lg;
-    .radio-check {
-      width: ($rnc-lg / 2) - 1;
-      height: ($rnc-lg / 2) - 1;
-    }
+  &-size {
+    @include modifiers-rnc($map-rnc-size, $name: "checkbox");
   }
   cursor: pointer;
   @include no-select();
@@ -128,55 +108,12 @@ $switch-ic-active-bg-color: white;
   .table {
     width: auto;
   }
+  &-size {
+    @include modifiers-rnc($map-rnc-size, $name: "radio");
+  }
   cursor: pointer;
-  .table {
-    .td {
-      &:first-child {
-        width: $rnc-xs + 10;
-      }
-    }
-  }
+
   @include no-select();
-  &-xs {
-    width: $rnc-xs;
-    min-width: $rnc-xs;
-    height: $rnc-xs;
-    .radio-check,
-    &:after {
-      width: ($rnc-xs / 2) + 1;
-      height: ($rnc-xs / 2) + 1;
-    }
-  }
-  &-sm {
-    width: $rnc-sm;
-    min-width: $rnc-sm;
-    height: $rnc-sm;
-    .radio-check,
-    &:after {
-      width: ($rnc-sm / 2) + 1;
-      height: ($rnc-sm / 2) + 1;
-    }
-  }
-  &-md {
-    width: $rnc-md;
-    min-width: $rnc-md;
-    height: $rnc-md;
-    .radio-check,
-    &:after {
-      width: ($rnc-md / 2) + 1;
-      height: ($rnc-md / 2) + 1;
-    }
-  }
-  &-lg {
-    width: $rnc-lg;
-    min-width: $rnc-lg;
-    height: $rnc-lg;
-    .radio-check,
-    &:after {
-      width: ($rnc-lg / 2) + 1;
-      height: ($rnc-lg / 2) + 1;
-    }
-  }
   &-ic {
     flex-shrink: 0;
     border: $rnc-default-border;
@@ -188,7 +125,7 @@ $switch-ic-active-bg-color: white;
     font-size: 14px;
     position: relative;
     color: transparent;
-    @include transition(0.2s all ease-in-out);
+    transition: 0.2s all ease-in-out;
     overflow: visible;
     z-index: 1;
   }
@@ -196,17 +133,15 @@ $switch-ic-active-bg-color: white;
     &:after {
       content: "";
       position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      margin: auto;
       background: transparent;
+      top: 50%;
+      left: 50%;
       border-radius: 50%;
       background: $rnc-active-color;
       -var-: #{"$rnc-active-color"};
-      @include transition(0.2s all ease-in-out);
-      @include scale(0);
+      transition: 0.2s all ease-in-out;
+      transform-origin: center;
+      transform: scale(0) translate(-50%, -50%);
     }
     .legitRipple-ripple {
       background: $rnc-ripple-color;
@@ -233,7 +168,7 @@ $switch-ic-active-bg-color: white;
     background: $rnc-active-color;
     -var-: #{"$rnc-active-color"};
     @include transition(0.2s all ease-in-out);
-    @include scale(0);
+    transform: scale(0) translate(-50%, -50%);
   }
   &-text {
     // font-size: 14px;
@@ -348,23 +283,11 @@ input[type="radio"]:checked {
         -var-: #{"$rnc-active-color"};
         background-color: transparent;
       }
-      &.radio-xs {
-        border-width: ceil($rnc-xs / 4) + 1;
-      }
-      &.radio-sm {
-        border-width: ceil($rnc-sm / 4) + 1;
-      }
-      &.radio-md {
-        border-width: ceil($rnc-md / 4) + 1;
-      }
-      &.radio-lg {
-        border-width: ceil($rnc-lg / 4) + 1;
-      }
     }
     .radio-style-1 {
       .radio-check,
       &:after {
-        @include scale(1);
+        transform: scale(1) translate(-50%, -50%);
       }
       &:before {
         transform: scale(3.5);
