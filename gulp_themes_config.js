@@ -15,7 +15,7 @@ var theme = {
           shadowOp: '0.3'
         },
         'light-blue': {
-          color: '#b3b1ff',
+          color: '#e7e6ff',
           text: 'blue'
         },
         'purple': {

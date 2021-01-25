@@ -69,11 +69,11 @@ var options = {
 };
 
 var postCssPlugins = [
-    cssvariables(),
-    posCssRgb()
-  ];
+  cssvariables(),
+  posCssRgb()
+];
 
-function postCss() {
+function postCss () {
   return gulp.src('./dist/css/custom.bundles.css')
     .pipe(postcss(postCssPlugins))
     .pipe(gulp.dest('./dist/css/'));
@@ -153,7 +153,7 @@ function theme () {
     themeColorVarText += '\n' + themeColorVarTextArr[property] + '\n'
   }
   // end theme color
-  
+
 
   themeColorTextAll = '//gtc-scss\n' + themeColorVarText + themeColorMapText + '\n//end-gtc-scss'
   themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/'
@@ -396,6 +396,10 @@ var manageEnvironment = function (environment) {
   environment.addFilter('isStr', something => typeof something == 'string')
   environment.addFilter('isArr', something => Array.isArray(something))
   environment.addFilter('isDict', something => something.constructor == Object ? true : false)
+  environment.addFilter('setAttribute', function (dictionary, key, value) {
+    dictionary[key] = value;
+    return dictionary;
+  })
 }
 
 function nunjucks () {

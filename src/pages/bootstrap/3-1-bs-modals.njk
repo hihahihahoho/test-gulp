@@ -1,0 +1,41 @@
+{% extends "main/_layout-sidebar.njk" %}
+{% set pageLink = file_path %}
+{% set pageTitle = 'Modal' %}
+
+{% block mainInner %}
+  <div class="box">
+    <div class="box__body pb-0">
+      <form class="from-section form-vertical pb30">
+        <div class="row row-20">
+          <div class="col-auto">
+            {{ button.btn('Modal Text', color = 'line-primary', modal = '#modalText') }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block modal %}
+  {% set dataModalAlert = {
+    id: 'modalText',
+    pos: 'centered',
+    type: 'error',
+    size: 'xs',
+    title: 'Chưa chọn thông tin thụ hưởng',
+    content: 'Quý khách vui lòng chọn “Người thụ hưởng” để nhập/ chọn thông tin thụ hưởng',
+    button: [
+      { 
+        tagName: 'a',
+        title: 'Bỏ qua',
+        color: 'light-blue'
+      },
+      { 
+        tagName: 'a',
+        title: 'Chọn',
+        color: 'primary'
+      }
+    ]
+  } %}
+  {{ modal.modal(dataModalAlert) }}
+{% endblock %}

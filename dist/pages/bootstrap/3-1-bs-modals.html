@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>Ultimate HTML -
-    Dropdown</title>
+    Modal</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
   <!-- bootstrap -->
@@ -127,18 +127,18 @@
       </a>
     </div>
     <div class="sidebar__title">Bootstrap</div>
-    <div class="sidebar__list">
+    <div class="sidebar__list active">
       <a class="sidebar__item" href="pages/bootstrap/3-1-bs-modals.html">
         <div class="ic">
-          <img src="media/icons/svg/dark/plannet.svg" alt="">
+          <img src="media/icons/svg/primary/plannet.svg" alt="">
         </div>
         <div class="txt">Modals</div>
       </a>
     </div>
-    <div class="sidebar__list active">
+    <div class="sidebar__list">
       <a class="sidebar__item" href="pages/bootstrap/3-2-bs-dropdown.html">
         <div class="ic">
-          <img src="media/icons/svg/primary/plannet.svg" alt="">
+          <img src="media/icons/svg/dark/plannet.svg" alt="">
         </div>
         <div class="txt">Dropdowns</div>
       </a>
@@ -323,27 +323,25 @@
       <div class="main-inner main-inner-page">
         <div class="container">
           <div class="title-section">
-            <div class="h1 b pv30">Dropdown</div>
+            <div class="h1 b pv30">Modal</div>
           </div>
           <div class="box">
-            <div class="box__body">
-              <h5 class="pb30">Dropdown basic</h5>
-              <div class="dropdown">
-                <!-- button.btn -->
-                <button class="ubtn ubg-primary ubtn-size-default ubtn-min-width-auto ubg-hover ubg-active" data-toggle="dropdown">
-                  <div class="ubtn-full">
-                    <div class="row row-10 ubtn-inner">
-                      <span class="ubtn-text">Dropdown</span>
-                    </div>
+            <div class="box__body pb-0">
+              <form class="from-section form-vertical pb30">
+                <div class="row row-20">
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <value class="ubtn ubg-line-primary ubtn-size-default ubg-hover ubg-active" data-toggle="modal" data-target="#modalText">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-text">Modal Text</span>
+                        </div>
+                      </div>
+                    </value>
+                    <!-- end button.btn -->
                   </div>
-                </button>
-                <!-- end button.btn -->
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -402,6 +400,49 @@
     </div>
   </div>
 </body>
+<div class="modal fade" id="modalText" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xs modal-dialog-scrollable" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <div class="modal-wrap">
+          error
+          <h5 class="modal-title">
+            <b>Chưa chọn thông tin thụ hưởng</b>
+          </h5>
+        </div>
+      </div>
+      <div class="modal-body">
+        Quý khách vui lòng chọn “Người thụ hưởng” để nhập/ chọn thông tin thụ hưởng
+      </div>
+      <div class="modal-footer justify-content-center">
+        <div class="row row-15 justify-content-center">
+          <div class="col-6">
+            <!-- button.btn -->
+            <a class="ubtn ubg-light-blue ubtn-size-default ubg-hover ubg-active" data-dismiss="modal">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-text">Bỏ qua</span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+          <div class="col-6">
+            <!-- button.btn -->
+            <a class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active" data-dismiss="modal">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-text">Chọn</span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- jquery -->
 <script src="js/vendors/jquery/jquery.bundles.js"></script>
 <script src="js/vendors/jquery/jquery.init.js"></script>

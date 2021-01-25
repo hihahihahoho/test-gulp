@@ -365,7 +365,7 @@
   {% if pos == 'right' %}
     {% set customFlexContent %}
     <div class="input-group-extend">
-      {{ button.btn(btnTitle, size = 'xs-1', color = 'op-primary', type = 'div') }}
+      {{ button.btn(btnTitle, size = 'xs-1', color = 'op-primary', tagName = 'div') }}
     </div>
     {% endset %}
     {% set fakeInput %}
@@ -376,7 +376,7 @@
     {% set extendContentCon %}
     <div class="input-flex-content input-flex-content-left input-flex-content-file">
       <div class="input-group-extend">
-        {{ button.btn(btnTitle, size = 'xs-1', color = 'op-primary', type = 'div') }}
+        {{ button.btn(btnTitle, size = 'xs-1', color = 'op-primary', tagName = 'div') }}
       </div>
     </div>
     {% endset %}

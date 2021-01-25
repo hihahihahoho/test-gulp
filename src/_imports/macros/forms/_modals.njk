@@ -1,0 +1,113 @@
+{% extends "_varibles.njk" %}
+
+{% import "macros/forms/_forms.njk" as form %}
+{% import "macros/forms/_buttons.njk" as button %}
+{% import "macros/forms/_rnc.njk" as rnc %}
+{% import "macros/forms/_files-upload.njk" as file %}
+
+{% macro modal(data) %}
+  {# Modal Varibles #}
+  {% set modalSize = data.size %}
+  {% set modalType = data.type %}
+  {% set modalAlign = data.align %}
+  {% set modalAnim = data.animation %}
+
+  {% if not modalSize %}
+    {% set modalSize = 'xs' %}
+  {% endif %}
+
+  {% if not modalType %}
+    {% set modalType %}
+    <img src="media/graph/{{ data.type }}.svg" class="alert-modal-ic mv15" alt="">
+    {% endset %}
+  {% endif %}
+
+  {% if not modalAlign %}
+    {% set modalAlign = 'center' %}
+  {% endif %}
+
+  {% if not modalAnim %}
+    {% set modalAnim = 'fade' %}
+  {% endif %}
+
+  {% if data.closeBtn == 'true' %}
+    {% set modalHeader %}
+    <div class="row row-20 modal-title">
+      <div class="col">
+        <h5 class="">
+          <b>{{ data.title }}</b>
+        </h5>
+      </div>
+      <div class="col-auto text-right col-btn-close">
+        <a href="" data-dismiss="modal" class="link b close-modal-btn">Đóng</a>
+      </div>
+    </div>
+    {{ modalType | safe }}
+    {% endset %}
+  {% else %}
+    {% set modalHeader %}
+    {{ modalType | safe }}
+    <h5 class="modal-title">
+      <b>{{ data.title }}</b>
+    </h5>
+    {% endset %}
+  {% endif %}
+
+  <div class="modal {{ modalAnim }}" id="{{ data.id }}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" {{ data.extendAttr}}>
+    <div class="modal-dialog modal-dialog-{{ data.pos }} modal-{{ modalSize }} modal-dialog-scrollable {{ data.extendClasss }}" role="document">
+      <div class="modal-content text-{{ modalAlign }}">
+        <div class="modal-header">
+          <div class="modal-wrap">
+            {{ modalHeader | safe }}
+            {{ data.modalHeaderContent | safe }}
+          </div>
+        </div>
+        <div class="modal-body">
+          {{ data.content }}
+        </div>
+        <div class="modal-footer justify-content-center">
+          {% if data.button %}
+            <div class="row row-15 justify-content-center">
+              {% if data.modalFooterContent %}
+                <div class="col-12">
+                  <div class="modal-footer-content">
+                    {{ data.modalFooterContent | safe }}
+                  </div>
+                </div>
+              {% endif %}
+              {% for item in data.button %}
+                <div class="col-{{ 12/loop.length }}">
+                  {% if not item.modalDismiss %}
+                    {% if item.extendAttr %}
+                      {% set item = item|setAttribute('extendAttr', 'data-dismiss="modal"' + item.extendAttr) %}
+                    {% else %}
+                      {% set item = item|setAttribute('extendAttr', 'data-dismiss="modal"') %}
+                    {% endif %}
+
+                  {% endif %}
+                  {{ button.btnData(item) }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro toast(value, type = 'success', id = '') %}
+  <div class="toast" id="{{ id }}" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body">
+      <div class="row row-15 align-items-center">
+        <div class="col-auto">
+          <img src="/dist/media/svg-custom/toast/{{ type }}.svg" alt="">
+        </div>
+        <div class="col-auto flex-grow-1">{{ value }}</div>
+        <div class="col-auto">
+          <img src="/dist/media/svg/light/close.svg" alt="" data-dismiss="toast" aria-label="Close" class="ic-sm pointer">
+        </div>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
