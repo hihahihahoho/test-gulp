@@ -1,0 +1,47 @@
+$map-modal-size: (
+  default: 200px,
+  xs: 373px,
+  sm: 570px,
+);
+
+.bd-example-modal {
+  .dropdown-menu {
+    position: relative;
+    display: block;
+    float: none;
+  }
+}
+
+.dropdown {
+  &-it {
+    display: block;
+    border-radius: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+    min-height: 36px;
+  }
+  &-size {
+    @include modifiers($map-modal-size, "width");
+  }
+  &-menu {
+    padding: 10px;
+    border-radius: 8px;
+    border: 0;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 8px 16px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 8px 16px 0 rgba(0, 0, 0, 0.08);
+    margin-top: 5px;
+    font-size: inherit;
+    > li:not(:last-child) {
+      margin-bottom: 4px;
+    }
+    .seperatetor {
+      height: 1px;
+      margin: 10px 0 !important;
+    }
+    .row {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+  }
+}

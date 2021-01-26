@@ -1,6 +1,7 @@
 /*gtc-css*/
 :root {
 
+	--color-transparent: transparent;
 	--color-black: #000;
 	--color-white: #fff;
 	--color-base: #121f3e;
@@ -23,6 +24,8 @@
 	--color-light-success: #C2F2D6;
 
 
+	--color-hover-transparent: #f5f5f5;
+	--color-hover-white: #f5f5f5;
 	--color-hover-blue: #3935D4;
 	--color-hover-light-blue: #D8D8FF;
 	--color-hover-red: #FFD9DA;

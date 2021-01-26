@@ -44,7 +44,6 @@ $input-material-font-weight-sm: $input-label-font-weight !default;
     &.input-#{$inputMaterial} {
       & ~ .input-label {
         font-weight: $input-material-font-weight-sm;
-        color: $input-line-bar-color;
       }
     }
   }

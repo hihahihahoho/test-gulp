@@ -16,7 +16,9 @@ $modal-backdrop-bgcolor-op: 0.5;
   background-color: rgba($modal-backdrop-bgcolor, $modal-backdrop-bgcolor-op);
   border-radius: 15px;
   margin-bottom: 20px;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .modal,
   .toast {
     position: relative;
@@ -32,8 +34,9 @@ $modal-backdrop-bgcolor-op: 0.5;
     align-items: center;
     justify-content: center;
   }
-  .toast {
+  > *:not(.modal) {
     margin: 30px auto;
+    pointer-events: all;
   }
   .modal-dialog {
     left: auto;
@@ -209,7 +212,6 @@ $modal-backdrop-bgcolor-op: 0.5;
 }
 
 /*end modal*/
-
 
 /* toast */
 .toast {

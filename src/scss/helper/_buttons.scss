@@ -142,6 +142,7 @@ button::before {
   &-ic {
     display: inline-block;
     vertical-align: middle;
+    line-height: 1;
   }
   & .mdi {
     vertical-align: middle;
@@ -186,7 +187,6 @@ button::before {
   }
   &-inner {
     align-items: center;
-    justify-content: center;
     font-size: $btn-font-size;
     flex-wrap: nowrap;
   }

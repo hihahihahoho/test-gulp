@@ -12,11 +12,18 @@ var theme = {
         'light-success': 'light-green'
       },
       normal: {
+        'transparent': {
+          color: 'transparent',
+          hover: '#f5f5f5', 
+          text: 'base'
+        },
         'black': {
           color: '#000'
         },
         'white': {
-          color: '#fff'
+          color: '#fff',
+          hover: '#f5f5f5', 
+          text: 'base'
         },
         'base': {
           color: '#121f3e'

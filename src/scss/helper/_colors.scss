@@ -1,5 +1,6 @@
 //gtc-scss
 
+$color-transparent: transparent;
 $color-black: #000;
 $color-white: #fff;
 $color-base: #121f3e;
@@ -22,6 +23,8 @@ $color-success: #2ED573;
 $color-light-success: #C2F2D6;
 
 
+$color-hover-transparent: #f5f5f5;
+$color-hover-white: #f5f5f5;
 $color-hover-blue: #3935D4;
 $color-hover-light-blue: #D8D8FF;
 $color-hover-red: #FFD9DA;
@@ -69,6 +72,7 @@ $color-shadowOp-success: 0.3;
 
 
 $map-color: (
+	transparent: $color-transparent,
 	black: #000,
 	white: #fff,
 	base: #121f3e,
@@ -92,6 +96,8 @@ $map-color: (
 );
 
 $map-color-hover: (
+	transparent: #f5f5f5,
+	white: #f5f5f5,
 	blue: #3935D4,
 	light-blue: #D8D8FF,
 	red: #FFD9DA,
@@ -108,6 +114,19 @@ $map-color-hover: (
 	light-warning: #FFD9CC,
 	success: #2CCC6E,
 	light-success: #B5F2CE,
+);
+
+$map-color-text: (
+	transparent: $color-base,
+	white: $color-base,
+	light-blue: $color-blue,
+	light-red: $color-red,
+	light-orange: $color-orange,
+	light-green: $color-green,
+	light-primary: $color-blue,
+	light-danger: $color-blue,
+	light-warning: $color-orange,
+	light-success: $color-green,
 );
 
 $map-color-active: (
@@ -138,17 +157,6 @@ $map-color-shadowOp: (
 	danger: 0.3,
 	warning: 0.3,
 	success: 0.3,
-);
-
-$map-color-text: (
-	light-blue: $color-blue,
-	light-red: $color-red,
-	light-orange: $color-orange,
-	light-green: $color-green,
-	light-primary: $color-blue,
-	light-danger: $color-blue,
-	light-warning: $color-orange,
-	light-success: $color-green,
 );
 
 //end-gtc-scss
@@ -305,8 +313,4 @@ $map-bg-op-color-modify: (
   &-line {
     @include modifiers-bg-line($map-color);
   }
-}
-
-.ubg-transparent {
-  background-color: transparent;
 }

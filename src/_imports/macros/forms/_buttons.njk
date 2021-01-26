@@ -26,6 +26,9 @@
   {% if not active %}
     {% set active = settingButtonDefault.active %}
   {% endif %}
+  {% if not justifyContent %}
+    {% set justifyContent = 'center' %}
+  {% endif %}
 
   {% if modal %}
     {% set tagName = 'a' %}
@@ -83,7 +86,7 @@
   {% endif %}
 
   {% if justifyContent %}
-    {% set justifyContentText = 'justify-content' + justifyContent %}
+    {% set justifyContentText = 'justify-content-' + justifyContent %}
   {% endif %}
 
   {% if tooltip %}
