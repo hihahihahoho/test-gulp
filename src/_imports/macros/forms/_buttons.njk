@@ -1,6 +1,6 @@
 {% extends "_varibles.njk" %}
 
-{% macro btn(title, id, tagName, color, size, width, modal, href, extendAttr, extendClass, shape, custom, icon, icLeft, icSize, disabled = 'false', justifyContent, tooltip, fontSize, textColor, space, rounded, hover, active) %}
+{% macro btn(title, id, tagName, color, size, width, modal, href, toast, extendAttr, extendClass, shape, custom, icon, icLeft, icSize, disabled = 'false', justifyContent, tooltip, fontSize, textColor, space, rounded, hover, active) %}
   <!-- button.btn -->
   {% if not tagName %}
     {% set tagName = settingButtonDefault.tagName %}
@@ -28,11 +28,19 @@
   {% endif %}
 
   {% if modal %}
-    {% set tagName = 'value' %}
+    {% set tagName = 'a' %}
     {% set modalAttr %}
     data-toggle="modal" data-target="{{ modal }}"
     {% endset %}
   {% endif %}
+
+  {% if toast %}
+    {% set tagName = 'a' %}
+    {% set toastAttr %}
+    data-toast="toast" toast-target="{{ toast }}"
+    {% endset %}
+  {% endif %}
+
   {% if shape == 'circle' %}
     {% set btnShape = 'ubtn-circle-size-' + size %}
   {% elseif shape == 'square' %}
@@ -125,7 +133,7 @@
     {% set ubgActive = 'ubg-active' %}
   {% endif %}
 
-  <{{ tagName }} {{idTxt}} class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ roundedText }} {{ ubgHover }} {{ ubgActive }} {{ extendClass }}" {{ modalAttr | safe}} {{ hrefAttr | safe}} {{ extendAttr | safe }} {{disabledText}} {{ tooltipContent | safe }}>
+  <{{ tagName }} {{idTxt}} class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ roundedText }} {{ ubgHover }} {{ ubgActive }} {{ extendClass }}" {{ modalAttr | safe}} {{ toastAttr | safe }} {{ hrefAttr | safe}} {{ extendAttr | safe }} {{disabledText}} {{ tooltipContent | safe }}>
     <div class="ubtn-full">
       {{ btnContent | safe }}
     </div>
@@ -134,5 +142,5 @@
 {% endmacro %}
 
 {% macro btnData(data) %}
-  {{ btn(title = data.title, id = data.id, tagName = data.tagName, color = data.color, size = data.size, width = data.width, modal = data.modal, href = data.href, extendAttr = data.extendAttr, extendClass = data.extendClass, shape = data.shape, custom = data.custom, icon = data.icon, icLeft = data.icLeft, icSize = data.icSize, disabled = data.disabled, justifyContent = data.justifyContent, tooltip = data.tooltip, fontSize = data.fontSize, textColor = data.textColor, space = data.space, rounded = data.rounded) }}
+  {{ btn(title = data.title, id = data.id, tagName = data.tagName, color = data.color, size = data.size, width = data.width, modal = data.modal, toast = data.toast, href = data.href, extendAttr = data.extendAttr, extendClass = data.extendClass, shape = data.shape, custom = data.custom, icon = data.icon, icLeft = data.icLeft, icSize = data.icSize, disabled = data.disabled, justifyContent = data.justifyContent, tooltip = data.tooltip, fontSize = data.fontSize, textColor = data.textColor, space = data.space, rounded = data.rounded) }}
 {% endmacro %}

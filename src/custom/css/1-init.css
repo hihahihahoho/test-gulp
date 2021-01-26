@@ -1,23 +1,72 @@
 /*gtc-css*/
 :root {
 
+	--color-black: #000;
+	--color-white: #fff;
 	--color-base: #121f3e;
 	--color-blue: #3f3bec;
-	--color-light-blue: #e7e6ff;
+	--color-light-blue: #E5E5FF;
+	--color-red: #FF3D4E;
+	--color-light-red: #FFE6E8;
+	--color-orange: #FF7544;
+	--color-light-orange: #FFE3D9;
+	--color-green: #2ED573;
+	--color-light-green: #C2F2D6;
 	--color-purple: #4527a0;
 	--color-primary: #3f3bec;
+	--color-light-primary: #E5E5FF;
+	--color-danger: #3f3bec;
+	--color-light-danger: #E5E5FF;
+	--color-warning: #FF7544;
+	--color-light-warning: #FFE3D9;
+	--color-success: #2ED573;
+	--color-light-success: #C2F2D6;
 
 
-	--color-hover-blue: #3f3bef;
-	--color-hover-primary: #3f3bef;
+	--color-hover-blue: #3935D4;
+	--color-hover-light-blue: #D8D8FF;
+	--color-hover-red: #FFD9DA;
+	--color-hover-light-red: #D8D8FF;
+	--color-hover-orange: #F26F41;
+	--color-hover-light-orange: #FFD9CC;
+	--color-hover-green: #2CCC6E;
+	--color-hover-light-green: #B5F2CE;
+	--color-hover-primary: #3935D4;
+	--color-hover-light-primary: #D8D8FF;
+	--color-hover-danger: #3935D4;
+	--color-hover-light-danger: #D8D8FF;
+	--color-hover-warning: #F26F41;
+	--color-hover-light-warning: #FFD9CC;
+	--color-hover-success: #2CCC6E;
+	--color-hover-light-success: #B5F2CE;
 
 
-	--color-active-blue: #3f3bea;
-	--color-active-primary: #3f3bea;
+	--color-active-blue: #312FBA;
+	--color-active-light-blue: #CCCCFF;
+	--color-active-red: #CC313E;
+	--color-active-light-red: #FFCCD2;
+	--color-active-orange: #E6693D;
+	--color-active-light-orange: #FFD0BF;
+	--color-active-green: #29BD66;
+	--color-active-light-green: #AAF2C8;
+	--color-active-primary: #312FBA;
+	--color-active-light-primary: #CCCCFF;
+	--color-active-danger: #312FBA;
+	--color-active-light-danger: #CCCCFF;
+	--color-active-warning: #E6693D;
+	--color-active-light-warning: #FFD0BF;
+	--color-active-success: #29BD66;
+	--color-active-light-success: #AAF2C8;
 
 
 	--color-shadowOp-blue: 0.3;
+	--color-shadowOp-red: 0.3;
+	--color-shadowOp-orange: 0.3;
+	--color-shadowOp-green: 0.3;
 	--color-shadowOp-primary: 0.3;
+	--color-shadowOp-danger: 0.3;
+	--color-shadowOp-warning: 0.3;
+	--color-shadowOp-success: 0.3;
 
 }
 /*end-gtc-css*/

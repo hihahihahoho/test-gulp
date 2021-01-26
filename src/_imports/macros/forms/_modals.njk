@@ -8,29 +8,44 @@
 {% macro modal(data) %}
   {# Modal Varibles #}
   {% set modalSize = data.size %}
-  {% set modalType = data.type %}
+  {% set modalAlertType = data.alertType %}
   {% set modalAlign = data.align %}
   {% set modalAnim = data.animation %}
+  {% set modalPos = data.pos %}
+  {% set modalCloseBtn = data.closeBtn %}
+  {% set modalButtonCol = data.buttonCol %}
 
   {% if not modalSize %}
-    {% set modalSize = 'xs' %}
+    {% set modalSize = 'default' %}
   {% endif %}
 
-  {% if not modalType %}
-    {% set modalType %}
-    <img src="media/graph/{{ data.type }}.svg" class="alert-modal-ic mv15" alt="">
+  {% if modalAlertType %}
+    {% set modalAlertType %}
+    <img src="media/graph/{{ data.alertType }}.svg" class="alert-modal-ic mb15" alt="">
     {% endset %}
   {% endif %}
 
   {% if not modalAlign %}
-    {% set modalAlign = 'center' %}
+    {% set modalAlign = 'left' %}
+  {% endif %}
+
+  {% if not modalCloseBtn %}
+    {% set modalCloseBtn = 'true' %}
   {% endif %}
 
   {% if not modalAnim %}
     {% set modalAnim = 'fade' %}
   {% endif %}
 
-  {% if data.closeBtn == 'true' %}
+  {% if not modalPos %}
+    {% set modalPos = 'centered' %}
+  {% endif %}
+
+  {% if not modalButtonCol %}
+    {% set modalButtonCol = 'col-auto' %}
+  {% endif %}
+
+  {% if modalCloseBtn == 'true' %}
     {% set modalHeader %}
     <div class="row row-20 modal-title">
       <div class="col">
@@ -42,11 +57,10 @@
         <a href="" data-dismiss="modal" class="link b close-modal-btn">Đóng</a>
       </div>
     </div>
-    {{ modalType | safe }}
     {% endset %}
   {% else %}
     {% set modalHeader %}
-    {{ modalType | safe }}
+    {{ modalAlertType | safe }}
     <h5 class="modal-title">
       <b>{{ data.title }}</b>
     </h5>
@@ -54,7 +68,7 @@
   {% endif %}
 
   <div class="modal {{ modalAnim }}" id="{{ data.id }}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" {{ data.extendAttr}}>
-    <div class="modal-dialog modal-dialog-{{ data.pos }} modal-{{ modalSize }} modal-dialog-scrollable {{ data.extendClasss }}" role="document">
+    <div class="modal-dialog modal-dialog-{{ modalPos }} modal-size-{{ modalSize }} modal-dialog-scrollable {{ data.extendClass }}" role="document">
       <div class="modal-content text-{{ modalAlign }}">
         <div class="modal-header">
           <div class="modal-wrap">
@@ -63,11 +77,11 @@
           </div>
         </div>
         <div class="modal-body">
-          {{ data.content }}
+          {{ data.content | safe }}
         </div>
         <div class="modal-footer justify-content-center">
           {% if data.button %}
-            <div class="row row-15 justify-content-center">
+            <div class="row row-15 justify-content-end">
               {% if data.modalFooterContent %}
                 <div class="col-12">
                   <div class="modal-footer-content">
@@ -76,14 +90,17 @@
                 </div>
               {% endif %}
               {% for item in data.button %}
-                <div class="col-{{ 12/loop.length }}">
+                {% set btnAlignSelf = '' %}
+                {% if item.alignSelf %}
+                  {% set btnAlignSelf = 'block-' + item.alignSelf %}
+                {% endif %}
+                <div class="{{ modalButtonCol }} {{ btnAlignSelf }}">
                   {% if not item.modalDismiss %}
                     {% if item.extendAttr %}
-                      {% set item = item|setAttribute('extendAttr', 'data-dismiss="modal"' + item.extendAttr) %}
+                      {% set item = item|setAttribute('extendAttr', 'data-dismiss="modal" ' + item.extendAttr) %}
                     {% else %}
-                      {% set item = item|setAttribute('extendAttr', 'data-dismiss="modal"') %}
+                      {% set item = item|setAttribute('extendAttr', 'data-dismiss="modal" ') %}
                     {% endif %}
-
                   {% endif %}
                   {{ button.btnData(item) }}
                 </div>
@@ -96,16 +113,29 @@
   </div>
 {% endmacro %}
 
+{% macro modalAlert(data) %}
+  {% set data = data | setAttribute('align', 'center') %}
+  {% set data = data | setAttribute('closeBtn', 'false') %}
+  {% set data = data | setAttribute('buttonCol', 'col') %}
+  {% set data = data | setAttribute('size', 'alert-default') %}
+  {% if data.extendClass %}
+    {% set data = data | setAttribute('extendClass', 'modal-alert ' + data.extendClass) %}
+  {% else %}
+    {% set data = data | setAttribute('extendClass', 'modal-alert ') %}
+  {% endif %}
+  {{ modal(data) }}
+{% endmacro %}
+
 {% macro toast(value, type = 'success', id = '') %}
   <div class="toast" id="{{ id }}" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-body">
       <div class="row row-15 align-items-center">
         <div class="col-auto">
-          <img src="/dist/media/svg-custom/toast/{{ type }}.svg" alt="">
+          <img src="/dist/media/graph/{{ type }}-sm.svg" alt="">
         </div>
-        <div class="col-auto flex-grow-1">{{ value }}</div>
+        <div class="col flex-grow-1">{{ value }}</div>
         <div class="col-auto">
-          <img src="/dist/media/svg/light/close.svg" alt="" data-dismiss="toast" aria-label="Close" class="ic-sm pointer">
+          <img src="/dist/media/icons/svg/dark/close.svg" alt="" data-dismiss="toast" aria-label="Close" class="ic-sm pointer">
         </div>
       </div>
     </div>

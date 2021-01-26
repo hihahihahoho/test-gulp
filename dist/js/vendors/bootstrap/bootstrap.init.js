@@ -17,6 +17,9 @@ $(document).ready(function () {
     var id = $(this).attr('toast-target');
     $(id).toast('show')
   })
+  $('.toast').toast({
+    delay: 3000
+  })
   $('.modal').on('show.bs.modal', function (e) {
     if ($(window).width() < 769) {
       var currentScrollPosition = $(window).scrollTop();

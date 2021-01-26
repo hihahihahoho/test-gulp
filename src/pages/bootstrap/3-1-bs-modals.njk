@@ -2,13 +2,103 @@
 {% set pageLink = file_path %}
 {% set pageTitle = 'Modal' %}
 
+{% macro pageModal(type) %}
+  {% set dataModalContent %}
+  <div class="from-section form-vertical">
+    {{ form.input('Nội dung', textarea = 'true') }}
+  </div>
+  {% endset %}
+  {% set dataModal = {
+    id: 'modalForm',
+    title: 'Chưa chọn thông tin thụ hưởng',  
+    content: dataModalContent,
+    button: [
+      { 
+        tagName: 'a',
+        title: 'Bỏ qua',
+        color: 'light-blue',
+        alignSelf: 'left' 
+      }, { 
+        tagName: 'a',
+        title: 'Tiếp tục',
+        color: 'primary',
+        modalDismiss: 'false' 
+      }
+    ]
+  } %}
+  {% if type == 'inline' %}
+    {% set dataModal = dataModal | setAttribute('id', 'modalFormInline') %}
+  {% endif %}
+
+  {{ modal.modal(dataModal) }}
+{% endmacro %}
+
+{% macro pageModalAlert(type) %}
+  {% set dataModal = {
+    id: 'modalAlert',
+    alertType: 'success',
+    title: 'Thành công',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    button: [
+      { 
+        tagName: 'a',
+        title: 'Đóng',
+        color: 'light-blue',
+        alignSelf: 'left' 
+      }
+    ]
+  }%}
+
+  {% if type == 'inline' %}
+    {% set dataModal = dataModal | setAttribute('id', 'modalAlertInline') %}
+  {% endif %}
+
+  {{ modal.modalAlert(dataModal) }}
+{% endmacro %}
+
+{% macro pageToast(type) %}
+  {% if type == 'inline' %}
+    {% set idToast = '' %}
+  {% else %}
+    {% set idToast = 'toast' %}
+  {% endif %}
+  {{ modal.toast('So document .getElementById("status") return null. While you can not use innerHTML property of NULL.', id = idToast) }}
+{% endmacro %}
+
 {% block mainInner %}
+  <div class="box">
+    <div class="box__body pb-0">
+      <div class="row row-20">
+        <div class="col-md-6">
+          <div class="bd-example bd-example-modal">
+            {{ pageModal('inline') }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bd-example bd-example-modal">
+            {{ pageModalAlert('inline') }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bd-example bd-example-modal">
+            {{ pageToast('inline') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="box">
     <div class="box__body pb-0">
       <form class="from-section form-vertical pb30">
         <div class="row row-20">
           <div class="col-auto">
-            {{ button.btn('Modal Text', color = 'line-primary', modal = '#modalText') }}
+            {{ button.btn('Modal Text', color = 'line-primary', modal = '#modalForm') }}
+          </div>
+          <div class="col-auto">
+            {{ button.btn('Modal Alert', color = 'line-red', modal = '#modalAlert') }}
+          </div>
+          <div class="col-auto">
+            {{ button.btn('Toast', color = 'line-orange', toast = '#toast') }}
           </div>
         </div>
       </form>
@@ -17,25 +107,20 @@
 {% endblock %}
 
 {% block modal %}
-  {% set dataModalAlert = {
-    id: 'modalText',
-    pos: 'centered',
-    type: 'error',
-    size: 'xs',
-    title: 'Chưa chọn thông tin thụ hưởng',
-    content: 'Quý khách vui lòng chọn “Người thụ hưởng” để nhập/ chọn thông tin thụ hưởng',
-    button: [
-      { 
-        tagName: 'a',
-        title: 'Bỏ qua',
-        color: 'light-blue'
-      },
-      { 
-        tagName: 'a',
-        title: 'Chọn',
-        color: 'primary'
-      }
-    ]
-  } %}
-  {{ modal.modal(dataModalAlert) }}
+  {{ pageModal() }}
+  {{ pageModalAlert() }}
+  {{ pageToast() }}
+{% endblock %}
+
+{% block pageScript %}
+  {# <script>
+    var modals = document.querySelectorAll('.modal');
+    var modalInline = document.getElementById('modalInline');
+    []
+      .forEach
+      .call(modals, function (modal) {
+        var modalContent = '<div class="col"><div class="bd-example bd-example-modal">' + modal.innerHTML + '</div></div>'
+        modalInline.innerHTML = modalInline.innerHTML + modalContent
+      });
+  </script> #}
 {% endblock %}

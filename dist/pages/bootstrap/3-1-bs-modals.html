@@ -327,17 +327,166 @@
           </div>
           <div class="box">
             <div class="box__body pb-0">
+              <div class="row row-20">
+                <div class="col-md-6">
+                  <div class="bd-example bd-example-modal">
+                    <div class="modal fade" id="modalFormInline" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-size-default modal-dialog-scrollable" role="document">
+                        <div class="modal-content text-left">
+                          <div class="modal-header">
+                            <div class="modal-wrap">
+                              <div class="row row-20 modal-title">
+                                <div class="col">
+                                  <h5 class="">
+                                    <b>Chưa chọn thông tin thụ hưởng</b>
+                                  </h5>
+                                </div>
+                                <div class="col-auto text-right col-btn-close">
+                                  <a href="" data-dismiss="modal" class="link b close-modal-btn">Đóng</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-body">
+                            <div class="from-section form-vertical">
+                              <!-- forms.input -->
+                              <div class="form-group">
+                                <div class="input-group-wrap input-group-default">
+                                  <label class="input-group">
+                                    <textarea spellcheck="false" type="text" class="input input-size-default input-default input-label-change input-ic-xs-1 input-has-clear textarea-autosize" autocorrect="off" placeholder="" rows="1"></textarea>
+                                    <div class="input-frame"></div>
+                                    <div class="input-label">Nội dung</div>
+                                    <div class="input-flex-content">
+                                    </div>
+                                  </label>
+                                </div>
+                                <div class="errorBlock"></div>
+                              </div>
+                              <!-- end forms.input -->
+                            </div>
+                          </div>
+                          <div class="modal-footer justify-content-center">
+                            <div class="row row-15 justify-content-end">
+                              <div class="col-auto block-left">
+                                <!-- button.btn -->
+                                <a class="ubtn ubg-light-blue ubtn-size-default ubg-hover ubg-active" data-dismiss="modal">
+                                  <div class="ubtn-full">
+                                    <div class="row row-10 ubtn-inner">
+                                      <span class="ubtn-text">Bỏ qua</span>
+                                    </div>
+                                  </div>
+                                </a>
+                                <!-- end button.btn -->
+                              </div>
+                              <div class="col-auto">
+                                <!-- button.btn -->
+                                <a class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active">
+                                  <div class="ubtn-full">
+                                    <div class="row row-10 ubtn-inner">
+                                      <span class="ubtn-text">Tiếp tục</span>
+                                    </div>
+                                  </div>
+                                </a>
+                                <!-- end button.btn -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="bd-example bd-example-modal">
+                    <div class="modal fade" id="modalAlertInline" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-size-alert-default modal-dialog-scrollable modal-alert" role="document">
+                        <div class="modal-content text-center">
+                          <div class="modal-header">
+                            <div class="modal-wrap">
+                              <img src="media/graph/success.svg" class="alert-modal-ic mb15" alt="">
+                              <h5 class="modal-title">
+                                <b>Thành công</b>
+                              </h5>
+                            </div>
+                          </div>
+                          <div class="modal-body">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                          </div>
+                          <div class="modal-footer justify-content-center">
+                            <div class="row row-15 justify-content-end">
+                              <div class="col block-left">
+                                <!-- button.btn -->
+                                <a class="ubtn ubg-light-blue ubtn-size-default ubg-hover ubg-active" data-dismiss="modal">
+                                  <div class="ubtn-full">
+                                    <div class="row row-10 ubtn-inner">
+                                      <span class="ubtn-text">Đóng</span>
+                                    </div>
+                                  </div>
+                                </a>
+                                <!-- end button.btn -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="bd-example bd-example-modal">
+                    <div class="toast" id="" role="alert" aria-live="assertive" aria-atomic="true">
+                      <div class="toast-body">
+                        <div class="row row-15 align-items-center">
+                          <div class="col-auto">
+                            <img src="media/graph/success-sm.svg" alt="">
+                          </div>
+                          <div class="col flex-grow-1">So document .getElementById(&quot;status&quot;) return null. While you can not use innerHTML property of NULL.</div>
+                          <div class="col-auto">
+                            <img src="media/icons/svg/dark/close.svg" alt="" data-dismiss="toast" aria-label="Close" class="ic-sm pointer">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__body pb-0">
               <form class="from-section form-vertical pb30">
                 <div class="row row-20">
                   <div class="col-auto">
                     <!-- button.btn -->
-                    <value class="ubtn ubg-line-primary ubtn-size-default ubg-hover ubg-active" data-toggle="modal" data-target="#modalText">
+                    <a class="ubtn ubg-line-primary ubtn-size-default ubg-hover ubg-active" data-toggle="modal" data-target="#modalForm">
                       <div class="ubtn-full">
                         <div class="row row-10 ubtn-inner">
                           <span class="ubtn-text">Modal Text</span>
                         </div>
                       </div>
-                    </value>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-line-red ubtn-size-default ubg-hover ubg-active" data-toggle="modal" data-target="#modalAlert">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-text">Modal Alert</span>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- end button.btn -->
+                  </div>
+                  <div class="col-auto">
+                    <!-- button.btn -->
+                    <a class="ubtn ubg-line-orange ubtn-size-default ubg-hover ubg-active" data-toast="toast" toast-target="#toast">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner">
+                          <span class="ubtn-text">Toast</span>
+                        </div>
+                      </div>
+                    </a>
                     <!-- end button.btn -->
                   </div>
                 </div>
@@ -400,23 +549,44 @@
     </div>
   </div>
 </body>
-<div class="modal fade" id="modalText" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xs modal-dialog-scrollable" role="document">
-    <div class="modal-content text-center">
+<div class="modal fade" id="modalForm" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-size-default modal-dialog-scrollable" role="document">
+    <div class="modal-content text-left">
       <div class="modal-header">
         <div class="modal-wrap">
-          error
-          <h5 class="modal-title">
-            <b>Chưa chọn thông tin thụ hưởng</b>
-          </h5>
+          <div class="row row-20 modal-title">
+            <div class="col">
+              <h5 class="">
+                <b>Chưa chọn thông tin thụ hưởng</b>
+              </h5>
+            </div>
+            <div class="col-auto text-right col-btn-close">
+              <a href="" data-dismiss="modal" class="link b close-modal-btn">Đóng</a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-body">
-        Quý khách vui lòng chọn “Người thụ hưởng” để nhập/ chọn thông tin thụ hưởng
+        <div class="from-section form-vertical">
+          <!-- forms.input -->
+          <div class="form-group">
+            <div class="input-group-wrap input-group-default">
+              <label class="input-group">
+                <textarea spellcheck="false" type="text" class="input input-size-default input-default input-label-change input-ic-xs-1 input-has-clear textarea-autosize" autocorrect="off" placeholder="" rows="1"></textarea>
+                <div class="input-frame"></div>
+                <div class="input-label">Nội dung</div>
+                <div class="input-flex-content">
+                </div>
+              </label>
+            </div>
+            <div class="errorBlock"></div>
+          </div>
+          <!-- end forms.input -->
+        </div>
       </div>
       <div class="modal-footer justify-content-center">
-        <div class="row row-15 justify-content-center">
-          <div class="col-6">
+        <div class="row row-15 justify-content-end">
+          <div class="col-auto block-left">
             <!-- button.btn -->
             <a class="ubtn ubg-light-blue ubtn-size-default ubg-hover ubg-active" data-dismiss="modal">
               <div class="ubtn-full">
@@ -427,18 +597,63 @@
             </a>
             <!-- end button.btn -->
           </div>
-          <div class="col-6">
+          <div class="col-auto">
             <!-- button.btn -->
-            <a class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active" data-dismiss="modal">
+            <a class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active">
               <div class="ubtn-full">
                 <div class="row row-10 ubtn-inner">
-                  <span class="ubtn-text">Chọn</span>
+                  <span class="ubtn-text">Tiếp tục</span>
                 </div>
               </div>
             </a>
             <!-- end button.btn -->
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalAlert" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-size-alert-default modal-dialog-scrollable modal-alert" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <div class="modal-wrap">
+          <img src="media/graph/success.svg" class="alert-modal-ic mb15" alt="">
+          <h5 class="modal-title">
+            <b>Thành công</b>
+          </h5>
+        </div>
+      </div>
+      <div class="modal-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      </div>
+      <div class="modal-footer justify-content-center">
+        <div class="row row-15 justify-content-end">
+          <div class="col block-left">
+            <!-- button.btn -->
+            <a class="ubtn ubg-light-blue ubtn-size-default ubg-hover ubg-active" data-dismiss="modal">
+              <div class="ubtn-full">
+                <div class="row row-10 ubtn-inner">
+                  <span class="ubtn-text">Đóng</span>
+                </div>
+              </div>
+            </a>
+            <!-- end button.btn -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-body">
+    <div class="row row-15 align-items-center">
+      <div class="col-auto">
+        <img src="media/graph/success-sm.svg" alt="">
+      </div>
+      <div class="col flex-grow-1">So document .getElementById(&quot;status&quot;) return null. While you can not use innerHTML property of NULL.</div>
+      <div class="col-auto">
+        <img src="media/icons/svg/dark/close.svg" alt="" data-dismiss="toast" aria-label="Close" class="ic-sm pointer">
       </div>
     </div>
   </div>
