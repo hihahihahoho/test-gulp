@@ -2,7 +2,7 @@
 
 {% extends "_varibles.njk" %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
-{% macro input(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id, iconText = '', extendAttr, extendClass, note = '', autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom, textarea, textareaAutoSize = 'true', addFlex, fakeInput, customFlexContent) %}
+{% macro input(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id, iconText = '', extendAttr, extendClass, note = '', autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom, textarea, textareaAutoSize = 'true', addFlex, fakeInput, customFlexContent, errorBlock = settingInputDefault.errorBlock) %}
   <!-- forms.input -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -139,7 +139,9 @@
           {% endif %}
         {% endif %}
         <div class="input-frame"></div>
-        <div class="input-label">{{ title }}</div>
+        {% if title %}
+          <div class="input-label">{{ title }}</div>
+        {% endif %}
         {% if autocomplete == 'true' %}
           <ul class="live-search-result live-search-result-2">
             <li>
@@ -186,12 +188,14 @@
       {% endif %}
     </div>
     {{ noteContent | safe }}
-    <div class="errorBlock"></div>
+    {% if errorBlock == 'true' %}
+      <div class="errorBlock"></div>
+    {% endif %}
   </div>
   <!-- end forms.input -->
 {% endmacro %}
 
-{% macro select(title, inputType = settingInputDefault.inputType, inputSize = settingInputDefault.inputSize, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple, selectLib = settingInputDefault.selectLib) %}
+{% macro select(title, inputType = settingInputDefault.inputType, inputSize = settingInputDefault.inputSize, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple, selectLib = settingInputDefault.selectLib, errorBlock = settingInputDefault.errorBlock) %}
   <!-- forms.select -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -292,7 +296,9 @@
           {% endif %}
         </select>
         <div class="input-frame"></div>
-        <div class="input-label">{{ title }}</div>
+        {% if title %}
+          <div class="input-label">{{ title }}</div>
+        {% endif %}
         {{ ic | safe }}
         <div class="input-ic">
           <div class="arrow-down-anim"></div>
@@ -300,12 +306,14 @@
       </div>
     </div>
     {{ noteContent | safe}}
-    <div class="errorBlock"></div>
+    {% if errorBlock == 'true' %}
+      <div class="errorBlock"></div>
+    {% endif %}
   </div>
   <!-- end forms.select -->
 {% endmacro %}
 
-{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '') %}
+{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '', errorBlock = settingInputDefault.errorBlock) %}
   <!-- forms.datepicker -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -348,14 +356,18 @@
       <label class="input-group">
         <input {{ idText }} type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-size-{{ inputSize }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
         <div class="input-frame"></div>
-        <div class="input-label">{{ title }}</div>
+        {% if title %}
+          <div class="input-label">{{ title }}</div>
+        {% endif %}
         <div class="input-ic">
           <img src="/dist/media/icons/svg/dark/calendar.svg" class="ic-lg" alt="">
         </div>
       </label>
     </div>
     {{ noteContent | safe}}
-    <div class="errorBlock"></div>
+    {% if errorBlock == 'true' %}
+      <div class="errorBlock"></div>
+    {% endif %}
   </div>
   <!-- end forms.datepicker -->
 {% endmacro %}
