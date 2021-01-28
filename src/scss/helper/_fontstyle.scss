@@ -1,3 +1,4 @@
+$emptySelector: '';
 $map-font-size: (
   xs: 16px,
   sm: 18px,
@@ -30,7 +31,7 @@ $map-ic: (
 // );
 
 $map-h-font: (
-  1: (
+  h1: (
     font-size: 32px,
     line-height: 1.1,
     768: (
@@ -40,33 +41,33 @@ $map-h-font: (
       font-size: 24px
     )
   ),
-  2: (
+  h2: (
     font-size: 24px,
     line-height: 1.1,
     480: (
       font-size: 22px
     )
   ),
-  3: (
+  h3: (
     font-size: 21px ,
     line-height: 1.1,
     480: (
       font-size: 20px
     )
   ),
-  4: (
+  h4: (
     font-size: 18px,
     line-height: 1.3
   ),
-  5: (
+  h5: (
     font-size: 16px,
     line-height: 1.3
   ),
-  6: (
+  h6: (
     font-size: 12px,
     line-height: 1.3
   )
-);
+) !default;
 
 $map-font-weight: (
   1: 100,
@@ -203,7 +204,8 @@ $map-text-align-breakpoint: (
 }
 @mixin modifiers-h-font($map, $prefix: "", $separator: "", $base: "basic") {
   @each $key, $value in $map {
-    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+    &#{if($key != $base, #{$prefix}#{$key}, '')},
+    &.#{if($key != $base, #{$prefix}#{$key}, '')} {
       margin: 0;
       @if type-of($value) == "map" {
         @include modifiers-h-font-inner($value);
@@ -267,8 +269,7 @@ $map-text-align-breakpoint: (
   }
 }
 
-h,
-.h {
+@at-root {
   @include modifiers-h-font($map-h-font);
 }
 

@@ -1,3 +1,34 @@
+/* custom color */
+.color-block {
+  width: 158px;
+  min-height: 120px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.08);
+}
+.color-block-color {
+  width: 100%;
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+.color-block-info {
+  padding: 10px;
+}
+.color-block-label {
+  opacity: 0.8;
+}
+.color-block-sample{
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+/* end custom color */
+
 /* macros eye */
 .eye-wrap {
   height: 100%;

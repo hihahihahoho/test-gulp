@@ -1,0 +1,15 @@
+{% extends "main/_layout-sidebar.njk" %}
+{% set pageLink = file_path %}
+{% set pageTitle = 'Menu test 1' %}
+
+{% block mainInner %}
+  <div class="box">
+    <div class="box__body">
+      <div class="pb20">
+        <h5>
+          {{ file_path }}
+        </h5>
+      </div>
+    </div>
+  </div>
+{% endblock %}

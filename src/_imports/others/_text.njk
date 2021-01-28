@@ -1,0 +1,31 @@
+{% extends "_gen-varibles.njk" %}
+
+{% macro text(data = textName[0]) %}
+  <h5 class="mv20">Text</h5>
+  <div class="row row-20">
+    {% for name, item in data %}
+      <div class="col-auto">
+        <div class="color-block color-block-text">
+          <div class="color-block-color {{ name }}">{{ name }}</div>
+          <div class="color-block-info h6">
+            <div class="row row-5 justify-content-between">
+              <div class="col-auto color-block-label">Font size</div>
+              <div class="col-auto">{{ data[name]['font-size'] }}
+              </div>
+            </div>
+            <div class="row row-5 justify-content-between">
+              <div class="col-auto color-block-label">Font weight</div>
+              <div class="col-auto">{{ data[name]['font-weight'] }}
+              </div>
+            </div>
+            <div class="row row-5 justify-content-between">
+              <div class="col-auto color-block-label">Line height</div>
+              <div class="col-auto">{{ data[name]['line-height']}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endmacro %}

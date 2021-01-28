@@ -2,9 +2,10 @@
 :root {
 
 	--color-transparent: transparent;
-	--color-black: #000;
 	--color-white: #fff;
+	--color-black: #000;
 	--color-base: #121f3e;
+	--color-base-2: #121f31;
 	--color-blue: #3f3bec;
 	--color-light-blue: #E5E5FF;
 	--color-red: #FF3D4E;

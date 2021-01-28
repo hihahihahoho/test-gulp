@@ -313,7 +313,7 @@ select {
       font-weight: 600;
       font-size: 0;
     }
-    @include modifiers-input-ic($map-input-size, "min-width");
+    @include modifiers-input-ic($map-input-ic-size, "min-width");
     &-left {
       padding-left: 0;
       & ~ .input-ic {

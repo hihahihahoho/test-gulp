@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-  <base href="..\..\.">
+  <base href="..\..\..\.">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>Ultimate HTML -
-    Uppy</title>
+    Menu test 1</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
   <!-- bootstrap -->
@@ -23,9 +23,6 @@
   <link rel="stylesheet" href="css/vendors/croppie/croppie.bundles.css">
   <!-- end croppie -->
   <!-- css use for this page only -->
-  <!-- uppy -->
-  <link rel="stylesheet" href="css/vendors/uppy/uppy.bundles.css">
-  <!-- end uppy -->
   <!-- end css use for this page only -->
   <!-- css use for this page only -->
   <!-- end css use for this page only -->
@@ -112,10 +109,10 @@
         <div class="txt">Range (NoUiSlider)</div>
       </a>
     </div>
-    <div class="sidebar__list active">
+    <div class="sidebar__list">
       <a class="sidebar__item" href="pages/forms/1-4-uppy.html">
         <div class="ic">
-          <img src="media/icons/svg/primary/plannet.svg" alt="">
+          <img src="media/icons/svg/dark/plannet.svg" alt="">
         </div>
         <div class="txt">File upload (Uppy)</div>
       </a>
@@ -288,7 +285,7 @@
         <div class="txt">Footer</div>
       </a>
     </div>
-    <div class="sidebar__list" data-accordion="data-accordion">
+    <div class="sidebar__list active open" data-accordion="data-accordion">
       <div class="sidebar__item" data-control="data-control">
         <div class="ic"><img src="media/icons/svg/dark/plannet.svg" alt=""></div>
         <div class="txt">Menu Test Sub</div>
@@ -296,7 +293,7 @@
       </div>
       <div data-content="data-content" class="sidebar__sub">
         <div class="sidebar__sub__wrap">
-          <div class="sidebar__list" data-accordion="data-accordion">
+          <div class="sidebar__list active open" data-accordion="data-accordion">
             <div class="sidebar__item" data-control="data-control">
               <div class="ic ic-blank"></div>
               <div class="txt">Menu sub 1</div>
@@ -304,7 +301,7 @@
             </div>
             <div data-content="data-content" class="sidebar__sub">
               <div class="sidebar__sub__wrap">
-                <div class="sidebar__list">
+                <div class="sidebar__list active">
                   <a class="sidebar__item" href="pages/menu-test-sub/menu-test-sub-1/test-1.html">
                     <div class="ic ic-blank"></div>
                     <div class="txt">Menu sub 1 - 1</div>
@@ -334,19 +331,15 @@
       <div class="main-inner main-inner-page">
         <div class="container">
           <div class="title-section">
-            <div class="h1 b pv30">Uppy</div>
+            <div class="h1 b pv30">Menu test 1</div>
           </div>
           <div class="box">
-            <div class="box__body pb-0">
-              <h5 class="pb30">Checkbox
-              </h5>
-              <form class="from-section form-vertical pb30">
-                <div class="row row-20">
-                  <div class="col-sm-6">
-                    <div id="uppy"></div>
-                  </div>
-                </div>
-              </form>
+            <div class="box__body">
+              <div class="pb20">
+                <h5>
+                  menu-test-sub/menu-test-sub-1/test-1.html
+                </h5>
+              </div>
             </div>
           </div>
         </div>
@@ -454,26 +447,9 @@
 <script src="js/vendors/croppie/croppie.init.js"></script>
 <!-- croppie -->
 <!-- script use for this page only -->
-<!-- uppy -->
-<script src="js/vendors/uppy/uppy.bundles.js"></script>
-<!-- uppy -->
 <!-- end script for this page only -->
 <script src="js/custom.js"></script>
 <!-- script use for this page only -->
-<script>
-  var uppy = Uppy.Core();
-  uppy
-    .use(Uppy.Dashboard, {
-      target: '#uppy',
-      inline: true,
-      proudlyDisplayPoweredByUppy: false,
-      height: 300,
-      width: 'auto'
-    })
-    .use(Uppy.Tus, {
-      endpoint: 'https://tusd.tusdemo.net/files/'
-    })
-</script>
 <!-- end script for this page only -->
 
 </html>

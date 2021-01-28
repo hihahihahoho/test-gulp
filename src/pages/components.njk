@@ -1,0 +1,452 @@
+{% extends "main/_layout-sidebar.njk" %}
+{% import "others/_colors.njk" as color %}
+{% import "others/_text.njk" as text %}
+
+{% set pageLink = file_path %}
+{% set pageTitle = 'Components' %}
+
+{% block css %}
+  <!-- datatables -->
+  <link rel="stylesheet" href="css/vendors/datatables/datatables.bundles.css">
+  <!-- end datatables -->
+
+  <!-- floatingScroll -->
+  <link rel="stylesheet" href="/dist/css/vendors/floatingScroll/floatingScroll.bundles.css">
+  <!-- endScroll -->
+{% endblock %}
+
+{% macro pageModal(type) %}
+  {% set dataModalContent %}
+  <div class="from-section form-vertical">
+    {{ form.input('Nội dung', textarea = 'true') }}
+  </div>
+  {% endset %}
+  {% set dataModal = {
+    id: 'modalForm',
+    title: 'Chưa chọn thông tin thụ hưởng',  
+    content: dataModalContent,
+    button: [
+      { 
+        tagName: 'a',
+        title: 'Bỏ qua',
+        color: 'light-blue',
+        alignSelf: 'left' 
+      }, { 
+        tagName: 'a',
+        title: 'Tiếp tục',
+        color: 'primary',
+        modalDismiss: 'false' 
+      }
+    ]
+  } %}
+  {% if type == 'inline' %}
+    {% set dataModal = dataModal | setAttribute('id', 'modalFormInline') %}
+  {% endif %}
+
+  {{ modal.modal(dataModal) }}
+{% endmacro %}
+
+{% macro pageModalAlert(type) %}
+  {% set dataModal = {
+    id: 'modalAlert',
+    alertType: 'success',
+    title: 'Thành công',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    button: [
+      { 
+        tagName: 'a',
+        title: 'Đóng',
+        color: 'light-blue',
+        alignSelf: 'left' 
+      }
+    ]
+  }%}
+
+  {% if type == 'inline' %}
+    {% set dataModal = dataModal | setAttribute('id', 'modalAlertInline') %}
+  {% endif %}
+
+  {{ modal.modalAlert(dataModal) }}
+{% endmacro %}
+
+{% macro pageToast(type) %}
+  {% if type == 'inline' %}
+    {% set idToast = '' %}
+  {% else %}
+    {% set idToast = 'toast' %}
+  {% endif %}
+  {{ modal.toast('So document .getElementById("status") return null. While you can not use innerHTML property of NULL.', id = idToast) }}
+{% endmacro %}
+
+{% block mainInner %}
+  <div class="box">
+    <div class="box__body">
+      {{ text.text() }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      {{ color.color() }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Forms - Input</h5>
+      <form class="from-section form-vertical pb30">
+        <div class="row row-20">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = 'media/icons/svg/dark/plannet.svg') }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg') }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg', note = 'This is an input note') }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.input('Input icon left text', extendAttr = 'required', icTxt = 'Not required') }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set extendContentCon %}
+            {{ button.btn('Button', size = 'xs-2', color = 'line-primary') }}
+            {% endset %}
+            {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set extendContentCon %}
+            <div class="input-ic">
+              {{ ult.eye() }}
+            </div>
+            {% endset %}
+            {{ form.input('Input password', iconLeft = 'media/icons/svg/dark/plannet.svg', extendAttr = 'required', extendContent = extendContentCon, extendContentClass = 'pr0') }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set extendContentCon %}
+            <a class="link">Demo link</a>
+            {% endset %}
+            {{ form.input('Input content outside', extendContent = extendContentCon, extendAttr = 'required', extendContentPos = 'outside') }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
+            {{ form.select('Select normal', value = dataSelect, extendAttr = 'required', selectLib = 'none', placeholder = 'Select your option' ,settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
+            {{ form.select('Select-2', value = dataSelect, extendAttr = 'required',settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set dataSelect = [
+              {
+                main: 'Vietcombank',
+                img: 'media/icons/svg/dark/plannet.svg',
+                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
+              }, {
+                main: 'Vietinbank',
+                img: 'media/icons/svg/dark/plannet.svg',
+                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: 'media/icons/svg/dark/plannet.svg',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: 'media/icons/svg/dark/plannet.svg',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: 'media/icons/svg/dark/plannet.svg',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: 'media/icons/svg/dark/plannet.svg',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }
+            ] %}
+            {{ form.select('Select-2 Custom Image', value = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', search='false') }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set dataSelect = [
+              {
+                main: 'Vietcombank',
+                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
+              }, {
+                main: 'Vietinbank',
+                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
+              }, {
+                main: 'Agribank',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }
+            ] %}
+            {{ form.select('Select-2 Custom Text', value = dataSelect, extendAttr = 'required') }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.select('Select-2 Multiple', value = dataSelect, multiple = 'true', extendAttr = 'required',settingInputCustom = settingInputCustom) }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.datepicker('Datepicker single', note = 'This is an input note', extendAttr = 'required') }}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {{ form.datepicker('Datepicker range', extendAttr = 'required', range = 'true') }}
+          </div>
+        </div>
+        <div class="row row-20">
+          <div class="col-lg-6 col-sm-12">
+            {{ form.file(title = 'File Upload', extendAttr = 'required') }}
+          </div>
+        </div>
+        <div class="row row-20">
+          <div class="col-lg-6 col-sm-12">
+            {{ form.input('Textarea Default', icTxt = '10/240', textarea = 'true', extendAttr = 'required', textareaAutoSize = 'false') }}
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            {{ form.input('Textarea Autosize', icTxt = '10/240', extendAttr = 'required', textarea = 'true') }}
+          </div>
+        </div>
+        <div class="row row-20 justify-content-center">
+          <div class="col-sm-4">
+            {{ button.btn('Validate') }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body pb-0">
+      <h5 class="pb30">Checkbox group</h5>
+      <form class="from-section form-vertical pb30">
+        <div class="row row-20">
+          <div class="col-sm-6">
+            {% set checkboxValue = ['checkbox 1'] %}
+            {{ rnc.checkbox(checkboxValue, name = 'checkboxTest', extendAttr = ' required') }}
+          </div>
+          <div class="col-sm-6">
+            {% set radioValue = [
+              {
+                main: 'Radio 1',
+                sub: 'This is subtitle 1'
+              }
+            ] %}
+            {{ rnc.radio(radioValue, align='start', fontSize = 'p', name = 'radio1', groupCol = 'auto', extendAttr = ' required', style = '1') }}
+          </div>
+        </div>
+        <div class="row row-20 justify-content-center">
+          <div class="col-sm-4">
+            {{ button.btn('Validate') }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Table basic</h5>
+      <div class="row row-10 list-mv5">
+        <div class="col">
+          {% set tableUltValue = [
+            'info',
+            'edit',
+            'delete',
+            '',
+            'lock',
+            'unlock',
+            'download'
+          ] %}
+          {% set tableValue = {
+            thead: [
+              [
+                'Collumn 1',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'ults'
+              ]
+            ],
+            tbody: [
+              [
+                'Collumn 1',
+                '',
+                'Collumn 2',
+                'Collumn 2',
+                ult.labelStatusCustom('daHachToan'),
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                'Collumn 2',
+                table.tableUlt(tableUltValue)
+              ]
+            ]
+          }%}
+          {{ table.table(tableValue, stickyUlt = 'true', stickyFooter = 'true', extendClass = 'table-min-width-lg', rowLoop = 1) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Table datatables</h5>
+      <div class="row row-10 list-mv5">
+        <div class="col">
+          {{ table.table(tableValue, stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true', rowLoop = 3) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Table ults</h5>
+      {% set tableUltValAll = [] %}
+      {% for key, item in globalsVar.settingTableUltVal %}
+        {% set tableUltValAll = (tableUltValAll.push(key), tableUltValAll) %}
+      {% endfor %}
+      {{ table.tableUlt(tableUltValAll) }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Lable Status</h5>
+      <div class="row row-10 list-mv5">
+        {% for key, item in globalsVar.labelStatusCustomVal %}
+          <div class="col-auto">
+            {{ ult.labelStatusCustom(key) }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body pb-0">
+      <div class="row row-20">
+        <div class="col-md-6">
+          <div class="bd-example bd-example-modal">
+            {{ pageModal('inline') }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bd-example bd-example-modal">
+            {{ pageModalAlert('inline') }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="bd-example bd-example-modal">
+            {{ pageToast('inline') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body pb-0">
+      <form class="from-section form-vertical pb30">
+        <div class="row row-20">
+          <div class="col-auto">
+            {{ button.btn('Modal Text', color = 'line-primary', modal = '#modalForm') }}
+          </div>
+          <div class="col-auto">
+            {{ button.btn('Modal Alert', color = 'line-red', modal = '#modalAlert') }}
+          </div>
+          <div class="col-auto">
+            {{ button.btn('Toast', color = 'line-orange', toast = '#toast') }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Dropdown basic</h5>
+      <div class="row row-20">
+        <div class="col-md-6">
+          <div class="bd-example bd-example-modal">
+            {% set dropdownItemCustom %}
+              <div class="h6">Lần đăng nhập gần nhất
+                <br>06/08/2020 19:14:15
+              </div>
+            {% endset %}
+            {% set dropdownValue = [
+              {
+                main: 'Dropdown 1',
+                icon: 'media/icons/svg/dark/plannet.svg',
+                href: '#'
+              }, {
+                main: 'Dropdown 2',
+                sub: 'This is a sub text',
+                icon: 'media/icons/svg/dark/plannet.svg',
+                modal: '#modalTest'
+              }, {
+                main: 'Dropdown 3',
+                sub: 'This is a sub text',
+                icon: 'media/icons/svg/dark/plannet.svg',
+                toast: '#modalTest'
+              }, {
+                break: 'true'
+              }, {
+                custom: dropdownItemCustom
+              }
+            ] %}
+            {{ dropdown.dropdown(dropdownValue) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      <h5 class="pb30">Dropdown basic</h5>
+      <div class="row row-20">
+        <div class="col-auto">
+          {% set dropdownToggle %}
+          {{ button.btn('Button Dropdown', color = 'line-orange', extendAttr = 'data-toggle="dropdown"') }}
+          {% endset %}
+          {{ dropdown.dropdown(dropdownValue, toggle = dropdownToggle) }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block modal %}
+  {{ pageModal() }}
+  {{ pageModalAlert() }}
+  {{ pageToast() }}
+{% endblock %}
+
+{% block script %}
+  <!-- floatingScroll -->
+  <script src="/dist/js/vendors/floatingScroll/floatingScroll.bundles.js"></script>
+  <script src="/dist/js/vendors/floatingScroll/floatingScroll.init.js"></script>
+  <!-- endScroll -->
+
+  <!-- datatables -->
+  <script src="/dist/js/vendors/datatables/datatables.bundles.js"></script>
+  <script src="/dist/js/vendors/datatables/datatables.init.js"></script>
+  <!-- datatables -->
+{% endblock %}

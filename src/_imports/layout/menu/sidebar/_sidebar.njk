@@ -15,6 +15,11 @@
     link: 'index.html'
   },
   {
+    ic: 'plannet.svg',
+    txt: 'Components',
+    link: 'components.html'
+  },
+  {
     type: 'title',
     txt: 'Forms'
   },
@@ -173,14 +178,16 @@
   {
     ic: 'plannet.svg',
     txt: 'Menu Test Sub',
+    folderName: 'menu-test-sub',
     sub: [
       {
         txt: 'Menu sub 1',
         link: '',
+        folderName: 'menu-test-sub-1',
         sub: [
           {
             txt: 'Menu sub 1 - 1',
-            link: ''
+            link: 'menu-test-sub/menu-test-sub-1/test-1.html'
           },
           {
             txt: 'Menu sub 1 - 2',
@@ -247,7 +254,10 @@
     {% if not item.sub %}
       {{ sidebarItem(item) }}
     {% else %}
-      <div class="sidebar__list" data-accordion="data-accordion">
+      {% if (item.folderName in pageLink) %}
+        {% set activeTxt = 'active open' %}
+      {% endif %}
+      <div class="sidebar__list {{ activeTxt }}" data-accordion="data-accordion">
         <div class="sidebar__item" data-control="data-control">
           {% if item.ic %}
             <div class="ic"><img src="/dist/media/icons/svg/dark/{{ item.ic }}" alt=""></div>

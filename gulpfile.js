@@ -97,6 +97,8 @@ var themeColorMapText = '';
 var themeColorMapArr = {};
 var themeColorVarText = '';
 var themeColorVarTextArr = {};
+var themeTextVarText = '';
+var themeTextVarTextArr = {};
 
 function themeMapFunction (mapName, propName, propKey, themeName) {
   if (mapName[propName]) {
@@ -119,6 +121,21 @@ function themeVarFunction (mapName, propName, propKey, themeName) {
 }
 
 function theme () {
+  delete require.cache[require.resolve('./gulp_themes_config.js')];
+  //theme text
+  themeTextMapText = '';
+  themeTextVarText = '';
+  themeText = require('./gulp_themes_config.js').themeText;
+  var themeTextMapText = '\n$map-h-font: ' + JSON.stringify(themeText, null, "\t").replace(/{/g, '(').replace(/}/g, ')') + ';\n';
+  for (var property in themeText) {
+    themeTextVarText += '$text-' + property + ': ' + themeText[property]["font-size"] + ';\n';
+  }
+
+  var themeTextMapAllText = '//gtc-text-scss' + themeTextMapText + themeTextVarText + '\n//end-gtc-text-scss';
+  
+  var themeTextNjk = '{# gtc-text-njk #}\n{% set textName = [\n' + JSON.stringify(themeText, null, "\t") + '\n] %}\n{# end-gtc-text-njk #}';
+
+  //end theme text
   // theme color
   themeColorMapText = '';
   themeColorMapArr = {};
@@ -126,8 +143,10 @@ function theme () {
   themeColorVarText = '';
   themeColorVarTextArr = {};
 
-  delete require.cache[require.resolve('./gulp_themes_config.js')];
   themeColor = require('./gulp_themes_config.js').themeColor;
+
+  var themeColorNjk = '{# gtc-color-njk #}\n{% set colorName = [\n' + JSON.stringify(themeColor.default, null, "\t") + '\n] %}\n{# end-gtc-color-njk #}';
+
   for (var property in themeColor.default.normal) {
     var themeColorMap = themeColor.default.normal[property]
     for (var property1 in themeColorMap) {
@@ -153,12 +172,13 @@ function theme () {
     themeColorVarText += '\n' + themeColorVarTextArr[property] + '\n'
   }
   // end theme color
-
-
-  themeColorTextAll = '//gtc-scss\n' + themeColorVarText + themeColorMapText + '\n//end-gtc-scss'
-  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/'
-  return gulp.src(['./src/scss/helper/_colors.scss', './src/custom/css/1-init.css'], { base: './src/' })
-    .pipe(replace(/(\/\/gtc-scss)([\S\s]*?)(\/\/end-gtc-scss)/, themeColorTextAll))
+  themeColorTextAll = '//gtc-color-scss\n' + themeColorVarText + themeColorMapText + '\n//end-gtc-color-scss'
+  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
+  return gulp.src(['./src/scss/varibles/_gen-varibles.scss', './src/custom/css/1-init.css', './src/_imports/_gen-varibles.njk'], { base: './src/' })
+    .pipe(replace(/({# gtc-text-njk #})([\S\s]*?)({# end-gtc-text-njk #})/, themeTextNjk))
+    .pipe(replace(/({# gtc-color-njk #})([\S\s]*?)({# end-gtc-color-njk #})/, themeColorNjk))
+    .pipe(replace(/(\/\/gtc-text-scss)([\S\s]*?)(\/\/end-gtc-text-scss)/, themeTextMapAllText))
+    .pipe(replace(/(\/\/gtc-color-scss)([\S\s]*?)(\/\/end-gtc-color-scss)/, themeColorTextAll))
     .pipe(replace(/(\/\*gtc-css\*\/)([\S\s]*?)(\/\*end-gtc-css\*\/)/, themeColorTextAllCss))
     .pipe(gulp.dest('./src/'))
 };
@@ -412,7 +432,7 @@ function nunjucks () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace('\\', '\/')
+        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
       }
     }))
     .pipe(nunjucksRender({
@@ -437,7 +457,7 @@ function nunjucksForce () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace('\\', '\/')
+        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
       }
     }))
     .pipe(nunjucksRender({
