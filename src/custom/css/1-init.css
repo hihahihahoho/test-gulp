@@ -2,10 +2,10 @@
 :root {
 
 	--color-transparent: transparent;
-	--color-white: #fff;
+	--color-invert: #fff;
 	--color-black: #000;
-	--color-base: #121f3e;
-	--color-base-2: #121f31;
+	--color-default: #121f3e;
+	--color-default-2: #121f31;
 	--color-blue: #3f3bec;
 	--color-light-blue: #E5E5FF;
 	--color-red: #FF3D4E;
@@ -26,7 +26,7 @@
 
 
 	--color-hover-transparent: #f5f5f5;
-	--color-hover-white: #f5f5f5;
+	--color-hover-invert: #f5f5f5;
 	--color-hover-blue: #3935D4;
 	--color-hover-light-blue: #D8D8FF;
 	--color-hover-red: #FFD9DA;

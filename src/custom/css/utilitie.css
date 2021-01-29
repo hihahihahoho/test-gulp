@@ -44,7 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(../media/icons/svg/dark/eye.svg);
+  background-image: url(../media/icons-color/default/line-icon/eye.svg);
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
@@ -148,11 +148,11 @@
 }
 
 .pagination-next:before {
-  background-image: url("/dist/media/icons/svg/dark/chevron-right.svg");
+  background-image: url("/dist/media/icons-color/default/line-icon/chevron-right.svg");
 }
 
 .pagination-back:before {
-  background-image: url("/dist/media/icons/svg/dark/chevron-left.svg");
+  background-image: url("/dist/media/icons-color/default/line-icon/chevron-left.svg");
 }
 
 .pagination-active .legitRipple-ripple {

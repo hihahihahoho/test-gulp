@@ -54,20 +54,20 @@ var theme = {
         'transparent': {
           color: 'transparent',
           hover: '#f5f5f5',
-          text: 'base'
+          text: 'default'
         },
-        'white': {
+        'invert': {
           color: '#fff',
           hover: '#f5f5f5',
-          text: 'base'
+          text: 'default'
         },
         'black': {
           color: '#000'
         },
-        'base': {
+        'default': {
           color: '#121f3e'
         },
-        'base-2': {
+        'default-2': {
           color: '#121f31'
         },
         'blue': {

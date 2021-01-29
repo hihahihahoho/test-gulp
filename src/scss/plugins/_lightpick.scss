@@ -8,7 +8,7 @@ $lp-today-color: $color-primary;
 $lpe-color-grey: $color-grey-3;
 $lp-disable-day-opacity: 0;
 $lp-picked-box-shadow: none;
-$lp-weekend-color: $color-base;
+$lp-weekend-color: $color-default;
 $lp-month-year-title-font-size: $font-size-default;
 $lp-max-width: 334px;
 $lp-days-of-the-weeks-color: #707c93;
@@ -19,8 +19,8 @@ $lp-days-of-the-weeks-color: #707c93;
   border-radius: 6px;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: 3px 5px 40px 0 rgba($color-base, 0.16);
-  color: $color-base;
+  box-shadow: 3px 5px 40px 0 rgba($color-default, 0.16);
+  color: $color-default;
   line-height: 1.125em; // margin-top: 7px;
   @include media(">480px") {
     margin: 5px 0;
@@ -171,11 +171,11 @@ $lp-days-of-the-weeks-color: #707c93;
 
 .lightpick__next-action {
   float: right;
-  background-image: url(../media/icons/svg/dark/chevron-right.svg);
+  background-image: url(../media/icons-color/default/line-icon/chevron-right.svg);
 }
 
 .lightpick__previous-action {
-  background-image: url(../media/icons/svg/dark/chevron-left.svg);
+  background-image: url(../media/icons-color/default/line-icon/chevron-left.svg);
 }
 
 .lightpick__previous-action,
@@ -505,7 +505,7 @@ $lp-days-of-the-weeks-color: #707c93;
 }
 
 .lightpick__reset-action {
-  color: $color-base;
+  color: $color-default;
   background-color: transparent;
   float: left;
 }
@@ -580,7 +580,7 @@ select:not([disabled]).lightpick__select {
   line-height: 44px;
   border-radius: 5px;
   background-color: rgba(#eaeff3, 0.6);
-  background-image: url("../media/icons/svg/dark/chevron-down.svg");
+  background-image: url("../media/icons-color/default/line-icon/chevron-down.svg");
   background-size: 24px 24px;
   background-repeat: no-repeat;
   background-position: center right 5px;

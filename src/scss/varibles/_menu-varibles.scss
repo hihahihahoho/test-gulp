@@ -36,18 +36,18 @@ $hamburger-padding-y                         :  0 !default;
 $hamburger-layer-width                       :  22px !default;
 $hamburger-layer-height                      :  2px !default;
 $hamburger-layer-spacing                     :  4px !default;
-$hamburger-layer-color                       :  $color-base !default;
+$hamburger-layer-color                       :  $color-default !default;
 $hamburger-layer-border-radius               :  4px !default;
 $hamburger-hover-opacity                     :  1 !default;
 $hamburger-hover-transition-duration         :  1.2s !default;
 $hamburger-hover-transition-timing-function  :  linear !default;
-$hambeger-active-color                       :  $color-base;
+$hambeger-active-color                       :  $color-default;
 //===MENU-DESKTOP============================================
 //===menu sign--for multiply, plus, minus-etc
 $menu-sign-width   :  16px;
 $menu-sign-height  :  16px;
 $menu-sign-thick   :  2px;
-$menu-sign-bgc     :  $color-base;
+$menu-sign-bgc     :  $color-default;
 //===menu color and background color
 $menu-bg-color-active  :  $menu-color-bg;
 $menu-color-focus      :  $menu-color-text;
@@ -56,7 +56,7 @@ $menu-color-active     :  $menu-color-text;
 $menu-color            :  $menu-color-text;
 //===menu color and background color change and box shadow
 $menu-bg-color-change   :  transparent;
-$menu-change-color      :  $color-white;
+$menu-change-color      :  $color-invert;
 $menu-change-boxshadow  :  false;
 //===menu font
 

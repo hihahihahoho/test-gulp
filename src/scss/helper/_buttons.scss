@@ -39,7 +39,7 @@ $map-btn-height: (
   xl: 60px,
 );
 $map-btn-color-modify: (
-  yellow: $color-base,
+  yellow: $color-default,
 );
 
 @mixin modifiers-btn-height($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {

@@ -1,11 +1,11 @@
 //===========Table===========//
 $table-zebra-bg-color: $color-grey-4;
-$table-zebra-color: $color-base;
+$table-zebra-color: $color-default;
 $table-thead-color: $color-grey-1;
 $table-thead-font-weight: 500;
 $table-thead-padding: 12px 5px;
 $table-thead-font-size: 13px;
-$table-thead-bg-color: $color-white;
+$table-thead-bg-color: $color-invert;
 $table-font-size: 14px;
 $table-body-padding: 12px 5px;
 $table-border: 1px solid $color-grey-2;
@@ -13,7 +13,7 @@ $table-hover-bg-color: lighten($color-yellow, 36);
 
 //===========pagination===========//
 $page-font: 13px;
-$page-color: $color-base;
+$page-color: $color-default;
 $page-item-space: 0;
 $page-bg-color: transparent;
 $page-dots: $color-grey-1;

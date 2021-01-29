@@ -1,10 +1,14 @@
 $map-input-ic-size: (
-  xs-1: 18px,
   default: 24px,
+  xs-1: 24px,
+  xs: 36px,
+  sm: 44px,
+  md: 50px,
+  lg: 60px
 );
 
 $map-input-size: (
-  default: 56px,
+  default: 40px,
   xs-1: 24px,
   xs: 36px,
   sm: 44px,
@@ -21,7 +25,7 @@ $inputMaterial: 'material' !default;
 $inputMaterial2: 'material-2' !default;
 $inputMaterial3: 'material-3' !default;
 
-$input-color: $color-base;
+$input-color: $color-default;
 $input-font-weight: 500;
 
 $input-label-font-weight: 400;

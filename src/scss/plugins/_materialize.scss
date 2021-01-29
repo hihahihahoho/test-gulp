@@ -1,9 +1,9 @@
-$tabs-bg-color: $color-white;
+$tabs-bg-color: $color-invert;
 $tabs-underline-color: $color-primary;
-$tabs-text-color: $color-base;
+$tabs-text-color: $color-default;
 $dropdown-bg-color: #fff;
 $dropdown-hover-bg-color: #eee;
-$dropdown-color: $color-base;
+$dropdown-color: $color-default;
 $dropdown-item-height: 40px;
 $dropdown-border-radius : 4px;
 $dropdown-font-size: 14px; 
@@ -171,7 +171,7 @@ $dropdown-font-size: 14px;
         width: 24px;
       }
       clear: both;
-      color: $color-base;
+      color: $color-default;
       cursor: pointer;
       min-height: $dropdown-item-height;
       line-height: 1.5rem;

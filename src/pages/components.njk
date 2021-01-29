@@ -1,6 +1,6 @@
 {% extends "main/_layout-sidebar.njk" %}
-{% import "others/_colors.njk" as color %}
-{% import "others/_text.njk" as text %}
+{% import "pages/components/_colors.njk" as color %}
+{% import "pages/components/_text.njk" as text %}
 
 {% set pageLink = file_path %}
 {% set pageTitle = 'Components' %}
@@ -95,13 +95,13 @@
       <form class="from-section form-vertical pb30">
         <div class="row row-20">
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = 'media/icons/svg/dark/plannet.svg') }}
+            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = 'media/icons-color/default/line-icon/plannet.svg') }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg') }}
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons-color/default/line-icon/plannet.svg') }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg', note = 'This is an input note') }}
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons-color/default/line-icon/plannet.svg', note = 'This is an input note') }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {{ form.input('Input icon left text', extendAttr = 'required', icTxt = 'Not required') }}
@@ -118,7 +118,7 @@
               {{ ult.eye() }}
             </div>
             {% endset %}
-            {{ form.input('Input password', iconLeft = 'media/icons/svg/dark/plannet.svg', extendAttr = 'required', extendContent = extendContentCon, extendContentClass = 'pr0') }}
+            {{ form.input('Input password', iconLeft = 'media/icons-color/default/line-icon/plannet.svg', extendAttr = 'required', extendContent = extendContentCon, extendContentClass = 'pr0') }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
@@ -138,27 +138,27 @@
             {% set dataSelect = [
               {
                 main: 'Vietcombank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
               }, {
                 main: 'Vietinbank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
               }, {
                 main: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }
             ] %}
@@ -394,17 +394,17 @@
             {% set dropdownValue = [
               {
                 main: 'Dropdown 1',
-                icon: 'media/icons/svg/dark/plannet.svg',
+                icon: 'media/icons-color/default/line-icon/plannet.svg',
                 href: '#'
               }, {
                 main: 'Dropdown 2',
                 sub: 'This is a sub text',
-                icon: 'media/icons/svg/dark/plannet.svg',
+                icon: 'media/icons-color/default/line-icon/plannet.svg',
                 modal: '#modalTest'
               }, {
                 main: 'Dropdown 3',
                 sub: 'This is a sub text',
-                icon: 'media/icons/svg/dark/plannet.svg',
+                icon: 'media/icons-color/default/line-icon/plannet.svg',
                 toast: '#modalTest'
               }, {
                 break: 'true'

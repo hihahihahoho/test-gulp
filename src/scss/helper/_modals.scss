@@ -84,7 +84,7 @@ $modal-backdrop-bgcolor-op: 0.5;
   &-content {
     border: 0;
     border-radius: 10px;
-    box-shadow: 5px 10px 20px 0 rgba($color-base, 0.03);
+    box-shadow: 5px 10px 20px 0 rgba($color-default, 0.03);
   }
   &-dialog-centered {
     .modal-content {
@@ -220,9 +220,9 @@ $modal-backdrop-bgcolor-op: 0.5;
   right: 30px;
   z-index: 1041;
   border-radius: 8px;
-  background-color: $color-white;
+  background-color: $color-invert;
   backdrop-filter: blur(10px);
-  color: $color-base;
+  color: $color-default;
   border: 0;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
   flex-basis: 350px;

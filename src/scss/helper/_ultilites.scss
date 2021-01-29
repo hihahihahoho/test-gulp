@@ -1,4 +1,4 @@
-$tooltip-color: $color-base;
+$tooltip-color: $color-default;
 $tooltip-bg-color: white;
 
 $map-row: (
@@ -75,7 +75,7 @@ html {
 }
 
 body {
-  color: $color-base; // height: 100%;
+  color: $color-default; // height: 100%;
 }
 
 .up {
@@ -677,7 +677,7 @@ body {
   display: block;
   position: absolute;
   top: 50%;
-  background: $color-base;
+  background: $color-default;
 }
 
 .arrow-down-anim::after {

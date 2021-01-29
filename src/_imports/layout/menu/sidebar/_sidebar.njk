@@ -234,9 +234,9 @@
           {% if itemVal.ic %}
             <div class="ic">
               {% if (itemVal.link in pageLink) and (itemVal.link | length) %}
-                <img src="/dist/media/icons/svg/primary/{{ itemVal.ic }}" alt="">
+                <img src="/dist/media/icons-color/primary/line-icon/{{ itemVal.ic }}" alt="">
               {% else %}
-                <img src="/dist/media/icons/svg/dark/{{ itemVal.ic }}" alt="">
+                <img src="/dist/media/icons-color/default/line-icon/{{ itemVal.ic }}" alt="">
               {% endif %}
             </div>
           {% else %}
@@ -260,7 +260,7 @@
       <div class="sidebar__list {{ activeTxt }}" data-accordion="data-accordion">
         <div class="sidebar__item" data-control="data-control">
           {% if item.ic %}
-            <div class="ic"><img src="/dist/media/icons/svg/dark/{{ item.ic }}" alt=""></div>
+            <div class="ic"><img src="/dist/media/icons-color/default/line-icon/{{ item.ic }}" alt=""></div>
           {% else %}
             <div class="ic ic-blank"></div>
           {% endif %}
@@ -280,7 +280,7 @@
 <label for="sidebar-trigger" class="sidebar-overlay"></label>
 <div class="sidebar-top">
   <label class="ripple-100 sidebar-top__trigger legitRipple" for="sidebar-trigger">
-    <img width="20" src="media/icons/svg/dark/burger.svg" alt="">
+    <img width="20" src="media/icons-color/default/line-icon/burger.svg" alt="">
   </label>
   <div class="sidebar-top__logo">
     <img src="media/brands/logo.svg" alt="">
@@ -293,7 +293,7 @@
         <td class="sidebar__ic">
           <div class="sidebar__head__ic">
             <label class="ripple-100" for="sidebar-trigger">
-              <img width="20" src="media/icons/svg/dark/burger.svg" alt="">
+              <img width="20" src="media/icons-color/default/line-icon/burger.svg" alt="">
             </label>
           </div>
         </td>

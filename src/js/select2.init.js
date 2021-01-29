@@ -126,9 +126,9 @@ $(document).ready(function () {
   function templateImgRes (img) {
     if (!img.id) { return img.text; }
     if (img.element.attributes.dataimgClass) {
-      return $img = $('<div class="select-tpl-img-wrap"><div class="row row-10 align-items-center"><div class="col-auto"><div class="select-tpl-img ' + img.element.attributes.dataimgClass.value + '" style="background-image: url(\'' + img.element.attributes.dataimg.value + '\')"></div></div><div class="col"><div class="select-tpl-txt b">' + img.text + '</div><div class="select-tpl-txt-sub h7 color-base-3">' + img.element.attributes.datasub.value + '</div></div></div></div>');
+      return $img = $('<div class="select-tpl-img-wrap"><div class="row row-10 align-items-center"><div class="col-auto"><div class="select-tpl-img ' + img.element.attributes.dataimgClass.value + '" style="background-image: url(\'' + img.element.attributes.dataimg.value + '\')"></div></div><div class="col"><div class="select-tpl-txt b">' + img.text + '</div><div class="select-tpl-txt-sub h7 color-default-3">' + img.element.attributes.datasub.value + '</div></div></div></div>');
     } else {
-      return $img = $('<div class="select-tpl-img-wrap"><div class="row row-10 align-items-center"><div class="col"><div class="select-tpl-txt b">' + img.text + '</div><div class="select-tpl-txt-sub h7 color-base-3">' + img.element.attributes.datasub.value + '</div></div></div></div>');
+      return $img = $('<div class="select-tpl-img-wrap"><div class="row row-10 align-items-center"><div class="col"><div class="select-tpl-txt b">' + img.text + '</div><div class="select-tpl-txt-sub h7 color-default-3">' + img.element.attributes.datasub.value + '</div></div></div></div>');
     }
   };
   $('.select-2-template').select2({

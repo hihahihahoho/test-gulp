@@ -55,7 +55,7 @@
 
   {% set inputClearIc %}
   <div class="input-ic input-clear pointer">
-    <img src="media/icons/svg/dark/close.svg" alt="" class="ic-xs">
+    <img src="media/icons-color/default/line-icon/close.svg" alt="" class="ic-xs">
   </div>
   {% endset %}
 
@@ -82,7 +82,7 @@
 
   {% if icTxt %}
     {% set icTxtContent %}
-    <div class="input-ic-txt color-base-2 input-ic">
+    <div class="input-ic-txt color-default-2 input-ic">
       {{ icTxt | safe }}
     </div>
     {% endset %}
@@ -217,7 +217,7 @@
   {% endif %}
   {% if not note == '' %}
     {% set noteContent %}
-    <div class="note-text h6 color-base-3">
+    <div class="note-text h6 color-default-3">
       {{ note }}
     </div>
     {% endset %}
@@ -334,7 +334,7 @@
 
   {% if not note == '' %}
     {% set noteContent %}
-    <div class="note-text h6 color-base-3">
+    <div class="note-text h6 color-default-3">
       {{ note }}
     </div>
     {% endset %}
@@ -360,7 +360,7 @@
           <div class="input-label">{{ title }}</div>
         {% endif %}
         <div class="input-ic">
-          <img src="/dist/media/icons/svg/dark/calendar.svg" class="ic-lg" alt="">
+          <img src="/dist/media/icons-color/default/line-icon/calendar.svg" class="ic-lg" alt="">
         </div>
       </label>
     </div>

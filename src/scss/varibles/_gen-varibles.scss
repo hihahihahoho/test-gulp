@@ -50,10 +50,10 @@ $text-h6: 12px;
 //gtc-color-scss
 
 $color-transparent: transparent;
-$color-white: #fff;
+$color-invert: #fff;
 $color-black: #000;
-$color-base: #121f3e;
-$color-base-2: #121f31;
+$color-default: #121f3e;
+$color-default-2: #121f31;
 $color-blue: #3f3bec;
 $color-light-blue: #E5E5FF;
 $color-red: #FF3D4E;
@@ -74,7 +74,7 @@ $color-light-success: #C2F2D6;
 
 
 $color-hover-transparent: #f5f5f5;
-$color-hover-white: #f5f5f5;
+$color-hover-invert: #f5f5f5;
 $color-hover-blue: #3935D4;
 $color-hover-light-blue: #D8D8FF;
 $color-hover-red: #FFD9DA;
@@ -123,10 +123,10 @@ $color-shadowOp-success: 0.3;
 
 $map-color: (
 	transparent: $color-transparent,
-	white: #fff,
+	invert: #fff,
 	black: #000,
-	base: #121f3e,
-	base-2: #121f31,
+	default: #121f3e,
+	default-2: #121f31,
 	blue: #3f3bec,
 	light-blue: #E5E5FF,
 	red: #FF3D4E,
@@ -148,7 +148,7 @@ $map-color: (
 
 $map-color-hover: (
 	transparent: #f5f5f5,
-	white: #f5f5f5,
+	invert: #f5f5f5,
 	blue: #3935D4,
 	light-blue: #D8D8FF,
 	red: #FFD9DA,
@@ -168,8 +168,8 @@ $map-color-hover: (
 );
 
 $map-color-text: (
-	transparent: $color-base,
-	white: $color-base,
+	transparent: $color-default,
+	invert: $color-default,
 	blue: #ffffff,
 	light-blue: $color-blue,
 	red: #ffffff,

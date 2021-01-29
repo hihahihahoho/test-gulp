@@ -10,13 +10,13 @@
       <form class="from-section form-vertical pb30">
         <div class="row row-20">
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = 'media/icons-color/default/line-icon/plannet.svg', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons-color/default/line-icon/plannet.svg', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons/svg/dark/plannet.svg', note = 'This is an input note', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = 'media/icons-color/default/line-icon/plannet.svg', note = 'This is an input note', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {{ form.input('Input icon left text', extendAttr = 'required', icTxt = 'Not required', settingInputCustom = settingInputCustom) }}
@@ -33,7 +33,7 @@
               {{ ult.eye() }}
             </div>
             {% endset %}
-            {{ form.input('Input password', iconLeft = 'media/icons/svg/dark/plannet.svg', extendAttr = 'required', extendContent = extendContentCon, extendContentClass = 'pr0', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input password', iconLeft = 'media/icons-color/default/line-icon/plannet.svg', extendAttr = 'required', extendContent = extendContentCon, extendContentClass = 'pr0', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
@@ -53,27 +53,27 @@
             {% set dataSelect = [
               {
                 main: 'Vietcombank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
               }, {
                 main: 'Vietinbank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
               }, {
                 main: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
-                img: 'media/icons/svg/dark/plannet.svg',
+                img: 'media/icons-color/default/line-icon/plannet.svg',
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }
             ] %}
@@ -141,31 +141,36 @@
 
 {% block mainInner %}
   {% set settingInputCustomBorder = {
+    inputSize: 'sm',
     inputType: 'border',
     icSize: 'sm'
   } %}
   {{ localMacros(settingInputCustomBorder) }}
   {% set settingInputCustomClean = {
+    inputSize: 'sm',
     inputType: 'clean',
     icSize: 'sm'
   } %}
   {{ localMacros(settingInputCustomClean) }}
   {% set settingInputLine = {
+    inputSize: 'sm',
     inputType: 'line',
     icSize: 'xs-1'
   } %}
   {{ localMacros(settingInputLine) }}
   {% set settingMaterial = {
+    inputSize: 'sm',
     inputType: 'default'
   } %}
   {{ localMacros(settingMaterial) }}
   {% set settingMaterial2 = {
-    inputType: 'material-2',
     inputSize: 'lg',
+    inputType: 'material-2',
     icSize: 'sm'
   } %}
   {{ localMacros(settingMaterial2) }}
   {% set settingMaterial3 = {
+    inputSize: 'sm',
     inputType: 'material-3',
     icSize: 'sm'
   } %}

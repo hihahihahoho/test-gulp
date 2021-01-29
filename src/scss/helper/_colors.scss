@@ -3,9 +3,9 @@ $color-grey-1: #afb3bc !default;
 $color-grey-2: #e0e4eb !default;
 $color-grey-3: #eaeff3 !default;
 $color-grey-4: #f7f8fa !default;
-$color-base: #121f3e !default;
-$color-base-2: #707c93 !default;
-$color-white: #ffffff !default;
+$color-default: #121f3e !default;
+$color-default-2: #707c93 !default;
+$color-invert: #ffffff !default;
 $color-red: #ff3d4e !default;
 $color-blue: #3f3bec !default;
 $color-orange: #ff7544 !default;
@@ -25,15 +25,15 @@ $link-color: $color-blue !default;
 
 $bg-line-border-thick: 1px;
 $bg-op-opacity: 0.2;
-$color-white: white;
-$color-black: $color-base !default;
+$color-invert: white;
+$color-black: $color-default !default;
 
 $border-base-color: $color-grey-2 !default;
 
 $map-bg-op-color-modify: (
-  yellow: $color-base,
-  tertiary: $color-base,
-  cancel: $color-base,
+  yellow: $color-default,
+  tertiary: $color-default,
+  cancel: $color-default,
 );
 
 @mixin modifiers-bg-op-color($map, $prefix: "-", $separator: "-", $base: "basic") {

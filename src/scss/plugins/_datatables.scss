@@ -22,7 +22,7 @@ table.dataTable thead .sorting_desc {
     &:not(.current):active {
       border: 0 !important;
       box-shadow: none !important;
-      color: $color-base !important;
+      color: $color-default !important;
       background-color: $color-grey-3 !important;
       background-image: none;
     }
@@ -31,25 +31,25 @@ table.dataTable thead .sorting_desc {
     }
   }
   .paginate_button.last {
-    background-image: url("../media/icons/svg/dark/chevrons-right.svg") !important;
+    background-image: url("../media/icons-color/default/line-icon/chevrons-right.svg") !important;
     background-position: center center !important;
     background-size: 16px auto !important;
     background-repeat: no-repeat !important;
   }
   .paginate_button.first {
-    background-image: url("../media/icons/svg/dark/chevrons-left.svg") !important;
+    background-image: url("../media/icons-color/default/line-icon/chevrons-left.svg") !important;
     background-position: center center !important;
     background-size: 16px auto !important;
     background-repeat: no-repeat !important;
   }
   .paginate_button.previous {
-    background-image: url("../media/icons/svg/dark/chevron-left.svg") !important;
+    background-image: url("../media/icons-color/default/line-icon/chevron-left.svg") !important;
     background-position: center center !important;
     background-size: 16px auto !important;
     background-repeat: no-repeat !important;
   }
   .paginate_button.next {
-    background-image: url("../media/icons/svg/dark/chevron-right.svg") !important;
+    background-image: url("../media/icons-color/default/line-icon/chevron-right.svg") !important;
     background-position: center center !important;
     background-size: 16px auto !important;
     background-repeat: no-repeat !important;
@@ -173,14 +173,14 @@ table.dataTable {
 .details-control {
   min-width: 30px;
   padding: 0;
-  background-image: url("../media/icons/svg/dark/chevron-down.svg");
+  background-image: url("../media/icons-color/default/line-icon/chevron-down.svg");
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
 }
 
 .shown .details-control {
-  background-image: url("../media/icons/svg/dark/chevron-up.svg");
+  background-image: url("../media/icons-color/default/line-icon/chevron-up.svg");
 }
 
 .dataTables_wrapper .no_sort {
