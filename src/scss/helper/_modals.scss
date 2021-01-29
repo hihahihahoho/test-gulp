@@ -225,6 +225,7 @@ $modal-backdrop-bgcolor-op: 0.5;
   color: $color-default;
   border: 0;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
+  min-width: 350px;
   flex-basis: 350px;
   pointer-events: none;
 }
@@ -235,6 +236,7 @@ $modal-backdrop-bgcolor-op: 0.5;
 .toast-body {
   padding: 10px 15px;
   word-break: break-word;
+  width: 100%;
 }
 
 @media (max-width: 767px) {
@@ -251,6 +253,7 @@ $modal-backdrop-bgcolor-op: 0.5;
     margin: auto;
     bottom: 40px;
     flex-basis: 100%;
+    min-width: 0;
   }
 }
 /* end toast */

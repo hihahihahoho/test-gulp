@@ -270,7 +270,9 @@
           {% if selectLib == 'select-2' %}
             <option value=""></option>
           {% elseif selectLib == 'none' %}
-            <option value="" disabled="disabled" selected="selected">{{ placeholder }}</option>
+            {% if placeholder %}
+              <option value="" disabled="disabled" selected="selected">{{ placeholder }}</option>
+            {% endif %}
           {% endif %}
           {% if not customOption == '' %}
             {{ customOption | safe }}

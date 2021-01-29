@@ -18,7 +18,7 @@ $(document).ready(function () {
     $(id).toast('show')
   })
   $('.toast').toast({
-    delay: 3000
+    delay: 300000
   })
   $('.modal').on('show.bs.modal', function (e) {
     if ($(window).width() < 769) {

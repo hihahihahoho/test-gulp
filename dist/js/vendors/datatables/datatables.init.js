@@ -8,7 +8,7 @@ $(document).ready(function () {
   var table = $('.data-table').DataTable({
     "searching": false,
     scrollX: true,
-    "dom": '<"table-wraper"t><"table-footer"<"row row-10 align-items-center justify-content-md-between justify-content-center list-mv10"<"col-auto"<"row row-10 align-items-center"<"col"i><"col"l>">><"col-auto"p>>><"clear">',
+    "dom": '<"table-wraper"t><"table-footer"<"row row-10 align-items-center justify-content-md-between justify-content-center list-mv10"<"col-auto"<"row row-10 align-items-center"<"col-auto"i><"col"l>">><"col-auto"p>>><"clear">',
     "pagingType": "full_numbers",
     "language": {
       "lengthMenu": "Hiển thị: _MENU_",
