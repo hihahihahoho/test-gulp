@@ -1,0 +1,16 @@
+$tabsLine: 'default';
+
+.nav {
+  &-style {
+    &-#{$tabsLine} {
+      .nav-link {
+        border-bottom: 2px solid transparent;
+        color: $color-default !important;
+        &.active {
+          border-bottom: 2px solid $color-primary;
+          color: $color-primary !important
+        }
+      }
+    }
+  }
+}

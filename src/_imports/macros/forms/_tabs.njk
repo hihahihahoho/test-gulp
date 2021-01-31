@@ -1,0 +1,15 @@
+{% macro tab(data, active = 1, id = 'tab', navLinkWidth = 'fill') %}
+  <!-- tab.tab -->
+  <div class="nav-wrap">
+    <nav class="nav nav-style-default nav-{{ navLinkWidth }}">
+      {% for item in data %}
+        {% set activeClass = '' %}
+        {% if loop.index == active %}
+          {% set activeClass = 'active' %}
+        {% endif %}
+        <a class="nav-link {{ activeClass }}" data-toggle="tab" href="#{{id}}{{loop.index}}">{{item}}</a>
+      {% endfor %}
+    </nav>
+  </div>
+  <!-- end tab.tab -->
+{% endmacro %}

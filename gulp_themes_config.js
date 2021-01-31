@@ -37,6 +37,10 @@ var theme = {
       'font-size': '12px',
       'line-height': '1.3',
     },
+    p: {
+      'font-size': '14px',
+      'line-height': '1.3',
+    },
   },
   color: {
     default: {

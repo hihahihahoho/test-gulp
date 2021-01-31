@@ -174,8 +174,8 @@ function theme () {
   }
   // end theme color
   themeColorTextAll = '//gtc-color-scss\n' + themeColorVarText + themeColorMapText + '\n//end-gtc-color-scss'
-  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
-  return gulp.src(['./src/scss/varibles/_gen-varibles.scss', './src/custom/css/1-init.css', './src/_imports/_gen-varibles.njk'], { base: './src/' })
+  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--')+ themeTextVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
+  return gulp.src(['./src/scss/varibles/_gen-varibles.scss', './src/custom/css/0-gen_varibles.css', './src/_imports/_gen-varibles.njk'], { base: './src/' })
     .pipe(replace(/({# gtc-text-njk #})([\S\s]*?)({# end-gtc-text-njk #})/, themeTextNjk))
     .pipe(replace(/({# gtc-color-njk #})([\S\s]*?)({# end-gtc-color-njk #})/, themeColorNjk))
     .pipe(replace(/(\/\/gtc-text-scss)([\S\s]*?)(\/\/end-gtc-text-scss)/, themeTextMapAllText))
@@ -412,12 +412,12 @@ function iconColor (cb) {
   delete require.cache[require.resolve('./gulp-icons-color-config.js')];
   var themeIcon = require('./gulp-icons-color-config').themeIconColor;
   var themeIconProps = require('./gulp-icons-color-config').themeIconProps;
-  var themeIconBase = new RegExp(themeIcon.default, "g");
+  var themeIconBase = new RegExp(themeIcon.default.toLowerCase(), "g");
   var themeIconStroke = 'stroke-width="' + themeIconProps.stroke + '"';
-  
+
   for (var item in themeIcon) {
     gulp.src('./src/media/icons-color/**/*.svg')
-      .pipe(replace(themeIconBase, themeIcon[item]))
+      .pipe(replace(themeIconBase, themeIcon[item].toLowerCase()))
       .pipe(replace('vector-effect="non-scaling-stroke"', ''))
       .pipe(replace('</svg>', '<style type="text/css" media="screen">path{vector-effect:non-scaling-stroke}</style></svg>'))
       .pipe(replace(/(stroke-width=")([\S\s]*?)(")/, themeIconStroke))

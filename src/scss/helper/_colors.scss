@@ -36,6 +36,8 @@ $map-bg-op-color-modify: (
   cancel: $color-default,
 );
 
+$map-color-shadowOp: () !default;
+
 @mixin modifiers-bg-op-color($map, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
     &#{if($key != $base, #{$prefix}#{$key}, '')} {

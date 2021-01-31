@@ -18,6 +18,8 @@
 }
 .color-block-info {
   padding: 10px;
+  font-size: 12px;
+  line-height: 1.6;
 }
 .color-block-label {
   opacity: 0.8;
