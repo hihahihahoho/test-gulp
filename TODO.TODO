@@ -2,3 +2,11 @@ Features:
   ☐ Thêm phần chuyển 1 ảnh thành folder ảnh nhiều màu @high 
   ☐ Thêm folder ignore ảnh không resize
   ☐ Add nhiều css file
+  ☐ Sửa render sidebar đang lỗi
+  ☐ Sửa table njk
+  ☐ Chart
+  ☐ Layout login
+  ☐ Sửa mở modal body overflow
+  ☐ THêm tính năng dropdown không append ra ngoài
+  ☐ Bỏ value trong select 2
+  ☐ Fix eye input
