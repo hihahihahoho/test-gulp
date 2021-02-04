@@ -1,6 +1,6 @@
 {% extends "_varibles.njk" %}
 
-{% macro btn(title, id, tagName, color, size, width, modal, href, toast, extendAttr, extendClass, shape, custom, icon, icLeft, icSize, disabled = 'false', justifyContent, tooltip, fontSize, textColor, space, rounded, hover, active) %}
+{% macro btn(title, id, tagName, color, size, width, modal, href, toast, extendAttr, extendClass, shape, custom, icon, iconLeft, icSize, disabled = 'false', justifyContent, tooltip, fontSize, textColor, space, rounded, hover, active) %}
   <!-- button.btn -->
   {% if not tagName %}
     {% set tagName = settingButtonDefault.tagName %}
@@ -55,10 +55,10 @@
     {% set btnWidth = 'ubtn-min-width-' + width %}
   {% endif %}
 
-  {% if icLeft %}
-    {% set icLeftContent %}
+  {% if iconLeft %}
+    {% set iconLeftContent %}
     <span class="ubtn-ic col-auto">
-      <img src="{{icLeft}}" alt="" class="ic-{{ icSize }}">
+      <img src="{{iconLeft}}" alt="" class="ic-{{ icSize }}">
     </span>
     {% endset %}
   {% endif %}
@@ -110,7 +110,7 @@
   {% else %}
     {% set btnContent %}
     <div class="row row-{{ space }} ubtn-inner {{ justifyContentText }}">
-      {{ icLeftContent | safe }}
+      {{ iconLeftContent | safe }}
       {{ titleText | safe }}
       {{ iconContent | safe }}
     </div>
@@ -145,5 +145,5 @@
 {% endmacro %}
 
 {% macro btnData(data) %}
-  {{ btn(title = data.title, id = data.id, tagName = data.tagName, color = data.color, size = data.size, width = data.width, modal = data.modal, toast = data.toast, href = data.href, extendAttr = data.extendAttr, extendClass = data.extendClass, shape = data.shape, custom = data.custom, icon = data.icon, icLeft = data.icLeft, icSize = data.icSize, disabled = data.disabled, justifyContent = data.justifyContent, tooltip = data.tooltip, fontSize = data.fontSize, textColor = data.textColor, space = data.space, rounded = data.rounded) }}
+  {{ btn(title = data.title, id = data.id, tagName = data.tagName, color = data.color, size = data.size, width = data.width, modal = data.modal, toast = data.toast, href = data.href, extendAttr = data.extendAttr, extendClass = data.extendClass, shape = data.shape, custom = data.custom, icon = data.icon, iconLeft = data.iconLeft, icSize = data.icSize, disabled = data.disabled, justifyContent = data.justifyContent, tooltip = data.tooltip, fontSize = data.fontSize, textColor = data.textColor, space = data.space, rounded = data.rounded) }}
 {% endmacro %}

@@ -2,14 +2,14 @@
 
 {% extends "_varibles.njk" %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
-{% macro input(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id, iconText = '', extendAttr, extendClass, note = '', autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom, textarea, textareaAutoSize = 'true', addFlex, fakeInput, customFlexContent, errorBlock = settingInputDefault.errorBlock) %}
+{% macro input(title, inputType = settingInputDefault.inputType, value = '', size = settingInputDefault.size, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id, iconText = '', extendAttr, extendClass, note = '', autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom, textarea, textareaAutoSize = 'true', addFlex, fakeInput, customFlexContent, errorBlock = settingInputDefault.errorBlock, eye = settingInputDefault.eye) %}
   <!-- forms.input -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
       {% set inputType = settingInputCustom.inputType %}
     {% endif %}
-    {% if settingInputCustom.inputSize %}
-      {% set inputSize = settingInputCustom.inputSize %}
+    {% if settingInputCustom.size %}
+      {% set size = settingInputCustom.size %}
     {% endif %}
     {% if settingInputCustom.icSize %}
       {% set icSize = settingInputCustom.icSize %}
@@ -27,14 +27,14 @@
   {% endif %}
 
   {% if type == 'password' %}
-    {% set eye %}
-    <div class="eye-wrap">
-      <input type="checkbox" name="" class="hidden" checked="" id="eye-{{id}}">
-      <label class="eye text-right ic-pos-right" for="eye-{{id}}">
-        <div class="eye-slash"></div>
-      </label>
-    </div>
-    {% endset %}
+    {% if eye == 'true' %}
+      {% set eyeContent %}
+      <div class="input-ic">
+        {{ eyeMacro() }}
+      </div>
+      {% endset %}
+    {% endif %}
+
   {% endif %}
 
   {% set ic %}
@@ -43,7 +43,7 @@
   </div>
   {% endset %}
 
-  {% set icLeft %}
+  {% set iconLeftText %}
   <div class="input-ic">
     <img src="{{ iconLeft }}" class="ic-lg" alt="">
   </div>
@@ -102,7 +102,7 @@
 
   {% set inputArtt %}
   {{ idText }}
-  type="{{ type }}" class="input input-size-{{ inputSize }}
+  type="{{ type }}" class="input input-size-{{ size }}
   input-{{ inputType }}
   {{ inputTypeText }}
   input-ic-{{ icSize }}
@@ -133,7 +133,7 @@
         {% else %}
           <input {{ inputArtt | safe | trim}} value="{{ value }}">
           {% if fakeInput %}
-            <div class="input input-size-{{ inputSize }} input-{{ inputType }} {{ inputTypeText }} input-holder">
+            <div class="input input-size-{{ size }} input-{{ inputType }} {{ inputTypeText }} input-holder">
               {{ fakeInput }}
             </div>
           {% endif %}
@@ -163,7 +163,7 @@
         {% endif %}
         {% if iconLeft %}
           <div class="input-flex-content input-flex-content-left">
-            {{ icLeft | safe }}
+            {{ iconLeftText | safe }}
           </div>
         {% endif %}
         {% if addFlex %}
@@ -176,13 +176,13 @@
             {% if icon %}
               {{ ic | safe }}
             {% endif %}
-            {{ eye | safe }}
+            {{ eyeContent | safe }}
             {{ icTxtContent | safe }}
           </div>
         {% endif %}
       </label>
       {% if extendContent %}
-        <div class="input-size-{{ inputSize }} input-group-extend {{ extendContentClass }} input-ic-{{icSize}}">
+        <div class="input-size-{{ size }} input-group-extend {{ extendContentClass }} input-ic-{{icSize}}">
           {{ extendContent | safe }}
         </div>
       {% endif %}
@@ -195,14 +195,14 @@
   <!-- end forms.input -->
 {% endmacro %}
 
-{% macro select(title, inputType = settingInputDefault.inputType, inputSize = settingInputDefault.inputSize, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple, selectLib = settingInputDefault.selectLib, errorBlock = settingInputDefault.errorBlock) %}
+{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.size, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple, selectLib = settingInputDefault.selectLib, errorBlock = settingInputDefault.errorBlock) %}
   <!-- forms.select -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
       {% set inputType = settingInputCustom.inputType %}
     {% endif %}
-    {% if settingInputCustom.inputSize %}
-      {% set inputSize = settingInputCustom.inputSize %}
+    {% if settingInputCustom.size %}
+      {% set size = settingInputCustom.size %}
     {% endif %}
     {% if settingInputCustom.icSize %}
       {% set icSize = settingInputCustom.icSize %}
@@ -233,6 +233,10 @@
 
   {% if search == 'false'%}
     {% set searchText = 'data-minimum-results-for-search="Infinity"' %}
+  {% endif %}
+
+  {% if valueName %}
+    {% set valueNameText = 'value="' + valueName + loop.index + '"' %}
   {% endif %}
 
   {% if id %}
@@ -266,7 +270,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
       <div class="input-group">
-        <select {{ idText }} name="" class="{{ selectLibText }} {{ selectTxt }} {{ extendClass }} input input-size-{{ inputSize }} input-ic-{{ icSize }} input-{{ inputType }} {{ inputTypeText }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr | safe }} {{ disabledAttr }} {{ multipleText }}>
+        <select {{ idText }} name="" class="{{ selectLibText }} {{ selectTxt }} {{ extendClass }} input input-size-{{ size }} input-ic-{{ icSize }} input-{{ inputType }} {{ inputTypeText }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr | safe }} {{ disabledAttr }} {{ multipleText }}>
           {% if selectLib == 'select-2' %}
             <option value=""></option>
           {% elseif selectLib == 'none' %}
@@ -285,7 +289,7 @@
               {% if dataimgClass %}
                 {% set dataimgClassTxt = 'dataimgclass="' + dataimgClass + '"' %}
               {% endif %}
-              <option value="{{ loop.index }}" {{ dataimgClassTxt | safe }} dataimg="{{ item.img }}" datasub="{{ item.sub }}" {{ selectedText }}>{{ item.main }}</option>
+              <option {{ valueNameText }} {{ dataimgClassTxt | safe }} dataimg="{{ item.img }}" datasub="{{ item.sub }}" {{ selectedText }}>{{ item.main }}</option>
             {% endfor %}
           {% else %}
             {% for item in value %}
@@ -293,7 +297,7 @@
               {% if loop.index == selected %}
                 {% set selectedText = 'selected' %}
               {% endif %}
-              <option value="{{ loop.index }}" {{ selectedText }}>{{ item }}</option>
+              <option {{ valueNameText }} {{ selectedText }}>{{ item }}</option>
             {% endfor %}
           {% endif %}
         </select>
@@ -315,14 +319,14 @@
   <!-- end forms.select -->
 {% endmacro %}
 
-{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', inputSize = settingInputDefault.inputSize, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '', errorBlock = settingInputDefault.errorBlock) %}
+{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', size = settingInputDefault.size, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '', errorBlock = settingInputDefault.errorBlock) %}
   <!-- forms.datepicker -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
       {% set inputType = settingInputCustom.inputType %}
     {% endif %}
-    {% if settingInputCustom.inputSize %}
-      {% set inputSize = settingInputCustom.inputSize %}
+    {% if settingInputCustom.size %}
+      {% set size = settingInputCustom.size %}
     {% endif %}
     {% if settingInputCustom.icSize %}
       {% set icSize = settingInputCustom.icSize %}
@@ -356,7 +360,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }}">
       <label class="input-group">
-        <input {{ idText }} type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-size-{{ inputSize }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
+        <input {{ idText }} type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-size-{{ size }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
         <div class="input-frame"></div>
         {% if title %}
           <div class="input-label">{{ title }}</div>
@@ -400,4 +404,15 @@
     {{ input(title, extendAttr = extendAttr, extendClass = extendClass + 'input-hadval-def input-file-basic', note = note, addFlex = extendContentCon, settingInputCustom = settingInputCustom, type = 'file', inputClear = 'false', fakeInput = fakeInput | safe) }}
   {% endif %}
   <!-- forms.file -->
+{% endmacro %}
+
+{% macro eyeMacro() %}
+  <!-- form.eyeMacro -->
+  <div class="eye-wrap">
+    <label class="eye">
+      <input type="checkbox" class="hidden">
+      <div class="eye-slash"></div>
+    </label>
+  </div>
+  <!-- end form.eyeMacro -->
 {% endmacro %}

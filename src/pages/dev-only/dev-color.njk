@@ -1,0 +1,180 @@
+{% import '_gen-varibles.njk' as globalsVar %}
+<ul>
+  {% macro loop(name) %}
+    {% for key, item in globalsVar.colorName[0][name] %}
+      {% if name == 'level' %}
+        {% set colorKeyText = globalsVar.colorName[0]['normal'][item]['color'] %}
+      {% elseif name == 'normal' %}
+        {% set colorKeyText = item['color'] %}
+      {% endif %}
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: {{ colorKeyText }}"></div>
+              </div>
+              <div class="col">
+                <div class="name">{{ key }}</div>
+                <div class="color">{{ colorKeyText }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom ubg-color-primary">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-{{ key }});">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-{{ key }});">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-{{ key }}), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-{{ key }};">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-{{ key }};">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-{{ key }}, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-{{ key }}">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-{{ key }}">HTML bg</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </li>
+    {%- endfor %}
+  {% endmacro %}
+</ul>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev - color</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box
+    }
+    body {
+      font: 100% "Inter", "SF Pro Display", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+      margin: 0;
+      width: 100%;
+      font-size: 12px;
+      background-color: #dcdee4;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      line-height: 1.3;
+      letter-spacing: -0.03em;
+      padding-top: 60px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .color-wrap {
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+      margin: 5px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+    .row-10 > * {
+      vertical-align: top;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .col-auto {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: 100%;
+    }
+    .col {
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+    }
+    .color-block {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+    }
+    .color-wrap-top {
+      padding: 10px;
+    }
+    .name {
+      font-size: 13px;
+    }
+    .search-wrap input {
+      width: 100%;
+      height: 30px;
+      font-size: 14px;
+    }
+    .color-wrap-bottom {
+      padding: 10px;
+    }
+    #copyConsole {
+      height: 30px;
+      width: 100%;
+      position: fixed;
+      background-color: white;
+      font-size: 14px;
+      top: 0;
+      padding-top: 5px;
+      padding-left: 10px
+    }
+    .search-wrap {
+      width: 100%;
+      position: fixed;
+      background-color: white;
+      top: 20px;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0, 0.1);
+      left: 0;
+    }
+  </style>
+  <body>
+    <div id="copyConsole"></div>
+    <div id="colors">
+      <div class="search-wrap">
+        <input class="search" id="search" onfocus="this.value=''" type="text" placeholder="Search color">
+      </div>
+      <ul class="list">
+        {{ loop('level') }}
+        {{ loop('normal') }}
+      </ul>
+    </div>
+  </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script>
+  var clipboard = new ClipboardJS('.btn');
+
+  clipboard.on('success', function (e) {
+    $('#copyConsole').html(e.text)
+    e.clearSelection();
+  });
+
+  var options = {
+    valueNames: ['name', 'color']
+  };
+
+  var userList = new List('colors', options);
+  $(document).ready(function () {
+    $('#search').on('input', function () {
+      $(this).val(function (i, v) {
+        return v.replace(/#/gi, '');
+      });
+    })
+  })
+</script>

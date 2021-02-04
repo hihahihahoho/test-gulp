@@ -7,9 +7,11 @@
       {% block mainBody %}{% endblock %}
       <div class="main-inner main-inner-page">
         <div class="container">
-          <div class="title-section">
-            <div class="h1 b pv30">{{ pageTitle }}</div>
-          </div>
+          {% if pageTitle %}
+            <div class="title-section">
+              <div class="h1 b pv30">{{ pageTitle }}</div>
+            </div>
+          {% endif %}
           {% block mainInner %}{% endblock %}
         </div>
       </div>

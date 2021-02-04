@@ -17,11 +17,15 @@
   "editor.occurrencesHighlight": false,
   "path-autocomplete.pathMappings": {
     "media": "${folder}/src/media",
+    "pages": "${folder}/src/pages",
     "custom": "${folder}/src/custom",
     "plugins": "${folder}/src/plugins",
     "src": "${folder}/src",
     "/": "${folder}"
   },
+ "cssVariables.lookupFiles": [
+    "src/custom/css/0-gen_varibles.css"
+  ],
   "path-autocomplete.ignoredFilesPattern": "**/*.{css,scss,html}",
   "vscode-opn.perLang": {
     "opnOptions": [

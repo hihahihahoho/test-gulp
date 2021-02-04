@@ -104,7 +104,7 @@
 }
 
 .pagination-item:not(.pagination-active):hover {
-  background-color: #f3f6f8;
+  background-color: var(--color-hover-invert);
 }
 
 .pagination-dots {

@@ -5,21 +5,10 @@
 {% import "macros/forms/_rnc.njk" as rnc %}
 {% import "macros/forms/_files-upload.njk" as file %}
 
-{% macro eye() %}
-  <!-- utl.eye -->
-  <div class="eye-wrap">
-    <label class="eye">
-      <input type="checkbox" class="hidden">
-      <div class="eye-slash"></div>
-    </label>
-  </div>
-  <!-- end utl.eye -->
-{% endmacro %}
-
 {% macro labelStatus(title, color = 'primary', size = settingLabelStatusDefault.size) %}
-  <!-- utl.labelStatus -->
+  <!-- util.labelStatus -->
   <label class="ulabel-status ulabel-size-{{size}} up ubg-{{ color }}">{{ title }}</label>
-  <!-- end utl.labelStatus -->
+  <!-- end util.labelStatus -->
 {% endmacro %}
 
 {% macro labelStatusCustom(value) %}

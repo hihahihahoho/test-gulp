@@ -113,12 +113,7 @@
             {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set extendContentCon %}
-            <div class="input-ic">
-              {{ ult.eye() }}
-            </div>
-            {% endset %}
-            {{ form.input('Input password', iconLeft = 'media/icons-color/default/line-icon/plannet.svg', extendAttr = 'required', extendContent = extendContentCon, extendContentClass = 'pr0') }}
+            {{ form.input('Input password', iconLeft = 'media/icons-color/default/line-icon/plannet.svg', extendAttr = 'required', type = 'password', extendContentClass = 'pr0') }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
@@ -128,7 +123,7 @@
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
-            {{ form.select('Select normal', value = dataSelect, extendAttr = 'required', selectLib = 'none', placeholder = 'Select your option' ,settingInputCustom = settingInputCustom) }}
+            {{ form.select('Select normal', value = dataSelect, extendAttr = 'required', selectLib = 'none', placeholder = 'Select your option' ) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
@@ -290,7 +285,7 @@
                 '',
                 'Collumn 2',
                 'Collumn 2',
-                ult.labelStatusCustom('daHachToan'),
+                util.labelStatusCustom('daHachToan'),
                 'Collumn 2',
                 'Collumn 2',
                 'Collumn 2',
@@ -336,7 +331,7 @@
       <div class="row row-10 list-mv5">
         {% for key, item in globalsVar.labelStatusCustomVal %}
           <div class="col-auto">
-            {{ ult.labelStatusCustom(key) }}
+            {{ util.labelStatusCustom(key) }}
           </div>
         {% endfor %}
       </div>

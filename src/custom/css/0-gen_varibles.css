@@ -17,8 +17,8 @@
 	--color-purple: #4527a0;
 	--color-primary: #3f3bec;
 	--color-light-primary: #E5E5FF;
-	--color-danger: #3f3bec;
-	--color-light-danger: #E5E5FF;
+	--color-danger: #FF3D4E;
+	--color-light-danger: #FFE6E8;
 	--color-warning: #FF7544;
 	--color-light-warning: #FFE3D9;
 	--color-success: #2ED573;
@@ -37,7 +37,7 @@
 	--color-hover-light-green: #B5F2CE;
 	--color-hover-primary: #3935D4;
 	--color-hover-light-primary: #D8D8FF;
-	--color-hover-danger: #3935D4;
+	--color-hover-danger: #FFD9DA;
 	--color-hover-light-danger: #D8D8FF;
 	--color-hover-warning: #F26F41;
 	--color-hover-light-warning: #FFD9CC;
@@ -55,8 +55,8 @@
 	--color-active-light-green: #AAF2C8;
 	--color-active-primary: #312FBA;
 	--color-active-light-primary: #CCCCFF;
-	--color-active-danger: #312FBA;
-	--color-active-light-danger: #CCCCFF;
+	--color-active-danger: #CC313E;
+	--color-active-light-danger: #FFCCD2;
 	--color-active-warning: #E6693D;
 	--color-active-light-warning: #FFD0BF;
 	--color-active-success: #29BD66;

@@ -28,12 +28,7 @@
             {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon, settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set extendContentCon %}
-            <div class="input-ic">
-              {{ ult.eye() }}
-            </div>
-            {% endset %}
-            {{ form.input('Input password', iconLeft = 'media/icons-color/default/line-icon/plannet.svg', extendAttr = 'required', extendContent = extendContentCon, extendContentClass = 'pr0', settingInputCustom = settingInputCustom) }}
+            {{ form.input('Input password', iconLeft = 'media/icons-color/default/line-icon/plannet.svg', extendAttr = 'required', type = 'password', extendContentClass = 'pr0', settingInputCustom = settingInputCustom) }}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
@@ -141,36 +136,36 @@
 
 {% block mainInner %}
   {% set settingInputCustomBorder = {
-    inputSize: 'sm',
+    size: 'sm',
     inputType: 'border',
     icSize: 'sm'
   } %}
   {{ localMacros(settingInputCustomBorder) }}
   {% set settingInputCustomClean = {
-    inputSize: 'sm',
+    size: 'sm',
     inputType: 'clean',
     icSize: 'sm'
   } %}
   {{ localMacros(settingInputCustomClean) }}
   {% set settingInputLine = {
-    inputSize: 'sm',
+    size: 'sm',
     inputType: 'line',
     icSize: 'xs-1'
   } %}
   {{ localMacros(settingInputLine) }}
   {% set settingMaterial = {
-    inputSize: 'sm',
+    size: 'sm',
     inputType: 'default'
   } %}
   {{ localMacros(settingMaterial) }}
   {% set settingMaterial2 = {
-    inputSize: 'lg',
+    size: 'lg',
     inputType: 'material-2',
     icSize: 'sm'
   } %}
   {{ localMacros(settingMaterial2) }}
   {% set settingMaterial3 = {
-    inputSize: 'sm',
+    size: 'sm',
     inputType: 'material-3',
     icSize: 'sm'
   } %}

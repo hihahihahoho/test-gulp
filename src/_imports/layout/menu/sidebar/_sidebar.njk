@@ -187,7 +187,7 @@
         sub: [
           {
             txt: 'Menu sub 1 - 1',
-            link: 'menu-test-sub/menu-test-sub-1/test-1.html'
+            link: 'pages/menu-test-sub/menu-test-sub-1/test-1.njk'
           },
           {
             txt: 'Menu sub 1 - 2',
@@ -204,7 +204,8 @@
 
 {% macro pageTitle(titleVal) %}
   {% if not titleVal.sub %}
-    {% if (titleVal.link in pageLink) and (titleVal.link | length) %}
+    {% set linkText = titleVal.link | replace("pages/", "") | replace(".njk", ".html") %}
+    {% if (linkText in pageLink) and (linkText | length) %}
       {{ titleVal.txt }}
     {% endif %}
   {% endif %}
@@ -222,18 +223,19 @@
 
 {% macro sidebarItem(itemVal) %}
   {% if not itemVal.sub %}
+    {% set linkText = itemVal.link | replace("pages/", "") | replace(".njk", ".html") %}
     {% set activeTxt = '' %}
-    {% if (itemVal.link in pageLink) and (itemVal.link | length) %}
+    {% if (linkText in pageLink) and (linkText | length) %}
       {% set activeTxt = 'active' %}
     {% endif %}
     {% if itemVal.type == 'title' %}
       <div class="sidebar__title">{{ itemVal.txt }}</div>
     {% else %}
       <div class="sidebar__list {{ activeTxt }}">
-        <a class="sidebar__item" href="pages/{{ itemVal.link }}">
+        <a class="sidebar__item" href="pages/{{ linkText }}">
           {% if itemVal.ic %}
             <div class="ic">
-              {% if (itemVal.link in pageLink) and (itemVal.link | length) %}
+              {% if (linkText in pageLink) and (linkText | length) %}
                 <img src="/dist/media/icons-color/primary/line-icon/{{ itemVal.ic }}" alt="">
               {% else %}
                 <img src="/dist/media/icons-color/default/line-icon/{{ itemVal.ic }}" alt="">

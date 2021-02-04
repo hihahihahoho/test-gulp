@@ -47,8 +47,8 @@ var theme = {
       level: {
         'primary': 'blue',
         'light-primary': 'light-blue',
-        'danger': 'blue',
-        'light-danger': 'light-blue',
+        'danger': 'red',
+        'light-danger': 'light-red',
         'warning': 'orange',
         'light-warning': 'light-orange',
         'success': 'green',
