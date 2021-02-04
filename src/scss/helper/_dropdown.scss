@@ -30,7 +30,7 @@ $map-modal-size: (
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 8px 16px 0 rgba(0, 0, 0, 0.08);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 8px 16px 0 rgba(0, 0, 0, 0.08);
     margin-top: 5px;
-    font-size: inherit;
+    font-size: inherit; 
     > li:not(:last-child) {
       margin-bottom: 4px;
     }

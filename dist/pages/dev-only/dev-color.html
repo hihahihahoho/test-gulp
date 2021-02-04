@@ -10,7 +10,7 @@
 </head>
 <style>
   * {
-    box-sizing: border-box
+    box-sizing: border-box;
   }
 
   body {
@@ -98,7 +98,7 @@
     font-size: 14px;
     top: 0;
     padding-top: 5px;
-    padding-left: 10px
+    padding-left: 10px;
   }
 
   .search-wrap {
@@ -130,9 +130,13 @@
                 <div class="name">primary</div>
                 <div class="color">#3f3bec</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-primary)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-primary">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-primary);">CSS color</button>
@@ -157,15 +161,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #3935D4"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: primary</div>
+                <div class="color">#3935D4</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-primary)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-primary">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-primary);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-primary);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-primary), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-primary;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-primary;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-primary, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-primary">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-primary">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #312FBA"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: primary</div>
+                <div class="color">#312FBA</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-primary)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-primary">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-primary);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-primary);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-primary), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-primary;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-primary;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-primary, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-primary">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-primary">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #E5E5FF"></div>
               </div>
               <div class="col">
                 <div class="name">light-primary</div>
                 <div class="color">#E5E5FF</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-light-primary)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-light-primary">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-light-primary);">CSS color</button>
@@ -190,15 +272,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #D8D8FF"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: light-primary</div>
+                <div class="color">#D8D8FF</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-light-primary)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-light-primary">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-light-primary);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-light-primary);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-light-primary), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-light-primary;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-light-primary;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-light-primary, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-primary">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-primary">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #CCCCFF"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: light-primary</div>
+                <div class="color">#CCCCFF</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-light-primary)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-light-primary">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-light-primary);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-light-primary);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-light-primary), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-light-primary;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-light-primary;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-light-primary, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-primary">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-primary">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #FF3D4E"></div>
               </div>
               <div class="col">
                 <div class="name">danger</div>
                 <div class="color">#FF3D4E</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-danger)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-danger">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-danger);">CSS color</button>
@@ -223,15 +383,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #FFD9DA"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: danger</div>
+                <div class="color">#FFD9DA</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-danger)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-danger">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-danger);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-danger);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-danger), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-danger;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-danger;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-danger, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-danger">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-danger">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #CC313E"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: danger</div>
+                <div class="color">#CC313E</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-danger)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-danger">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-danger);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-danger);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-danger), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-danger;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-danger;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-danger, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-danger">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-danger">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #FFE6E8"></div>
               </div>
               <div class="col">
                 <div class="name">light-danger</div>
                 <div class="color">#FFE6E8</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-light-danger)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-light-danger">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-light-danger);">CSS color</button>
@@ -256,15 +494,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #D8D8FF"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: light-danger</div>
+                <div class="color">#D8D8FF</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-light-danger)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-light-danger">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-light-danger);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-light-danger);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-light-danger), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-light-danger;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-light-danger;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-light-danger, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-danger">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-danger">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #FFCCD2"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: light-danger</div>
+                <div class="color">#FFCCD2</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-light-danger)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-light-danger">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-light-danger);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-light-danger);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-light-danger), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-light-danger;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-light-danger;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-light-danger, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-danger">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-danger">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #FF7544"></div>
               </div>
               <div class="col">
                 <div class="name">warning</div>
                 <div class="color">#FF7544</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-warning)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-warning">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-warning);">CSS color</button>
@@ -289,15 +605,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #F26F41"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: warning</div>
+                <div class="color">#F26F41</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-warning)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-warning">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-warning);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-warning);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-warning), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-warning;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-warning;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-warning, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-warning">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-warning">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #E6693D"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: warning</div>
+                <div class="color">#E6693D</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-warning)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-warning">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-warning);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-warning);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-warning), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-warning;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-warning;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-warning, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-warning">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-warning">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #FFE3D9"></div>
               </div>
               <div class="col">
                 <div class="name">light-warning</div>
                 <div class="color">#FFE3D9</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-light-warning)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-light-warning">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-light-warning);">CSS color</button>
@@ -322,15 +716,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #FFD9CC"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: light-warning</div>
+                <div class="color">#FFD9CC</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-light-warning)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-light-warning">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-light-warning);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-light-warning);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-light-warning), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-light-warning;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-light-warning;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-light-warning, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-warning">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-warning">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #FFD0BF"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: light-warning</div>
+                <div class="color">#FFD0BF</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-light-warning)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-light-warning">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-light-warning);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-light-warning);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-light-warning), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-light-warning;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-light-warning;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-light-warning, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-warning">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-warning">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #2ED573"></div>
               </div>
               <div class="col">
                 <div class="name">success</div>
                 <div class="color">#2ED573</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-success)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-success">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-success);">CSS color</button>
@@ -355,15 +827,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #2CCC6E"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: success</div>
+                <div class="color">#2CCC6E</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-success)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-success">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-success);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-success);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-success), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-success;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-success;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-success, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-success">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-success">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #29BD66"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: success</div>
+                <div class="color">#29BD66</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-success)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-success">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-success);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-success);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-success), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-success;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-success;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-success, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-success">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-success">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #C2F2D6"></div>
               </div>
               <div class="col">
                 <div class="name">light-success</div>
                 <div class="color">#C2F2D6</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-light-success)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-light-success">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-light-success);">CSS color</button>
@@ -388,15 +938,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #B5F2CE"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: light-success</div>
+                <div class="color">#B5F2CE</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-light-success)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-light-success">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-light-success);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-light-success);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-light-success), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-light-success;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-light-success;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-light-success, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-success">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-success">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #AAF2C8"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: light-success</div>
+                <div class="color">#AAF2C8</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-light-success)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-light-success">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-light-success);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-light-success);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-light-success), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-light-success;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-light-success;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-light-success, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-success">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-success">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: transparent"></div>
               </div>
               <div class="col">
                 <div class="name">transparent</div>
                 <div class="color">transparent</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-transparent)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-transparent">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-transparent);">CSS color</button>
@@ -421,15 +1049,56 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #f5f5f5"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: transparent</div>
+                <div class="color">#f5f5f5</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-transparent)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-transparent">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-transparent);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-transparent);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-transparent), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-transparent;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-transparent;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-transparent, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-transparent">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-transparent">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #fff"></div>
               </div>
               <div class="col">
                 <div class="name">invert</div>
                 <div class="color">#fff</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-invert)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-invert">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-invert);">CSS color</button>
@@ -454,15 +1123,56 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #f5f5f5"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: invert</div>
+                <div class="color">#f5f5f5</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-invert)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-invert">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-invert);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-invert);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-invert), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-invert;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-invert;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-invert, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-invert">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-invert">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #000"></div>
               </div>
               <div class="col">
                 <div class="name">black</div>
                 <div class="color">#000</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-black)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-black">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-black);">CSS color</button>
@@ -493,9 +1203,13 @@
                 <div class="name">default</div>
                 <div class="color">#121f3e</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-default)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-default">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-default);">CSS color</button>
@@ -526,9 +1240,13 @@
                 <div class="name">default-2</div>
                 <div class="color">#121f31</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-default-2)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-default-2">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-default-2);">CSS color</button>
@@ -559,9 +1277,13 @@
                 <div class="name">blue</div>
                 <div class="color">#3f3bec</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-blue)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-blue">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-blue);">CSS color</button>
@@ -586,15 +1308,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #3935D4"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: blue</div>
+                <div class="color">#3935D4</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-blue)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-blue">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-blue);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-blue);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-blue), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-blue;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-blue;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-blue, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-blue">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-blue">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #312FBA"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: blue</div>
+                <div class="color">#312FBA</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-blue)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-blue">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-blue);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-blue);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-blue), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-blue;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-blue;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-blue, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-blue">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-blue">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #E5E5FF"></div>
               </div>
               <div class="col">
                 <div class="name">light-blue</div>
                 <div class="color">#E5E5FF</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-light-blue)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-light-blue">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-light-blue);">CSS color</button>
@@ -619,15 +1419,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #D8D8FF"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: light-blue</div>
+                <div class="color">#D8D8FF</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-light-blue)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-light-blue">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-light-blue);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-light-blue);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-light-blue), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-light-blue;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-light-blue;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-light-blue, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-blue">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-blue">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #CCCCFF"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: light-blue</div>
+                <div class="color">#CCCCFF</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-light-blue)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-light-blue">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-light-blue);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-light-blue);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-light-blue), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-light-blue;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-light-blue;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-light-blue, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-blue">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-blue">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #FF3D4E"></div>
               </div>
               <div class="col">
                 <div class="name">red</div>
                 <div class="color">#FF3D4E</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-red)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-red">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-red);">CSS color</button>
@@ -652,15 +1530,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #FFD9DA"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: red</div>
+                <div class="color">#FFD9DA</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-red)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-red">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-red);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-red);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-red), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-red;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-red;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-red, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-red">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-red">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #CC313E"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: red</div>
+                <div class="color">#CC313E</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-red)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-red">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-red);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-red);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-red), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-red;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-red;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-red, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-red">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-red">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #FFE6E8"></div>
               </div>
               <div class="col">
                 <div class="name">light-red</div>
                 <div class="color">#FFE6E8</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-light-red)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-light-red">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-light-red);">CSS color</button>
@@ -685,15 +1641,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #D8D8FF"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: light-red</div>
+                <div class="color">#D8D8FF</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-light-red)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-light-red">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-light-red);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-light-red);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-light-red), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-light-red;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-light-red;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-light-red, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-red">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-red">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #FFCCD2"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: light-red</div>
+                <div class="color">#FFCCD2</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-light-red)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-light-red">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-light-red);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-light-red);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-light-red), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-light-red;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-light-red;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-light-red, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-red">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-red">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #FF7544"></div>
               </div>
               <div class="col">
                 <div class="name">orange</div>
                 <div class="color">#FF7544</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-orange)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-orange">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-orange);">CSS color</button>
@@ -718,15 +1752,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #F26F41"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: orange</div>
+                <div class="color">#F26F41</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-orange)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-orange">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-orange);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-orange);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-orange), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-orange;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-orange;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-orange, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-orange">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-orange">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #E6693D"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: orange</div>
+                <div class="color">#E6693D</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-orange)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-orange">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-orange);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-orange);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-orange), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-orange;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-orange;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-orange, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-orange">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-orange">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #FFE3D9"></div>
               </div>
               <div class="col">
                 <div class="name">light-orange</div>
                 <div class="color">#FFE3D9</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-light-orange)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-light-orange">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-light-orange);">CSS color</button>
@@ -751,15 +1863,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #FFD9CC"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: light-orange</div>
+                <div class="color">#FFD9CC</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-light-orange)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-light-orange">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-light-orange);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-light-orange);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-light-orange), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-light-orange;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-light-orange;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-light-orange, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-orange">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-orange">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #FFD0BF"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: light-orange</div>
+                <div class="color">#FFD0BF</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-light-orange)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-light-orange">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-light-orange);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-light-orange);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-light-orange), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-light-orange;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-light-orange;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-light-orange, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-orange">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-orange">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #2ED573"></div>
               </div>
               <div class="col">
                 <div class="name">green</div>
                 <div class="color">#2ED573</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-green)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-green">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-green);">CSS color</button>
@@ -784,15 +1974,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #2CCC6E"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: green</div>
+                <div class="color">#2CCC6E</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-green)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-green">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-green);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-green);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-green), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-green;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-green;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-green, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-green">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-green">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #29BD66"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: green</div>
+                <div class="color">#29BD66</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-green)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-green">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-green);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-green);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-green), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-green;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-green;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-green, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-green">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-green">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #C2F2D6"></div>
               </div>
               <div class="col">
                 <div class="name">light-green</div>
                 <div class="color">#C2F2D6</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-light-green)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-light-green">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-light-green);">CSS color</button>
@@ -817,15 +2085,93 @@
           <div class="color-wrap-top">
             <div class="row row-10">
               <div class="col-auto">
+                <div class="color-block" style="background-color: #B5F2CE"></div>
+              </div>
+              <div class="col">
+                <div class="name">hover: light-green</div>
+                <div class="color">#B5F2CE</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-hover-light-green)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-hover-light-green">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-hover-light-green);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-hover-light-green);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-hover-light-green), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-hover-light-green;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-hover-light-green;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-hover-light-green, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-green">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-green">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
+                <div class="color-block" style="background-color: #AAF2C8"></div>
+              </div>
+              <div class="col">
+                <div class="name">active: light-green</div>
+                <div class="color">#AAF2C8</div>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-active-light-green)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-active-light-green">SCSS</button>
+              </div>
+            </div>
+          </div>
+          <div class="color-wrap-bottom">
+            <div class="row row-10">
+              <div class="col">
+                <button class="btn btn-css" data-clipboard-text="color: var(--color-active-light-green);">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="background-color: var(--color-active-light-green);">CSS bg</button>
+                <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-active-light-green), 0.3);">CSS shadow</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-scss" data-clipboard-text="color: $color-active-light-green;">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="background-color: $color-active-light-green;">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-active-light-green, 0.3);">SCSS bg</button>
+              </div>
+              <div class="col">
+                <button class="btn btn-html" data-clipboard-text="color-light-green">HTML color</button>
+                <button class="btn btn-html" data-clipboard-text="ubg-color-light-green">HTML bg</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="color-wrap">
+          <div class="color-wrap-top">
+            <div class="row row-10">
+              <div class="col-auto">
                 <div class="color-block" style="background-color: #4527a0"></div>
               </div>
               <div class="col">
                 <div class="name">purple</div>
                 <div class="color">#4527a0</div>
               </div>
+              <div class="col-auto">
+                <button class="btn btn-css" data-clipboard-text="var(--color-purple)">CSS</button>
+                <button class="btn btn-scss" data-clipboard-text="$color-purple">SCSS</button>
+              </div>
             </div>
           </div>
-          <div class="color-wrap-bottom ubg-color-primary">
+          <div class="color-wrap-bottom">
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-purple);">CSS color</button>
