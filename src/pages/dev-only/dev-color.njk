@@ -27,20 +27,23 @@
             <div class="row row-10">
               <div class="col">
                 <button class="btn btn-css" data-clipboard-text="color: var(--color-{{ keyNameText }}{{ key }});">CSS color</button>
+                <button class="btn btn-css" data-clipboard-text="border: 1px solid var(--color-{{ keyNameText }}{{ key }});">CSS border</button>
                 <button class="btn btn-css" data-clipboard-text="background-color: var(--color-{{ keyNameText }}{{ key }});">CSS bg</button>
                 <button class="btn btn-css" data-clipboard-text="box-shadow: 0 0 4px rgba(var(--color-{{ keyNameText }}{{ key }}), 0.3);">CSS shadow</button>
               </div>
               <div class="col">
                 <button class="btn btn-scss" data-clipboard-text="color: $color-{{ keyNameText }}{{ key }};">SCSS color</button>
+                <button class="btn btn-scss" data-clipboard-text="border: 1px solid $color-{{ keyNameText }}{{ key }};">SCSS border</button>
                 <button class="btn btn-scss" data-clipboard-text="background-color: $color-{{ keyNameText }}{{ key }};">SCSS bg</button>
-                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-{{ keyNameText }}{{ key }}, 0.3);">SCSS bg</button>
+                <button class="btn btn-scss" data-clipboard-text="box-shadow: 0 0 4px rgba($color-{{ keyNameText }}{{ key }}, 0.3);">SCSS shadow</button>
               </div>
               <div class="col">
-                <button class="btn btn-html" data-clipboard-text="color-{{ key }}">HTML color</button>
-                <button class="btn btn-html" data-clipboard-text="ubg-color-{{ key }}">HTML bg</button>
+                {% if not keyName %}
+                  <button class="btn btn-html" data-clipboard-text="color-{{ key }}">HTML color</button>
+                  <button class="btn btn-html" data-clipboard-text="ubg-color-{{ key }}">HTML bg</button>
+                {% endif %}
               </div>
             </div>
-
           </div>
         </div>
       </li>
@@ -97,6 +100,7 @@
       padding: 10px;
       border-radius: 10px;
       margin: 5px;
+      font-size: 14px;
     }
     .row {
       display: flex;
@@ -127,9 +131,7 @@
     .color-wrap-top {
       padding: 10px;
     }
-    .name {
-      font-size: 13px;
-    }
+    .name {}
     .search-wrap input {
       width: 100%;
       height: 30px;

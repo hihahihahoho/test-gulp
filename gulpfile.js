@@ -16,6 +16,7 @@ const image = require('gulp-image');
 const data = require('gulp-data');
 const path = require('path');
 const fs = require('fs');
+const glob = require('glob');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
 const nunjucksRender = require('gulp-nunjucks-render');
@@ -174,7 +175,7 @@ function theme () {
   }
   // end theme color
   themeColorTextAll = '//gtc-color-scss\n' + themeColorVarText + themeColorMapText + '\n//end-gtc-color-scss'
-  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--')+ themeTextVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
+  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + themeTextVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
   return gulp.src(['./src/scss/varibles/_gen-varibles.scss', './src/custom/css/0-gen_varibles.css', './src/_imports/_gen-varibles.njk'], { base: './src/' })
     .pipe(replace(/({# gtc-text-njk #})([\S\s]*?)({# end-gtc-text-njk #})/, themeTextNjk))
     .pipe(replace(/({# gtc-color-njk #})([\S\s]*?)({# end-gtc-color-njk #})/, themeColorNjk))
@@ -408,16 +409,40 @@ function imageMinify () {
     .pipe(gulp.dest('dist/media/'))
 }
 
+function iconLink () {
+  var fileName = '';
+  var folderName = '';
+  var folderArray = glob.sync('src/media/icons-color/*')
+  for (var i = 0; i < folderArray.length; i++) {
+    folderName += '\t"'+ folderArray[i].replace(/^(.*[\\\/])/g, '') +'": [';
+    var fileArray = glob.sync(folderArray[i] + '/*');
+    for (var i2 = 0; i2 < fileArray.length; i2++) {
+      fileName += '\n\t\t{\n\t\t\tname: "' + fileArray[i2].replace(/^(.*[\\\/])/g, '') + '",\n\t\t\tlink: "' + fileArray[i2].replace('src/', '../') + '"\n\t\t}';
+      if (i2 < fileArray.length - 1) {
+        fileName += ','
+      }
+    }
+    folderName = folderName + fileName + ']'
+    if (i < folderArray.length - 1) {
+      folderName += ',\n';
+    }
+  }
+  var fileTree = '{# link-icon-njk #}\n{% set colorName = [{\n' + folderName + '\n}] %}\n{# end-link-icon-njk #}';
+  return gulp.src(['./src/_imports/_gen-varibles.njk'], { base: './src/' })
+    .pipe(replace(/({# link-icon-njk #})([\S\s]*?)({# end-link-icon-njk #})/, fileTree))
+    .pipe(gulp.dest('./src/'))
+}
+
 function iconColor (cb) {
   delete require.cache[require.resolve('./gulp-icons-color-config.js')];
   var themeIcon = require('./gulp-icons-color-config').themeIconColor;
   var themeIconProps = require('./gulp-icons-color-config').themeIconProps;
-  var themeIconBase = new RegExp(themeIcon.default.toLowerCase(), "g");
+  var themeIconBase = new RegExp(themeIcon.default, "ig");
   var themeIconStroke = 'stroke-width="' + themeIconProps.stroke + '"';
 
   for (var item in themeIcon) {
     gulp.src('./src/media/icons-color/**/*.svg')
-      .pipe(replace(themeIconBase, themeIcon[item].toLowerCase()))
+      .pipe(replace(themeIconBase, themeIcon[item]))
       .pipe(replace('vector-effect="non-scaling-stroke"', ''))
       .pipe(replace('</svg>', '<style type="text/css" media="screen">path{vector-effect:non-scaling-stroke}</style></svg>'))
       .pipe(replace(/(stroke-width=")([\S\s]*?)(")/, themeIconStroke))
@@ -694,16 +719,6 @@ function pushFtp () {
     'dist/**/*'
   ];
 
-  // using base = '.' will transfer everything to /public_html correctly
-  // turn off buffering in gulp.src for best performance
-
-  // return gulp.src(globs, { base: '.' })
-  //   .pipe(f)
-  //   .pipe(cachebust({
-  //     type: 'timestamp'
-  //   }))
-  //   .pipe(f.restore)
-  //   .pipe(conn.dest(process.env.FTP_PATH));
   return gulp.src(globs)
     .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"], dontUpdateReference: [/^\/favicon.ico$/g, ".html"] }))
     .pipe(conn.dest(process.env.FTP_PATH));
@@ -795,6 +810,7 @@ exports.themeGenerator = themeGenerator;
 exports.postCss = postCss;
 exports.iconColor = iconColor;
 exports.cleanIconColor = cleanIconColor;
+exports.iconLink = iconLink;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 

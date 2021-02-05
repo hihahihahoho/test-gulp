@@ -3,7 +3,7 @@ var icons = {
     stroke: '1.5',
   },
   color: {
-    default: '#242841',
+    default: '#121f3E',
     primary: '#3f3bec',
     invert: '#ffffff'
   }
