@@ -1,0 +1,22 @@
+{% extends '_devLayout.njk' %}
+
+<ul>
+  {% macro loop() %}{% endmacro %}
+</ul>
+
+{% block main %}
+  {% for key, item in globalsVar.linkIconName[0] %}
+    <h3>{{ key }}</h3>
+    <ul class="list">
+      {% for item2 in globalsVar.linkIconName[0][key] %}
+        {% set iconLink = item2.link | replace('icons-color/', 'icons-color/default/') %}
+        <div class="ic-wrap">
+          <div class="ic-inner">
+            <img src="{{ iconLink }}" alt="" width="24">
+          </div>
+        </div>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+
+{% endblock %}

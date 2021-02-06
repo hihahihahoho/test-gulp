@@ -409,12 +409,12 @@ function imageMinify () {
     .pipe(gulp.dest('dist/media/'))
 }
 
-function iconLink () {
+function mediaLinkTree (path, njkVarName) {
   var fileName = '';
   var folderName = '';
-  var folderArray = glob.sync('src/media/icons-color/*')
+  var folderArray = glob.sync(path)
   for (var i = 0; i < folderArray.length; i++) {
-    folderName += '\t"'+ folderArray[i].replace(/^(.*[\\\/])/g, '') +'": [';
+    folderName += '\t"' + folderArray[i].replace(/^(.*[\\\/])/g, '') + '": [';
     var fileArray = glob.sync(folderArray[i] + '/*');
     for (var i2 = 0; i2 < fileArray.length; i2++) {
       fileName += '\n\t\t{\n\t\t\tname: "' + fileArray[i2].replace(/^(.*[\\\/])/g, '') + '",\n\t\t\tlink: "' + fileArray[i2].replace('src/', '../') + '"\n\t\t}';
@@ -427,9 +427,18 @@ function iconLink () {
       folderName += ',\n';
     }
   }
-  var fileTree = '{# link-icon-njk #}\n{% set colorName = [{\n' + folderName + '\n}] %}\n{# end-link-icon-njk #}';
+  return '{# link-icon-color-njk #}\n{% set ' + njkVarName + ' = [{\n' + folderName + '\n}] %}\n{# end-link-icon-color-njk #}';
+}
+
+function iconLink () {
+  delete require.cache[require.resolve('./gulp-icons-color-config.js')];
+  var themeIcon = require('./gulp-icons-color-config').themeIconColor;
+  var colorTree = '{# icon-color-njk #}\n{% set colorIconName = [\n' + JSON.stringify(themeIcon, null, '\t') + '\n] %}\n{# end-icon-color-njk #}';
+  var fileTree = mediaLinkTree('src/media/icons-color/*', 'linkIconName')
+
   return gulp.src(['./src/_imports/_gen-varibles.njk'], { base: './src/' })
-    .pipe(replace(/({# link-icon-njk #})([\S\s]*?)({# end-link-icon-njk #})/, fileTree))
+    .pipe(replace(/({# link-icon-color-njk #})([\S\s]*?)({# end-link-icon-color-njk #})/, fileTree))
+    .pipe(replace(/({# icon-color-njk #})([\S\s]*?)({# end-icon-color-njk #})/, colorTree))
     .pipe(gulp.dest('./src/'))
 }
 
@@ -491,8 +500,38 @@ var manageEnvironment = function (environment) {
   })
 }
 
+function devOnly () {
+  return gulp.src(['src/dev-only/devSrc/**/*'])
+    .pipe(gulp.dest('dist/dev-only/devSrc/'));
+}
+
+function nunjucksDev () {
+  return gulp.src(['src/dev-only/**/*.njk', '!src/dev-only/devSrc/**/*.njk'])
+    .pipe(data(function (file) {
+      return {
+        baseLink: path.relative(process.cwd(), file.path).replace(/([^\\]+)/g, '..').slice(0, -4)
+      }
+    }))
+    .pipe(data(function (file) {
+      return {
+        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
+      }
+    }))
+    .pipe(nunjucksRender({
+      path: ['src/dev-only/', 'src/dev-only/devSrc/', 'src/_imports/'],
+      manageEnv: manageEnvironment
+    }))
+    .pipe(replace('/dist/', ''))
+    .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
+    .pipe(replace(/  +/g, ' '))
+    .pipe(replace(' "', '"'))
+    .pipe(replace('"/pages', '"pages'))
+    .pipe(htmlbeautify(options))
+    .pipe(gulp.dest('dist/dev-only'));
+}
+
 function nunjucks () {
-  return gulp.src(['src/**/*.njk', '!src/_imports/**/*.njk'])
+  return gulp.src(['src/**/*.njk', '!src/_imports/**/*.njk', '!src/dev-only/**/*.njk'])
     .pipe(cached())
     .pipe(data(function (file) {
       return {
@@ -518,7 +557,7 @@ function nunjucks () {
 }
 
 function nunjucksForce () {
-  return gulp.src(['src/**/*.njk', '!src/_imports/**/*.njk'])
+  return gulp.src(['src/**/*.njk', '!src/_imports/**/*.njk', '!src/dev-only/**/*.njk'])
     .pipe(data(function (file) {
       return {
         baseLink: path.relative(process.cwd(), file.path).replace(/([^\\]+)/g, '..').slice(0, -4)
@@ -740,11 +779,13 @@ function watch () {
   gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
   gulp.watch(['./src/media/**/*', '!./src/media/icons-color/**/*'], series(media, imageMinify))
   gulp.watch('./src/media/icons-color/**/*', iconColor)
+  gulp.watch('./src/dev-only/devSrc/**/*', devOnly)
+  gulp.watch(['src/dev-only/devSrc/**/*.njk', 'src/_imports/_gen-varibles.njk'], nunjucksDev)
   gulp.watch('src/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
   gulp.watch('src/custom/**/*.js', customJs)
   gulp.watch('src/fonts/**/*', fontSrc)
   gulp.watch('src/custom/**/*.css', customCss)
-  gulp.watch('src/**/*.{html,njk}', nunjucks)
+  gulp.watch(['src/**/*.{html,njk}', '!src/dev-only/**/*.njk'], nunjucks)
   gulp.watch('src/_imports/**/*.{html,njk}', nunjucksForce)
   gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
     del(path.replace('src\\', 'dist\\').replace('.njk', '.html'))
@@ -811,10 +852,12 @@ exports.postCss = postCss;
 exports.iconColor = iconColor;
 exports.cleanIconColor = cleanIconColor;
 exports.iconLink = iconLink;
+exports.devOnly = devOnly;
+exports.nunjucksDev = nunjucksDev;
 
-exports.ldev = series(yarnInstall, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
+exports.ldev = series(yarnInstall, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, theme, parallel(series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, theme, parallel(series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, cleanMedia, cleanIconColor)
 

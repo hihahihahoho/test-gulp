@@ -140,8 +140,18 @@
 ] %}
 {# end-gtc-color-njk #}
 
-{# link-icon-njk #}
-{% set colorName = [{
+{# icon-color-njk #}
+{% set colorIconName = [
+{
+	"default": "#121f3E",
+	"primary": "#3f3bec",
+	"invert": "#ffffff"
+}
+] %}
+{# end-icon-color-njk #}
+
+{# link-icon-color-njk #}
+{% set linkIconName = [{
 	"default": [
 		{
 			name: "burger.svg",
@@ -192,4 +202,4 @@
 			link: "../media/icons-color/default/search.svg"
 		}]
 }] %}
-{# end-link-icon-njk #}
+{# end-link-icon-color-njk #}

@@ -1,0 +1,31 @@
+{% import '_gen-varibles.njk' as globalsVar %}
+{% import '_devMacro.njk' as macro %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="..\..\.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev</title>
+    <link rel="stylesheet" href="dev-only/devSrc/devCss.css">
+    <style>
+      {% include "devSrc/devCss.css" ignore missing %}
+    </style>
+  </head>
+  <body>
+    <div id="copyConsole"></div>
+    <div id="listWrap" class="list-wrap">
+      <div class="search-wrap">
+        <input class="search" id="search" onfocus="this.value=''" type="text" placeholder="Search color">
+      </div>
+      {% block main %}
+      
+      {% endblock %}
+    </div>
+  </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script src="dev-only/devSrc/devJs.js"></script> 
+{% block script %}{% endblock %}
