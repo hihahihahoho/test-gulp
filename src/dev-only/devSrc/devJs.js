@@ -43,7 +43,7 @@ $(document).ready(function () {
       console.log(link)
       $('.icon-info-group').addClass('hidden')
       $('.btn-link').attr('data-clipboard-text', link)
-      $('.img-holder').css('background-image', 'url(' + link + ')')
+      $('.img-holder > img').css('background-image', 'url(' + link + ')')
       $('.file-name').html(name).attr('data-clipboard-text', name)
       if ($(this).hasClass('icon-item')) {
         $('.icon-info-group').removeClass('hidden')
