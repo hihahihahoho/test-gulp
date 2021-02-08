@@ -7,25 +7,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dev</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.2.7/tippy.min.css"/>
     <link rel="stylesheet" href="dev-only/devSrc/devCss.css">
-    <style>
-      {% include "devSrc/devCss.css" ignore missing %}
-    </style>
   </head>
   <body>
-    <div id="copyConsole"></div>
     <div id="listWrap" class="list-wrap">
       <div class="search-wrap">
-        <input class="search" id="search" onfocus="this.value=''" type="text" placeholder="Search color">
+        <div id="copyConsole"></div>
+        <div class="row row-10">
+          <div class="col">
+            <input class="search" id="search" onfocus="this.value=''; userList.update()" type="text" placeholder="Search...">
+          </div>
+          <div class="col-auto">
+            {% block searchAdd %}{% endblock %}
+          </div>
+        </div>
       </div>
-      {% block main %}
-      
-      {% endblock %}
+      <div class="list-wrap-inner">
+        {% block main %}{% endblock %}
+      </div>
+      <div class="info-section">
+        <div class="info-group icon-info-group hidden">
+          <div class="img-holder">
+            <img src="" alt="" data-zoomable>
+          </div>
+          <div class="btn file-name" data-clipboard-text=""></div>
+          <div class="color-label-wrap">
+            {% for key, item in globalsVar.colorIconName[0] %}
+              {% set checkedText = '' %}
+              {% if key == 'default' %}
+                {% set checkedText = 'checked' %}
+              {% endif %}
+              <label class="color-label" data-tippy-content="{{ key }}">
+                <input type="radio" name="colorPicker" value="{{ key }}" {{ checkedText }}>
+                <div class="color-label-inner" style="background-color: {{ item }}"></div>
+              </label>
+            {% endfor %}
+          </div>
+          <button class="btn btn-link" data-clipboard-text="">Link</button>
+          <button class="btn btn-css-html-img" data-clipboard-text="border: 1px solid var(--color-{{ keyNameText }}{{ key }});">HTML Image</button>
+          <button class="btn btn-css-g-img" data-clipboard-text="background-color: var(--color-{{ keyNameText }}{{ key }});">CSS Bg img</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
-<script src="dev-only/devSrc/devJs.js"></script> 
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js"></script>
+<script src="dev-only/devSrc/devJs.js"></script>
 {% block script %}{% endblock %}

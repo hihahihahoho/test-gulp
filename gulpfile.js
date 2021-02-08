@@ -502,7 +502,8 @@ var manageEnvironment = function (environment) {
 
 function devOnly () {
   return gulp.src(['src/dev-only/devSrc/**/*'])
-    .pipe(gulp.dest('dist/dev-only/devSrc/'));
+    .pipe(gulp.dest('dist/dev-only/devSrc/'))
+    .pipe(browserSync.stream());
 }
 
 function nunjucksDev () {
@@ -780,7 +781,7 @@ function watch () {
   gulp.watch(['./src/media/**/*', '!./src/media/icons-color/**/*'], series(media, imageMinify))
   gulp.watch('./src/media/icons-color/**/*', iconColor)
   gulp.watch('./src/dev-only/devSrc/**/*', devOnly)
-  gulp.watch(['src/dev-only/devSrc/**/*.njk', 'src/_imports/_gen-varibles.njk'], nunjucksDev)
+  gulp.watch(['src/dev-only/**/*.njk', 'src/_imports/_gen-varibles.njk'], nunjucksDev)
   gulp.watch('src/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
   gulp.watch('src/custom/**/*.js', customJs)
   gulp.watch('src/fonts/**/*', fontSrc)
@@ -795,6 +796,7 @@ function watch () {
   });
   gulp.watch('dist/**/*.html').on('change', browserSync.reload);
   gulp.watch('dist/js/**/*.js').on('change', browserSync.reload);
+  gulp.watch(['dist/dev-only/devSrc/**.js']).on('change', browserSync.reload);
 }
 
 function lwatch () {

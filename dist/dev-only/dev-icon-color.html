@@ -6,188 +6,198 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dev</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.2.7/tippy.min.css" />
   <link rel="stylesheet" href="dev-only/devSrc/devCss.css">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font: 100%"Inter", "SF Pro Display", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
-      margin: 0;
-      width: 100%;
-      font-size: 12px;
-      background-color: #dcdee4;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      line-height: 1.3;
-      letter-spacing: -0.03em;
-      padding-top: 60px;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .color-wrap {
-      background-color: white;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-      border-radius: 10px;
-      margin: 5px;
-      font-size: 14px;
-    }
-
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      margin-right: -15px;
-      margin-left: -15px;
-    }
-
-    .row-10>* {
-      vertical-align: top;
-      padding-left: 5px;
-      padding-right: 5px;
-    }
-
-    .col-auto {
-      flex: 0 0 auto;
-      width: auto;
-      max-width: 100%;
-    }
-
-    .col {
-      flex-basis: 0;
-      flex-grow: 1;
-      max-width: 100%;
-    }
-
-    .color-block {
-      width: 40px;
-      height: 40px;
-      border-radius: 4px;
-    }
-
-    .color-wrap-top {
-      padding: 10px;
-    }
-
-    .name {}
-
-    .search-wrap input {
-      width: 100%;
-      height: 30px;
-      font-size: 14px;
-    }
-
-    .color-wrap-bottom {
-      padding: 10px;
-    }
-
-    #copyConsole {
-      height: 30px;
-      width: 100%;
-      position: fixed;
-      background-color: white;
-      font-size: 14px;
-      top: 0;
-      padding-top: 5px;
-      padding-left: 10px;
-    }
-
-    .search-wrap {
-      width: 100%;
-      position: fixed;
-      background-color: white;
-      top: 20px;
-      padding: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      left: 0;
-    }
-
-    .ic-wrap {
-      padding: 5px;
-      border-radius: 6px;
-      background-color: white;
-      margin: 5px;
-      box-shadow: 0 0 16px rgb(0 0 0 / 10%);
-    }
-  </style>
 </head>
 
 <body>
-  <div id="copyConsole"></div>
   <div id="listWrap" class="list-wrap">
     <div class="search-wrap">
-      <input class="search" id="search" onfocus="this.value=''" type="text" placeholder="Search color">
+      <div id="copyConsole"></div>
+      <div class="row row-10">
+        <div class="col">
+          <input class="search" id="search" onfocus="this.value=''; userList.update()" type="text" placeholder="Search...">
+        </div>
+        <div class="col-auto">
+        </div>
+      </div>
     </div>
-    <h3>default</h3>
-    <ul class="list">
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/burger.svg" alt="" width="24">
-        </div>
+    <div class="list-wrap-inner">
+      <div class="search-section">
+        <h2>Default</h2>
+        <ul class="list">
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">burger.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/burger.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/burger.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">calendar.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/calendar.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/calendar.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">chevron-down.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/chevron-down.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/chevron-down.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">chevron-left.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/chevron-left.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/chevron-left.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">chevron-right.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/chevron-right.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/chevron-right.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">chevron-up.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/chevron-up.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/chevron-up.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">chevrons-left.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/chevrons-left.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/chevrons-left.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">chevrons-right.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/chevrons-right.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/chevrons-right.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">close.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/close.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/close.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">eye.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/eye.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/eye.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">plannet.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/plannet.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/plannet.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">search.svg</div>
+                <div class="link hidden">../media/icons-color/default/default/search.svg</div>
+                <div class="ic-inner">
+                  <img src="../media/icons-color/default/default/search.svg" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+        </ul>
       </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/calendar.svg" alt="" width="24">
+    </div>
+    <div class="info-section">
+      <div class="info-group icon-info-group hidden">
+        <div class="img-holder">
+          <img src="" alt="" data-zoomable>
         </div>
-      </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/chevron-down.svg" alt="" width="24">
+        <div class="btn file-name" data-clipboard-text=""></div>
+        <div class="color-label-wrap">
+          <label class="color-label" data-tippy-content="default">
+            <input type="radio" name="colorPicker" value="default" checked>
+            <div class="color-label-inner" style="background-color: #121f3E"></div>
+          </label>
+          <label class="color-label" data-tippy-content="primary">
+            <input type="radio" name="colorPicker" value="primary">
+            <div class="color-label-inner" style="background-color: #3f3bec"></div>
+          </label>
+          <label class="color-label" data-tippy-content="invert">
+            <input type="radio" name="colorPicker" value="invert">
+            <div class="color-label-inner" style="background-color: #ffffff"></div>
+          </label>
         </div>
+        <button class="btn btn-link" data-clipboard-text="">Link</button>
+        <button class="btn btn-css-html-img" data-clipboard-text="border: 1px solid var(--color-);">HTML Image</button>
+        <button class="btn btn-css-g-img" data-clipboard-text="background-color: var(--color-);">CSS Bg img</button>
       </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/chevron-left.svg" alt="" width="24">
-        </div>
-      </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/chevron-right.svg" alt="" width="24">
-        </div>
-      </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/chevron-up.svg" alt="" width="24">
-        </div>
-      </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/chevrons-left.svg" alt="" width="24">
-        </div>
-      </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/chevrons-right.svg" alt="" width="24">
-        </div>
-      </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/close.svg" alt="" width="24">
-        </div>
-      </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/eye.svg" alt="" width="24">
-        </div>
-      </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/plannet.svg" alt="" width="24">
-        </div>
-      </div>
-      <div class="ic-wrap">
-        <div class="ic-inner">
-          <img src="../media/icons-color/default/default/search.svg" alt="" width="24">
-        </div>
-      </div>
-    </ul>
+    </div>
   </div>
 </body>
 
@@ -195,4 +205,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js"></script>
 <script src="dev-only/devSrc/devJs.js"></script>

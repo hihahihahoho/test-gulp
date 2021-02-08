@@ -11,7 +11,6 @@ body {
   overflow-y: scroll;
   line-height: 1.3;
   letter-spacing: -0.03em;
-  padding-top: 60px;
 }
 ul {
   list-style: none;
@@ -32,6 +31,16 @@ ul {
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
+}
+.row > * {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.row-10 {
+  margin-right: -5px;
+  margin-left: -5px;
+  display: flex;
+  flex-wrap: wrap;
 }
 .row-10 > * {
   vertical-align: top;
@@ -69,27 +78,128 @@ ul {
 #copyConsole {
   height: 30px;
   width: 100%;
-  position: fixed;
   background-color: white;
   font-size: 14px;
   top: 0;
-  padding-top: 5px;
-  padding-left: 10px;
 }
 .search-wrap {
   width: 100%;
-  position: fixed;
+  position: sticky;
+  z-index: 2;
   background-color: white;
-  top: 20px;
-  padding: 10px;
+  top: 0;
+  padding: 10px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   left: 0;
 }
-
+.ic-inner {
+  display: flex;
+  cursor: pointer;
+}
 .ic-wrap {
   padding: 5px;
   border-radius: 6px;
   background-color: white;
   margin: 5px;
   box-shadow: 0 0 16px rgb(0 0 0 / 10%);
-} 
+  border: 1px solid transparent;
+}
+
+.color-label-wrap {
+  display: flex;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.color-label {
+  display: block;
+  cursor: pointer;
+  position: relative;
+}
+
+.color-label input {
+  display: none;
+}
+
+.color-label-inner {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin: 2px;
+}
+
+.icon-check {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  filter: invert(1);
+  display: none;
+}
+input:checked ~ .icon-check {
+  display: block;
+}
+
+.list {
+  padding: 0 10px;
+}
+
+h2 {
+  padding: 15px 15px 0 15px;
+}
+
+.hidden {
+  display: none !important;
+}
+.list-wrap > *{
+  overflow: hidden;
+}
+.list-wrap-inner {
+  width: calc(100% - 130px);
+}
+.info-section {
+  width: 120px;
+  background-color: white;
+  position: fixed;
+  top: 80px;
+  right: 0;
+  height: calc(100% - 80px);
+  overflow: auto;
+  padding: 15px 5px;
+  z-index: 1;
+}
+
+.btn{
+  margin-bottom: 5px;
+}
+
+.img-holder {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: #dcdee4;
+  margin-bottom: 10px;
+}
+
+.file-name {
+  font-weight: 600;
+  margin-bottom: 10px;
+  min-height: 30px;
+}
+
+.ic-wrap-label {
+  display: block;
+}
+
+input:checked ~ .ic-wrap {
+  border-color: #3f3bec;
+}

@@ -4,19 +4,32 @@
   {% macro loop() %}{% endmacro %}
 </ul>
 
+{% block searchAdd %}
+
+{% endblock %}
+
 {% block main %}
   {% for key, item in globalsVar.linkIconName[0] %}
-    <h3>{{ key }}</h3>
-    <ul class="list">
-      {% for item2 in globalsVar.linkIconName[0][key] %}
-        {% set iconLink = item2.link | replace('icons-color/', 'icons-color/default/') %}
-        <div class="ic-wrap">
-          <div class="ic-inner">
-            <img src="{{ iconLink }}" alt="" width="24">
-          </div>
-        </div>
-      {% endfor %}
-    </ul>
+    <div class="search-section">
+      <h2>{{ key | capitalize }}</h2>
+      <ul class="list">
+        {% for item2 in globalsVar.linkIconName[0][key] %}
+          {% set iconLink = item2.link | replace('icons-color/', 'icons-color/default/') %}
+          <li class="">
+            <label class="ic-wrap-label">
+              <input type="radio" class="hidden icon-item" name="searchItem">
+              <div class="ic-wrap">
+                <div class="name hidden">{{ item2.name }}</div>
+                <div class="link hidden">{{ iconLink }}</div>
+                <div class="ic-inner">
+                  <img src="{{ iconLink }}" alt="" width="24">
+                </div>
+              </div>
+            </label>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
   {% endfor %}
 
 {% endblock %}
