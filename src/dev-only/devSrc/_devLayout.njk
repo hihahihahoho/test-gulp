@@ -16,7 +16,7 @@
         <div id="copyConsole"></div>
         <div class="row row-10">
           <div class="col">
-            <input class="search" id="search" onfocus="this.value=''; userList.update()" type="text" placeholder="Search...">
+            <input class="search" id="search" onfocus="this.value=''" type="text" placeholder="Search...">
           </div>
           <div class="col-auto">
             {% block searchAdd %}{% endblock %}
@@ -28,7 +28,7 @@
       </div>
       <div class="info-section">
         <div class="info-group icon-info-group hidden">
-          <div class="img-holder">
+          <div class="img-holder" data-action="zoom">
             <img src="" alt="" data-zoomable>
           </div>
           <div class="btn file-name" data-clipboard-text=""></div>
@@ -45,8 +45,17 @@
             {% endfor %}
           </div>
           <button class="btn btn-link" data-clipboard-text="">Link</button>
-          <button class="btn btn-css-html-img" data-clipboard-text="border: 1px solid var(--color-{{ keyNameText }}{{ key }});">HTML Image</button>
-          <button class="btn btn-css-g-img" data-clipboard-text="background-color: var(--color-{{ keyNameText }}{{ key }});">CSS Bg img</button>
+          <button class="btn btn-html-img" data-clipboard-text="">HTML Image</button>
+          <button class="btn btn-css-bg-img" data-clipboard-text="background-color: var(--color-{{ keyNameText }}{{ key }});">CSS Bg img</button>
+        </div>
+        <div class="info-group color-info-group hidden">
+          <div class="img-holder">
+          </div>
+          <div class="btn file-name" data-clipboard-text=""></div>
+          <div class="btn color-name" data-clipboard-text=""></div>
+          <button class="btn btn-link" data-clipboard-text="">Link</button>
+          <button class="btn btn-html-img" data-clipboard-text="">HTML Image</button>
+          <button class="btn btn-css-bg-img" data-clipboard-text="background-color: var(--color-{{ keyNameText }}{{ key }});">CSS Bg img</button>
         </div>
       </div>
     </div>

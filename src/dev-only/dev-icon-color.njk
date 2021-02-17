@@ -1,23 +1,54 @@
 {% extends '_devLayout.njk' %}
 
 <ul>
-  {% macro loop() %}{% endmacro %}
+  {% macro loopLi(key, colorKeyText, keyName) %}
+    {% if colorKeyText %}
+      {% if keyName %}
+        {% set keyNameText = keyName + '-' %}
+        {% set keyNameTextName = keyName + ': ' %}
+      {% endif %}
+      <li class="">
+        <label class="ic-wrap-label">
+          <input type="radio" class="hidden icon-item" name="searchColor">
+          <div class="ic-wrap" style="background-color: {{ colorKeyText }}" data-tippy-content="{{keyNameTextName}}{{ key }}">
+            <div class="color hidden">{{ colorKeyText }}</div>
+            <div class="name hidden">{{keyNameTextName}}{{ key }}</div>
+            <div class="ic-inner">
+            </div>
+          </div>
+        </label>
+      </li>
+    {% endif %}
+  {% endmacro %}
+  {% macro loop(name) %}
+    {% for key, item in globalsVar.colorName[0][name] %}
+      {% if name == 'level' %}
+        {% set colorKeyText = globalsVar.colorName[0]['normal'][item] %}
+        {{ loopLi(key, colorKeyText['color'] )}}
+        {{ loopLi(key, colorKeyText['hover'], 'hover' )}}
+        {{ loopLi(key, colorKeyText['active'], 'active') }}
+      {% elseif name == 'normal' %}
+        {{ loopLi(key, item['color']) }}
+        {{ loopLi(key, item['hover'], 'hover' ) }}
+        {{ loopLi(key, item['active'], 'active') }}
+      {% endif %}
+    {%- endfor %}
+  {% endmacro %}
 </ul>
 
-{% block searchAdd %}
-
-{% endblock %}
+{% block searchAdd %}{% endblock %}
 
 {% block main %}
   {% for key, item in globalsVar.linkIconName[0] %}
-    <div class="search-section">
-      <h2>{{ key | capitalize }}</h2>
+    <div class="search-section" id="listSearch1">
+      <h2>Icon-color
+        {{ key | capitalize }}</h2>
       <ul class="list">
         {% for item2 in globalsVar.linkIconName[0][key] %}
           {% set iconLink = item2.link | replace('icons-color/', 'icons-color/default/') %}
           <li class="">
             <label class="ic-wrap-label">
-              <input type="radio" class="hidden icon-item" name="searchItem">
+              <input type="radio" class="hidden icon-item" name="searchIconColor">
               <div class="ic-wrap">
                 <div class="name hidden">{{ item2.name }}</div>
                 <div class="link hidden">{{ iconLink }}</div>
@@ -31,5 +62,16 @@
       </ul>
     </div>
   {% endfor %}
-
+  <div class="search-section" id="listSearch2">
+    <h2>Color Level</h2>
+    <ul class="list">
+      {{ loop('level') }}
+    </ul>
+  </div>
+  <div class="search-section" id="listSearch3">
+    <h2>Color Normal</h2>
+    <ul class="list">
+      {{ loop('normal') }}
+    </ul>
+  </div>
 {% endblock %}

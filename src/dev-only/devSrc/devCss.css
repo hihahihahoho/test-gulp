@@ -100,9 +100,12 @@ ul {
   padding: 5px;
   border-radius: 6px;
   background-color: white;
-  margin: 5px;
+  margin: 4px;
   box-shadow: 0 0 16px rgb(0 0 0 / 10%);
   border: 1px solid transparent;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
 }
 
 .color-label-wrap {
@@ -127,6 +130,10 @@ ul {
   border-radius: 50%;
   border: 1px solid black;
   margin: 2px;
+}
+
+input:checked + .color-label-inner {
+  box-shadow: 0 0 0 1pt red;
 }
 
 .icon-check {
@@ -157,7 +164,7 @@ h2 {
 .hidden {
   display: none !important;
 }
-.list-wrap > *{
+.list-wrap > * {
   overflow: hidden;
 }
 .list-wrap-inner {
@@ -175,7 +182,7 @@ h2 {
   z-index: 1;
 }
 
-.btn{
+.btn {
   margin-bottom: 5px;
 }
 
@@ -188,9 +195,16 @@ h2 {
   background-position: center;
   background-color: #dcdee4;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
 }
-
-.file-name {
+.img-holder img {
+  max-width: 100%;
+}
+.file-name,
+.color-name {
   font-weight: 600;
   margin-bottom: 10px;
   min-height: 30px;
@@ -201,5 +215,14 @@ h2 {
 }
 
 input:checked ~ .ic-wrap {
-  border-color: #3f3bec;
+  border-color: red;
+}
+
+.medium-zoom--opened .medium-zoom-overlay {
+  z-index: 9998;
+  backdrop-filter: blur(10px);
+  background-color: transparent !important;
+}
+.medium-zoom-image--opened {
+  z-index: 9999;
 }
