@@ -1,4 +1,4 @@
-var clipboard = new ClipboardJS('.btn');
+var clipboard = new ClipboardJS('[data-clipboard-text]');
 
 clipboard.on('success', function (e) {
   $('#copyConsole').html(e.text)
@@ -30,6 +30,11 @@ $('#search').on('keyup', function (event) { // Fired on 'keyup' event
   })
 });
 
+$('#searchClear').on('click', function() {
+  $('#search').val('');
+  $('#search').trigger('keyup')
+})
+
 tippy('[data-tippy-content]', {
   content: 'Global content',
 });
@@ -45,44 +50,70 @@ $(document).ready(function () {
       return v.replace(/#/gi, '');
     });
   })
-  $('[name=searchIconColor]').on('change', function () {
-    if ($(this).is(':checked')) {
-      var value = $('[name=colorPicker]:checked').val();
-      var link = $(this).parents('li').find('.link').html().replace(/\/icons-color\/(.*?)\//, '/icons-color/' + value + '/');
-      var name = $(this).parents('li').find('.name').html()
-      $('.info-group').addClass('hidden')
+  $('[name=searchItem]').on('change', function () {
+    $('.info-group').addClass('hidden');
+    if ($(this).hasClass('searchIconColor')) {
       $('.icon-info-group').removeClass('hidden')
-      $('.icon-info-group .btn-link').attr('data-clipboard-text', link)
-      $('.icon-info-group .img-holder > img').attr('src', link)
-      $('.icon-info-group .btn-html-img').attr('data-clipboard-text', '<img src="' + link + '" alt="">')
-      $('.icon-info-group .btn-css-bg-img').attr('data-clipboard-text', 'background-image: url(' + link + ')')
-      $('.icon-info-group .file-name').html(name).attr('data-clipboard-text', name)
+    }
+    if ($(this).hasClass('searchColor')) {
+      $('.color-info-group').removeClass('hidden');
     }
   });
-  $('[name=colorPicker]').on('change', function () {
-    var value = $(this).val();
-    console.log(value)
-    var btnLink = $(this).parents('.info-section').find('.btn-link');
-    var imgHolderImg = $(this).parents('.info-section').find('.img-holder > img');
-    var btnHtmlImg = $(this).parents('.info-section').find('.btn-html-img');
-    var btnCssBgImg = $(this).parents('.info-section').find('.btn-css-bg-img');
-    var link = btnLink.attr('data-clipboard-text').replace(/\/icons-color\/(.*?)\//, '/icons-color/' + value + '/');
+  $('.copyBtn').on('change', function () {
+    var nameFull = $('[name=searchItem]:checked').val();
+    if ($('.searchColor:checked').val()) {
+      if ($('#langCSS').is(':checked')) {
+        nameFull = 'var(--' + nameFull + ')';
+      }
+      if ($('#langScss').is(':checked')) {
+        nameFull = '$' + nameFull;
+      }
+      if ($('#langHTML').is(':checked')) {
+        nameFull = nameFull.replace('color-', '')
+      }
+      if ($('#langHTML').is(':checked')) {
+        value = $(this).val().replace('background-color: copyVaribles;', 'ubg-' + nameFull).replace('color: copyVaribles;', 'color-' + nameFull).replace('copyVaribles', nameFull);
+      } else {
+        value = $(this).val().replace('copyVaribles', nameFull);
+      }
+    }
+    if ($('.searchIconColor:checked').val()) {
+      value = $('[name=colorPicker]:checked').val();
+      nameFull = nameFull.replace(/\/icons-color\/(.*?)\//, '/icons-color/' + value + '/');
+      $('.icon-info-group .img-holder > img').attr('src', nameFull);
+      value = $(this).val().replace('copyVaribles', nameFull);
+    }
+    $(this).parents('label').attr('data-clipboard-text', value).trigger('click');
+  });
+  $('[name="langSelect"]').on('change', function () {
+    $('[name=colorBtn]:checked').trigger('change');
+    if ($('#langHTML').is(':checked')) {
+      $('.btn-input:not(btn-html):not(btn-css)').addClass('hidden');
+      $('.btn-html').removeClass('hidden');
+    } else {
+      $('.btn-html').addClass('hidden');
+      $('.btn-input:not(btn-html):not(btn-css)').removeClass('hidden');
+    }
+  });
+  $('[name="colorPicker"]').on('change', function () {
+    $('[name=imageBtn]:checked').trigger('change');
+  })
+  $('.searchColor').on('change', function () {
+    var color = $(this).parents('li').find('.color').html();
+    var name = $(this).parents('li').find('.name').html();
+    var nameFull = $(this).parents('li').find('.name-full').html();
+    $('.color-info-group .file-name').html(name).attr('data-clipboard-text', name)
+    $('.color-info-group .color-name').html(color).attr('data-clipboard-text', color)
+    $('.color-info-group .img-holder').css('background-color', color)
+    $('[name=colorBtn]:checked').trigger('change');
+  });
+  $('.searchIconColor').on('change', function () {
+    var value = $('[name=colorPicker]:checked').val();
+    var link = $(this).parents('li').find('.link').html().replace(/\/icons-color\/(.*?)\//, '/icons-color/' + value + '/');
+    var name = $(this).parents('li').find('.name').html()
+    $('.icon-info-group .img-holder > img').attr('src', link)
+    $('.icon-info-group .file-name').html(name).attr('data-clipboard-text', name)
+    $('[name=colorPicker]:checked').trigger('change');
+  });
 
-    btnLink.attr('data-clipboard-text', link)
-    btnHtmlImg.attr('data-clipboard-text', '<img src="' + link + '" alt="">')
-    btnCssBgImg.attr('data-clipboard-text', 'background-image: url(' + link + ')')
-    imgHolderImg.attr('src', link)
-  });
-  $('[name=searchColor]').on('change', function () {
-    if ($(this).is(':checked')) {
-      var color = $(this).parents('li').find('.color').html();
-      var name = $(this).parents('li').find('.name').html();
-      var colorCode = $(this).parents('li').find('.color').html();
-      $('.color-info-group .file-name').html(name).attr('data-clipboard-text', name)
-      $('.color-info-group .color-name').html(color).attr('data-clipboard-text', color)
-      $('.color-info-group .img-holder').css('background-color', color)
-      $('.info-group').addClass('hidden')
-      $('.color-info-group').removeClass('hidden')
-    }
-  });
 })

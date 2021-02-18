@@ -16,7 +16,10 @@
         <div id="copyConsole"></div>
         <div class="row row-10">
           <div class="col">
-            <input class="search" id="search" onfocus="this.value=''" type="text" placeholder="Search...">
+            <div class="search-inner">
+              <input class="search" id="search" type="text" placeholder="Search...">
+              <label for="search" class="clear-btn" id="searchClear"></label>
+            </div>
           </div>
           <div class="col-auto">
             {% block searchAdd %}{% endblock %}
@@ -29,7 +32,7 @@
       <div class="info-section">
         <div class="info-group icon-info-group hidden">
           <div class="img-holder" data-action="zoom">
-            <img src="" alt="" data-zoomable>
+            <img src="" alt="" data-zoomable="data-zoomable">
           </div>
           <div class="btn file-name" data-clipboard-text=""></div>
           <div class="color-label-wrap">
@@ -38,24 +41,89 @@
               {% if key == 'default' %}
                 {% set checkedText = 'checked' %}
               {% endif %}
-              <label class="color-label" data-tippy-content="{{ key }}">
+              <label class="color-label" data-clipboard-text="" data-tippy-content="{{ key }}">
                 <input type="radio" name="colorPicker" value="{{ key }}" {{ checkedText }}>
                 <div class="color-label-inner" style="background-color: {{ item }}"></div>
               </label>
             {% endfor %}
           </div>
-          <button class="btn btn-link" data-clipboard-text="">Link</button>
-          <button class="btn btn-html-img" data-clipboard-text="">HTML Image</button>
-          <button class="btn btn-css-bg-img" data-clipboard-text="background-color: var(--color-{{ keyNameText }}{{ key }});">CSS Bg img</button>
+          <div class="btn-group">
+            <label class="btn-input btn-css btn-html" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="imageBtn" id="" value="copyVaribles" checked>
+              <div class="btn-input-inner">
+                Link
+              </div>
+            </label>
+            <label class="btn-input btn-css" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="imageBtn" id="" value='<img src="copyVaribles" alt="">'>
+              <div class="btn-input-inner">
+                HTML Image
+              </div>
+            </label>
+            <label class="btn-input btn-css btn-html" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="imageBtn" id="" value="background-image: url(copyVaribles);">
+              <div class="btn-input-inner">
+                CSS BG Img
+              </div>
+            </label>
+          </div>
         </div>
         <div class="info-group color-info-group hidden">
-          <div class="img-holder">
-          </div>
-          <div class="btn file-name" data-clipboard-text=""></div>
+          <div class="img-holder"></div>
           <div class="btn color-name" data-clipboard-text=""></div>
-          <button class="btn btn-link" data-clipboard-text="">Link</button>
-          <button class="btn btn-html-img" data-clipboard-text="">HTML Image</button>
-          <button class="btn btn-css-bg-img" data-clipboard-text="background-color: var(--color-{{ keyNameText }}{{ key }});">CSS Bg img</button>
+          <div class="btn file-name" data-clipboard-text=""></div>
+          <div class="lang">
+            <label class="lang-item">
+              <input type="radio" data-clipboard-text="" name="langSelect" id="langCSS" checked="checked" class="css">
+              <div class="lang-inner lang-inner-css" data-tippy-content="CSS"></div>
+            </label>
+            <label class="lang-item">
+              <input type="radio" data-clipboard-text="" name="langSelect" id="langScss" class="css">
+              <div class="lang-inner lang-inner-scss" data-tippy-content="SCSS"></div>
+            </label>
+            <label class="lang-item">
+              <input type="radio" data-clipboard-text="" name="langSelect" id="langHTML" class="html">
+              <div class="lang-inner lang-inner-html" data-tippy-content="HTML"></div>
+            </label>
+          </div>
+          <div class="btn-group">
+            <label class="btn-input btn-css" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="colorBtn" id="" checked="checked" value="copyVaribles;">
+              <div class="btn-input-inner">
+                Var
+              </div>
+            </label>
+            <label class="btn-input btn-css btn-html" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="colorBtn" id="" value="color: copyVaribles;">
+              <div class="btn-input-inner">
+                Color
+              </div>
+            </label>
+            <label class="btn-input btn-css" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="colorBtn" id="" value="border: 1px solid copyVaribles;">
+              <div class="btn-input-inner">
+                Border
+              </div>
+            </label>
+            <label class="btn-input btn-css btn-html" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="colorBtn" id="" value="background-color: copyVaribles;">
+              <div class="btn-input-inner">
+                Background
+              </div>
+            </label>
+            <label class="btn-input btn-css" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="colorBtn" id="" value="box-shadow: 0 0 4px rgba(copyVaribles, 0.3);">
+              <div class="btn-input-inner">
+                Shadow
+              </div>
+            </label>
+            <label class="btn-inputbtn-html hidden" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="colorBtn" id="" value="ubg-hover-copyVaribles">
+              <div class="btn-input-inner">
+                Bg Hover
+              </div>
+            </label>
+          </div>
         </div>
       </div>
     </div>

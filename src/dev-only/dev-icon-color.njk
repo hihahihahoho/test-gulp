@@ -9,10 +9,11 @@
       {% endif %}
       <li class="">
         <label class="ic-wrap-label">
-          <input type="radio" class="hidden icon-item" name="searchColor">
+          <input type="radio" class="hidden icon-item searchColor" name="searchItem" value="color-{{ keyNameText }}{{ key }}">
           <div class="ic-wrap" style="background-color: {{ colorKeyText }}" data-tippy-content="{{keyNameTextName}}{{ key }}">
             <div class="color hidden">{{ colorKeyText }}</div>
             <div class="name hidden">{{keyNameTextName}}{{ key }}</div>
+            <div class="name-full hidden">color-{{ keyNameText }}{{ key }}</div>
             <div class="ic-inner">
             </div>
           </div>
@@ -48,7 +49,7 @@
           {% set iconLink = item2.link | replace('icons-color/', 'icons-color/default/') %}
           <li class="">
             <label class="ic-wrap-label">
-              <input type="radio" class="hidden icon-item" name="searchIconColor">
+              <input type="radio" class="hidden icon-item searchIconColor" name="searchItem" value="{{ iconLink }}">
               <div class="ic-wrap">
                 <div class="name hidden">{{ item2.name }}</div>
                 <div class="link hidden">{{ iconLink }}</div>
