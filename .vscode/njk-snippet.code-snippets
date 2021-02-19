@@ -1,0 +1,27 @@
+{
+  "nunjucks input": {
+    "scope": "nunjucks",
+    "prefix": [
+      "form.input",
+      "input"
+    ],
+    "body": [
+      "{% macro input(${1}) %}"
+    ],
+    "description": "Nunjucks input"
+  },
+  "nunjucks input varibles": {
+    "scope": "nunjucks",
+    "prefix": [
+      "form.input.var",
+      "input.var"
+    ],
+    "body": [
+      "${1|title,inputType = settingInputDefault.inputType,value = '',size = settingInputDefault.size,icon = '',icSize = settingInputDefault.icSize,iconLeft,type = 'text',id,iconText = '',extendAttr,extendClass,note = '',autocomplete = '',placeholder = '',inputClear = settingInputDefault.inputClear,disabled = settingInputDefault.disabled,icTxt,extendContent,extendContentPos = 'inside',extendContentClass,settingInputCustom,textarea,textareaAutoSize = 'true',addFlex,fakeInput,customFlexContent,errorBlock = settingInputDefault.errorBlock,eye = settingInputDefault.eye|} = '${2}', "
+    ],
+    "description": "Nunjucks input"
+  }
+  //generated-snippet
+  //end-generated-snippet
+}
+

@@ -410,8 +410,33 @@ function imageMinify () {
     .pipe(gulp.dest('dist/media/'))
 }
 
-function testTree () {
-  
+function testSnippet (cb) {
+  var macros = [];
+  var contentFile;
+  var importNameMap = {};
+  var files = glob.sync('./src/_imports/macros/**/*.njk');
+  var baseFile = fs.readFileSync('./src/_imports/based/_based.njk', 'utf8');
+  importName = baseFile.match(/(?<={% import ")(.*)(?=" as)/g);
+  importNameAlias = baseFile.match(/(?<=" as )(.*)(?= %})/g);
+  importName.forEach((value, index) => {
+    var value = path.parse(value).name;
+    importNameMap[value] = importNameAlias[index]
+  });
+  files.forEach(element => {
+    var fileName = path.parse(element).name;
+    fileName = importNameMap[fileName];
+    var content = fs.readFileSync(element, 'utf8');
+    content = content.replace(/{% macro /g, '{% macro ' + fileName + '.')
+    contentFile += content
+  });
+  macros = contentFile.match(/(?<={% macro)(.*)(?=%})/g);
+  macros = macros.map(str => ({
+    name: path.parse(str.match(/[^(]*/g)[0].trim()).ext.replace('.', ''),
+    fullName: str.match(/[^(]*/g)[0].trim(),
+    varName: str.trim().match(/(?<=\()(.*)(?=\))/g)[0].replace(/, /g,',').replace(/ ,/g,',')
+  }));
+  console.log(macros)
+  cb()
 }
 
 function iconLink () {
@@ -769,7 +794,7 @@ function watch () {
   gulp.watch('gulp-icons-color-config.js', iconColor)
   gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
   gulp.watch(['./src/media/**/*', '!./src/media/icons-color/**/*'], series(media, imageMinify, iconLink))
-  gulp.watch('./src/media/icons-color/**/*', series(iconColor,iconLink));
+  gulp.watch('./src/media/icons-color/**/*', series(iconColor, iconLink));
   gulp.watch('./src/dev-only/devSrc/**/*', devOnly)
   gulp.watch(['src/dev-only/**/*.njk', 'src/_imports/_gen-varibles.njk'], nunjucksDev)
   gulp.watch('src/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
@@ -849,7 +874,7 @@ exports.cleanIconColor = cleanIconColor;
 exports.iconLink = iconLink;
 exports.devOnly = devOnly;
 exports.nunjucksDev = nunjucksDev;
-exports.testTree = testTree;
+exports.testSnippet = testSnippet;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
