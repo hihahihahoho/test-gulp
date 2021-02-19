@@ -17,6 +17,7 @@ const data = require('gulp-data');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
+const dirTree = require("directory-tree");
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
 const nunjucksRender = require('gulp-nunjucks-render');
@@ -409,37 +410,26 @@ function imageMinify () {
     .pipe(gulp.dest('dist/media/'))
 }
 
-function mediaLinkTree (path, njkVarName) {
-  var fileName = '';
-  var folderName = '';
-  var folderArray = glob.sync(path)
-  for (var i = 0; i < folderArray.length; i++) {
-    folderName += '\t"' + folderArray[i].replace(/^(.*[\\\/])/g, '') + '": [';
-    var fileArray = glob.sync(folderArray[i] + '/*');
-    for (var i2 = 0; i2 < fileArray.length; i2++) {
-      fileName += '\n\t\t{\n\t\t\tname: "' + fileArray[i2].replace(/^(.*[\\\/])/g, '') + '",\n\t\t\tlink: "' + fileArray[i2].replace('src/', '../') + '"\n\t\t}';
-      if (i2 < fileArray.length - 1) {
-        fileName += ','
-      }
-    }
-    folderName = folderName + fileName + ']'
-    if (i < folderArray.length - 1) {
-      folderName += ',\n';
-    }
-  }
-  return '{# link-icon-color-njk #}\n{% set ' + njkVarName + ' = [{\n' + folderName + '\n}] %}\n{# end-link-icon-color-njk #}';
+function testTree () {
+  
 }
 
 function iconLink () {
-  delete require.cache[require.resolve('./gulp-icons-color-config.js')];
-  var themeIcon = require('./gulp-icons-color-config').themeIconColor;
-  var colorTree = '{# icon-color-njk #}\n{% set colorIconName = [\n' + JSON.stringify(themeIcon, null, '\t') + '\n] %}\n{# end-icon-color-njk #}';
-  var fileTree = mediaLinkTree('src/media/icons-color/*', 'linkIconName')
+  var mediaTree = dirTree("dist/media/", { exclude: /icons-color/, normalizePath: true });
+  mediaTree = JSON.stringify(mediaTree, null, '\t').replace(/dist\//g, '../');
+  var njkMediaVarName = 'linkMedia'
+  var njkMediaTree = '{# link-media-njk #}\n{% set ' + njkMediaVarName + ' = [\n' + mediaTree + '\n] %}\n{# end-link-media-njk #}'
 
-  return gulp.src(['./src/_imports/_gen-varibles.njk'], { base: './src/' })
-    .pipe(replace(/({# link-icon-color-njk #})([\S\s]*?)({# end-link-icon-color-njk #})/, fileTree))
-    .pipe(replace(/({# icon-color-njk #})([\S\s]*?)({# end-icon-color-njk #})/, colorTree))
-    .pipe(gulp.dest('./src/'))
+  var iconColorTree = dirTree("src/media/icons-color/", { normalizePath: true });
+  iconColorTree = JSON.stringify(iconColorTree, null, '\t').replace(/src\//g, '../');
+  var njkIconColorVarName = 'linkIconColor'
+  var njkIconColorTree = '{# link-icon-color-njk #}\n{% set ' + njkIconColorVarName + ' = [\n' + iconColorTree + '\n] %}\n{# end-link-icon-color-njk #}'
+
+
+  return gulp.src(['./src/dev-only/devSrc/_dev-gen-varibles.njk'], { base: './src/' })
+    .pipe(replace(/({# link-media-njk #})([\S\s]*?)({# end-link-media-njk #})/, njkMediaTree))
+    .pipe(replace(/({# link-icon-color-njk #})([\S\s]*?)({# end-link-icon-color-njk #})/, njkIconColorTree))
+    .pipe(gulp.dest('./src/'));
 }
 
 function iconColor (cb) {
@@ -778,8 +768,8 @@ function watch () {
   gulp.watch('gulp_themes_config.js', theme)
   gulp.watch('gulp-icons-color-config.js', iconColor)
   gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
-  gulp.watch(['./src/media/**/*', '!./src/media/icons-color/**/*'], series(media, imageMinify))
-  gulp.watch('./src/media/icons-color/**/*', iconColor)
+  gulp.watch(['./src/media/**/*', '!./src/media/icons-color/**/*'], series(media, imageMinify, iconLink))
+  gulp.watch('./src/media/icons-color/**/*', series(iconColor,iconLink));
   gulp.watch('./src/dev-only/devSrc/**/*', devOnly)
   gulp.watch(['src/dev-only/**/*.njk', 'src/_imports/_gen-varibles.njk'], nunjucksDev)
   gulp.watch('src/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
@@ -787,7 +777,10 @@ function watch () {
   gulp.watch('src/fonts/**/*', fontSrc)
   gulp.watch('src/custom/**/*.css', customCss)
   gulp.watch(['src/**/*.{html,njk}', '!src/dev-only/**/*.njk'], nunjucks)
-  gulp.watch('src/_imports/**/*.{html,njk}', nunjucksForce)
+  gulp.watch('src/_imports/**/*.{html,njk}', nunjucksForce);
+  gulp.watch(['src/media/**/*', '!./src/media/icons-color/**/*']).on('unlink', function (path) {
+    del(path.replace('src\\', 'dist\\'))
+  });
   gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
     del(path.replace('src\\', 'dist\\').replace('.njk', '.html'))
   });
@@ -856,13 +849,14 @@ exports.cleanIconColor = cleanIconColor;
 exports.iconLink = iconLink;
 exports.devOnly = devOnly;
 exports.nunjucksDev = nunjucksDev;
+exports.testTree = testTree;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, theme, parallel(series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, theme, parallel(series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, iconLink, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
 
-exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, cleanMedia, cleanIconColor)
+exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor)
 
-exports.deploy = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, cleanMedia, cleanIconColor), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
+exports.deploy = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
 
-exports.deployAll = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, cleanMedia, cleanIconColor), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deployAll = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))

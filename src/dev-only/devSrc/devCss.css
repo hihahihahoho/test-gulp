@@ -78,7 +78,6 @@ ul {
 #copyConsole {
   height: 30px;
   width: 100%;
-  background-color: white;
   font-size: 14px;
   top: 0;
 }
@@ -86,7 +85,7 @@ ul {
   width: 100%;
   position: sticky;
   z-index: 2;
-  background-color: white;
+  backdrop-filter: blur(10px);
   top: 0;
   padding: 10px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -94,18 +93,29 @@ ul {
 }
 .ic-inner {
   display: flex;
+  height: 100%;
   cursor: pointer;
 }
+img {
+  max-width: 100%;
+  align-self: center;
+  max-height: 100%;
+}
 .ic-wrap {
-  padding: 5px;
   border-radius: 6px;
   background-color: white;
-  margin: 4px;
-  box-shadow: 0 0 16px rgb(0 0 0 / 10%);
+  margin: 3px;
   border: 1px solid transparent;
   cursor: pointer;
   width: 36px;
   height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ic-wrap img {
+  filter: drop-shadow(0 0 8px rgb(0 0 0 / 30%));
 }
 
 .color-label-wrap {
@@ -154,11 +164,20 @@ input:checked ~ .icon-check {
 }
 
 .list {
-  padding: 0 10px;
+  padding: 0 7px;
+  margin: 5px 0;
 }
 
 h2 {
-  padding: 15px 15px 0 15px;
+  padding: 10px 15px 0 15px;
+  margin: 0;
+}
+
+h3 {
+  padding: 5px 10px 0 10px;
+  font-size: 12px;
+  margin: 0;
+  font-weight: 400;
 }
 
 .hidden {
@@ -167,19 +186,21 @@ h2 {
 .list-wrap > * {
   overflow: hidden;
 }
-.list-wrap-inner {
-  width: calc(100% - 130px);
+.list-wrap-inner,
+.search-wrap {
+  width: calc(100% - 110px);
 }
 .info-section {
-  width: 120px;
+  width: 110px;
   background-color: white;
   position: fixed;
-  top: 80px;
+  top: 0;
   right: 0;
-  height: calc(100% - 80px);
+  height: 100%;
   overflow: auto;
-  padding: 15px 5px;
-  z-index: 1;
+  padding: 15px 5px 15px 5px;
+  z-index: 99;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
 }
 
 .btn {
@@ -187,8 +208,9 @@ h2 {
 }
 
 .img-holder {
-  width: 40px;
-  height: 40px;
+  width: 95px;
+  height: 95px;
+  padding: 5px;
   border-radius: 3px;
   background-repeat: no-repeat;
   background-size: contain;
@@ -207,11 +229,16 @@ h2 {
   font-weight: 600;
 }
 .file-name {
-  margin-bottom: 10px;
-  min-height: 30px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
   font-weight: 600;
-  margin-bottom: 10px;
   line-height: 1.2;
+}
+
+.file-dimension {
+  margin-bottom: 10px;
 }
 
 .ic-wrap-label {
@@ -292,10 +319,29 @@ input:checked + .btn-input-inner {
   background-size: 16px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-x' width='24' height='24' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23242841' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cline x1='18' y1='6' x2='6' y2='18' /%3E%3Cline x1='6' y1='6' x2='18' y2='18' /%3E%3C/svg%3E");
   position: absolute;
-  right: 10px;
+  right: 3px;
   top: 3px;
   cursor: pointer;
 }
 .clear-btn:hover {
   background-color: #dcdee4;
+}
+
+.search-section-inner {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+.search-section-section {
+  background-color: #e9ebf1;
+  margin: 5px;
+  border-radius: 6px;
+  padding: 5px 0;
+}
+
+.Image ~ .ic-wrap {
+  width: 72px;
+  height: 72px;
+  padding: 5px;
 }

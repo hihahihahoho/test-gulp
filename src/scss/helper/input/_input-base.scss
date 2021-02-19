@@ -138,6 +138,7 @@ select {
     font-size: $input-font-size-mobile !important;
   }
 }
+
 .input {
   flex-grow: 1;
   flex-basis: 0;
@@ -474,6 +475,12 @@ select {
     & ~ .input-flex-content::after {
       background: linear-gradient(90deg, rgba($input-background, 0) 0%, $input-background 70%);
     }
+  }
+}
+
+@-moz-document url-prefix() {
+  .input {
+    width: 30px;
   }
 }
 

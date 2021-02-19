@@ -171,11 +171,11 @@ $lp-days-of-the-weeks-color: #707c93;
 
 .lightpick__next-action {
   float: right;
-  background-image: url(../media/icons-color/default/line-icon/chevron-right.svg);
+  background-image: url(../../media/icons-color/default/default/chevron-right.svg);
 }
 
 .lightpick__previous-action {
-  background-image: url(../media/icons-color/default/line-icon/chevron-left.svg);
+  background-image: url(../../media/icons-color/default/default/chevron-left.svg);
 }
 
 .lightpick__previous-action,
@@ -580,7 +580,7 @@ select:not([disabled]).lightpick__select {
   line-height: 44px;
   border-radius: 5px;
   background-color: rgba(#eaeff3, 0.6);
-  background-image: url("../media/icons-color/default/line-icon/chevron-down.svg");
+  background-image: url("../../media/icons-color/default/default/chevron-down.svg");
   background-size: 24px 24px;
   background-repeat: no-repeat;
   background-position: center right 5px;

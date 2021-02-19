@@ -1,4 +1,6 @@
-{% import '_gen-varibles.njk' as globalsVar %}
+{% import '_dev-gen-varibles.njk' as globalsVarImg %}
+{% import '_gen-varibles.njk' as globalsVarColor %}
+
 {% import '_devMacro.njk' as macro %}
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +37,10 @@
             <img src="" alt="" data-zoomable="data-zoomable">
           </div>
           <div class="btn file-name" data-clipboard-text=""></div>
-          <div class="color-label-wrap">
-            {% for key, item in globalsVar.colorIconName[0] %}
+          <div class="btn file-size" data-clipboard-text=""></div>
+          <div class="btn file-dimension" data-clipboard-text="" id="fileDimension"></div>
+          <div class="color-label-wrap hidden">
+            {% for key, item in globalsVarImg.colorIconName[0] %}
               {% set checkedText = '' %}
               {% if key == 'default' %}
                 {% set checkedText = 'checked' %}
