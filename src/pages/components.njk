@@ -95,71 +95,92 @@
       <form class="from-section form-vertical pb30">
         <div class="row row-20">
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = '../media/icons-color/default/default/plannet.svg') }}
+            {# snippet inputIconRight #}
+            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = globalsVar.iconDemo) }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = '../media/icons-color/default/default/plannet.svg') }}
+            {# snippet inputIconLeft #}
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = globalsVar.iconDemo) }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = '../media/icons-color/default/default/plannet.svg', note = 'This is an input note') }}
+            {# snippet inputNote #}
+            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = globalsVar.iconDemo, note = 'This is an input note') }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet inputExtraTextLeft #}
             {{ form.input('Input icon left text', extendAttr = 'required', icTxt = 'Not required') }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet inputExtraButton #}
             {% set extendContentCon %}
             {{ button.btn('Button', size = 'xs-2', color = 'line-primary') }}
             {% endset %}
             {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon) }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input password', iconLeft = '../media/icons-color/default/default/plannet.svg', extendAttr = 'required', type = 'password', extendContentClass = 'pr0') }}
+            {# snippet inputPassword #}
+            {{ form.input('Input password', iconLeft = globalsVar.iconDemo, extendAttr = 'required', type = 'password', extendContentClass = 'pr0') }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet inputExtraOutside #}
             {% set extendContentCon %}
             <a class="link">Demo link</a>
             {% endset %}
             {{ form.input('Input content outside', extendContent = extendContentCon, extendAttr = 'required', extendContentPos = 'outside') }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet selectDefault #}
             {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
             {{ form.select('Select normal', value = dataSelect, extendAttr = 'required', selectLib = 'none', placeholder = 'Select your option' ) }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet select2 #}
             {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
             {{ form.select('Select-2', value = dataSelect, extendAttr = 'required',settingInputCustom = settingInputCustom) }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet selectCustomImage #}
             {% set dataSelect = [
               {
                 main: 'Vietcombank',
-                img: '../media/icons-color/default/default/plannet.svg',
+                img: globalsVar.iconDemo,
                 sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
               }, {
                 main: 'Vietinbank',
-                img: '../media/icons-color/default/default/plannet.svg',
+                img: globalsVar.iconDemo,
                 sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
               }, {
                 main: 'Agribank',
-                img: '../media/icons-color/default/default/plannet.svg',
+                img: globalsVar.iconDemo,
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
-                img: '../media/icons-color/default/default/plannet.svg',
+                img: globalsVar.iconDemo,
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
-                img: '../media/icons-color/default/default/plannet.svg',
+                img: globalsVar.iconDemo,
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
-                img: '../media/icons-color/default/default/plannet.svg',
+                img: globalsVar.iconDemo,
                 sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }
             ] %}
             {{ form.select('Select-2 Custom Image', value = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', search='false') }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet selectCustomText #}
             {% set dataSelect = [
               {
                 main: 'Vietcombank',
@@ -185,15 +206,22 @@
               }
             ] %}
             {{ form.select('Select-2 Custom Text', value = dataSelect, extendAttr = 'required') }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet select2Multiple #}
             {{ form.select('Select-2 Multiple', value = dataSelect, multiple = 'true', extendAttr = 'required',settingInputCustom = settingInputCustom) }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet datepicker #}
             {{ form.datepicker('Datepicker single', note = 'This is an input note', extendAttr = 'required') }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet datepickerRange #}
             {{ form.datepicker('Datepicker range', extendAttr = 'required', range = 'true') }}
+            {# endSnippet #}
           </div>
         </div>
         <div class="row row-20">
@@ -203,10 +231,14 @@
         </div>
         <div class="row row-20">
           <div class="col-lg-6 col-sm-12">
+            {# snippet textareaDefault #}
             {{ form.input('Textarea Default', icTxt = '10/240', textarea = 'true', extendAttr = 'required', textareaAutoSize = 'false') }}
+            {# endSnippet #}
           </div>
           <div class="col-lg-6 col-sm-12">
+            {# snippet textareaAutosize #}
             {{ form.input('Textarea Autosize', icTxt = '10/240', extendAttr = 'required', textarea = 'true') }}
+            {# endSnippet #}
           </div>
         </div>
         <div class="row row-20 justify-content-center">
@@ -382,24 +414,24 @@
         <div class="col-md-6">
           <div class="bd-example bd-example-modal">
             {% set dropdownItemCustom %}
-              <div class="h6">Lần đăng nhập gần nhất
-                <br>06/08/2020 19:14:15
-              </div>
+            <div class="h6">Lần đăng nhập gần nhất
+              <br>06/08/2020 19:14:15
+            </div>
             {% endset %}
             {% set dropdownValue = [
               {
                 main: 'Dropdown 1',
-                icon: '../media/icons-color/default/default/plannet.svg',
+                icon: globalsVar.iconDemo,
                 href: '#'
               }, {
                 main: 'Dropdown 2',
                 sub: 'This is a sub text',
-                icon: '../media/icons-color/default/default/plannet.svg',
+                icon: globalsVar.iconDemo,
                 modal: '#modalTest'
               }, {
                 main: 'Dropdown 3',
                 sub: 'This is a sub text',
-                icon: '../media/icons-color/default/default/plannet.svg',
+                icon: globalsVar.iconDemo,
                 toast: '#modalTest'
               }, {
                 break: 'true'

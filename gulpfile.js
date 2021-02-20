@@ -410,10 +410,54 @@ function imageMinify () {
     .pipe(gulp.dest('dist/media/'))
 }
 
-function testSnippet (cb) {
+function snippetMacrosString (shortName, fullName, varName) {
+  var str = '\t"🍪' + shortName + '": {\n' +
+    '\t\t"scope": "nunjucks",\n' +
+    '\t\t"prefix": [\n' +
+    '\t\t\t"' + fullName + '",\n' +
+    '\t\t\t"' + shortName + '"\n' +
+    '\t\t],\n' +
+    '\t\t"body": [\n' +
+    '\t\t\t"{{ ' + fullName + '(${1}) }}"\n' +
+    '\t\t],\n' +
+    '\t\t"description": "Nunjucks ' + fullName + '"\n' +
+    '\t},\n';
+  if (varName) {
+    str += '\t"🍺' + shortName + ' varibles": {\n' +
+      '\t\t"scope": "nunjucks",\n' +
+      '\t\t"prefix": [\n' +
+      '\t\t\t"' + fullName + '.var",\n' +
+      '\t\t\t"' + shortName + '.var"\n' +
+      '\t\t],\n' +
+      '\t\t"body": [\n' +
+      '\t\t\t"${1|' + varName + '|}"\n' +
+      '\t\t],\n' +
+      '\t\t"description": "Nunjucks ' + fullName + ' varibles"\n' +
+      '\t},\n';
+  }
+
+  return str;
+}
+
+function snippetComponentString (fullName, content) {
+  var str = '\t"🍤' + fullName + '": {\n' +
+    '\t\t"scope": "nunjucks",\n' +
+    '\t\t"prefix": [\n' +
+    '\t\t\t"' + fullName + '"\n' +
+    '\t\t],\n' +
+    '\t\t"body": [\n' +
+    '\t\t\t' + content + '\n' +
+    '\t\t],\n' +
+    '\t\t"description": "Nunjucks ' + fullName + '"\n' +
+    '\t},\n';
+  return str;
+}
+
+function snippetMacros () {
   var macros = [];
   var contentFile;
   var importNameMap = {};
+  var snippetStr = '';
   var files = glob.sync('./src/_imports/macros/**/*.njk');
   var baseFile = fs.readFileSync('./src/_imports/based/_based.njk', 'utf8');
   importName = baseFile.match(/(?<={% import ")(.*)(?=" as)/g);
@@ -433,10 +477,50 @@ function testSnippet (cb) {
   macros = macros.map(str => ({
     name: path.parse(str.match(/[^(]*/g)[0].trim()).ext.replace('.', ''),
     fullName: str.match(/[^(]*/g)[0].trim(),
-    varName: str.trim().match(/(?<=\()(.*)(?=\))/g)[0].replace(/, /g,',').replace(/ ,/g,',')
+    varName: str.trim().match(/(?<=\()(.*)(?=\))/g)[0].replace(/, /g, ',').replace(/ ,/g, ',').replace(/"/g, '\\"')
   }));
-  console.log(macros)
-  cb()
+  macros.forEach(element => {
+    snippetStr += snippetMacrosString(element.name, element.fullName, element.varName)
+  });
+  return snippetStr = '//generated-snippet\n' + snippetStr + '\t//end-generated-snippet'
+}
+
+function snippetComponent () {
+  var file = fs.readFileSync('./src/pages/components.njk', 'utf8');
+  var snippetStr = '';
+  var contentStr
+  file = file.match(/({# snippet)([\S\s]*?)({# endSnippet #})/g)
+  file = file.map(value => {
+    var rObj = {};
+    rObj['name'] = value.match(/(?<={# snippet)(.*)(?=#})/g)[0].trim();
+    rObj['content'] = '';
+    var content = value.match(/(?<=#})([\S\s]*?)(?={#)/g)[0].replace("extendAttr = 'required',", '').trim().replace(/"/g, '\\"');
+    content = content.split(/\r?\n/);
+    content.forEach((element, index) => {
+      var str = '"' + element.trim() + '",';
+      if (index != 0) {
+        str = "\t\t\t" + str
+      }
+      if (index != content.length - 1) {
+        str += '\n'
+      }
+      rObj['content'] += str
+    });
+    return rObj;
+  });
+  file.forEach(element => {
+    snippetStr += snippetComponentString(element.name, element.content)
+  });
+  return snippetStr = '//component-snippet\n' + snippetStr + '\t//end-component-snippet'
+}
+
+function snippet () {
+  var snippetMacrosStr = snippetMacros();
+  var snippetComponentStr = snippetComponent();
+  return gulp.src(['./.vscode/njk-snippet.code-snippets'])
+    .pipe(replace(/(\/\/generated-snippet)([\S\s]*?)(\/\/end-generated-snippet)/, snippetMacrosStr))
+    .pipe(replace(/(\/\/component-snippet)([\S\s]*?)(\/\/end-component-snippet)/, snippetComponentStr))
+    .pipe(gulp.dest('./.vscode/'));
 }
 
 function iconLink () {
@@ -737,7 +821,7 @@ function purge () {
   return gulp.src('dist/**/*.css')
     .pipe(purgecss({
       content: ['dist/**/*.{html,js,xml}'],
-      whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /d-block/, /col/, /select2/, /cr-vp-circle/, /swiper/, /noUi/]
+      whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /d-block/, /col/, /select2/, /cr-vp-circle/, /swiper/, /noUi/, /medium-zoom/]
     }))
     .pipe(gulp.dest('dist'))
 }
@@ -802,6 +886,7 @@ function watch () {
   gulp.watch('src/fonts/**/*', fontSrc)
   gulp.watch('src/custom/**/*.css', customCss)
   gulp.watch(['src/**/*.{html,njk}', '!src/dev-only/**/*.njk'], nunjucks)
+  gulp.watch(['src/_imports/macros/**/*.{html,njk}', 'src/pages/components.njk'], snippet);
   gulp.watch('src/_imports/**/*.{html,njk}', nunjucksForce);
   gulp.watch(['src/media/**/*', '!./src/media/icons-color/**/*']).on('unlink', function (path) {
     del(path.replace('src\\', 'dist\\'))
@@ -874,14 +959,14 @@ exports.cleanIconColor = cleanIconColor;
 exports.iconLink = iconLink;
 exports.devOnly = devOnly;
 exports.nunjucksDev = nunjucksDev;
-exports.testSnippet = testSnippet;
+exports.snippet = snippet;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, theme, parallel(series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, iconLink, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, theme, parallel(snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, iconLink, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
 
-exports.prod = parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor)
+exports.prod = parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor)
 
-exports.deploy = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
+exports.deploy = series(promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(snippet, series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
 
-exports.deployAll = series(promptMes, parallel(series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deployAll = series(promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
