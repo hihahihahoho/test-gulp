@@ -95,6 +95,12 @@
       <form class="from-section form-vertical pb30">
         <div class="row row-20">
           <div class="col-lg-3 col-md-4 col-sm-6">
+            {# snippet inputSearch #}
+            {{ form.input('Input search',  iconLeft = globalsVar.iconDefault.inputSearch) }}
+            {# endSnippet #}
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+
             {# snippet inputIconRight #}
             {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = globalsVar.iconDemo) }}
             {# endSnippet #}

@@ -3,57 +3,60 @@
   {% macro mediaInner(files, id) %}
     {% for i in files %}
       {% if i['type'] == 'file' %}
-          {% set iconLink = i['path'] | replace('icons-color/', 'icons-color/default/') %}
-          <li class="">
-            <label class="ic-wrap-label">
-              <input type="radio" class="hidden icon-item searchMedia {{id}}" name="searchItem" value="{{ iconLink }}">
-              <div class="ic-wrap">
-                <div class="name hidden">{{ i['name'] }}</div>
-                <div class="link hidden">{{ iconLink }}</div>
-                <div class="size hidden">{{ i['size'] }}</div>
-                <div class="ic-inner">
-                  <img src="{{ iconLink }}" alt="" width="{{ width }}">
-                </div>
+        {% set iconLink = i['path'] | replace('icons-color/', 'icons-color/default/') %}
+        <li class="">
+          <label class="ic-wrap-label">
+            <input type="radio" class="hidden icon-item searchMedia {{id}}" name="searchItem" value="{{ iconLink }}">
+            <div class="ic-wrap">
+              <div class="name hidden">{{ i['name'] }}</div>
+              <div class="link hidden">{{ iconLink }}</div>
+              <div class="size hidden">{{ i['size'] }}</div>
+              <div class="ic-inner">
+                <img src="{{ iconLink }}" alt="" width="{{ width }}">
               </div>
-            </label>
-          </li>
-        {% else %}
-          {{ mediaInner(i['children'], id) }}
-        {% endif %}
+            </div>
+          </label>
+        </li>
+      {% else %}
+        {{ mediaInner(i['children'], id) }}
+      {% endif %}
     {% endfor %}
   {% endmacro %}
 </ul>
 
 {% macro media(files, title, width, id) %}
-  <div class="search-section">
+  <div class="search-section" id="section{{ id }}">
     <h2>{{ title }}</h2>
     <div class="search-section-inner">
       {% for item in files %}
-        <div class="search-section-section" id="listSearch{{ id }}-{{loop.index}}">
-          <h3>{{ item['name'] | capitalize }}</h3>
-          <ul class="list">
-            {% for item2 in item['children'] %}
-              {% if item2['type'] == 'file' %}
-                {% set iconLink = item2['path'] | replace('icons-color/', 'icons-color/default/') %}
-                <li class="">
-                  <label class="ic-wrap-label">
-                    <input type="radio" class="hidden icon-item searchMedia {{id}}" name="searchItem" value="{{ iconLink }}">
-                    <div class="ic-wrap">
-                      <div class="name hidden">{{ item2['name'] }}</div>
-                      <div class="link hidden">{{ iconLink }}</div>
-                      <div class="size hidden">{{ item2['size'] }}</div>
-                      <div class="ic-inner">
-                        <img src="{{ iconLink }}" alt="" width="{{ width }}">
+        {% if item['name'] == 'icons' %}
+        {% else %}
+          <div class="search-section-section" id="listSearch{{ id }}-{{loop.index}}">
+            <h3>{{ item['name'] | capitalize }}</h3>
+            <ul class="list">
+              {% for item2 in item['children'] %}
+                {% if item2['type'] == 'file' %}
+                  {% set iconLink = item2['path'] | replace('icons-color/', 'icons-color/default/') %}
+                  <li class="">
+                    <label class="ic-wrap-label">
+                      <input type="radio" class="hidden icon-item searchMedia {{id}}" name="searchItem" value="{{ iconLink }}">
+                      <div class="ic-wrap">
+                        <div class="name hidden">{{ item2['name'] }}</div>
+                        <div class="link hidden">{{ iconLink }}</div>
+                        <div class="size hidden">{{ item2['size'] }}</div>
+                        <div class="ic-inner">
+                          <img src="{{ iconLink }}" alt="" width="{{ width }}">
+                        </div>
                       </div>
-                    </div>
-                  </label>
-                </li>
-              {% else %}
-                {{ mediaInner(item2['children'], id) }}
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
+                    </label>
+                  </li>
+                {% else %}
+                  {{ mediaInner(item2['children'], id) }}
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -95,9 +98,45 @@
   {% endmacro %}
 </ul>
 
+<ul>
+  {% macro loopText() %}
+    {% for key, item in globalsVarColor.textName[0] %}
+      <li class="">
+        <label class="ic-wrap-label">
+          <input type="radio" class="hidden icon-item searchText" name="searchItem" value="text-{{key}}">
+          <div class="ic-wrap">
+            <div class="size hidden">{{ item['font-size'] }}</div>
+            <div class="name hidden">{{ key }}</div>
+            <div class="weight hidden">{{ item['font-weight'] }}</div>
+            <div class="line-height hidden">{{ item['line-height'] }}</div>
+            <div class="ic-inner">
+              <div>
+                <b>{{ key }}</b>
+                <br>
+                {{ item['font-size'] }}
+              </div>
+            </div>
+          </div>
+        </label>
+      </li>
+    {% endfor %}
+  {% endmacro %}
+</ul>
+
 {% block searchAdd %}{% endblock %}
 
 {% block main %}
+  <div class="search-section" id="sectionText">
+    <h2>Text</h2>
+    <div class="search-section-inner">
+      <div class="search-section-section" id="listSearchText">
+        <ul class="list">
+          {{ loopText() }}
+        </ul>
+      </div>
+    </div>
+  </div>
+
   {% set linkIconColor = globalsVarImg.linkIconColor[0]['children'] %}
   {% set linkIcon = '' %}
   {% for item in globalsVarImg.linkMedia[0]['children'] %}
@@ -114,7 +153,7 @@
 
   {{ media(linkMedia, 'Images', 'auto', 'Image') }}
 
-  <div class="search-section">
+  <div class="search-section" id="sectionColor">
     <h2>Color</h2>
     <div class="search-section-inner">
       <div class="search-section-section" id="listSearchColor1">

@@ -499,6 +499,16 @@
 	//end-generated-snippet
 
   //component-snippet
+	"🍤inputSearch": {
+		"scope": "nunjucks",
+		"prefix": [
+			"inputSearch"
+		],
+		"body": [
+			"{{ form.input('Input search',  iconLeft = globalsVar.iconDefault.inputSearch) }}",
+		],
+		"description": "Nunjucks inputSearch"
+	},
 	"🍤inputIconRight": {
 		"scope": "nunjucks",
 		"prefix": [

@@ -9,14 +9,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dev</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.2.7/tippy.min.css"/>
+    <link rel="stylesheet" href="dev-only/devSrc/libs/tippy/tippy.min.css">
     <link rel="stylesheet" href="dev-only/devSrc/devCss.css">
   </head>
   <body>
     <div id="listWrap" class="list-wrap">
-      <div class="search-wrap">
+      <div class="copy-console-wrap">
         <div id="copyConsole"></div>
-        <div class="row row-10">
+      </div>
+      <div class="search-wrap">
+        <input type="checkbox" class="hidden" id="sectionSelectToggle">
+        <div class="row row-10 align-items-center">
           <div class="col">
             <div class="search-inner">
               <input class="search" id="search" type="text" placeholder="Search...">
@@ -24,8 +27,34 @@
             </div>
           </div>
           <div class="col-auto">
-            {% block searchAdd %}{% endblock %}
+            <label for="sectionSelectToggle"></label>
           </div>
+        </div>
+        <div class="lang">
+          <label class="lang-item">
+            <input type="radio" name="asset" value="sectionAll" checked="checked">
+            <div class="lang-inner icAllAsset" data-tippy-content="All"></div>
+          </label>
+          <label class="lang-item">
+            <input type="radio" name="asset" value="sectionText">
+            <div class="lang-inner icTextAsset" data-tippy-content="Text"></div>
+          </label>
+          <label class="lang-item">
+            <input type="radio" name="asset" value="sectionIconColor">
+            <div class="lang-inner icIconColorAsset" data-tippy-content="Icon Color"></div>
+          </label>
+          <label class="lang-item">
+            <input type="radio" name="asset" value="sectionIcon">
+            <div class="lang-inner icIcon" data-tippy-content="Icons"></div>
+          </label>
+          <label class="lang-item">
+            <input type="radio" name="asset" value="sectionImage">
+            <div class="lang-inner icImage" data-tippy-content="Images"></div>
+          </label>
+          <label class="lang-item">
+            <input type="radio" name="asset" value="sectionColor">
+            <div class="lang-inner icColorAsset" data-tippy-content="Color"></div>
+          </label>
         </div>
       </div>
       <div class="list-wrap-inner">
@@ -53,7 +82,7 @@
           </div>
           <div class="btn-group">
             <label class="btn-input btn-css btn-html" data-clipboard-text="">
-              <input type="radio" class="hidden copyBtn" name="imageBtn" id="" value="copyVaribles" checked>
+              <input type="radio" class="hidden copyBtn" name="imageBtn" id="" value="copyVaribles" checked="checked">
               <div class="btn-input-inner">
                 Link
               </div>
@@ -78,15 +107,15 @@
           <div class="btn file-name" data-clipboard-text=""></div>
           <div class="lang">
             <label class="lang-item">
-              <input type="radio" data-clipboard-text="" name="langSelect" id="langCSS" checked="checked" class="css">
+              <input type="radio" data-clipboard-text="" name="langColorSelect" checked="checked" class="css langSelect langCSS">
               <div class="lang-inner lang-inner-css" data-tippy-content="CSS"></div>
             </label>
             <label class="lang-item">
-              <input type="radio" data-clipboard-text="" name="langSelect" id="langScss" class="css">
+              <input type="radio" data-clipboard-text="" name="langColorSelect" class="css langSelect langScss">
               <div class="lang-inner lang-inner-scss" data-tippy-content="SCSS"></div>
             </label>
             <label class="lang-item">
-              <input type="radio" data-clipboard-text="" name="langSelect" id="langHTML" class="html">
+              <input type="radio" data-clipboard-text="" name="langColorSelect" class="html langSelect langHTML">
               <div class="lang-inner lang-inner-html" data-tippy-content="HTML"></div>
             </label>
           </div>
@@ -129,15 +158,50 @@
             </label>
           </div>
         </div>
+        <div class="info-group text-info-group hidden">
+          <div class="img-holder"></div>
+          <div class="btn font-size-name" data-clipboard-text=""></div>
+          <div class="btn weight-name" data-clipboard-text=""></div>
+          <div class="btn line-height-name" data-clipboard-text=""></div>
+          <div class="lang">
+            <label class="lang-item">
+              <input type="radio" data-clipboard-text="" name="langTextSelect" checked="checked" class="css langSelect langCSS">
+              <div class="lang-inner lang-inner-css" data-tippy-content="CSS"></div>
+            </label>
+            <label class="lang-item">
+              <input type="radio" data-clipboard-text="" name="langTextSelect" class="css langSelect langScss">
+              <div class="lang-inner lang-inner-scss" data-tippy-content="SCSS"></div>
+            </label>
+            <label class="lang-item">
+              <input type="radio" data-clipboard-text="" name="langTextSelect" class="html langSelect langHTML">
+              <div class="lang-inner lang-inner-html" data-tippy-content="HTML"></div>
+            </label>
+          </div>
+          <div class="btn-group">
+            <label class="btn-input btn-css" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="textBtn" id="" checked="checked" value="copyVaribles;">
+              <div class="btn-input-inner">
+                Var
+              </div>
+            </label>
+            <label class="btn-input btn-css btn-html" data-clipboard-text="">
+              <input type="radio" class="hidden copyBtn" name="textBtn" id="" value="font-size: copyVaribles;">
+              <div class="btn-input-inner">
+                Font size
+              </div>
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   </body>
 </html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js"></script>
+<script src="dev-only/devSrc/libs/jquery/jquery.min.js"></script>
+<script src="dev-only/devSrc/libs/clipboardjs/clipboard.min.js"></script>
+<script src="dev-only/devSrc/libs/listjs/list.min.js"></script>
+<script src="dev-only/devSrc/libs/tippy/popper.min.js"></script>
+<script src="dev-only/devSrc/libs/tippy/tippy-bundle.umd.min.js"></script>
+<script src="dev-only/devSrc/libs/mediumzoom/medium-zoom.min.js"></script>
+<script src="dev-only/devSrc/libs/svg-inline/jquery-svg-to-inline.min.js"></script>
 <script src="dev-only/devSrc/devJs.js"></script>
 {% block script %}{% endblock %}
