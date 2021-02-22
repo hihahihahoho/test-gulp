@@ -352,7 +352,7 @@ function style () {
 //     )
 // }
 function cleanMedia () {
-  return dircompare.compare('./src/media/', './dist/media/')
+  return dircompare.compare('./src/media/', './dist/media/', {ignoreCase : true})
     .then(res => res.diffSet.forEach(dif => {
       if (!dif.relativePath.includes('icons-color')) {
         dif.type1 == 'missing' ? del(dif.path2.replace(/(\\)/, '') + '/' + dif.name2) : ''
@@ -415,6 +415,9 @@ function imageMinify () {
       svgo: false,
       concurrent: 10,
       quiet: true // defaults to false
+    })))
+    .pipe(cache(rename(function (path) {
+      path.basename = path.basename.toLowerCase();
     })))
     .pipe(replace('vector-effect="non-scaling-stroke"', ''))
     .pipe(replace('stroke-width="1.5"', 'stroke-width="1.5" vector-effect="non-scaling-stroke"'))
@@ -540,12 +543,12 @@ function iconLink () {
   themeIcon = '{# icon-color-njk #}\n{% set colorIconName = [\n' + JSON.stringify(themeIcon, null, '\t') + '\n] %}\n{# end-icon-color-njk #}'
 
   var mediaTree = dirTree("dist/media/", { exclude: /icons-color/, normalizePath: true });
-  mediaTree = JSON.stringify(mediaTree, null, '\t').replace(/dist\//g, '../');
+  mediaTree = JSON.stringify(mediaTree, null, '\t').replace(/dist\//g, '');
   var njkMediaVarName = 'linkMedia'
   var njkMediaTree = '{# link-media-njk #}\n{% set ' + njkMediaVarName + ' = [\n' + mediaTree + '\n] %}\n{# end-link-media-njk #}'
 
   var iconColorTree = dirTree("src/media/icons-color/", { normalizePath: true });
-  iconColorTree = JSON.stringify(iconColorTree, null, '\t').replace(/src\//g, '../');
+  iconColorTree = JSON.stringify(iconColorTree, null, '\t').replace(/src\//g, '');
   var njkIconColorVarName = 'linkIconColor'
   var njkIconColorTree = '{# link-icon-color-njk #}\n{% set ' + njkIconColorVarName + ' = [\n' + iconColorTree + '\n] %}\n{# end-link-icon-color-njk #}'
 
