@@ -31,31 +31,33 @@
       {% for item in files %}
         {% if item['name'] == 'icons' %}
         {% else %}
-          <div class="search-section-section" id="listSearch{{ id }}-{{loop.index}}">
-            <h3>{{ item['name'] | capitalize }}</h3>
-            <ul class="list">
-              {% for item2 in item['children'] %}
-                {% if item2['type'] == 'file' %}
-                  {% set iconLink = item2['path'] | replace('icons-color/', 'icons-color/default/') %}
-                  <li class="">
-                    <label class="ic-wrap-label">
-                      <input type="radio" class="hidden icon-item searchMedia {{id}}" name="searchItem" value="{{ iconLink }}">
-                      <div class="ic-wrap">
-                        <div class="name hidden">{{ item2['name'] }}</div>
-                        <div class="link hidden">{{ iconLink }}</div>
-                        <div class="size hidden">{{ item2['size'] }}</div>
-                        <div class="ic-inner">
-                          <img src="{{ iconLink }}" alt="" width="{{ width }}">
+          {% if item['children'] | length %}
+            <div class="search-section-section" id="listSearch{{ id }}-{{loop.index}}">
+              <h3>{{ item['name'] | capitalize }}</h3>
+              <ul class="list">
+                {% for item2 in item['children'] %}
+                  {% if item2['type'] == 'file' %}
+                    {% set iconLink = item2['path'] | replace('icons-color/', 'icons-color/default/') | lower %}
+                    <li class="">
+                      <label class="ic-wrap-label">
+                        <input type="radio" class="hidden icon-item searchMedia {{id}}" name="searchItem" value="{{ iconLink }}">
+                        <div class="ic-wrap">
+                          <div class="name hidden">{{ item2['name'] }}</div>
+                          <div class="link hidden">{{ iconLink }}</div>
+                          <div class="size hidden">{{ item2['size'] }}</div>
+                          <div class="ic-inner">
+                            <img src="{{ iconLink }}" alt="" width="{{ width }}">
+                          </div>
                         </div>
-                      </div>
-                    </label>
-                  </li>
-                {% else %}
-                  {{ mediaInner(item2['children'], id) }}
-                {% endif %}
-              {% endfor %}
-            </ul>
-          </div>
+                      </label>
+                    </li>
+                  {% else %}
+                    {{ mediaInner(item2['children'], id) }}
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
         {% endif %}
       {% endfor %}
     </div>
@@ -72,7 +74,10 @@
       <li class="">
         <label class="ic-wrap-label">
           <input type="radio" class="hidden icon-item searchColor" name="searchItem" value="color-{{ keyNameText }}{{ key }}">
-          <div class="ic-wrap" style="background-color: {{ colorKeyText }}" data-tippy-content="{{keyNameTextName}}{{ key }}">
+          {% if colorKeyText == 'transparent' %}
+            {% set addClass = 'transparent' %}
+          {% endif %}
+          <div class="ic-wrap {{ addClass }}" style="background-color: {{ colorKeyText }}" data-tippy-content="{{keyNameTextName}}{{ key }}">
             <div class="color hidden">{{ colorKeyText }}</div>
             <div class="name hidden">{{keyNameTextName}}{{ key }}</div>
             <div class="name-full hidden">color-{{ keyNameText }}{{ key }}</div>
@@ -103,7 +108,7 @@
     {% for key, item in globalsVarColor.textName[0] %}
       <li class="">
         <label class="ic-wrap-label">
-          <input type="radio" class="hidden icon-item searchText" name="searchItem" value="text-{{key}}">
+          <input type="radio" class="hidden icon-item searchText" name="searchItem" value="fz-{{key}}">
           <div class="ic-wrap">
             <div class="size hidden">{{ item['font-size'] }}</div>
             <div class="name hidden">{{ key }}</div>

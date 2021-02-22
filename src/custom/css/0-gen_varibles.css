@@ -72,12 +72,12 @@
 	--color-shadowOp-warning: 0.3;
 	--color-shadowOp-success: 0.3;
 
-	--text-h1: 32px;
-	--text-h2: 24px;
-	--text-h3: 21px;
-	--text-h4: 18px;
-	--text-h5: 16px;
-	--text-h6: 12px;
-	--text-p: 14px;
+	--fz-h1: 32px;
+	--fz-h2: 24px;
+	--fz-h3: 21px;
+	--fz-h4: 18px;
+	--fz-h5: 16px;
+	--fz-h6: 12px;
+	--fz-p: 14px;
 }
 /*end-gtc-css*/

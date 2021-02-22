@@ -88,6 +88,30 @@ $map-text-align-breakpoint: (
   lg: 1200px,
 );
 
+@mixin modifiers-h-font-only($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-h-font-only-inner($value);
+      }
+    }
+  }
+}
+@mixin modifiers-h-font-only-inner($map) {
+  @each $key, $value in $map {
+    @if type-of($value) == "map" {
+      @include media("<=#{$key}px") {
+        @include modifiers-h-font-only-inner($value);
+      }
+    } @else {
+      @if $key == 'font-size' {
+        #{$key}: #{$value};
+      }
+    }
+  }
+}
+
+
 @mixin modifiers-text-align($map, $alignName, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
     &#{if($key != $base, #{$prefix}#{$key}, '')} {
@@ -268,6 +292,10 @@ $map-text-align-breakpoint: (
     @include modifiers($map-font-ic, "font-size");
   }
 }
+
+.fz {
+    @include modifiers-h-font-only($map-h-font);
+} 
 
 @at-root {
   @include modifiers-h-font($map-h-font);

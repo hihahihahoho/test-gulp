@@ -37,6 +37,9 @@ $map-bg-op-color-modify: (
 );
 
 $map-color-shadowOp: () !default;
+$map-color-active: () !default; 
+$map-color-hover: () !default; 
+$map-color-text: () !default; 
 
 @mixin modifiers-bg-op-color($map, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
