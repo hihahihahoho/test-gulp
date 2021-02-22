@@ -839,7 +839,7 @@ function htmlBeauty () {
 }
 
 function purge () {
-  return gulp.src('dist/**/*.css')
+  return gulp.src(['dist/**/*.css', '!dist/dev-only/**/*'])
     .pipe(purgecss({
       content: ['dist/**/*.{html,js,xml}'],
       whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /d-block/, /col/, /select2/, /cr-vp-circle/, /swiper/, /noUi/, /medium-zoom/]
@@ -848,7 +848,7 @@ function purge () {
 }
 
 function prefixCss () {
-  return gulp.src('dist/**/*.css')
+  return gulp.src(['dist/**/*.css', '!dist/dev-only/**/*'])
     .pipe(replace('/dist/', '../'))
     .pipe(autoprefixer({
       cascade: false
@@ -857,7 +857,7 @@ function prefixCss () {
 }
 
 function minifyCss () {
-  return gulp.src('dist/**/*.css')
+  return gulp.src(['dist/**/*.css', '!dist/dev-only/**/*'])
     .pipe(cleanCSS())
     .pipe(gulp.dest('dist'));
 }
