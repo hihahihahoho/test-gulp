@@ -319,9 +319,9 @@ function customCss () {
     .pipe(replace('/dist/', '../'))
     .pipe(concat('custom.bundles.css'))
     .pipe(postcss(postCssPlugins))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('./map'))
     .pipe(gulp.dest('./dist/css'))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream({match: '**/*.css'}));
 }
 
 function customJs () {
@@ -340,7 +340,7 @@ function style () {
     //3. where do i save the compiled css?
     .pipe(gulp.dest('./dist/css'))
     //4. stream changes to all browser changes
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream({match: '**/*.css'}));
 }
 
 // function findImages () {
@@ -623,7 +623,7 @@ var manageEnvironment = function (environment) {
 function devOnly () {
   return gulp.src(['src/dev-only/devSrc/**/*'])
     .pipe(gulp.dest('dist/dev-only/devSrc/'))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream({match: '**/*.css'}));
 }
 
 function nunjucksDev () {
@@ -994,7 +994,7 @@ exports.renameMedia = renameMedia;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, theme, parallel(snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, iconLink, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, theme, parallel(devOnly, snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, iconLink, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor)
 
