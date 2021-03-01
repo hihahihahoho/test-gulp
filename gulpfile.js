@@ -100,7 +100,7 @@ function genVarFilesFunc (srcPath, content) {
 }
 
 function genStatic () {
-  return gulp.src(['./dist/**/*','!./dist/dev-only'])
+  return gulp.src(['./dist/**/*','!./dist/dev-only{,/**}'])
     .pipe(gulp.dest('./static/'));
 }
 
