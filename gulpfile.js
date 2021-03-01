@@ -197,8 +197,8 @@ function browserifyJs (cb) {
 };
 
 function cleanVendorsJs (cb) {
-  del('dist/css/vendors/**', { force: true });
-  return del('dist/js/vendors/**', { force: true });
+  del('./dist/css/vendors/**', { force: true });
+  return del('./dist/js/vendors/**', { force: true });
 }
 
 function pluginsVendorsJS (cb) {
@@ -400,7 +400,7 @@ function media () {
     .pipe(rename(function (path) {
       path.basename = path.basename.toLowerCase();
     }))
-    .pipe(gulp.dest('dist/media/'))
+    .pipe(gulp.dest('./dist/media/'))
 }
 
 function imageMinify () {
@@ -421,7 +421,7 @@ function imageMinify () {
     })))
     .pipe(replace('vector-effect="non-scaling-stroke"', ''))
     .pipe(replace('stroke-width="1.5"', 'stroke-width="1.5" vector-effect="non-scaling-stroke"'))
-    .pipe(gulp.dest('dist/media/'))
+    .pipe(gulp.dest('./dist/media/'))
 }
 
 function snippetMacrosString (shortName, fullName, varName) {
@@ -542,7 +542,7 @@ function iconLink () {
   var themeIcon = require('./gulp-icons-color-config').themeIconColor;
   themeIcon = '{# icon-color-njk #}\n{% set colorIconName = [\n' + JSON.stringify(themeIcon, null, '\t') + '\n] %}\n{# end-icon-color-njk #}'
 
-  var mediaTree = dirTree("dist/media/", { exclude: /icons-color/, normalizePath: true });
+  var mediaTree = dirTree("./dist/media/", { exclude: /icons-color/, normalizePath: true });
   mediaTree = JSON.stringify(mediaTree, null, '\t').replace(/dist\//g, '');
   var njkMediaVarName = 'linkMedia'
   var njkMediaTree = '{# link-media-njk #}\n{% set ' + njkMediaVarName + ' = [\n' + mediaTree + '\n] %}\n{# end-link-media-njk #}'
@@ -622,7 +622,7 @@ var manageEnvironment = function (environment) {
 
 function devOnly () {
   return gulp.src(['src/dev-only/devSrc/**/*'])
-    .pipe(gulp.dest('dist/dev-only/devSrc/'))
+    .pipe(gulp.dest('./dist/dev-only/devSrc/'))
     .pipe(browserSync.stream({match: '**/*.css'}));
 }
 
@@ -648,7 +648,7 @@ function nunjucksDev () {
     .pipe(replace(' "', '"'))
     .pipe(replace('"/pages', '"pages'))
     .pipe(htmlbeautify(options))
-    .pipe(gulp.dest('dist/dev-only'));
+    .pipe(gulp.dest('./dist/dev-only'));
 }
 
 function nunjucks () {
@@ -674,7 +674,7 @@ function nunjucks () {
     .pipe(replace(' "', '"'))
     .pipe(replace('"/pages', '"pages'))
     .pipe(htmlbeautify(options))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('./dist'));
 }
 
 function nunjucksForce () {
@@ -699,7 +699,7 @@ function nunjucksForce () {
     .pipe(replace(' "', '"'))
     .pipe(replace('"/pages', '"pages'))
     .pipe(htmlbeautify(options))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('./dist'));
 }
 // test section
 // function favicon () {
@@ -723,7 +723,7 @@ function icon2font () {
       formats: ['ttf', 'eot', 'woff'],
       timestamp: runTimestamp,
     }))
-    .pipe(gulp.dest('dist/fonts/'));
+    .pipe(gulp.dest('./dist/fonts/'));
 }
 
 function icon2fontVcb () {
@@ -742,7 +742,7 @@ function icon2fontVcb () {
       fontHeight: 1001,
       centerHorizontally: true
     }))
-    .pipe(gulp.dest('dist/fonts-vcb/'));
+    .pipe(gulp.dest('./dist/fonts-vcb/'));
 }
 
 function fontSrc () {
@@ -790,7 +790,7 @@ function promptMes (cb) {
 }
 
 function gitAdd () {
-  return gulp.src('dist/**/*.css')
+  return gulp.src('./dist/**/*.css')
     .pipe(git.add({ args: '-A' }));
 }
 
@@ -833,31 +833,31 @@ function yarnInstall () {
 }
 
 function htmlBeauty () {
-  return gulp.src('dist/**/*.html')
+  return gulp.src('./dist/**/*.html')
     .pipe(htmlbeautify(options))
     .pipe(gulp.dest('./dist'))
 }
 
 function purge () {
-  return gulp.src(['dist/**/*.css', '!dist/dev-only/**/*'])
+  return gulp.src(['./dist/**/*.css', '!./dist/dev-only/**/*'])
     .pipe(purgecss({
-      content: ['dist/**/*.{html,js,xml}'],
+      content: ['./dist/**/*.{html,js,xml}'],
       whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /d-block/, /col/, /select2/, /cr-vp-circle/, /swiper/, /noUi/, /medium-zoom/]
     }))
     .pipe(gulp.dest('dist'))
 }
 
 function prefixCss () {
-  return gulp.src(['dist/**/*.css', '!dist/dev-only/**/*'])
+  return gulp.src(['./dist/**/*.css', '!./dist/dev-only/**/*'])
     .pipe(replace('/dist/', '../'))
     .pipe(autoprefixer({
       cascade: false
     }))
-    .pipe(gulp.dest('dist/'));
+    .pipe(gulp.dest('./dist/'));
 }
 
 function minifyCss () {
-  return gulp.src(['dist/**/*.css', '!dist/dev-only/**/*'])
+  return gulp.src(['./dist/**/*.css', '!./dist/dev-only/**/*'])
     .pipe(cleanCSS())
     .pipe(gulp.dest('dist'));
 }
@@ -927,9 +927,9 @@ function watch () {
   gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
     del(path.replace('src\\', 'dist\\').replace('.njk', '.html'))
   });
-  gulp.watch('dist/**/*.html').on('change', browserSync.reload);
-  gulp.watch('dist/js/**/*.js').on('change', browserSync.reload);
-  gulp.watch(['dist/dev-only/devSrc/**.js']).on('change', browserSync.reload);
+  gulp.watch('./dist/**/*.html').on('change', browserSync.reload);
+  gulp.watch('./dist/js/**/*.js').on('change', browserSync.reload);
+  gulp.watch(['./dist/dev-only/devSrc/**.js']).on('change', browserSync.reload);
 }
 
 function lwatch () {
@@ -944,8 +944,8 @@ function lwatch () {
   gulp.watch('src/custom/**/*.js', customJs)
   gulp.watch('src/custom/**/*.css', customCss)
   gulp.watch('src/**/*.{html,njk}', nunjucks)
-  gulp.watch('dist/**/*.html').on('change', browserSync.reload);
-  gulp.watch('dist/custom/js/**/*.js').on('change', browserSync.reload);
+  gulp.watch('./dist/**/*.html').on('change', browserSync.reload);
+  gulp.watch('./dist/custom/js/**/*.js').on('change', browserSync.reload);
 }
 
 function clearCache () {
