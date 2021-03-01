@@ -40,7 +40,7 @@ body {
 }
 
 .main-wrap {
-  min-height: calc(100vh - 81px);
+  min-height: calc(100vh - 1);
 }
 
 .main-wrap {
