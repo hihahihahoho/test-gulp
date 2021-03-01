@@ -1039,4 +1039,4 @@ exports.prod = parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), s
 
 exports.deploy = series(promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(snippet, series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
 
-exports.deployAll = series(genVarFiles, promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, iconLink, cleanMedia, cleanIconColor, prefixCss), genStatic, purge, minifyCss, parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deployAll = series(genVarFiles, promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), cleanMedia, prefixCss), genStatic, purge, minifyCss, parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
