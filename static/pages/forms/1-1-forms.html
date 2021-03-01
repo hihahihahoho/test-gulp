@@ -1,0 +1,3062 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="..\..\.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <title>Ultimate HTML -
+    Forms</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="css/vendors/bootstrap/bootstrap.bundles.css">
+  <!-- end bootstrap -->
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="css/vendors/swiper/swiper.bundles.css">
+  <!-- end bootstrap -->
+  <!-- select2 -->
+  <link rel="stylesheet" href="css/vendors/select2/select2.bundles.css">
+  <!-- end select2 -->
+  <!-- croppie -->
+  <link rel="stylesheet" href="css/vendors/croppie/croppie.bundles.css">
+  <!-- end croppie -->
+  <!-- css use for this page only -->
+  <!-- end css use for this page only -->
+  <!-- css use for this page only -->
+  <!-- end css use for this page only -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/custom.bundles.css">
+  <link rel="shortcut icon" type="text/html" href="media/favicon/favicon.png">
+</head>
+
+<body>
+  <input type="checkbox" id="sidebar-trigger" class="hidden">
+  <label for="sidebar-trigger" class="sidebar-overlay"></label>
+  <div class="sidebar-top">
+    <label class="ripple-100 sidebar-top__trigger legitRipple" for="sidebar-trigger">
+      <img width="20" src="media/icons-color/default/default/burger.svg" alt="">
+    </label>
+    <div class="sidebar-top__logo">
+      <img src="media/brands/logo.svg" alt="">
+    </div>
+  </div>
+  <div class="sidebar isolated-scroll" data-accordion-group="data-accordion-group">
+    <div class="sidebar__head">
+      <table class="table">
+        <tr>
+          <td class="sidebar__ic">
+            <div class="sidebar__head__ic">
+              <label class="ripple-100" for="sidebar-trigger">
+                <img width="20" src="media/icons-color/default/default/burger.svg" alt="">
+              </label>
+            </div>
+          </td>
+          <td>
+            <img src="media/brands/logo.svg" alt="">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="sidebar__title">Introduction</div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Landing page (comming soon)</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/index.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Initialization</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/components.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Components</div>
+      </a>
+    </div>
+    <div class="sidebar__title">Forms</div>
+    <div class="sidebar__list active">
+      <a class="sidebar__item" href="pages/forms/1-1-forms.html">
+        <div class="ic">
+          <img src="media/icons-color/primary/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Forms</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/forms/1-2-rnc.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Radio | Checkbox | Switch</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/forms/1-3-forms-range.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Range (NoUiSlider)</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/forms/1-4-uppy.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">File upload (Uppy)</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/forms/1-7-buttons.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Buttons</div>
+      </a>
+    </div>
+    <div class="sidebar__title">Tables</div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/tables/2-2-table.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Tables | Datatables</div>
+      </a>
+    </div>
+    <div class="sidebar__title">Bootstrap</div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/bootstrap/3-1-bs-modals.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Modals</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/bootstrap/3-2-bs-dropdown.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Dropdowns</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/bootstrap/3-3-bs-tab.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Tabs</div>
+      </a>
+    </div>
+    <div class="sidebar__title">Tabs</div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/5-1-tabs.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Material tabs</div>
+      </a>
+    </div>
+    <div class="sidebar__title">Accordion</div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/6-1-accordion-jquery.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Jquery Accordion</div>
+      </a>
+    </div>
+    <div class="sidebar__title">Carousels</div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/7-1-carousel-swiper.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Swiper</div>
+      </a>
+    </div>
+    <div class="sidebar__title">Images slider</div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/8-1-light-gallery.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Light gallery</div>
+      </a>
+    </div>
+    <div class="sidebar__title">Others</div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/9-1-sticky-sidebar.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Sticky sidebar</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/10-1-pallarax.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Pallarax</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/11-1-profiles.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Elelment components</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/11-2-lists.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Lists</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/11-3-cards.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Cards</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/11-4-tags.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Tags</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/11-5-icons.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Icons</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/11-6-social.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Social icons</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/11-7-box.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Box</div>
+      </a>
+    </div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/11-8-steps.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Steps</div>
+      </a>
+    </div>
+    <div class="sidebar__title">Layout</div>
+    <div class="sidebar__list">
+      <a class="sidebar__item" href="pages/12-1-footer.html">
+        <div class="ic">
+          <img src="media/icons-color/default/default/plannet.svg" alt="">
+        </div>
+        <div class="txt">Footer</div>
+      </a>
+    </div>
+    <div class="sidebar__list" data-accordion="data-accordion">
+      <div class="sidebar__item" data-control="data-control">
+        <div class="ic"><img src="media/icons-color/default/default/plannet.svg" alt=""></div>
+        <div class="txt">Menu Test Sub</div>
+        <div class="ic-arrow"></div>
+      </div>
+      <div data-content="data-content" class="sidebar__sub">
+        <div class="sidebar__sub__wrap">
+          <div class="sidebar__list" data-accordion="data-accordion">
+            <div class="sidebar__item" data-control="data-control">
+              <div class="ic ic-blank"></div>
+              <div class="txt">Menu sub 1</div>
+              <div class="ic-arrow"></div>
+            </div>
+            <div data-content="data-content" class="sidebar__sub">
+              <div class="sidebar__sub__wrap">
+                <div class="sidebar__list">
+                  <a class="sidebar__item" href="pages/menu-test-sub/menu-test-sub-1/test-1.html">
+                    <div class="ic ic-blank"></div>
+                    <div class="txt">Menu sub 1 - 1</div>
+                  </a>
+                </div>
+                <div class="sidebar__list">
+                  <a class="sidebar__item" href="pages/">
+                    <div class="ic ic-blank"></div>
+                    <div class="txt">Menu sub 1 - 2</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar__list">
+            <a class="sidebar__item" href="pages/">
+              <div class="ic ic-blank"></div>
+              <div class="txt">Menu sub 2</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main--with-sidebar">
+    <div class="main-wrap">
+      <div class="main-inner main-inner-page">
+        <div class="container">
+          <div class="title-section">
+            <div class="h1 b pv30">Forms</div>
+          </div>
+          <div class="box">
+            <div class="box__body pb-0">
+              <h5 class="pb30">Input
+                border</h5>
+              <form class="from-section form-vertical pb30">
+                <div class="row row-20">
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-border input-label-change input-ic-sm input-has-clear input-ic-right" autocorrect="off" placeholder="" required value="test">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon right</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-border input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-border input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-border input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left text</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              Not required
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-border input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left button</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-sm">
+                          <!-- button.btn -->
+                          <button class="ubtn ubg-line-primary ubtn-size-xs-2 ubg-hover ubg-active">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner justify-content-center">
+                                <span class="ubtn-text">Button</span>
+                              </div>
+                            </div>
+                          </button>
+                          <!-- end button.btn -->
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <input type="password" class="input input-size-sm input-border input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input password</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic">
+                              <!-- form.eyeMacro -->
+                              <div class="eye-wrap">
+                                <label class="eye">
+                                  <input type="checkbox" class="hidden">
+                                  <div class="eye-slash"></div>
+                                </label>
+                              </div>
+                              <!-- end form.eyeMacro -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border input-extend-outside">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-border input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input content outside</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-sm">
+                          <a class="link">Demo link</a>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <div class="input-group">
+                          <select name="" class="select-normal input input-size-sm input-ic-sm input-border input-label-change" header-text="Select normal" data-placeholder="Select your option" required>
+                            <option value="" disabled="disabled" selected="selected">Select your option</option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select normal</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-size-sm input-ic-sm input-border input-label-change" header-text="Select-2" data-placeholder="" required>
+                            <option value=""></option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-sm input-border input-label-change" header-text="Select-2 Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Image</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-sm input-border input-label-change" header-text="Select-2 Custom Text" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Text</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-sm input-border input-label-change" header-text="Select-2 Multiple" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Multiple</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <input type="" class="light-pick input input-border input-label-change input-size-sm input-ic-sm" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker single</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <input type="" class="light-pick-range input input-border input-label-change input-size-sm input-ic-sm" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker range</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.file -->
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <input type="file" class="input input-size-sm input-border input-label-change input-ic-sm input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-size-sm input-border input-label-change input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-size-xs-1 ubg-hover ubg-active">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner justify-content-center">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                    <!-- forms.file -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-border input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Default</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-border">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-border input-label-change input-ic-sm input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Autosize</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20 justify-content-center">
+                  <div class="col-sm-4">
+                    <!-- button.btn -->
+                    <button class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner justify-content-center">
+                          <span class="ubtn-text">Validate</span>
+                        </div>
+                      </div>
+                    </button>
+                    <!-- end button.btn -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__body pb-0">
+              <h5 class="pb30">Input
+                clean</h5>
+              <form class="from-section form-vertical pb30">
+                <div class="row row-20">
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-clean input-label-change input-ic-sm input-has-clear input-ic-right" autocorrect="off" placeholder="" required value="test">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon right</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-clean input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-clean input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-clean input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left text</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              Not required
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-clean input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left button</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-sm">
+                          <!-- button.btn -->
+                          <button class="ubtn ubg-line-primary ubtn-size-xs-2 ubg-hover ubg-active">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner justify-content-center">
+                                <span class="ubtn-text">Button</span>
+                              </div>
+                            </div>
+                          </button>
+                          <!-- end button.btn -->
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <input type="password" class="input input-size-sm input-clean input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input password</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic">
+                              <!-- form.eyeMacro -->
+                              <div class="eye-wrap">
+                                <label class="eye">
+                                  <input type="checkbox" class="hidden">
+                                  <div class="eye-slash"></div>
+                                </label>
+                              </div>
+                              <!-- end form.eyeMacro -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean input-extend-outside">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-clean input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input content outside</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-sm">
+                          <a class="link">Demo link</a>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <div class="input-group">
+                          <select name="" class="select-normal input input-size-sm input-ic-sm input-clean input-label-change" header-text="Select normal" data-placeholder="Select your option" required>
+                            <option value="" disabled="disabled" selected="selected">Select your option</option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select normal</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-size-sm input-ic-sm input-clean input-label-change" header-text="Select-2" data-placeholder="" required>
+                            <option value=""></option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-sm input-clean input-label-change" header-text="Select-2 Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Image</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-sm input-clean input-label-change" header-text="Select-2 Custom Text" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Text</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-sm input-clean input-label-change" header-text="Select-2 Multiple" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Multiple</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <input type="" class="light-pick input input-clean input-label-change input-size-sm input-ic-sm" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker single</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <input type="" class="light-pick-range input input-clean input-label-change input-size-sm input-ic-sm" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker range</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.file -->
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <input type="file" class="input input-size-sm input-clean input-label-change input-ic-sm input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-size-sm input-clean input-label-change input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-size-xs-1 ubg-hover ubg-active">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner justify-content-center">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                    <!-- forms.file -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-clean input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Default</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-clean">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-clean input-label-change input-ic-sm input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Autosize</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20 justify-content-center">
+                  <div class="col-sm-4">
+                    <!-- button.btn -->
+                    <button class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner justify-content-center">
+                          <span class="ubtn-text">Validate</span>
+                        </div>
+                      </div>
+                    </button>
+                    <!-- end button.btn -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__body pb-0">
+              <h5 class="pb30">Input
+                line</h5>
+              <form class="from-section form-vertical pb30">
+                <div class="row row-20">
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-has-clear input-ic-right" autocorrect="off" placeholder="" required value="test">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon right</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left text</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              Not required
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left button</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-xs-1">
+                          <!-- button.btn -->
+                          <button class="ubtn ubg-line-primary ubtn-size-xs-2 ubg-hover ubg-active">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner justify-content-center">
+                                <span class="ubtn-text">Button</span>
+                              </div>
+                            </div>
+                          </button>
+                          <!-- end button.btn -->
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <input type="password" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input password</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic">
+                              <!-- form.eyeMacro -->
+                              <div class="eye-wrap">
+                                <label class="eye">
+                                  <input type="checkbox" class="hidden">
+                                  <div class="eye-slash"></div>
+                                </label>
+                              </div>
+                              <!-- end form.eyeMacro -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line input-extend-outside">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input content outside</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-xs-1">
+                          <a class="link">Demo link</a>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <div class="input-group">
+                          <select name="" class="select-normal input input-size-sm input-ic-xs-1 input-line input-label-change" header-text="Select normal" data-placeholder="Select your option" required>
+                            <option value="" disabled="disabled" selected="selected">Select your option</option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select normal</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-size-sm input-ic-xs-1 input-line input-label-change" header-text="Select-2" data-placeholder="" required>
+                            <option value=""></option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-xs-1 input-line input-label-change" header-text="Select-2 Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Image</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-xs-1 input-line input-label-change" header-text="Select-2 Custom Text" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Text</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-xs-1 input-line input-label-change" header-text="Select-2 Multiple" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Multiple</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <input type="" class="light-pick input input-line input-label-change input-size-sm input-ic-xs-1" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker single</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <input type="" class="light-pick-range input input-line input-label-change input-size-sm input-ic-xs-1" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker range</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.file -->
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <input type="file" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-size-sm input-line input-label-change input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-size-xs-1 ubg-hover ubg-active">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner justify-content-center">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                    <!-- forms.file -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Default</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-line">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-line input-label-change input-ic-xs-1 input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Autosize</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20 justify-content-center">
+                  <div class="col-sm-4">
+                    <!-- button.btn -->
+                    <button class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner justify-content-center">
+                          <span class="ubtn-text">Validate</span>
+                        </div>
+                      </div>
+                    </button>
+                    <!-- end button.btn -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__body pb-0">
+              <h5 class="pb30">Input
+                default</h5>
+              <form class="from-section form-vertical pb30">
+                <div class="row row-20">
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-default input-label-change input-ic-default input-has-clear input-ic-right" autocorrect="off" placeholder="" required value="test">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon right</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-default input-label-change input-ic-default input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-default input-label-change input-ic-default input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-default input-label-change input-ic-default input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left text</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              Not required
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-default input-label-change input-ic-default input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left button</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-default">
+                          <!-- button.btn -->
+                          <button class="ubtn ubg-line-primary ubtn-size-xs-2 ubg-hover ubg-active">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner justify-content-center">
+                                <span class="ubtn-text">Button</span>
+                              </div>
+                            </div>
+                          </button>
+                          <!-- end button.btn -->
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <input type="password" class="input input-size-sm input-default input-label-change input-ic-default input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input password</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic">
+                              <!-- form.eyeMacro -->
+                              <div class="eye-wrap">
+                                <label class="eye">
+                                  <input type="checkbox" class="hidden">
+                                  <div class="eye-slash"></div>
+                                </label>
+                              </div>
+                              <!-- end form.eyeMacro -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default input-extend-outside">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-default input-label-change input-ic-default input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input content outside</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-default">
+                          <a class="link">Demo link</a>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <div class="input-group">
+                          <select name="" class="select-normal input input-size-sm input-ic-default input-default input-label-change" header-text="Select normal" data-placeholder="Select your option" required>
+                            <option value="" disabled="disabled" selected="selected">Select your option</option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select normal</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-size-sm input-ic-default input-default input-label-change" header-text="Select-2" data-placeholder="" required>
+                            <option value=""></option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-default input-default input-label-change" header-text="Select-2 Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Image</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-default input-default input-label-change" header-text="Select-2 Custom Text" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Text</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-default input-default input-label-change" header-text="Select-2 Multiple" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Multiple</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <input type="" class="light-pick input input-default input-label-change input-size-sm input-ic-default" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker single</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <input type="" class="light-pick-range input input-default input-label-change input-size-sm input-ic-default" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker range</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.file -->
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <input type="file" class="input input-size-sm input-default input-label-change input-ic-default input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-size-sm input-default input-label-change input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-size-xs-1 ubg-hover ubg-active">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner justify-content-center">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                    <!-- forms.file -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-default input-label-change input-ic-default input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Default</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-default">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-default input-label-change input-ic-default input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Autosize</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20 justify-content-center">
+                  <div class="col-sm-4">
+                    <!-- button.btn -->
+                    <button class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner justify-content-center">
+                          <span class="ubtn-text">Validate</span>
+                        </div>
+                      </div>
+                    </button>
+                    <!-- end button.btn -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__body pb-0">
+              <h5 class="pb30">Input
+                material-2</h5>
+              <form class="from-section form-vertical pb30">
+                <div class="row row-20">
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-has-clear input-ic-right" autocorrect="off" placeholder="" required value="test">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon right</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left text</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              Not required
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left button</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-lg input-group-extend input-ic-sm">
+                          <!-- button.btn -->
+                          <button class="ubtn ubg-line-primary ubtn-size-xs-2 ubg-hover ubg-active">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner justify-content-center">
+                                <span class="ubtn-text">Button</span>
+                              </div>
+                            </div>
+                          </button>
+                          <!-- end button.btn -->
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <input type="password" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input password</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic">
+                              <!-- form.eyeMacro -->
+                              <div class="eye-wrap">
+                                <label class="eye">
+                                  <input type="checkbox" class="hidden">
+                                  <div class="eye-slash"></div>
+                                </label>
+                              </div>
+                              <!-- end form.eyeMacro -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2 input-extend-outside">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input content outside</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-lg input-group-extend input-ic-sm">
+                          <a class="link">Demo link</a>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <div class="input-group">
+                          <select name="" class="select-normal input input-size-lg input-ic-sm input-material-2 input-label-change" header-text="Select normal" data-placeholder="Select your option" required>
+                            <option value="" disabled="disabled" selected="selected">Select your option</option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select normal</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-size-lg input-ic-sm input-material-2 input-label-change" header-text="Select-2" data-placeholder="" required>
+                            <option value=""></option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-lg input-ic-sm input-material-2 input-label-change" header-text="Select-2 Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Image</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-lg input-ic-sm input-material-2 input-label-change" header-text="Select-2 Custom Text" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Text</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-lg input-ic-sm input-material-2 input-label-change" header-text="Select-2 Multiple" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Multiple</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <input type="" class="light-pick input input-material-2 input-label-change input-size-lg input-ic-sm" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker single</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <input type="" class="light-pick-range input input-material-2 input-label-change input-size-lg input-ic-sm" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker range</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.file -->
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <input type="file" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-size-lg input-material-2 input-label-change input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-size-xs-1 ubg-hover ubg-active">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner justify-content-center">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                    <!-- forms.file -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Default</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-2">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-lg input-material-2 input-label-change input-ic-sm input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Autosize</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20 justify-content-center">
+                  <div class="col-sm-4">
+                    <!-- button.btn -->
+                    <button class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner justify-content-center">
+                          <span class="ubtn-text">Validate</span>
+                        </div>
+                      </div>
+                    </button>
+                    <!-- end button.btn -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__body pb-0">
+              <h5 class="pb30">Input
+                material-3</h5>
+              <form class="from-section form-vertical pb30">
+                <div class="row row-20">
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-has-clear input-ic-right" autocorrect="off" placeholder="" required value="test">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon right</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left text</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              Not required
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input icon left button</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-sm">
+                          <!-- button.btn -->
+                          <button class="ubtn ubg-line-primary ubtn-size-xs-2 ubg-hover ubg-active">
+                            <div class="ubtn-full">
+                              <div class="row row-10 ubtn-inner justify-content-center">
+                                <span class="ubtn-text">Button</span>
+                              </div>
+                            </div>
+                          </button>
+                          <!-- end button.btn -->
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <input type="password" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-has-clear input-ic-left" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input password</div>
+                          <div class="input-flex-content input-flex-content-left">
+                            <div class="input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" class="ic-default" alt="">
+                            </div>
+                          </div>
+                          <div class="input-flex-content">
+                            <div class="input-ic">
+                              <!-- form.eyeMacro -->
+                              <div class="eye-wrap">
+                                <label class="eye">
+                                  <input type="checkbox" class="hidden">
+                                  <div class="eye-slash"></div>
+                                </label>
+                              </div>
+                              <!-- end form.eyeMacro -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3 input-extend-outside">
+                        <label class="input-group">
+                          <input type="text" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required value="">
+                          <div class="input-frame"></div>
+                          <div class="input-label">Input content outside</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic input-clear pointer">
+                              <img src="media/icons-color/default/default/close.svg" alt="" class="ic-xs">
+                            </div>
+                          </div>
+                        </label>
+                        <div class="input-size-sm input-group-extend input-ic-sm">
+                          <a class="link">Demo link</a>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <div class="input-group">
+                          <select name="" class="select-normal input input-size-sm input-ic-sm input-material-3 input-label-change" header-text="Select normal" data-placeholder="Select your option" required>
+                            <option value="" disabled="disabled" selected="selected">Select your option</option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select normal</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <div class="input-group">
+                          <select name="" class="select-2 input input-size-sm input-ic-sm input-material-3 input-label-change" header-text="Select-2" data-placeholder="" required>
+                            <option value=""></option>
+                            <option>Option 11</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-sm input-material-3 input-label-change" header-text="Select-2 Custom Image" data-minimum-results-for-search="Infinity" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimgclass="circle-md" dataimg="media/icons-color/default/default/plannet.svg" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Image</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-sm input-material-3 input-label-change" header-text="Select-2 Custom Text" data-placeholder="" required>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Custom Text</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <div class="input-group">
+                          <select name="" class="select-2 select-2-template input input-size-sm input-ic-sm input-material-3 input-label-change" header-text="Select-2 Multiple" data-placeholder="" required multiple>
+                            <option value=""></option>
+                            <option dataimg="" datasub="Ngân hàng thương mại cổ phần ngoại thương Việt Nam">Vietcombank</option>
+                            <option dataimg="" datasub="Ngân hàng Thương mại cổ phần Công Thương Việt Nam">Vietinbank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                            <option dataimg="" datasub="Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam">Agribank</option>
+                          </select>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Select-2 Multiple</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/chevron-down.svg" class="ic-lg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.select -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <input type="" class="light-pick input input-material-3 input-label-change input-size-sm input-ic-sm" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker single</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="note-text h6 color-default-3">
+                        This is an input note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6">
+                    <!-- forms.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <input type="" class="light-pick-range input input-material-3 input-label-change input-size-sm input-ic-sm" value="" placeholder="" required>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Datepicker range</div>
+                          <div class="input-ic">
+                            <img src="../media/icons-color/default/default/calendar.svg" class="ic-default" alt="">
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.datepicker -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.file -->
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <input type="file" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-hadval-def input-file-basic" autocorrect="off" placeholder="" required value="">
+                          <div class="input input-size-sm input-material-3 input-label-change input-holder">
+                            <div class="p file-txt">Chose file</div>
+                          </div>
+                          <div class="input-frame"></div>
+                          <div class="input-label">File Upload</div>
+                          <div class="input-flex-content">
+                            <div class="input-group-extend">
+                              <!-- button.btn -->
+                              <div class="ubtn ubg-op-primary ubtn-size-xs-1 ubg-hover ubg-active">
+                                <div class="ubtn-full">
+                                  <div class="row row-10 ubtn-inner justify-content-center">
+                                    <span class="ubtn-text">Upload</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end button.btn -->
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                    <!-- forms.file -->
+                  </div>
+                </div>
+                <div class="row row-20">
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-has-clear" autocorrect="off" placeholder="" required rows="3"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Default</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                  <div class="col-lg-6 col-sm-12">
+                    <!-- forms.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-group-material-3">
+                        <label class="input-group">
+                          <textarea spellcheck="false" type="text" class="input input-size-sm input-material-3 input-label-change input-ic-sm input-has-clear textarea-autosize" autocorrect="off" placeholder="" required rows="1"></textarea>
+                          <div class="input-frame"></div>
+                          <div class="input-label">Textarea Autosize</div>
+                          <div class="input-flex-content">
+                            <div class="input-ic-txt color-default-2 input-ic">
+                              10/240
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end forms.input -->
+                  </div>
+                </div>
+                <div class="row row-20 justify-content-center">
+                  <div class="col-sm-4">
+                    <!-- button.btn -->
+                    <button class="ubtn ubg-primary ubtn-size-default ubg-hover ubg-active">
+                      <div class="ubtn-full">
+                        <div class="row row-10 ubtn-inner justify-content-center">
+                          <span class="ubtn-text">Validate</span>
+                        </div>
+                      </div>
+                    </button>
+                    <!-- end button.btn -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="login-footer main-footer no-ph color-grey">
+        <div class="login-footer-inner">
+          <div class="container">
+            <div class="row align-items-center justify-content-lg-between justify-content-center">
+              <div class="col-md-auto">
+                <div class="login-footer-left">
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-auto">
+                      <a href="" class="block list-item row-10">
+                        <div class="ic col-auto">
+                          <div class="ic-inner">
+                            <img src="media/icons-color/default/default/plannet.svg" alt="" class="ic-md">
+                          </div>
+                        </div>
+                        <div class="txt col-auto color-grey">Footer 1</div>
+                      </a>
+                    </div>
+                    <div class="col-auto">
+                      <a href="" class="block list-item row-10">
+                        <div class="ic col-auto">
+                          <div class="ic-inner">
+                            <img src="media/icons-color/default/default/plannet.svg" alt="" class="ic-md">
+                          </div>
+                        </div>
+                        <div class="txt col-auto color-grey">Footer 2</div>
+                      </a>
+                    </div>
+                    <div class="col-auto">
+                      <a href="" class="block list-item row-10">
+                        <div class="ic col-auto">
+                          <div class="ic-inner">
+                            <img src="media/icons-color/default/default/plannet.svg" alt="" class="ic-md">
+                          </div>
+                        </div>
+                        <div class="txt col-auto color-grey">Footer 3</div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-auto">
+                <div class="login-footer-right">
+                  <div class="text-center">
+                    © 2020 Tùng Nguyễn
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+<!-- jquery -->
+<script src="js/vendors/jquery/jquery.bundles.js"></script>
+<script src="js/vendors/jquery/jquery.init.js"></script>
+<!-- jquery -->
+<!-- popper -->
+<script src="js/vendors/popper/popper.bundles.js"></script>
+<!-- popper -->
+<!-- bootstrap -->
+<script src="js/vendors/bootstrap/bootstrap.bundles.js"></script>
+<script src="js/vendors/bootstrap/bootstrap.init.js"></script>
+<!-- bootstrap -->
+<!-- jqueryAccordion -->
+<script src="js/vendors/jquery-accordion/jquery-accordion.bundles.js"></script>
+<script src="js/vendors/jquery-accordion/jquery-accordion.init.js"></script>
+<!-- jqueryAccordion -->
+<!-- select2 -->
+<script src="js/vendors/select2/select2.bundles.js"></script>
+<script src="js/vendors/select2/select2.init.js"></script>
+<!-- select2 -->
+<!-- parsley -->
+<script src="js/vendors/parsley/parsley.bundles.js"></script>
+<script src="js/vendors/parsley/parsley.init.js"></script>
+<!-- parsley -->
+<!-- lightpick pollyfill -->
+<script src="js/vendors/pollyfill/pollyfill.bundles.js"></script>
+<!-- lightpick pollyfill -->
+<!-- momentjs -->
+<script src="js/vendors/momentjs/momentjs.bundles.js"></script>
+<!-- momentjs -->
+<!-- lightpick -->
+<script src="js/vendors/lightpick/lightpick.bundles.js"></script>
+<script src="js/vendors/lightpick/lightpick.init.js"></script>
+<!-- lightpick -->
+<!-- swiper -->
+<script src="js/vendors/swiper/swiper.bundles.js"></script>
+<!-- swiper -->
+<!-- cleave -->
+<script src="js/vendors/cleave/cleave.bundles.js"></script>
+<script src="js/vendors/cleave/cleave.init.js"></script>
+<!-- cleave -->
+<!-- autosize -->
+<script src="js/vendors/autosize/autosize.bundles.js"></script>
+<script src="js/vendors/autosize/autosize.init.js"></script>
+<!-- autosize -->
+<!-- croppie -->
+<script src="js/vendors/croppie/croppie.bundles.js"></script>
+<script src="js/vendors/croppie/croppie.init.js"></script>
+<!-- croppie -->
+<!-- script use for this page only -->
+<!-- end script for this page only -->
+<script src="js/custom.js"></script>
+<!-- script use for this page only -->
+<!-- end script for this page only -->
+
+</html>
