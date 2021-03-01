@@ -111,6 +111,10 @@ function genVarFiles (cb) {
   var devGenPath = './src/dev-only/devSrc/_dev-gen-varibles.njk'
   var devGenContent = '{# link-media-njk #}\n{# end-link-media-njk #}\n\n{# icon-color-njk #}\n{# end-icon-color-njk #}\n\n{# link-icon-color-njk #}\n{# end-link-icon-color-njk #}'
 
+  
+  var snippetGenPath = './.vscode/njk-snippet.code-snippets'
+  var snippetGenContent = '{\n\t//generated-snippet\n//end-generated-snippet\n\n//component-snippet\n/end-component-snippet\n}'
+
   var scssGenPath = './src/scss/varibles/_gen-varibles.scss'
   var scssGenContent = '//gtc-text-scss\n//end-gtc-text-scss\n\n//gtc-color-scss\n//end-gtc-color-scss'
 
@@ -121,6 +125,7 @@ function genVarFiles (cb) {
   genVarFilesFunc(devGenPath, devGenContent);
   genVarFilesFunc(scssGenPath, scssGenContent);
   genVarFilesFunc(cssGenPath, cssGenContent);
+  genVarFilesFunc(snippetGenPath, snippetGenContent);
 
   cb()
 }
@@ -871,12 +876,12 @@ function htmlBeauty () {
 }
 
 function purge () {
-  return gulp.src(['./dist/**/*.css', '!./dist/dev-only/**/*'])
+  return gulp.src(['./static/**/*.css', '!./static/dev-only/**/*'])
     .pipe(purgecss({
-      content: ['./dist/**/*.{html,js,xml}'],
+      content: ['./static/**/*.{html,js,xml}'],
       whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /d-block/, /col/, /select2/, /cr-vp-circle/, /swiper/, /noUi/, /medium-zoom/]
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('./static/'))
 }
 
 function prefixCss () {
@@ -889,9 +894,9 @@ function prefixCss () {
 }
 
 function minifyCss () {
-  return gulp.src(['./dist/**/*.css', '!./dist/dev-only/**/*'])
+  return gulp.src(['./static/**/*.css', '!./static/dev-only/**/*'])
     .pipe(cleanCSS())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('./static/'));
 }
 
 
@@ -908,7 +913,7 @@ function pushFtp () {
   });
 
   var globs = [
-    'dist/**/*'
+    './static/**/*'
   ];
 
   return gulp.src(globs)
@@ -1034,4 +1039,4 @@ exports.prod = parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), s
 
 exports.deploy = series(promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(snippet, series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
 
-exports.deployAll = series(genVarFiles, promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, iconLink, cleanMedia, cleanIconColor, prefixCss), genStatic, series(purge, minifyCss), parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deployAll = series(genVarFiles, promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, iconLink, cleanMedia, cleanIconColor, prefixCss), genStatic, purge, minifyCss, parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
