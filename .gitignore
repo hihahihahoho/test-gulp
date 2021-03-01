@@ -1,4 +1,4 @@
 node_modules
 .env
-dist/css/map
 dist
+*gen-varibles*
