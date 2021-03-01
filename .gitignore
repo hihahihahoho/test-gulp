@@ -2,4 +2,4 @@ node_modules
 .env
 dist
 *gen-varibles*
-*.code-snippets*
+*code-snippets*

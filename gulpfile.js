@@ -93,6 +93,33 @@ function themeGenerator () {
     .pipe(gulp.dest('./dist/css-test'));
 }
 
+function genVarFilesFunc (srcPath, content) {
+  if (!fs.existsSync(srcPath)) {
+    fs.writeFile(srcPath, content, () => { });
+  };
+}
+
+function genVarFiles (cb) {
+  var importGenPath = './src/_imports/_gen-varibles.njk'
+  var importGenContent = '{# gtc-text-njk #}\n{# end-gtc-text-njk #}\n\n{# gtc-color-njk #}\n{# end-gtc-color-njk #}'
+
+  var devGenPath = './src/dev-only/devSrc/_dev-gen-varibles.njk'
+  var devGenContent = '{# link-media-njk #}\n{# end-link-media-njk #}\n\n{# icon-color-njk #}\n{# end-icon-color-njk #}\n\n{# link-icon-color-njk #}\n{# end-link-icon-color-njk #}'
+
+  var scssGenPath = './src/scss/varibles/_gen-varibles.scss'
+  var scssGenContent = '//gtc-text-scss\n//end-gtc-text-scss\n\n//gtc-color-scss\n//end-gtc-color-scss'
+
+  var cssGenPath = './src/custom/css/0-gen_varibles.css'
+  var cssGenContent = '/*gtc-css*/\n/*end-gtc-css*/'
+
+  genVarFilesFunc(importGenPath, importGenContent);
+  genVarFilesFunc(devGenPath, devGenContent);
+  genVarFilesFunc(scssGenPath, scssGenContent);
+  genVarFilesFunc(cssGenPath, cssGenContent);
+
+  cb()
+}
+
 // ----------------------------THEME----------------------------
 
 var themeColor = [];
@@ -321,7 +348,7 @@ function customCss () {
     .pipe(postcss(postCssPlugins))
     .pipe(sourcemaps.write('./map'))
     .pipe(gulp.dest('./dist/css'))
-    .pipe(browserSync.stream({match: '**/*.css'}));
+    .pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
 function customJs () {
@@ -340,7 +367,7 @@ function style () {
     //3. where do i save the compiled css?
     .pipe(gulp.dest('./dist/css'))
     //4. stream changes to all browser changes
-    .pipe(browserSync.stream({match: '**/*.css'}));
+    .pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
 // function findImages () {
@@ -352,7 +379,7 @@ function style () {
 //     )
 // }
 function cleanMedia () {
-  return dircompare.compare('./src/media/', './dist/media/', {ignoreCase : true})
+  return dircompare.compare('./src/media/', './dist/media/', { ignoreCase: true })
     .then(res => res.diffSet.forEach(dif => {
       if (!dif.relativePath.includes('icons-color')) {
         dif.type1 == 'missing' ? del(dif.path2.replace(/(\\)/, '') + '/' + dif.name2) : ''
@@ -593,7 +620,7 @@ function cleanIconColor (cb) {
 
   fs.readdir('./dist/media/icons-color/', print);
   for (var item in themeIconColor) {
-    dircompare.compare('./src/media/icons-color/', './dist/media/icons-color/' + item + '/', {ignoreCase : true})
+    dircompare.compare('./src/media/icons-color/', './dist/media/icons-color/' + item + '/', { ignoreCase: true })
       .then(res => res.diffSet.forEach(dif => {
         dif.type1 == 'missing' ? del(dif.path2.replace(/(\\)/, '') + '/' + dif.name2) : ''
       })
@@ -623,7 +650,7 @@ var manageEnvironment = function (environment) {
 function devOnly () {
   return gulp.src(['src/dev-only/devSrc/**/*'])
     .pipe(gulp.dest('./dist/dev-only/devSrc/'))
-    .pipe(browserSync.stream({match: '**/*.css'}));
+    .pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
 function nunjucksDev () {
@@ -991,6 +1018,7 @@ exports.devOnly = devOnly;
 exports.nunjucksDev = nunjucksDev;
 exports.snippet = snippet;
 exports.renameMedia = renameMedia;
+exports.genVarFiles = genVarFiles;
 
 exports.ldev = series(yarnInstall, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
