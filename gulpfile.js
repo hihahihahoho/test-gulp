@@ -99,6 +99,11 @@ function genVarFilesFunc (srcPath, content) {
   };
 }
 
+function genStatic () {
+  return gulp.src('./dist/**/*')
+    .pipe(gulp.dest('./static/'));
+}
+
 function genVarFiles (cb) {
   var importGenPath = './src/_imports/_gen-varibles.njk'
   var importGenContent = '{# gtc-text-njk #}\n{# end-gtc-text-njk #}\n\n{# gtc-color-njk #}\n{# end-gtc-color-njk #}'
@@ -109,7 +114,7 @@ function genVarFiles (cb) {
   var scssGenPath = './src/scss/varibles/_gen-varibles.scss'
   var scssGenContent = '//gtc-text-scss\n//end-gtc-text-scss\n\n//gtc-color-scss\n//end-gtc-color-scss'
 
-  var cssGenPath = './src/custom/css/0-gen_varibles.css'
+  var cssGenPath = './src/custom/css/0-gen-varibles.css'
   var cssGenContent = '/*gtc-css*/\n/*end-gtc-css*/'
 
   genVarFilesFunc(importGenPath, importGenContent);
@@ -204,7 +209,7 @@ function theme () {
   // end theme color
   themeColorTextAll = '//gtc-color-scss\n' + themeColorVarText + themeColorMapText + '\n//end-gtc-color-scss'
   themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + themeTextVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
-  return gulp.src(['./src/scss/varibles/_gen-varibles.scss', './src/custom/css/0-gen_varibles.css', './src/_imports/_gen-varibles.njk'], { base: './src/' })
+  return gulp.src(['./src/scss/varibles/_gen-varibles.scss', './src/custom/css/0-gen-varibles.css', './src/_imports/_gen-varibles.njk'], { base: './src/' })
     .pipe(replace(/({# gtc-text-njk #})([\S\s]*?)({# end-gtc-text-njk #})/, themeTextNjk))
     .pipe(replace(/({# gtc-color-njk #})([\S\s]*?)({# end-gtc-color-njk #})/, themeColorNjk))
     .pipe(replace(/(\/\/gtc-text-scss)([\S\s]*?)(\/\/end-gtc-text-scss)/, themeTextMapAllText))
@@ -1019,13 +1024,14 @@ exports.nunjucksDev = nunjucksDev;
 exports.snippet = snippet;
 exports.renameMedia = renameMedia;
 exports.genVarFiles = genVarFiles;
+exports.genStatic = genStatic;
 
-exports.ldev = series(yarnInstall, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
+exports.ldev = series(yarnInstall, genVarFiles, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
-exports.dev = series(yarnInstall, theme, parallel(devOnly, snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, iconLink, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, genVarFiles, theme, parallel(devOnly, snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, iconLink, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor)
 
 exports.deploy = series(promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(snippet, series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
 
-exports.deployAll = series(promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deployAll = series(genVarFiles, promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, iconLink, cleanMedia, cleanIconColor, prefixCss), genStatic, series(purge, minifyCss), parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
