@@ -927,6 +927,9 @@ function watch () {
   var currentPort = ''
   browserSync.init({
     open: false,
+    snippetOptions: {
+      ignorePaths: "dev-only/**/*"
+    },
     server: {
       baseDir: './dist/'
     },
@@ -964,8 +967,8 @@ function watch () {
   gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
     del(path.replace('src\\', 'dist\\').replace('.njk', '.html'))
   });
-  gulp.watch('./dist/**/*.html').on('change', browserSync.reload);
-  gulp.watch('./dist/js/**/*.js').on('change', browserSync.reload);
+  gulp.watch(['./dist/**/*.html', '!./dist/dev-only{,/**}']).on('change', browserSync.reload);
+  gulp.watch(['./dist/js/**/*.js', '!./dist/dev-only{,/**}']).on('change', browserSync.reload);
   gulp.watch(['./dist/dev-only/devSrc/**.js']).on('change', browserSync.reload);
 }
 
