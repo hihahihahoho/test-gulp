@@ -1,6 +1,7 @@
 {
   "search.exclude": {
-    "**/dist/**/*": true
+    "**/dist/**/*": true,
+    "**/static/**/*": true,
   },
   "html.suggest.html5": true,
   "emmet.includeLanguages": {
