@@ -50,7 +50,7 @@
   },
   "vscode-opn.webServerProtocol": "http",
   "vscode-opn.webServerHostname": "localhost",
-  "vscode-opn.webServerPort": 3004,
+  "vscode-opn.webServerPort": 3002,
   "workbench.colorCustomizations": {
     "editor.background": "#171c20",
     "editor.findMatchBackground": "#ff008056",

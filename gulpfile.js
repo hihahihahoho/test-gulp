@@ -832,8 +832,8 @@ function gitAdd () {
 }
 
 function gitAddAll () {
-  return gulp.src(['.', '!./.vscode/settings.json'])
-    .pipe(git.add({}));
+  return gulp.src('.')
+    .pipe(git.add({ args: ':!.vscode/*' }));
 }
 
 function gitCommit () {
@@ -846,7 +846,7 @@ function gitCommit () {
 
 function gitCommitAll () {
   commitMessage != '' ? commitMessage : commitMessage = 'commit'
-  return gulp.src(['.', '!./.vscode/settings.json'])
+  return gulp.src('.')
     .pipe(git.commit(commitMessage));
 }
 
@@ -1033,6 +1033,8 @@ exports.snippet = snippet;
 exports.renameMedia = renameMedia;
 exports.genVarFiles = genVarFiles;
 exports.genStatic = genStatic;
+exports.gitAddAll = gitAddAll;
+exports.purge = purge;
 
 exports.ldev = series(yarnInstall, genVarFiles, parallel(series(cleanMedia, cleanIconColor, imageMinify), series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty), fontSrc, customCss, customJs, imageMinify, pluginsBundlesCss, pluginsVendorsCss, style), lwatch);
 
