@@ -62,6 +62,9 @@ var sourceName = './' + sourceFolderName;
 var desFolderName = 'dist';
 var desFolder = './' + desFolderName;
 
+var staticFolderName = 'static'
+var staticFolder = './' + staticFolderName
+
 var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 var commitMessage = '';
@@ -106,7 +109,7 @@ function genVarFilesFunc (srcPath, content) {
 
 function genStatic () {
   return gulp.src([desFolder + '/**/*', '!' + desFolder + '/dev-only{,/**}'])
-    .pipe(gulp.dest('./static/'));
+    .pipe(gulp.dest(staticFolder + '/'));
 }
 
 function genVarFiles (cb) {
@@ -873,12 +876,12 @@ function htmlBeauty () {
 }
 
 function purge () {
-  return gulp.src(['./static/**/*.css', '!./static/dev-only/**/*'])
+  return gulp.src([staticFolder + '/**/*.css', '!' + staticFolder + '/dev-only/**/*'])
     .pipe(purgecss({
-      content: ['./static/**/*.{html,js,xml}'],
+      content: [staticFolder + '/**/*.{html,js,xml}'],
       whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /d-block/, /col/, /select2/, /cr-vp-circle/, /swiper/, /noUi/, /medium-zoom/]
     }))
-    .pipe(gulp.dest('./static/'))
+    .pipe(gulp.dest(staticFolder + '/'))
 }
 
 function prefixCss () {
@@ -891,9 +894,9 @@ function prefixCss () {
 }
 
 function minifyCss () {
-  return gulp.src(['./static/**/*.css', '!./static/dev-only/**/*'])
+  return gulp.src([staticFolder + '/**/*.css', '!' + staticFolder + '/dev-only/**/*'])
     .pipe(cleanCSS())
-    .pipe(gulp.dest('./static/'));
+    .pipe(gulp.dest(staticFolder + '/'));
 }
 
 
@@ -910,7 +913,7 @@ function pushFtp () {
   });
 
   var globs = [
-    './static/**/*'
+    staticFolder + '/**/*'
   ];
 
   return gulp.src(globs)
