@@ -55,6 +55,10 @@ var prompt = require('prompt');
 var RevAll = require("gulp-rev-all");
 
 var imgSrc = [];
+
+var sourceFolderName = 'src';
+var sourceName = './' + sourceFolderName;
+
 var desFolderName = 'dist';
 var desFolder = './' + desFolderName;
 
@@ -106,20 +110,20 @@ function genStatic () {
 }
 
 function genVarFiles (cb) {
-  var importGenPath = './src/_imports/_gen-varibles.njk'
+  var importGenPath = sourceName + '/_imports/_gen-varibles.njk'
   var importGenContent = '{# gtc-text-njk #}\n{# end-gtc-text-njk #}\n\n{# gtc-color-njk #}\n{# end-gtc-color-njk #}'
 
-  var devGenPath = './src/dev-only/devSrc/_dev-gen-varibles.njk'
+  var devGenPath = sourceName + '/dev-only/devSrc/_dev-gen-varibles.njk'
   var devGenContent = '{# link-media-njk #}\n{# end-link-media-njk #}\n\n{# icon-color-njk #}\n{# end-icon-color-njk #}\n\n{# link-icon-color-njk #}\n{# end-link-icon-color-njk #}'
 
 
   var snippetGenPath = './.vscode/njk-snippet.code-snippets'
   var snippetGenContent = '{\n\t//generated-snippet\n//end-generated-snippet\n\n//component-snippet\n/end-component-snippet\n}'
 
-  var scssGenPath = './src/scss/varibles/_gen-varibles.scss'
+  var scssGenPath = sourceName + '/scss/varibles/_gen-varibles.scss'
   var scssGenContent = '//gtc-text-scss\n//end-gtc-text-scss\n\n//gtc-color-scss\n//end-gtc-color-scss'
 
-  var cssGenPath = './src/custom/css/0-gen-varibles.css'
+  var cssGenPath = sourceName + '/custom/css/0-gen-varibles.css'
   var cssGenContent = '/*gtc-css*/\n/*end-gtc-css*/'
 
   genVarFilesFunc(importGenPath, importGenContent);
@@ -215,19 +219,19 @@ function theme () {
   // end theme color
   themeColorTextAll = '//gtc-color-scss\n' + themeColorVarText + themeColorMapText + '\n//end-gtc-color-scss'
   themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + themeTextVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
-  return gulp.src(['./src/scss/varibles/_gen-varibles.scss', './src/custom/css/0-gen-varibles.css', './src/_imports/_gen-varibles.njk'], { base: './src/' })
+  return gulp.src([sourceName + '/scss/varibles/_gen-varibles.scss', sourceName + '/custom/css/0-gen-varibles.css', sourceName + '/_imports/_gen-varibles.njk'], { base: sourceName + '/' })
     .pipe(replace(/({# gtc-text-njk #})([\S\s]*?)({# end-gtc-text-njk #})/, themeTextNjk))
     .pipe(replace(/({# gtc-color-njk #})([\S\s]*?)({# end-gtc-color-njk #})/, themeColorNjk))
     .pipe(replace(/(\/\/gtc-text-scss)([\S\s]*?)(\/\/end-gtc-text-scss)/, themeTextMapAllText))
     .pipe(replace(/(\/\/gtc-color-scss)([\S\s]*?)(\/\/end-gtc-color-scss)/, themeColorTextAll))
     .pipe(replace(/(\/\*gtc-css\*\/)([\S\s]*?)(\/\*end-gtc-css\*\/)/, themeColorTextAllCss))
-    .pipe(gulp.dest('./src/'))
+    .pipe(gulp.dest(sourceName + '/'))
 };
 
 // ----------------------------END THEME----------------------------
 
 function browserifyJs (cb) {
-  return browserify('./src/plugins-browserify/uppy/uppy.js')
+  return browserify(sourceName + '/plugins-browserify/uppy/uppy.js')
     .bundle()
     .pipe(source('bundle.js'))
     // Start piping stream to tasks!
@@ -346,14 +350,14 @@ function pluginsVendorsInitJS (cb) {
 }
 
 var customCssFiles = [
-  './src/custom/css/custom.css',
-  './src/custom/css/component.css',
+  sourceName + '/custom/css/custom.css',
+  sourceName + '/custom/css/component.css',
 ]
 
 function customCss () {
-  return gulp.src('./src/custom/css/**/*.css')
+  return gulp.src(sourceName + '/custom/css/**/*.css')
     .pipe(sourcemaps.init())
-    .pipe(changed('./src/custom/css/**/*.css'))
+    .pipe(changed(sourceName + '/custom/css/**/*.css'))
     .pipe(replace('/' + desFolderName + '/', '../'))
     .pipe(concat('custom.bundles.css'))
     .pipe(postcss(postCssPlugins))
@@ -363,14 +367,14 @@ function customCss () {
 }
 
 function customJs () {
-  return gulp.src('./src/custom/js/*.js')
-    .pipe(changed('./src/custom/js/*.js'))
+  return gulp.src(sourceName + '/custom/js/*.js')
+    .pipe(changed(sourceName + '/custom/js/*.js'))
     .pipe(gulp.dest(desFolder + '/js'))
 }
 
 function style () {
   //1. where is my scss file
-  return gulp.src('./src/scss/**/*.scss')
+  return gulp.src(sourceName + '/scss/**/*.scss')
     //2. pass file through sass compiler
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
@@ -382,15 +386,15 @@ function style () {
 }
 
 // function findImages () {
-//   return gulp.src('./src/*.{html,css,js}')
+//   return gulp.src(sourceName + '/*.{html,css,js}')
 //     .pipe(replace(/([^('"]+)\.(jpg|png|jpeg|gif|svg|pdf|mp4)/g, match => {
-//       var src = 'src/**/' + match.match(/([^\\\/:*?\"<>|]+)$/g);
+//       var src = sourceFolderName + '/**/' + match.match(/([^\\\/:*?\"<>|]+)$/g);
 //       imgSrc.indexOf(src) === -1 ? imgSrc.push(src) : '';
 //     })
 //     )
 // }
 function cleanMedia () {
-  return dircompare.compare('./src/media/', desFolder + '/media/', { ignoreCase: true })
+  return dircompare.compare(sourceName + '/media/', desFolder + '/media/', { ignoreCase: true })
     .then(res => res.diffSet.forEach(dif => {
       if (!dif.relativePath.includes('icons-color')) {
         dif.type1 == 'missing' ? del(dif.path2.replace(/(\\)/, '') + '/' + dif.name2) : ''
@@ -406,7 +410,7 @@ function cleanHtml () {
   // };
   var right = [];
   var left = [];
-  return dircompare.compare('./src/pages/', desFolder + '/pages/')
+  return dircompare.compare(sourceName + '/pages/', desFolder + '/pages/')
     .then(res => {
       res.diffSet.forEach(dif => {
         var nameMain = dif.state == 'left' ? dif.name1 : dif.name2;
@@ -424,16 +428,16 @@ function cleanHtml () {
 }
 
 function renameMedia () {
-  return gulp.src(['./src/media/**/*'], { allowEmpty: true })
-    .pipe(changed('./src/media/**/*'))
+  return gulp.src([sourceName + '/media/**/*'], { allowEmpty: true })
+    .pipe(changed(sourceName + '/media/**/*'))
     .pipe(rename(function (path) {
       path.basename = path.basename.toLowerCase();
     }))
-    .pipe(gulp.dest('src/media/'))
+    .pipe(gulp.dest(sourceName + '/media/'))
 }
 
 function media () {
-  return gulp.src(['./src/media/**/*', '!./src/media/icons-color/**/*'], { allowEmpty: true })
+  return gulp.src([sourceName + '/media/**/*', '!' + sourceName + '/media/icons-color/**/*'], { allowEmpty: true })
     .pipe(changed(desFolder + '/media/**/*'))
     .pipe(rename(function (path) {
       path.basename = path.basename.toLowerCase();
@@ -442,7 +446,7 @@ function media () {
 }
 
 function imageMinify () {
-  return gulp.src(['./src/media/**/*', '!./src/media/icons-color/**/*'])
+  return gulp.src([sourceName + '/media/**/*', '!' + sourceName + '/media/icons-color/**/*'])
     .pipe(cache(image({
       pngquant: ['--quality=70-80', '--speed=1'],
       optipng: false,
@@ -510,8 +514,8 @@ function snippetMacros () {
   var contentFile;
   var importNameMap = {};
   var snippetStr = '';
-  var files = glob.sync('./src/_imports/macros/**/*.njk');
-  var baseFile = fs.readFileSync('./src/_imports/based/_based.njk', 'utf8');
+  var files = glob.sync(sourceName + '/_imports/macros/**/*.njk');
+  var baseFile = fs.readFileSync(sourceName + '/_imports/based/_based.njk', 'utf8');
   importName = baseFile.match(/(?<={% import ")(.*)(?=" as)/g);
   importNameAlias = baseFile.match(/(?<=" as )(.*)(?= %})/g);
   importName.forEach((value, index) => {
@@ -538,7 +542,7 @@ function snippetMacros () {
 }
 
 function snippetComponent () {
-  var file = fs.readFileSync('./src/pages/components.njk', 'utf8');
+  var file = fs.readFileSync(sourceName + '/pages/components.njk', 'utf8');
   var snippetStr = '';
   var contentStr
   file = file.match(/({# snippet)([\S\s]*?)({# endSnippet #})/g)
@@ -585,16 +589,16 @@ function iconLink () {
   var njkMediaVarName = 'linkMedia'
   var njkMediaTree = '{# link-media-njk #}\n{% set ' + njkMediaVarName + ' = [\n' + mediaTree + '\n] %}\n{# end-link-media-njk #}'
 
-  var iconColorTree = dirTree("src/media/icons-color/", { normalizePath: true });
-  iconColorTree = JSON.stringify(iconColorTree, null, '\t').replace(/src\//g, '');
+  var iconColorTree = dirTree(sourceName + '/media/icons-color/', { normalizePath: true });
+  iconColorTree = JSON.stringify(iconColorTree, null, '\t').replace(new RegExp(`${sourceFolderName}/`, 'g'), '');
   var njkIconColorVarName = 'linkIconColor'
   var njkIconColorTree = '{# link-icon-color-njk #}\n{% set ' + njkIconColorVarName + ' = [\n' + iconColorTree + '\n] %}\n{# end-link-icon-color-njk #}'
 
-  return gulp.src(['./src/dev-only/devSrc/_dev-gen-varibles.njk'], { base: './src/' })
+  return gulp.src([sourceName + '/dev-only/devSrc/_dev-gen-varibles.njk'], { base: sourceName + '/' })
     .pipe(replace(/({# link-media-njk #})([\S\s]*?)({# end-link-media-njk #})/, njkMediaTree))
     .pipe(replace(/({# icon-color-njk #})([\S\s]*?)({# end-icon-color-njk #})/, themeIcon))
     .pipe(replace(/({# link-icon-color-njk #})([\S\s]*?)({# end-link-icon-color-njk #})/, njkIconColorTree))
-    .pipe(gulp.dest('./src/'));
+    .pipe(gulp.dest(sourceName + '/'));
 }
 
 function iconColor (cb) {
@@ -605,7 +609,7 @@ function iconColor (cb) {
   var themeIconStroke = 'stroke-width="' + themeIconProps.stroke + '"';
 
   for (var item in themeIcon) {
-    gulp.src('./src/media/icons-color/**/*.svg')
+    gulp.src(sourceName + '/media/icons-color/**/*.svg')
       .pipe(rename(function (path) {
         path.basename = path.basename.toLowerCase();
       }))
@@ -631,7 +635,7 @@ function cleanIconColor (cb) {
 
   fs.readdir(desFolder + '/media/icons-color/', print);
   for (var item in themeIconColor) {
-    dircompare.compare('./src/media/icons-color/', desFolder + '/media/icons-color/' + item + '/', { ignoreCase: true })
+    dircompare.compare(sourceName + '/media/icons-color/', desFolder + '/media/icons-color/' + item + '/', { ignoreCase: true })
       .then(res => res.diffSet.forEach(dif => {
         dif.type1 == 'missing' ? del(dif.path2.replace(/(\\)/, '') + '/' + dif.name2) : ''
       })
@@ -642,7 +646,7 @@ function cleanIconColor (cb) {
 }
 
 function dataTest () {
-  return gulp.src('src/**/*.html')
+  return gulp.src(sourceFolderName + '/**/*.html')
     .pipe(cache(data(function (file) {
       return console.log(path.relative(process.cwd(), file.path).replace(/([^\\]+)/g, '..').slice(0, -4));
     })))
@@ -659,13 +663,13 @@ var manageEnvironment = function (environment) {
 }
 
 function devOnly () {
-  return gulp.src(['src/dev-only/devSrc/**/*'])
+  return gulp.src([sourceFolderName + '/dev-only/devSrc/**/*'])
     .pipe(gulp.dest(desFolder + '/dev-only/devSrc/'))
     .pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
 function nunjucksDev () {
-  return gulp.src(['src/dev-only/**/*.njk', '!src/dev-only/devSrc/**/*.njk'])
+  return gulp.src([sourceFolderName + '/dev-only/**/*.njk', '!' + sourceFolderName + '/dev-only/devSrc/**/*.njk'])
     .pipe(data(function (file) {
       return {
         baseLink: path.relative(process.cwd(), file.path).replace(/([^\\]+)/g, '..').slice(0, -4)
@@ -673,11 +677,11 @@ function nunjucksDev () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
+        file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
       }
     }))
     .pipe(nunjucksRender({
-      path: ['src/dev-only/', 'src/dev-only/devSrc/', 'src/_imports/'],
+      path: [sourceFolderName + '/dev-only/', sourceFolderName + '/dev-only/devSrc/', sourceFolderName + '/_imports/'],
       manageEnv: manageEnvironment
     }))
     .pipe(replace(`/${desFolderName}/`, ''))
@@ -690,7 +694,7 @@ function nunjucksDev () {
 }
 
 function nunjucks () {
-  return gulp.src(['src/**/*.njk', '!src/_imports/**/*.njk', '!src/dev-only/**/*.njk'])
+  return gulp.src([sourceFolderName + '/**/*.njk', '!' + sourceFolderName + '/_imports/**/*.njk', '!' + sourceFolderName + '/dev-only/**/*.njk'])
     .pipe(cached())
     .pipe(data(function (file) {
       return {
@@ -699,11 +703,11 @@ function nunjucks () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
+        file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
       }
     }))
     .pipe(nunjucksRender({
-      path: ['src/_imports/', 'src/pages/'],
+      path: [sourceFolderName + '/_imports/', sourceFolderName + '/pages/'],
       manageEnv: manageEnvironment
     }))
     .pipe(replace(`/${desFolderName}/`, ''))
@@ -716,7 +720,7 @@ function nunjucks () {
 }
 
 function nunjucksForce () {
-  return gulp.src(['src/**/*.njk', '!src/_imports/**/*.njk', '!src/dev-only/**/*.njk'])
+  return gulp.src([sourceFolderName + '/**/*.njk', '!' + sourceFolderName + '/_imports/**/*.njk', '!' + sourceFolderName + '/dev-only/**/*.njk'])
     .pipe(data(function (file) {
       return {
         baseLink: path.relative(process.cwd(), file.path).replace(/([^\\]+)/g, '..').slice(0, -4)
@@ -724,11 +728,11 @@ function nunjucksForce () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace('src\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
+        file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
       }
     }))
     .pipe(nunjucksRender({
-      path: ['src/_imports/', 'src/pages/'],
+      path: [sourceFolderName + '/_imports/', sourceFolderName + '/pages/'],
       manageEnv: manageEnvironment
     }))
     .pipe(replace(`/${desFolderName}/`, ''))
@@ -741,7 +745,7 @@ function nunjucksForce () {
 }
 
 function icon2font () {
-  return gulp.src(['src/font-ic/*.svg'])
+  return gulp.src([sourceFolderName + '/font-ic/*.svg'])
     .pipe(iconfontCss({
       fontName: 'base-ic-font',
       fontPath: '',
@@ -757,7 +761,7 @@ function icon2font () {
 }
 
 function icon2fontVcb () {
-  return gulp.src(['src/font-ic-vcb/*.svg'])
+  return gulp.src([sourceFolderName + '/font-ic-vcb/*.svg'])
     .pipe(iconfontCss({
       fontName: 'ic-font-vcb',
       fontPath: '',
@@ -778,25 +782,25 @@ function icon2fontVcb () {
 function fontSrc () {
   del(desFolder + '/fonts/main/*')
   return gulp
-    .src('./src/fonts/**/*')
+    .src(sourceName + '/fonts/**/*')
     .pipe(gulp.dest(desFolder + '/fonts/main'));
 }
 
 
 function lowercaseFiles () {
-  return gulp.src('./src/media/svg-new/**/*')
+  return gulp.src(sourceName + '/media/svg-new/**/*')
     .pipe(rename(function (path) {
       path.basename = path.basename.toLowerCase().replace(' 24px', '');
       path.extname = path.extname.toLowerCase();
     }))
-    .pipe(gulp.dest('./src/media/svg-export/dark'));
+    .pipe(gulp.dest(sourceName + '/media/svg-export/dark'));
 }
 
 
 // end test section
 // production task
 function babeljs () {
-  return gulp.src('src/custom/**/*.js')
+  return gulp.src(sourceFolderName + '/custom/**/*.js')
     .pipe(babel({
       presets: ['@babel/env']
     }))
@@ -935,30 +939,30 @@ function watch () {
       }
     }
   });
-  gulp.watch('src/scss/**/*.scss', style);
+  gulp.watch(sourceFolderName + '/scss/**/*.scss', style);
   gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS))))
   gulp.watch('gulp_themes_config.js', theme)
   gulp.watch('gulp-icons-color-config.js', series(iconColor, iconLink))
-  gulp.watch('src/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
-  gulp.watch(['./src/media/**/*', '!./src/media/icons-color/**/*'], series(media, imageMinify, iconLink))
-  gulp.watch('./src/media/icons-color/**/*', series(iconColor, iconLink));
-  gulp.watch('./src/dev-only/devSrc/**/*', devOnly)
-  gulp.watch(['src/dev-only/**/*.njk', 'src/_imports/_gen-varibles.njk'], nunjucksDev)
-  gulp.watch('src/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
-  gulp.watch('src/custom/**/*.js', customJs)
-  gulp.watch('src/fonts/**/*', fontSrc)
-  gulp.watch('src/custom/**/*.css', customCss)
-  gulp.watch(['src/**/*.{html,njk}', '!src/dev-only/**/*.njk'], nunjucks)
-  gulp.watch(['src/_imports/macros/**/*.{html,njk}', 'src/pages/components.njk'], snippet);
-  gulp.watch('src/_imports/**/*.{html,njk}', nunjucksForce);
-  gulp.watch(['src/media/**/*', '!./src/media/icons-color/**/*']).on('unlink', function (path) {
-    del(path.replace('src\\', desFolderName + '\\').toLowerCase())
+  gulp.watch(sourceFolderName + '/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
+  gulp.watch([sourceName + '/media/**/*', '!' + sourceName + '/media/icons-color/**/*'], series(media, imageMinify, iconLink))
+  gulp.watch(sourceName + '/media/icons-color/**/*', series(iconColor, iconLink));
+  gulp.watch(sourceName + '/dev-only/devSrc/**/*', devOnly)
+  gulp.watch([sourceFolderName + '/dev-only/**/*.njk', sourceFolderName + '/_imports/_gen-varibles.njk'], nunjucksDev)
+  gulp.watch(sourceFolderName + '/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
+  gulp.watch(sourceFolderName + '/custom/**/*.js', customJs)
+  gulp.watch(sourceFolderName + '/fonts/**/*', fontSrc)
+  gulp.watch(sourceFolderName + '/custom/**/*.css', customCss)
+  gulp.watch([sourceFolderName + '/**/*.{html,njk}', '!' + sourceFolderName + '/dev-only/**/*.njk'], nunjucks)
+  gulp.watch([sourceFolderName + '/_imports/macros/**/*.{html,njk}', sourceFolderName + '/pages/components.njk'], snippet);
+  gulp.watch(sourceFolderName + '/_imports/**/*.{html,njk}', nunjucksForce);
+  gulp.watch([sourceFolderName + '/media/**/*', '!' + sourceName + '/media/icons-color/**/*']).on('unlink', function (path) {
+    del(path.replace(sourceFolderName + '\\', desFolderName + '\\').toLowerCase())
   });
-  gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
-    del(path.replace('src\\', desFolderName + '\\').replace('.njk', '.html'))
+  gulp.watch(sourceFolderName + '/**/*.{html,njk}').on('unlink', function (path) {
+    del(path.replace(sourceFolderName + '\\', desFolderName + '\\').replace('.njk', '.html'))
   });
-  gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
-    del(path.replace('src\\', desFolderName + '\\').replace('.njk', '.html'))
+  gulp.watch(sourceFolderName + '/**/*.{html,njk}').on('unlink', function (path) {
+    del(path.replace(sourceFolderName + '\\', desFolderName + '\\').replace('.njk', '.html'))
   });
   gulp.watch([desFolder + '/**/*.html', '!' + desFolder + '/dev-only{,/**}']).on('change', browserSync.reload);
   gulp.watch([desFolder + '/js/**/*.js', '!' + desFolder + '/dev-only{,/**}']).on('change', browserSync.reload);
@@ -972,11 +976,11 @@ function lwatch () {
       baseDir: desFolder + '/'
     }
   });
-  gulp.watch('src/scss/**/*.scss', style);
-  gulp.watch('src/media/**/*', series(media, imageMinify))
-  gulp.watch('src/custom/**/*.js', customJs)
-  gulp.watch('src/custom/**/*.css', customCss)
-  gulp.watch('src/**/*.{html,njk}', nunjucks)
+  gulp.watch(sourceFolderName + '/scss/**/*.scss', style);
+  gulp.watch(sourceFolderName + '/media/**/*', series(media, imageMinify))
+  gulp.watch(sourceFolderName + '/custom/**/*.js', customJs)
+  gulp.watch(sourceFolderName + '/custom/**/*.css', customCss)
+  gulp.watch(sourceFolderName + '/**/*.{html,njk}', nunjucks)
   gulp.watch(desFolder + '/**/*.html').on('change', browserSync.reload);
   gulp.watch(desFolder + '/custom/js/**/*.js').on('change', browserSync.reload);
 }
