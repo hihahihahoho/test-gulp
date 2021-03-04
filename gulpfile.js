@@ -846,7 +846,7 @@ function gitCommit () {
 
 function gitCommitAll () {
   commitMessage != '' ? commitMessage : commitMessage = 'commit'
-  return gulp.src('.')
+  return gulp.src(['.', '!./.vscode/**/*'])
     .pipe(git.commit(commitMessage));
 }
 
