@@ -832,7 +832,7 @@ function gitAdd () {
 }
 
 function gitAddAll () {
-  return gulp.src('.')
+  return gulp.src(['.', '!./.vscode/**/*'])
     .pipe(git.add({}));
 }
 
