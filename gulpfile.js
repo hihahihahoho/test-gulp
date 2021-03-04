@@ -832,7 +832,7 @@ function gitAdd () {
 }
 
 function gitAddAll () {
-  return gulp.src(['.', '!./.vscode/**/*'])
+  return gulp.src(['.', '!./.vscode/settings.json'])
     .pipe(git.add({}));
 }
 
@@ -846,7 +846,7 @@ function gitCommit () {
 
 function gitCommitAll () {
   commitMessage != '' ? commitMessage : commitMessage = 'commit'
-  return gulp.src(['.', '!./.vscode/**/*'])
+  return gulp.src(['.', '!./.vscode/settings.json'])
     .pipe(git.commit(commitMessage));
 }
 
