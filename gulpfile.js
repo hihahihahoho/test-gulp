@@ -55,7 +55,8 @@ var prompt = require('prompt');
 var RevAll = require("gulp-rev-all");
 
 var imgSrc = [];
-var imgDes = 'dist';
+var desFolderName = 'dist';
+var desFolder = './' + desFolderName;
 
 var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
@@ -77,20 +78,20 @@ var postCssPlugins = [
 ];
 
 function postCss () {
-  return gulp.src('./dist/css/custom.bundles.css')
+  return gulp.src(desFolder + '/css/custom.bundles.css')
     .pipe(postcss(postCssPlugins))
-    .pipe(gulp.dest('./dist/css/'));
+    .pipe(gulp.dest(desFolder + '/css/'));
 }
 
 
 function themeGenerator () {
-  return gulp.src('./dist/css/style.css')
+  return gulp.src(desFolder + '/css/style.css')
     .pipe(cssbeautify())
     .pipe(replace(/^((?!3f3bec|{|}|^(.*[^,])\,$).)*$/gm, ''))
     .pipe(replace(/.*(transition|transform).*/gm, ''))
     .pipe(replace(/\/\*\!/g, ''))
     .pipe(cleanCSS({ level: 2 }))
-    .pipe(gulp.dest('./dist/css-test'));
+    .pipe(gulp.dest(desFolder + '/css-test'));
 }
 
 function genVarFilesFunc (srcPath, content) {
@@ -100,7 +101,7 @@ function genVarFilesFunc (srcPath, content) {
 }
 
 function genStatic () {
-  return gulp.src(['./dist/**/*','!./dist/dev-only{,/**}'])
+  return gulp.src([desFolder + '/**/*', '!' + desFolder + '/dev-only{,/**}'])
     .pipe(gulp.dest('./static/'));
 }
 
@@ -111,7 +112,7 @@ function genVarFiles (cb) {
   var devGenPath = './src/dev-only/devSrc/_dev-gen-varibles.njk'
   var devGenContent = '{# link-media-njk #}\n{# end-link-media-njk #}\n\n{# icon-color-njk #}\n{# end-icon-color-njk #}\n\n{# link-icon-color-njk #}\n{# end-link-icon-color-njk #}'
 
-  
+
   var snippetGenPath = './.vscode/njk-snippet.code-snippets'
   var snippetGenContent = '{\n\t//generated-snippet\n//end-generated-snippet\n\n//component-snippet\n/end-component-snippet\n}'
 
@@ -230,12 +231,12 @@ function browserifyJs (cb) {
     .bundle()
     .pipe(source('bundle.js'))
     // Start piping stream to tasks!
-    .pipe(gulp.dest('./dist/js/vendors/plugins-browserify/'));
+    .pipe(gulp.dest(desFolder + '/js/vendors/plugins-browserify/'));
 };
 
 function cleanVendorsJs (cb) {
-  del('./dist/css/vendors/**', { force: true });
-  return del('./dist/js/vendors/**', { force: true });
+  del(desFolder + '/css/vendors/**', { force: true });
+  return del(desFolder + '/js/vendors/**', { force: true });
 }
 
 function pluginsVendorsJS (cb) {
@@ -250,13 +251,13 @@ function pluginsVendorsJS (cb) {
           .pipe(buffer())
           .pipe(gulpif('!**/*.min.js', cache(uglify())))
           // Start piping stream to tasks!
-          .pipe(gulp.dest('./dist/js/vendors/' + file.name));
+          .pipe(gulp.dest(desFolder + '/js/vendors/' + file.name));
       }
       else {
         gulp.src(file.scripts, { allowEmpty: true })
           .pipe(gulpif('!**/*.min.js', cache(uglify())))
           .pipe(concat(file.name + '.bundles.js'))
-          .pipe(gulp.dest('./dist/js/vendors/' + file.name));
+          .pipe(gulp.dest(desFolder + '/js/vendors/' + file.name));
       }
     }
   })
@@ -270,7 +271,7 @@ function pluginsVendorsCss (cb) {
     if (file.styles != undefined) {
       gulp.src(file.styles, { allowEmpty: true })
         .pipe(concat(file.name + '.bundles.css'))
-        .pipe(gulp.dest('./dist/css/vendors/' + file.name));
+        .pipe(gulp.dest(desFolder + '/css/vendors/' + file.name));
     }
   })
   return cb()
@@ -292,7 +293,7 @@ function pluginsBundlesJS (cb) {
         // output: {comments: true},
         compress: { hoist_funs: false }
       }))))
-      .pipe(gulp.dest('./dist/js'));
+      .pipe(gulp.dest(desFolder + '/js'));
   }
   cb();
 }
@@ -309,7 +310,7 @@ function pluginsBundlesCss (cb) {
   if (pluginsBundlesCssVal.length > 0) {
     return gulp.src(pluginsBundlesCssVal, { allowEmpty: true })
       .pipe(concat('bundles.css'))
-      .pipe(gulp.dest('./dist/css'));
+      .pipe(gulp.dest(desFolder + '/css'));
   }
   cb();
 }
@@ -326,7 +327,7 @@ function pluginsInitJS (cb) {
   if (pluginsInitJsVal.length > 0) {
     return gulp.src(pluginsInitJsVal, { allowEmpty: true })
       .pipe(concat('bundles.init.js'))
-      .pipe(gulp.dest('./dist/js'));
+      .pipe(gulp.dest(desFolder + '/js'));
   }
   cb();
 }
@@ -338,7 +339,7 @@ function pluginsVendorsInitJS (cb) {
     if (file.init != undefined) {
       gulp.src(file.init, { allowEmpty: true })
         .pipe(concat(file.name + '.init.js'))
-        .pipe(gulp.dest('./dist/js/vendors/' + file.name));
+        .pipe(gulp.dest(desFolder + '/js/vendors/' + file.name));
     }
   })
   return cb()
@@ -353,18 +354,18 @@ function customCss () {
   return gulp.src('./src/custom/css/**/*.css')
     .pipe(sourcemaps.init())
     .pipe(changed('./src/custom/css/**/*.css'))
-    .pipe(replace('/dist/', '../'))
+    .pipe(replace('/' + desFolderName + '/', '../'))
     .pipe(concat('custom.bundles.css'))
     .pipe(postcss(postCssPlugins))
     .pipe(sourcemaps.write('./map'))
-    .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest(desFolder + '/css'))
     .pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
 function customJs () {
   return gulp.src('./src/custom/js/*.js')
     .pipe(changed('./src/custom/js/*.js'))
-    .pipe(gulp.dest('./dist/js'))
+    .pipe(gulp.dest(desFolder + '/js'))
 }
 
 function style () {
@@ -375,7 +376,7 @@ function style () {
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write('./map'))
     //3. where do i save the compiled css?
-    .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest(desFolder + '/css'))
     //4. stream changes to all browser changes
     .pipe(browserSync.stream({ match: '**/*.css' }));
 }
@@ -389,7 +390,7 @@ function style () {
 //     )
 // }
 function cleanMedia () {
-  return dircompare.compare('./src/media/', './dist/media/', { ignoreCase: true })
+  return dircompare.compare('./src/media/', desFolder + '/media/', { ignoreCase: true })
     .then(res => res.diffSet.forEach(dif => {
       if (!dif.relativePath.includes('icons-color')) {
         dif.type1 == 'missing' ? del(dif.path2.replace(/(\\)/, '') + '/' + dif.name2) : ''
@@ -405,17 +406,17 @@ function cleanHtml () {
   // };
   var right = [];
   var left = [];
-  return dircompare.compare('./src/pages/', './dist/pages/')
+  return dircompare.compare('./src/pages/', desFolder + '/pages/')
     .then(res => {
       res.diffSet.forEach(dif => {
         var nameMain = dif.state == 'left' ? dif.name1 : dif.name2;
         var name = dif.relativePath.replace(/(\\)/, '') + '/' + nameMain;
         dif.state == 'left' && dif.type1 == 'file' ? left.push(name.replace('.njk', '')) : '';
         dif.state == 'right' && dif.type2 == 'file' ? right.push(name.replace('.html', '')) : '';
-        dif.state == 'right' && dif.type2 == 'directory' ? del('./dist/pages/' + dif.name2) : '';
+        dif.state == 'right' && dif.type2 == 'directory' ? del(desFolder + '/pages/' + dif.name2) : '';
       });
       right.diff(left).forEach(item => {
-        del('./dist/pages' + item + '.html')
+        del(desFolder + '/pages' + item + '.html')
       });
     }
     )
@@ -433,11 +434,11 @@ function renameMedia () {
 
 function media () {
   return gulp.src(['./src/media/**/*', '!./src/media/icons-color/**/*'], { allowEmpty: true })
-    .pipe(changed('./dist/media/**/*'))
+    .pipe(changed(desFolder + '/media/**/*'))
     .pipe(rename(function (path) {
       path.basename = path.basename.toLowerCase();
     }))
-    .pipe(gulp.dest('./dist/media/'))
+    .pipe(gulp.dest(desFolder + '/media/'))
 }
 
 function imageMinify () {
@@ -458,7 +459,7 @@ function imageMinify () {
     })))
     .pipe(replace('vector-effect="non-scaling-stroke"', ''))
     .pipe(replace('stroke-width="1.5"', 'stroke-width="1.5" vector-effect="non-scaling-stroke"'))
-    .pipe(gulp.dest('./dist/media/'))
+    .pipe(gulp.dest(desFolder + '/media/'))
 }
 
 function snippetMacrosString (shortName, fullName, varName) {
@@ -579,8 +580,8 @@ function iconLink () {
   var themeIcon = require('./gulp-icons-color-config').themeIconColor;
   themeIcon = '{# icon-color-njk #}\n{% set colorIconName = [\n' + JSON.stringify(themeIcon, null, '\t') + '\n] %}\n{# end-icon-color-njk #}'
 
-  var mediaTree = dirTree("./dist/media/", { exclude: /icons-color/, normalizePath: true });
-  mediaTree = JSON.stringify(mediaTree, null, '\t').replace(/dist\//g, '');
+  var mediaTree = dirTree(desFolder + '/media/', { exclude: /icons-color/, normalizePath: true });
+  mediaTree = JSON.stringify(mediaTree, null, '\t').replace(new RegExp(`${desFolderName}/`, 'g'), '');
   var njkMediaVarName = 'linkMedia'
   var njkMediaTree = '{# link-media-njk #}\n{% set ' + njkMediaVarName + ' = [\n' + mediaTree + '\n] %}\n{# end-link-media-njk #}'
 
@@ -612,7 +613,7 @@ function iconColor (cb) {
       .pipe(replace('vector-effect="non-scaling-stroke"', ''))
       .pipe(replace('</svg>', '<style type="text/css" media="screen">path{vector-effect:non-scaling-stroke}</style></svg>'))
       .pipe(replace(/(stroke-width=")([\S\s]*?)(")/, themeIconStroke))
-      .pipe(gulp.dest('./dist/media/icons-color/' + item))
+      .pipe(gulp.dest(desFolder + '/media/icons-color/' + item))
   }
   cb()
 }
@@ -623,14 +624,14 @@ function cleanIconColor (cb) {
   var print = function (err, files) {
     for (var item in files) {
       if (!themeIconColor[files[item]]) {
-        del('./dist/media/icons-color/' + files[item])
+        del(desFolder + '/media/icons-color/' + files[item])
       }
     }
   };
 
-  fs.readdir('./dist/media/icons-color/', print);
+  fs.readdir(desFolder + '/media/icons-color/', print);
   for (var item in themeIconColor) {
-    dircompare.compare('./src/media/icons-color/', './dist/media/icons-color/' + item + '/', { ignoreCase: true })
+    dircompare.compare('./src/media/icons-color/', desFolder + '/media/icons-color/' + item + '/', { ignoreCase: true })
       .then(res => res.diffSet.forEach(dif => {
         dif.type1 == 'missing' ? del(dif.path2.replace(/(\\)/, '') + '/' + dif.name2) : ''
       })
@@ -659,7 +660,7 @@ var manageEnvironment = function (environment) {
 
 function devOnly () {
   return gulp.src(['src/dev-only/devSrc/**/*'])
-    .pipe(gulp.dest('./dist/dev-only/devSrc/'))
+    .pipe(gulp.dest(desFolder + '/dev-only/devSrc/'))
     .pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
@@ -679,13 +680,13 @@ function nunjucksDev () {
       path: ['src/dev-only/', 'src/dev-only/devSrc/', 'src/_imports/'],
       manageEnv: manageEnvironment
     }))
-    .pipe(replace('/dist/', ''))
+    .pipe(replace(`/${desFolderName}/`, ''))
     .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
     .pipe(replace(/  +/g, ' '))
     .pipe(replace(' "', '"'))
     .pipe(replace('"/pages', '"pages'))
     .pipe(htmlbeautify(options))
-    .pipe(gulp.dest('./dist/dev-only'));
+    .pipe(gulp.dest(desFolder + '/dev-only'));
 }
 
 function nunjucks () {
@@ -705,13 +706,13 @@ function nunjucks () {
       path: ['src/_imports/', 'src/pages/'],
       manageEnv: manageEnvironment
     }))
-    .pipe(replace('/dist/', ''))
+    .pipe(replace(`/${desFolderName}/`, ''))
     .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
     .pipe(replace(/  +/g, ' '))
     .pipe(replace(' "', '"'))
     .pipe(replace('"/pages', '"pages'))
     .pipe(htmlbeautify(options))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest(desFolder + ''));
 }
 
 function nunjucksForce () {
@@ -730,22 +731,14 @@ function nunjucksForce () {
       path: ['src/_imports/', 'src/pages/'],
       manageEnv: manageEnvironment
     }))
-    .pipe(replace('/dist/', ''))
+    .pipe(replace(`/${desFolderName}/`, ''))
     .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
     .pipe(replace(/  +/g, ' '))
     .pipe(replace(' "', '"'))
     .pipe(replace('"/pages', '"pages'))
     .pipe(htmlbeautify(options))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest(desFolder + ''));
 }
-// test section
-// function favicon () {
-//   return gulp.src('src/media/favicon/favicon.png')
-//     .pipe(favicons())
-//     .pipe(gulp.dest('dist/media/favicon'))
-// }
-
-
 
 function icon2font () {
   return gulp.src(['src/font-ic/*.svg'])
@@ -760,7 +753,7 @@ function icon2font () {
       formats: ['ttf', 'eot', 'woff'],
       timestamp: runTimestamp,
     }))
-    .pipe(gulp.dest('./dist/fonts/'));
+    .pipe(gulp.dest(desFolder + '/fonts/'));
 }
 
 function icon2fontVcb () {
@@ -779,14 +772,14 @@ function icon2fontVcb () {
       fontHeight: 1001,
       centerHorizontally: true
     }))
-    .pipe(gulp.dest('./dist/fonts-vcb/'));
+    .pipe(gulp.dest(desFolder + '/fonts-vcb/'));
 }
 
 function fontSrc () {
-  del('./dist/fonts/main/*')
+  del(desFolder + '/fonts/main/*')
   return gulp
     .src('./src/fonts/**/*')
-    .pipe(gulp.dest('./dist/fonts/main'));
+    .pipe(gulp.dest(desFolder + '/fonts/main'));
 }
 
 
@@ -807,7 +800,7 @@ function babeljs () {
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest(desFolder))
 }
 
 function promptMes (cb) {
@@ -827,7 +820,7 @@ function promptMes (cb) {
 }
 
 function gitAdd () {
-  return gulp.src('./dist/**/*.css')
+  return gulp.src(desFolder + '/**/*.css')
     .pipe(git.add({ args: '-A' }));
 }
 
@@ -847,7 +840,7 @@ function gitCommit () {
 function gitCommitAll () {
   commitMessage != '' ? commitMessage : commitMessage = 'commit'
   return gulp.src('.')
-    .pipe(git.commit(commitMessage, {args: ':!.vscode/*'}));
+    .pipe(git.commit(commitMessage, { args: ':!.vscode/*' }));
 }
 
 function gitPull (cb) {
@@ -870,9 +863,9 @@ function yarnInstall () {
 }
 
 function htmlBeauty () {
-  return gulp.src('./dist/**/*.html')
+  return gulp.src(desFolder + '/**/*.html')
     .pipe(htmlbeautify(options))
-    .pipe(gulp.dest('./dist'))
+    .pipe(gulp.dest(desFolder + ''))
 }
 
 function purge () {
@@ -885,12 +878,12 @@ function purge () {
 }
 
 function prefixCss () {
-  return gulp.src(['./dist/**/*.css', '!./dist/dev-only/**/*'])
-    .pipe(replace('/dist/', '../'))
+  return gulp.src([desFolder + '/**/*.css', '!' + desFolder + '/dev-only/**/*'])
+    .pipe(replace(`/${desFolderName}/`, '../'))
     .pipe(autoprefixer({
       cascade: false
     }))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest(desFolder + '/'));
 }
 
 function minifyCss () {
@@ -931,7 +924,7 @@ function watch () {
       ignorePaths: "dev-only/**/*"
     },
     server: {
-      baseDir: './dist/'
+      baseDir: desFolder + '/'
     },
     callbacks: {
       ready: function (err, bs) {
@@ -959,24 +952,24 @@ function watch () {
   gulp.watch(['src/_imports/macros/**/*.{html,njk}', 'src/pages/components.njk'], snippet);
   gulp.watch('src/_imports/**/*.{html,njk}', nunjucksForce);
   gulp.watch(['src/media/**/*', '!./src/media/icons-color/**/*']).on('unlink', function (path) {
-    del(path.replace('src\\', 'dist\\').toLowerCase())
+    del(path.replace('src\\', desFolderName + '\\').toLowerCase())
   });
   gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
-    del(path.replace('src\\', 'dist\\').replace('.njk', '.html'))
+    del(path.replace('src\\', desFolderName + '\\').replace('.njk', '.html'))
   });
   gulp.watch('src/**/*.{html,njk}').on('unlink', function (path) {
-    del(path.replace('src\\', 'dist\\').replace('.njk', '.html'))
+    del(path.replace('src\\', desFolderName + '\\').replace('.njk', '.html'))
   });
-  gulp.watch(['./dist/**/*.html', '!./dist/dev-only{,/**}']).on('change', browserSync.reload);
-  gulp.watch(['./dist/js/**/*.js', '!./dist/dev-only{,/**}']).on('change', browserSync.reload);
-  gulp.watch(['./dist/dev-only/devSrc/**.js']).on('change', browserSync.reload);
+  gulp.watch([desFolder + '/**/*.html', '!' + desFolder + '/dev-only{,/**}']).on('change', browserSync.reload);
+  gulp.watch([desFolder + '/js/**/*.js', '!' + desFolder + '/dev-only{,/**}']).on('change', browserSync.reload);
+  gulp.watch([desFolder + '/dev-only/devSrc/**.js']).on('change', browserSync.reload);
 }
 
 function lwatch () {
   browserSync.init({
     open: false,
     server: {
-      baseDir: './dist/'
+      baseDir: desFolder + '/'
     }
   });
   gulp.watch('src/scss/**/*.scss', style);
@@ -984,8 +977,8 @@ function lwatch () {
   gulp.watch('src/custom/**/*.js', customJs)
   gulp.watch('src/custom/**/*.css', customCss)
   gulp.watch('src/**/*.{html,njk}', nunjucks)
-  gulp.watch('./dist/**/*.html').on('change', browserSync.reload);
-  gulp.watch('./dist/custom/js/**/*.js').on('change', browserSync.reload);
+  gulp.watch(desFolder + '/**/*.html').on('change', browserSync.reload);
+  gulp.watch(desFolder + '/custom/js/**/*.js').on('change', browserSync.reload);
 }
 
 function clearCache () {
