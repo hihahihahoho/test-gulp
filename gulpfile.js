@@ -1,7 +1,6 @@
 //test 3
 require('dotenv').config()
 
-var plugins = require('./gulp_plugins_config.js').plugins
 const gulp = require('gulp');
 const cache = require('gulp-cache');
 var cached = require('gulp-cached');
@@ -28,6 +27,7 @@ const gulpif = require('gulp-if');
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
 const rename = require('gulp-rename');
+var argv = require('yargs').argv;
 
 const browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -56,8 +56,14 @@ var RevAll = require("gulp-rev-all");
 
 var imgSrc = [];
 
+var baseSrc = './'
+
 var sourceFolderName = 'src';
 var sourceName = './' + sourceFolderName;
+
+var themeSourceFolderName = sourceFolderName;
+var themeSourceName = sourceName;
+
 
 var desFolderName = 'dist';
 var desFolder = './' + desFolderName;
@@ -69,6 +75,13 @@ var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 var commitMessage = '';
 
+if (argv.src) {
+  baseSrc = `./theme/${argv.src}/`
+  desFolderName = `dist-theme/${argv.src}`;
+  desFolder = './' + desFolderName;
+}
+
+var plugins = require(baseSrc + 'gulp_plugins_config.js').plugins
 
 Array.prototype.diff = function (a) {
   return this.filter(function (i) { return a.indexOf(i) < 0; });
@@ -169,11 +182,11 @@ function themeVarFunction (mapName, propName, propKey, themeName) {
 }
 
 function theme () {
-  delete require.cache[require.resolve('./gulp_themes_config.js')];
+  delete require.cache[require.resolve(baseSrc + 'gulp_themes_config.js')];
   //theme text
   themeTextMapText = '';
   themeTextVarText = '';
-  themeText = require('./gulp_themes_config.js').themeText;
+  themeText = require(baseSrc + 'gulp_themes_config.js').themeText;
   var themeTextMapText = '\n$map-h-font: ' + JSON.stringify(themeText, null, "\t").replace(/{/g, '(').replace(/}/g, ')') + ';\n';
   for (var property in themeText) {
     themeTextVarText += '$fz-' + property + ': ' + themeText[property]["font-size"] + ';\n';
@@ -191,7 +204,7 @@ function theme () {
   themeColorVarText = '';
   themeColorVarTextArr = {};
 
-  themeColor = require('./gulp_themes_config.js').themeColor;
+  themeColor = require(baseSrc + 'gulp_themes_config.js').themeColor;
 
   var themeColorNjk = '{# gtc-color-njk #}\n{% set colorName = [\n' + JSON.stringify(themeColor.default, null, "\t") + '\n] %}\n{# end-gtc-color-njk #}';
 
@@ -247,8 +260,8 @@ function cleanVendorsJs (cb) {
 }
 
 function pluginsVendorsJS (cb) {
-  delete require.cache[require.resolve('./gulp_plugins_config.js')];
-  plugins = require('./gulp_plugins_config.js').plugins
+  delete require.cache[require.resolve(baseSrc + 'gulp_plugins_config.js')];
+  plugins = require(baseSrc + 'gulp_plugins_config.js').plugins
   plugins.vendors.map((file, index) => {
     if (file.scripts != undefined) {
       if (file.scripts.toString().includes("browserify")) {
@@ -272,8 +285,8 @@ function pluginsVendorsJS (cb) {
 }
 
 function pluginsVendorsCss (cb) {
-  delete require.cache[require.resolve('./gulp_plugins_config.js')];
-  plugins = require('./gulp_plugins_config.js').plugins
+  delete require.cache[require.resolve(baseSrc + 'gulp_plugins_config.js')];
+  plugins = require(baseSrc + 'gulp_plugins_config.js').plugins
   plugins.vendors.map((file, index) => {
     if (file.styles != undefined) {
       gulp.src(file.styles, { allowEmpty: true })
@@ -285,8 +298,8 @@ function pluginsVendorsCss (cb) {
 }
 
 function pluginsBundlesJS (cb) {
-  delete require.cache[require.resolve('./gulp_plugins_config.js')];
-  plugins = require('./gulp_plugins_config.js').plugins
+  delete require.cache[require.resolve(baseSrc + 'gulp_plugins_config.js')];
+  plugins = require(baseSrc + 'gulp_plugins_config.js').plugins
   pluginsBundlesJsVal = [];
   plugins.bundles.forEach((item) => {
     if (item.scripts != []) {
@@ -306,8 +319,8 @@ function pluginsBundlesJS (cb) {
 }
 
 function pluginsBundlesCss (cb) {
-  delete require.cache[require.resolve('./gulp_plugins_config.js')];
-  plugins = require('./gulp_plugins_config.js').plugins
+  delete require.cache[require.resolve(baseSrc + 'gulp_plugins_config.js')];
+  plugins = require(baseSrc + 'gulp_plugins_config.js').plugins
   plugins.bundles.forEach((item) => {
     if (item.styles != undefined) {
       pluginsBundlesCssVal = pluginsBundlesCssVal.concat(item.styles)
@@ -323,8 +336,8 @@ function pluginsBundlesCss (cb) {
 }
 
 function pluginsInitJS (cb) {
-  delete require.cache[require.resolve('./gulp_plugins_config.js')];
-  plugins = require('./gulp_plugins_config.js').plugins
+  delete require.cache[require.resolve(baseSrc + 'gulp_plugins_config.js')];
+  plugins = require(baseSrc + 'gulp_plugins_config.js').plugins
   var pluginsInitJsVal = [];
   plugins.bundles.forEach((item) => {
     if (item.init != [] && item.init != undefined) {
@@ -340,8 +353,8 @@ function pluginsInitJS (cb) {
 }
 
 function pluginsVendorsInitJS (cb) {
-  delete require.cache[require.resolve('./gulp_plugins_config.js')];
-  plugins = require('./gulp_plugins_config.js').plugins
+  delete require.cache[require.resolve(baseSrc + 'gulp_plugins_config.js')];
+  plugins = require(baseSrc + 'gulp_plugins_config.js').plugins
   plugins.vendors.map((file, index) => {
     if (file.init != undefined) {
       gulp.src(file.init, { allowEmpty: true })
@@ -583,8 +596,8 @@ function snippet () {
 }
 
 function iconLink () {
-  delete require.cache[require.resolve('./gulp-icons-color-config.js')];
-  var themeIcon = require('./gulp-icons-color-config').themeIconColor;
+  delete require.cache[require.resolve(baseSrc + 'gulp-icons-color-config.js')];
+  var themeIcon = require(baseSrc + 'gulp-icons-color-config').themeIconColor;
   themeIcon = '{# icon-color-njk #}\n{% set colorIconName = [\n' + JSON.stringify(themeIcon, null, '\t') + '\n] %}\n{# end-icon-color-njk #}'
 
   var mediaTree = dirTree(desFolder + '/media/', { exclude: /icons-color/, normalizePath: true });
@@ -605,9 +618,9 @@ function iconLink () {
 }
 
 function iconColor (cb) {
-  delete require.cache[require.resolve('./gulp-icons-color-config.js')];
-  var themeIcon = require('./gulp-icons-color-config').themeIconColor;
-  var themeIconProps = require('./gulp-icons-color-config').themeIconProps;
+  delete require.cache[require.resolve(baseSrc + 'gulp-icons-color-config.js')];
+  var themeIcon = require(baseSrc + 'gulp-icons-color-config').themeIconColor;
+  var themeIconProps = require(baseSrc + 'gulp-icons-color-config').themeIconProps;
   var themeIconBase = new RegExp(themeIcon.default, "ig");
   var themeIconStroke = 'stroke-width="' + themeIconProps.stroke + '"';
 
@@ -626,8 +639,8 @@ function iconColor (cb) {
 }
 
 function cleanIconColor (cb) {
-  delete require.cache[require.resolve('./gulp-icons-color-config.js')];
-  var themeIconColor = require('./gulp-icons-color-config').themeIconColor;
+  delete require.cache[require.resolve(baseSrc + 'gulp-icons-color-config.js')];
+  var themeIconColor = require(baseSrc + 'gulp-icons-color-config').themeIconColor;
   var print = function (err, files) {
     for (var item in files) {
       if (!themeIconColor[files[item]]) {
@@ -942,24 +955,24 @@ function watch () {
       }
     }
   });
-  gulp.watch(sourceFolderName + '/scss/**/*.scss', style);
-  gulp.watch('gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS))))
-  gulp.watch('gulp_themes_config.js', theme)
-  gulp.watch('gulp-icons-color-config.js', series(iconColor, iconLink))
+  gulp.watch(themeSourceFolderName + '/scss/**/*.scss', style);
+  gulp.watch(baseSrc + 'gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS))))
+  gulp.watch(baseSrc + 'gulp_themes_config.js', theme)
+  gulp.watch(baseSrc + 'gulp-icons-color-config.js', series(iconColor, iconLink))
   gulp.watch(sourceFolderName + '/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
-  gulp.watch([sourceName + '/media/**/*', '!' + sourceName + '/media/icons-color/**/*'], series(media, imageMinify, iconLink))
+  gulp.watch([themeSourceName + '/media/**/*', '!' + sourceName + '/media/icons-color/**/*'], series(media, imageMinify, iconLink))
   gulp.watch(sourceName + '/media/icons-color/**/*', series(iconColor, iconLink));
   gulp.watch(sourceName + '/dev-only/devSrc/**/*', devOnly)
   gulp.watch([sourceFolderName + '/dev-only/**/*.njk', sourceFolderName + '/_imports/_gen-varibles.njk'], nunjucksDev)
   gulp.watch(sourceFolderName + '/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))
-  gulp.watch(sourceFolderName + '/custom/**/*.js', customJs)
-  gulp.watch(sourceFolderName + '/fonts/**/*', fontSrc)
-  gulp.watch(sourceFolderName + '/custom/**/*.css', customCss)
+  gulp.watch(themeSourceFolderName + '/custom/**/*.js', customJs)
+  gulp.watch(themeSourceFolderName + '/fonts/**/*', fontSrc)
+  gulp.watch(themeSourceFolderName + '/custom/**/*.css', customCss)
   gulp.watch([sourceFolderName + '/**/*.{html,njk}', '!' + sourceFolderName + '/dev-only/**/*.njk'], nunjucks)
   gulp.watch([sourceFolderName + '/_imports/macros/**/*.{html,njk}', sourceFolderName + '/pages/components.njk'], snippet);
   gulp.watch(sourceFolderName + '/_imports/**/*.{html,njk}', nunjucksForce);
-  gulp.watch([sourceFolderName + '/media/**/*', '!' + sourceName + '/media/icons-color/**/*']).on('unlink', function (path) {
-    del(path.replace(sourceFolderName + '\\', desFolderName + '\\').toLowerCase())
+  gulp.watch([themeSourceFolderName + '/media/**/*', '!' + sourceName + '/media/icons-color/**/*']).on('unlink', function (path) {
+    del(path.replace(themeSourceFolderName + '\\', desFolderName + '\\').toLowerCase())
   });
   gulp.watch(sourceFolderName + '/**/*.{html,njk}').on('unlink', function (path) {
     del(path.replace(sourceFolderName + '\\', desFolderName + '\\').replace('.njk', '.html'))
