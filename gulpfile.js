@@ -911,7 +911,7 @@ function pushFtp () {
 
   return gulp.src(globs)
     .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"], dontUpdateReference: [/^\/favicon.ico$/g, ".html"] }))
-    .pipe(conn.dest(process.env.FTP_PATH));
+    .pipe(conn.dest(process.env.FTP_PATH + `/${staticFolderName}`));
 }
 
 
