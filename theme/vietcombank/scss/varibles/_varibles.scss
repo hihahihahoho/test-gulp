@@ -1,0 +1,28 @@
+//body setting default
+
+$font-size-default: 14px; 
+$line-height-default: 1.5;
+// $bg-default: #F2F1F7;
+// $bg-default: #F7F8FA;
+$bg-default: #dcdee4;
+$font-default: "SF Pro Display", "Helvetica Neue","Helvetica","Roboto","Arial",sans-serif;
+
+//========Upload==========//
+$upload-border-radius: 10px;
+$upload-border: 2px dashed #f3f6f8; 
+$ripple-default-color: #f3f6f8;
+//===grid======
+$breakpoints: (
+  xxs             : 350px,
+  xs              : 480px,
+  sms             : 600px,
+  sm              : 768px,
+  md              : 1200px, 
+  bg              : 1440px,
+  lg              : 1600px,
+  menu-break-point: 1200px 
+); 
+
+//==transition===
+$base-transition: "all .3s cubic-bezier(0.645, 0.045, 0.355, 1)";
+//=========

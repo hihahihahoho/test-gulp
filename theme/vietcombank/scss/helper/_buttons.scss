@@ -1,0 +1,206 @@
+$btn-border-radius: 4px;
+$btn-font-weight: 500;
+$btn-ic-width: 22px;
+$btn-font-size: $font-size-default;
+$btn-line-border-thick: 1px;
+$btn-disable-opactiy: 0.4;
+$btn-shadow: true;
+
+$map-btn-width: (
+  auto: auto,
+  full: 100%,
+  xs: 80px,
+  sm: 100px,
+  md: 120px,
+  lg: 140px,
+  xl: 200px,
+);
+$map-btn-height: (
+  default: 44px,
+  xs-3: (
+    height: 18px,
+    font-size: 12px,
+    padding: 5px,
+  ),
+  xs-2: (
+    height: 24px,
+    font-size: 12px,
+    padding: 5px,
+  ),
+  xs-1: (
+    height: 28px,
+    font-size: 12px,
+    padding: 5px,
+  ),
+  xs: 30px,
+  sm: 36px,
+  md: 40px,
+  lg: 50px,
+  xl: 60px,
+);
+$map-btn-color-modify: (
+  yellow: $color-default,
+);
+
+@mixin modifiers-btn-height($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          #{$key2}: $value2;
+          @if $key2 == "height" {
+            min-width: $value2;
+          }
+          @if $key2 == "font-size" {
+            .ubtn-inner {
+              #{$key2}: $value2;
+            }
+          }
+        }
+      } @else {
+        #{$attribute}: $value;
+        padding: 0 10px;
+        &.ubtn-rounded {
+          border-radius: $value/2;
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-btn-circle($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          #{$key2}: $value2;
+          @if $key2 == "height" {
+            width: $value2;
+            border-radius: 50%;
+          }
+          @if $key2 == "font-size" {
+            .ubtn-inner {
+              #{$key2}: $value2;
+            }
+          }
+        }
+      } @else {
+        #{$attribute}: $value;
+        width: $value;
+        border-radius: 50%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+button::after,
+button::before {
+  content: "";
+  flex: 1 0 auto;
+}
+.ubtn {
+  overflow: hidden;
+  vertical-align: middle;
+  border: 0;
+  outline: none !important;
+  cursor: pointer;
+  text-decoration: none !important;
+  border-radius: $btn-border-radius;
+  font-weight: $btn-font-weight;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+  text-align: center;
+  width: 100%;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  &-size {
+    @include modifiers-btn-height($map-btn-height, "height");
+  }
+  &-min-width {
+    @include modifiers($map-btn-width, "min-width");
+  }
+  &-circle {
+    &-size {
+      @include modifiers-btn-circle($map-btn-height, "height");
+    }
+  }
+  &-square {
+    border-radius: $btn-border-radius;
+    padding: 0;
+  }
+}
+
+.ubtn {
+  max-width: 100%;
+  img {
+    @include z-index(btn-img);
+    position: relative;
+  }
+  &-ic {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  & .mdi {
+    vertical-align: middle;
+    line-height: 1;
+  }
+  &-text {
+    padding: 0 10px;
+    @include z-index(btn-text);
+    position: relative;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  &-file {
+    padding-left: 85px;
+    line-height: 24px;
+    font-weight: 400;
+    text-align: left;
+    &-btn {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 36px;
+      line-height: 36px;
+      font-weight: normal;
+      padding: 0 10px;
+      border-radius: 4px 0 0 4px;
+      background: $color-primary;
+      color: white;
+      & ~ .btn-text {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+        display: block;
+      }
+    }
+  }
+  &-full {
+    width: 100%;
+  }
+  &-inner {
+    align-items: center;
+    font-size: $btn-font-size;
+    flex-wrap: nowrap;
+  }
+}
+
+.btn-group {
+  position: relative;
+}
+
+button:disabled,
+button[disabled] {
+  opacity: $btn-disable-opactiy;
+}
+
+.ubtn-min-width-auto {
+  width: auto;
+}

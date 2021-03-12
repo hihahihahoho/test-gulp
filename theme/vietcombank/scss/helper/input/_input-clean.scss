@@ -1,0 +1,42 @@
+.input {
+  &-#{$inputClean} {
+    border: 0;
+    background-color: $input-background;
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      border: 1px solid $input-border-color;
+      background-color: $input-background;
+    }
+    & ~ .select2-container--default .select2-selection--single,
+    & ~ .select2-container--default .select2-selection--multiple,
+    & ~ .btn-group .multiselect {
+      &:after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: $input-line-bar-color;
+        height: $input-line-bar-height;
+        width: 0;
+        bottom: 0;
+        @include transition(0.15s ease-in-out);
+        content: "";
+      }
+    }
+    ~ .input-ic:after {
+      background: linear-gradient(90deg, rgba($input-background, 0) 0%, rgba($input-background, 1) 30%);
+    }
+  }
+  &-group-#{$inputClean} {
+    & .input-flex-content,
+    & .input-group-extend {
+      background-color: $input-background;
+    }
+  }
+  &-extend-outside {
+    & .input-group-extend {
+      background-color: transparent;
+    }
+  }
+}

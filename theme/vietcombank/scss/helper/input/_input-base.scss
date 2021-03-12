@@ -1,0 +1,705 @@
+@mixin modifiers-input-ic($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key},
+      '') } {
+      @if type-of($value) == "map" {
+        @include modifiers-input-ic($value, $attribute, $separator);
+      } @else {
+        // padding-right: $value;
+        ~ .input-ic,
+        .input-ic {
+          #{$attribute}: $value;
+        }
+        ~ .input-flex-content .input-ic {
+          #{$attribute}: $value;
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-input-linebar-ic($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key},
+      '') } {
+      @if type-of($value) == "map" {
+        @include modifiers-input-linebar-ic($value, $separator);
+      } @else {
+        &:not(textarea),
+        &.textarea-autosize {
+          height: $value;
+        }
+        ~ .input-flex-content .input-ic {
+          height: $value;
+        }
+        &.textarea-autosize {
+          padding-top: ($value - $input-font-size * 1.5)/2;
+          padding-bottom: ($value - $input-font-size * 1.5)/2;
+        }
+        &:not(textarea) ~ .input-frame {
+          height: $value;
+          :after {
+            top: $value;
+          }
+        }
+        & ~ .input-ic {
+          height: $value;
+          line-height: $value;
+        }
+        & ~ .select2-container .select2-selection--single,
+        & ~ .btn-group .multiselect {
+          height: $value;
+          .select2-selection__rendered {
+            line-height: $value;
+          }
+        }
+        & ~ .select2-container .select2-selection--multiple {
+          min-height: $value;
+          .select2-search__field {
+            height: $value;
+          }
+        }
+        &:not(.input-#{$inputMaterial2}):not(.input-#{$inputMaterial3}):not(.input-#{$inputMaterial}) {
+          ~ .select2-container .select2-selection--multiple {
+            .select2-selection__placeholder {
+              //   height: $value - 2px;
+              //   line-height: $value - 2px;
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form {
+  &-horizontal {
+    .input-label {
+      margin-bottom: $input-label-margin-bottom;
+    }
+    .input-label[class*="col-lg"] {
+      &:first-child {
+        @include media(">=1200px") {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .input-label[class*="col-md"] {
+      &:first-child {
+        @include media(">=992px") {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .input-label[class*="col-sm"] {
+      &:first-child {
+        @include media(">=768px") {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .input-label[class*="col-xs"] {
+      &:first-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &-vertical {
+    .input-label {
+      width: 100%;
+      display: block;
+      margin-bottom: $input-label-margin-bottom;
+    }
+    .input-#{$inputLine} ~ .input-label {
+      margin-bottom: 0;
+    }
+  }
+}
+.parsley-errors-list {
+  margin: 0;
+}
+label.error,
+.parsley-errors-list.filled {
+  display: block;
+  font-size: $input-error-font-size;
+  color: $color-red;
+}
+.errorBlock {
+  margin-top: 2px;
+}
+input,
+textarea,
+select {
+  color: $input-color;
+  font-weight: $input-font-weight;
+  font-size: $input-font-size;
+  @include media("<992px") {
+    font-size: $input-font-size-mobile !important;
+  }
+}
+
+.input {
+  flex-grow: 1;
+  flex-basis: 0;
+  width: 100%;
+  border-radius: $input-border-radius;
+  padding-left: $input-space-left;
+  padding-right: $input-space-right;
+  transition: all 0.15s ease-in-out;
+  order: 3;
+  &-size {
+    @include modifiers-input-linebar-ic($map-input-size);
+  }
+  &-holder {
+    align-items: center;
+    display: flex;
+  }
+  ~ .input-ic:after {
+    content: "";
+    position: absolute;
+    right: 1px;
+    border-radius: $input-border-radius;
+    top: 1px;
+    width: 140%;
+    height: calc(100% - 5px);
+    z-index: -1;
+  }
+  &-label {
+    font-weight: $input-label-font-weight;
+    font-size: $input-label-font-size;
+    color: $input-label-color;
+    line-height: 1.2;
+    order: 1;
+    z-index: 1;
+  }
+  &-frame {
+    pointer-events: none;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    bottom: 0;
+    border-radius: $input-border-radius;
+    z-index: 2;
+    transition: 0.15s all linear;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background-color: $input-line-bar-color;
+      height: $input-line-bar-height;
+      width: 0;
+      @include transition(0.15s ease-in-out);
+      @include z-index(input-line-bar);
+    }
+  }
+  &-#{$inputLine},
+  &-#{$inputMaterial} {
+    .input-ic-right {
+      text-align: right;
+    }
+    .input-ic-left {
+      text-align: left;
+    }
+    & ~ .input-frame {
+      border-bottom: 1px solid $input-border-color;
+      border-radius: 0;
+    }
+    & ~ .input-flex-content {
+      min-width: 0;
+    }
+  }
+  &-#{$inputBorder},
+  &-#{$inputClean},
+  &-#{$inputMaterial2},
+  &-#{$inputMaterial3} {
+    & ~ .input-frame {
+      border: 1px solid $input-border-color;
+      border-radius: $input-border-radius;
+    }
+  }
+  &.multiselect {
+    display: none;
+  }
+  &::-ms-clear {
+    display: none;
+  }
+  // &.input-ic-left {
+  //   &.input-ic {
+  //     @include modifiers($map-input-size, "padding-left");
+  //   }
+  // }
+  &-upload {
+    display: table;
+    width: 100%;
+    .btn-text {
+      white-space: nowrap;
+    }
+    &-input {
+      &:focus {
+        & ~ .input-upload .input-frame {
+          &:after {
+            width: 100%;
+          }
+        }
+      }
+    }
+    > .input {
+      display: table-cell;
+      vertical-align: middle;
+      &-sm,
+      &-xs {
+        padding-left: 6px;
+      }
+      &-lg,
+      &-md {
+        padding-left: 8px;
+      }
+      &-#{$inputLine},
+      &-#{$inputMaterial},
+      &-#{$inputMaterial2} {
+        padding-left: 0;
+      }
+      > .btn {
+        > .btn-text {
+          white-space: nowrap;
+          display: block;
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+  &-multiselect-search {
+    border: 1px solid #e6edf6;
+    background-color: #f6f7f9;
+    font-size: 14px;
+  }
+  &:disabled {
+    opacity: $input-disabled-opacity;
+    & ~ * {
+      opacity: $input-disabled-opacity;
+    }
+  }
+  &-white {
+    border: transparent;
+  }
+  &-group {
+    position: static !important;
+    flex: 1;
+  }
+  &-extend-outside {
+    .input-group {
+      position: relative !important;
+    }
+    .input-group-extend {
+      padding-left: 10px;
+      padding-right: 0;
+    }
+  }
+  &-group-wrap {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  &-ic {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+    &:not(.input-ic-txt) {
+      font-weight: 600;
+      font-size: 0;
+    }
+    @include modifiers-input-ic($map-input-ic-size, "min-width");
+    &-left {
+      padding-left: 0;
+      & ~ .input-ic {
+        left: 0;
+        right: auto;
+      }
+    }
+    &-auto-width {
+      width: auto;
+    }
+    &:not(.input-clear) {
+      pointer-events: none;
+    }
+    &.input-clear {
+      cursor: pointer;
+      display: none;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+  &-shadow {
+    border: 0;
+    @include box-shadow(0 2px 4px 0 rgba(black, 0.16));
+  }
+  &-no-border {
+    border: 0;
+    padding: 0;
+  }
+  &-pointer {
+    pointer-events: all;
+    cursor: pointer;
+  }
+  &-#{$inputBorder},
+  &-#{$inputMaterial3},
+  &-#{$inputClean} {
+    &:focus,
+    &.light-pick-focus,
+    & ~ .btn-group.open,
+    & ~ .select2-container--open {
+      & ~ .input-label {
+        color: $color-primary;
+      }
+      & ~ .input-frame {
+        border: 1px solid $color-primary;
+      }
+    }
+  }
+  &-line,
+  &-#{$inputMaterial},
+  &-#{$inputMaterial2} {
+    &:focus,
+    &.light-pick-focus,
+    & ~ .btn-group.open,
+    & ~ .select2-container--open {
+      & ~ .input-label {
+        color: $color-primary;
+      }
+      & ~ .input-frame {
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+  &:focus {
+    // padding-right: 0 !important;
+    & ~ .input-clear.show,
+    & ~ .input-flex-content .input-clear.show {
+      display: flex;
+    }
+    & ~ .input-flex-content:after {
+      display: none;
+    }
+  }
+  &-has-clear {
+    padding-right: 0 !important;
+  }
+  &-clear {
+    background-color: transparent;
+    border-radius: 50%;
+    right: 0 !important;
+    left: auto !important;
+    display: flex;
+    align-items: center;
+  }
+  // &:not(:focus) {
+  //   ~ .input-flex-content:not(.input-flex-content-left) {
+  //     padding-left: 10px;
+  //   }
+  // }
+  &-group-extend {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding-right: $input-space-right;
+    align-self: flex-end;
+    &-left {
+      order: 2;
+    }
+    & .input-ic {
+      position: relative;
+    }
+  }
+  &-flex-content {
+    min-width: $input-space-right;
+    position: relative;
+    order: 4;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    &-left {
+      order: 2;
+    }
+    & > *:not(.input-clear) {
+      position: relative;
+      z-index: 1;
+      cursor: text;
+      height: 100%;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      right: 100%;
+      border-radius: $input-border-radius;
+      top: 1px;
+      width: 20px;
+      height: calc(100% - 5px);
+      z-index: 1;
+      pointer-events: none;
+    }
+    & .input-ic-txt {
+      padding-left: $input-space-right;
+      padding-right: $input-space-right;
+    }
+    & .input-ic {
+      position: relative;
+      pointer-events: all;
+    }
+    & .input-clear {
+      &:not(:only-child) {
+        margin-right: -10px;
+      }
+      height: 100%;
+    }
+  }
+  &:not(.input-#{$inputClean}):not(.input-#{$inputMaterial2}) {
+    & ~ .input-flex-content::after {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 70%);
+    }
+  }
+  &.input-#{$inputClean},
+  &.input-#{$inputMaterial2} {
+    & ~ .input-flex-content::after {
+      background: linear-gradient(90deg, rgba($input-background, 0) 0%, $input-background 70%);
+    }
+  }
+}
+
+@-moz-document url-prefix() {
+  .input {
+    width: 30px;
+  }
+}
+
+input {
+  &::placeholder {
+    color: $input-placeholder-color;
+  }
+}
+
+.input-no-border {
+  & ~ .select2-container--default {
+    .select2-selection--single {
+      border: 0;
+    }
+    .select2-selection__rendered {
+      padding-left: 0;
+    }
+  }
+}
+
+.input-white {
+  & ~ .select2-container--default {
+    .select2-selection--single {
+      border: 1px solid transparent;
+    }
+  }
+}
+
+input[type="file"] {
+  opacity: 0;
+  display: none;
+}
+
+textarea {
+  line-height: $textarea-line-height;
+  resize: none;
+  line-height: 1.5;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+  position: relative;
+  & ~ .input-flex-content {
+    align-items: flex-start;
+  }
+  & ~ .input-frame {
+    min-height: 10px;
+    z-index: 9;
+  }
+  &.input-#{$inputMaterial2},
+  &.input-#{$inputMaterial3} {
+    & ~ .input-frame {
+      height: 100%;
+      z-index: 1;
+    }
+  }
+  &.input-#{$inputBorder},
+  &.input-#{$inputClean} {
+    border-left: 1px solid $input-border-color;
+    padding-right: $input-space-right !important;
+    & ~ .input-flex-content {
+      min-width: 0;
+      &::before {
+        border-right: 1px solid $input-border-color;
+        border-radius: $input-border-radius;
+        transition: 0.15s all linear;
+        width: 20px;
+        height: 100%;
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      &::after {
+        display: none;
+      }
+    }
+    & ~ .input-frame {
+      height: 15px;
+      border-top: 0 !important;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    & ~ .input-label {
+      position: relative;
+      z-index: 3;
+      &::after {
+        transition: 0.15s all linear;
+        content: "";
+        border-radius: $input-border-radius;
+        position: absolute;
+        border: 1px solid $input-border-color;
+        border-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%;
+        height: 100%;
+        top: calc(100% + #{$input-label-margin-bottom});
+        left: 0;
+      }
+    }
+    &:focus {
+      border-left: 1px solid $input-border-color-focus;
+      & ~ .input-flex-content {
+        &::before {
+          border-right: 1px solid $input-border-color-focus;
+        }
+      }
+      & ~ .input-label {
+        &::after {
+          border-color: $input-border-color-focus;
+        }
+      }
+    }
+  }
+  &:focus {
+    & ~ .input-frame {
+      width: 100%;
+    }
+  }
+  & ~ .input-frame {
+    bottom: 0;
+    top: auto !important;
+  }
+}
+
+.upload-file {
+  border-radius: $upload-border-radius;
+  border: $upload-border;
+  position: relative;
+  display: block;
+  padding: 15px;
+  &-type {
+    .inline-block {
+      font-size: 12px;
+      color: $color-grey;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.textarea-autosize {
+  max-height: $textarea-autosize-max-height;
+  transition: none !important;
+  & ~ *:not(.input-label),
+  & ~ .input-label::after,
+  & ~ .input-flex-content::before {
+    transition: none !important;
+  }
+  &:after {
+    content: "";
+    position: relative;
+    height: 10px;
+    width: 100%;
+    display: block;
+  }
+}
+.input-group-flex {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple,
+.btn-group .multiselect {
+  border: 0;
+}
+.select2-container {
+  order: 3;
+}
+
+.errorBlock {
+  min-height: 19px;
+}
+
+// custom
+.input-ic-xs-1 {
+  & ~ .input-flex-content-left {
+    padding-right: $input-space-left;
+  }
+  & ~ .input-flex-content {
+    .input-clear:not(:only-child) {
+      margin-right: 5px;
+    }
+  }
+}
+
+.note-text {
+  margin-top: 3px;
+}
+
+.file-txt {
+  font-size: $input-font-size;
+  font-weight: $input-font-weight;
+  color: $input-placeholder-color;
+  @include media("<992px") {
+    font-size: 16px !important;
+  }
+}
+.file-txt.color-input {
+  color: $input-color;
+}
+.input-flex-content-left {
+  .input-group-extend {
+    padding-left: 0 !important;
+    padding-right: 0;
+  }
+}
+
+.input-group-#{$inputBorder},
+.input-group-#{$inputClean},
+.input-group-#{$inputMaterial2},
+.input-group-#{$inputMaterial3} {
+  .input-flex-content-file {
+    padding-left: 10px;
+  }
+}
+
+.input-flex-content-left::after {
+  display: none;
+}

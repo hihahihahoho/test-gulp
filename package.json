@@ -50,8 +50,6 @@
     "gulp-filter": "^6.0.0",
     "gulp-git": "^2.10.1",
     "gulp-html-beautify": "^1.0.1",
-    "gulp-iconfont": "^10.0.3",
-    "gulp-iconfont-css": "^3.0.0",
     "gulp-if": "^3.0.0",
     "gulp-image": "^6.2.0",
     "gulp-imagemin": "^7.1.0",

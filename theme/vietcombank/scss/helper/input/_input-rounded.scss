@@ -1,0 +1,22 @@
+@mixin modifiers-input-rounded($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-input-rounded($value, $separator);
+      } @else {
+        &.input-rounded {
+          border-radius: $value/2;
+          & ~ .select2-container .select2-selection--single,
+          & ~ .select2-container .select2-selection--multiple,
+          & ~ .btn-group .multiselect {
+            border-radius: $value/2;
+          }
+        }
+      }
+    }
+  }
+}
+
+.input {
+  @include modifiers-input-rounded($map-input-size)
+}

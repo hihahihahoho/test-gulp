@@ -1,0 +1,153 @@
+//=============Modal================//
+
+$modal-xs                     :  320px;
+$modal-sm                     :  600px;
+$modal-md                     :  1000px;
+$modal-lg                     :  1200px;
+$modal-close-ic-width         :  16px;
+$modal-border-radius          :  10px;
+$modal-header-space-h         :  30px;
+$modal-header-space-v         :  30px;
+$modal-header-space-h-mobile  :  15px;
+$modal-header-space-v-mobile  :  15px;
+$modal-body-space-h           :  30px;
+$modal-body-space-v           :  0;
+$modal-body-space-h-mobile    :  15px;
+$modal-body-space-v-mobile    :  0;
+$modal-footer-space-h         :  30px;
+$modal-footer-space-v         :  30px - 5px;
+$modal-footer-space-h-mobile  :  15px;
+$modal-footer-space-v-mobile  :  15px - 5px;
+
+//===========Dropdown===========//
+$dropdown-menu-space       :  10px 0;
+$dropdown-item-space       :  7px 15px;
+$dropdown-item-hover-bg    :  $bg-default;
+$dropdown-separator-color  :  #cccccc;
+$dropdown-border           :  1px solid #cccccc;
+$dropdown-separator-space  :  5px 0;
+$dropdown-menu-xs          :  120px;
+$dropdown-menu-sm          :  230px;
+$dropdown-menu-md          :  300px;
+$dropdown-menu-lg          :  360px;
+$dropdown-border-radius    :  6px;
+$dropdown-font-size        :  $font-size-default;
+
+ 
+
+
+.modal-content {
+   border: 0;
+}
+
+.modal .open>[data-content] {
+   max-height: none !important
+}
+
+.dropdown-menu-xs {
+   width: $dropdown-menu-xs;
+}
+
+.dropdown-menu-sm {
+   width: $dropdown-menu-sm;
+}
+
+.dropdown-menu-md {
+   width: $dropdown-menu-md;
+}
+
+.dropdown-menu-lg {
+   width: $dropdown-menu-lg;
+}
+
+
+//drop-down
+.dropdown-menu-right:not(.bootstrap-datetimepicker-widget) {
+   display: block;
+   opacity: 0;
+   @include media('>sms') {
+      @include transform(scale(.8) translate(5%, -10%));
+      @include transform-origin(90% 0);
+      transition-duration: 0.1s, 0.1s;
+      transition-delay: 0s, 0s;
+   }
+   pointer-events: none;
+}
+
+.dropdown-menu-left:not(.bootstrap-datetimepicker-widget) {
+   display: block;
+   opacity: 0;
+   @include media('>sms') {
+      @include transform(scale(.8) translate(-5%, -10%));
+      @include transform-origin(5% 0);
+      transition-duration: 0.1s, 0.1s;
+      transition-delay: 0s, 0s;
+   }
+   pointer-events: none;
+}
+
+.open>.dropdown-menu:not(.bootstrap-datetimepicker-widget) {
+   @include media('>sms') {
+      @include transform(scale(1) translate(0, 0));
+   }
+   opacity: 1;
+   pointer-events: all;
+}
+
+.dropdown {
+   position: relative;
+   &-separator {
+      margin: $dropdown-separator-space;
+      height: 1px;
+      width: 100%;
+      background-color: $dropdown-separator-color
+   }
+}
+
+.dropdown-menu:not(.bootstrap-datetimepicker-widget) {
+   border: 0;
+   margin-top: 0;
+   padding: $dropdown-menu-space;
+   border-radius: $dropdown-border-radius;
+   @include box-shadow(0 5px 20px 0 rgba(0, 0, 0, 0.2));
+}
+
+.dropdown-menu:not(.bootstrap-datetimepicker-widget)>li>.dropdown-inner {
+   padding: $dropdown-item-space;
+   font-size: $dropdown-font-size;
+   line-height: 0;
+   
+}
+
+.dropdown-menu:not(.bootstrap-datetimepicker-widget)>li>.dropdown-inner:hover,
+.dropdown-menu:not(.bootstrap-datetimepicker-widget)>li>.dropdown-inner:focus {
+   background-color: $dropdown-item-hover-bg
+}
+
+.dropdown {
+   &-ic {
+      display: inline-block;
+      vertical-align: middle
+   }
+   &-text {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 5px;
+      line-height: round($dropdown-font-size*1.3);
+   }
+   &__header {
+      padding: 20px;
+   }
+   &__footer {
+      padding: 15px 20px;
+      font-size: 12px;
+   }
+   &__content {
+      height: 314px;
+      max-height: 70vh;
+      overflow-y: auto;
+      border-top: $dropdown-border;
+      border-bottom: $dropdown-border;
+      @include scrollbar();
+   }
+}

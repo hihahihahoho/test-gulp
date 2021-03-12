@@ -1,0 +1,159 @@
+$color-grey: #afb3bc !default;
+$color-grey-1: #afb3bc !default;
+$color-grey-2: #e0e4eb !default;
+$color-grey-3: #eaeff3 !default;
+$color-grey-4: #f7f8fa !default;
+$color-default: #121f3e !default;
+$color-default-2: #707c93 !default;
+$color-invert: #ffffff !default;
+$color-red: #ff3d4e !default;
+$color-blue: #3f3bec !default;
+$color-orange: #ff7544 !default;
+$color-yellow: #e9ec3b !default;
+$color-teal: #0e5c22 !default;
+$color-green: #2ed573 !default;
+$color-purple: #4527a0 !default;
+
+$color-primary: $color-blue !default;
+$color-cancel: $color-grey-4 !default;
+$color-secondary: $color-green !default;
+$color-tertiary: $color-grey-3 !default;
+$color-success: $color-green !default;
+$color-false: $color-red !default;
+
+$link-color: $color-blue !default;
+
+$bg-line-border-thick: 1px;
+$bg-op-opacity: 0.2;
+$color-invert: white;
+$color-black: $color-default !default;
+
+$border-base-color: $color-grey-2 !default;
+
+$map-bg-op-color-modify: (
+  yellow: $color-default,
+  tertiary: $color-default,
+  cancel: $color-default,
+);
+
+$map-color-shadowOp: () !default;
+$map-color-active: () !default; 
+$map-color-hover: () !default; 
+$map-color-text: () !default; 
+
+@mixin modifiers-bg-op-color($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-bg-op-color($value, $separator);
+      } @else {
+        background-color: rgba($color: $value, $alpha: $bg-op-opacity);
+        &.bg-shadow {
+          box-shadow: 0px 5px 30px 0 rgba($value, 0.3);
+        }
+        .legitRipple-ripple {
+          background: lighten($value, 34%);
+        }
+        @if map-has-key($map-bg-op-color-modify, $key) {
+          color: map-get($map-bg-op-color-modify, $key);
+        } @else {
+          color: $value;
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-bg-color($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-bg-color($value, $separator);
+      } @else {
+        background-color: $value;
+        .legitRipple-ripple,
+        &.ubg-active:active {
+          background-color: map-get($map: $map-color-active, $key: $value);
+        }
+        &.ubg-hover {
+          transition: 0.2s all linear;
+          &:hover {
+            @if map-has-key($map-color-hover, $key) {
+              background-color: map-get($map-color-hover, $key);
+            }
+          }
+        }
+        &.ubg-active {
+          &:active {
+            @if map-has-key($map-color-active, $key) {
+              background-color: map-get($map-color-active, $key);
+            }
+          }
+        }
+        &.ubg-shadow {
+          @if map-has-key($map-color-shadowOp, $key) {
+            box-shadow: 0px 5px 30px 0 rgba($value, map-get($map: $map-color-shadowOp, $key: $key));
+          } @else {
+            box-shadow: 0px 5px 30px 0 rgba($value, 0.2);
+          }
+        }
+        @if map-has-key($map-color-text, $key) {
+          & .ubtn-inner {
+            color: map-get($map-color-text, $key);
+          }
+          color: map-get($map-color-text, $key);
+        } @else {
+          & .ubtn-inner {
+            color: white;
+          }
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-bg-line($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-bg-line($value);
+      } @else {
+        border: $bg-line-border-thick solid $value !important;
+        box-shadow: none;
+        background: transparent;
+        > * {
+          color: $value;
+        }
+        .legitRipple-ripple {
+          background: lighten($value, 42%);
+        }
+      }
+    }
+  }
+}
+
+.ripple .legitRipple-ripple,
+.ripple-100 .legitRipple-ripple {
+  background-color: $ripple-default-color;
+}
+
+.color {
+  @include modifiers($map-color, "color");
+  &-blank {
+    color: transparent;
+  }
+}
+
+.ubg {
+  @include modifiers-bg-color($map-color);
+  &-op {
+    @include modifiers-bg-op-color($map-color);
+  }
+  &-blank {
+    background: transparent;
+  }
+  &-line {
+    @include modifiers-bg-line($map-color);
+  }
+}

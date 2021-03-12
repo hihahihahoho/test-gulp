@@ -1,0 +1,25 @@
+@import "varibles/_gen-varibles.scss";
+@import "varibles/_varibles.scss";
+@import "modules/_include-media.scss";
+// @import "modules/_family.scss";
+@import "modules/_mixins.scss";
+// @import "./plugins/_bootstrap.scss";
+@import "_helper.scss";
+@import "./plugins/_select2.scss";
+@import "./plugins/_lightpick.scss";
+// @import "./plugins/_multiselect.scss";
+// @import "./plugins/_filepond.scss";
+// @import "./plugins/_alerts.scss";
+@import "./plugins/_materialize.scss";
+// @import "./plugins/_accordion.scss";
+// @import "./plugins/_lightSlider.scss";
+@import "./plugins/_light-gallery.scss";
+// @import "./plugins/_flickity.scss";
+@import "./plugins/_datatables.scss";
+@import "./plugins/nouislider.scss";
+// @import "./plugins/_star-rating.scss";
+// @import "./plugins/_dropzone.scss";
+
+.scrollspy{
+   height: 700px;
+}
