@@ -81,6 +81,9 @@
 {% block mainInner %}
   <div class="box">
     <div class="box__body">
+      {% if theme == 'vietcombank' %}
+        <h1>{{ theme }}</h1>
+      {% endif %}
       {{ text.text() }}
     </div>
   </div>
@@ -385,7 +388,7 @@
         </div>
         <div class="col-md-6">
           <div class="bd-example bd-example-modal">
-            {{ pageModalAlert('inline') }} 
+            {{ pageModalAlert('inline') }}
           </div>
         </div>
         <div class="col-md-6">

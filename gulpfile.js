@@ -85,6 +85,30 @@ var options = {
   max_preserve_newlines: 0
 };
 
+function settings () {
+  var settingSearch = ''
+  var themeName = fs.readdirSync('./theme');
+  if (argv.src) {
+    settingSearch =
+      `"src/custom/**/*": true,
+    "src/scss/**/*": true,
+    "src/fonts/**/*": true,`
+    themeName.forEach(element => {
+      if (element != argv.src) {
+        settingSearch += `\n"theme/${element}": true,`
+      }
+    });
+  }
+  else {
+    settingSearch =
+      `"theme/*": true,`
+  }
+  settingSearch = `// settingSearch\n${settingSearch}\n// endSettingSearch`
+  return gulp.src(['./.vscode/settings.json'])
+    .pipe(replace(/(\/\/ settingSearch)([\S\s]*?)(\/\/ endSettingSearch)/, settingSearch))
+    .pipe(gulp.dest('./.vscode/'));
+}
+
 var postCssPlugins = [
   cssvariables(),
   posCssRgb()
@@ -114,7 +138,7 @@ function genVarFilesFunc (srcPath, content) {
 }
 
 function genStatic () {
-  return gulp.src([desFolder + '/**/*', '!' + desFolder + '/dev-only{,/**}'])
+  return gulp.src([desFolder + '/**/*', '!' + desFolder + '/dev-only{,/**}', '!' + desFolder + '/pages/theme/!(' + argv.src + ')/**'])
     .pipe(gulp.dest(staticFolder + '/'));
 }
 
@@ -705,7 +729,8 @@ function nunjucksDev () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
+        file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/'),
+        theme: argv.src
       }
     }))
     .pipe(nunjucksRender({
@@ -732,7 +757,8 @@ function nunjucks () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
+        file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/'),
+        theme: argv.src
       }
     }))
     .pipe(nunjucksRender({
@@ -758,7 +784,8 @@ function nunjucksForce () {
     }))
     .pipe(data(function (file) {
       return {
-        file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/')
+        file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/'),
+        theme: argv.src
       }
     }))
     .pipe(nunjucksRender({
@@ -825,7 +852,7 @@ function gitAdd () {
 }
 
 function gitAddAll () {
-  return gulp.src('.')
+  return gulp.src(rootSrc)
     .pipe(git.add({ args: ':!.vscode/*' }));
 }
 
@@ -1012,11 +1039,14 @@ exports.genVarFiles = genVarFiles;
 exports.genStatic = genStatic;
 exports.gitAddAll = gitAddAll;
 exports.purge = purge;
+exports.settings = settings;
 
-exports.dev = series(yarnInstall, genVarFiles, theme, parallel(devOnly, snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, iconLink, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
+exports.dev = series(yarnInstall, settings, genVarFiles, theme, parallel(devOnly, snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, iconLink, cleanMedia, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucksDev, nunjucks, htmlBeauty)), watch);
 
 exports.prod = parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor)
 
 exports.deploy = series(promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(snippet, series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
 
 exports.deployAll = series(genVarFiles, promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, iconLink, cleanMedia, prefixCss), genStatic, purge, minifyCss, parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+
+exports.deployFtp = series(genVarFiles, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, iconLink, cleanMedia, prefixCss), genStatic, purge, minifyCss, parallel(snippet, pushFtp))
