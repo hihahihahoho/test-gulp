@@ -92,7 +92,10 @@ function settings () {
     settingSearch =
       `"src/custom/**/*": true,
     "src/scss/**/*": true,
-    "src/fonts/**/*": true,`
+    "src/fonts/**/*": true,
+    "./gulp_icons-color-config.js": true,
+    "./gulp_themes_config.js": true,
+    "./gulp_plugins_config.js": true,`
     themeName.forEach(element => {
       if (element != argv.src) {
         settingSearch += `\n"theme/${element}": true,`
