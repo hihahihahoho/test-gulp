@@ -2,6 +2,16 @@
   "search.exclude": {
     "**/dist/**/*": true,
     "**/static/**/*": true,
+    // settingSearch
+"src/fonts/**/*": true,
+    "gulp_themes_config.js": true,
+    "gulp_icons-color-config.js": true,
+"theme/bidv": true,
+// endSettingSearch
+  },
+  "files.exclude": {
+    "static": true,
+    "static-theme": true,
   },
   "html.suggest.html5": true,
   "emmet.includeLanguages": {
@@ -50,7 +60,7 @@
   },
   "vscode-opn.webServerProtocol": "http",
   "vscode-opn.webServerHostname": "localhost",
-  "vscode-opn.webServerPort": 3002,
+  "vscode-opn.webServerPort": 3000,
   "workbench.colorCustomizations": {
     "editor.background": "#171c20",
     "editor.findMatchBackground": "#ff008056",
