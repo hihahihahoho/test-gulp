@@ -8,8 +8,8 @@
         <div class="col-md-auto col-6">
           <div class="color-block">
             <div class="color-block-color ubg-{{ name2 }} ubg-hover ubg-active h6">
-              <div class="p">{{ name2 }}</div>
-              <div class="p">{{ data[name][name2]['color'] }}</div>
+              <div class="p text-truncate">{{ name2 }}</div>
+              <div class="p text-truncate">{{ data[name][name2]['color'] }}</div>
             </div>
             <div class="color-block-info h6">
               {% if name == 'level' %}
@@ -19,25 +19,25 @@
               {% else %}
                 <div class="row row-5 justify-content-between">
                   <div class="col-auto color-block-label">Active</div>
-                  <div class="col-auto">{{ data[name][name2]['active'] }}
-                    <div class="color-block-sample" style="background-color: {{data[name][name2]['active']}}"></div>
+                  <div class="col text-right text-truncate">{{ data[name][name2]['active'] }}
+                    <div class="color-block-sample" style="background: {{data[name][name2]['active']}}"></div>
                   </div>
                 </div>
                 <div class="row row-5 justify-content-between">
                   <div class="col-auto color-block-label">Hover</div>
-                  <div class="col-auto">{{ data[name][name2]['hover']}}
-                    <div class="color-block-sample" style="background-color: {{data[name][name2]['hover']}}"></div>
+                  <div class="col text-right text-truncate">{{ data[name][name2]['hover']}}
+                    <div class="color-block-sample" style="background: {{data[name][name2]['hover']}}"></div>
                   </div>
                 </div>
                 <div class="row row-5 justify-content-between">
                   <div class="col-auto color-block-label">Text</div>
-                  <div class="col-auto">{{ data[name][name2]['text'] }}
+                  <div class="col text-right text-truncate">{{ data[name][name2]['text'] }}
                     <div class="color-block-sample"></div>
                   </div>
                 </div>
                 <div class="row row-5 justify-content-between">
                   <div class="col-auto color-block-label">Shadow</div>
-                  <div class="col-auto">{{ data[name][name2]['shadow'] }}
+                  <div class="col text-right text-truncate">{{ data[name][name2]['shadow'] }}
                     <div class="color-block-sample"></div>
                   </div>
                 </div>

@@ -55,6 +55,10 @@ var theme = {
         'light-success': 'light-green'
       },
       normal: {
+        'gradient-primary': {
+          color: 'linear-gradient(#00bfae 0%, #0066ad 100%)',
+          hover: 'linear-gradient(#00bfae 0%, #0066ad 100%)'
+        },
         'transparent': {
           color: 'transparent',
           hover: '#f5f5f5',
