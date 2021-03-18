@@ -62,7 +62,13 @@ if (argv.src) {
   themeSourceFolderName = `theme/${argv.src}`;
   desFolderName = `dist-theme/${argv.src}`;
   staticFolderName = `static-theme/${argv.src}`
+
+  if (fs.existsSync(themeSourceFolderName + '/color-theme') && !argv.colorTheme) {
+    desFolderName += '/default'
+    staticFolderName += '/default'
+  }
 }
+
 
 rootSrc = './' + rootSrc;
 var gulpThemeSrc = rootSrc;
@@ -71,6 +77,12 @@ var desFolder = './' + desFolderName;
 var staticFolder = './' + staticFolderName
 var themeSourceName = './' + themeSourceFolderName;
 
+
+if (argv.colorTheme) {
+  gulpThemeSrc += `color-theme/${argv.colorTheme}/`
+  desFolderName += `/${argv.colorTheme}`
+  staticFolderName += `/${argv.colorTheme}`
+}
 
 if (argv.src) {
   if (fs.existsSync(themeSourceName + '/custom/css')) {
@@ -95,10 +107,6 @@ if (argv.src) {
   var gulpPluginSrc = './';
   var customCssSrcName = defSourceName;
   var customScssSrcName = defSourceName;
-}
-
-if (argv.colorTheme) {
-  gulpThemeSrc = gulpThemeSrc + `/color-theme/${argv.colorTheme}/`
 }
 
 var plugins = require(gulpPluginSrc + 'gulp_plugins_config.js').plugins
@@ -127,19 +135,35 @@ function execPromise (cmd) {
 
 function buildTheme (cb) {
   var themeName = fs.readdirSync('./theme');
-  themeName = themeName.map((element, index) => {
+  themeName.forEach(element => {
+    if (fs.existsSync(`./theme/${element}/color-theme`)) {
+      var themeColorName = fs.readdirSync(`./theme/${element}/color-theme`);
+      themeColorName.forEach(element2 => {
+        var themeColorText = `${element} --color-theme ${element2}`
+        themeName.push(themeColorText)
+      })
+    }
+  })
+  themeName = themeName.map((element) => {
     return `gulp devTheme --src ${element}`;
+  });
+  themePushFtpName = themeName.map((element) => {
+    return element.replace('devTheme', 'pushFtpTheme');
   });
   console.log(themeName)
   themeName.reduce(function (p, cmd) {
     return p.then(function (results) {
+      console.log(`Start building ${cmd}`)
       return execPromise(cmd).then(function (stdout) {
+        console.log(`Finish building ${cmd}`)
         results.push(stdout);
         return results;
       });
     });
   }, Promise.resolve([])).then(function (results) {
-    // all done here, all results in the results array
+    themePushFtpName.forEach(cmd => {
+      execPromise(cmd)
+    })
   }, function (err) {
     // error here
   });
@@ -618,6 +642,16 @@ function imageMinifyTheme (cb) {
       imageMinifyTemp(themeSourceName + '/media/**/*', desFolder + '/media')
     }, 300)
   }
+  if (fs.existsSync(themeSourceName + '/color-theme/' + argv.colorTheme + '/theme-custom/media')) {
+    setTimeout(function () {
+      imageMinifyTemp([themeSourceName + '/color-theme/' + argv.colorTheme + '/theme-custom/media/**/*'], desFolder + '/media/custom-media/')
+    }, 300)
+  }
+  if (fs.existsSync(themeSourceName + '/color-theme/' + argv.colorTheme + '/media') && argv.colorTheme) {
+    setTimeout(function () {
+      imageMinifyTemp(themeSourceName + '/color-theme/' + argv.colorTheme + '/media/**/*', desFolder + '/media')
+    }, 500)
+  }
   cb();
 }
 
@@ -1023,11 +1057,17 @@ function minifyCss () {
     .pipe(gulp.dest(staticFolder + '/'));
 }
 
+function rev (cb) {
+  var globs = [
+    staticFolder + '/**/*'
+  ];
+
+  return gulp.src(globs)
+    .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"], dontUpdateReference: [/^\/favicon.ico$/g, ".html"] }))
+    .pipe(dest('./.temp/' + staticFolderName));
+}
 
 function pushFtp () {
-  const f = filter(['**/*.html'], { restore: true });
-  var indexHtmlFilter = filter(['**/*', '!**/index.html'], { restore: true });
-
   var conn = ftp.create({
     host: process.env.FTP_HOST,
     user: process.env.FTP_USER,
@@ -1036,15 +1076,9 @@ function pushFtp () {
     log: gutil.log
   });
 
-  var globs = [
-    staticFolder + '/**/*'
-  ];
-
-  return gulp.src(globs)
-    .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"], dontUpdateReference: [/^\/favicon.ico$/g, ".html"] }))
+  return gulp.src('./.temp/' + staticFolderName)
     .pipe(conn.dest(process.env.FTP_PATH + `/${staticFolderName}`));
 }
-
 
 // end production task
 function watch () {
@@ -1069,13 +1103,10 @@ function watch () {
   });
   gulp.watch(customScssSrcName + '/scss/**/*.scss', style);
   gulp.watch(gulpPluginSrc + 'gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS))))
-  gulp.watch(gulpThemeSrc + 'gulp_themes_config.js', theme)
+  gulp.watch('**/gulp_themes_config.js', theme)
   gulp.watch(gulpThemeSrc + 'gulp_icons-color-config.js', series(iconColor, iconLink, imageMinifyTheme))
   gulp.watch(sourceName + '/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
-  gulp.watch([defSourceName + '/media/**/*', themeSourceName + '/theme-custom/media/**/*', '!' + defSourceName + '/media/icons-color/**/*'], series(media, imageMinify, iconLink, iconLink, imageMinifyTheme))
-  if (fs.existsSync(themeSourceName + '/media') && argv.src) {
-    gulp.watch([themeSourceName + '/media/'], series(imageMinifyTheme))
-  }
+  gulp.watch([defSourceName + '/media/**/*', themeSourceName + '/theme-custom/media/**/*', themeSourceName + `/color-theme/${argv.colorTheme}/media/**/*`, themeSourceName + '/media/', '!' + defSourceName + '/media/icons-color/**/*'], series(media, imageMinify, iconLink, iconLink, imageMinifyTheme))
   gulp.watch(rootSrc + '/media/icons-color/**/*', series(iconColor, iconLink, imageMinifyTheme));
   gulp.watch(defSourceName + '/dev-only/devSrc/**/*', devOnly)
   gulp.watch([sourceName + '/dev-only/**/*.njk', sourceName + '/_imports/_gen-varibles.njk'], nunjucksDev)
@@ -1123,7 +1154,7 @@ exports.pluginsVendorsJS = pluginsVendorsJS;
 exports.pluginsVendors = series(pluginsVendorsJS, pluginsVendorsCss);
 exports.pluginsInitJS = pluginsInitJS;
 exports.pluginsVendorsInitJS = pluginsVendorsInitJS;
-exports.pushFtp = pushFtp;
+exports.rev = rev;
 exports.yarnInstall = yarnInstall;
 exports.gitCommit = gitCommit;
 exports.gitPull = gitPull;
@@ -1149,15 +1180,19 @@ exports.gitAddAll = gitAddAll;
 exports.purge = purge;
 exports.settings = settings;
 exports.buildTheme = buildTheme;
+exports.pushFtp = pushFtp;
+exports.rev = rev;
 
-exports.devTheme = series(yarnInstall, settings, genVarFiles, theme, parallel(devOnly, snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, cleanMedia, iconLink, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), imageMinifyTheme, prefixCss, genStatic, purge, minifyCss, pushFtp);
+exports.devTheme = series(yarnInstall, settings, genVarFiles, theme, parallel(devOnly, snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, cleanMedia, iconLink, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, htmlBeauty)), imageMinifyTheme, prefixCss, genStatic, purge, minifyCss);
+
+exports.pushFtpTheme = series(rev, pushFtp)
 
 exports.dev = series(yarnInstall, settings, genVarFiles, theme, parallel(devOnly, snippet, series(iconColor, cleanMedia, cleanIconColor, imageMinify, iconColor, cleanMedia, iconLink, cleanIconColor), style, parallel(pluginsBundlesCss, pluginsBundlesJS), series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS)), fontSrc, pluginsInitJS, customCss, customJs, series(cleanHtml, nunjucks, nunjucksDev, htmlBeauty)), imageMinifyTheme, watch);
 
 exports.prod = parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor)
 
-exports.deploy = series(promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(snippet, series(gitAdd, gitCommit, gitPull, gitPush), pushFtp))
+exports.deploy = series(promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), series(prefixCss, purge, minifyCss), iconColor, iconLink, cleanMedia, cleanIconColor), parallel(snippet, series(gitAdd, gitCommit, gitPull, gitPush), series(rev, pushFtp)))
 
-exports.deployAll = series(genVarFiles, promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, cleanMedia, iconLink, prefixCss), genStatic, purge, minifyCss, parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), pushFtp))
+exports.deployAll = series(genVarFiles, promptMes, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, cleanMedia, iconLink, prefixCss), genStatic, purge, minifyCss, parallel(snippet, series(gitAddAll, gitCommitAll, gitPull, gitPush), series(rev, pushFtp)))
 
-exports.deployFtp = series(genVarFiles, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, cleanMedia, iconLink, prefixCss), genStatic, purge, minifyCss, parallel(snippet, pushFtp))
+exports.deployFtp = series(genVarFiles, parallel(snippet, series(cleanHtml, nunjucksForce, htmlBeauty), iconColor, cleanMedia, iconLink, prefixCss), genStatic, purge, minifyCss, parallel(snippet, series(rev, pushFtp)))

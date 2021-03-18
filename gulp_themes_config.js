@@ -56,8 +56,9 @@ var theme = {
       },
       normal: {
         'gradient-primary': {
-          color: 'linear-gradient(#00bfae 0%, #0066ad 100%)',
-          hover: 'linear-gradient(#00bfae 0%, #0066ad 100%)'
+          color: 'linear-gradient(-30deg,#00bfae 0,#0066ad 100%)',
+          hover: 'linear-gradient(120deg,#00bfae 0,#0066ad 100%)',
+          fallback: '#0093AD'
         },
         'transparent': {
           color: 'transparent',
@@ -141,6 +142,7 @@ var theme = {
 }
 
 module.exports = {
+  theme: theme,
   themeColor: theme.color,
   themeText: theme.text
 }

@@ -4,7 +4,7 @@ var icons = {
   },
   color: {
     default: '#121f3E',
-    primary: '#FF3D4E',
+    primary: 'yellow',
     invert: '#ffffff'
   }
 

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Close" width="24" height="24" viewBox="0 0 24 24">
+  <path id="Path_58" data-name="Path 58" d="M0,0H24V24H0Z" fill="none"/>
+  <line id="Line_42" data-name="Line 42" x1="12" y2="12" transform="translate(6 6)" fill="none" stroke="yellow" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+  <line id="Line_43" data-name="Line 43" x2="12" y2="12" transform="translate(6 6)" fill="none" stroke="yellow" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+<style type="text/css" media="screen">path{vector-effect:non-scaling-stroke}</style></svg>

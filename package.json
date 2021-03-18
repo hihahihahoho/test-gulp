@@ -70,6 +70,7 @@
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-pngquant": "^9.0.0",
     "imagemin-zopfli": "^7.0.0",
+    "lodash": "^4.17.21",
     "postcss-css-variables": "^0.17.0",
     "postcss-rgb": "^1.0.0",
     "prompt": "^1.0.0",

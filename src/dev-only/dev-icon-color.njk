@@ -77,7 +77,7 @@
           {% if colorKeyText == 'transparent' %}
             {% set addClass = 'transparent' %}
           {% endif %}
-          <div class="ic-wrap {{ addClass }}" style="background-color: {{ colorKeyText }}" data-tippy-content="{{keyNameTextName}}{{ key }}">
+          <div class="ic-wrap {{ addClass }}" style="background: {{ colorKeyText }}" data-tippy-content="{{keyNameTextName}}{{ key }}">
             <div class="color hidden">{{ colorKeyText }}</div>
             <div class="name hidden">{{keyNameTextName}}{{ key }}</div>
             <div class="name-full hidden">color-{{ keyNameText }}{{ key }}</div>

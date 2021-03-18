@@ -40,6 +40,7 @@ $map-color-shadowOp: () !default;
 $map-color-active: () !default;
 $map-color-hover: () !default;
 $map-color-text: () !default;
+$map-color-fallback: () !default;
 
 @mixin modifiers-bg-op-color($map, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
@@ -47,19 +48,20 @@ $map-color-text: () !default;
       @if type-of($value) == "map" {
         @include modifiers-bg-op-color($value, $separator);
       } @else {
-        @if type_of($value) == "color" {
-          background-color: rgba($color: $value, $alpha: $bg-op-opacity);
-          &.bg-shadow {
-            box-shadow: 0px 5px 30px 0 rgba($value, 0.3);
-          }
-          .legitRipple-ripple {
-            background: lighten($value, 34%);
-          }
-          @if map-has-key($map-bg-op-color-modify, $key) {
-            color: map-get($map-bg-op-color-modify, $key);
-          } @else {
-            color: $value;
-          }
+        @if type_of($value) != "color" {
+          $value: map-get($map-color-fallback, $key);
+        }
+        background-color: rgba($color: $value, $alpha: $bg-op-opacity);
+        &.bg-shadow {
+          box-shadow: 0px 5px 30px 0 rgba($value, 0.3);
+        }
+        .legitRipple-ripple {
+          background: lighten($value, 34%);
+        }
+        @if map-has-key($map-bg-op-color-modify, $key) {
+          color: map-get($map-bg-op-color-modify, $key);
+        } @else {
+          color: $value;
         }
       }
     }
@@ -92,13 +94,14 @@ $map-color-text: () !default;
             }
           }
         }
+        @if type_of($value) != "color" {
+          $value: map-get($map-color-fallback, $key);
+        }
         &.ubg-shadow {
-          @if type_of($value) == "color" {
-            @if map-has-key($map-color-shadowOp, $key) {
-              box-shadow: 0px 5px 30px 0 rgba($value, map-get($map: $map-color-shadowOp, $key: $key));
-            } @else {
-              box-shadow: 0px 5px 30px 0 rgba($value, 0.2);
-            }
+          @if map-has-key($map-color-shadowOp, $key) {
+            box-shadow: 0px 5px 30px 0 rgba($value, map-get($map: $map-color-shadowOp, $key: $key));
+          } @else {
+            box-shadow: 0px 5px 30px 0 rgba($value, 0.2);
           }
         }
         @if map-has-key($map-color-text, $key) {
@@ -145,7 +148,7 @@ $map-color-text: () !default;
 }
 
 .color {
-  @include modifiers($map-color, "color");
+  @include modifiers(map-merge($map-color, $map-color-fallback), "color");
   &-blank {
     color: transparent;
   }

@@ -651,9 +651,18 @@ $z-index: (
 
 @mixin bg($value){
   @if type_of($value) == 'color' {
-    background: $value;
+    background-color: $value;
   }
   @else if type_of($value) == 'string' {
     background: $value;
+  }
+}
+
+@mixin colorDiff($cssProp, $value, $fallback){
+  @if type_of($value) == 'color' {
+    #{$cssProp}: $value;
+  }
+  @else if type_of($value) == 'string' {
+    #{$cssProp}: $fallback;
   }
 }
