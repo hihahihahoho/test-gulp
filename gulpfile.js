@@ -61,11 +61,8 @@ if (argv.src) {
   rootSrc = `theme/${argv.src}/`
   themeSourceFolderName = `theme/${argv.src}`;
   desFolderName = `dist-theme/${argv.src}`;
-  staticFolderName = `static-theme/${argv.src}`
-
   if (fs.existsSync(themeSourceFolderName + '/color-theme') && !argv.colorTheme) {
     desFolderName += '/default'
-    staticFolderName += '/default'
   }
 }
 
@@ -74,15 +71,17 @@ rootSrc = './' + rootSrc;
 var gulpThemeSrc = rootSrc;
 var sourceName = './' + sourceFolderName;
 var desFolder = './' + desFolderName;
-var staticFolder = './' + staticFolderName
 var themeSourceName = './' + themeSourceFolderName;
 
 
 if (argv.colorTheme) {
   gulpThemeSrc += `color-theme/${argv.colorTheme}/`
   desFolderName += `/${argv.colorTheme}`
-  staticFolderName += `/${argv.colorTheme}`
+  desFolder = './' + desFolderName
 }
+
+var staticFolder = desFolder.replace('dist', 'static');
+staticFolderName = desFolderName.replace('dist', 'static');
 
 if (argv.src) {
   if (fs.existsSync(themeSourceName + '/custom/css')) {
@@ -139,7 +138,7 @@ function buildTheme (cb) {
     if (fs.existsSync(`./theme/${element}/color-theme`)) {
       var themeColorName = fs.readdirSync(`./theme/${element}/color-theme`);
       themeColorName.forEach(element2 => {
-        var themeColorText = `${element} --color-theme ${element2}`
+        var themeColorText = `${element} --colorTheme ${element2}`
         themeName.push(themeColorText)
       })
     }
@@ -866,9 +865,15 @@ function nunjucksDev () {
       }
     }))
     .pipe(data(function (file) {
+      if(!argv.colorTheme){
+        var colorThemeName = 'default'
+      } else {
+        var colorThemeName = argv.colorTheme
+      }
       return {
         file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/'),
-        theme: argv.src
+        theme: argv.src,
+        colorTheme: colorThemeName
       }
     }))
     .pipe(nunjucksRender({
@@ -894,9 +899,15 @@ function nunjucks () {
       }
     }))
     .pipe(data(function (file) {
+      if(!argv.colorTheme){
+        var colorThemeName = 'default'
+      } else {
+        var colorThemeName = argv.colorTheme
+      }
       return {
         file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/'),
-        theme: argv.src
+        theme: argv.src,
+        colorTheme: colorThemeName
       }
     }))
     .pipe(nunjucksRender({
@@ -921,9 +932,15 @@ function nunjucksForce () {
       }
     }))
     .pipe(data(function (file) {
+      if(!argv.colorTheme){
+        var colorThemeName = 'default'
+      } else {
+        var colorThemeName = argv.colorTheme
+      }
       return {
         file_path: path.relative(process.cwd(), file.path).replace(sourceFolderName + '\\pages\\', '').replace('.njk', '.html').replace(/\\/g, '\/'),
-        theme: argv.src
+        theme: argv.src,
+        colorTheme: colorThemeName
       }
     }))
     .pipe(nunjucksRender({
