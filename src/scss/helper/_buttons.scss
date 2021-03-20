@@ -1,10 +1,10 @@
-$btn-border-radius: 4px;
-$btn-font-weight: 500;
-$btn-ic-width: 22px;
-$btn-font-size: $font-size-default;
-$btn-line-border-thick: 1px;
-$btn-disable-opactiy: 0.4;
-$btn-shadow: true;
+$btn-border-radius: 4px !default;
+$btn-font-weight: 500 !default;
+$btn-ic-width: 22px !default;
+$btn-font-size: $font-size-default !default;
+$btn-line-border-thick: 1px !default;
+$btn-disable-opactiy: 0.4 !default;
+$btn-shadow: true !default;
 
 $map-btn-width: (
   auto: auto,
@@ -14,7 +14,7 @@ $map-btn-width: (
   md: 120px,
   lg: 140px,
   xl: 200px,
-);
+) !default;
 $map-btn-height: (
   default: 44px,
   xs-3: (
@@ -37,10 +37,10 @@ $map-btn-height: (
   md: 40px,
   lg: 50px,
   xl: 60px,
-);
+) !default;
 $map-btn-color-modify: (
   yellow: $color-default,
-);
+) !default;
 
 @mixin modifiers-btn-height($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {

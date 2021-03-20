@@ -4,14 +4,14 @@ $map-font-size: (
   sm: 18px,
   md: 22px,
   lg: 24px
-);
+) !default;
 
 $map-font-ic: (
   xs: 14px,
   sm: 18px,
   md: 22px,
   lg: 24px
-);
+) !default;
 
 $map-ic: (
   default: 24px,
@@ -19,7 +19,7 @@ $map-ic: (
   sm: 18px,
   md: 22px,
   lg: 24px
-);
+) !default;
 
 // $map-h-font: (
 //   1: 32px,

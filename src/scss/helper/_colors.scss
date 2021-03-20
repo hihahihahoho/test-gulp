@@ -40,7 +40,7 @@ $map-color-shadowOp: () !default;
 $map-color-active: () !default;
 $map-color-hover: () !default;
 $map-color-text: () !default;
-$map-color-fallback: () !default;
+$map-color-gradient: () !default;
 
 @mixin modifiers-bg-op-color($map, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
@@ -49,7 +49,7 @@ $map-color-fallback: () !default;
         @include modifiers-bg-op-color($value, $separator);
       } @else {
         @if type_of($value) != "color" {
-          $value: map-get($map-color-fallback, $key);
+          $value: map-get($map-color, $key);
         }
         background-color: rgba($color: $value, $alpha: $bg-op-opacity);
         &.bg-shadow {
@@ -75,6 +75,9 @@ $map-color-fallback: () !default;
         @include modifiers-bg-color($value, $separator);
       } @else {
         @include bg($value);
+        @if type_of($value) != "color" {
+          $value: map-get($map-color, $key);
+        }
         .legitRipple-ripple,
         &.ubg-active:active {
           @include bg(map-get($map: $map-color-active, $key: $value));
@@ -93,9 +96,6 @@ $map-color-fallback: () !default;
               @include bg(map-get($map-color-active, $key));
             }
           }
-        }
-        @if type_of($value) != "color" {
-          $value: map-get($map-color-fallback, $key);
         }
         &.ubg-shadow {
           @if map-has-key($map-color-shadowOp, $key) {
@@ -148,7 +148,7 @@ $map-color-fallback: () !default;
 }
 
 .color {
-  @include modifiers(map-merge($map-color, $map-color-fallback), "color");
+  @include modifiers($map-color, "color");
   &-blank {
     color: transparent;
   }
@@ -156,8 +156,10 @@ $map-color-fallback: () !default;
 
 .ubg {
   @include modifiers-bg-color($map-color);
+  @include modifiers-bg-color($map-color-gradient);
   &-op {
     @include modifiers-bg-op-color($map-color);
+    @include modifiers-bg-op-color($map-color-gradient);
   }
   &-blank {
     background: transparent;

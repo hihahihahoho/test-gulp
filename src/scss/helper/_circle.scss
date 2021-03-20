@@ -8,7 +8,7 @@ $map-circle: (
   lg-2  :  36px,
   lg-3  :  40px,
   lg-4  :  50px
-);
+) !default;
 
 @mixin modifiers-circle($map, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {

@@ -11,6 +11,7 @@ var icons = {
 }
 
 module.exports = {
+  globalScss: theme.globalScss,
   themeIconProps: icons.svgProps,
   themeIconColor: icons.color,
 }

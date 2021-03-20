@@ -1,19 +1,19 @@
 //============Border===========//
-$border-color  :  $border-base-color;
+$border-color  :  $border-base-color !default;
 
 $map-border: (
   xs  :  1px,
   sm  :  2px,
   md  :  3px,
   lg  :  4px
-);
+) !default;
 
 $map-border-radius: (
   xs  :  3px,
   sm  :  4px,
   md  :  6px,
   lg  :  10px
-);
+) !default;
 
 @mixin modifiers-border($map, $orient, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {

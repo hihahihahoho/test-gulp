@@ -20,6 +20,21 @@
 // @import "./plugins/_star-rating.scss";
 // @import "./plugins/_dropzone.scss";
 
+$font-family: "Inter", "SF Pro Display", "Helvetica Neue", "Helvetica", "Roboto", "Arial" !default;
+
+body {
+  font: 100% $font-family;
+  margin: 0;
+  width: 100%;
+  font-size: $fz-default;
+  background-color: #dcdee4;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  line-height: $fz-default-line-height;
+  letter-spacing: -0.03em;
+  color: $color-default;
+}
+
 .scrollspy{
    height: 700px;
 }

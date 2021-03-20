@@ -5,35 +5,36 @@ $map-rnc-size: (
   sm: 20px,
   md: 22px,
   lg: 24px,
-);
+) !default;
 
-$rncRadioStyle2Name: 'default';
+$rncRadioStyle2Name: 'default' !default;
 
 $rncRadioStyle2Name: '2' !default;
 $rncRadioStyle1Name: '1' !default;
 
-$checkbox-border-radius: 50%;
-$rnc-default-border: 1px solid $color-grey-2;
-$rnc-ic-margin: 10px;
-$rnc-default-bg-color: transparent;
-$rnc-active-color: $color-primary;
-$rnc-checkbox-ic-color: $color-primary;
-$rnc-active-border-color: rgba($color-primary, 0.2);
-$rnc-active-bg-color: rgba($color-primary, 0.1);
-$rnc-active-bg-color-radio: rgba($color-primary, 0.1);
-$rnc-ripple-color: rgba($rnc-active-color, 0.1);
+
+$checkbox-border-radius: 50% !default;
+$rnc-default-border: 1px solid $color-grey-2 !default;
+$rnc-ic-margin: 10px !default;
+$rnc-default-bg-color: transparent !default;
+$rnc-active-color: $color-primary !default;
+$rnc-checkbox-ic-color: $color-primary !default;
+$rnc-active-border-color: rgba($color-primary, 0.2) !default;
+$rnc-active-bg-color: rgba($color-primary, 0.1) !default;
+$rnc-active-bg-color-radio: rgba($color-primary, 0.1) !default;
+$rnc-ripple-color: rgba($rnc-active-color, 0.1) !default;
 //=====Swich-ios======
-$switch-ic-size: 24px;
-$switch-ic-border-radius: $switch-ic-size / 2;
-$switch-bg-height: 26px;
-$switch-bg-width: 44px;
-$switch-bg-border-radius: $switch-bg-height / 2;
-$switch-bg-color: $color-grey-2;
-$switch-bg-color-active: $color-green;
-$switch-text-color: $color-grey-1;
-$switch-text-color-active: $color-default;
-$switch-ic-bg-color: white;
-$switch-ic-active-bg-color: white;
+$switch-ic-size: 24px !default;
+$switch-ic-border-radius: $switch-ic-size / 2 !default;
+$switch-bg-height: 26px !default;
+$switch-bg-width: 44px !default;
+$switch-bg-border-radius: $switch-bg-height / 2 !default;
+$switch-bg-color: $color-grey-2 !default;
+$switch-bg-color-active: $color-green !default;
+$switch-text-color: $color-grey-1 !default;
+$switch-text-color-active: $color-default !default;
+$switch-ic-bg-color: white !default;
+$switch-ic-active-bg-color: white !default;
 
 @mixin modifiers-rnc($map, $prefix: "-", $separator: "-", $base: "basic", $name: "") {
   @each $key, $value in $map {

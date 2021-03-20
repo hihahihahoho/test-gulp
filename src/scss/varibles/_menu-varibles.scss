@@ -2,36 +2,36 @@
 //===MENU============================================
 //===MENU-GENERAL============================================
 //===menu-simplified option
-$menu-color-text          :  white;
-$menu-color-hover         :  $menu-color-text;
-$menu-color-bg            :  white;
-$menu-height              :  40px;              //height of menu
-$menu-height-mobile       :  70px;              //height of menu on mobile
-$menu-font-size           :  15px;
-$menu-font-weight         :  500;
-$menu-space               :  0;              // space of of menu to inside to outside menu
-$menu-item-space          :  15px;              // space between menu item on desktop (note: x2)
-$menu-boder-color-mobile  :  #eaeff5;
+$menu-color-text          :  white !default;
+$menu-color-hover         :  $menu-color-text !default;
+$menu-color-bg            :  white !default;
+$menu-height              :  40px !default;              //height of menu
+$menu-height-mobile       :  70px !default;              //height of menu on mobile
+$menu-font-size           :  15px !default;
+$menu-font-weight         :  500 !default;
+$menu-space               :  0 !default;              // space of of menu to inside to outside menu
+$menu-item-space          :  15px !default;              // space between menu item on desktop (note: x2)
+$menu-boder-color-mobile  :  #eaeff5 !default;
 //===menu logo height
-$menu-logo-height  :  10px;
-$menu-logo-height-mobile  :  15px;
+$menu-logo-height  :  10px !default;
+$menu-logo-height-mobile  :  15px !default;
 
 //===menu options general
-$menu-mobile-mode-on-desktop        :  false;
-$menu-box-shadow                    :  false;
-$menu-content-absolute-center-mode  :  false;
-$menu-content-inline-right-mode     :  true;
-$menu-content-scroll-mode           :  touch;                    //touch or auto, for ios
-$menu-item-align                    :  left;
-$menu-mobile-item-minwidth          :  50px;
-$menu-iscroll-mode                  :  auto;
-$menu-transition                    :  background 0.35s linear, height 0.35s ease-in;
-$menu-item-ani-time       :  0.6s;
-$menu-center-mobile-mode  :  false;
-$menu-z-index             :  100;
+$menu-mobile-mode-on-desktop        :  false !default;
+$menu-box-shadow                    :  false !default;
+$menu-content-absolute-center-mode  :  false !default;
+$menu-content-inline-right-mode     :  true !default;
+$menu-content-scroll-mode           :  touch !default;                    //touch or auto, for ios
+$menu-item-align                    :  left !default;
+$menu-mobile-item-minwidth          :  50px !default;
+$menu-iscroll-mode                  :  auto !default;
+$menu-transition                    :  background 0.35s linear, height 0.35s ease-in !default;
+$menu-item-ani-time       :  0.6s !default;
+$menu-center-mobile-mode  :  false !default;
+$menu-z-index             :  100 !default;
 
 //===Menu Burger================================================  
-$hamburger-padding-x                         :  0;
+$hamburger-padding-x                         :  0 !default;
 $hamburger-padding-y                         :  0 !default;
 $hamburger-layer-width                       :  22px !default;
 $hamburger-layer-height                      :  2px !default;
@@ -44,79 +44,79 @@ $hamburger-hover-transition-timing-function  :  linear !default;
 $hambeger-active-color                       :  $color-default;
 //===MENU-DESKTOP============================================
 //===menu sign--for multiply, plus, minus-etc
-$menu-sign-width   :  16px;
-$menu-sign-height  :  16px;
-$menu-sign-thick   :  2px;
-$menu-sign-bgc     :  $color-default;
+$menu-sign-width   :  16px !default;
+$menu-sign-height  :  16px !default;
+$menu-sign-thick   :  2px !default;
+$menu-sign-bgc     :  $color-default !default;
 //===menu color and background color
-$menu-bg-color-active  :  $menu-color-bg;
-$menu-color-focus      :  $menu-color-text;
-$menu-color-visited    :  $menu-color-text;
-$menu-color-active     :  $menu-color-text;
-$menu-color            :  $menu-color-text;
+$menu-bg-color-active  :  $menu-color-bg !default;
+$menu-color-focus      :  $menu-color-text !default;
+$menu-color-visited    :  $menu-color-text !default;
+$menu-color-active     :  $menu-color-text !default;
+$menu-color            :  $menu-color-text !default;
 //===menu color and background color change and box shadow
-$menu-bg-color-change   :  transparent;
-$menu-change-color      :  $color-invert;
-$menu-change-boxshadow  :  false;
+$menu-bg-color-change   :  transparent !default;
+$menu-change-color      :  $color-invert !default;
+$menu-change-boxshadow  :  false !default;
 //===menu font
 
 //===menu width
-$menu-max-width  :  1170px;  //width of menu
+$menu-max-width  :  1170px !default;  //width of menu
 //===menu space
 
-$menu-bg-color     :  $menu-color-bg;
+$menu-bg-color     :  $menu-color-bg !default;
 //===menu item icon====
-$menu-item-ic-img-width  :  22px;
-$menu-item-ic-width      :  22px;
-$menu-item-ic-align      :  right;
+$menu-item-ic-img-width  :  22px !default;
+$menu-item-ic-width      :  22px !default;
+$menu-item-ic-align      :  right !default;
 //===menu icon box=====
-$menu-ic-box-size  :  40px;
+$menu-ic-box-size  :  40px !default;
 //===Menu sub==========================================
-$menu-sub-shadow         :  0 3px 5px 0 rgba(0, 0, 0, 0.2);
-$menu-sub-border-radius  :  6px;
-$menu-sub-border         :  1px solid $color-grey-2;
+$menu-sub-shadow         :  0 3px 5px 0 rgba(0, 0, 0, 0.2) !default;
+$menu-sub-border-radius  :  6px !default;
+$menu-sub-border         :  1px solid $color-grey-2 !default;
 //===menu sub color and background color
-$menu-sub-bg-color  :  $menu-color-bg;
-$menu-sub-color     :  $menu-color-text;
+$menu-sub-bg-color  :  $menu-color-bg !default;
+$menu-sub-color     :  $menu-color-text !default;
 //===menu sub font
-$menu-sub-font-size    :  15px;
-$menu-sub-font-weight  :  500;
+$menu-sub-font-size    :  15px !default;
+$menu-sub-font-weight  :  500 !default;
 //===menu sub height
-$menu-sub-padding-y  :  14px;  // height of menu sub item
+$menu-sub-padding-y  :  14px !default;  // height of menu sub item
 //===menu sub width
-$menu-sub-min-width  :  200px;
-$menu-sub-width      :  auto;   //chose 100% for mega menu
+$menu-sub-min-width  :  200px !default;
+$menu-sub-width      :  auto !default;   //chose 100% for mega menu
 //===menu sub space
-$menu-sub-indent     :  20px;   //space at start of sub menu
-$menu-sub-space-top  :  0;
-$menu-sub-padding-x  :  15px;
-$menu-sub-display    :  block;
+$menu-sub-indent     :  20px !default;   //space at start of sub menu
+$menu-sub-space-top  :  0 !default;
+$menu-sub-padding-x  :  15px !default;
+$menu-sub-display    :  block !default;
 //===MENU-MOBILE============================================
 //===menu color and background color
-$menu-color-mobile        :  #000;
+$menu-color-mobile        :  #000 !default;
 //===menu font
-$menu-font-size-mobile    :  15px;
-$menu-font-weight-mobile  :  500;
+$menu-font-size-mobile    :  15px !default;
+$menu-font-weight-mobile  :  500 !default;
 //===menu height
-$menu-padding-y-mobile  :  16px;  // height of menu item on mobile
+$menu-padding-y-mobile  :  16px !default;  // height of menu item on mobile
 //===menu space
-$menu-space-mobile              :  0;     // space of of menu to inside to outside menu mobile
-$menu-space-sub-wrap-y-mobile   :  15px;  //space y top bottom of sub mobile menu
-$menu-content-padding-x-mobile  :  45px;  // space top of mobile content
-$menu-content-padding-y-mobile  :  20px;  // space left of mobile content
+$menu-space-mobile              :  0 !default;     // space of of menu to inside to outside menu mobile
+$menu-space-sub-wrap-y-mobile   :  15px !default;  //space y top bottom of sub mobile menu
+$menu-content-padding-x-mobile  :  45px !default;  // space top of mobile content
+$menu-content-padding-y-mobile  :  20px !default;  // space left of mobile content
 //===menu logo height
 //===Menu sub==========================================
 //===menu sub color and background color
-$menu-sub-color-mobile        :  $menu-color-text;
-$menu-sub-boder-color-mobile  :  transparent;
-$menu-sub-bg-color-mobile     :  transparent;
+$menu-sub-color-mobile        :  $menu-color-text !default;
+$menu-sub-boder-color-mobile  :  transparent !default;
+$menu-sub-bg-color-mobile     :  transparent !default;
 //===menu sub font
-$menu-sub-font-size-mobile    :  14px;
-$menu-sub-font-weight-mobile  :  400;
+$menu-sub-font-size-mobile    :  14px !default;
+$menu-sub-font-weight-mobile  :  400 !default;
 //===menu sub height
-$menu-sub-padding-y-mobile  :  15px;  // height of menu sub item on mobile
+$menu-sub-padding-y-mobile  :  15px !default;  // height of menu sub item on mobile
 //===menu sub space
-$menu-sub-padding-x-mobile  :  15px;
+$menu-sub-padding-x-mobile  :  15px !default;
 //===Menu active, hover =====
 .menu-hover {
    @include media(">menu-break-point") {

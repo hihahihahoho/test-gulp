@@ -292,16 +292,33 @@ function themeVarFunction (mapName, propName, propKey, themeName) {
 
 function theme () {
   delete require.cache[require.resolve(gulpThemeSrc + 'gulp_themes_config.js')];
+
+  //theme globalScss
+  themeGlobVarText = '\n';
+  themeGlob = require(gulpThemeSrc + 'gulp_themes_config.js').globalScss;
+  if (themeGlob) {
+    Object.keys(themeGlob).forEach(key => {
+      var value = themeGlob[key];
+      if (typeof value === 'object') {
+        var text = `${key}: ` + JSON.stringify(value).replace(/"/g, '').replace(/{/g, '(').replace(/}/g, ')') + ';\n'
+        themeGlobVarText += text;
+
+      } else {
+        themeGlobVarText += `$${key}: ${value};\n`;
+      }
+    });
+  }
+  //end theme globalScss
   //theme text
   themeTextMapText = '';
   themeTextVarText = '';
   themeText = require(gulpThemeSrc + 'gulp_themes_config.js').themeText;
   var themeTextMapText = '\n$map-h-font: ' + JSON.stringify(themeText, null, "\t").replace(/{/g, '(').replace(/}/g, ')') + ';\n';
   for (var property in themeText) {
-    themeTextVarText += '$fz-' + property + ': ' + themeText[property]["font-size"] + ';\n';
+    themeTextVarText += '$fz-' + property + ': ' + themeText[property]["font-size"] + ';\n' + '$fz-' + property + '-line-height: ' + themeText[property]["line-height: "] + ';\n';
   }
 
-  var themeTextMapAllText = '//gtc-text-scss' + themeTextMapText + themeTextVarText + '\n//end-gtc-text-scss';
+  var themeTextMapAllText = '//gtc-text-scss' + themeGlobVarText + themeTextMapText + themeTextVarText + '\n//end-gtc-text-scss';
 
   var themeTextNjk = '{# gtc-text-njk #}\n{% set textName = [\n' + JSON.stringify(themeText, null, "\t") + '\n] %}\n{# end-gtc-text-njk #}';
 
@@ -865,7 +882,7 @@ function nunjucksDev () {
       }
     }))
     .pipe(data(function (file) {
-      if(!argv.colorTheme){
+      if (!argv.colorTheme) {
         var colorThemeName = 'default'
       } else {
         var colorThemeName = argv.colorTheme
@@ -899,7 +916,7 @@ function nunjucks () {
       }
     }))
     .pipe(data(function (file) {
-      if(!argv.colorTheme){
+      if (!argv.colorTheme) {
         var colorThemeName = 'default'
       } else {
         var colorThemeName = argv.colorTheme
@@ -932,7 +949,7 @@ function nunjucksForce () {
       }
     }))
     .pipe(data(function (file) {
-      if(!argv.colorTheme){
+      if (!argv.colorTheme) {
         var colorThemeName = 'default'
       } else {
         var colorThemeName = argv.colorTheme

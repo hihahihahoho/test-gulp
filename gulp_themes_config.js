@@ -1,9 +1,11 @@
 var theme = {
+  globalScss: {
+  },
   text: {
     h1: {
       'font-size': '32px',
       'line-height': '1.1',
-      'font-weight' : '600',
+      'font-weight': '600',
       768: {
         'font-size': '28px',
       },
@@ -41,6 +43,10 @@ var theme = {
       'font-size': '14px',
       'line-height': '1.3',
     },
+    default: {
+      'font-size': '14px',
+      'line-height': '1.3',
+    },
   },
   color: {
     default: {
@@ -55,10 +61,10 @@ var theme = {
         'light-success': 'light-green'
       },
       normal: {
-        'gradient-primary': {
-          color: 'linear-gradient(-30deg,#00bfae 0,#0066ad 100%)',
+        'gradient': {
+          color: '#0093AD',
           hover: 'linear-gradient(120deg,#00bfae 0,#0066ad 100%)',
-          fallback: '#0093AD'
+          gradient: 'linear-gradient(-30deg,#00bfae 0,#0066ad 100%)',
         },
         'transparent': {
           color: 'transparent',
@@ -143,6 +149,7 @@ var theme = {
 
 module.exports = {
   theme: theme,
+  globalScss: theme.globalScss,
   themeColor: theme.color,
   themeText: theme.text
 }

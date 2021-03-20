@@ -1,16 +1,16 @@
 //body setting default
 
-$font-size-default: 14px; 
-$line-height-default: 1.5;
-// $bg-default: #F2F1F7;
-// $bg-default: #F7F8FA;
-$bg-default: #dcdee4;
-$font-default: "SF Pro Display", "Helvetica Neue","Helvetica","Roboto","Arial",sans-serif;
+$font-size-default: 14px !default; 
+$line-height-default: 1.5 !default;
+// $bg-default: #F2F1F7 !default;
+// $bg-default: #F7F8FA !default;
+$bg-default: #dcdee4 !default;
+$font-default: "SF Pro Display", "Helvetica Neue","Helvetica","Roboto","Arial",sans-serif !default;
 
 //========Upload==========//
-$upload-border-radius: 10px;
-$upload-border: 2px dashed #f3f6f8; 
-$ripple-default-color: #f3f6f8;
+$upload-border-radius: 10px !default;
+$upload-border: 2px dashed #f3f6f8 !default; 
+$ripple-default-color: #f3f6f8 !default;
 //===grid======
 $breakpoints: (
   xxs             : 350px,
@@ -21,8 +21,8 @@ $breakpoints: (
   bg              : 1440px,
   lg              : 1600px,
   menu-break-point: 1200px 
-); 
+) !default; 
 
 //==transition===
-$base-transition: "all .3s cubic-bezier(0.645, 0.045, 0.355, 1)";
+$base-transition: "all .3s cubic-bezier(0.645, 0.045, 0.355, 1)" !default;
 //=========

@@ -413,6 +413,9 @@ select {
     align-items: center;
     padding-right: $input-space-right;
     align-self: flex-end;
+    z-index: 1;
+    position: relative;
+    background-color: $input-background-naked;
     &-left {
       order: 2;
     }
@@ -427,6 +430,8 @@ select {
     display: flex;
     align-items: center;
     white-space: nowrap;
+    background-color: $input-background-naked;
+    z-index: 1;
     &-left {
       order: 2;
     }
@@ -467,7 +472,7 @@ select {
   }
   &:not(.input-#{$inputClean}):not(.input-#{$inputMaterial2}) {
     & ~ .input-flex-content::after {
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 70%);
+      background: linear-gradient(90deg, rgba($input-background-naked, 0) 0%, rgba($input-background-naked, 1) 70%);
     }
   }
   &.input-#{$inputClean},
@@ -533,7 +538,6 @@ textarea {
   &.input-#{$inputMaterial3} {
     & ~ .input-frame {
       height: 100%;
-      z-index: 1;
     }
   }
   &.input-#{$inputBorder},

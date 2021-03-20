@@ -2,7 +2,7 @@ $map-modal-size: (
   default: 200px,
   xs: 373px,
   sm: 570px,
-);
+) !default;
 
 .bd-example-modal {
   .dropdown-menu {

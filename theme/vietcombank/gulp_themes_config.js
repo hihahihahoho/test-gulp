@@ -24,6 +24,7 @@ _.defaultsDeep(theme, inheritedTheme)
 
 module.exports = {
   theme: theme,
+  globalScss: theme.globalScss,
   themeColor: theme.color,
   themeText: theme.text
 }

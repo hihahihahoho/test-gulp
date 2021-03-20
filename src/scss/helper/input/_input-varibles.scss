@@ -1,11 +1,11 @@
 $map-input-ic-size: (
-  default: 24px,
+  default: 34px,
   xs-1: 24px,
   xs: 36px,
   sm: 44px,
   md: 50px,
   lg: 60px
-);
+) !default;
 
 $map-input-size: (
   default: 40px,
@@ -14,9 +14,9 @@ $map-input-size: (
   sm: 44px,
   md: 50px,
   lg: 60px
-);
+) !default;
 
-$inputMaterial: 'default';
+$inputMaterial: 'default' !default;
 
 $inputBorder: 'border' !default;
 $inputClean: 'clean' !default;
@@ -25,42 +25,48 @@ $inputMaterial: 'material' !default;
 $inputMaterial2: 'material-2' !default;
 $inputMaterial3: 'material-3' !default;
 
-$input-color: $color-default;
-$input-font-weight: 500;
 
-$input-label-font-weight: 400;
-$input-label-font-size: 14px;
-$input-font-size-mobile: 16px;
-$input-label-color: #707C93;
+$input-color: $color-default !default;
+$input-font-weight: 500 !default;
 
-$input-border-radius            : 6px;
-$input-placeholder-color        : #707C93;
-$input-font-size                : 14px;
-$input-error-font-size          : 12px;
-$input-label-margin-bottom      : 7px;
-$input-disabled-opacity         : 0.6;
-$input-disabled-background      : undefined;
-$input-border-color        : $border-base-color;
-$input-border-color-focus       : lighten($color-primary, 0.5);
-$input-background               : $color-grey-4;
-$input-space-left               : 10px;
-$input-space-right              : 10px;
+$input-label-font-weight: 400 !default;
+$input-label-font-size: 14px !default;
+$input-font-size-mobile: 16px !default;
+$input-label-color: #707C93 !default;
+
+$input-border-radius            : 6px !default;
+$input-placeholder-color        : #707C93 !default;
+$input-font-size                : 14px !default;
+$input-error-font-size          : 12px !default;
+$input-label-margin-bottom      : 7px !default;
+$input-disabled-opacity         : 0.6 !default;
+$input-disabled-background      : undefined !default;
+$input-border-color        : $border-base-color !default;
+$input-border-color-focus       : lighten($color-primary, 0.5) !default;
+$input-background-naked :$color-invert;
+$input-background               : $color-grey-4 !default;
+$input-space-left               : 10px !default;
+$input-space-right              : 10px !default;
 
 //input border - input-material
-$input-line-border-background   : transparent;
+$input-line-border-background   : transparent !default;
 
 //===input line bar===
-$input-line-bar-color           : $color-primary;
-$input-line-bar-height          : 2px;
+$input-line-bar-color           : $color-primary !default;
+$input-line-bar-height          : 2px !default;
 
-$textarea-autosize-max-height   : 200px;
-$textarea-line-height           : 1.4;
+$textarea-autosize-max-height   : 200px !default;
+$textarea-line-height           : 1.4 !default;
 
 //===Input material===
-$input-material-font-size: $input-font-size;
-$input-material-font-size-sm: 12px;
-$input-material-font-weight-sm: $input-label-font-weight;
+$input-material-font-size: $input-font-size !default;
+$input-material-font-size-sm: 12px !default;
+$input-material-font-weight-sm: $input-label-font-weight !default;
 
 // input material 2
-$input-material-2-padding-left: $input-space-left ;
-$input-material-2-space-between: 5px;
+$input-material-2-padding-left: $input-space-left  !default;
+$input-material-2-space-between: 5px !default;
+
+// input material 3
+$input-material-3-space-x: 4px;
+$input-material-3-left: floor($input-material-3-space-x * ($input-material-font-size-sm/$input-material-font-size));

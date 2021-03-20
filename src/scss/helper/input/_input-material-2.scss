@@ -1,13 +1,4 @@
 //===Input material===
-$input-material-font-size: 16px !default;
-$input-material-font-size-sm: 13px !default;
-$input-material-font-weight-sm: $input-label-font-weight !default;
-
-// input material 2
-$input-material-2-padding-left: $input-space-left !default;
-$input-material-2-space-between: 5px !default;
-
-//===Input material===
 @mixin modifiers-input-material-2($map, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
     &#{if($key != $base, #{$prefix}#{$key}, '')} {
@@ -30,11 +21,13 @@ $input-material-2-space-between: 5px !default;
           &:focus,
           &.light-pick-focus {
             & ~ .input-label {
+              max-width: calc(#{$input-material-font-size/$input-material-font-size-sm * 100%} - #{$input-space-left + $input-space-right});
               @include transform(scale($input-material-font-size-sm/$input-material-font-size) translateY(material2LabelCal($value)));
             }
           }
           & ~ .select2-container--open {
             & ~ .input-label {
+              max-width: calc(#{$input-material-font-size/$input-material-font-size-sm * 100%} - #{$input-space-left + $input-space-right});
               @include transform(scale($input-material-font-size-sm/$input-material-font-size) translateY(material2LabelCal($value)));
             }
           }
@@ -45,6 +38,7 @@ $input-material-2-space-between: 5px !default;
         &.input-hadval-def {
           &.input-#{$inputMaterial2} {
             & ~ .input-label {
+              max-width: calc(#{$input-material-font-size/$input-material-font-size-sm * 100%} - #{$input-space-left + $input-space-right});
               @include transform(scale($input-material-font-size-sm/$input-material-font-size) translateY(material2LabelCal($value)));
             }
           }
@@ -62,6 +56,44 @@ $input-material-2-space-between: 5px !default;
           padding-bottom: 5px;
           .select2-search__field {
             height: $value - material2InsideInputCalRound($value) -5px - 2px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin modifiers-input-material-2-ic-left($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @include modifiers-input-material-2-ic-left($value, $separator);
+      } @else {
+        &.input-#{$inputMaterial2} {
+          &.input-ic-left {
+            & ~ .input-label { 
+              max-width: calc(100% - #{$input-space-left + $value});
+              left: $value;
+            }
+            & ~ .select2-container--open {
+              & ~ .input-label {
+                max-width: calc(#{$input-material-font-size/$input-material-font-size-sm * 100%} - #{$input-space-left + $value});
+              }
+            }
+            &.input-hadval,
+            &.input-hadval-def {
+              &.input-#{$inputMaterial2} {
+                & ~ .input-label {
+                  max-width: calc(#{$input-material-font-size/$input-material-font-size-sm * 100%} - #{$input-space-left + $value});
+                }
+              }
+            }
+            &:focus,
+            &.light-pick-focus {
+              & ~ .input-label {
+                max-width: calc(#{$input-material-font-size/$input-material-font-size-sm * 100%} - #{$input-space-left + $value});
+              }
+            }
           }
         }
       }
@@ -135,23 +167,11 @@ $input-material-2-space-between: 5px !default;
       z-index: 1;
       display: inline-block;
       width: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: calc(100% - #{$input-space-left + $input-space-right});
+      text-overflow: ellipsis;
     }
-    &.input-ic-left {
-      & ~ .input-label {
-        left: 44px;
-      }
-      // &:focus,
-      // &.light-pick-focus {
-      //   & ~ .input-label {
-      //     left: 0;
-      //   }
-      // }
-    }
-    // &.input-ic-left.input-hadval {
-    //   & ~ .input-label {
-    //     left: 0;
-    //   }
-    // }
   }
   &-group-#{$inputMaterial2} {
     & .input-flex-content,
@@ -166,5 +186,8 @@ $input-material-2-space-between: 5px !default;
   }
   &-size {
     @include modifiers-input-material-2($map-input-size);
+  }
+  &-ic {
+    @include modifiers-input-material-2-ic-left($map-input-ic-size);
   }
 }
