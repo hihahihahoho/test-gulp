@@ -190,6 +190,15 @@ var pluginsDetail = {
       "src/js/floaingScroll.init.js"
     ]
   },
+  'bodyScrollLock': {
+    "name": 'bodyScrollLock',
+    "scripts": [
+      "node_modules/body-scroll-lock/lib/bodyScrollLock.min.js"
+    ],
+    "init": [
+      "src/js/bodyScrollLock.init.js"
+    ]
+  },
 }
 
 var plugins = {
@@ -214,7 +223,8 @@ var plugins = {
     pluginsDetail.nouislider,
     pluginsDetail.wnumb,
     pluginsDetail.datatables,
-    pluginsDetail.floatingScroll
+    pluginsDetail.floatingScroll,
+    pluginsDetail.bodyScrollLock
   ]
 }
 

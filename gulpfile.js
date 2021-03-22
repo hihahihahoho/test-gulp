@@ -1109,8 +1109,10 @@ function pushFtp () {
     parallel: 3,
     log: gutil.log
   });
+  console.log(`src: ./.temp/${staticFolderName}`)
+  console.log(`dest: ${process.env.FTP_PATH}/${staticFolderName}`)
 
-  return gulp.src('./.temp/' + staticFolderName)
+  return gulp.src('./.temp/' + staticFolderName + '/**/*')
     .pipe(conn.dest(process.env.FTP_PATH + `/${staticFolderName}`));
 }
 

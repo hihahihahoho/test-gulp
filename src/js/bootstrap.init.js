@@ -1,5 +1,7 @@
 //====================BOOTSTRAP INIT=================//
 
+var scrollTargetModal = '.modal.show .modal-body';
+
 $(document).on('show.bs.modal', '.modal', function (event) {
   var zIndex = 1040 + (10 * $('.modal:visible').length);
   $(this).css('z-index', zIndex);
@@ -20,17 +22,14 @@ $(document).ready(function () {
   $('.toast').toast({
     delay: 300000
   })
-  $('.modal').on('show.bs.modal', function (e) {
+  $('.modal').on('shown.bs.modal', function (e) {
     if ($(window).width() < 769) {
-      var currentScrollPosition = $(window).scrollTop();
-      BNS.on();
+      blockScroll(scrollTargetModal);
     }
   });
-  $('.modal').on('hidden.bs.modal', function (e) {
-    if (!$('.modal').hasClass('show')) {
-      if ($(window).width() < 769) {
-        BNS.off();
-      }
+  $('.modal').on('hide.bs.modal', function (e) {
+    if ($(window).width() < 769) {
+      enableScroll(scrollTargetModal);
     }
   });
 

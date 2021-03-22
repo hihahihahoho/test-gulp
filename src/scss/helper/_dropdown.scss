@@ -1,11 +1,15 @@
-$map-modal-size: (
+$map-dropdown-size: (
   default: 200px,
   xs: 373px,
   sm: 570px,
 ) !default;
 
 .bd-example-modal {
+  > *{
+    max-width: 100%;
+  }
   .dropdown-menu {
+    max-width: 100%;
     position: relative;
     display: block;
     float: none;
@@ -21,7 +25,7 @@ $map-modal-size: (
     min-height: 36px;
   }
   &-size {
-    @include modifiers($map-modal-size, "width");
+    @include modifiers($map-dropdown-size, "width");
   }
   &-menu {
     padding: 10px;

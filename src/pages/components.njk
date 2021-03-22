@@ -47,11 +47,27 @@
 {% endmacro %}
 
 {% macro pageModalAlert(type) %}
+  {% set customConent %}
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  <div class="row">
+    <div class="col-12">
+      {% set dataSelectDefualt = [] %}
+      {% for i in range(0, 100)  %}
+        {% set name = 'option' + i %}
+        {% set dataSelectDefualt = (dataSelectDefualt.push(name), dataSelectDefualt) %}
+      {% endfor %}
+      {{ form.select('Modal select', value = dataSelectDefualt) }}
+    </div>
+    <div class="col-12">
+      {{ form.datepicker('Modal datepicker') }}
+    </div>
+  </div>
+  {% endset %}
   {% set dataModal = {
     id: 'modalAlert',
     alertType: 'success',
     title: 'Thành công',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    content: customConent,
     button: [
       { 
         tagName: 'a',
@@ -171,6 +187,54 @@
                 main: 'Vietinbank',
                 img: globalsVar.iconDemo,
                 sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
+              }, {
+                main: 'Agribank',
+                img: globalsVar.iconDemo,
+                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
               }, {
                 main: 'Agribank',
                 img: globalsVar.iconDemo,

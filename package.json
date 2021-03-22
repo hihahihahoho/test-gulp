@@ -9,6 +9,7 @@
     "@uppy/dashboard": "^1.14.0",
     "@uppy/locales": "^1.17.0",
     "@uppy/tus": "^1.8.2",
+    "body-scroll-lock": "^3.1.5",
     "bootstrap": "^4.5.2",
     "cleave.js": "^1.6.0",
     "croppie": "^2.6.5",

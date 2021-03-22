@@ -1,4 +1,6 @@
 //====================LIGHT GALLERY INIT=================//
+var scrollTargetLp = 'section.lightpick';
+
 $('.light-pick-inline-container').each(function (index) {
    $(this).attr('id', 'lpc' + index)
 });
@@ -31,7 +33,7 @@ var lpr = [];
          $($(this)[0]._opts.field).addClass('light-pick-focus');
          console.log($(this));
          if ($(window).width() <= 480) {
-            BNS.on();
+            blockScroll(scrollTargetLp);
             if ($($(this)[0].el).find('.lp-mobile-header').length == 0) {
                $($(this)[0].el).prepend('<div class="lp-mobile-header"><button type="button" class="lightpick__close-action">Đóng</button></div>');
             }
@@ -44,7 +46,7 @@ var lpr = [];
       onClose: function () {
          $($(this)[0]._opts.field).removeClass('light-pick-focus');
          if ($(window).width() <= 480) {
-            BNS.off();
+            enableScroll(scrollTargetLp);
             $('.lp-backdrop').removeClass('show');
          }
       }
@@ -130,7 +132,7 @@ var lpr = [];
       onOpen: function () {
          $($(this)[0]._opts.field).addClass('light-pick-focus');
          if ($(window).width() <= 480) {
-            BNS.on();
+            blockScroll(scrollTargetLp);
             console.log($(this)[0])
             $($(this)[0].el).addClass('light-pick-range');
             if ($($(this)[0].el).find('.lp-mobile-header').length == 0) {
@@ -142,7 +144,7 @@ var lpr = [];
       onClose: function () {
          $($(this)[0]._opts.field).removeClass('light-pick-focus');
          if ($(window).width() <= 480) {
-            BNS.off();
+            enableScroll(scrollTargetLp);
             $('.lp-backdrop').removeClass('show');
          }
       }

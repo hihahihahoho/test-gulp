@@ -1,5 +1,7 @@
 //====================SELECT2 INIT=================//
 
+var scrollTargetSelect = '.select2-results__options';
+
 function closeSelect () {
   $('.select-2').select2('close');
 }
@@ -39,7 +41,6 @@ $(document).ready(function () {
     closeOnSelect: $(window).width() < 768 ? false : true,
   }).on("select2:opening", function () {
     if ($(window).width() <= 767) {
-      BNS.off();
       clearTimeout(select2Timeout);
     }
   }).on("select2:open", function () {
@@ -55,7 +56,8 @@ $(document).ready(function () {
     }
     if ($(window).width() <= 767) {
       clearTimeout(select2Timeout);
-      BNS.on();
+      console.log($(this))
+      blockScroll(scrollTargetSelect);
       $('.close-select').remove();
       var x = $(this).eq(0).attr('header-text');
       $('body > .select2-container .select2-dropdown').prepend('<div class="close-select"><div class="close-select__btn" href="javascript:void(0)" onclick="closeSelect()">Đóng</div>' + x + '</div>');
@@ -65,7 +67,7 @@ $(document).ready(function () {
   }).on("select2:closing", function () {
     $('.select-2-backdrop').removeClass('show');
     if ($(window).width() <= 767) {
-      BNS.off();
+      enableScroll(scrollTargetSelect);
       $('body > .select2-container .select2-dropdown').removeClass('top-0');
     }
   }).on("select2:select", function () {
@@ -82,7 +84,6 @@ $(document).ready(function () {
     closeOnSelect: false
   }).on("select2:opening", function () {
     if ($(window).width() <= 767) {
-      BNS.off();
       clearTimeout(select2Timeout);
     }
   }).on("select2:open", function () {
@@ -92,7 +93,7 @@ $(document).ready(function () {
     }
     if ($(window).width() <= 767) {
       clearTimeout(select2Timeout);
-      BNS.on();
+      blockScroll(scrollTargetSelect);
       $('.close-select').remove();
       $('.unselect-all').remove();
       $('.select2-search-container').remove();
@@ -109,7 +110,7 @@ $(document).ready(function () {
   }).on("select2:closing", function () {
     $('.select-2-backdrop').removeClass('show');
     if ($(window).width() <= 767) {
-      BNS.off();
+      enableScroll(scrollTargetSelect);
       $('body > .select2-container .select2-dropdown').removeClass('top-0');
     }
   });
@@ -143,5 +144,14 @@ $(document).ready(function () {
     width: '100%'
   });
   //end template select-2
+  if (iOS()) {
+    if ($(window).width() < 992 && deviceIsMobile) {
+      $(document).on('touchstart', '.select2-results', function (e) {
+        setTimeout(function () {
+          $('input').blur();
+        }, 100)
+      });
+    }
+  }
 });
 //====================END SELECT2 INIT=================//

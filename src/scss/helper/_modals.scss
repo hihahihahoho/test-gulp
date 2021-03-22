@@ -4,7 +4,7 @@ $map-modal-size: (
   xs: 373px,
   sm: 570px,
   md: 1000px,
-  lg: 1200px,
+  lg: 1200px, 
 ) !default;
 
 $modal-space: 24px !default;
@@ -153,12 +153,12 @@ $modal-backdrop-bgcolor-op: 0.5 !default;
     }
     .modal-header {
       &::after {
-        bottom: -$modal-space/2;
+        bottom: -$modal-space/4;
       }
     }
     .modal-footer {
       &::after {
-        top: -$modal-space/2;
+        top: -$modal-space/4;
         transform: rotate(180deg);
       }
     }
