@@ -23,13 +23,15 @@ $(document).ready(function () {
     delay: 300000
   })
   $('.modal').on('shown.bs.modal', function (e) {
+    var modalId  = $(this).attr('id');
     if ($(window).width() < 769) {
-      blockScroll(scrollTargetModal);
+      blockScroll('#' + modalId + '.show .modal-body');
     }
   });
   $('.modal').on('hide.bs.modal', function (e) {
+    var modalId  = $(this).attr('id');
     if ($(window).width() < 769) {
-      enableScroll(scrollTargetModal);
+      enableScroll('#' + modalId + '.show .modal-body');
     }
   });
 

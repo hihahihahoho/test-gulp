@@ -26,3 +26,19 @@
     margin-bottom: 10px;
   }
 }
+
+.post-css-test {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 30px;
+  color: rgba(var(--color-gradient), 0.1);
+}
+.item {
+  background-color: green;
+  height: 50px;
+}
+
+.ios-nav-hide .modal-dialog-scrollable {
+  min-height: calc(100% - 80px);
+  max-height: calc(100% - 80px);
+}

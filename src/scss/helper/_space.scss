@@ -368,6 +368,10 @@ $map-pos: (
                 margin-top: $value2;
                 margin-bottom: $value2;
               }
+              &.list-crop {
+                margin-top: -$value2;
+                margin-bottom: -$value2;
+              }
             }
             @if $orient == "l" {
               > * {
@@ -387,6 +391,9 @@ $map-pos: (
             @if $orient == "b" {
               > * {
                 margin-bottom: $value2;
+              }
+              &.list-crop {
+                margin-bottom: -$value2;
               }
             }
           }
@@ -422,6 +429,9 @@ $map-pos: (
         @if $orient == "b" {
           > * {
             margin-bottom: $value;
+          }
+          &.list-crop {
+            margin-bottom: -$value;
           }
         }
       }

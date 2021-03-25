@@ -320,7 +320,7 @@
   <!-- end forms.select -->
 {% endmacro %}
 
-{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', size = settingInputDefault.size, type = 'text', id = '', extendAttr, range = 'false', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '', errorBlock = settingInputDefault.errorBlock) %}
+{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', size = settingInputDefault.size, type = 'text', id = '', extendAttr, dateType = 'single', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '', errorBlock = settingInputDefault.errorBlock, datepickerLib = 'light-pick') %}
   <!-- forms.datepicker -->
   {% if settingInputCustom %}
     {% if settingInputCustom.inputType %}
@@ -350,10 +350,14 @@
   {% if disabled == 'true' %}
     {% set disabledAttr = 'disabled = disabled' %}
   {% endif %}
-  {% if range == 'true' %}
-    {% set lpTxt = 'light-pick-range' %}
-  {% else %}
-    {% set lpTxt = 'light-pick' %}
+  {% if dateType == 'range' %}
+    {% set lpTxt = datepickerLib + '-range' %}
+  {% endif %}
+  {% if dateType == 'single' %}
+    {% set lpTxt = datepickerLib %}
+  {% endif %}
+  {% if dateType == 'range2nd' %}
+    {% set lpTxt = datepickerLib + '-range-2nd' %}
   {% endif %}
   {% if id %}
     {% set idText = 'id="' + id + '"' %}
@@ -361,7 +365,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }}">
       <label class="input-group">
-        <input {{ idText }} type="{{ text }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-size-{{ size }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
+        <input {{ idText }} type="{{ type }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-size-{{ size }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
         <div class="input-frame"></div>
         {% if title %}
           <div class="input-label">{{ title }}</div>

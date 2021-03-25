@@ -119,9 +119,9 @@ $(document).ready(function () {
   function templateImg (img) {
     if (!img.id) { return img.text; }
     if (img.element.attributes.dataimgClass) {
-      return $img = $('<div class="select-tpl-img-wrap"><div class="row row-10 align-items-center"><div class="col-auto"><div class="select-tpl-img ' + img.element.attributes.dataimgClass.value + '" style="background-image: url(\'' + img.element.attributes.dataimg.value + '\')"></div></div><div class="col"><div class="select-tpl-txt">' + img.text + '</div></div></div></div>');
+      return $img = $('<div class="select-tpl-img-wrap"><div class="row row-10 align-items-center"><div class="col-auto"><div class="select-tpl-img ' + img.element.attributes.dataimgClass.value + '" style="background-image: url(\'' + img.element.attributes.dataimg.value + '\')"></div></div><div class="col text-truncate"><div class="select-tpl-txt">' + img.text + '</div></div></div></div>');
     } else {
-      return $img = $('<div class="select-tpl-img-wrap"><div class="row row-10 align-items-center"><div class="col"><div class="select-tpl-txt">' + img.text + '</div></div></div></div>');
+      return $img = $('<div class="select-tpl-img-wrap"><div class="row row-10 align-items-center"><div class="col text-truncate"><div class="select-tpl-txt">' + img.text + '</div></div></div></div>');
     }
   };
   function templateImgRes (img) {

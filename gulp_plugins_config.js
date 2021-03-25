@@ -35,11 +35,27 @@ var pluginsDetail = {
   'lightpick': {
     "name": 'lightpick',
     "scripts": [
-      "src/plugins/lightpick/1moment.min.js",
       "src/plugins/lightpick/lightpick.js",
     ],
     "init": [
       "src/js/lightpick.init.js"
+    ]
+  },
+  'lightpicker': {
+    "name": 'lightpicker',
+    "scripts": [
+      "node_modules/litepicker/dist/litepicker.js",
+      "node_modules/litepicker/dist/plugins/keyboardnav.js",
+      "node_modules/litepicker/dist/plugins/mobilefriendly.js"
+    ],
+    "init": [
+      "src/js/lightpicker.init.js"
+    ]
+  },
+  'lightpickerPolyfills': {
+    "name": 'lightpickerPolyfills',
+    "scripts": [
+      "src/plugins/lightpicker/polyfills-ie11.min.js",
     ]
   },
   'select2': {
@@ -199,6 +215,15 @@ var pluginsDetail = {
       "src/js/bodyScrollLock.init.js"
     ]
   },
+  'iosInnerHeight': {
+    "name": 'iosInnerHeight',
+    "scripts": [
+      "node_modules/ios-inner-height/dist/ios-inner-height.min.js"
+    ],
+    "init": [
+      "src/js/iosInnerHeight.init.js"
+    ]
+  },
 }
 
 var plugins = {
@@ -208,6 +233,8 @@ var plugins = {
     pluginsDetail.pollyfill,
     pluginsDetail.momentjs,
     pluginsDetail.lightpick,
+    pluginsDetail.lightpickerPolyfills,
+    pluginsDetail.lightpicker,
     pluginsDetail.jquery,
     pluginsDetail.popper,
     pluginsDetail.bootstrap,
@@ -224,7 +251,8 @@ var plugins = {
     pluginsDetail.wnumb,
     pluginsDetail.datatables,
     pluginsDetail.floatingScroll,
-    pluginsDetail.bodyScrollLock
+    pluginsDetail.bodyScrollLock,
+    pluginsDetail.iosInnerHeight
   ]
 }
 

@@ -4,7 +4,7 @@ $map-modal-size: (
   xs: 373px,
   sm: 570px,
   md: 1000px,
-  lg: 1200px, 
+  lg: 1200px,
 ) !default;
 
 $modal-space: 24px !default;
@@ -166,31 +166,30 @@ $modal-backdrop-bgcolor-op: 0.5 !default;
 }
 
 .modal {
+  &-header {
+    padding: $modal-space;
+  }
+  &-body {
+    padding: $modal-space/2 $modal-space;
+  }
+  &-footer {
+    padding: $modal-space/3 $modal-space $modal-space $modal-space;
+  }
   @include media(">=768px") {
     &-open {
       overflow-y: scroll !important;
     }
-
-    &-header {
-      padding: $modal-space;
-    }
-    &-body {
-      padding: $modal-space/2 $modal-space;
-    }
-    &-footer {
-      padding: $modal-space/3 $modal-space $modal-space $modal-space;
-    }
   }
   @include media("<768px") {
-    &-body {
-      padding: $modal-space/2 !important;
-    }
-    &-header {
-      padding: $modal-space/2 !important;
-    }
-    &-footer {
-      padding: $modal-space/2 $modal-space/2 !important;
-    }
+    // &-body {
+    //   padding: $modal-space/2 !important;
+    // }
+    // &-header {
+    //   padding: $modal-space/2 !important;
+    // }
+    // &-footer {
+    //   padding: $modal-space/2 $modal-space/2 !important;
+    // }
   }
   @include media("<=575px") {
     .modal-dialog {

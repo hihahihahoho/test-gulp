@@ -1,7 +1,9 @@
 function blockScroll (el) {
   var srcollTarget = document.querySelector(el);
   bodyScrollLock.disableBodyScroll(srcollTarget, {
-    allowTouchMove: el => el.tagName === 'TEXTAREA',
+    allowTouchMove: function (el) {
+      el.tagName === 'TEXTAREA'
+    }
   });
 }
 
