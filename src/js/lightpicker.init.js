@@ -84,7 +84,7 @@ function getLightpickOption (el) {
 [].forEach.call(document.querySelectorAll('.lite-picker'), function (el, i, a) {
   var lpOptions = getLightpickOption(el);
   lpicker = new Litepicker(lpOptions).on('hide', function (element) {
-    el.dispatchEvent(new Event('change', { bubbles: true }));
+    $('.lite-picker').trigger('change')
     enableScroll(scrollTargetLp);
   }).on('mobilefriendly.show', (el) => {
     blockScroll(scrollTargetLp);
@@ -97,7 +97,7 @@ function getLightpickOption (el) {
     lpOptions['elementEnd'] = a[i + 1];
     lpOptions = mergeObjects(optsRange2ndInput, lpOptions);
     lpicker = new Litepicker(lpOptions).on('hide', function (element) {
-      el.dispatchEvent(new Event('change', { bubbles: true }));
+      $('.lite-picker-range-2nd').trigger('change')
       enableScroll(scrollTargetLp);
     }).on('mobilefriendly.show', (el) => {
       blockScroll(scrollTargetLp);
