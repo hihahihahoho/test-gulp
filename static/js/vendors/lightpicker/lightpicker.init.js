@@ -84,11 +84,11 @@ function getLightpickOption (el) {
 [].forEach.call(document.querySelectorAll('.lite-picker'), function (el, i, a) {
   var lpOptions = getLightpickOption(el);
   lpicker = new Litepicker(lpOptions).on('show', function (element) {
-    if (window.width < opts.mobilefriendly.breakpoint) {
+    if (window.innerWidth < 480) {
       blockScroll(scrollTargetLp);
     }
   }).on('hide', function (element) {
-    if (window.width < opts.mobilefriendly.breakpoint) {
+    if (window.innerWidth < 480) {
       enableScroll(scrollTargetLp);
     }
     this.ui.classList.remove('litepicker-open')
@@ -102,11 +102,11 @@ function getLightpickOption (el) {
     lpOptions['elementEnd'] = a[i + 1];
     lpOptions = mergeObjects(optsRange2ndInput, lpOptions);
     lpicker = new Litepicker(lpOptions).on('show', function (element) {
-      if (window.width < 480) {
+      if (window.innerWidth < 480) {
         blockScroll(scrollTargetLp);
       }
     }).on('hide', function (element) {
-      if (window.width < 480) {
+      if (window.innerWidth < 480) {
         enableScroll(scrollTargetLp);
       }
       this.ui.classList.remove('litepicker-open')
