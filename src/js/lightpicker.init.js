@@ -1,5 +1,8 @@
 
-var scrollTargetLp = '.lightpicker-open';
+var scrollTargetLp = '.litepicker-open';
+var elem = document.createElement('div');
+elem.classList.add('litepicker-backdrop');
+document.body.appendChild(elem);
 
 var lp = [];
 var lpr = [];
@@ -78,10 +81,10 @@ function getLightpickOption (el) {
 }
 
 
-[].forEach.call(document.querySelectorAll('.light-picker'), function (el, i, a) {
+[].forEach.call(document.querySelectorAll('.lite-picker'), function (el, i, a) {
   var lpOptions = getLightpickOption(el);
   lpicker = new Litepicker(lpOptions).on('show', function (element) {
-    this.ui.classList.add('lightpicker-open')
+    this.ui.classList.add('litepicker-open');
     if (window.width < opts.mobilefriendly.breakpoint) {
       blockScroll(scrollTargetLp);
     }
@@ -89,18 +92,18 @@ function getLightpickOption (el) {
     if (window.width < opts.mobilefriendly.breakpoint) {
       enableScroll(scrollTargetLp);
     }
-    this.ui.classList.remove('lightpicker-open')
+    this.ui.classList.remove('litepicker-open')
     el.dispatchEvent(new Event('change', { bubbles: true }));
-  });
+  })
 });
 
-[].forEach.call(document.querySelectorAll('.light-picker-range-2nd'), function (el, i, a) {
+[].forEach.call(document.querySelectorAll('.lite-picker-range-2nd'), function (el, i, a) {
   if (i % 2 == 0 || i == 0) {
     var lpOptions = getLightpickOption(el);
     lpOptions['elementEnd'] = a[i + 1];
     lpOptions = mergeObjects(optsRange2ndInput, lpOptions);
     lpicker = new Litepicker(lpOptions).on('show', function (element) {
-      this.ui.classList.add('lightpicker-open')
+      this.ui.classList.add('litepicker-open')
       if (window.width < opts.mobilefriendly.breakpoint) {
         blockScroll(scrollTargetLp);
       }
@@ -108,7 +111,7 @@ function getLightpickOption (el) {
       if (window.width < opts.mobilefriendly.breakpoint) {
         enableScroll(scrollTargetLp);
       }
-      this.ui.classList.remove('lightpicker-open')
+      this.ui.classList.remove('litepicker-open')
       el.dispatchEvent(new Event('change', { bubbles: true }));
     });
   }

@@ -42,3 +42,12 @@
   min-height: calc(100% - 80px);
   max-height: calc(100% - 80px);
 }
+
+input ~ .litepicker-backdrop {
+  display: none !important;
+}
+
+.litepicker-open > .litepicker-backdrop{
+  display: block !important;
+  z-index: 9999;
+}
