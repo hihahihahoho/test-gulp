@@ -85,11 +85,10 @@ function getLightpickOption (el) {
   var lpOptions = getLightpickOption(el);
   lpicker = new Litepicker(lpOptions).on('hide', function (element) {
     el.dispatchEvent(new Event('change', { bubbles: true }));
+    enableScroll(scrollTargetLp);
   }).on('mobilefriendly.show', (el) => {
     blockScroll(scrollTargetLp);
-  }).on('mobilefriendly.hide', (el) => {
-    enableScroll(scrollTargetLp);
-  });
+  })
 });
 
 [].forEach.call(document.querySelectorAll('.lite-picker-range-2nd'), function (el, i, a) {
@@ -99,10 +98,9 @@ function getLightpickOption (el) {
     lpOptions = mergeObjects(optsRange2ndInput, lpOptions);
     lpicker = new Litepicker(lpOptions).on('hide', function (element) {
       el.dispatchEvent(new Event('change', { bubbles: true }));
+      enableScroll(scrollTargetLp);
     }).on('mobilefriendly.show', (el) => {
       blockScroll(scrollTargetLp);
-    }).on('mobilefriendly.hide', (el) => {
-      enableScroll(scrollTargetLp);
-    });
+    })
   }
 });
