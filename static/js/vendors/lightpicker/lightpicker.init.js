@@ -1,5 +1,5 @@
 
-var scrollTargetLp = '.litepicker-open';
+var scrollTargetLp = '.litepicker-open .mobilefriendly';
 var elem = document.createElement('div');
 elem.classList.add('litepicker-backdrop');
 document.body.appendChild(elem);
