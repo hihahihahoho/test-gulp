@@ -83,17 +83,13 @@ function getLightpickOption (el) {
 
 [].forEach.call(document.querySelectorAll('.lite-picker'), function (el, i, a) {
   var lpOptions = getLightpickOption(el);
-  lpicker = new Litepicker(lpOptions).on('show', function (element) {
-    if (window.innerWidth < 480) {
-      blockScroll(scrollTargetLp);
-    }
-  }).on('hide', function (element) {
-    if (window.innerWidth < 480) {
-      enableScroll(scrollTargetLp);
-    }
-    this.ui.classList.remove('litepicker-open')
+  lpicker = new Litepicker(lpOptions).on('hide', function (element) {
     el.dispatchEvent(new Event('change', { bubbles: true }));
-  })
+  }).on('mobilefriendly.show', (el) => {
+    blockScroll(scrollTargetLp);
+  }).on('mobilefriendly.hide', (el) => {
+    enableScroll(scrollTargetLp);
+  });
 });
 
 [].forEach.call(document.querySelectorAll('.lite-picker-range-2nd'), function (el, i, a) {
@@ -101,16 +97,12 @@ function getLightpickOption (el) {
     var lpOptions = getLightpickOption(el);
     lpOptions['elementEnd'] = a[i + 1];
     lpOptions = mergeObjects(optsRange2ndInput, lpOptions);
-    lpicker = new Litepicker(lpOptions).on('show', function (element) {
-      if (window.innerWidth < 480) {
-        blockScroll(scrollTargetLp);
-      }
-    }).on('hide', function (element) {
-      if (window.innerWidth < 480) {
-        enableScroll(scrollTargetLp);
-      }
-      this.ui.classList.remove('litepicker-open')
+    lpicker = new Litepicker(lpOptions).on('hide', function (element) {
       el.dispatchEvent(new Event('change', { bubbles: true }));
+    }).on('mobilefriendly.show', (el) => {
+      blockScroll(scrollTargetLp);
+    }).on('mobilefriendly.hide', (el) => {
+      enableScroll(scrollTargetLp);
     });
   }
 });
