@@ -41,21 +41,21 @@ var pluginsDetail = {
       "src/js/lightpick.init.js"
     ]
   },
-  'lightpicker': {
-    "name": 'lightpicker',
+  'litepicker': {
+    "name": 'litepicker',
     "scripts": [
       "node_modules/litepicker/dist/litepicker.js",
-      "node_modules/litepicker/dist/plugins/keyboardnav.js",
       "node_modules/litepicker/dist/plugins/mobilefriendly.js"
     ],
     "init": [
-      "src/js/lightpicker.init.js"
+      "src/js/litepicker.init.js"
     ]
   },
-  'lightpickerPolyfills': {
-    "name": 'lightpickerPolyfills',
+  'litepickerPolyfills': {
+    "name": 'litepickerPolyfills',
     "scripts": [
-      "src/plugins/lightpicker/polyfills-ie11.min.js",
+      "src/plugins/litepicker/polyfills-ie11.min.js",
+      "node_modules/custom-event-polyfill/polyfill.js"
     ]
   },
   'select2': {
@@ -233,8 +233,8 @@ var plugins = {
     pluginsDetail.pollyfill,
     pluginsDetail.momentjs,
     pluginsDetail.lightpick,
-    pluginsDetail.lightpickerPolyfills,
-    pluginsDetail.lightpicker,
+    pluginsDetail.litepickerPolyfills,
+    pluginsDetail.litepicker,
     pluginsDetail.jquery,
     pluginsDetail.popper,
     pluginsDetail.bootstrap,

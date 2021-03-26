@@ -96,7 +96,7 @@
   {% endif %}
 
   {% if id %}
-    {% set idTxt = 'id="' + id + '"' %}
+    {% set idTxt = 'id="' + (id | safe) + '"'  %}
   {% endif %}
 
   {% if rounded == 'true' %}
@@ -136,7 +136,7 @@
     {% set ubgActive = 'ubg-active' %}
   {% endif %}
 
-  <{{ tagName }} {{idTxt}} class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ roundedText }} {{ ubgHover }} {{ ubgActive }} {{ extendClass }}" {{ modalAttr | safe}} {{ toastAttr | safe }} {{ hrefAttr | safe}} {{ extendAttr | safe }} {{disabledText}} {{ tooltipContent | safe }}>
+  <{{ tagName }} {{idTxt | safe}} class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ roundedText }} {{ ubgHover }} {{ ubgActive }} {{ extendClass }}" {{ modalAttr | safe}} {{ toastAttr | safe }} {{ hrefAttr | safe}} {{ extendAttr | safe }} {{disabledText}} {{ tooltipContent | safe }}>
     <div class="ubtn-full">
       {{ btnContent | safe }}
     </div>

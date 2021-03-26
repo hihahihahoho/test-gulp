@@ -3,13 +3,19 @@ var scrollTargetLp = 'body > .litepicker';
 var elem = document.createElement('div');
 elem.classList.add('litepicker-backdrop');
 document.body.appendChild(elem);
+(function () {
+  if (typeof Event !== 'function') {
+    window.Event = CustomEvent;
+  }
+})();
 
-var lp = [];
+var today = new Date();
+
 var lpr = [];
 
 var opts = {
   format: 'DD/MM/YYYY',
-  plugins: ['mobilefriendly', 'keyboardnav'],
+  plugins: ['mobilefriendly'],
   lang: 'vi-VN',
   dropdowns: {
     "minYear": 1990,
@@ -36,7 +42,9 @@ var optsRange2ndInput = {
   singleMode: false,
   numberOfColumns: 2,
   numberOfMonths: 2,
-  allowRepick: true
+  allowRepick: true,
+  minDate: today,
+  maxDate: null
 }
 
 function camelCase (input) {
@@ -63,7 +71,7 @@ function getLightpickOption (el) {
   for (var key in attr) {
     var element = attr[key];
     if (typeof element === "object") {
-      if (element.name.includes('lp-')) {
+      if (element.name.indexOf('lp-')) {
         var name = camelCase(element.name.replace('lp-', ''))
         var val = element.value
         if (val == 'true') {
@@ -84,23 +92,49 @@ function getLightpickOption (el) {
 [].forEach.call(document.querySelectorAll('.lite-picker'), function (el, i, a) {
   var lpOptions = getLightpickOption(el);
   lpicker = new Litepicker(lpOptions).on('hide', function (element) {
-    $('.lite-picker').trigger('change')
+    el.dispatchEvent(new Event('change', { bubbles: true }))
     enableScroll(scrollTargetLp);
-  }).on('mobilefriendly.show', (el) => {
+  }).on('mobilefriendly.show', function (el) {
     blockScroll(scrollTargetLp);
   })
 });
 
+var isStartDate = false;
+
 [].forEach.call(document.querySelectorAll('.lite-picker-range-2nd'), function (el, i, a) {
   if (i % 2 == 0 || i == 0) {
+    el.classList.add('lite-picker-range-2nd-start')
     var lpOptions = getLightpickOption(el);
     lpOptions['elementEnd'] = a[i + 1];
     lpOptions = mergeObjects(optsRange2ndInput, lpOptions);
     lpicker = new Litepicker(lpOptions).on('hide', function (element) {
-      $('.lite-picker-range-2nd').trigger('change')
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+      el.classList.remove('light-pick-focus')
+      a[i + 1].classList.remove('light-pick-focus')
       enableScroll(scrollTargetLp);
-    }).on('mobilefriendly.show', (el) => {
-      blockScroll(scrollTargetLp);
-    })
+    }).on('render:day', function (day, date) {
+      if (day.classList.contains('is-in-range') | day.classList.contains('is-start-date') | day.classList.contains('is-end-date')) {
+        day.setAttribute("lpcurrent", "true")
+      }
+    }).on('before:show', function (el) {
+      el.classList.add('light-pick-focus');
+      if (el.classList.contains('lite-picker-range-2nd-start')) {
+        isStartDate = true
+        lpr[i / 2].setOptions({ minDate: optsRange2ndInput.minDate, maxDate: lpr[i / 2].getEndDate() })
+
+      } else {
+        lpr[i / 2].setOptions({ maxDate: optsRange2ndInput.maxDate, minDate: lpr[i / 2].getStartDate() })
+        isStartDate = false
+      }
+    }).on('preselect', function (date1, date2) {
+      if (isStartDate) {
+        el.classList.remove('light-pick-focus')
+        a[i + 1].classList.add('light-pick-focus')
+      } else {
+        a[i + 1].classList.remove('light-pick-focus')
+        el.classList.add('light-pick-focus')
+      }
+    });
+    lpr.push(lpicker)
   }
 });
