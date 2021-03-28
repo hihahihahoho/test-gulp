@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "patch-package"
+  },
   "dependencies": {
     "@popperjs/core": "^2.4.4",
     "@uppy/core": "^1.15.0",
@@ -23,7 +26,9 @@
     "litepicker": "^2.0.11",
     "nouislider": "^14.6.3",
     "parsleyjs": "^2.9.2",
+    "patch-package": "^6.4.7",
     "postcss-preset-env": "^6.7.0",
+    "postinstall-postinstall": "^2.1.0",
     "select2": "^4.0.13",
     "sortablejs": "^1.12.0",
     "swiper": "^6.1.1",
@@ -33,6 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
+    "@romainberger/css-diff": "^1.0.3",
     "browser-sync": "^2.26.14",
     "browserify": "^17.0.0",
     "child_process": "^1.0.2",
@@ -77,6 +83,7 @@
     "imagemin-zopfli": "^7.0.0",
     "lodash": "^4.17.21",
     "postcss-css-variables": "^0.17.0",
+    "postcss-parent-selector": "^1.0.0",
     "postcss-rgb": "^1.0.0",
     "prompt": "^1.0.0",
     "vinyl-buffer": "^1.0.1",

@@ -55,12 +55,3 @@ input ~ .litepicker-backdrop {
 .litepicker .container__days .day-item[lpcurrent=true] {
   background-color: var(--color-primary);
 } */
-
-body{
-  color: var(--color-primary);
-  background-color: rgba(var(--color-primary), 0.3);
-}
-
-.theme-green {
-  --color-primary: 0 , 128, 0;
-}

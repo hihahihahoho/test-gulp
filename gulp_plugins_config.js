@@ -51,8 +51,8 @@ var pluginsDetail = {
       "src/js/litepicker.init.js"
     ]
   },
-  'litepickerPolyfills': {
-    "name": 'litepickerPolyfills',
+  'ie11polyfills': {
+    "name": 'ie11polyfills',
     "scripts": [
       "src/plugins/litepicker/polyfills-ie11.min.js",
       "node_modules/custom-event-polyfill/polyfill.js"
@@ -233,7 +233,7 @@ var plugins = {
     pluginsDetail.pollyfill,
     pluginsDetail.momentjs,
     pluginsDetail.lightpick,
-    pluginsDetail.litepickerPolyfills,
+    pluginsDetail.ie11polyfills,
     pluginsDetail.litepicker,
     pluginsDetail.jquery,
     pluginsDetail.popper,

@@ -1,0 +1,13 @@
+diff --git a/node_modules/@romainberger/css-diff/lib/index.js b/node_modules/@romainberger/css-diff/lib/index.js
+index 1bf8ba4..eee1f99 100644
+--- a/node_modules/@romainberger/css-diff/lib/index.js
++++ b/node_modules/@romainberger/css-diff/lib/index.js
+@@ -75,7 +75,7 @@ var cssDiff = function cssDiff(source, reversed) {
+ 
+   Object.keys(reversedObject).forEach(function (selector) {
+     Object.keys(reversedObject[selector]).forEach(function (prop) {
+-      if (sourceObject[selector][prop]) {
++      if (sourceObject[selector] != undefined && sourceObject[selector][prop]) {
+         if (sourceObject[selector][prop] !== reversedObject[selector][prop]) {
+           diff = addProp(diff, selector, prop, reversedObject[selector][prop]);
+         }
