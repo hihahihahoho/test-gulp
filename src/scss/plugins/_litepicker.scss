@@ -38,13 +38,9 @@
 }
 
 .litepicker {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.8em;
   display: none;
-
   button {
     border: none;
-    background: none;
   }
 
   .container {
@@ -55,13 +51,13 @@
       display: flex;
       flex-wrap: wrap;
       background-color: var(--litepicker-container-months-color-bg);
-      border-radius: 5px;
-      box-shadow: 0 0 5px var(--litepicker-container-months-box-shadow-color);
-      width: calc(var(--litepicker-month-width) + 10px); // 10px is padding (left 5px, right: 5px)
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 8px 16px var(--litepicker-container-months-box-shadow-color);
+      width: calc(var(--litepicker-month-width) + 30px); // 10px is padding (left 5px, right: 5px)
       box-sizing: content-box;
 
       &.columns-2 {
-        width: calc((var(--litepicker-month-width) * 2) + 20px);
+        width: calc((var(--litepicker-month-width) * 2) + 60px);
       }
 
       &.columns-3 {
@@ -84,7 +80,7 @@
       }
 
       .month-item {
-        padding: 5px;
+        padding: 15px;
         width: var(--litepicker-month-width);
         box-sizing: content-box;
 
@@ -93,8 +89,6 @@
           justify-content: space-between;
           font-weight: 500;
           padding: 10px 5px;
-          text-align: center;
-          align-items: center;
           color: var(--litepicker-month-header-color);
 
           div {
@@ -105,7 +99,6 @@
             }
 
             > .month-item-year {
-              padding: 0;
             }
           }
 
@@ -131,7 +124,6 @@
 
           .button-previous-month,
           .button-next-month {
-            visibility: hidden;
             text-decoration: none;
             padding: 3px 5px;
             border-radius: 3px;
@@ -205,13 +197,13 @@
 
         &.no-previous-month {
           .button-previous-month {
-            visibility: hidden;
+            opacity: 0.4;
           }
         }
 
         &.no-next-month {
           .button-next-month {
-            visibility: hidden;
+            opacity: 0.4;
           }
         }
       }
@@ -349,7 +341,7 @@
           }
           &.is-start-date {
             &::before {
-              display: none; 
+              display: none;
             }
           }
         }
@@ -506,15 +498,29 @@
   --litepicker-mobilefriendly-backdrop-color-bg: #000;
 }
 
+
+.form-group~ .litepicker-backdrop {
+  display: none !important;
+}
+
+
 .litepicker-backdrop {
-  display: none;
+  display: block !important;
+  pointer-events: none;
+  opacity: 0;
+  transition: .3s all ease-in-out;
   background-color: var(--litepicker-mobilefriendly-backdrop-color-bg);
-  opacity: 0.3;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 9999;
+}
+
+.litepicker-open > .litepicker-backdrop{
+  pointer-events: all;
+  opacity: 0.3;
 }
 
 .litepicker-open {
@@ -522,12 +528,10 @@
 }
 
 .litepicker.mobilefriendly[data-plugins*="mobilefriendly"] {
-  transform: translate(-50%, -50%);
-  font-size: 1.1rem;
   --litepicker-container-months-box-shadow-color: #616161;
 }
 .litepicker.mobilefriendly-portrait {
-  --litepicker-day-width: 13.5vw;
+  --litepicker-day-width: 44px;
   --litepicker-month-width: calc(var(--litepicker-day-width) * 7);
 }
 .litepicker.mobilefriendly-landscape {
@@ -537,10 +541,29 @@
 
 .litepicker[data-plugins*="mobilefriendly"] .container__months {
   overflow: hidden;
+  width: 100%;
+  justify-content: center;
+}
+
+.litepicker {
+  @include media("<481px") {
+    width: 100%;
+    bottom: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    font-size: 14px;
+    transition: .3s all ease-in-out;
+    transform: translateY(100%) !important;
+    display: block !important;
+    &.mobilefriendly {
+      transform: translateY(0%) !important;
+    }
+  }
 }
 
 .litepicker.mobilefriendly[data-plugins*="mobilefriendly"] .container__months .month-item-header {
-  height: var(--litepicker-day-width);
+  height: auto;
 }
 
 .litepicker.mobilefriendly[data-plugins*="mobilefriendly"] .container__days > div {
@@ -552,6 +575,7 @@
 
 .litepicker[data-plugins*="mobilefriendly"] .container__months .month-item {
   transform-origin: center;
+  transition: 0.2s transform linear;
 }
 
 .litepicker[data-plugins*="mobilefriendly"] .container__months .month-item.touch-target-next {
@@ -566,20 +590,95 @@
   animation-timing-function: ease;
 }
 
+.litepicker .container__days {
+  height: 264px;
+}
+
 @keyframes lp-bounce-target-next {
   from {
-    transform: translateX(100px) scale(0.5);
+    opacity: 0;
+    transform: translateX(100px);
   }
   to {
-    transform: translateX(0px) scale(1);
+    opacity: 1;
+    transform: translateX(0px);
   }
 }
 
 @keyframes lp-bounce-target-prev {
   from {
-    transform: translateX(-100px) scale(0.5);
+    opacity: 0;
+    transform: translateX(-100px);
   }
   to {
-    transform: translateX(0px) scale(1);
+    opacity: 1;
+    transform: translateX(0px);
   }
+}
+
+.month-item-name,
+.month-item-year {
+  cursor: pointer;
+  height: 36px;
+  margin-right: 5px;
+  direction: ltr;
+  padding: 0 20px 0 10px;
+  line-height: 36px;
+  font-size: 14px;
+  border-radius: 8px;
+  background-color: rgba($color-grey, 0.1);
+  background-image: url(../media/icons-color/default/default/chevron-down.svg);
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center right 5px;
+  font-weight: 700;
+}
+.month-item-name {
+  width: 110px;
+}
+.month-item-header > div {
+  order: 1;
+}
+
+.month-item-header > button {
+  order: 2;
+}
+
+.button-previous-month,
+.button-next-month {
+  width: 36px;
+  height: 36px;
+  outline: 0;
+  border: none;
+  border-radius: 8px !important;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  cursor: pointer !important;
+  outline: none !important;
+  &:hover {
+    background-color: rgba($color-grey, 0.1);
+  }
+  > * {
+    display: none;
+  }
+}
+
+.button-previous-month {
+  background-image: url(../media/icons-color/default/default/chevron-left.svg) !important;
+}
+
+.button-next-month {
+  background-image: url(../media/icons-color/default/default/chevron-right.svg) !important;
+}
+
+.litepicker-mobile-header {
+  background-color: $color-grey-3;
+  width: 100%;
+  margin-bottom: 0px;
+  height: $lp-base-size;
+  display: flex;
 }

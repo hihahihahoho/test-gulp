@@ -43,14 +43,6 @@
   max-height: calc(100% - 80px);
 }
 
-input ~ .litepicker-backdrop {
-  display: none !important;
-}
-
-.litepicker-open > .litepicker-backdrop{
-  display: block !important;
-  z-index: 9999;
-}
 /* 
 .litepicker .container__days .day-item[lpcurrent=true] {
   background-color: var(--color-primary);

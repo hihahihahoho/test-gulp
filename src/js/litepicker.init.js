@@ -11,6 +11,7 @@ document.body.appendChild(elem);
 
 var today = new Date();
 
+var lp = [];
 var lpr = [];
 
 var opts = {
@@ -18,8 +19,8 @@ var opts = {
   plugins: ['mobilefriendly'],
   lang: 'vi-VN',
   dropdowns: {
-    "minYear": 1990,
-    "maxYear": null,
+    "minYear": 2020,
+    "maxYear": 2022,
     "months": true,
     "years": true
   },
@@ -47,6 +48,9 @@ var optsRange2ndInput = {
   maxDate: null
 }
 
+function closeLitePick (ui) {
+  ui.hide();
+}
 function camelCase (input) {
   return input.toLowerCase().replace(/-(.)/g, function (match, group1) {
     return group1.toUpperCase();
@@ -96,7 +100,25 @@ function getLightpickOption (el) {
     enableScroll(scrollTargetLp);
   }).on('mobilefriendly.show', function (el) {
     blockScroll(scrollTargetLp);
-  })
+  }).on('render:day', function (day, date) {
+    if (day.classList.contains('is-in-range') | day.classList.contains('is-start-date') | day.classList.contains('is-end-date')) {
+      day.setAttribute("lpcurrent", "true")
+    }
+    if (day.classList.contains('is-start-date')) {
+      day.setAttribute("lpstart", "true")
+    }
+    if (day.classList.contains('is-end-date')) {
+      day.setAttribute("lpend", "true")
+    }
+  }).on('render', function (ui) {
+    if (window.innerWidth < 480) {
+      ui.querySelector('.container__months').insertAdjacentHTML("afterbegin", '<div class="litepicker-mobile-header"><button type="button" class="litepicker__close-action ">Đóng</button></div>')
+      ui.querySelector('.litepicker__close-action').addEventListener('click', function () {
+        lp[i].hide()
+      })
+    }
+  });
+  lp.push(lpicker)
 });
 
 var isStartDate = false;
@@ -157,6 +179,19 @@ var isStartDate = false;
       } else {
         a[i + 1].classList.remove('light-pick-focus')
         el.classList.add('light-pick-focus')
+      }
+    }).on('mobilefriendly.show', (el) => {
+      if (!el.classList.contains('lite-picker-range-2nd-start')) {
+        setTimeout(function () {
+          lpr[i / 2].gotoDate(lpr[i / 2].getEndDate())
+        }, 0)
+      }
+    }).on('render', function (ui) {
+      if (window.innerWidth < 480) {
+        ui.querySelector('.container__months').insertAdjacentHTML("afterbegin", '<div class="litepicker-mobile-header"><button type="button" class="litepicker__close-action ">Đóng</button></div>')
+        ui.querySelector('.litepicker__close-action').addEventListener('click', function () {
+          lpr[i / 2].hide()
+        })
       }
     });
     lpr.push(lpicker)
