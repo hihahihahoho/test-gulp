@@ -498,17 +498,15 @@
   --litepicker-mobilefriendly-backdrop-color-bg: #000;
 }
 
-
-.form-group~ .litepicker-backdrop {
+.form-group ~ .litepicker-backdrop {
   display: none !important;
 }
-
 
 .litepicker-backdrop {
   display: block !important;
   pointer-events: none;
   opacity: 0;
-  transition: .3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
   background-color: var(--litepicker-mobilefriendly-backdrop-color-bg);
   position: fixed;
   top: 0;
@@ -518,7 +516,7 @@
   z-index: 9999;
 }
 
-.litepicker-open > .litepicker-backdrop{
+.litepicker-open > .litepicker-backdrop {
   pointer-events: all;
   opacity: 0.3;
 }
@@ -552,8 +550,8 @@
     top: auto !important;
     bottom: 0 !important;
     left: 0 !important;
-    font-size: 14px;
-    transition: .3s all ease-in-out;
+    font-size: 16px !important;
+    transition: 0.3s all ease-in-out;
     transform: translateY(100%) !important;
     display: block !important;
     &.mobilefriendly {
@@ -679,6 +677,28 @@
   background-color: $color-grey-3;
   width: 100%;
   margin-bottom: 0px;
-  height: $lp-base-size;
+  min-height: 44px;
   display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+
+.litepicker-mobile-header-content {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.litepicker-mobile-date {
+  background: $color-invert;
+  margin: 5px 2.5px 5px 2.5px;
+  min-width: 100px;
+  padding: 5px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  &.active {
+    border-color: $color-primary;
+  }
 }

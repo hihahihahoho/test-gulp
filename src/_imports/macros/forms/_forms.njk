@@ -365,7 +365,7 @@
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }}">
       <label class="input-group">
-        <input {{ idText }} type="{{ type }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-size-{{ size }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }}>
+        <input {{ idText }} type="{{ type }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-size-{{ size }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }} lptitle="{{title}}">
         <div class="input-frame"></div>
         {% if title %}
           <div class="input-label">{{ title }}</div>

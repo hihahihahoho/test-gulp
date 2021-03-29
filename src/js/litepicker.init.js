@@ -14,6 +14,9 @@ var today = new Date();
 var lp = [];
 var lpr = [];
 
+var titleFrom = 'Từ ngày';
+var titleTo = 'Đến ngày';
+
 var opts = {
   format: 'DD/MM/YYYY',
   plugins: ['mobilefriendly'],
@@ -48,8 +51,23 @@ var optsRange2ndInput = {
   maxDate: null
 }
 
-function closeLitePick (ui) {
-  ui.hide();
+function isStartDateAddActive (start, end, className) {
+  start.classList.remove(className)
+  end.classList.remove(className)
+
+  if (isStartDate) {
+    start.classList.add(className)
+  } else {
+    end.classList.add(className)
+  }
+}
+
+function GetFormattedDate (date) {
+  var fullDate = date.dateInstance;
+  var day = fullDate.getDay() + 1;
+  var month = fullDate.getMonth() + 1;
+  var year = fullDate.getFullYear();
+  return day + "/" + month + "/" + year;
 }
 function camelCase (input) {
   return input.toLowerCase().replace(/-(.)/g, function (match, group1) {
@@ -111,7 +129,7 @@ function getLightpickOption (el) {
       day.setAttribute("lpend", "true")
     }
   }).on('render', function (ui) {
-    if (window.innerWidth < 480) {
+    if (window.innerWidth < 481) {
       ui.querySelector('.container__months').insertAdjacentHTML("afterbegin", '<div class="litepicker-mobile-header"><button type="button" class="litepicker__close-action ">Đóng</button></div>')
       ui.querySelector('.litepicker__close-action').addEventListener('click', function () {
         lp[i].hide()
@@ -173,12 +191,12 @@ var isStartDate = false;
         isStartDate = false
       }
     }).on('preselect', function (date1, date2) {
-      if (isStartDate) {
-        el.classList.remove('light-pick-focus')
-        a[i + 1].classList.add('light-pick-focus')
-      } else {
-        a[i + 1].classList.remove('light-pick-focus')
-        el.classList.add('light-pick-focus')
+      isStartDateAddActive(a[i + 1], el, 'light-pick-focus');
+      console.log('a')
+      if (window.innerWidth < 481) {
+        var startDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-from');
+        var endDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-to');
+        isStartDateAddActive(endDateEl, startDateEl, 'active')
       }
     }).on('mobilefriendly.show', (el) => {
       if (!el.classList.contains('lite-picker-range-2nd-start')) {
@@ -187,10 +205,26 @@ var isStartDate = false;
         }, 0)
       }
     }).on('render', function (ui) {
-      if (window.innerWidth < 480) {
-        ui.querySelector('.container__months').insertAdjacentHTML("afterbegin", '<div class="litepicker-mobile-header"><button type="button" class="litepicker__close-action ">Đóng</button></div>')
+      if (window.innerWidth < 481) {
+        var startDate = '...';
+        var endDate = '...';
+        if ((lpr[i / 2].getStartDate() && lpr[i / 2].getStartDate())) {
+          var startDate = GetFormattedDate(lpr[i / 2].getStartDate())
+          var endDate = GetFormattedDate(lpr[i / 2].getEndDate())
+        }
+        ui.querySelector('.container__months').insertAdjacentHTML("afterbegin", '<div class="litepicker-mobile-header"><button type="button" class="litepicker__close-action ">Đóng</button><div class="litepicker-mobile-header-content"><div class="litepicker-mobile-date litepicker-mobile-date-from"><div class="title">' + titleFrom + '</div><div class="date">' + startDate + '</div></div><div class="litepicker-mobile-date litepicker-mobile-date-to"><div class="title">' + titleTo + '</div><div class="date">' + endDate + '</div></div></div></div>')
         ui.querySelector('.litepicker__close-action').addEventListener('click', function () {
           lpr[i / 2].hide()
+        })
+
+        var startDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-from');
+        var endDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-to');
+        isStartDateAddActive(startDateEl, endDateEl, 'active');
+        startDateEl.addEventListener('click', function(){
+          a[i].dispatchEvent(new Event('click', { bubbles: true }))
+        });
+        endDateEl.addEventListener('click', function(){
+          a[i + 1].dispatchEvent(new Event('click', { bubbles: true }))
         })
       }
     });
