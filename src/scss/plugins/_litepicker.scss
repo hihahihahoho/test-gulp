@@ -16,7 +16,7 @@
   --litepicker-day-width: 40px;
   --litepicker-day-color: #333;
   --litepicker-day-color-hover: #{$color-primary};
-  --litepicker-is-today-color: #f44336;
+  --litepicker-is-today-color: #{$color-primary};
   --litepicker-is-in-range-color: #{lighten($color-primary, 38)};
   --litepicker-is-locked-color: #{$color-default};
   --litepicker-is-locked-opacity: 0.3;

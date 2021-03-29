@@ -9,7 +9,8 @@ document.body.appendChild(elem);
   }
 })();
 
-var today = new Date();
+var today = new Date()
+today = new Date().setDate(today.getDate());
 
 var lp = [];
 var lpr = [];
@@ -63,8 +64,9 @@ function isStartDateAddActive (start, end, className) {
 }
 
 function GetFormattedDate (date) {
+
   var fullDate = date.dateInstance;
-  var day = fullDate.getDay() + 1;
+  var day = fullDate.getDate();
   var month = fullDate.getMonth() + 1;
   var year = fullDate.getFullYear();
   return day + "/" + month + "/" + year;
@@ -181,22 +183,28 @@ var isStartDate = false;
       if (el.classList.contains('lite-picker-range-2nd-start')) {
         el.classList.add('light-pick-focus');
         a[i + 1].classList.remove('light-pick-focus');
-        isStartDate = true
-        lpr[i / 2].setOptions({ minDate: optsRange2ndInput.minDate, maxDate: getMaxdate })
+        isStartDate = true;
+        if (optsRange2ndInput.allowRepick) {
+          lpr[i / 2].setOptions({ minDate: optsRange2ndInput.minDate, maxDate: getMaxdate })
+        }
 
       } else {
         el.classList.add('light-pick-focus');
         a[i].classList.remove('light-pick-focus');
-        lpr[i / 2].setOptions({ maxDate: optsRange2ndInput.maxDate, minDate: getMindate })
-        isStartDate = false
+        isStartDate = false;
+        if (optsRange2ndInput.allowRepick) {
+          lpr[i / 2].setOptions({ maxDate: optsRange2ndInput.maxDate, minDate: getMindate })
+        }
       }
     }).on('preselect', function (date1, date2) {
       isStartDateAddActive(a[i + 1], el, 'light-pick-focus');
       console.log('a')
       if (window.innerWidth < 481) {
-        var startDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-from');
-        var endDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-to');
-        isStartDateAddActive(endDateEl, startDateEl, 'active')
+        if (optsRange2ndInput.allowRepick) {
+          var startDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-from');
+          var endDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-to');
+          isStartDateAddActive(endDateEl, startDateEl, 'active');
+        }
       }
     }).on('mobilefriendly.show', (el) => {
       if (!el.classList.contains('lite-picker-range-2nd-start')) {
@@ -216,16 +224,17 @@ var isStartDate = false;
         ui.querySelector('.litepicker__close-action').addEventListener('click', function () {
           lpr[i / 2].hide()
         })
-
-        var startDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-from');
-        var endDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-to');
-        isStartDateAddActive(startDateEl, endDateEl, 'active');
-        startDateEl.addEventListener('click', function(){
-          a[i].dispatchEvent(new Event('click', { bubbles: true }))
-        });
-        endDateEl.addEventListener('click', function(){
-          a[i + 1].dispatchEvent(new Event('click', { bubbles: true }))
-        })
+        if (optsRange2ndInput.allowRepick) {
+          var startDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-from');
+          var endDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-to');
+          isStartDateAddActive(startDateEl, endDateEl, 'active');
+          startDateEl.addEventListener('click', function () {
+            a[i].dispatchEvent(new Event('click', { bubbles: true }))
+          });
+          endDateEl.addEventListener('click', function () {
+            a[i + 1].dispatchEvent(new Event('click', { bubbles: true }))
+          })
+        }
       }
     });
     lpr.push(lpicker)
