@@ -44,7 +44,7 @@ var pluginsDetail = {
   'litepicker': {
     "name": 'litepicker',
     "scripts": [
-      "node_modules/litepicker/dist/litepicker.js",
+      "node_modules/litepicker/dist/nocss/litepicker.js",
       "node_modules/litepicker/dist/plugins/mobilefriendly.js"
     ],
     "init": [

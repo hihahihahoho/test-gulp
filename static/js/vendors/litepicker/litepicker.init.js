@@ -109,6 +109,7 @@ var isStartDate = false;
     lpOptions = mergeObjects(optsRange2ndInput, lpOptions);
     lpicker = new Litepicker(lpOptions).on('hide', function (element) {
       el.dispatchEvent(new Event('change', { bubbles: true }));
+      a[i + 1].dispatchEvent(new Event('change', { bubbles: true }));
       el.classList.remove('light-pick-focus')
       a[i + 1].classList.remove('light-pick-focus')
       enableScroll(scrollTargetLp);
@@ -116,14 +117,37 @@ var isStartDate = false;
       if (day.classList.contains('is-in-range') | day.classList.contains('is-start-date') | day.classList.contains('is-end-date')) {
         day.setAttribute("lpcurrent", "true")
       }
+      if (day.classList.contains('is-start-date')) {
+        day.setAttribute("lpstart", "true")
+      }
+      if (day.classList.contains('is-end-date')) {
+        day.setAttribute("lpend", "true")
+      }
     }).on('before:show', function (el) {
-      el.classList.add('light-pick-focus');
+      var getMindate;
+      var getMaxdate;
+      if (lpr[i / 2].getStartDate()) {
+        getMindate = lpr[i / 2].getStartDate()
+      } else {
+        getMindate = optsRange2ndInput.minDate
+      }
+
+      if (lpr[i / 2].getEndDate()) {
+        getMaxdate = lpr[i / 2].getEndDate()
+      } else {
+        getMaxdate = optsRange2ndInput.maxDate
+      }
+
       if (el.classList.contains('lite-picker-range-2nd-start')) {
+        el.classList.add('light-pick-focus');
+        a[i + 1].classList.remove('light-pick-focus');
         isStartDate = true
-        lpr[i / 2].setOptions({ minDate: optsRange2ndInput.minDate, maxDate: lpr[i / 2].getEndDate() })
+        lpr[i / 2].setOptions({ minDate: optsRange2ndInput.minDate, maxDate: getMaxdate })
 
       } else {
-        lpr[i / 2].setOptions({ maxDate: optsRange2ndInput.maxDate, minDate: lpr[i / 2].getStartDate() })
+        el.classList.add('light-pick-focus');
+        a[i].classList.remove('light-pick-focus');
+        lpr[i / 2].setOptions({ maxDate: optsRange2ndInput.maxDate, minDate: getMindate })
         isStartDate = false
       }
     }).on('preselect', function (date1, date2) {
