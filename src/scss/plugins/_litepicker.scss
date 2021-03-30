@@ -704,7 +704,7 @@
 }
 
 .litepicker {
-  .is-end-date {
+  .is-end-date:not(.is-end-date) {
     @include media("<481px") {
       color: $color-primary !important;
       &::after {

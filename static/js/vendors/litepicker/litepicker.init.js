@@ -155,17 +155,17 @@ var isStartDate = false;
       a[i + 1].classList.remove('light-pick-focus')
       enableScroll(scrollTargetLp);
     }).on('render:day', function (day, date) {
-      // if (window.innerWidth < 481) {
-      //   day.addEventListener('click', function (e) {
-      //     if (isStartDate) {
-      //       el.dispatchEvent(new Event('click', { bubbles: true }))
+      if (window.innerWidth < 481) {
+        day.addEventListener('click', function (e) {
+          // if (isStartDate) {
+          //   el.dispatchEvent(new Event('click', { bubbles: true }))
             
-      //     } else {
-      //       a[i + 1].dispatchEvent(new Event('click', { bubbles: true }))
-      //     }
-          
-      //   });
-      // }
+          // } else {
+          //   a[i + 1].dispatchEvent(new Event('click', { bubbles: true }))
+          // }
+          e.prototype.shouldShown
+        });
+      }
       if (day.classList.contains('is-in-range') | day.classList.contains('is-start-date') | day.classList.contains('is-end-date')) {
         day.setAttribute("lpcurrent", "true")
       }
@@ -221,6 +221,7 @@ var isStartDate = false;
         }
       }
     }).on('mobilefriendly.show', (el) => {
+      blockScroll(scrollTargetLp);
       if (!isStartDate) {
         setTimeout(function () {
           lpr[i / 2].gotoDate(lpr[i / 2].getEndDate())
