@@ -702,3 +702,32 @@
     border-color: $color-primary;
   }
 }
+
+.litepicker {
+  .is-end-date {
+    @include media("<481px") {
+      color: $color-primary !important;
+      &::after {
+        background-color: $color-invert !important;
+        border: 1px dashed $color-primary;
+      }
+    }
+  }
+}
+
+.litepicker-start-date {
+  .is-start-date {
+    color: $color-primary !important;
+    &::after {
+      background-color: $color-invert !important;
+      border: 1px dashed $color-primary;
+    }
+  }
+  .is-end-date {
+    color: $color-invert !important;
+    &::after {
+      background-color: $color-primary !important;
+      border: 1px dashed $color-primary;
+    }
+  }
+}
