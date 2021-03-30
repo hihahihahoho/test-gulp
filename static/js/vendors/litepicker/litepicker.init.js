@@ -112,7 +112,6 @@ function getLightpickOption (el) {
   return mergeObjects(opts, overideOpts);
 }
 
-
 [].forEach.call(document.querySelectorAll('.lite-picker'), function (el, i, a) {
   var lpOptions = getLightpickOption(el);
   lpicker = new Litepicker(lpOptions).on('hide', function (element) {
@@ -156,6 +155,15 @@ var isStartDate = false;
       a[i + 1].classList.remove('light-pick-focus')
       enableScroll(scrollTargetLp);
     }).on('render:day', function (day, date) {
+      if (window.innerWidth < 481) {
+        day.addEventListener('click', function (e) {
+          if (isStartDate) {
+            el.dispatchEvent(new Event('click', { bubbles: true }))
+          } else {
+            a[i + 1].dispatchEvent(new Event('click', { bubbles: true }))
+          }
+        });
+      }
       if (day.classList.contains('is-in-range') | day.classList.contains('is-start-date') | day.classList.contains('is-end-date')) {
         day.setAttribute("lpcurrent", "true")
       }
@@ -198,7 +206,6 @@ var isStartDate = false;
       }
     }).on('preselect', function (date1, date2) {
       isStartDateAddActive(a[i + 1], el, 'light-pick-focus');
-      console.log('a')
       if (window.innerWidth < 481) {
         if (optsRange2ndInput.allowRepick) {
           var startDateEl = lpr[i / 2].ui.querySelector('.litepicker-mobile-date-from');
