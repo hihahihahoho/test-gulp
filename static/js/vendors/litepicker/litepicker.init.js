@@ -191,17 +191,17 @@ var isStartDate = false;
       }
 
       if (el.classList.contains('lite-picker-range-2nd-start')) {
+        isStartDate = true;
         el.classList.add('light-pick-focus');
         a[i + 1].classList.remove('light-pick-focus');
-        isStartDate = true;
         if (optsRange2ndInput.allowRepick) {
           lpr[i / 2].setOptions({ minDate: optsRange2ndInput.minDate, maxDate: getMaxdate })
         }
 
       } else {
+        isStartDate = false;
         el.classList.add('light-pick-focus');
         a[i].classList.remove('light-pick-focus');
-        isStartDate = false;
         if (optsRange2ndInput.allowRepick) {
           lpr[i / 2].setOptions({ maxDate: optsRange2ndInput.maxDate, minDate: getMindate })
         }
