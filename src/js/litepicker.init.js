@@ -222,7 +222,7 @@ var isStartDate = false;
       }
     }).on('mobilefriendly.show', (el) => {
       blockScroll(scrollTargetLp);
-      if (!isStartDate) {
+      if (!el.classList.contains('lite-picker-range-2nd-start')) {
         setTimeout(function () {
           lpr[i / 2].gotoDate(lpr[i / 2].getEndDate())
         }, 0)
