@@ -723,7 +723,7 @@
       border: 1px dashed $color-primary;
     }
   }
-  .is-end-date {
+  .is-end-date:not(.is-start-date) {
     color: $color-invert !important;
     &::after {
       background-color: $color-primary !important;
