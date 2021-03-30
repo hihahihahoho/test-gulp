@@ -159,9 +159,12 @@ var isStartDate = false;
         day.addEventListener('click', function (e) {
           if (isStartDate) {
             el.dispatchEvent(new Event('click', { bubbles: true }))
+            
           } else {
             a[i + 1].dispatchEvent(new Event('click', { bubbles: true }))
           }
+          e.stopPropagation();
+          
         });
       }
       if (day.classList.contains('is-in-range') | day.classList.contains('is-start-date') | day.classList.contains('is-end-date')) {
