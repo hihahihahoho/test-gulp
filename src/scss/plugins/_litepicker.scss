@@ -514,6 +514,9 @@
   bottom: 0;
   left: 0;
   z-index: 9999;
+  @include media ('>480px') {
+    display: none !important;
+  }
 }
 
 .litepicker-open > .litepicker-backdrop {

@@ -1185,7 +1185,7 @@ function watch () {
   gulp.watch(gulpThemeSrc + 'gulp_icons-color-config.js', series(iconColor, iconLink, imageMinifyTheme))
   gulp.watch(sourceName + '/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
   gulp.watch([defSourceName + '/media/**/*', themeSourceName + '/theme-custom/media/**/*', themeSourceName + `/color-theme/${argv.colorTheme}/media/**/*`, themeSourceName + '/media/', '!' + defSourceName + '/media/icons-color/**/*'], series(media, imageMinify, iconLink, iconLink, imageMinifyTheme))
-  gulp.watch(rootSrc + '/media/icons-color/**/*', series(iconColor, iconLink, imageMinifyTheme));
+  gulp.watch(defSourceName + '/media/icons-color/**/*', series(iconColor, iconLink, imageMinifyTheme));
   gulp.watch(defSourceName + '/dev-only/devSrc/**/*', devOnly)
   gulp.watch([sourceName + '/dev-only/**/*.njk', sourceName + '/_imports/_gen-varibles.njk'], nunjucksDev)
   gulp.watch(sourceName + '/js/**/*', parallel(pluginsInitJS, pluginsVendorsInitJS))

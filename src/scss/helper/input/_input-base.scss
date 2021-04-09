@@ -489,7 +489,8 @@ select {
   }
 }
 
-input {
+input,
+textarea {
   &::placeholder {
     color: $input-placeholder-color;
   }

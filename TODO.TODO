@@ -10,10 +10,32 @@ Features:
   ✔ Sửa render sidebar đang lỗi @done(21-02-04 10:55)
   ✔ Sửa mở modal body overflow @done(21-02-04 10:59)
   ✔ Bỏ value trong select 2 @done(21-02-04 11:05)
-  ☐ Thêm ubg-hover color
-  ☐ Thêm checkbox các trạng thái
-  ☐ Fix eye input
+  Tooltip:
+    ☐ Hide Tooltip on modal open
+  Gulp:
+    ☐ Lỗi ảnh lowercase build theme
+  Input:
+    ☐ Thêm inputGroupTag
+    ☐ Option Sameplaceholder
+    ☐ Option Input tag
+    ☐ Thêm label
+    ✔ Fix textarea placeholder @done(21-04-07 15:56)
+    ☐ Fix textarea size mobile
+  Checkbox:
+    ☐ Thêm checkbox intermidiate
+    ☐ fix component
+    ☐ fix checkbox title
+  Dev-ic-color:
+    ☐ Fix lại xuất ảnh
+  Dropdown:
+    ☐ custom dropdown
+  Button: 
+    ☐ Fix button circle square
+    ☐ Simplify button
+  Tooltip:
+    ☐ Option full tooltip
   ☐ Sửa table njk
   ☐ Chart
   ☐ Layout login
   ☐ THêm tính năng dropdown không append ra ngoài
+

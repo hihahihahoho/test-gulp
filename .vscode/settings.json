@@ -3,13 +3,11 @@
     "**/dist/**/*": true,
     "**/static/**/*": true,
     // settingSearch
-"src/fonts/**/*": true,
-    "gulp_themes_config.js": true,
-    "gulp_icons-color-config.js": true,
-"theme/bidv": true,
+"theme/*": true,
 // endSettingSearch
   },
   "files.exclude": {
+    ".temp": true,
     "static": true,
     "static-theme": true,
   },
