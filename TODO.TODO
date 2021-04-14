@@ -14,6 +14,7 @@ Features:
     ☐ Hide Tooltip on modal open
   Gulp:
     ☐ Lỗi ảnh lowercase build theme
+    ☐ THêm inherit ở icons color
   Input:
     ☐ Thêm inputGroupTag
     ☐ Option Sameplaceholder
@@ -25,6 +26,8 @@ Features:
     ☐ Thêm checkbox intermidiate
     ☐ fix component
     ☐ fix checkbox title
+    ☐ Thêm trạng thái disabled
+    ☐ Chỉnh lại vertical
   Dev-ic-color:
     ☐ Fix lại xuất ảnh
   Dropdown:
