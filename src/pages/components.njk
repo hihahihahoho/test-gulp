@@ -565,6 +565,28 @@
     <div class="box__body">
       <h5 class="pb30">Tabs</h5>
       {% set tabName = ['tab 1', 'tab 2', 'tab 3'] %}
+
+      {% set obj1 = {
+        title: undefinded,
+        name: 'abc',
+        icon: [{
+          pos: 'left',
+          size: 'sm',
+          color: 'blue'
+        }]
+      } %}
+
+      {% set obj2 = {
+        title: 'pog',
+        icon: [{
+          color: 'green'
+        }]
+      } %}
+      {% set obj2 = obj2 | mergeDeep(obj1) %}
+
+      {{ obj1.title }}
+      {{ obj2 | dump }}
+
       {{ tab.tab(tabName, navLinkWidth = 'none') }}
       <div class="tab-content">
         <div class="tab-pane fade show active" id="tab1">

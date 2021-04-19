@@ -58,6 +58,8 @@ var desFolderName = 'dist';
 var staticFolderName = 'static';
 var themeSourceFolderName = sourceFolderName;
 
+var _ = require('lodash');
+
 if (argv.src) {
   rootSrc = `theme/${argv.src}/`
   themeSourceFolderName = `theme/${argv.src}`;
@@ -907,6 +909,9 @@ var manageEnvironment = function (environment) {
   environment.addFilter('setAttribute', function (dictionary, key, value) {
     dictionary[key] = value;
     return dictionary;
+  });
+  environment.addFilter('mergeDeep', function (dictionary, dictionary1) {
+    return _.defaultsDeep(dictionary, dictionary1);
   })
 }
 

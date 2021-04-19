@@ -95,7 +95,7 @@ function getLightpickOption (el) {
   for (var key in attr) {
     var element = attr[key];
     if (typeof element === "object") {
-      if (element.name.indexOf('lp-')) {
+      if (!element.name.indexOf('lp-')) {
         var name = camelCase(element.name.replace('lp-', ''))
         var val = element.value
         if (val == 'true') {
