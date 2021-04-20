@@ -33,11 +33,11 @@
         {% else %}
           {% if settingTableUltVal[item].dropdown %}
             {% set dropdownToggle %}
-            {{ button.btn(icon = '/dist/media/icons/svg2/' + settingTableUltVal[item].ic , size = 'xs-2', shape = 'square', icSize = 'sm', color = 'grey-4', extendAttr = 'data-toggle="dropdown"', tagName = 'a', tooltip = settingTableUltVal[item].tooltip ) }}
+            {{ button.btn(icon = '/dist/media/icons/svg2/' + settingTableUltVal[item].ic , size = 'xs-2', shape = 'square', icSize = 'sm', color = 'grey-4', extendAttr = 'data-toggle="dropdown"', tagname = 'a', tooltip = settingTableUltVal[item].tooltip ) }}
             {% endset %}
             {{ dropdown.dropdown(toggle = dropdownToggle, value = settingTableUltVal[item].dropdown, pos = 'right' ) }}
           {% else %}
-            {{ button.btn(icon = '/dist/media/icons/svg2/' + settingTableUltVal[item].ic, size = 'xs-2', shape = 'square', icSize = 'sm', color = 'grey-4', modal = settingTableUltVal[item].modal, href = settingTableUltVal[item].href, tagName = 'a', tooltip = settingTableUltVal[item].tooltip ) }}
+            {{ button.btn(icon = '/dist/media/icons/svg2/' + settingTableUltVal[item].ic, size = 'xs-2', shape = 'square', icSize = 'sm', color = 'grey-4', modal = settingTableUltVal[item].modal, href = settingTableUltVal[item].href, tagname = 'a', tooltip = settingTableUltVal[item].tooltip ) }}
           {% endif %}
         {% endif %}
       </div>

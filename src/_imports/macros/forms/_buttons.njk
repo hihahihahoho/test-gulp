@@ -1,9 +1,10 @@
 {% extends "_varibles.njk" %}
+{% import "macros/_base.njk" as base %}
 
-{% macro btn(title, id, tagName, color, size, width, modal, href, toast, extendAttr, extendClass, shape, custom, icon, iconLeft, icSize, disabled = 'false', justifyContent, tooltip, fontSize, textColor, space, rounded, hover, active) %}
+{% macro btn(title, id, tagname, color, size, width, modal, href, toast, extendAttr, extendClass, shape, custom, icon, iconLeft, icSize, disabled = 'false', justifyContent, tooltip, fontSize, textColor, space, rounded, hover, active) %}
   <!-- button.btn -->
-  {% if not tagName %}
-    {% set tagName = settingButtonDefault.tagName %}
+  {% if not tagname %}
+    {% set tagname = settingButtonDefault.tagname %}
   {% endif %}
   {% if not color %}
     {% set color = settingButtonDefault.color %}
@@ -31,14 +32,14 @@
   {% endif %}
 
   {% if modal %}
-    {% set tagName = 'a' %}
+    {% set tagname = 'a' %}
     {% set modalAttr %}
     data-toggle="modal" data-target="{{ modal }}"
     {% endset %}
   {% endif %}
 
   {% if toast %}
-    {% set tagName = 'a' %}
+    {% set tagname = 'a' %}
     {% set toastAttr %}
     data-toast="toast" toast-target="{{ toast }}"
     {% endset %}
@@ -96,7 +97,8 @@
   {% endif %}
 
   {% if id %}
-    {% set idTxt = 'id="' + (id | safe) + '"'  %}
+    {% set idTxt = 'id="' + (
+    id | safe) + '"' %}
   {% endif %}
 
   {% if rounded == 'true' %}
@@ -122,7 +124,7 @@
   {% endif %}
 
   {% if href %}
-    {% set tagName = 'a' %}
+    {% set tagname = 'a' %}
     {% set hrefAttr %}
     href ="{{ href }}"
     {% endset %}
@@ -136,14 +138,70 @@
     {% set ubgActive = 'ubg-active' %}
   {% endif %}
 
-  <{{ tagName }} {{idTxt | safe}} class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ roundedText }} {{ ubgHover }} {{ ubgActive }} {{ extendClass }}" {{ modalAttr | safe}} {{ toastAttr | safe }} {{ hrefAttr | safe}} {{ extendAttr | safe }} {{disabledText}} {{ tooltipContent | safe }}>
+  <{{ tagname }} {{idTxt | safe}} class="ubtn ubg-{{ color }} {{ btnShape }} {{ btnWidth }} {{ roundedText }} {{ ubgHover }} {{ ubgActive }} {{ extendClass }}" {{ modalAttr | safe}} {{ toastAttr | safe }} {{ hrefAttr | safe}} {{ extendAttr | safe }} {{disabledText}} {{ tooltipContent | safe }}>
     <div class="ubtn-full">
       {{ btnContent | safe }}
     </div>
-  </{{ tagName }}>
+  </{{ tagname }}>
   <!-- end button.btn -->
 {% endmacro %}
 
 {% macro btnData(data) %}
-  {{ btn(title = data.title, id = data.id, tagName = data.tagName, color = data.color, size = data.size, width = data.width, modal = data.modal, toast = data.toast, href = data.href, extendAttr = data.extendAttr, extendClass = data.extendClass, shape = data.shape, custom = data.custom, icon = data.icon, iconLeft = data.iconLeft, icSize = data.icSize, disabled = data.disabled, justifyContent = data.justifyContent, tooltip = data.tooltip, fontSize = data.fontSize, textColor = data.textColor, space = data.space, rounded = data.rounded) }}
+  {{ btn(title = data.title, id = data.id, tagname = data.tagname, color = data.color, size = data.size, width = data.width, modal = data.modal, toast = data.toast, href = data.href, extendAttr = data.extendAttr, extendClass = data.extendClass, shape = data.shape, custom = data.custom, icon = data.icon, iconLeft = data.iconLeft, icSize = data.icSize, disabled = data.disabled, justifyContent = data.justifyContent, tooltip = data.tooltip, fontSize = data.fontSize, textColor = data.textColor, space = data.space, rounded = data.rounded) }}
+{% endmacro %}
+
+{% macro buttonNew(data) %}
+  <!-- button.button -->
+  {% set dataDefault = {
+    title: undefinded,
+    tagname: 'button',
+    color: 'primary',
+    justifyContent: 'center',
+    size: 'default',
+    iconLeft: undefinded,
+    iconRight: undefinded,
+    icSize: 'default',
+    hover: true,
+    active: true,
+    text: {
+      fontSize: undefinded,
+      color: undefinded,
+      fontWeight: undefinded
+    }
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set class %}
+  ubtn
+  {{ data.extendClass }}
+  {% endset %}
+
+  {% set content %}
+  <div class="ubtn-inner">
+    {% if data.iconLeft %}
+      <span class="ubtn-ic ubtn-ic-left">
+        <img src="{{data.iconLeft}}" alt="" class="ic-{{ data.icSize }}">
+      </span>
+    {% endif %}
+    {% if data.title %}
+      {% set ubtnTextClass %}
+      ubtn-text
+      {{ data.text.fontSize }}
+      {{ 'color-' + data.text.color if data.text.color}}
+      {% endset %}
+      <span class="{{ ubtnTextClass | safe }}">{{ data.title }}</span>
+    {% endif %}
+    {% if data.iconRight %}
+      <span class="ubtn-ic ubtn-ic-right">
+        <img src="{{data.iconRight}}" alt="" class="ic-{{ data.icSize }}">
+      </span>
+    {% endif %}
+  </div>
+  {% endset %}
+
+  {% set data = data | setAttribute('size', 'button-' + data.size) %}
+  {% set data = data | setAttribute('content', content) %}
+  {% set data = data | setAttribute('extendClass', class) %}
+  {{ base.ubox(data) }}
+  <!-- end button.button -->
 {% endmacro %}

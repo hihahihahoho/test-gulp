@@ -1,0 +1,75 @@
+$map-box-width: (
+  auto: auto,
+  full: 100%,
+  xs: 80px,
+  sm: 100px,
+  md: 120px,
+  lg: 140px,
+  xl: 200px,
+) !default;
+$map-box-height: (
+  button-default: (
+    height: 44px,
+    font-size: 16px,
+    padding: 12px,
+    border-radius: 8px,
+  ),
+  button-sm: (
+    height: 32,
+    font-size: 14px,
+    padding: 8px,
+    border-radius: 4px,
+  ),
+) !default;
+
+@mixin modifiers-box-height($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key}, '')} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          #{$key2}: $value2;
+          @if $key2 == "height" {
+            min-width: $value2;
+            &.ubox-square {
+              width: $value2;
+            }
+            &.ubox-rounded {
+              border-radius: $value2/2;
+            }
+          }
+          @if $key2 == "font-size" {
+            .ubtn-inner {
+              #{$key2}: $value2;
+            }
+          }
+        }
+      } @else {
+        #{$attribute}: $value;
+        @if $key == "height" {
+          min-width: $value;
+        }
+        &.ubox-rounded {
+          border-radius: $value/2;
+        }
+        &.ubox-square {
+          width: $value;
+        }
+      }
+    }
+  }
+}
+
+.ubox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-square {
+    padding: 0 !important;
+  }
+  &-size {
+    @include modifiers-box-height($map-box-height, "height");
+  }
+  &-min-width {
+    @include modifiers($map-box-width, "min-width");
+  }
+}

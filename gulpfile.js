@@ -942,13 +942,17 @@ function nunjucksDev () {
     }))
     .pipe(nunjucksRender({
       path: [sourceName + '/dev-only/', sourceName + '/dev-only/devSrc/', sourceName + '/_imports/'],
-      manageEnv: manageEnvironment
+      manageEnv: manageEnvironment,
+      envOptions: {
+        autoescape: false
+      }
     }))
     .pipe(replace(`/${desFolderName}/`, ''))
     .pipe(replace(`/dist/`, ''))
     .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
     .pipe(replace(/  +/g, ' '))
     .pipe(replace(' "', '"'))
+    .pipe(replace('=" ', '="'))
     .pipe(replace('"/pages', '"pages'))
     .pipe(htmlbeautify(options))
     .pipe(gulp.dest(desFolder + '/dev-only'));
@@ -976,13 +980,17 @@ function nunjucks () {
     }))
     .pipe(nunjucksRender({
       path: [sourceName + '/_imports/', sourceName + '/pages/'],
-      manageEnv: manageEnvironment
+      manageEnv: manageEnvironment,
+      envOptions: {
+        autoescape: false
+      }
     }))
     .pipe(replace(`/${desFolderName}/`, ''))
     .pipe(replace(`/dist/`, ''))
     .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
     .pipe(replace(/  +/g, ' '))
     .pipe(replace(' "', '"'))
+    .pipe(replace('=" ', '="'))
     .pipe(replace('"/pages', '"pages'))
     .pipe(htmlbeautify(options))
     .pipe(gulp.dest(desFolder + ''));
@@ -1009,13 +1017,17 @@ function nunjucksForce () {
     }))
     .pipe(nunjucksRender({
       path: [sourceName + '/_imports/', sourceName + '/pages/'],
-      manageEnv: manageEnvironment
+      manageEnv: manageEnvironment,
+      envOptions: {
+        autoescape: false
+      }
     }))
     .pipe(replace(`/${desFolderName}/`, ''))
     .pipe(replace(`/dist/`, ''))
     .pipe(replace(/"[^"]*(?:""[^"]*)*"/g, function (m) { return m.replace(/\r?\n|\r/g, ' '); }))
     .pipe(replace(/  +/g, ' '))
     .pipe(replace(' "', '"'))
+    .pipe(replace('=" ', '="'))
     .pipe(replace('"/pages', '"pages'))
     .pipe(htmlbeautify(options))
     .pipe(gulp.dest(desFolder + ''));

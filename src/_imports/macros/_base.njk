@@ -1,0 +1,52 @@
+{% macro ubox(data) %}
+  <!-- base.ubox -->
+  {% set dataDefault = {
+    id: undefinded,
+    tagname: 'div',
+    color: undefinded,
+    backgroundImage: undefinded,
+    size: 'default',
+    width: undefinded,
+    modal: undefinded,
+    href: undefinded,
+    dropdown: false,
+    toast: undefinded,
+    extendAttr: undefinded,
+    extendClass: undefinded,
+    tooltip: undefinded,
+    hover: false,
+    active: false,
+    content: content
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set class %}
+  {{ 'ubg-' + data.color if data.color }}
+  {{ 'ubox-size-' + data.size if data.size }}
+  {{ 'ubox-square' if data.shape == 'square' }}
+  {{ 'ubox-rounded' if data.shape == 'round' }}
+  {{ 'ubox-square ubox-rounded' if data.shape == 'circle' }}
+  {{ 'ugb-hover' if data.hover == true }}
+  {{ 'ugb-active' if data.active == true }}
+  {{ data.extendClass }}
+  {% endset %}
+
+  {% set attr %}
+  {{ 'id="' + data.id + '"' if data.id }}
+  {{ 'style="background-image: url(' + data.backgroundImage + ')"' if data.backgroundImage }}
+  {{ 'data-toggle="dropdown"' if data.dropdown }}
+  {{ 'data-toggle="modal" data-target="' + data.modal + '"' if data.modal }}
+  {{ 'data-toast="toast" toast-target="' + data.toast + '"' if data.toast }}
+  {{ 'data-tooltip="tooltip" title="' + data.tooltip + '"' if data.tooltip }}
+  {% if data.href %}
+    href="{{ data.href }}"
+    {% set data = data | setAttribute('tagname', 'a') %}
+  {% endif %}
+  {{ data.extendAttr }}
+  {% endset %}
+
+  <{{ data.tagname }} {{ attr }} class="{{ class }}">
+    {{ data.content }}
+  </{{ data.tagname }}>
+  <!-- end base.ubox -->
+{% endmacro %}

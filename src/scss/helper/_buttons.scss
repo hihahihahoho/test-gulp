@@ -5,90 +5,24 @@ $btn-font-size: $font-size-default !default;
 $btn-line-border-thick: 1px !default;
 $btn-disable-opactiy: 0.4 !default;
 $btn-shadow: true !default;
-
-$map-btn-width: (
-  auto: auto,
-  full: 100%,
-  xs: 80px,
-  sm: 100px,
-  md: 120px,
-  lg: 140px,
-  xl: 200px,
-) !default;
-$map-btn-height: (
-  default: 44px,
-  xs-3: (
-    height: 18px,
-    font-size: 12px,
-    padding: 5px,
-  ),
-  xs-2: (
-    height: 24px,
-    font-size: 12px,
-    padding: 5px,
-  ),
-  xs-1: (
-    height: 28px,
-    font-size: 12px,
-    padding: 5px,
-  ),
-  xs: 30px,
-  sm: 36px,
-  md: 40px,
-  lg: 50px,
-  xl: 60px,
-) !default;
-$map-btn-color-modify: (
-  yellow: $color-default,
+$map-btn-space: (
+  default: 8px,
 ) !default;
 
-@mixin modifiers-btn-height($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
+@mixin modifiers-btn-space($map, $prefix: ".ubox-size-button-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
-    &#{if($key != $base, #{$prefix}#{$key}, '')} {
-      @if type-of($value) == "map" {
-        @each $key2, $value2 in $value {
-          #{$key2}: $value2;
-          @if $key2 == "height" {
-            min-width: $value2;
-          }
-          @if $key2 == "font-size" {
-            .ubtn-inner {
-              #{$key2}: $value2;
-            }
-          }
-        }
-      } @else {
-        #{$attribute}: $value;
-        padding: 0 10px;
-        &.ubtn-rounded {
-          border-radius: $value/2;
-        }
+    &#{$prefix}#{$key} {
+      .ubtn-text:not(:only-child):last-child {
+        padding-left: $value;
+        padding-right: $value/2;
       }
-    }
-  }
-}
-
-@mixin modifiers-btn-circle($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
-  @each $key, $value in $map {
-    &#{if($key != $base, #{$prefix}#{$key}, '')} {
-      @if type-of($value) == "map" {
-        @each $key2, $value2 in $value {
-          #{$key2}: $value2;
-          @if $key2 == "height" {
-            width: $value2;
-            border-radius: 50%;
-          }
-          @if $key2 == "font-size" {
-            .ubtn-inner {
-              #{$key2}: $value2;
-            }
-          }
-        }
-      } @else {
-        #{$attribute}: $value;
-        width: $value;
-        border-radius: 50%;
-        text-align: center;
+      .ubtn-text:not(:only-child):first-child {
+        padding-right: $value;
+        padding-left: $value/2;
+      }
+      .ubtn-text:not(:only-child):not(:first-child):not(:last-child) {
+        padding-left: $value;
+        padding-right: $value;
       }
     }
   }
@@ -106,7 +40,6 @@ button::before {
   outline: none !important;
   cursor: pointer;
   text-decoration: none !important;
-  border-radius: $btn-border-radius;
   font-weight: $btn-font-weight;
   display: flex;
   align-items: center;
@@ -116,21 +49,7 @@ button::before {
   width: 100%;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-  &-size {
-    @include modifiers-btn-height($map-btn-height, "height");
-  }
-  &-min-width {
-    @include modifiers($map-btn-width, "min-width");
-  }
-  &-circle {
-    &-size {
-      @include modifiers-btn-circle($map-btn-height, "height");
-    }
-  }
-  &-square {
-    border-radius: $btn-border-radius;
-    padding: 0;
-  }
+  @include modifiers-btn-space($map-btn-space);
 }
 
 .ubtn {
@@ -141,21 +60,29 @@ button::before {
   }
   &-ic {
     display: inline-block;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
     vertical-align: middle;
     line-height: 1;
+    &-left {
+      order: 1;
+    }
+    &-right {
+      order: 3;
+    }
   }
   & .mdi {
     vertical-align: middle;
     line-height: 1;
   }
   &-text {
-    padding: 0 10px;
     @include z-index(btn-text);
     position: relative;
     vertical-align: middle;
     display: flex;
     align-items: center;
-    height: 100%;
+    order: 2;
   }
   &-file {
     padding-left: 85px;
@@ -189,6 +116,7 @@ button::before {
     align-items: center;
     font-size: $btn-font-size;
     flex-wrap: nowrap;
+    display: flex;
   }
 }
 

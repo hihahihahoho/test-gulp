@@ -2,7 +2,7 @@ function blockScroll (el) {
   var srcollTarget = document.querySelector(el);
   bodyScrollLock.disableBodyScroll(srcollTarget, {
     allowTouchMove: function (el) {
-      el.tagName === 'TEXTAREA'
+      el.tagname === 'TEXTAREA'
     }
   });
 }

@@ -31,21 +31,21 @@
         {% set toastAttr = '' %}
 
         {% if item.href %}
-          {% set tagName = 'a' %}
+          {% set tagname = 'a' %}
           {% set hrefAttr %}
           href ="{{ item.href }}"
           {% endset %}
         {% endif %}
 
         {% if item.modal %}
-          {% set tagName = 'a' %}
+          {% set tagname = 'a' %}
           {% set modalAttr %}
           data-toggle="modal" data-target="{{ item.modal }}"
           {% endset %}
         {% endif %}
 
         {% if item.toast %}
-          {% set tagName = 'a' %}
+          {% set tagname = 'a' %}
           {% set toastAttr %}
           data-toast="toast" toast-target="{{ item.toast }}"
           {% endset %}
