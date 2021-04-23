@@ -23,7 +23,7 @@
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
-            {{ button.btn('Button', size = 'xs-2', color = 'line-primary') }}
+            {{ button.btn({title: 'Button', size: 'xs', color: 'line-primary'}) }}
             {% endset %}
             {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon, settingInputCustom = settingInputCustom) }}
           </div>
@@ -146,7 +146,7 @@
         </div>
         <div class="row row-20 justify-content-center">
           <div class="col-sm-4">
-            {{ button.btn('Validate') }}
+            {{ button.btn({title: 'Validate'}) }}
           </div>
         </div>
       </form>

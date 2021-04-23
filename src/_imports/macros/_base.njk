@@ -28,7 +28,7 @@
   {{ 'ubox-square ubox-rounded' if data.shape == 'circle' }}
   {{ 'ugb-hover' if data.hover == true }}
   {{ 'ugb-active' if data.active == true }}
-  {{ data.extendClass }}
+  {{ data.extendClass }} 
   {% endset %}
 
   {% set attr %}
@@ -38,9 +38,11 @@
   {{ 'data-toggle="modal" data-target="' + data.modal + '"' if data.modal }}
   {{ 'data-toast="toast" toast-target="' + data.toast + '"' if data.toast }}
   {{ 'data-tooltip="tooltip" title="' + data.tooltip + '"' if data.tooltip }}
+  {% if data.href or data.modal or data.toast %}
+    {% set data = data | setAttribute('tagname', 'a') %}
+  {% endif %}
   {% if data.href %}
     href="{{ data.href }}"
-    {% set data = data | setAttribute('tagname', 'a') %}
   {% endif %}
   {{ data.extendAttr }}
   {% endset %}

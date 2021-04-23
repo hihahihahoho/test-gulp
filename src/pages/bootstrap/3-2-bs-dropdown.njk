@@ -47,7 +47,7 @@
       <div class="row row-20">
         <div class="col-auto">
           {% set dropdownToggle %}
-          {{ button.btn('Button Dropdown', color = 'line-orange', extendAttr = 'data-toggle="dropdown"') }}
+          {{ button.btn({title: 'Button Dropdown', color: 'line-orange', dropdown: true }) }}
           {% endset %}
           {{ dropdown.dropdown(dropdownValue, toggle = dropdownToggle) }}
         </div>

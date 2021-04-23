@@ -8,7 +8,7 @@
       <div class="btn-groups">
         <div class="row row-10">
           <div class="flex-grow-1 flex-sm-grow-0 col-auto">
-            {{ button.buttonNew({ iconLeft: 'media/icons-color/invert/default/plannet.svg', shape: 'circle', tooltip: 'test' }) }} 
+            {{ button.btn({ iconLeft: 'media/icons-color/invert/default/plannet.svg', shape: 'circle', tooltip: 'test' }) }} 
           </div>
         </div>
       </div>
@@ -19,13 +19,13 @@
       <div class="btn-groups">
         <div class="row row-10 list-mv5">
           <div class="flex-grow-1 flex-sm-grow-0 col-auto">
-            {{ button.buttonNew({ title: 'button' }) }} 
+            {{ button.btn({ title: 'button' }) }} 
           </div>
           <div class="flex-grow-1 flex-sm-grow-0 col-auto">
-            {{ button.buttonNew({ title: 'button', iconLeft: 'media/icons-color/invert/default/plannet.svg' }) }} 
+            {{ button.btn({ title: 'button', iconLeft: 'media/icons-color/invert/default/plannet.svg' }) }} 
           </div>
           <div class="flex-grow-1 flex-sm-grow-0 col-auto">
-            {{ button.buttonNew({ title: 'button', iconRight: 'media/icons-color/primary/default/plannet.svg', color: 'line-primary' }) }} 
+            {{ button.btn({ title: 'button', iconRight: 'media/icons-color/primary/default/plannet.svg', color: 'line-primary' }) }} 
           </div>
         </div>
       </div>
@@ -35,20 +35,11 @@
     <div class="box__body">
       <div class="btn-groups">
         <div class="row row-10 list-mv5">
-          <div class="col-auto col-md flex-grow-1">
-            {{ button.btn('Buttons', icon = 'media/icons-color/invert/default/plannet.svg', href="/dist/pages/forms/1-7-buttons.html", rounded = 'true') }}
-          </div>
-          <div class="col-auto col-md flex-grow-1">
-            {{ button.btn('Buttons', iconLeft = 'media/icons-color/primary/default/plannet.svg', color = 'transparent', href="/dist/pages/forms/1-7-buttons.html") }}
-          </div>
-          <div class="col-auto col-md flex-grow-1">
-            {{ button.btn('Buttons', iconLeft = 'media/icons-color/primary/default/plannet.svg', color = 'light-blue', modal="#modalTest") }}
+          <div class="col-auto">
+            {{ button.btn({ title: 'button', iconRight: 'media/icons-color/default/default/plannet.svg', color: 'transparent', size: 'sm' }) }} 
           </div>
           <div class="col-md col-12">
-            {{ button.btn('Buttons', icon = 'media/icons-color/primary/default/plannet.svg', color = 'line-primary', disabled = 'true', spaceBetween = 'true') }}
-          </div>
-          <div class="col-md col-12">
-            {{ button.buttonNew({ iconLeft: 'media/icons-color/invert/default/plannet.svg', shape: 'circle' }) }} 
+            {{ button.btn({ iconLeft: 'media/icons-color/invert/default/plannet.svg', shape: 'circle' }) }} 
           </div>
         </div>
       </div>

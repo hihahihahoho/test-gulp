@@ -1,28 +1,49 @@
-$btn-border-radius: 4px !default;
 $btn-font-weight: 500 !default;
-$btn-ic-width: 22px !default;
 $btn-font-size: $font-size-default !default;
 $btn-line-border-thick: 1px !default;
 $btn-disable-opactiy: 0.4 !default;
 $btn-shadow: true !default;
-$map-btn-space: (
-  default: 8px,
+$map-btn-prop: (
+  default: (
+    space: 8px,
+    icon: 24px,
+  ),
+  sm: (
+    space: 6px,
+    icon: 20px,
+  ),
+  xs: (
+    space: 6px,
+    icon: 16px,
+  ),
 ) !default;
 
-@mixin modifiers-btn-space($map, $prefix: ".ubox-size-button-", $separator: "-", $base: "basic") {
+@mixin modifiers-btn-prop($map, $prefix: ".ubox-size-button-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
     &#{$prefix}#{$key} {
-      .ubtn-text:not(:only-child):last-child {
-        padding-left: $value;
-        padding-right: $value/2;
-      }
-      .ubtn-text:not(:only-child):first-child {
-        padding-right: $value;
-        padding-left: $value/2;
-      }
-      .ubtn-text:not(:only-child):not(:first-child):not(:last-child) {
-        padding-left: $value;
-        padding-right: $value;
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @if $key2 == "space" {
+            .ubtn-text:not(:only-child):last-child {
+              padding-left: $value2;
+              padding-right: $value2/2;
+            }
+            .ubtn-text:not(:only-child):first-child {
+              padding-right: $value2;
+              padding-left: $value2/2;
+            }
+            .ubtn-text:not(:only-child):not(:first-child):not(:last-child) {
+              padding-left: $value2;
+              padding-right: $value2;
+            }
+          }
+          @if $key2 == "icon" {
+            &:not(.ubox-square) .ic-default {
+              width: $value2;
+              height: $value2;
+            }
+          }
+        }
       }
     }
   }
@@ -49,7 +70,7 @@ button::before {
   width: 100%;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-  @include modifiers-btn-space($map-btn-space);
+  @include modifiers-btn-prop($map-btn-prop);
 }
 
 .ubtn {
