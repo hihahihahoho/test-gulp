@@ -118,3 +118,135 @@
   </label>
   <!-- end rnc.switch -->
 {% endmacro %}
+
+{% macro rncSymbol(data) %}
+  {% set dataDefault = {
+    type: 'checkbox',
+    size: 'default',
+    style: 'default'
+  } %}
+
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set iconClass %}
+  {{ data.type + '-ic' }}
+  {{ data.type + '-ic-' + data.size }}
+  {{ data.type + '-size-' + data.size }}
+  {{ data.type + '-style-' + data.style }}
+  {% endset %}
+
+  <span class="{{ iconClass }}"></span>
+{% endmacro %}
+
+{% macro rncInput(data) %}
+  {% set dataDefault = {
+    id: undefinded,
+    type: 'checkbox',
+    checked: false,
+    name: undefinded,
+    value: undefinded,
+    extendInputAttr: undefinded,
+    extendLabelClass: undefinded,
+    content: content
+  } %}
+
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set labelClass %}
+  {{ data.type }}
+  {{ 'type-' + data.type }}
+  {{ data.extendLabelClass }}
+  {% endset %}
+
+  {% set inputAttr %}
+  {{ 'type="' + data.type + '"' if data.type }}
+  {{ 'id="' + data.id + '"' if data.id }}
+  {{ 'name="' + data.name + '"' if data.name }}
+  {{ 'value="' + data.value + '"' if data.value }}
+  {{ 'checked' if data.checked }}
+  {{ data.extendInputAttr }}
+  {% endset %}
+
+  <label class="{{ labelClass }}">
+    <input {{ inputAttr }}>
+    {{ data.content }}
+  </label>
+{% endmacro %}
+
+{% macro rncIconOnly(data) %}
+  {% set content %}
+  {{ rncSymbol(data) }}
+  {% endset %}
+
+  {% set data = data | setAttribute('content', content) %}
+
+  {{ rncInput(data) }}
+{% endmacro %}
+
+{% macro rncBox(data) %}
+  {% set dataDefault = {
+    space: '10'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set rncContentClass %}
+    rnc-content
+    {{ 'align-items-' + data.valign if data.valign }}
+  {% endset %}
+
+  {% set rncInnerClass %}
+    rnc-inner
+    {{ 'pl' + data.space if data.space }}
+  {% endset %}
+
+  {% set content %}
+  <div class="{{ rncContentClass }}">
+    <div class="rnc-ic-wrap">
+      {{ rncSymbol(data) }}
+    </div>
+    <div class="{{ rncInnerClass }}">
+      {{ data.content }}
+    </div>
+  </div>
+  {% endset %}
+
+  {% set data = data | setAttribute('content', content) %}
+
+  {{ rncInput(data) }}
+{% endmacro %}
+
+{% macro rncText(data) %}
+  {% set content %}
+  <div class="rnc-text">
+    {{ data.title }}
+  </div>
+  {% endset %}
+  {% set data = data | setAttribute('content', content) %}
+  {{ rncBox(data) }}
+{% endmacro %}
+
+{% macro checkbox(data) %}
+  {% set dataDefault = {} %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ rncText(data) }}
+{% endmacro %}
+
+{% macro radio(data) %}
+  {% set dataDefault = {} %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% set data = data | setAttribute('type', 'radio') %}
+  {{ rncText(data) }}
+{% endmacro %}
+
+{% macro checkboxIcon(data) %}
+  {% set dataDefault = {} %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ rncIconOnly(data) }}
+{% endmacro %}
+
+{% macro radioIcon(data) %}
+  {% set dataDefault = {} %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% set data = data | setAttribute('type', 'radio') %}
+  {{ rncIconOnly(data) }}
+{% endmacro %}

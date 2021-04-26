@@ -7,15 +7,13 @@ $map-rnc-size: (
   lg: 24px,
 ) !default;
 
-$rncRadioStyle2Name: 'default' !default;
+$rncRadioStyle2Name: "default" !default;
 
-$rncRadioStyle2Name: '2' !default;
-$rncRadioStyle1Name: '1' !default;
-
+$rncRadioStyle2Name: "2" !default;
+$rncRadioStyle1Name: "1" !default;
 
 $checkbox-border-radius: 50% !default;
 $rnc-default-border: 1px solid $color-grey-2 !default;
-$rnc-ic-margin: 10px !default;
 $rnc-default-bg-color: transparent !default;
 $rnc-active-color: $color-primary !default;
 $rnc-checkbox-ic-color: $color-primary !default;
@@ -50,8 +48,13 @@ $switch-ic-active-bg-color: white !default;
             width: ($value / 2) + 1;
             height: ($value / 2) + 1;
           }
-          @at-root input[type="radio"]:checked ~ .rnc-ic-wrap .radio-style-#{$rncRadioStyle2Name}#{&} {
-            border-width: ceil($value / 4) + 1;
+          @at-root input[type="radio"]:checked {
+            & ~ .rnc-content,
+            & ~ {
+              .radio-style-#{$rncRadioStyle2Name}.radio-size-#{$key} {
+                border-width: ceil($value / 4) + 1;
+              }
+            }
           }
         }
       }
@@ -80,7 +83,6 @@ $switch-ic-active-bg-color: white !default;
     font-size: 14px;
     position: relative;
     color: transparent;
-    margin-right: $rnc-ic-margin;
     line-height: 16px;
     background-repeat: no-repeat;
     background-position: center;
@@ -125,7 +127,6 @@ $switch-ic-active-bg-color: white !default;
     border-radius: 50%;
     display: inline-block;
     vertical-align: middle;
-    margin-right: $rnc-ic-margin;
     font-size: 14px;
     position: relative;
     color: transparent;
@@ -247,7 +248,8 @@ input[type="checkbox"]:checked {
 }
 
 input[type="checkbox"]:checked {
-  & ~ .rnc-ic-wrap {
+  & ~ .rnc-content,
+  & ~ {
     .checkbox-ic {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-check' width='13' height='13' viewBox='0 0 24 24' stroke-width='3' stroke='%23" + str-replace("" + $rnc-checkbox-ic-color, "#", "") + "' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M5 12l5 5l10 -10' /%3E%3C/svg%3E");
     }
@@ -267,7 +269,8 @@ input[type="checkbox"]:checked {
 }
 
 input[type="radio"]:checked {
-  & ~ .rnc-ic-wrap {
+  & ~ .rnc-content,
+  & ~ {
     .radio-ic {
       border-color: $rnc-active-border-color;
       background-color: $rnc-active-bg-color-radio;
@@ -295,15 +298,7 @@ input[type="radio"]:checked {
   }
 }
 .rnc {
-  &-ic-wrap {
-    &::after {
-      content: "a";
-      visibility: hidden;
-      width: 0px;
-      display: inline-block;
-      vertical-align: center;
-    }
-    align-items: center;
+  &-content {
     display: flex;
   }
 }
