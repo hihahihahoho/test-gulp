@@ -8,95 +8,44 @@
       <h5 class="pb30">Checkbox
       </h5>
       <form class="from-section form-vertical pb30">
-        <div class="row row-20">
-          <div class="col-auto">
-            {{ rnc.checkbox('Checkbox 1', name = 'checkbox') }}
-          </div>
-          <div class="col-auto">
-            {{ rnc.radio('Radio', subTitle = 'This is subtitle', align='start', fontSize = 'p', name = 'radio1') }}
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="box">
-    <div class="box__body pb-0">
-      <h5 class="pb30">Checkbox group</h5>
-      <form class="from-section form-vertical pb30">
-        <div class="row row-20">
-          <div class="col-sm-6">
-            {% set checkboxValue = ['checkbox 1', 'checkbox 2', 'checkbox 3'] %}
-            {{ rnc.checkbox(checkboxValue, name = 'checkboxTest', extendAttr = ' required') }}
-          </div>
-          <div class="col-sm-6">
-            {% set radioValue = [
-              {
-                main: 'Radio 1',
-                sub: 'This is subtitle 1'
-              }, {
-                main: 'Radio 2',
-                sub: 'This is subtitle 2'
-              }, {
-                main: 'Radio 3',
-                sub: 'This is subtitle 3'
-              }
-            ] %}
-            {{ rnc.radio(radioValue, align='start', fontSize = 'p', name = 'radio1', groupCol = 'auto', extendAttr = ' required', style = '1') }}
-          </div>
-        </div>
-        <div class="row row-20 justify-content-center">
+        <div class="row row-20 list-mb10">
           <div class="col-sm-4">
-            {{ button.btn({title: 'Validate'}) }}
+            {{ rnc.checkbox({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet ', space: 15, valign: 'center'}) }}
           </div>
+          <div class="col-sm-4">
+            {{ rnc.checkbox({ title: 'test', iconPos: 1, isRequired: true, name: 'checkbox', form: true }) }}
+          </div>
+          <div class="col-sm-2">
+            {{ rnc.checkboxIcon() }}
+          </div>
+          <div class="col-sm-2">
+            {{ rnc.checkboxIcon({ indeterminate: true, disabled: true }) }}
+          </div>
+        </div>
+        <div class="row row-20 list-mb10 align-items-center">
+          <div class="col-auto">{{ button.btn({ title: 'validate' }) }}</div>
         </div>
       </form>
     </div>
   </div>
   <div class="box">
     <div class="box__body pb-0">
-      <h5 class="pb30">Checkbox Long
+      <h5 class="pb30">Radio
       </h5>
       <form class="from-section form-vertical pb30">
         <div class="row row-20 list-mb10">
-          <div class="col-auto">
-            {{ rnc.checkbox('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet.', name = 'checkbox') }}
-          </div>
-          <div class="col-auto">
-            {{ rnc.radio('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet.', subTitle = 'This is subtitle', align='start', fontSize = 'p', name = 'radio1') }}
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="box">
-    <div class="box__body pb-0">
-      <h5 class="pb30">Checkbox group Long</h5>
-      <form class="from-section form-vertical pb30">
-        <div class="row row-20">
-          <div class="col-sm-6">
-            {% set checkboxValue = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 3'] %}
-            {{ rnc.checkbox(checkboxValue, name = 'checkboxTest', extendAttr = ' required') }}
-          </div>
-          <div class="col-sm-6">
-            {% set radioValue = [
-              {
-                main: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 1',
-                sub: 'This is subtitle 1'
-              }, {
-                main: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 2',
-                sub: 'This is subtitle 2'
-              }, {
-                main: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet. 3',
-                sub: 'This is subtitle 3'
-              }
-            ] %}
-            {{ rnc.radio(radioValue, align='start', fontSize = 'p', name = 'radio1', groupCol = 'auto', extendAttr = ' required', style = '1') }}
-          </div>
-        </div>
-        <div class="row row-20 justify-content-center">
           <div class="col-sm-4">
-            {{ button.btn({title: 'Validate'}) }}
+            {{ rnc.radio({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet ', space: 15, valign: 'center'}) }}
           </div>
+          <div class="col-sm-4">
+            {{ rnc.radio({ title: 'test', iconPos: 1, isRequired: true, name: 'radio', form: true }) }}
+          </div>
+          <div class="col-sm-4">
+            {{ rnc.radioIcon() }}
+          </div>
+        </div>
+        <div class="row row-20 list-mb10 align-items-center">
+          <div class="col-auto">{{ button.btn({ title: 'validate' }) }}</div>
         </div>
       </form>
     </div>
@@ -108,27 +57,68 @@
       <form class="from-section form-vertical pb30">
         <div class="row row-20 list-mb10">
           <div class="col-sm-4">
-            {{ rnc.switch('Switch title', icPos = 'left') }}
+            {{ rnc.switch({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet ', space: 15, valign: 'center'}) }}
           </div>
           <div class="col-sm-4">
-            {{ rnc.switch('Switch title', subTitle = 'This is subtitle', align = 'start') }}
+            {{ rnc.switch({ title: 'test', iconPos: 1, isRequired: true, name: 'switch', form: true }) }}
           </div>
+          <div class="col-sm-4">
+            {{ rnc.switchIcon() }}
+          </div>
+        </div>
+        <div class="row row-20 list-mb10 align-items-center">
+          <div class="col-auto">{{ button.btn({ title: 'validate' }) }}</div>
         </div>
       </form>
     </div>
   </div>
   <div class="box">
     <div class="box__body pb-0">
-      <h5 class="pb30">Checkbox new
+      <h5 class="pb30">List
       </h5>
       <form class="from-section form-vertical pb30">
         <div class="row row-20 list-mb10">
-          <div class="col-sm-4">
-            {{ rnc.checkbox({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet ', space: 15, valign: 'center'}) }}
+          {% set data = [
+            {
+              title: 'Title',
+              subTitle: 'Sub title'
+            }, {
+              title: 'Title',
+              subTitle: 'Sub title'
+            }, {
+              title: 'Title',
+              subTitle: 'Sub title'
+            }
+          ] %}
+          <div class="ul">
+            <div class="form-group list-mb10 list-crop">
+              {% for item in data %}
+                <div>
+                  {% set content %}
+                  <div class="title">
+                    {{ item.title }}
+                    {{ loop.index }}
+                  </div>
+                  <div class="sub-title h6">
+                    {{ item.subTitle }}
+                    {{ loop.index }}
+                  </div>
+                  {% endset %}
+                  {% set objVal = {
+                    type: 'checkbox',
+                    content: content,
+                    isRequired: true,
+                    name: 'checkboxGroup'
+                  } %}
+                  {{ rnc.rncBox(objVal) }}
+                </div>
+              {% endfor %}
+              <div class="errorBlock"></div>
+            </div>
           </div>
-          <div class="col-sm-4">
-            {{ rnc.radio({ title: 'test' }) }}
-          </div>
+        </div>
+        <div class="row row-20 list-mb10 align-items-center">
+          <div class="col-auto">{{ button.btn({ title: 'validate' }) }}</div>
         </div>
       </form>
     </div>

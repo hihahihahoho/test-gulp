@@ -1,124 +1,5 @@
 {% extends "_varibles.njk" %}
 
-{% macro rnc(title, subTitle, color = 'default', fontSize, extendClass = '', extendAttr = '', type = 'radio', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = '1', icSize) %}
-  {% if checked %}
-    {% set checkedText = 'checked' %}
-  {% endif %}
-  {% if id %}
-    {% set idText = 'id="' + id + '"' %}
-  {% endif %}
-  {% if icPos == 'right' %}
-    {% set order = 'order-1' %}
-  {% endif %}
-  {% if not custom == '' %}
-    {% set customContent = custom %}
-  {% else %}
-    {% set customContent %}
-    <span class="radio-text">
-      <div class="txt-main">{{ title }}</div>
-      {% if not subTitle == '' %}
-        <div class="txt-sub h6">
-          <span class="color-default-3">{{ subTitle }}</span>
-        </div>
-      {% endif %}
-    </span>
-    {% endset %}
-  {% endif %}
-
-  <label class="{{ type }} align-items-{{ align }} color-{{ color }} {{ extendClass }} {{ fontSize }}">
-    <input type="{{ type }}" class="hidden" name="{{ name }}" {{ checkedText }} value="{{ value }}" {{ idText | safe }} {{ extendAttr }}>
-    <div class="rnc-ic-wrap">
-      <span class="{{ type }}-ic {{ type }}-size-{{ icSize }} {{ type }}-style-{{ style }} ripple-{{ type }} {{ mr }} {{order}}"></span>
-    </div>
-    {{ customContent | safe }}
-  </label>
-{% endmacro %}
-
-{% macro checkbox(title, subTitle, color = 'default', extendClass = '', extendAttr = '', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = settingRncDefault.checkboxStyle, fontSize, icSize = settingRncDefault.icSize, groupGutter = '20', groupCol = '12', groupSpace = '10') %}
-  <!-- rnc.checkbox -->
-  {% if (title | isStr) %}
-    {{ rnc(title = title, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'checkbox', align = align, mr = mr, checked = checked, name = name, value = value, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
-  {% else %}
-    <div class="form-group">
-      <div class="row row-{{ groupGutter }} list-mb{{groupSpace}} list-last-mb">
-        {% for item in title %}
-          {% if item | string == '[object Object]' %}
-            <div class="col-{{ groupCol }}">
-              {{ rnc(title = item.main, subTitle = item.sub, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'checkbox', align = align, mr = mr, checked = checked, name = name, value = name + loop.index, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
-            </div>
-          {% else %}
-            <div class="col-{{ groupCol }}">
-              {{ rnc(title = item, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'checkbox', align = align, mr = mr, checked = checked, name = name, value = name + loop.index, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-      <div class="errorBlock"></div>
-    </div>
-  {% endif %}
-  <!-- end rnc.checkbox -->
-{% endmacro %}
-
-{% macro radio(title, subTitle, color = 'default', extendClass = '', extendAttr = '', align = 'center', mr = '', checked, name = '', value = '', custom = '', icPos, id, style = settingRncDefault.radioStyle, fontSize, icSize = settingRncDefault.icSize, groupGutter = '20', groupCol = '12', groupSpace = '10') %}
-  <!-- rnc.radio -->
-  {% if (title | isStr) %}
-    {{ rnc(title = title, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'radio', align = align, mr = mr, checked = checked, name = name, value = value, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
-  {% else %}
-    <div class="form-group">
-      <div class="row row-{{ groupGutter }} list-mb{{groupSpace}} list-last-mb">
-        {% for item in title %}
-          {% if item | string == '[object Object]' %}
-            <div class="col-{{ groupCol }}">
-              {{ rnc(title = item.main, subTitle = item.sub, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'radio', align = align, mr = mr, checked = checked, name = name, value = name + loop.index, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
-            </div>
-          {% else %}
-            <div class="col-{{ groupCol }}">
-              {{ rnc(title = item, subTitle = subTitle, color = color, extendClass = extendClass, extendAttr = extendAttr, type = 'radio', align = align, mr = mr, checked = checked, name = name, value = name + loop.index, custom = custom, icPos = icPos, id = id, style = style, fontSize = fontSize, icSize = icSize) }}
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-      <div class="errorBlock"></div>
-    </div>
-  {% endif %}
-  <!-- end rnc.radio -->
-{% endmacro %}
-
-{% macro switch (title, subTitle, color = 'default', fontSize, extendClass = '', extendAttr = '', align = 'center', checked, name = '', value = '', custom = '', icPos = 'right', id, custom, groupGutter = '10') %}
-  <!-- rnc.switch -->
-  {% if icPos == 'left' %}
-    {% set order = 'order-1' %}
-  {% endif %}
-  {% if id %}
-    {% set idText = 'id="' + id + '"' %}
-  {% endif %}
-  <label class="switch switch-stretch block switch-item-bg ripple {{ fontSize }} {{ extendClass }}">
-    <input type="checkbox" class="hidden" name="{{ name }}" {{ extendAttr  | safe }} value="{{ value }}" {{ idText | safe }}>
-    <div class="switch-inner">
-      <div class="row row-{{ groupGutter }} align-items-{{ align }}">
-        {% if title or subTitle %}
-          <div class="col color-{{ color }} {{ order }}">
-            {% if title %}
-              <div class="txt-main">{{ title }}</div>
-            {% endif %}
-            {% if subTitle %}
-              <div class="txt-sub h6">{{ subTitle }}</div>
-            {% endif %}
-          </div>
-        {% endif %}
-        <div class="col-auto">
-          <div class="switch-wrap block-right">
-            <div class="switch-ic"></div>
-            <div class="switch-bg"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{ custom | safe }}
-  </label>
-  <!-- end rnc.switch -->
-{% endmacro %}
-
 {% macro rncSymbol(data) %}
   {% set dataDefault = {
     type: 'checkbox',
@@ -135,42 +16,75 @@
   {{ data.type + '-style-' + data.style }}
   {% endset %}
 
-  <span class="{{ iconClass }}"></span>
+  {% if data.type == 'switch' %}
+    <div class="switch-wrap">
+      <div class="switch-ic"></div>
+      <div class="switch-bg"></div>
+    </div>
+  {% else %}
+    <span class="{{ iconClass }}"></span>
+  {% endif %}
+
 {% endmacro %}
 
 {% macro rncInput(data) %}
   {% set dataDefault = {
-    id: undefinded,
+    id: false,
     type: 'checkbox',
     checked: false,
-    name: undefinded,
-    value: undefinded,
-    extendInputAttr: undefinded,
-    extendLabelClass: undefinded,
-    content: content
+    indeterminate: false,
+    disabled: false,
+    name: false,
+    value: false,
+    form: false,
+    extendInputAttr: false,
+    extendLabelClass: false,
+    content: content,
+    dataDump: false
   } %}
 
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set labelClass %}
+  rnc
   {{ data.type }}
   {{ 'type-' + data.type }}
   {{ data.extendLabelClass }}
   {% endset %}
 
   {% set inputAttr %}
-  {{ 'type="' + data.type + '"' if data.type }}
+  {{ 'type="radio"' if data.type == 'radio' }}
+  {{ 'type="checkbox"' if data.type == 'checkbox' }}
+  {{ 'type="checkbox"' if data.type == 'switch' }}
   {{ 'id="' + data.id + '"' if data.id }}
   {{ 'name="' + data.name + '"' if data.name }}
   {{ 'value="' + data.value + '"' if data.value }}
+  {{ 'required' if data.isRequired }}
   {{ 'checked' if data.checked }}
-  {{ data.extendInputAttr }}
+  {{ 'indeterminate' if data.indeterminate }}
+  {{ 'disabled' if data.disabled }}
+  {{ data.extendInputAttr if data.extendInputAttr }}
   {% endset %}
 
+  {% set mainContent %}
   <label class="{{ labelClass }}">
-    <input {{ inputAttr }}>
+    <input {{ inputAttr }} class="hidden">
     {{ data.content }}
   </label>
+  {% endset %}
+  <!-- rnc.{{data.type}} -->
+  {% if data.form %}
+    <div class="form-group">
+      {{ mainContent }}
+      <div class="errorBlock"></div>
+    </div>
+  {% else %}
+    {{ mainContent }}
+  {% endif %}
+  {% if data.dataDump %}
+    {{ data | dump }}
+  {% endif %}
+  <!-- end rnc.{{data.type}} -->
 {% endmacro %}
 
 {% macro rncIconOnly(data) %}
@@ -179,7 +93,6 @@
   {% endset %}
 
   {% set data = data | setAttribute('content', content) %}
-
   {{ rncInput(data) }}
 {% endmacro %}
 
@@ -190,18 +103,27 @@
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set rncContentClass %}
-    rnc-content
-    {{ 'align-items-' + data.valign if data.valign }}
+  rnc-content
+  {{ 'align-items-' + data.valign if data.valign }}
   {% endset %}
 
   {% set rncInnerClass %}
-    rnc-inner
+  rnc-inner
+  {% endset %}
+
+  {% set rncIcWrapClass %}
+  rnc-ic-wrap
+  {% if data.iconPos %}
     {{ 'pl' + data.space if data.space }}
+  {% else %}
+    {{ 'pr' + data.space if data.space }}
+  {% endif %}
+  {{ 'order-' + data.iconPos if data.iconPos }}
   {% endset %}
 
   {% set content %}
   <div class="{{ rncContentClass }}">
-    <div class="rnc-ic-wrap">
+    <div class="{{ rncIcWrapClass }}">
       {{ rncSymbol(data) }}
     </div>
     <div class="{{ rncInnerClass }}">
@@ -211,7 +133,6 @@
   {% endset %}
 
   {% set data = data | setAttribute('content', content) %}
-
   {{ rncInput(data) }}
 {% endmacro %}
 
@@ -238,6 +159,13 @@
   {{ rncText(data) }}
 {% endmacro %}
 
+{% macro switch (data) %}
+  {% set dataDefault = {} %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% set data = data | setAttribute('type', 'switch') %}
+  {{ rncText(data) }}
+{% endmacro %}
+
 {% macro checkboxIcon(data) %}
   {% set dataDefault = {} %}
   {% set data = data | mergeDeep(dataDefault) %}
@@ -248,5 +176,12 @@
   {% set dataDefault = {} %}
   {% set data = data | mergeDeep(dataDefault) %}
   {% set data = data | setAttribute('type', 'radio') %}
+  {{ rncIconOnly(data) }}
+{% endmacro %}
+
+{% macro switchIcon(data) %}
+  {% set dataDefault = {} %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% set data = data | setAttribute('type', 'switch') %}
   {{ rncIconOnly(data) }}
 {% endmacro %}

@@ -625,6 +625,6 @@ $map-pos: (
 
 .form-group {
   text-align: left;
-  margin-bottom: 11px;
+  margin-bottom: 0;
   @include modifiers-form-space($map-form-group);
 }

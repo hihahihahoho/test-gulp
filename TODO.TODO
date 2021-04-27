@@ -23,18 +23,18 @@ Features:
     ✔ Fix textarea placeholder @done(21-04-07 15:56)
     ☐ Fix textarea size mobile
   Checkbox:
-    ☐ Thêm checkbox intermidiate
-    ☐ fix component
-    ☐ fix checkbox title
-    ☐ Thêm trạng thái disabled
-    ☐ Chỉnh lại vertical
+    ✔ Thêm checkbox intermidiate @done(21-04-27 17:30)
+    ✔ fix component @done(21-04-27 17:11)
+    ✔ fix checkbox title @done(21-04-27 17:11)
+    ✔ Thêm trạng thái disabled @done(21-04-27 17:31)
+    ✔ Chỉnh lại vertical @done(21-04-27 17:11)
   Dev-ic-color:
     ☐ Fix lại xuất ảnh
   Dropdown:
     ☐ custom dropdown
   Button: 
-    ☐ Fix button circle square
-    ☐ Simplify button
+    ✔ Fix button circle square @done(21-04-27 17:12)
+    ✔ Simplify button @done(21-04-27 17:12)
   Tooltip:
     ☐ Option full tooltip
   ☐ Sửa table njk
