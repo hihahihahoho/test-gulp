@@ -1154,7 +1154,7 @@ function rev (cb) {
   var globs = [
     staticFolder + '/**/*'
   ];
-
+   del('./.temp/' + staticFolderName);
   return gulp.src(globs)
     .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"], dontUpdateReference: [/^\/favicon.ico$/g, ".html"] }))
     .pipe(dest('./.temp/' + staticFolderName));
