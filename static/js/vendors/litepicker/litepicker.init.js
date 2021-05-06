@@ -116,9 +116,9 @@ function getLightpickOption (el) {
   var lpOptions = getLightpickOption(el);
   lpicker = new Litepicker(lpOptions).on('hide', function (element) {
     el.dispatchEvent(new Event('change', { bubbles: true }))
-    enableScroll(scrollTargetLp);
+    BNS.off()
   }).on('mobilefriendly.show', function (el) {
-    blockScroll(scrollTargetLp);
+    BNS.on()
   }).on('render:day', function (day, date) {
     if (day.classList.contains('is-in-range') | day.classList.contains('is-start-date') | day.classList.contains('is-end-date')) {
       day.setAttribute("lpcurrent", "true")
@@ -153,7 +153,7 @@ var isStartDate = false;
       a[i + 1].dispatchEvent(new Event('change', { bubbles: true }));
       el.classList.remove('light-pick-focus')
       a[i + 1].classList.remove('light-pick-focus')
-      enableScroll(scrollTargetLp);
+      BNS.off()
     }).on('render:day', function (day, date) {
       // if (window.innerWidth < 481) {
       //   day.addEventListener('click', function (e) {
@@ -221,7 +221,7 @@ var isStartDate = false;
         }
       }
     }).on('mobilefriendly.show', (el) => {
-      blockScroll(scrollTargetLp);
+      BNS.on()
       if (!el.classList.contains('lite-picker-range-2nd-start')) {
         setTimeout(function () {
           lpr[i / 2].gotoDate(lpr[i / 2].getEndDate())

@@ -57,7 +57,7 @@ $(document).ready(function () {
     if ($(window).width() <= 767) {
       clearTimeout(select2Timeout);
       console.log($(this))
-      blockScroll(scrollTargetSelect);
+      BNS.on()
       $('.close-select').remove();
       var x = $(this).eq(0).attr('header-text');
       $('body > .select2-container .select2-dropdown').prepend('<div class="close-select"><div class="close-select__btn" href="javascript:void(0)" onclick="closeSelect()">Đóng</div>' + x + '</div>');
@@ -67,7 +67,7 @@ $(document).ready(function () {
   }).on("select2:closing", function () {
     $('.select-2-backdrop').removeClass('show');
     if ($(window).width() <= 767) {
-      enableScroll(scrollTargetSelect);
+      BNS.off()
       $('body > .select2-container .select2-dropdown').removeClass('top-0');
     }
   }).on("select2:select", function () {
@@ -93,7 +93,7 @@ $(document).ready(function () {
     }
     if ($(window).width() <= 767) {
       clearTimeout(select2Timeout);
-      blockScroll(scrollTargetSelect);
+      BNS.on()
       $('.close-select').remove();
       $('.unselect-all').remove();
       $('.select2-search-container').remove();
@@ -110,7 +110,7 @@ $(document).ready(function () {
   }).on("select2:closing", function () {
     $('.select-2-backdrop').removeClass('show');
     if ($(window).width() <= 767) {
-      enableScroll(scrollTargetSelect);
+      BNS.off()
       $('body > .select2-container .select2-dropdown').removeClass('top-0');
     }
   });

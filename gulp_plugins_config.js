@@ -5,6 +5,7 @@ var pluginsDetail = {
       "src/plugins/jquery/jquery.min.js",
     ],
     "init": [
+      "src/js/jquery/jqueryBNS.init.js",
       "src/js/jquery/jqueryBasic.init.js",
       "src/js/jquery/jqueryMenu.init.js",
       "src/js/jquery/jqueryInput.init.js",
@@ -251,7 +252,6 @@ var plugins = {
     pluginsDetail.wnumb,
     pluginsDetail.datatables,
     pluginsDetail.floatingScroll,
-    pluginsDetail.bodyScrollLock,
     pluginsDetail.iosInnerHeight
   ]
 }

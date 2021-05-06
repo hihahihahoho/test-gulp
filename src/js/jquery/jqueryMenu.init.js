@@ -24,17 +24,17 @@ function menu () {
     $("#menu-trigger").on('change', function () {
       if ((this.checked) && (menuSettings.iscrollMenuEnable == false)) {
         var scrollTargetHeader = 'header.menu';
-        blockScroll(scrollTargetHeader);
+        BNS.on()
         $(".menu__content").scrollTop(0);
       } else {
-        bodyScrollLock.clearAllBodyScrollLocks();
+        BNS.off()
       }
     });
     $('.only-one [data-accordion]:not(.active)').accordion();
   };
   if ($(window).width() > menuSettings.breakpoint) {
     $('#menu-trigger').prop('checked', false);
-    bodyScrollLock.clearAllBodyScrollLocks();
+    BNS.off()
   };
 };
 
@@ -50,18 +50,18 @@ $(document).ready(function () {
     var scrollTargetText = '.sidebar';
     $("#sidebar-trigger").on('change', function () {
       if ($(this).is(':checked')) {
-        blockScroll(scrollTargetText);
+        BNS.on()
       }
       else {
-        bodyScrollLock.clearAllBodyScrollLocks();
+        BNS.off()
       }
     });
     $("#sidebar-right-trigger").on('change', function () {
       if ($(this).is(':checked')) {
-        blockScroll(scrollTargetText);
+        BNS.on()
       }
       else {
-        bodyScrollLock.clearAllBodyScrollLocks();
+        BNS.off()
       }
     })
   };

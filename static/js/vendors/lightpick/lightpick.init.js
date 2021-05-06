@@ -33,7 +33,7 @@ var lpr = [];
       $($(this)[0]._opts.field).addClass('light-pick-focus');
       console.log($(this));
       if ($(window).width() <= 480) {
-        blockScroll(scrollTargetLp);
+        BNS.on()
         if ($($(this)[0].el).find('.lp-mobile-header').length == 0) {
           $($(this)[0].el).prepend('<div class="lp-mobile-header"><button type="button" class="lightpick__close-action">Đóng</button></div>');
         }
@@ -46,7 +46,7 @@ var lpr = [];
     onClose: function () {
       $($(this)[0]._opts.field).removeClass('light-pick-focus');
       if ($(window).width() <= 480) {
-        enableScroll(scrollTargetLp);
+        BNS.off()
         $('.lp-backdrop').removeClass('show');
       }
     }
@@ -136,7 +136,7 @@ var lpr = [];
         console.log($($(this)[0]._opts))
         $($(this)[0]._opts.field).addClass('light-pick-focus');
         if ($(window).width() <= 480) {
-          blockScroll(scrollTargetLp);
+          BNS.on()
           $($(this)[0].el).addClass('light-pick-range');
           if ($($(this)[0].el).find('.lp-mobile-header').length == 0) {
             $($(this)[0].el).prepend('<div class="lp-mobile-header"><button type="button" class="lightpick__close-action">Đóng</button><div class="lp-mobile-header-range">Từ - Đến</div></div>');
@@ -147,7 +147,7 @@ var lpr = [];
       onClose: function () {
         $($(this)[0]._opts.field).removeClass('light-pick-focus');
         if ($(window).width() <= 480) {
-          enableScroll(scrollTargetLp);
+          BNS.off()
           $('.lp-backdrop').removeClass('show');
         }
       }
@@ -209,7 +209,7 @@ var lpr = [];
     onOpen: function () {
       $($(this)[0]._opts.field).addClass('light-pick-focus');
       if ($(window).width() <= 480) {
-        blockScroll(scrollTargetLp);
+        BNS.on()
         console.log($(this)[0])
         $($(this)[0].el).addClass('light-pick-range');
         if ($($(this)[0].el).find('.lp-mobile-header').length == 0) {
@@ -221,7 +221,7 @@ var lpr = [];
     onClose: function () {
       $($(this)[0]._opts.field).removeClass('light-pick-focus');
       if ($(window).width() <= 480) {
-        enableScroll(scrollTargetLp);
+        BNS.off()
         $('.lp-backdrop').removeClass('show');
       }
     }
