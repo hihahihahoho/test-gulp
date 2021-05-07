@@ -21,9 +21,9 @@
   {% endif %}
   {% if not note == '' %}
     {% set noteContent %}
-    <div class="note-text h6">
-      {{ note }}
-    </div>
+      <div class="note-text h6">
+        {{ note }}
+      </div>
     {% endset %}
   {% endif %}
   {% if requiredSymbol %}
@@ -32,24 +32,24 @@
   {% if type == 'password' %}
     {% if eye == 'true' %}
       {% set eyeContent %}
-      <div class="input-ic">
-        {{ eyeMacro() }}
-      </div>
+        <div class="input-ic">
+          {{ eyeMacro() }}
+        </div>
       {% endset %}
     {% endif %}
 
   {% endif %}
 
   {% set ic %}
-  <div class="input-ic">
-    <img src="{{ icon }}" class="ic-default" alt="">
-  </div>
+    <div class="input-ic">
+      <img src="{{ icon }}" class="ic-default" alt="">
+    </div>
   {% endset %}
 
   {% set iconLeftText %}
-  <div class="input-ic">
-    <img src="{{ iconLeft }}" class="ic-default" alt="">
-  </div>
+    <div class="input-ic">
+      <img src="{{ iconLeft }}" class="ic-default" alt="">
+    </div>
   {% endset %}
 
   {% if not subBlock == '' %}
@@ -57,9 +57,9 @@
   {% endif %}
 
   {% set inputClearIc %}
-  <div class="input-ic input-clear pointer">
-    <img src="{{ globalsVar.iconDefault.inputClear }}" alt="" class="ic-xs">
-  </div>
+    <div class="input-ic input-clear pointer">
+      <img src="{{ globalsVar.iconDefault.inputClear }}" alt="" class="ic-xs">
+    </div>
   {% endset %}
 
   {% if textarea == 'true' %}
@@ -85,9 +85,9 @@
 
   {% if icTxt %}
     {% set icTxtContent %}
-    <div class="input-ic-txt color-default-2 input-ic">
-      {{ icTxt | safe }}
-    </div>
+      <div class="input-ic-txt color-default-2 input-ic">
+        {{ icTxt | safe }}
+      </div>
     {% endset %}
   {% endif %}
 
@@ -104,24 +104,24 @@
   {% set inputTypeText = 'input-label-change' %}
 
   {% set inputArtt %}
-  {{ idText }}
-  type="{{ type }}" class="input input-size-{{ size }}
-  input-{{ inputType }}
-  {{ inputTypeText }}
-  input-ic-{{ icSize }}
-  {% if inputClear == 'true' %}
-    input-has-clear
-    {% if icon %}
-      input-ic-right
+    {{ idText }}
+    type="{{ type }}" class="input input-size-{{ size }}
+    input-{{ inputType }}
+    {{ inputTypeText }}
+    input-ic-{{ icSize }}
+    {% if inputClear == 'true' %}
+      input-has-clear
+      {% if icon %}
+        input-ic-right
+      {% endif %}
+      {% if iconLeft %}
+        input-ic-left
+      {% endif %}
+      {{ textareaAutoSizeTxt }}
     {% endif %}
-    {% if iconLeft %}
-      input-ic-left
-    {% endif %}
-    {{ textareaAutoSizeTxt }}
-  {% endif %}
-  {{ extendClass }}" autocorrect="off" placeholder="{{ placeholder }}"
-  {{ disabledAttr }}
-  {{ extendAttr | safe }}
+    {{ extendClass }}" autocorrect="off" placeholder="{{ placeholder }}"
+    {{ disabledAttr }}
+    {{ extendAttr | safe }}
   {% endset %}
   <div class="form-group">
     <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
@@ -226,16 +226,16 @@
   {% endif %}
   {% if not note == '' %}
     {% set noteContent %}
-    <div class="note-text h6 color-default-3">
-      {{ note }}
-    </div>
+      <div class="note-text h6 color-default-3">
+        {{ note }}
+      </div>
     {% endset %}
   {% endif %}
   {% if icon %}
     {% set ic %}
-    <div class="input-ic">
-      <img src="{{ icon }}" class="ic-default" alt="">
-    </div>
+      <div class="input-ic">
+        <img src="{{ icon }}" class="ic-default" alt="">
+      </div>
     {% endset %}
     {% set icClass = 'input-ic-' + iconPos %}
   {% endif %}
@@ -352,9 +352,9 @@
 
   {% if not note == '' %}
     {% set noteContent %}
-    <div class="note-text h6 color-default-3">
-      {{ note }}
-    </div>
+      <div class="note-text h6 color-default-3">
+        {{ note }}
+      </div>
     {% endset %}
   {% endif %}
   {% set disabledAttr = '' %}
@@ -398,24 +398,24 @@
   <!-- forms.file -->
   {% if pos == 'right' %}
     {% set customFlexContent %}
-    <div class="input-group-extend">
-      {{ button.btn({ title: btnTitle, size: 'xs', color: 'op-primary', tagname: 'div'}) }}
-    </div>
+      <div class="input-group-extend">
+        {{ button.btn({ title: btnTitle, size: 'xs', color: 'op-primary', tagname: 'div'}) }}
+      </div>
     {% endset %}
     {% set fakeInput %}
-    <div class="p file-txt">{{ txtTitle }}</div>
+      <div class="p file-txt">{{ txtTitle }}</div>
     {% endset %}
     {{ input(title, extendAttr = extendAttr, extendClass = extendClass + 'input-hadval-def input-file-basic', note = note, customFlexContent = customFlexContent, settingInputCustom = settingInputCustom, type = 'file', inputClear = 'false', fakeInput = fakeInput | safe) }}
   {% else %}
     {% set extendContentCon %}
-    <div class="input-flex-content input-flex-content-left input-flex-content-file">
-      <div class="input-group-extend">
-        {{ button.btn({ title: btnTitle, size: 'xs', color: 'op-primary', tagname: 'div'}) }}
+      <div class="input-flex-content input-flex-content-left input-flex-content-file">
+        <div class="input-group-extend">
+          {{ button.btn({ title: btnTitle, size: 'xs', color: 'op-primary', tagname: 'div'}) }}
+        </div>
       </div>
-    </div>
     {% endset %}
     {% set fakeInput %}
-    <div class="p file-txt">{{ txtTitle }}</div>
+      <div class="p file-txt">{{ txtTitle }}</div>
     {% endset %}
     {{ input(title, extendAttr = extendAttr, extendClass = extendClass + 'input-hadval-def input-file-basic', note = note, addFlex = extendContentCon, settingInputCustom = settingInputCustom, type = 'file', inputClear = 'false', fakeInput = fakeInput | safe) }}
   {% endif %}
@@ -434,12 +434,31 @@
 {% endmacro %}
 
 {% macro iptSkeleton() %}
+
+  {% set inputClass %}
+    {{ 'input-has-clear' if data.inputClear }}
+    {{ 'input-label-change' if data.inputLabelChange }}
+    input-has-clear
+  {% endset %}
+  
+  {% set inputAttr %}
+    {{ 'type="' + data.inputType + '"' if data.inputType and not data.inputType == select }}
+    {{ 'input-label-change' if data.inputLabelChange }}
+    input-has-clear
+  {% endset %}
+
   <div class="form-group">
-    <div class="input-group-wrap input-group-{{ data.style }}">
-      <div class="input-group">
-        {{ data.customInput }}
-        {{ data.customInput }}
-        <div class="input-frame"></div>
+    <div class="input-group-wrap input-{{ data.style }} input-size-default">
+      <div class="input-inner-wrap">
+        <label class="input-group">
+          {% if data.inputType == 'select' %}
+            <input {{ inputAttr }} class="{{ inputClass }}">
+          {% else %}
+          {% endif %}
+          <div class="input-frame"></div>
+          <div class="input-extend-left"></div>
+          <div class="input-extend-right"></div>
+        </label>
         {% if data.title %}
           <div class="input-label">
             {% if data.requiredSymbol %}
@@ -449,7 +468,7 @@
           </div>
         {% endif %}
       </div>
-      <div class="input-group-extend"></div>
+      <div class="input-extend-outside"></div>
     </div>
   </div>
 {% endmacro %}

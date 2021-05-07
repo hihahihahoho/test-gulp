@@ -569,18 +569,22 @@
       {% set obj1 = {
         title: undefinded,
         name: 'abc',
-        icon: [{
-          pos: 'left',
-          size: 'sm',
-          color: 'blue'
-        }]
+        icon: [
+          {
+            pos: 'left',
+            size: 'sm',
+            color: 'blue'
+          }
+        ]
       } %}
 
       {% set obj2 = {
         title: 'pog',
-        icon: [{
-          color: 'green'
-        }]
+        icon: [
+          {
+            color: 'green'
+          }
+        ]
       } %}
       {% set obj2 = obj2 | mergeDeep(obj1) %}
 

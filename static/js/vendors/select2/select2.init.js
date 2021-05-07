@@ -1,7 +1,5 @@
 //====================SELECT2 INIT=================//
 
-var scrollTargetSelect = '.select2-results__options';
-
 function closeSelect () {
   $('.select-2').select2('close');
 }

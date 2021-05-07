@@ -1,7 +1,6 @@
 {% extends "main/_layout-sidebar.njk" %}
 {% set pageLink = file_path %}
 {% set pageTitle = 'Radio | Checkbox | Switch' %}
-
 {% block mainInner %}
   <div class="box">
     <div class="box__body pb-0">
@@ -81,7 +80,7 @@
           {% set data = [
             {
               title: 'Title',
-              subTitle: 'Sub title'
+              subTitle: 'Sub > title'
             }, {
               title: 'Title',
               subTitle: 'Sub title'
@@ -95,14 +94,14 @@
               {% for item in data %}
                 <div>
                   {% set content %}
-                  <div class="title">
-                    {{ item.title }}
-                    {{ loop.index }}
-                  </div>
-                  <div class="sub-title h6">
-                    {{ item.subTitle }}
-                    {{ loop.index }}
-                  </div>
+                    <div class="title">
+                      {{ item.title }}
+                      {{ loop.index }}
+                    </div>
+                    <div class="sub-title h6">
+                      {{ item.subTitle }}
+                      {{ loop.index }}
+                    </div>
                   {% endset %}
                   {% set objVal = {
                     type: 'checkbox',
