@@ -165,27 +165,13 @@ $(document).ready(function () {
 //====================JQUERY INPUT=================//
 $(document).ready(function () {
   //Input material
-  $('.select-2.input-label-change').each(function () {
+  $('.input-label-change:not(.static):not(select)').each(function () {
     if ($(this).val().length == 0) {
       $(this).removeClass('input-hadval');
     } else {
       $(this).addClass('input-hadval');
     }
-  })
-  $('.select-2.input-label-change').change(function () {
-    if ($(this).val().length == 0) {
-      $(this).removeClass('input-hadval');
-    } else {
-      $(this).addClass('input-hadval');
-    }
-  })
-  $('.input-label-change:not(.static):not(.select-normal)').each(function () {
-    if ($(this).val().length == 0) {
-      $(this).removeClass('input-hadval');
-    } else {
-      $(this).addClass('input-hadval');
-    }
-    $(this).on('blur change', function () {
+    $(this).on('input', function () {
       if ($(this).val().length == 0) {
         $(this).removeClass('input-hadval');
       } else {
@@ -193,26 +179,35 @@ $(document).ready(function () {
       }
     })
   });
-  $('.select-normal.input-label-change').each(function () {
-    if ($(this).find(':selected').length == 0) {
+  $('select.input-label-change:not(.static)').each(function () {
+    if (!$(this).val()) {
       $(this).removeClass('input-hadval');
     } else {
-      $(this).addClass('input-hadval');
-    }
-    $(this).on('blur change', function () {
-      if ($(this).find(':selected').length == 0) {
+      if ($(this).val().length == 0) {
         $(this).removeClass('input-hadval');
       } else {
         $(this).addClass('input-hadval');
       }
+    }
+    $(this).on('blur change', function () {
+      if (!$(this).val()) {
+        $(this).removeClass('input-hadval');
+      } else {
+        if ($(this).val().length == 0) {
+          $(this).removeClass('input-hadval');
+        } else {
+          $(this).addClass('input-hadval');
+        }
+      }
     })
   });
+
   //End Input material
   //input clear
   $('.input-clear').on('mousedown', function () {
     var input = $(this).closest('.input-group').find('input');
     input.val('')
-    input.trigger('change');
+    input.trigger('input');
     input.keyup();
     input.focus();
   })
@@ -226,7 +221,7 @@ $(document).ready(function () {
     }
   });
   //end input clear
-  
+
   //input file upload
   $('.input-file-basic').each(function () {
     var uploadTxt = $(this).parent('.input-group').find('.file-txt')

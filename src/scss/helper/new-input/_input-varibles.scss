@@ -1,0 +1,44 @@
+$map-newinput-ic-size: (
+  default: 34px,
+  xs-1: 24px,
+  xs: 36px,
+  sm: 44px,
+  md: 50px,
+  lg: 60px,
+) !default;
+
+$map-newinput-size: (
+  default: 40px,
+  xs-1: 24px,
+  xs: 36px,
+  sm: 44px,
+  md: 50px,
+  lg: 60px,
+) !default;
+
+$newinputMaterial: "default" !default;
+
+$newinputBorder: "border" !default;
+$newinputLine: "line" !default;
+$newinputMaterial: "material" !default;
+$newinputMaterial2: "material-2" !default;
+$newinputMaterial3: "material-3" !default;
+
+$newinput-border-radius: 6px !default;
+
+$newinput-color: $color-default !default;
+$newinput-font-weight: 500 !default;
+$newinput-font-size-mobile: 16px !default;
+$newinput-font-size: 14px !default;
+
+$newinput-label-font-weight: 400 !default;
+$newinput-label-font-size: 14px !default;
+$newinput-label-color: #707c93 !default;
+$newinput-label-margin-bottom: 7px !default;
+
+$newinput-error-font-size: 12px !default;
+$newinput-border-color: $border-base-color !default;
+$newinput-border-color-focus: lighten($color-primary, 0.5) !default;
+
+$newinput-space-left: 10px !default;
+$newinput-space-right: 10px !default;

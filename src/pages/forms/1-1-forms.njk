@@ -178,4 +178,24 @@
     icSize: 'sm'
   } %}
   {{ localMacros(settingMaterial3) }}
+  <div class="box">
+    <div class="box__body pb-0">
+      <h5 class="pb30">Input new</h5>
+      <form class="from-section form-vertical pb30">
+        <div class="row row-20">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            {% set content %}
+              {{ button.btn({ title: 'abc' }) }}
+            {% endset %}
+            {{ form.newinput({ title: 'Input new', extendLeft: content }) }}
+          </div>
+        </div>
+        <div class="row row-20 justify-content-center">
+          <div class="col-sm-4">
+            {{ button.btn({title: 'Validate'}) }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock %}

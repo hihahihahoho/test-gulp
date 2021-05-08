@@ -433,42 +433,196 @@
   <!-- end form.eyeMacro -->
 {% endmacro %}
 
-{% macro iptSkeleton() %}
+{% macro iptExtend(data, pos, framePos) %}
+  {% set class %}
+    newinput-extend
+    {{ 'newinput-extend-' + framePos if framePos }}
+    newinput-extend-{{ name }}
+  {% endset %}
+  <div class="{{ class }}">
+    {% if data.iconFontLeft %}
+      <div class="newinput-box newinput-ic">
+        <img src="{{ data.iconLeft }}" alt="" class="ic-default">
+      </div>
+    {% endif %}
 
-  {% set inputClass %}
-    {{ 'input-has-clear' if data.inputClear }}
-    {{ 'input-label-change' if data.inputLabelChange }}
-    input-has-clear
-  {% endset %}
-  
-  {% set inputAttr %}
-    {{ 'type="' + data.inputType + '"' if data.inputType and not data.inputType == select }}
-    {{ 'input-label-change' if data.inputLabelChange }}
-    input-has-clear
-  {% endset %}
+    {% if data.iconLeft %}
+      <div class="newinput-box">
+        <img src="{{ data.iconLeft }}" alt="" class="ic-default">
+      </div>
+    {% endif %}
+
+    {% if data.textLeft %}
+      <div class="newinput-box newinput-ic-txt">
+        <img src="{{ data.textLeft }}" alt="" class="ic-default">
+      </div>
+    {% endif %}
+
+    {% if data.extendLeft %}
+      <div class="newinput-box newinput-extend-inner">
+        {{ data.extendLeft }}
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}
+
+{% macro iptSkeleton(data) %}
+
+  {% set dataDefault = {
+    title: false,
+    style: 'default',
+    id: false,
+    placeholder: false,
+    type: 'textbox',
+    value: false,
+    size: 'default',
+    iconLeft: false,
+    iconRight: false,
+    iconFontLeft: false,
+    iconFontRight: false,
+    textLeft: false,
+    textRight: false,
+    extendLeft: false,
+    extendRight: false,
+    iconInsideLeft: false,
+    iconInsideRight: false,
+    iconInsideFontLeft: false,
+    iconInsideFontRight: false,
+    textInsideLeft: false,
+    textInsideRight: false,
+    extendInsideLeft: false,
+    extendInsideRight: false,
+    iconOutsideLeft: false,
+    iconOutsideRight: false,
+    iconOutsideFontLeft: false,
+    iconOutsideFontRight: false,
+    textOutsideLeft: false,
+    textOutsideRight: false,
+    extendOutsideLeft: false,
+    extendOutsideRight: false,
+    disabled: false,
+    errorBlock: true,
+    required: false,
+    requiredSymbol: false,
+    labelChange: true,
+    content: false,
+    note: false
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set contentLeft = false %}
+  {% set insideContentLeft = false %}
+  {% set outsideContentLeft = false %}
+
+  {% set contentRight = false %}
+  {% set insideContentRight = false %}
+  {% set outsideContentRight = false %}
+
+  {% if data.iconFontLeft or data.iconLeft or data.textLeft or data.extendLeft %}
+    {% set contentLeft = true %}
+  {% endif %}
+
+  {% if data.iconFontRight or data.iconRight or data.textRight or data.extendRight %}
+    {% set contentRight = true %}
+  {% endif %}
+
+  {% if data.iconFontInsideLeft or data.iconInsideLeft or data.textInsideLeft or data.extendInsideLeft %}
+    {% set contentInsideLeft = true %}
+  {% endif %}
+
+  {% if data.iconFontInsideRight or data.iconInsideRight or data.textInsideRight or data.extendInsideRight %}
+    {% set contentInsideRight = true %}
+  {% endif %}
+
+  {% if data.iconFontOutsideLeft or data.iconOutsideLeft or data.textOutsideLeft or data.extendOutsideLeft %}
+    {% set contentOutsideLeft = true %}
+  {% endif %}
+
+  {% if data.iconFontOutsideRight or data.iconOutsideRight or data.textOutsideRight or data.extendOutsideRight %}
+    {% set contentOutsideRight = true %}
+  {% endif %}
 
   <div class="form-group">
-    <div class="input-group-wrap input-{{ data.style }} input-size-default">
-      <div class="input-inner-wrap">
-        <label class="input-group">
-          {% if data.inputType == 'select' %}
-            <input {{ inputAttr }} class="{{ inputClass }}">
-          {% else %}
+    <div class="newinput-group-wrap newinput-{{ data.style }} newinput-size-default">
+      {% if data.title %}
+        <div class="newinput-label">
+          {% if data.requiredSymbol %}
+            <span class="color-danger">*</span>
           {% endif %}
-          <div class="input-frame"></div>
-          <div class="input-extend-left"></div>
-          <div class="input-extend-right"></div>
+          {{ data.title }}
+        </div>
+      {% endif %}
+      <div class="newinput-inner-wrap">
+        <label class="newinput-group">
+          {{ data.content }}
+          {% if contentLeft %}
+            <div class="newinput-extend newinput-extend-left">
+              {{ iptExtend(data, pos = 'left') }}
+            </div>
+          {% endif %}
+          {% if contentRight %}
+            <div class="newinput-extend newinput-extend-right">
+              {{ iptExtend(data, pos = 'right') }}
+            </div>
+          {% endif %}
         </label>
-        {% if data.title %}
-          <div class="input-label">
-            {% if data.requiredSymbol %}
-              <span class="color-danger">*</span>
-            {% endif %}
-            {{ data.title }}
+        <div class="newinput-frame"></div>
+        {% if contentInsideLeft %}
+          <div class="newinput-extend newinput-extend-inside newinput-extend-left">
+            {{ iptExtend(data, framePos = 'inside', pos = 'left') }}
+          </div>
+        {% endif %}
+        {% if contentInsideRight %}
+          <div class="newinput-extend newinput-extend-inside newinput-extend-right">
+            {{ iptExtend(data, framePos = 'inside', pos = 'right') }}
           </div>
         {% endif %}
       </div>
-      <div class="input-extend-outside"></div>
+      {% if contentOutsideLeft %}
+        <div class="newinput-extend newinput-extend-outside newinput-extend-left">
+          {{ iptExtend(data, framePos = 'outside', pos = 'left') }}
+        </div>
+      {% endif %}
+      {% if contentOutsideRight %}
+        <div class="newinput-extend newinput-extend-outside newinput-extend-right">
+          {{ iptExtend(data, framePos = 'outside', pos = 'right') }}
+        </div>
+      {% endif %}
     </div>
+    {% if data.note %}
+      <div class="newinput-note">
+        {{ data.note }}
+      </div>
+    {% endif %}
+    {% if data.errorBlock %}
+      <div class="errorBlock"></div>
+    {% endif %}
   </div>
+{% endmacro %}
+
+{% macro newinput(data) %}
+  {% set dataDefault = {
+    clear: true
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set inputClass %}
+    newinput
+    {{ 'newinput-label-change' if data.labelChange }}
+    {{ 'newinput-has-clear' if data.clear }}
+  {% endset %}
+
+  {% set inputAttr %}
+    {{ 'id="' + data.id + '"' if data.id }}
+    {{ 'placeholder="' + data.placeholder + '"' if data.placeholder }}
+    {{ 'value="' + data.value + '"' if data.value }}
+    {{ 'required' if data.required }}
+    autocorrect="off"
+  {% endset %}
+
+  {% set content %}
+    <input type="{{ data.type }}" class="{{ inputClass }}" {{ inputAttr }}>
+  {% endset %}
+  {% set data = data | setAttribute('content', content) %}
+  {{ iptSkeleton(data) }}
 {% endmacro %}

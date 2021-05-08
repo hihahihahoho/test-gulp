@@ -115,7 +115,7 @@ function getLightpickOption (el) {
 [].forEach.call(document.querySelectorAll('.lite-picker'), function (el, i, a) {
   var lpOptions = getLightpickOption(el);
   lpicker = new Litepicker(lpOptions).on('hide', function (element) {
-    el.dispatchEvent(new Event('change', { bubbles: true }))
+    el.dispatchEvent(new Event('input', { bubbles: true }))
     BNS.off()
   }).on('mobilefriendly.show', function (el) {
     BNS.on()
@@ -149,8 +149,8 @@ var isStartDate = false;
     lpOptions['elementEnd'] = a[i + 1];
     lpOptions = mergeObjects(optsRange2ndInput, lpOptions);
     lpicker = new Litepicker(lpOptions).on('hide', function (element) {
-      el.dispatchEvent(new Event('change', { bubbles: true }));
-      a[i + 1].dispatchEvent(new Event('change', { bubbles: true }));
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      a[i + 1].dispatchEvent(new Event('input', { bubbles: true }));
       el.classList.remove('light-pick-focus')
       a[i + 1].classList.remove('light-pick-focus')
       BNS.off()
@@ -220,7 +220,7 @@ var isStartDate = false;
           isStartDateAddActive(endDateEl, startDateEl, 'active');
         }
       }
-    }).on('mobilefriendly.show', (el) => {
+    }).on('mobilefriendly.show', function(el) {
       BNS.on()
       if (!el.classList.contains('lite-picker-range-2nd-start')) {
         setTimeout(function () {

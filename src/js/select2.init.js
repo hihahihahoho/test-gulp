@@ -42,6 +42,7 @@ $(document).ready(function () {
       clearTimeout(select2Timeout);
     }
   }).on("select2:open", function () {
+    $(this).parents('.form-group').addClass('input-focus')
     $(".select2-search--dropdown .select2-search__field").attr("placeholder", "Tìm kiếm...");
     if ($(window).width() >= 789) {
       if (navigator.userAgent.indexOf('MSIE') !== -1
@@ -85,6 +86,7 @@ $(document).ready(function () {
       clearTimeout(select2Timeout);
     }
   }).on("select2:open", function () {
+    $(this).parents('.form-group').addClass('input-focus')
     $(".select2-search--dropdown .select2-search__field").attr("placeholder", "Tìm kiếm...");
     if ($(window).width() < 789) {
       $('.select2-search input').prop('focus', false);
@@ -106,6 +108,7 @@ $(document).ready(function () {
       });
     }
   }).on("select2:closing", function () {
+    $(this).parents('.form-group').removeClass('input-focus')
     $('.select-2-backdrop').removeClass('show');
     if ($(window).width() <= 767) {
       BNS.off()
