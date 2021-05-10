@@ -202,6 +202,21 @@ $(document).ready(function () {
     })
   });
 
+  // focus
+  // missing forEach on NodeList for IE11
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+  document.querySelectorAll('.newinput:not(.select-2)').forEach(function (item) {
+    item.addEventListener('focus', function () {
+      item.closest('.form-group').classList.add('input-focus')
+    });
+    item.addEventListener('blur', function () {
+      item.closest('.form-group').classList.remove('input-focus')
+    })
+  })
+  // end focus
+
   //End Input material
   //input clear
   $('.input-clear').on('mousedown', function () {

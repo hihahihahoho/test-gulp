@@ -1,0 +1,14 @@
+.newinput {
+  padding-left: $newinput-space-left;
+  padding-right: $newinput-space-right;
+  &-#{$inputBorder} {
+    .newinput-group {
+      border-radius: $newinput-border-radius;
+      background-color: $newinput-border-background;
+    }
+    .newinput-frame {
+      border-radius: $newinput-border-radius;
+      border: 1px solid $newinput-border-color;
+    }
+  }
+}

@@ -24,6 +24,9 @@ $newinputMaterial: "material" !default;
 $newinputMaterial2: "material-2" !default;
 $newinputMaterial3: "material-3" !default;
 
+
+$newinput-space-left: 12px;
+$newinput-space-right: 12px;
 $newinput-border-radius: 6px !default;
 
 $newinput-color: $color-default !default;
@@ -38,6 +41,7 @@ $newinput-label-margin-bottom: 7px !default;
 
 $newinput-error-font-size: 12px !default;
 $newinput-border-color: $border-base-color !default;
+$newinput-border-background: transparent !default;
 $newinput-border-color-focus: lighten($color-primary, 0.5) !default;
 
 $newinput-space-left: 10px !default;

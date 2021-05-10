@@ -23,7 +23,7 @@
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
-            {{ button.btn({title: 'Button', size: 'xs', color: 'line-primary'}) }}
+              {{ button.btn({title: 'Button', size: 'xs', color: 'line-primary'}) }}
             {% endset %}
             {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon, settingInputCustom = settingInputCustom) }}
           </div>
@@ -32,7 +32,7 @@
           </div>
           <div class="col-lg-3 col-md-4 col-sm-6">
             {% set extendContentCon %}
-            <a class="link">Demo link</a>
+              <a class="link">Demo link</a>
             {% endset %}
             {{ form.input('Input content outside', extendContent = extendContentCon, extendAttr = 'required', extendContentPos = 'outside', settingInputCustom = settingInputCustom) }}
           </div>
@@ -183,11 +183,17 @@
       <h5 class="pb30">Input new</h5>
       <form class="from-section form-vertical pb30">
         <div class="row row-20">
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set content %}
-              {{ button.btn({ title: 'abc' }) }}
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            {% set contentInside %}
+              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
             {% endset %}
-            {{ form.newinput({ title: 'Input new', extendLeft: content }) }}
+            {% set inputData = {
+              title: 'abc',
+              placeholder: 'abc',
+              extendOutsideRight: contentInside,
+              textOutsideLeft: 'abc'
+            } %}
+            {{ form.newinput(inputData) }}
           </div>
         </div>
         <div class="row row-20 justify-content-center">

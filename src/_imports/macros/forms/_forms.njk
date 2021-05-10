@@ -433,34 +433,38 @@
   <!-- end form.eyeMacro -->
 {% endmacro %}
 
-{% macro iptExtend(data, pos, framePos) %}
+{% macro iptExtend(dataIcon, pos, framePos, clear) %}
   {% set class %}
     newinput-extend
     {{ 'newinput-extend-' + framePos if framePos }}
-    newinput-extend-{{ name }}
+    newinput-extend-{{ pos }}
   {% endset %}
   <div class="{{ class }}">
-    {% if data.iconFontLeft %}
+    {% if clear %}
+      <div class="newinput-box newinput-ic-clear"></div>
+    {% endif %}
+
+    {% if dataIcon.iconFont %}
       <div class="newinput-box newinput-ic">
-        <img src="{{ data.iconLeft }}" alt="" class="ic-default">
+        <img src="{{ dataIcon.icon }}" alt="" class="ic-default">
       </div>
     {% endif %}
 
-    {% if data.iconLeft %}
-      <div class="newinput-box">
-        <img src="{{ data.iconLeft }}" alt="" class="ic-default">
+    {% if dataIcon.icon %}
+      <div class="newinput-box newinput-ic">
+        <img src="{{ dataIcon.icon }}" alt="" class="ic-default">
       </div>
     {% endif %}
 
-    {% if data.textLeft %}
+    {% if dataIcon.text %}
       <div class="newinput-box newinput-ic-txt">
-        <img src="{{ data.textLeft }}" alt="" class="ic-default">
+        {{ dataIcon.text }}
       </div>
     {% endif %}
 
-    {% if data.extendLeft %}
+    {% if dataIcon.extend %}
       <div class="newinput-box newinput-extend-inner">
-        {{ data.extendLeft }}
+        {{ dataIcon.extend }}
       </div>
     {% endif %}
   </div>
@@ -470,7 +474,7 @@
 
   {% set dataDefault = {
     title: false,
-    style: 'default',
+    style: 'border',
     id: false,
     placeholder: false,
     type: 'textbox',
@@ -486,16 +490,16 @@
     extendRight: false,
     iconInsideLeft: false,
     iconInsideRight: false,
-    iconInsideFontLeft: false,
-    iconInsideFontRight: false,
+    iconFontInsideLeft: false,
+    iconFontInsideRight: false,
     textInsideLeft: false,
     textInsideRight: false,
     extendInsideLeft: false,
     extendInsideRight: false,
     iconOutsideLeft: false,
     iconOutsideRight: false,
-    iconOutsideFontLeft: false,
-    iconOutsideFontRight: false,
+    iconFontOutsideLeft: false,
+    iconFontOutsideRight: false,
     textOutsideLeft: false,
     textOutsideRight: false,
     extendOutsideLeft: false,
@@ -506,9 +510,49 @@
     requiredSymbol: false,
     labelChange: true,
     content: false,
-    note: false
+    note: false,
+    clear: false
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set dataIcon = {
+    left: {
+      iconFont: data.iconFontLeft,
+      icon: data.iconLeft,
+      text: data.textLeft,
+      extend: data.extendLeft
+    },
+    right: {
+      iconFont: data.iconFontRight,
+      icon: data.iconRight,
+      text: data.textRight,
+      extend: data.extendRight
+    },
+    insideLeft: {
+      iconFont: data.iconFontInsideLeft,
+      icon: data.iconInsideLeft,
+      text: data.textInsideLeft,
+      extend: data.extendInsideLeft
+    },
+    insideRight: {
+      iconFont: data.iconFontInsideRight,
+      icon: data.iconInsideRight,
+      text: data.textInsideRight,
+      extend: data.extendInsideRight
+    },
+    outsideLeft: {
+      iconFont: data.iconFontOutsideLeft,
+      icon: data.iconOutsideLeft,
+      text: data.textOutsideLeft,
+      extend: data.extendOutsideLeft
+    },
+    outsideRight: {
+      iconFont: data.iconFontOutsideRight,
+      icon: data.iconOutsideRight,
+      text: data.textOutsideRight,
+      extend: data.extendOutsideRight
+    }
+  } %}
 
   {% set contentLeft = false %}
   {% set insideContentLeft = false %}
@@ -522,7 +566,7 @@
     {% set contentLeft = true %}
   {% endif %}
 
-  {% if data.iconFontRight or data.iconRight or data.textRight or data.extendRight %}
+  {% if data.iconFontRight or data.iconRight or data.textRight or data.extendRight or data.clear %}
     {% set contentRight = true %}
   {% endif %}
 
@@ -543,52 +587,43 @@
   {% endif %}
 
   <div class="form-group">
-    <div class="newinput-group-wrap newinput-{{ data.style }} newinput-size-default">
-      {% if data.title %}
-        <div class="newinput-label">
-          {% if data.requiredSymbol %}
-            <span class="color-danger">*</span>
-          {% endif %}
-          {{ data.title }}
-        </div>
-      {% endif %}
+    <label class="newinput-group-wrap newinput-{{ data.style }} newinput-size-default">
       <div class="newinput-inner-wrap">
-        <label class="newinput-group">
-          {{ data.content }}
-          {% if contentLeft %}
-            <div class="newinput-extend newinput-extend-left">
-              {{ iptExtend(data, pos = 'left') }}
-            </div>
-          {% endif %}
-          {% if contentRight %}
-            <div class="newinput-extend newinput-extend-right">
-              {{ iptExtend(data, pos = 'right') }}
-            </div>
-          {% endif %}
-        </label>
-        <div class="newinput-frame"></div>
-        {% if contentInsideLeft %}
-          <div class="newinput-extend newinput-extend-inside newinput-extend-left">
-            {{ iptExtend(data, framePos = 'inside', pos = 'left') }}
-          </div>
+        {% if data.title %}
+          <label class="newinput-label">
+            {% if data.requiredSymbol %}
+              <span class="color-danger">*</span>
+            {% endif %}
+            {{ data.title }}
+          </label>
         {% endif %}
-        {% if contentInsideRight %}
-          <div class="newinput-extend newinput-extend-inside newinput-extend-right">
-            {{ iptExtend(data, framePos = 'inside', pos = 'right') }}
+        <div class="newinput-content">
+          <div class="newinput-group">
+            {{ data.content }}
+            {% if contentLeft %}
+              {{ iptExtend(dataIcon.left, pos = 'left') }}
+
+            {% endif %}
+            {% if contentRight %}
+              {{ iptExtend(dataIcon.right, pos = 'right', clear = data.clear) }}
+            {% endif %}
           </div>
-        {% endif %}
+          <div class="newinput-frame"></div>
+          {% if contentInsideLeft %}
+            {{ iptExtend(dataIcon.insideLeft, framePos = 'inside', pos = 'left') }}
+          {% endif %}
+          {% if contentInsideRight %}
+            {{ iptExtend(dataIcon.insideRight, framePos = 'inside', pos = 'right') }}
+          {% endif %}
+        </div>
       </div>
       {% if contentOutsideLeft %}
-        <div class="newinput-extend newinput-extend-outside newinput-extend-left">
-          {{ iptExtend(data, framePos = 'outside', pos = 'left') }}
-        </div>
+        {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
       {% endif %}
       {% if contentOutsideRight %}
-        <div class="newinput-extend newinput-extend-outside newinput-extend-right">
-          {{ iptExtend(data, framePos = 'outside', pos = 'right') }}
-        </div>
+        {{ iptExtend(dataIcon.outsideRight, framePos = 'outside', pos = 'right') }}
       {% endif %}
-    </div>
+    </label>
     {% if data.note %}
       <div class="newinput-note">
         {{ data.note }}
@@ -622,7 +657,14 @@
 
   {% set content %}
     <input type="{{ data.type }}" class="{{ inputClass }}" {{ inputAttr }}>
+    {% if data.clear %}
+      {% set extend %}
+        <div class="input-clear"></div>
+      {% endset %}
+    {% endif %}
   {% endset %}
   {% set data = data | setAttribute('content', content) %}
   {{ iptSkeleton(data) }}
 {% endmacro %}
+
+{% macro newselect(data) %}{% endmacro %}

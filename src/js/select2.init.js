@@ -77,6 +77,8 @@ $(document).ready(function () {
         $('.select-2').select2('close');
       }, 320)
     }
+  }).on("select2:close", function () {
+    $(this).parents('.form-group').removeClass('input-focus')
   });
   $('.select-2[multiple]').select2({
     width: '100%',
@@ -108,13 +110,14 @@ $(document).ready(function () {
       });
     }
   }).on("select2:closing", function () {
-    $(this).parents('.form-group').removeClass('input-focus')
     $('.select-2-backdrop').removeClass('show');
     if ($(window).width() <= 767) {
       BNS.off()
       $('body > .select2-container .select2-dropdown').removeClass('top-0');
     }
-  });
+  }).on("select2:close", function () {
+    $(this).parents('.form-group').removeClass('input-focus')
+  })
 
   //template select-2
   function templateImg (img) {
