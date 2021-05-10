@@ -6,10 +6,11 @@
         @include newmodifiers-input-linebar-ic($value, $separator);
       } @else {
         .newinput,
-        .newinput-extend-outside {
+        .newinput-extend-outside,
+        .newinput-box {
           height: $value;
         }
-        .newinput-group {
+        & .select2-container .select2-selection--single {
           min-height: $value;
         }
       }
@@ -22,28 +23,35 @@
   flex-basis: 0;
   width: 100%;
   border-radius: $newinput-border-radius;
-  order: 3;
   border: 0;
   background-color: transparent;
   order: 2;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-overflow: hidden;
+  padding-top: 0;
+  &::-ms-clear {
+    display: none;
+  }
   &-ic {
     display: flex;
     align-items: center;
     justify-content: center;
     &-clear {
-      width: 24px;
+      width: 36px;
+      &:only-child {
+        width: 24px;
+      }
       height: 24px;
       background-image: url("../media/icons-color/default/default/close.svg");
       background-position: center;
+      background-size: 16px;
+      cursor: pointer;
       background-repeat: no-repeat;
     }
   }
   &-extend {
     display: flex;
-    align-items: center;
     &-outside {
       &.newinput-extend-left {
         order: 0;
@@ -59,16 +67,16 @@
       padding-left: $newinput-space-left;
       .newinput-box {
         &:not(:first-child) {
-          padding-left: $newinput-space-left/2;
+          padding-left: $newinput-space-left;
         }
       }
     }
     &-right {
-      order: 2;
+      order: 3;
       padding-right: $newinput-space-right;
       .newinput-box {
         &:not(:last-child) {
-          padding-right: $newinput-space-right/2;
+          padding-right: $newinput-space-right;
         }
       }
     }
@@ -76,13 +84,10 @@
   &-box {
     display: flex;
     flex-wrap: nowrap;
-  }
-  &-content {
-    position: relative;
-    display: flex;
+    align-items: center
   }
   &-size {
-    @include newmodifiers-input-linebar-ic($map-input-size);
+    @include newmodifiers-input-linebar-ic($map-newinput-size);
   }
   &-group {
     order: 2;
@@ -100,22 +105,89 @@
     font-size: $input-label-font-size;
     font-weight: $newinput-label-font-weight;
     color: $newinput-label-color;
-    margin-bottom: $newinput-label-margin-bottom;
+    .inner {
+      margin-bottom: $newinput-label-margin-bottom;
+    }
   }
   &-inner-wrap {
     display: flex;
-    flex-direction: column;
     position: relative;
     width: 100%;
     order: 1;
     flex-grow: 1;
     flex-basis: 0;
   }
-  &-frame {
-    position: absolute;
+}
+
+.select2-container {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  text-overflow: ellipsis;
+  background-image: url(../media/icons-color/default/default/chevron-down.svg);
+  background-position: center right $newinput-space-right;
+  background-repeat: no-repeat;
+  .selection {
+    display: block;
     width: 100%;
-    height: 100%;
-    bottom: 0;
-    pointer-events: none;
   }
+  .select2-selection--single {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    background-color: $newinput-border-background;
+    .select2-selection__rendered {
+      width: 100%;
+      display: block;
+      align-items: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 44px;
+    }
+  }
+}
+
+.newinput-inner-wrap {
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas:
+    "label label right"
+    "left main right";
+  -ms-grid-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.newinput-label {
+  -ms-grid-column-span: 3;
+  grid-column: 1 / -1;
+  -ms-grid-row: 1;
+  grid-row: 1;
+}
+
+.newinput,
+.select2 {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+.newinput-extend-left {
+  -ms-grid-column: 1;
+  grid-column: 1;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+.newinput-extend-right {
+  -ms-grid-column: 3;
+  grid-column: 3;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+.select-tpl-txt {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

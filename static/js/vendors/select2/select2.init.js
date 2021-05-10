@@ -100,7 +100,6 @@ $(document).ready(function () {
       $('.unselect-all').remove();
       $('.select2-search-container').remove();
       var x = $(this).eq(0).attr('header-text');
-      // $('body > .select2-container .select2-dropdown').prepend('<div class="close-select close-select--multiple"><div class="close-select__done" href="javascript:void(0)" onclick="closeSelect()">Xong</div>' + x + '</div><span class="no-pb select2-search select2-search-container select2-search--dropdown"><input id="select-2-search-multiple" class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox"><div class="unselect-all" onclick="deselectAll()">Bỏ chọn tất cả</div></span>');
       $('body > .select2-container .select2-dropdown').prepend('<div class="close-select"><div class="close-select__btn" href="javascript:void(0)" onclick="closeSelect()">Đóng</div>' + x + '</div><span class="no-pb select2-search select2-search-container select2-search--dropdown"><input placeholder="Tìm kiếm" id="select-2-search-multiple" class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox"><div class="unselect-all" onclick="deselectAll()">Bỏ chọn tất cả</div></span>');
       $('body > .select2-container .select2-dropdown').addClass('top-0');
       $('.select-2-backdrop').addClass('show');

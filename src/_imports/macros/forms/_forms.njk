@@ -587,43 +587,34 @@
   {% endif %}
 
   <div class="form-group">
-    <label class="newinput-group-wrap newinput-{{ data.style }} newinput-size-default">
-      <div class="newinput-inner-wrap">
+    <div class="newinput-group-wrap newinput-{{ data.style }} newinput-size-default">
+      <label class="newinput-inner-wrap">
+        {{ data.content }}
         {% if data.title %}
           <label class="newinput-label">
-            {% if data.requiredSymbol %}
-              <span class="color-danger">*</span>
-            {% endif %}
-            {{ data.title }}
+            <div class="inner">
+              {% if data.requiredSymbol %}
+                <span class="color-danger">*</span>
+              {% endif %}
+              {{ data.title }}
+            </div>
           </label>
         {% endif %}
-        <div class="newinput-content">
-          <div class="newinput-group">
-            {{ data.content }}
-            {% if contentLeft %}
-              {{ iptExtend(dataIcon.left, pos = 'left') }}
-
-            {% endif %}
-            {% if contentRight %}
-              {{ iptExtend(dataIcon.right, pos = 'right', clear = data.clear) }}
-            {% endif %}
-          </div>
-          <div class="newinput-frame"></div>
-          {% if contentInsideLeft %}
-            {{ iptExtend(dataIcon.insideLeft, framePos = 'inside', pos = 'left') }}
-          {% endif %}
-          {% if contentInsideRight %}
-            {{ iptExtend(dataIcon.insideRight, framePos = 'inside', pos = 'right') }}
-          {% endif %}
-        </div>
-      </div>
+        {% if contentLeft %}
+          {{ iptExtend(dataIcon.left, pos = 'left') }}
+        {% endif %}
+        {% if contentRight %}
+          {{ iptExtend(dataIcon.right, pos = 'right', clear = data.clear) }}
+        {% endif %}
+        <div class="newinput-frame"></div>
+      </label>
       {% if contentOutsideLeft %}
         {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
       {% endif %}
       {% if contentOutsideRight %}
         {{ iptExtend(dataIcon.outsideRight, framePos = 'outside', pos = 'right') }}
       {% endif %}
-    </label>
+    </div>
     {% if data.note %}
       <div class="newinput-note">
         {{ data.note }}
@@ -667,4 +658,55 @@
   {{ iptSkeleton(data) }}
 {% endmacro %}
 
-{% macro newselect(data) %}{% endmacro %}
+{% macro newselect(data) %}
+  {% set dataDefault = {
+    lib: 'select-2'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% set inputClass %}
+    newinput
+    {{ data.lib if data.lib }}
+    {{ 'select-2-template' if data.option[0] | string == '[object Object]' }}
+    {{ 'newinput-label-change' if data.labelChange }}
+  {% endset %}
+
+  {% set inputAttr %}
+    {{ 'id="' + data.id + '"' if data.id }}
+    header-text="{{ data.title if data.title else 'Chọn' }}"
+    {{ 'data-placeholder="' + data.placeholder + '"' if data.placeholder }}
+    {{ 'required' if data.required }}
+  {% endset %}
+
+  {% set content %}
+    <select class="{{ inputClass }}" {{ inputAttr }}>
+      {% if data.placholder %}
+        {% if data.lib == 'select-2' %}
+          <option value=""></option>
+        {% elseif selectLib == 'none' %}
+          <option value="" disabled="disabled" selected="selected">{{ placeholder }}</option>
+        {% endif %}
+      {% endif %}
+      {% if data.option %}
+        {% for item in data.option %}
+          {% set attr %}
+            {{ 'value="' + data.valueName + loop.index + '"' if data.valueName }}
+            {{ 'dataimgclass="' + item.imageClass + '"' if item.imageClass }}
+            dataimg="{{ item.image }}"
+            {{ 'datasub="' + item.subTitle + '"' if item.subTitle }}
+            {{ 'selected' if loop.index == 1 }}
+          {% endset %}
+          <option {{ attr }}>
+            {% if item | string == '[object Object]' %}
+              {{ item.title }}
+            {% else %}
+              {{ item }}
+            {% endif %}
+          </option>
+        {% endfor %}
+      {% endif %}
+    </select>
+  {% endset %}
+
+  {% set data = data | setAttribute('content', content) %}
+  {{ iptSkeleton(data) }}
+{% endmacro %}

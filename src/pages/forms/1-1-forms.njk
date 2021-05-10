@@ -190,10 +190,36 @@
             {% set inputData = {
               title: 'abc',
               placeholder: 'abc',
-              extendOutsideRight: contentInside,
-              textOutsideLeft: 'abc'
+              extendRight: contentInside,
+              iconLeft: globalsVar.iconDemo
             } %}
             {{ form.newinput(inputData) }}
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            {% set contentInside %}
+              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
+            {% endset %}
+            {% set inputData = {
+              title: 'abc',
+              placeholder: 'abc',
+              extendInsideRight: contentInside,
+              iconLeft: globalsVar.iconDemo,
+              option: [
+                {
+                  title: 'abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc',
+                  subTitle: 'abcte',
+                  image: globalsVar.iconDemo,
+                  imageClass: 'ubox ubox-rounded'
+                }, {
+                  title: 'abc',
+                  subTitle: 'abcte'
+                }, {
+                  title: 'abc',
+                  subTitle: 'abcte'
+                }
+              ]
+            } %}
+            {{ form.newselect(inputData) }}
           </div>
         </div>
         <div class="row row-20 justify-content-center">
