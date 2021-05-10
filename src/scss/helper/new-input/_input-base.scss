@@ -5,7 +5,7 @@
       @if type-of($value) == "map" {
         @include newmodifiers-input-linebar-ic($value, $separator);
       } @else {
-        .newinput{
+        input.newinput{
           line-height: $value;
         }
         .newinput,
