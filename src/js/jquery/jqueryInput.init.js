@@ -1,11 +1,15 @@
 //====================JQUERY INPUT=================//
 $(document).ready(function () {
   //Input material
-  $('.input-label-change:not(.static):not(select)').each(function () {
-    if ($(this).val().length == 0) {
+  $('.input-label-change:not(.static)').each(function () {
+    if (!$(this).val()) {
       $(this).removeClass('input-hadval');
     } else {
-      $(this).addClass('input-hadval');
+      if ($(this).val().length == 0) {
+        $(this).removeClass('input-hadval');
+      } else {
+        $(this).addClass('input-hadval');
+      }
     }
     $(this).on('input', function () {
       if ($(this).val().length == 0) {

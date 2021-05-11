@@ -156,7 +156,7 @@
               </div>
               <div class="col-auto">
                 {% set selectVal = ['5', ' 10', '20', '50', '100'] %}
-                {{ form.select(value = selectVal, selectLib = 'none', inputType = 'line', size = 'xs', icSize = 'xs-1', selected = '2', extendClass = "table-page-select") }}
+                {{ form.select({title: 'abc'}) }}
               </div>
               <div class="col-auto">
                 <div class="p">Bản ghi</div>

@@ -52,13 +52,13 @@ var theme = {
     default: {
       level: {
         'primary': 'blue',
-        'light-primary': 'light-blue',
+        'sub-primary': 'light-blue',
         'danger': 'red',
-        'light-danger': 'light-red',
+        'sub-danger': 'light-red',
         'warning': 'orange',
-        'light-warning': 'light-orange',
+        'sub-warning': 'light-orange',
         'success': 'green',
-        'light-success': 'light-green'
+        'sub-success': 'light-green'
       },
       normal: {
         'gradient': {

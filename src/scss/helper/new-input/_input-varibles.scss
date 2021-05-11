@@ -1,4 +1,4 @@
-$map-newinput-ic-size: (
+$map-input-ic-size: (
   default: 34px,
   xs-1: 24px,
   xs: 36px,
@@ -7,8 +7,8 @@ $map-newinput-ic-size: (
   lg: 60px,
 ) !default;
 
-$map-newinput-size: (
-  default: 44px,
+$map-input-size: (
+  default: 32px,
   xs-1: 24px,
   xs: 36px,
   sm: 44px,
@@ -16,33 +16,45 @@ $map-newinput-size: (
   lg: 60px,
 ) !default;
 
-$newinputMaterial: "default" !default;
+$inputBorder: "default" !default;
 
-$newinputBorder: "border" !default;
-$newinputLine: "line" !default;
-$newinputMaterial: "material" !default;
-$newinputMaterial2: "material-2" !default;
-$newinputMaterial3: "material-3" !default;
+$inputBorder: "border" !default;
+$inputLine: "line" !default;
+$inputMaterial: "material" !default;
+$inputMaterial2: "material-2" !default;
+$inputMaterial3: "material-3" !default;
 
 
-$newinput-space-left: 12px;
-$newinput-space-right: 12px;
-$newinput-border-radius: 6px !default;
+$input-background: $color-grey-4 !default;
+$input-disabled-opacity: 0.6 !default;
+$input-disabled-background      : undefined !default;
 
-$newinput-color: $color-default !default;
-$newinput-font-weight: 500 !default;
-$newinput-font-size-mobile: 16px !default;
-$newinput-font-size: 14px !default;
+$input-space-left: 12px;
+$input-space-right: 12px;
+$input-ic-width: 24px;
+$input-ic-box-width: $input-ic-width + $input-space-left;
+$input-border-radius: 6px !default;
 
-$newinput-label-font-weight: 400 !default;
-$newinput-label-font-size: 14px !default;
-$newinput-label-color: #707c93 !default;
-$newinput-label-margin-bottom: 7px !default;
+$input-placeholder-color: #707c93 !default;
+$input-color: $color-default !default;
+$input-font-weight: 500 !default;
+$input-font-size-mobile: 16px !default;
+$input-font-size: 14px !default;
 
-$newinput-error-font-size: 12px !default;
-$newinput-border-color: $border-base-color !default;
-$newinput-border-background: transparent !default;
-$newinput-border-color-focus: lighten($color-primary, 0.5) !default;
+$input-label-font-weight: 400 !default;
+$input-label-font-size: 14px !default;
+$input-label-color: #707c93 !default;
+$input-label-margin-bottom: 7px !default;
 
-$newinput-space-left: 10px !default;
-$newinput-space-right: 10px !default;
+$input-error-font-size: 12px !default;
+$input-border-color: $border-base-color !default;
+$input-border-background: transparent !default;
+$input-border-color-focus: lighten($color-primary, 0.5) !default;
+
+$input-space-left: 10px !default;
+$input-space-right: 10px !default;
+
+//===Input material===
+$input-material-font-size: 18px !default;
+$input-material-font-size-sm: 12px !default;
+$input-material-font-weight-sm: $input-label-font-weight !default;

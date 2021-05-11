@@ -2,187 +2,12 @@
 {% set pageLink = file_path %}
 {% set pageTitle = 'Forms' %}
 
-{% macro localMacros(settingInputCustom) %}
-  <div class="box">
-    <div class="box__body pb-0">
-      <h5 class="pb30">Input
-        {{ settingInputCustom.inputType }}</h5>
-      <form class="from-section form-vertical pb30">
-        <div class="row row-20">
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon right', extendAttr = 'required', value = 'test', icon = globalsVar.iconDemo, settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = globalsVar.iconDemo, settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = globalsVar.iconDemo, note = 'This is an input note', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input icon left text', extendAttr = 'required', icTxt = 'Not required', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set extendContentCon %}
-              {{ button.btn({title: 'Button', size: 'xs', color: 'line-primary'}) }}
-            {% endset %}
-            {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon, settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.input('Input password', iconLeft = globalsVar.iconDemo, extendAttr = 'required', type = 'password', extendContentClass = 'pr0', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set extendContentCon %}
-              <a class="link">Demo link</a>
-            {% endset %}
-            {{ form.input('Input content outside', extendContent = extendContentCon, extendAttr = 'required', extendContentPos = 'outside', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
-            {{ form.select('Select normal', value = dataSelect, extendAttr = 'required', selectLib = 'none', placeholder = 'Select your option' ,settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
-            {{ form.select('Select-2', value = dataSelect, extendAttr = 'required',settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set dataSelect = [
-              {
-                main: 'Vietcombank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
-              }, {
-                main: 'Vietinbank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }
-            ] %}
-            {{ form.select('Select-2 Custom Image', value = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', search='false', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {% set dataSelect = [
-              {
-                main: 'Vietcombank',
-                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
-              }, {
-                main: 'Vietinbank',
-                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }
-            ] %}
-            {{ form.select('Select-2 Custom Text', value = dataSelect, extendAttr = 'required', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.select('Select-2 Multiple', value = dataSelect, multiple = 'true', extendAttr = 'required',settingInputCustom = settingInputCustom) }}
-          </div>
-        </div>
-        <div class="row row-20">
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Lighpicker range', datepickerLib = 'lite-picker', extendAttr = 'required lp-single-mode="false"', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Lighpicker single', datepickerLib = 'lite-picker', extendAttr = 'required', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Lighpicker start', datepickerLib = 'lite-picker', extendAttr = 'required', dateType = 'range2nd', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Lighpicker end', datepickerLib = 'lite-picker', extendAttr = 'required', dateType = 'range2nd', settingInputCustom = settingInputCustom) }}
-          </div>
-        </div>
-        <div class="row row-20">
-          <div class="col-lg-6 col-sm-12">
-            {{ form.file(title = 'File Upload', settingInputCustom = settingInputCustom, extendAttr = 'required') }}
-          </div>
-        </div>
-        <div class="row row-20">
-          <div class="col-lg-6 col-sm-12">
-            {{ form.input('Textarea Default', icTxt = '10/240', settingInputCustom = settingInputCustom, textarea = 'true', extendAttr = 'required', textareaAutoSize = 'false') }}
-          </div>
-          <div class="col-lg-6 col-sm-12">
-            {{ form.input('Textarea Autosize', icTxt = '10/240', settingInputCustom = settingInputCustom, extendAttr = 'required', textarea = 'true') }}
-          </div>
-        </div>
-        <div class="row row-20 justify-content-center">
-          <div class="col-sm-4">
-            {{ button.btn({title: 'Validate'}) }}
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-{% endmacro %}
-
 {% block mainInner %}
-  {% set settingInputCustomBorder = {
-    size: 'sm',
-    inputType: 'border',
-    icSize: 'sm'
-  } %}
-  {{ localMacros(settingInputCustomBorder) }}
-  {% set settingInputCustomClean = {
-    size: 'sm',
-    inputType: 'clean',
-    icSize: 'sm'
-  } %}
-  {{ localMacros(settingInputCustomClean) }}
-  {% set settingInputLine = {
-    size: 'sm',
-    inputType: 'line',
-    icSize: 'xs-1'
-  } %}
-  {{ localMacros(settingInputLine) }}
-  {% set settingMaterial = {
-    size: 'sm',
-    inputType: 'default'
-  } %}
-  {{ localMacros(settingMaterial) }}
-  {% set settingMaterial2 = {
-    size: 'lg',
-    inputType: 'material-2',
-    icSize: 'sm'
-  } %}
-  {{ localMacros(settingMaterial2) }}
-  {% set settingMaterial3 = {
-    size: 'sm',
-    inputType: 'material-3',
-    icSize: 'sm'
-  } %}
-  {{ localMacros(settingMaterial3) }}
   <div class="box">
     <div class="box__body pb-0">
-      <h5 class="pb30">Input new</h5>
-      <form class="from-section form-vertical pb30">
-        <div class="row row-20">
+      <h5 class="pb32">Input new</h5>
+      <form class="from-section form-vertical pb32">
+        <div class="row row-20 list-mb16 list-crop">
           <div class="col-lg-6 col-md-6 col-sm-6">
             {% set contentInside %}
               {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
@@ -191,9 +16,24 @@
               title: 'abc',
               placeholder: 'abc',
               extendRight: contentInside,
+              textLeft: 'text',
+              orient: 'horizontal'
+            } %}
+            {{ form.input(inputData) }}
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            {% set contentInside %}
+              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
+            {% endset %}
+            {% set inputData = {
+              title: 'abc',
+              placeholder: 'abc',
+              extendOutsideLeft: contentInside,
+              extendRight: contentInside,
+              extendOutsideRight: contentInside,
               textLeft: 'text'
             } %}
-            {{ form.newinput(inputData) }}
+            {{ form.textarea(inputData) }}
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             {% set contentInside %}
@@ -204,6 +44,7 @@
               placeholder: 'abc',
               extendInsideRight: contentInside,
               iconLeft: globalsVar.iconDemo,
+              placeholder: 'Nhập abc',
               option: [
                 {
                   title: 'abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc',
@@ -219,10 +60,49 @@
                 }
               ]
             } %}
-            {{ form.newselect(inputData) }}
+            {{ form.select(inputData) }}
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            {% set contentInside %}
+              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
+            {% endset %}
+            {% set inputData = {
+              title: 'abc',
+              placeholder: 'Chọn',
+              selected: 2,
+              extendInsideRight: contentInside,
+              iconOutsideLeft: globalsVar.iconDemo,
+              lib: 'none',
+              orient: 'horizontal',
+              option: ['abc abc abc abc abc abc abc abc abc abc abc abc, abc abc', 'abc']
+            } %}
+            {{ form.select(inputData) }}
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            {% set contentInside %}
+              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
+            {% endset %}
+            {% set inputData = {
+              title: 'abc',
+              placeholder: 'abc',
+              extendInsideRight: contentInside,
+              range: true,
+              iconLeft: globalsVar.iconDemo
+            } %}
+            {{ form.datepicker(inputData) }}
+          </div>
+          <div class="col-lg-12">
+            <div id="otp" class="input-otp">
+              <input class="" type="text" id="first" maxlength="1"/>
+              <input class="" type="text" id="second" maxlength="1"/>
+              <input class="" type="text" id="third" maxlength="1"/>
+              <input class="" type="text" id="fourth" maxlength="1"/>
+              <input class="" type="text" id="fifth" maxlength="1"/>
+              <input class="" type="text" id="sixth" maxlength="1"/>
+            </div>
           </div>
         </div>
-        <div class="row row-20 justify-content-center">
+        <div class="row row-20 justify-content-center mt16">
           <div class="col-sm-4">
             {{ button.btn({title: 'Validate'}) }}
           </div>

@@ -9,7 +9,8 @@ var pluginsDetail = {
       "src/js/jquery/jqueryBasic.init.js",
       "src/js/jquery/jqueryMenu.init.js",
       "src/js/jquery/jqueryInput.init.js",
-      "src/js/jquery/jqueryTable.init.js"
+      "src/js/jquery/jqueryTable.init.js",
+      "src/js/jquery/otp.js"
     ]
   },
   'parsley': {

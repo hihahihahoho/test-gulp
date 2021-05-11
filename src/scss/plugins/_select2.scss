@@ -2,6 +2,7 @@
 .select2-container--default .select2-selection--single,
 .select2-container--default .select2-selection--multiple {
   border-radius: $input-border-radius;
+  border: 0;
 }
 
 .select2-selection__arrow {
@@ -241,7 +242,6 @@ body > .select2-container .select2-dropdown {
     display: none;
   }
   &.input-#{$inputBorder},
-  &.input-#{$inputClean},
   &.input-#{$inputMaterial2},
   &.input-#{$inputMaterial3} {
     & ~ .select2-container--default.select2-container--focus .select2-selection--multiple {

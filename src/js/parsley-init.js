@@ -2,7 +2,7 @@
 $(function () {
    var parsleyConfig = {
       errorsContainer: function (pEle) {
-         var $err = pEle.$element.parents().closest('.form-group').children('.errorBlock');
+         var $err = pEle.$element.parents().closest('.form-group').find('.errorBlock');
          return $err;
       },
       trigger: 'keyup blur'

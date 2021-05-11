@@ -3,467 +3,38 @@
 
 {% extends "_varibles.njk" %}
 {% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
-{% macro input(title, inputType = settingInputDefault.inputType, value = '', size = settingInputDefault.size, icon = '', icSize = settingInputDefault.icSize, iconLeft, type = 'text', id, iconText = '', extendAttr, extendClass, note = '', autocomplete = '', placeholder = '', inputClear = settingInputDefault.inputClear, disabled = settingInputDefault.disabled, icTxt, extendContent, extendContentPos = 'inside', extendContentClass, settingInputCustom, textarea, textareaAutoSize = 'true', addFlex, fakeInput, customFlexContent, errorBlock = settingInputDefault.errorBlock, eye = settingInputDefault.eye, requiredSymbol) %}
-  <!-- forms.input -->
-  {% if settingInputCustom %}
-    {% if settingInputCustom.inputType %}
-      {% set inputType = settingInputCustom.inputType %}
-    {% endif %}
-    {% if settingInputCustom.size %}
-      {% set size = settingInputCustom.size %}
-    {% endif %}
-    {% if settingInputCustom.icSize %}
-      {% set icSize = settingInputCustom.icSize %}
-    {% endif %}
-    {% if settingInputCustom.inputClear %}
-      {% set inputClear = settingInputCustom.inputClear %}
-    {% endif %}
-  {% endif %}
-  {% if not note == '' %}
-    {% set noteContent %}
-      <div class="note-text h6">
-        {{ note }}
-      </div>
-    {% endset %}
-  {% endif %}
-  {% if requiredSymbol %}
-    {% set requiredSymbolText = '<span class="color-danger">*</span>' %}
-  {% endif %}
-  {% if type == 'password' %}
-    {% if eye == 'true' %}
-      {% set eyeContent %}
-        <div class="input-ic">
-          {{ eyeMacro() }}
-        </div>
-      {% endset %}
-    {% endif %}
-
-  {% endif %}
-
-  {% set ic %}
-    <div class="input-ic">
-      <img src="{{ icon }}" class="ic-default" alt="">
-    </div>
-  {% endset %}
-
-  {% set iconLeftText %}
-    <div class="input-ic">
-      <img src="{{ iconLeft }}" class="ic-default" alt="">
-    </div>
-  {% endset %}
-
-  {% if not subBlock == '' %}
-    {% set subBlockContent = subBlock %}
-  {% endif %}
-
-  {% set inputClearIc %}
-    <div class="input-ic input-clear pointer">
-      <img src="{{ globalsVar.iconDefault.inputClear }}" alt="" class="ic-xs">
-    </div>
-  {% endset %}
-
-  {% if textarea == 'true' %}
-    {% set inputClearIc = '' %}
-  {% endif %}
-
-  {% if type == 'password' %}
-    {% set inputClearIc = '' %}
-  {% endif %}
-
-  {% if inputClear == 'false' %}
-    {% set inputClearIc = '' %}
-  {% endif %}
-
-  {% if id %}
-    {% set idText = 'id="' + id + '"' %}
-  {% endif %}
-
-  {% set disabledAttr = '' %}
-  {% if disabled == 'true' %}
-    {% set disabledAttr = 'disabled = disabled' %}
-  {% endif %}
-
-  {% if icTxt %}
-    {% set icTxtContent %}
-      <div class="input-ic-txt color-default-2 input-ic">
-        {{ icTxt | safe }}
-      </div>
-    {% endset %}
-  {% endif %}
-
-  {% if extendContentPos == 'outside' %}
-    {% set extendContentPosTxt = 'input-extend-outside' %}
-  {% endif %}
-
-  {% if textarea == 'true' %}
-    {% if textareaAutoSize == 'true' %}
-      {% set textareaAutoSizeTxt = 'textarea-autosize' %}
-    {% endif %}
-  {% endif %}
-
-  {% set inputTypeText = 'input-label-change' %}
-
-  {% set inputArtt %}
-    {{ idText }}
-    type="{{ type }}" class="input input-size-{{ size }}
-    input-{{ inputType }}
-    {{ inputTypeText }}
-    input-ic-{{ icSize }}
-    {% if inputClear == 'true' %}
-      input-has-clear
-      {% if icon %}
-        input-ic-right
-      {% endif %}
-      {% if iconLeft %}
-        input-ic-left
-      {% endif %}
-      {{ textareaAutoSizeTxt }}
-    {% endif %}
-    {{ extendClass }}" autocorrect="off" placeholder="{{ placeholder }}"
-    {{ disabledAttr }}
-    {{ extendAttr | safe }}
-  {% endset %}
-  <div class="form-group">
-    <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
-      <label class="input-group">
-        {% if textarea == 'true' %}
-          {% if textareaAutoSize == 'true' %}
-            {% set textareaRow = '1' %}
-          {% else %}
-            {% set textareaRow = '3' %}
-          {% endif %}
-          <textarea spellcheck="false" {{ inputArtt | safe | trim }} rows="{{ textareaRow }}">{{ value }}</textarea>
-        {% else %}
-          <input {{ inputArtt | safe | trim}} value="{{ value }}">
-          {% if fakeInput %}
-            <div class="input input-size-{{ size }} input-{{ inputType }} {{ inputTypeText }} input-holder">
-              {{ fakeInput }}
-            </div>
-          {% endif %}
-        {% endif %}
-        <div class="input-frame"></div>
-        {% if title %}
-          <div class="input-label">
-            {{ requiredSymbolText }}
-            {{ title }}
-          </div>
-        {% endif %}
-        {% if autocomplete == 'true' %}
-          <ul class="live-search-result live-search-result-2">
-            <li>
-              <span>2,000</span>
-            </li>
-            <li>
-              <span>20,000</span>
-            </li>
-            <li>
-              <span>200,000</span>
-            </li>
-            <li>
-              <span>2,000,000</span>
-            </li>
-            <li>
-              <span>20,000,000</span>
-            </li>
-          </ul>
-        {% endif %}
-        {% if iconLeft %}
-          <div class="input-flex-content input-flex-content-left">
-            {{ iconLeftText | safe }}
-          </div>
-        {% endif %}
-        {% if addFlex %}
-          {{ addFlex | safe }}
-        {% endif %}
-        {% if icon or eye or inputClear or icTxt or customFlexContent %}
-          <div class="input-flex-content">
-            {{ customFlexContent | safe }}
-            {{ inputClearIc | safe }}
-            {% if icon %}
-              {{ ic | safe }}
-            {% endif %}
-            {{ eyeContent | safe }}
-            {{ icTxtContent | safe }}
-          </div>
-        {% endif %}
-      </label>
-      {% if extendContent %}
-        <div class="input-size-{{ size }} input-group-extend {{ extendContentClass }} input-ic-{{icSize}}">
-          {{ extendContent | safe }}
-        </div>
-      {% endif %}
-    </div>
-    {{ noteContent | safe }}
-    {% if errorBlock == 'true' %}
-      <div class="errorBlock"></div>
-    {% endif %}
-  </div>
-  <!-- end forms.input -->
-{% endmacro %}
-
-{% macro select(title, inputType = settingInputDefault.inputType, size = settingInputDefault.size, type = 'text', search = 'true', value = dataSelectDefualt, selected = '', id, extendAttr, extendClass, note = '', customOption = '', icon = '', iconPos = "left", icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, placeholder, dataimgClass, multiple, selectLib = settingInputDefault.selectLib, errorBlock = settingInputDefault.errorBlock, requiredSymbol) %}
-  <!-- forms.select -->
-  {% if settingInputCustom %}
-    {% if settingInputCustom.inputType %}
-      {% set inputType = settingInputCustom.inputType %}
-    {% endif %}
-    {% if settingInputCustom.size %}
-      {% set size = settingInputCustom.size %}
-    {% endif %}
-    {% if settingInputCustom.icSize %}
-      {% set icSize = settingInputCustom.icSize %}
-    {% endif %}
-    {% if settingInputCustom.inputClear %}
-      {% set inputClear = settingInputCustom.inputClear %}
-    {% endif %}
-  {% endif %}
-  {% set disabledAttr = '' %}
-  {% if disabled == 'true' %}
-    {% set disabledAttr = 'disabled = disabled' %}
-  {% endif %}
-  {% if requiredSymbol %}
-    {% set requiredSymbolText = '<span class="color-danger">*</span>' %}
-  {% endif %}
-  {% if not note == '' %}
-    {% set noteContent %}
-      <div class="note-text h6 color-default-3">
-        {{ note }}
-      </div>
-    {% endset %}
-  {% endif %}
-  {% if icon %}
-    {% set ic %}
-      <div class="input-ic">
-        <img src="{{ icon }}" class="ic-default" alt="">
-      </div>
-    {% endset %}
-    {% set icClass = 'input-ic-' + iconPos %}
-  {% endif %}
-
-  {% if search == 'false'%}
-    {% set searchText = 'data-minimum-results-for-search="Infinity"' %}
-  {% endif %}
-
-  {% if valueName %}
-    {% set valueNameText = 'value="' + valueName + loop.index + '"' %}
-  {% endif %}
-
-  {% if id %}
-    {% set idText = 'id="' + id + '"' %}
-  {% endif %}
-
-  {% set selectTemp = {
-    'foo': False
-  } %}
-
-  {% set inputTypeText = 'input-label-change' %}
-
-  {% set selectTxt = '' %}
-
-  {% for item in value %}
-    {% if item | string == '[object Object]' %}
-      {% set selectTxt = 'select-2-template' %}
-    {% endif %}
-  {% endfor %}
-
-  {% if multiple == 'true' %}
-    {% set multipleText = 'multiple' %}
-  {% endif %}
-  {% set selectLibText = '' %}
-  {% if selectLib == 'select-2' %}
-    {% set selectLibText = 'select-2' %}
-  {% elseif selectLib == 'none' %}
-    {% set selectLibText = 'select-normal' %}
-  {% endif %}
-
-  <div class="form-group">
-    <div class="input-group-wrap input-group-{{ inputType }} {{extendContentPosTxt}}">
-      <div class="input-group">
-        <select {{ idText }} name="" class="{{ selectLibText }} {{ selectTxt }} {{ extendClass }} input input-size-{{ size }} input-ic-{{ icSize }} input-{{ inputType }} {{ inputTypeText }} {{icClass}}" header-text="{{ title }}" {{ searchText | safe }} data-placeholder="{{placeholder}}" {{ extendAttr | safe }} {{ disabledAttr }} {{ multipleText }}>
-          {% if selectLib == 'select-2' %}
-            <option value=""></option>
-          {% elseif selectLib == 'none' %}
-            {% if placeholder %}
-              <option value="" disabled="disabled" selected="selected">{{ placeholder }}</option>
-            {% endif %}
-          {% endif %}
-          {% if not customOption == '' %}
-            {{ customOption | safe }}
-          {% elseif selectTxt == 'select-2-template' %}
-            {% for item in value %}
-              {% set selectedText = '' %}
-              {% if loop.index == selected %}
-                {% set selectedText = 'selected' %}
-              {% endif %}
-              {% if dataimgClass %}
-                {% set dataimgClassTxt = 'dataimgclass="' + dataimgClass + '"' %}
-              {% endif %}
-              <option {{ valueNameText }} {{ dataimgClassTxt | safe }} dataimg="{{ item.img }}" datasub="{{ item.sub }}" {{ selectedText }}>{{ item.main }}</option>
-            {% endfor %}
-          {% else %}
-            {% for item in value %}
-              {% set selectedText = '' %}
-              {% if loop.index == selected %}
-                {% set selectedText = 'selected' %}
-              {% endif %}
-              <option {{ valueNameText }} {{ selectedText }}>{{ item }}</option>
-            {% endfor %}
-          {% endif %}
-        </select>
-        <div class="input-frame"></div>
-        {% if title %}
-          <div class="input-label">
-            {{ requiredSymbolText }}
-            {{ title }}
-          </div>
-        {% endif %}
-        {{ ic | safe }}
-        <div class="input-ic">
-          <img src="{{ globalsVar.iconDefault.selectDown }}" class="ic-lg" alt="">
-        </div>
-      </div>
-    </div>
-    {{ noteContent | safe}}
-    {% if errorBlock == 'true' %}
-      <div class="errorBlock"></div>
-    {% endif %}
-  </div>
-  <!-- end forms.select -->
-{% endmacro %}
-
-{% macro datepicker(title, inputType = settingInputDefault.inputType, value = '', size = settingInputDefault.size, type = 'text', id = '', extendAttr, dateType = 'single', placeholder = '', icSize = settingInputDefault.icSize, disabled = settingInputDefault.disabled, settingInputCustom, note = '', errorBlock = settingInputDefault.errorBlock, datepickerLib = 'light-pick', requiredSymbolText) %}
-  <!-- forms.datepicker -->
-  {% if settingInputCustom %}
-    {% if settingInputCustom.inputType %}
-      {% set inputType = settingInputCustom.inputType %}
-    {% endif %}
-    {% if settingInputCustom.size %}
-      {% set size = settingInputCustom.size %}
-    {% endif %}
-    {% if settingInputCustom.icSize %}
-      {% set icSize = settingInputCustom.icSize %}
-    {% endif %}
-    {% if settingInputCustom.inputClear %}
-      {% set inputClear = settingInputCustom.inputClear %}
-    {% endif %}
-  {% endif %}
-
-  {% set inputTypeText = 'input-label-change' %}
-
-  {% if not note == '' %}
-    {% set noteContent %}
-      <div class="note-text h6 color-default-3">
-        {{ note }}
-      </div>
-    {% endset %}
-  {% endif %}
-  {% set disabledAttr = '' %}
-  {% if disabled == 'true' %}
-    {% set disabledAttr = 'disabled = disabled' %}
-  {% endif %}
-  {% if dateType == 'range' %}
-    {% set lpTxt = datepickerLib + '-range' %}
-  {% endif %}
-  {% if dateType == 'single' %}
-    {% set lpTxt = datepickerLib %}
-  {% endif %}
-  {% if dateType == 'range2nd' %}
-    {% set lpTxt = datepickerLib + '-range-2nd' %}
-  {% endif %}
-  {% if id %}
-    {% set idText = 'id="' + id + '"' %}
-  {% endif %}
-  <div class="form-group">
-    <div class="input-group-wrap input-group-{{ inputType }}">
-      <div class="input-group">
-        <input {{ idText }} type="{{ type }}" class="{{lpTxt}} input input-{{ inputType }} {{ inputTypeText }} input-size-{{ size }} input-ic-{{ icSize }}" value="" placeholder="{{ placeholder }}" {{ extendAttr | safe}} {{ disabledAttr }} lptitle="{{title}}">
-        <div class="input-frame"></div>
-        {% if title %}
-          <div class="input-label">{{ title }}</div>
-        {% endif %}
-        <div class="input-ic">
-          <img src="{{ globalsVar.iconDefault.calendar }}" class="ic-default" alt="">
-        </div>
-      </div>
-    </div>
-    {{ noteContent | safe}}
-    {% if errorBlock == 'true' %}
-      <div class="errorBlock"></div>
-    {% endif %}
-  </div>
-  <!-- end forms.datepicker -->
-{% endmacro %}
-
-{% macro file(title, extendAttr, extendClass = '', note, settingInputCustom, btnTitle = 'Upload', txtTitle = 'Chose file', pos = 'right') %}
-  <!-- forms.file -->
-  {% if pos == 'right' %}
-    {% set customFlexContent %}
-      <div class="input-group-extend">
-        {{ button.btn({ title: btnTitle, size: 'xs', color: 'op-primary', tagname: 'div'}) }}
-      </div>
-    {% endset %}
-    {% set fakeInput %}
-      <div class="p file-txt">{{ txtTitle }}</div>
-    {% endset %}
-    {{ input(title, extendAttr = extendAttr, extendClass = extendClass + 'input-hadval-def input-file-basic', note = note, customFlexContent = customFlexContent, settingInputCustom = settingInputCustom, type = 'file', inputClear = 'false', fakeInput = fakeInput | safe) }}
-  {% else %}
-    {% set extendContentCon %}
-      <div class="input-flex-content input-flex-content-left input-flex-content-file">
-        <div class="input-group-extend">
-          {{ button.btn({ title: btnTitle, size: 'xs', color: 'op-primary', tagname: 'div'}) }}
-        </div>
-      </div>
-    {% endset %}
-    {% set fakeInput %}
-      <div class="p file-txt">{{ txtTitle }}</div>
-    {% endset %}
-    {{ input(title, extendAttr = extendAttr, extendClass = extendClass + 'input-hadval-def input-file-basic', note = note, addFlex = extendContentCon, settingInputCustom = settingInputCustom, type = 'file', inputClear = 'false', fakeInput = fakeInput | safe) }}
-  {% endif %}
-  <!-- forms.file -->
-{% endmacro %}
-
-{% macro eyeMacro() %}
-  <!-- form.eyeMacro -->
-  <div class="eye-wrap">
-    <label class="eye">
-      <input type="checkbox" class="hidden">
-      <div class="eye-slash"></div>
-    </label>
-  </div>
-  <!-- end form.eyeMacro -->
-{% endmacro %}
 
 {% macro iptExtend(dataIcon, pos, framePos, clear) %}
   {% set class %}
-    newinput-extend
-    {{ 'newinput-extend-' + framePos if framePos }}
-    newinput-extend-{{ pos }}
+    input-extend
+    {{ 'input-extend-' + framePos if framePos }}
+    input-extend-{{ pos }}
   {% endset %}
   <div class="{{ class }}">
     {% if clear %}
-      <div class="newinput-box newinput-ic-clear"></div>
+      <div class="input-box input-ic-clear"></div>
     {% endif %}
 
     {% if dataIcon.iconFont %}
-      <div class="newinput-box newinput-ic">
+      <div class="input-box input-ic">
         <img src="{{ dataIcon.icon }}" alt="" class="ic-default">
       </div>
     {% endif %}
 
     {% if dataIcon.icon %}
-      <div class="newinput-box newinput-ic">
+      <div class="input-box input-ic">
         <img src="{{ dataIcon.icon }}" alt="" class="ic-default">
       </div>
     {% endif %}
 
     {% if dataIcon.text %}
-      <div class="newinput-box newinput-ic-txt">
+      <div class="input-box input-ic-txt">
         {{ dataIcon.text }}
       </div>
     {% endif %}
 
     {% if dataIcon.extend %}
-      <div class="newinput-box newinput-extend-inner">
+      <div class="input-box input-extend-inner">
         {{ dataIcon.extend }}
       </div>
     {% endif %}
@@ -473,8 +44,9 @@
 {% macro iptSkeleton(data) %}
 
   {% set dataDefault = {
+    orient: 'vertical',
     title: false,
-    style: 'border',
+    style: 'default',
     id: false,
     placeholder: false,
     type: 'textbox',
@@ -506,7 +78,7 @@
     extendOutsideRight: false,
     disabled: false,
     errorBlock: true,
-    required: false,
+    required: true,
     requiredSymbol: false,
     labelChange: true,
     content: false,
@@ -514,7 +86,6 @@
     clear: false
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
-
   {% set dataIcon = {
     left: {
       iconFont: data.iconFontLeft,
@@ -586,19 +157,25 @@
     {% set contentOutsideRight = true %}
   {% endif %}
 
-  <div class="form-group">
-    <div class="newinput-group-wrap newinput-{{ data.style }} newinput-size-default">
-      <label class="newinput-inner-wrap">
+  {% if data.title %}
+    {% set labelSection %}
+      <label class="input-label {{ 'input-label-horizontal input-size-' + data.size + '-label' if data.orient == 'horizontal' }}">
+        <div class="inner">
+          {% if data.requiredSymbol %}
+            <span class="color-danger">*</span>
+          {% endif %}
+          {{ data.title }}
+        </div>
+      </label>
+    {% endset %}
+  {% endif %}
+
+  {% set mainContent %}
+    <div class="input-group-wrap input-{{ data.style }} input-size-{{ data.size }}">
+      <label class="input-inner-wrap">
         {{ data.content }}
-        {% if data.title %}
-          <label class="newinput-label">
-            <div class="inner">
-              {% if data.requiredSymbol %}
-                <span class="color-danger">*</span>
-              {% endif %}
-              {{ data.title }}
-            </div>
-          </label>
+        {% if data.orient == 'vertical' %}
+          {{ labelSection }}
         {% endif %}
         {% if contentLeft %}
           {{ iptExtend(dataIcon.left, pos = 'left') }}
@@ -606,36 +183,54 @@
         {% if contentRight %}
           {{ iptExtend(dataIcon.right, pos = 'right', clear = data.clear) }}
         {% endif %}
-        <div class="newinput-frame"></div>
+        <div class="input-frame"></div>
+        {% if contentOutsideLeft %}
+          {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
+        {% endif %}
+        {% if contentOutsideRight %}
+          {{ iptExtend(dataIcon.outsideRight, framePos = 'outside', pos = 'right') }}
+        {% endif %}
       </label>
-      {% if contentOutsideLeft %}
-        {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
-      {% endif %}
-      {% if contentOutsideRight %}
-        {{ iptExtend(dataIcon.outsideRight, framePos = 'outside', pos = 'right') }}
-      {% endif %}
     </div>
     {% if data.note %}
-      <div class="newinput-note">
+      <div class="input-note">
         {{ data.note }}
       </div>
     {% endif %}
     {% if data.errorBlock %}
       <div class="errorBlock"></div>
     {% endif %}
+  {% endset %}
+
+  <div class="form-group">
+    {% if data.orient == 'vertical' %}
+      {{ mainContent }}
+    {% endif %}
+    {% if data.orient == 'horizontal' %}
+      <div class="row row-16 list-mb8 list-crop">
+        <div class="col-sm-4">
+          {{ labelSection }}
+        </div>
+        <div class="col-sm-8">
+          {{ mainContent }}
+        </div>
+      </div>
+    {% endif %}
   </div>
 {% endmacro %}
 
-{% macro newinput(data) %}
+{% macro input(data) %}
   {% set dataDefault = {
-    clear: true
+    clear: true,
+    labelChange: true,
+    required: true
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set inputClass %}
-    newinput
-    {{ 'newinput-label-change' if data.labelChange }}
-    {{ 'newinput-has-clear' if data.clear }}
+    input
+    {{ 'input-label-change' if data.labelChange }}
+    {{ 'input-has-clear' if data.clear }}
   {% endset %}
 
   {% set inputAttr %}
@@ -648,26 +243,92 @@
 
   {% set content %}
     <input type="{{ data.type }}" class="{{ inputClass }}" {{ inputAttr }}>
-    {% if data.clear %}
-      {% set extend %}
-        <div class="input-clear"></div>
-      {% endset %}
-    {% endif %}
   {% endset %}
   {% set data = data | setAttribute('content', content) %}
   {{ iptSkeleton(data) }}
 {% endmacro %}
 
-{% macro newselect(data) %}
+{% macro textarea(data) %}
   {% set dataDefault = {
-    lib: 'select-2'
+    clear: false,
+    labelChange: true,
+    autosize: true,
+    row: 3
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set inputClass %}
+    input
+    {{ 'textarea-autosize' if data.autosize }}
+    {{ 'input-label-change' if data.labelChange }}
+    {{ 'input-has-clear' if data.clear }}
+  {% endset %}
+
+  {% set inputAttr %}
+    {{ 'id="' + data.id + '"' if data.id }}
+    {{ 'rows="' + data.row + '"' if not data.autosize }}
+    {{ 'rows="1"' if data.autosize }}
+    {{ 'placeholder="' + data.placeholder + '"' if data.placeholder }}
+    {{ 'required' if data.required }}
+    autocorrect="off" spellcheck="false"
+  {% endset %}
+
+  {% set content %}
+    <textarea class="{{ inputClass }}" {{ inputAttr }}>
+      {{- data.value -}}
+    </textarea>
+  {% endset %}
+  {% set data = data | setAttribute('content', content) %}
+  {{ iptSkeleton(data) }}
+{% endmacro %}
+
+{% macro datepicker(data) %}
+  {% set dataDefault = {
+    lib: 'litepicker',
+    labelChange: true,
+    range: false
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
   {% set inputClass %}
-    newinput
+    input
+    {{ 'lite-picker' if data.lib == 'litepicker' }}
+    {{ 'datepicker-single' if not data.range }}
+    {{ 'datepicker-range' if data.range }}
+    {{ 'input-label-change' if data.labelChange }}
+  {% endset %}
+
+  {% set inputAttr %}
+    {{ 'id="' + data.id + '"' if data.id }}
+    {{ 'placeholder="' + data.placeholder + '"' if data.placeholder }}
+    {{ 'header-text="' + data.title + '"' if data.title }}
+    {{ 'lp-single-mode="false"' if data.range }}
+    {{ 'value="' + data.value + '"' if data.value }}
+    {{ 'required' if data.required }}
+    autocorrect="off"
+  {% endset %}
+
+  {% set content %}
+    <input type="{{ data.type }}" class="{{ inputClass }}" {{ inputAttr }}>
+  {% endset %}
+  {% set data = data | setAttribute('content', content) %}
+  {{ iptSkeleton(data) }}
+{% endmacro %}
+
+{% macro select(data) %}
+  {% set dataDefault = {
+    labelChange: true,
+    lib: 'select-2',
+    option: [
+      'Option 1', 'Option 2', 'Option 3'
+    ],
+    selected: false
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% set inputClass %}
+    input
     {{ data.lib if data.lib }}
     {{ 'select-2-template' if data.option[0] | string == '[object Object]' }}
-    {{ 'newinput-label-change' if data.labelChange }}
+    {{ 'input-label-change' if data.labelChange }}
   {% endset %}
 
   {% set inputAttr %}
@@ -679,11 +340,11 @@
 
   {% set content %}
     <select class="{{ inputClass }}" {{ inputAttr }}>
-      {% if data.placholder %}
+      {% if data.placeholder %}
         {% if data.lib == 'select-2' %}
           <option value=""></option>
-        {% elseif selectLib == 'none' %}
-          <option value="" disabled="disabled" selected="selected">{{ placeholder }}</option>
+        {% elseif data.lib == 'none' %}
+          <option value="" disabled="disabled" selected="selected" hidden="hidden">{{ data.placeholder }}</option>
         {% endif %}
       {% endif %}
       {% if data.option %}
@@ -691,9 +352,10 @@
           {% set attr %}
             {{ 'value="' + data.valueName + loop.index + '"' if data.valueName }}
             {{ 'dataimgclass="' + item.imageClass + '"' if item.imageClass }}
-            dataimg="{{ item.image }}"
+            {{ 'dataimg="' + item.image + '"' if item.imageClass }}
             {{ 'datasub="' + item.subTitle + '"' if item.subTitle }}
-            {{ 'selected' if loop.index == 1 }}
+            {{ 'selected' if loop.index == 1 and not data.placeholder }}
+            {{ 'selected' if loop.index == data.selected }}
           {% endset %}
           <option {{ attr }}>
             {% if item | string == '[object Object]' %}

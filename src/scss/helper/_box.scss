@@ -8,6 +8,15 @@ $map-box-width: (
   xl: 200px,
 ) !default;
 $map-box-height: (
+  avatar-sm: (
+    height: 36px
+  ),
+  avatar-default: (
+    height: 44px
+  ),
+  avatar-lg: (
+    height: 56px
+  ),
   button-default: (
     height: 44px,
     font-size: 14px,

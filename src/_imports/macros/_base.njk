@@ -1,5 +1,4 @@
 {% macro ubox(data) %}
-  <!-- base.ubox -->
   {% set dataDefault = {
     id: undefinded,
     tagname: 'div',
@@ -50,5 +49,4 @@
   <{{ data.tagname }} {{ attr }} class="{{ class }}">
     {{ data.content }}
   </{{ data.tagname }}>
-  <!-- end base.ubox -->
 {% endmacro %}

@@ -18,25 +18,7 @@
 {% macro pageModal(type) %}
   {% set dataModalContent %}
   <div class="from-section form-vertical">
-    {{ form.input('Nội dung', textarea = 'true') }}
-  </div>
-  <div class="from-section form-vertical">
-    {{ form.input('Nội dung', textarea = 'true') }}
-  </div>
-  <div class="from-section form-vertical">
-    {{ form.input('Nội dung', textarea = 'true') }}
-  </div>
-  <div class="from-section form-vertical">
-    {{ form.input('Nội dung', textarea = 'true') }}
-  </div>
-  <div class="from-section form-vertical">
-    {{ form.input('Nội dung', textarea = 'true') }}
-  </div>
-  <div class="from-section form-vertical">
-    {{ form.input('Nội dung', textarea = 'true') }}
-  </div>
-  <div class="from-section form-vertical">
-    {{ form.input('Nội dung', textarea = 'true') }}
+    {{ form.textarea({ title: 'Nội dung' }) }}
   </div>
   {% endset %}
   {% set dataModal = {
@@ -74,10 +56,10 @@
         {% set name = 'option' + i %}
         {% set dataSelectDefualt = (dataSelectDefualt.push(name), dataSelectDefualt) %}
       {% endfor %}
-      {{ form.select('Modal select', value = dataSelectDefualt) }}
+      {{ form.select({ title: 'Modal select', option: dataSelectDefualt  }) }}
     </div>
     <div class="col-12">
-      {{ form.datepicker('Modal datepicker') }}
+      {{ form.datepicker({ title: 'Datepicker' }) }}
     </div>
   </div>
   {% endset %}
@@ -134,213 +116,12 @@
   </div>
   <div class="box">
     <div class="box__body">
-      <h5 class="pb30">Forms - Input</h5>
-      <form class="from-section form-vertical pb30">
+      <h5 class="pb32">Forms - Input</h5>
+      <form class="from-section form-vertical pb32">
         <div class="row row-20">
           <div class="col-lg-3 col-md-4 col-sm-6">
             {# snippet inputSearch #}
-            {{ form.input('Input search',  iconLeft = globalsVar.iconDefault.inputSearch) }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-
-            {# snippet inputIconRight #}
-            {{ form.input('Input icon right this is a very very long text', extendAttr = 'required', value = 'test', icon = globalsVar.iconDemo) }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet inputIconLeft #}
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = globalsVar.iconDemo) }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet inputNote #}
-            {{ form.input('Input icon left', extendAttr = 'required', iconLeft = globalsVar.iconDemo, note = 'This is an input note') }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet inputExtraTextLeft #}
-            {{ form.input('Input icon left text', extendAttr = 'required', icTxt = 'Not required') }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet inputExtraButton #}
-            {% set extendContentCon %}
-            {{ button.btn('Button', size = 'xs-2', color = 'line-primary') }}
-            {% endset %}
-            {{ form.input('Input icon left button', extendAttr = 'required', extendContent = extendContentCon) }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet inputPassword #}
-            {{ form.input('Input password', iconLeft = globalsVar.iconDemo, extendAttr = 'required', type = 'password', extendContentClass = 'pr0') }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet inputExtraOutside #}
-            {% set extendContentCon %}
-            <a class="link">Demo link</a>
-            {% endset %}
-            {{ form.input('Input content outside', extendContent = extendContentCon, extendAttr = 'required', extendContentPos = 'outside') }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet selectDefault #}
-            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
-            {{ form.select('Select normal', value = dataSelect, extendAttr = 'required', selectLib = 'none', placeholder = 'Select your option' ) }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet select2 #}
-            {% set dataSelect = ['Option 11', 'Option 2', 'Option 3'] %}
-            {{ form.select('Select-2', value = dataSelect, extendAttr = 'required',settingInputCustom = settingInputCustom) }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet selectCustomImage #}
-            {% set dataSelect = [
-              {
-                main: 'Vietcombank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
-              }, {
-                main: 'Vietinbank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                img: globalsVar.iconDemo,
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }
-            ] %}
-            {{ form.select('Select-2 Custom Image', value = dataSelect, dataimgClass = 'circle-md', extendAttr = 'required', note = 'This is an input note', search='false') }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet selectCustomText #}
-            {% set dataSelect = [
-              {
-                main: 'Vietcombank',
-                sub: 'Ngân hàng thương mại cổ phần ngoại thương Việt Nam'
-              }, {
-                main: 'Vietinbank',
-                sub: 'Ngân hàng Thương mại cổ phần Công Thương Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }, {
-                main: 'Agribank',
-                sub: 'Ngân hàng nông nghiệp và phát triển nông thôn Việt Nam'
-              }
-            ] %}
-            {{ form.select('Select-2 Custom Text', value = dataSelect, extendAttr = 'required') }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet select2Multiple #}
-            {{ form.select('Select-2 Multiple', value = dataSelect, multiple = 'true', extendAttr = 'required',settingInputCustom = settingInputCustom) }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet datepicker #}
-            {{ form.datepicker('Datepicker single', note = 'This is an input note', extendAttr = 'required') }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {# snippet datepickerRange #}
-            {{ form.datepicker('Datepicker range', extendAttr = 'required', dateType = 'range') }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Datepicker range start', extendAttr = 'required', dateType = 'range2nd', settingInputCustom = settingInputCustom) }}
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            {{ form.datepicker('Datepicker range end', extendAttr = 'required', dateType = 'range2nd', settingInputCustom = settingInputCustom) }}
-          </div>
-        </div>
-        <div class="row row-20">
-          <div class="col-lg-6 col-sm-12">
-            {{ form.file(title = 'File Upload', extendAttr = 'required') }}
-          </div>
-        </div>
-        <div class="row row-20">
-          <div class="col-lg-6 col-sm-12">
-            {# snippet textareaDefault #}
-            {{ form.input('Textarea Default', icTxt = '10/240', textarea = 'true', extendAttr = 'required', textareaAutoSize = 'false') }}
-            {# endSnippet #}
-          </div>
-          <div class="col-lg-6 col-sm-12">
-            {# snippet textareaAutosize #}
-            {{ form.input('Textarea Autosize', icTxt = '10/240', extendAttr = 'required', textarea = 'true') }}
+            {{ form.input({ title: 'abc' }) }}
             {# endSnippet #}
           </div>
         </div>
@@ -354,8 +135,8 @@
   </div>
   <div class="box">
     <div class="box__body pb-0">
-      <h5 class="pb30">Checkbox group</h5>
-      <form class="from-section form-vertical pb30">
+      <h5 class="pb32">Checkbox group</h5>
+      <form class="from-section form-vertical pb32">
         <div class="row row-20">
           <div class="col-sm-6">
             {% set checkboxValue = ['checkbox 1'] %}
@@ -381,7 +162,7 @@
   </div>
   <div class="box">
     <div class="box__body">
-      <h5 class="pb30">Table basic</h5>
+      <h5 class="pb32">Table basic</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
           {% set tableUltValue = [
@@ -442,7 +223,7 @@
   </div>
   <div class="box">
     <div class="box__body">
-      <h5 class="pb30">Table datatables</h5>
+      <h5 class="pb32">Table datatables</h5>
       <div class="row row-10 list-mv5">
         <div class="col">
           {{ table.table(tableValue, stickyUlt = 'true', tableLib = 'datatables', stickyFooter = 'true', rowLoop = 3) }}
@@ -452,7 +233,7 @@
   </div>
   <div class="box">
     <div class="box__body">
-      <h5 class="pb30">Table ults</h5>
+      <h5 class="pb32">Table ults</h5>
       {% set tableUltValAll = [] %}
       {% for key, item in globalsVar.settingTableUltVal %}
         {% set tableUltValAll = (tableUltValAll.push(key), tableUltValAll) %}
@@ -462,7 +243,7 @@
   </div>
   <div class="box">
     <div class="box__body">
-      <h5 class="pb30">Lable Status</h5>
+      <h5 class="pb32">Lable Status</h5>
       <div class="row row-10 list-mv5">
         {% for key, item in globalsVar.labelStatusCustomVal %}
           <div class="col-auto">
@@ -495,7 +276,7 @@
   </div>
   <div class="box">
     <div class="box__body pb-0">
-      <form class="from-section form-vertical pb30">
+      <form class="from-section form-vertical pb32">
         <div class="row row-20 list-mb10 list-crop">
           <div class="col-auto">
             {{ button.btn('Modal Text', color = 'line-primary', modal = '#modalForm') }}
@@ -512,7 +293,7 @@
   </div>
   <div class="box">
     <div class="box__body">
-      <h5 class="pb30">Dropdown basic</h5>
+      <h5 class="pb32">Dropdown basic</h5>
       <div class="row row-20">
         <div class="col-md-6">
           <div class="bd-example bd-example-modal">
@@ -550,7 +331,7 @@
   </div>
   <div class="box">
     <div class="box__body">
-      <h5 class="pb30">Dropdown basic</h5>
+      <h5 class="pb32">Dropdown basic</h5>
       <div class="row row-20">
         <div class="col-auto">
           {% set dropdownToggle %}
@@ -563,7 +344,7 @@
   </div>
   <div class="box">
     <div class="box__body">
-      <h5 class="pb30">Tabs</h5>
+      <h5 class="pb32">Tabs</h5>
       {% set tabName = ['tab 1', 'tab 2', 'tab 3'] %}
 
       {% set obj1 = {
