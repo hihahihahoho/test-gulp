@@ -14,18 +14,15 @@
           line-height: $value;
         }
         .textarea-autosize {
-          padding-top: ($value - $input-font-size * 1.3)/2;
-          padding-bottom: ($value - $input-font-size * 1.3)/2;
-          @include media("<992px") {
-            padding-top: ($value - $input-font-size-mobile * 1.6)/2;
-            padding-bottom: ($value - $input-font-size-mobile * 1.6)/2;
-          }
+          padding-top: ($value - $input-font-size)/2;
+          padding-bottom: ($value - $input-font-size)/2;
         }
         .input,
         .input-box {
           height: $value;
         }
-        & .select2-container .select2-selection--single {
+        & .select2-container .select2-selection--single,
+        & .select2-container .select2-selection--multiple {
           min-height: $value;
         }
       }
@@ -58,7 +55,17 @@ select:invalid {
 .textarea-autosize {
   max-height: 200px;
   transition: none !important;
+  &:not(.input-hadval) {
+    line-height: 1;
+  }
+  &::first-line {
+    font-family: inherit;
+    line-height: 1;
+    font-size: inherit;
+    font-weight: inherit;
+  }
 }
+
 .input {
   padding-left: $input-space-left;
   padding-right: $input-space-right;
@@ -202,6 +209,7 @@ select.input,
     width: 100%;
   }
   .select2-selection--single {
+    height: auto !important;
     display: flex;
     overflow: hidden;
     align-items: center;
@@ -215,6 +223,9 @@ select.input,
       white-space: nowrap;
       padding-right: $input-ic-box-width + $input-space-right;
     }
+  }
+  .select2-selection--multiple {
+    height: auto !important;
   }
 }
 

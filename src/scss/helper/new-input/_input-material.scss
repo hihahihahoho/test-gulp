@@ -10,15 +10,16 @@
             bottom: -$value/2;
           }
         }
+        .textarea-autosize {
+          padding-top: ($value - $input-material-font-size)/2;
+          padding-bottom: ($value - $input-material-font-size)/2;
+        }
       }
     }
   }
 }
-:-ms-input-placeholder {
-  color: transparent !important;
-}
 .input {
-  &-size {
+  &-#{$inputMaterial}.input-size {
     @include modifiers-input-material($map-input-size);
   }
   &-#{$inputMaterial} {
@@ -65,7 +66,6 @@
         grid-column: 3;
         -ms-grid-row: 1;
         grid-row: 1;
-        display: flex;
         align-items: baseline;
         height: 27px;
         display: flex;
