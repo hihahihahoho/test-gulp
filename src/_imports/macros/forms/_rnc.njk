@@ -10,10 +10,10 @@
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set iconClass %}
-  {{ data.type + '-ic' }}
-  {{ data.type + '-ic-' + data.size }}
-  {{ data.type + '-size-' + data.size }}
-  {{ data.type + '-style-' + data.style }}
+    {{ data.type + '-ic' }}
+    {{ data.type + '-ic-' + data.size }}
+    {{ data.type + '-size-' + data.size }}
+    {{ data.type + '-style-' + data.style }}
   {% endset %}
 
   {% if data.type == 'switch' %}
@@ -46,31 +46,31 @@
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set labelClass %}
-  rnc
-  {{ data.type }}
-  {{ 'type-' + data.type }}
-  {{ data.extendLabelClass }}
+    rnc
+    {{ data.type }}
+    {{ 'type-' + data.type }}
+    {{ data.extendLabelClass }}
   {% endset %}
 
   {% set inputAttr %}
-  {{ 'type="radio"' if data.type == 'radio' }}
-  {{ 'type="checkbox"' if data.type == 'checkbox' }}
-  {{ 'type="checkbox"' if data.type == 'switch' }}
-  {{ 'id="' + data.id + '"' if data.id }}
-  {{ 'name="' + data.name + '"' if data.name }}
-  {{ 'value="' + data.value + '"' if data.value }}
-  {{ 'required' if data.isRequired }}
-  {{ 'checked' if data.checked }}
-  {{ 'indeterminate' if data.indeterminate }}
-  {{ 'disabled' if data.disabled }}
-  {{ data.extendInputAttr if data.extendInputAttr }}
+    {{ 'type="radio"' if data.type == 'radio' }}
+    {{ 'type="checkbox"' if data.type == 'checkbox' }}
+    {{ 'type="checkbox"' if data.type == 'switch' }}
+    {{ 'id="' + data.id + '"' if data.id }}
+    {{ 'name="' + data.name + '"' if data.name }}
+    {{ 'value="' + data.value + '"' if data.value }}
+    {{ 'required' if data.isRequired }}
+    {{ 'checked' if data.checked }}
+    {{ 'indeterminate' if data.indeterminate }}
+    {{ 'disabled' if data.disabled }}
+    {{ data.extendInputAttr if data.extendInputAttr }}
   {% endset %}
 
   {% set mainContent %}
-  <label class="{{ labelClass }}">
-    <input {{ inputAttr }} class="hidden">
-    {{ data.content }}
-  </label>
+    <label class="{{ labelClass }}">
+      <input {{ inputAttr }} class="hidden">
+      {{ data.content }}
+    </label>
   {% endset %}
   <!-- rnc.{{data.type}} -->
   {% if data.form %}
@@ -87,9 +87,9 @@
   <!-- end rnc.{{data.type}} -->
 {% endmacro %}
 
-{% macro rncIconOnly(data) %}
+{% macro rncIconOnly(data = {}) %}
   {% set content %}
-  {{ rncSymbol(data) }}
+    {{ rncSymbol(data) }}
   {% endset %}
 
   {% set data = data | setAttribute('content', content) %}
@@ -103,33 +103,33 @@
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set rncContentClass %}
-  rnc-content
-  {{ 'align-items-' + data.valign if data.valign }}
+    rnc-content
+    {{ 'align-items-' + data.valign if data.valign }}
   {% endset %}
 
   {% set rncInnerClass %}
-  rnc-inner
+    rnc-inner
   {% endset %}
 
   {% set rncIcWrapClass %}
-  rnc-ic-wrap
-  {% if data.iconPos %}
-    {{ 'pl' + data.space if data.space }}
-  {% else %}
-    {{ 'pr' + data.space if data.space }}
-  {% endif %}
-  {{ 'order-' + data.iconPos if data.iconPos }}
+    rnc-ic-wrap
+    {% if data.iconPos %}
+      {{ 'pl' + data.space if data.space }}
+    {% else %}
+      {{ 'pr' + data.space if data.space }}
+    {% endif %}
+    {{ 'order-' + data.iconPos if data.iconPos }}
   {% endset %}
 
   {% set content %}
-  <div class="{{ rncContentClass }}">
-    <div class="{{ rncIcWrapClass }}">
-      {{ rncSymbol(data) }}
+    <div class="{{ rncContentClass }}">
+      <div class="{{ rncIcWrapClass }}">
+        {{ rncSymbol(data) }}
+      </div>
+      <div class="{{ rncInnerClass }}">
+        {{ data.content }}
+      </div>
     </div>
-    <div class="{{ rncInnerClass }}">
-      {{ data.content }}
-    </div>
-  </div>
   {% endset %}
 
   {% set data = data | setAttribute('content', content) %}
@@ -137,10 +137,15 @@
 {% endmacro %}
 
 {% macro rncText(data) %}
+  {% if data | isStr %}
+    {% set data = {
+      title: data
+    } %}
+  {% endif %}
   {% set content %}
-  <div class="rnc-text">
-    {{ data.title }}
-  </div>
+    <div class="rnc-text">
+      {{ data.title }}
+    </div>
   {% endset %}
   {% set data = data | setAttribute('content', content) %}
   {{ rncBox(data) }}

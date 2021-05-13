@@ -23,9 +23,18 @@
     @include modifiers-input-material($map-input-size);
   }
   &-#{$inputMaterial} {
+    &.textarea {
+      &-group {
+        .input-extend-outside {
+          margin-top: 1em;
+        }
+      }
+    }
     .input {
       padding-left: 0;
-      padding-right: 0;
+      &:not(:focus):not(select):not(.datepicker-range) {
+        padding-right: 0;
+      }
       font-size: $input-material-font-size;
       &::placeholder {
         opacity: 0 !important;
@@ -59,7 +68,30 @@
         }
       }
       &-frame {
+        &::after {
+          content: "";
+          height: 2px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 0;
+          margin: auto;
+          background-color: $color-primary;
+          transition: 0.2s all cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
         border-bottom: 1px solid $input-border-color;
+      }
+      &-ic {
+        &-clear {
+          background-position: center right;
+        }
+      }
+      &-note {
+        -ms-grid-column: 3;
+        grid-column: 3;
+        -ms-grid-row: 3;
+        grid-row: 3;
       }
       &-label {
         -ms-grid-column: 3;
@@ -67,7 +99,7 @@
         -ms-grid-row: 1;
         grid-row: 1;
         align-items: baseline;
-        height: 27px;
+        height: 1em;
         display: flex;
         align-items: center;
         position: relative;
@@ -87,12 +119,36 @@
       }
       &-extend {
         &-left {
-          padding-left: 0;
-          padding-right: $input-space-left;
+          .input-box {
+            &:first-child {
+              padding-left: 0;
+            }
+            &:last-child {
+              padding-right: $input-space-left;
+            }
+          }
         }
         &-right {
-          padding-right: 0;
-          padding-left: $input-space-right;
+          .input-box {
+            &:last-child {
+              padding-right: 0;
+            }
+            &:first-child {
+              padding-left: $input-space-left;
+            }
+          }
+        }
+      }
+      &:focus {
+        ~ .input-frame {
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+      &:disabled {
+        ~ .input-frame {
+          border-bottom-style: dashed;
         }
       }
     }

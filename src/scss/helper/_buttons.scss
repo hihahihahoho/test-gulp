@@ -153,3 +153,53 @@ button[disabled] {
 .ubtn-min-width-auto {
   width: auto;
 }
+.ubtn-group {
+  &-center {
+    > .row {
+      justify-content: center;
+    }
+  }
+  &-col {
+    @each $key, $value in $breakpoints {
+      @for $var from 1 to 5 {
+        $name: "-" + $var;
+        @if $key != "xs" {
+          $name: "-" + $key + "-" + $var;
+        }
+        &#{$name} {
+          > .row {
+            @include media("<#{$key}") {
+              // flex-wrap: wrap-reverse;
+            }
+            > div {
+              @include media(">=#{$key}") {
+                flex-grow: 0 !important;
+                width: 100 / $var * 1%;
+                min-width: 0;
+              }
+              min-width: 50%;
+              flex-grow: 1;
+            }
+          }
+        }
+      }
+    }
+    @each $key, $value in $breakpoints {
+      &-#{$key} {
+        &-auto {
+          > .row {
+            > div {
+              @include media(">=#{$key}") {
+                width: auto !important;
+                flex-grow: 0 !important;
+                min-width: 0;
+              }
+              min-width: 50%;
+              flex-grow: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

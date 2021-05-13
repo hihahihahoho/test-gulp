@@ -2,6 +2,11 @@
 {% import "macros/_base.njk" as base %}
 
 {% macro btn(data) %}
+  {% if data | isStr %}
+    {% set data = {
+      title: data
+    } %}
+  {% endif %}
   <!-- button.button -->
   {% set dataDefault = {
     title: undefinded,
@@ -23,31 +28,31 @@
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set class %}
-  ubtn
-  {{ data.extendClass }}
+    ubtn
+    {{ data.extendClass }}
   {% endset %}
 
   {% set content %}
-  <div class="ubtn-inner">
-    {% if data.iconLeft %}
-      <span class="ubtn-ic ubtn-ic-left">
-        <img src="{{data.iconLeft}}" alt="" class="ic-{{ data.icSize }}">
-      </span>
-    {% endif %}
-    {% if data.title %}
-      {% set ubtnTextClass %}
-      ubtn-text
-      {{ data.text.fontSize }}
-      {{ 'color-' + data.text.color if data.text.color}}
-      {% endset %}
-      <span class="{{ ubtnTextClass | safe }}">{{ data.title }}</span>
-    {% endif %}
-    {% if data.iconRight %}
-      <span class="ubtn-ic ubtn-ic-right">
-        <img src="{{data.iconRight}}" alt="" class="ic-{{ data.icSize }}">
-      </span>
-    {% endif %}
-  </div>
+    <div class="ubtn-inner">
+      {% if data.iconLeft %}
+        <span class="ubtn-ic ubtn-ic-left">
+          <img src="{{data.iconLeft}}" alt="" class="ic-{{ data.icSize }}">
+        </span>
+      {% endif %}
+      {% if data.title %}
+        {% set ubtnTextClass %}
+          ubtn-text
+          {{ data.text.fontSize }}
+          {{ 'color-' + data.text.color if data.text.color}}
+        {% endset %}
+        <span class="{{ ubtnTextClass | safe }}">{{ data.title }}</span>
+      {% endif %}
+      {% if data.iconRight %}
+        <span class="ubtn-ic ubtn-ic-right">
+          <img src="{{data.iconRight}}" alt="" class="ic-{{ data.icSize }}">
+        </span>
+      {% endif %}
+    </div>
   {% endset %}
 
   {% set data = data | setAttribute('size', 'button-' + data.size) %}
@@ -55,4 +60,35 @@
   {% set data = data | setAttribute('extendClass', class) %}
   {{ base.ubox(data) }}
   <!-- end button.button -->
+{% endmacro %}
+ 
+{% macro btnGroup(data) %}
+  <!-- button.btnGroup -->
+  {% set dataDefault = {
+    col: 'ubtn-group-col-md-3',
+    gutterVertical: 8,
+    gutterHorizontal: 8,
+    align: 'center'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% set formClass %}
+    ubtn-group 
+    ubtn-group-{{ data.align }}
+    {{ data.col }}
+    {{ data.extendClass if data.extendClass }}
+  {% endset %}
+  <div class="{{ formClass }}" {{ data.extendAttr if data.extendAttr }}>
+    <div class="row row-{{ data.gutterVertical }} list-mb{{ data.gutterHorizontal }} list-crop">
+      {% for item in data.data %}
+        {% set class = '' %}
+        {% set class %}
+          {{ 'block-' + item.alignSelf if item.alignSelf }}
+        {% endset %}
+        <div class="{{ class }}">
+          {{ btn(item) }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <!-- end button.btnGroup -->
 {% endmacro %}

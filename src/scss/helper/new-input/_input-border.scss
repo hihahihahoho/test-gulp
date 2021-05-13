@@ -1,9 +1,16 @@
 .input {
   &-#{$inputBorder} {
+    .input-note {
+      -ms-grid-column-span: 5;
+      grid-column: 2 / 5;
+      -ms-grid-row: 3;
+      grid-row: 3;
+    }
     .input-label {
-      -ms-grid-column: 2;
-      grid-column: 2;
+      -ms-grid-column-span: 5;
+      grid-column: 2 / 5;
       -ms-grid-row: 1;
+      grid-row: 1;
     }
     .input-group {
       border-radius: $input-border-radius;
@@ -16,6 +23,18 @@
       height: 100%;
       border-radius: $input-border-radius;
       border: 1px solid $input-border-color;
+    }
+    .input {
+      &:focus {
+        ~ .input-frame {
+          border-color: $color-primary;
+        }
+      }
+      &:disabled {
+        ~ .input-frame {
+          background-color: $color-grey-3;
+        }
+      }
     }
   }
 }

@@ -45,5 +45,23 @@
       </div>
     </div>
   </div>
+  <div class="box">
+    <div class="box__body">
+      {% set data = {
+        data: [
+          {
+            title: 'Lưu danh bạ',
+            color: 'secondary'
+          }, {
+            title: 'Thực hiện giao dịch mới',
+            color: 'line-primary'
+          }, {
+            title: 'In biên lai'
+          }
+        ]
+      } %}
+      {{ button.btnGroup(data) }}
+    </div>
+  </div>
 
 {% endblock %}

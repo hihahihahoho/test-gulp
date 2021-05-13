@@ -2,49 +2,44 @@
 {% set pageLink = file_path %}
 {% set pageTitle = 'Forms' %}
 
-{% block mainInner %}
+{% macro mainInputs(title, dataDefault) %}
+  {% set contentInside %}
+    {{ button.btn({ title: 'button', size: 'xs'}) }}
+  {% endset %}
   <div class="box">
     <div class="box__body pb-0">
-      <h5 class="pb32">Input new</h5>
+      <h5 class="pb32">{{ title }}</h5>
       <form class="from-section form-vertical pb32">
         <div class="row row-20 list-mb16 list-crop">
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            {% set contentInside %}
-              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
-            {% endset %}
+          <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
-              title: 'abc',
-              placeholder: 'abc',
-              extendRight: contentInside,
-              textLeft: 'text',
-              orient: 'horizontal'
+              title: 'Input simple',
+              note: 'Text note'
             } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.input(inputData) }}
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            {% set contentInside %}
-              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
-            {% endset %}
+          <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
-              title: 'abc',
-              placeholder: 'abc',
-              extendOutsideLeft: contentInside,
-              extendRight: contentInside,
+              title: 'Input button',
               extendOutsideRight: contentInside,
-              textLeft: 'text'
+              extendOutsideRightClass: 'col-md-4 col-auto',
+              note: 'Text note'
             } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.textarea(inputData) }}
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            {% set contentInside %}
-              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
-            {% endset %}
+          <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
-              title: 'abc',
-              placeholder: 'abc',
-              extendInsideRight: contentInside,
-              iconLeft: globalsVar.iconDemo,
-              placeholder: 'Nhập abc',
+              title: 'Input text',
+              textRight: 'VND'
+            } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
+            {{ form.input(inputData) }}
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            {% set inputData = {
+              title: 'Select',
               option: [
                 {
                   title: 'abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc',
@@ -60,47 +55,29 @@
                 }
               ]
             } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.select(inputData) }}
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            {% set contentInside %}
-              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
-            {% endset %}
+          <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
-              title: 'abc',
-              placeholder: 'Chọn',
-              selected: 2,
-              extendInsideRight: contentInside,
-              iconOutsideLeft: globalsVar.iconDemo,
+              title: 'Select simple',
               lib: 'none',
-              orient: 'horizontal',
               option: ['abc abc abc abc abc abc abc abc abc abc abc abc, abc abc', 'abc']
             } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.select(inputData) }}
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            {% set contentInside %}
-              {{ button.btn({ title: 'abc', size: 'xs', tagname: 'label' }) }}
-            {% endset %}
+          <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
-              title: 'abc',
-              placeholder: 'abc',
+              title: 'Datepicker',
               extendInsideRight: contentInside,
               range: true,
-              iconLeft: globalsVar.iconDemo
+              iconRight: globalsVar.iconDemo
             } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.datepicker(inputData) }}
           </div>
-          <div class="col-lg-12">
-            <div id="otp" class="input-otp">
-              <input class="" type="text" id="first" maxlength="1"/>
-              <input class="" type="text" id="second" maxlength="1"/>
-              <input class="" type="text" id="third" maxlength="1"/>
-              <input class="" type="text" id="fourth" maxlength="1"/>
-              <input class="" type="text" id="fifth" maxlength="1"/>
-              <input class="" type="text" id="sixth" maxlength="1"/>
-            </div>
-          </div>
+          <div class="col-lg-12"></div>
         </div>
         <div class="row row-20 justify-content-center mt16">
           <div class="col-sm-4">
@@ -110,4 +87,31 @@
       </form>
     </div>
   </div>
+{% endmacro %}
+
+{% block mainInner %}
+  {{ mainInputs('input default',{ required: true, placeholder: 'same'}) }}
+  {{ mainInputs('input material',{ style: 'material', required: true }) }}
+{% endblock %}
+
+{% block modal %}
+  {% set dataModal = {
+    id: 'modalForm',
+    title: 'Chưa chọn thông tin thụ hưởng',  
+    content: dataModalContent,
+    button: [
+      { 
+        tagname: 'a',
+        title: 'Bỏ qua',
+        color: 'light-blue',
+        alignSelf: 'left'
+      }, { 
+        tagname: 'a',
+        title: 'Tiếp tục',
+        color: 'primary',
+        modalDismiss: 'false'
+      }
+    ]
+  } %}
+  {{ modal.modal(dataModal) }}
 {% endblock %}

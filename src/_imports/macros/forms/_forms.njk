@@ -7,6 +7,8 @@
 {% macro iptExtend(dataIcon, pos, framePos, clear) %}
   {% set class %}
     input-extend
+    {{ dataIcon.class if dataIcon.class }}
+    {{ 'input-extend-' + framePos if framePos }}
     {{ 'input-extend-' + framePos if framePos }}
     input-extend-{{ pos }}
   {% endset %}
@@ -42,7 +44,6 @@
 {% endmacro %}
 
 {% macro iptSkeleton(data) %}
-
   {% set dataDefault = {
     orient: 'vertical',
     title: false,
@@ -60,6 +61,8 @@
     textRight: false,
     extendLeft: false,
     extendRight: false,
+    extendLeftClass: false,
+    extendRightClass: false,
     iconInsideLeft: false,
     iconInsideRight: false,
     iconFontInsideLeft: false,
@@ -68,6 +71,8 @@
     textInsideRight: false,
     extendInsideLeft: false,
     extendInsideRight: false,
+    extendInsideLeftClass: false,
+    extendInsideRightClass: false,
     iconOutsideLeft: false,
     iconOutsideRight: false,
     iconFontOutsideLeft: false,
@@ -76,9 +81,11 @@
     textOutsideRight: false,
     extendOutsideLeft: false,
     extendOutsideRight: false,
+    extendOutsideLeftClass: false,
+    extendOutsideRightClass: false,
     disabled: false,
     errorBlock: true,
-    required: true,
+    required: false,
     requiredSymbol: false,
     labelChange: true,
     content: false,
@@ -91,37 +98,43 @@
       iconFont: data.iconFontLeft,
       icon: data.iconLeft,
       text: data.textLeft,
-      extend: data.extendLeft
+      extend: data.extendLeft,
+      class: data.extendLeftClass
     },
     right: {
       iconFont: data.iconFontRight,
       icon: data.iconRight,
       text: data.textRight,
-      extend: data.extendRight
+      extend: data.extendRight,
+      class: data.extendRightClass
     },
     insideLeft: {
       iconFont: data.iconFontInsideLeft,
       icon: data.iconInsideLeft,
       text: data.textInsideLeft,
-      extend: data.extendInsideLeft
+      extend: data.extendInsideLeft,
+      class: data.extendInsideLeftClass
     },
     insideRight: {
       iconFont: data.iconFontInsideRight,
       icon: data.iconInsideRight,
       text: data.textInsideRight,
-      extend: data.extendInsideRight
+      extend: data.extendInsideRight,
+      class: data.extendInsideRightClass
     },
     outsideLeft: {
       iconFont: data.iconFontOutsideLeft,
       icon: data.iconOutsideLeft,
       text: data.textOutsideLeft,
-      extend: data.extendOutsideLeft
+      extend: data.extendOutsideLeft,
+      class: data.extendOutsideLeftClass
     },
     outsideRight: {
       iconFont: data.iconFontOutsideRight,
       icon: data.iconOutsideRight,
       text: data.textOutsideRight,
-      extend: data.extendOutsideRight
+      extend: data.extendOutsideRight,
+      class: data.extendOutsideRightClass
     }
   } %}
 
@@ -171,7 +184,7 @@
   {% endif %}
 
   {% set mainContent %}
-    <div class="input-group-wrap input-{{ data.style }} input-size-{{ data.size }}">
+    <div class="input-group-wrap input-{{ data.style }} input-size-{{ data.size }} {{data.inputGroupExtendClass}} input-group-{{data.orient}}">
       <label class="input-inner-wrap">
         {{ data.content }}
         {% if data.orient == 'vertical' %}
@@ -184,13 +197,13 @@
           {{ iptExtend(dataIcon.right, pos = 'right', clear = data.clear) }}
         {% endif %}
         <div class="input-frame"></div>
-        {% if contentOutsideLeft %}
-          {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
-        {% endif %}
-        {% if contentOutsideRight %}
-          {{ iptExtend(dataIcon.outsideRight, framePos = 'outside', pos = 'right') }}
-        {% endif %}
       </label>
+      {% if contentOutsideLeft %}
+        {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
+      {% endif %}
+      {% if contentOutsideRight %}
+        {{ iptExtend(dataIcon.outsideRight, framePos = 'outside', pos = 'right') }}
+      {% endif %}
     </div>
     {% if data.note %}
       <div class="input-note">
@@ -220,12 +233,21 @@
 {% endmacro %}
 
 {% macro input(data) %}
+  {% if data | isStr %}
+    {% set data = {
+      title: data
+    } %}
+  {% endif %}
   {% set dataDefault = {
     clear: true,
     labelChange: true,
-    required: true
+    samePlaceholderText: 'Nhập'
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set placeholderText %}
+    {{ data.samePlaceholderText + ' ' + data.title | lower if data.placeholder == 'same' else data.placeholder }}
+  {% endset %}
 
   {% set inputClass %}
     input
@@ -235,9 +257,10 @@
 
   {% set inputAttr %}
     {{ 'id="' + data.id + '"' if data.id }}
-    {{ 'placeholder="' + data.placeholder + '"' if data.placeholder }}
+    {{ 'placeholder="' + placeholderText + '"' if data.placeholder }}
     {{ 'value="' + data.value + '"' if data.value }}
     {{ 'required' if data.required }}
+    {{ 'disabled' if data.disabled }}
     autocorrect="off"
   {% endset %}
 
@@ -250,12 +273,18 @@
 
 {% macro textarea(data) %}
   {% set dataDefault = {
+    inputGroupExtendClass: 'textarea-group',
     clear: false,
     labelChange: true,
+    samePlaceholderText: 'Nhập',
     autosize: true,
     row: 3
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set placeholderText %}
+    {{ data.samePlaceholderText + ' ' + data.title | lower if data.placeholder == 'same' else data.placeholder }}
+  {% endset %}
 
   {% set inputClass %}
     input
@@ -268,8 +297,9 @@
     {{ 'id="' + data.id + '"' if data.id }}
     {{ 'rows="' + data.row + '"' if not data.autosize }}
     {{ 'rows="1"' if data.autosize }}
-    {{ 'placeholder="' + data.placeholder + '"' if data.placeholder }}
+    {{ 'placeholder="' + placeholderText + '"' if data.placeholder }}
     {{ 'required' if data.required }}
+    {{ 'disabled' if data.disabled }}
     autocorrect="off" spellcheck="false"
   {% endset %}
 
@@ -283,12 +313,19 @@
 {% endmacro %}
 
 {% macro datepicker(data) %}
+  {% if data | isStr %}
+    {% set data = {
+      title: data
+    } %}
+  {% endif %}
   {% set dataDefault = {
     lib: 'litepicker',
     labelChange: true,
-    range: false
+    range: false,
+    placeholder: 'dd/mm/yyyy'
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
+
   {% set inputClass %}
     input
     {{ 'lite-picker' if data.lib == 'litepicker' }}
@@ -304,6 +341,7 @@
     {{ 'lp-single-mode="false"' if data.range }}
     {{ 'value="' + data.value + '"' if data.value }}
     {{ 'required' if data.required }}
+    {{ 'disabled' if data.disabled }}
     autocorrect="off"
   {% endset %}
 
@@ -315,15 +353,26 @@
 {% endmacro %}
 
 {% macro select(data) %}
+  {% if data | isStr %}
+    {% set data = {
+      title: data
+    } %}
+  {% endif %}
   {% set dataDefault = {
     labelChange: true,
     lib: 'select-2',
+    samePlaceholderText: 'Nhập',
     option: [
       'Option 1', 'Option 2', 'Option 3'
     ],
     selected: false
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set placeholderText %}
+    {{ data.samePlaceholderText + ' ' + data.title | lower if data.placeholder == 'same' else data.placeholder }}
+  {% endset %}
+
   {% set inputClass %}
     input
     {{ data.lib if data.lib }}
@@ -333,9 +382,11 @@
 
   {% set inputAttr %}
     {{ 'id="' + data.id + '"' if data.id }}
+    {{ 'multiple' + data.multiple + '"' if data.multiple }}
     header-text="{{ data.title if data.title else 'Chọn' }}"
-    {{ 'data-placeholder="' + data.placeholder + '"' if data.placeholder }}
+    {{ 'data-placeholder="' + placeholderText + '"' if data.placeholder }}
     {{ 'required' if data.required }}
+    {{ 'disabled' if data.disabled }}
   {% endset %}
 
   {% set content %}
@@ -344,7 +395,7 @@
         {% if data.lib == 'select-2' %}
           <option value=""></option>
         {% elseif data.lib == 'none' %}
-          <option value="" disabled="disabled" selected="selected" hidden="hidden">{{ data.placeholder }}</option>
+          <option value="" disabled="disabled" selected="selected" hidden="hidden">{{ placeholderText }}</option>
         {% endif %}
       {% endif %}
       {% if data.option %}
@@ -371,4 +422,15 @@
 
   {% set data = data | setAttribute('content', content) %}
   {{ iptSkeleton(data) }}
+{% endmacro %}
+
+{% macro otp() %}
+  <div id="otp" class="input-otp">
+    <input class="" type="text" id="first" maxlength="1"/>
+    <input class="" type="text" id="second" maxlength="1"/>
+    <input class="" type="text" id="third" maxlength="1"/>
+    <input class="" type="text" id="fourth" maxlength="1"/>
+    <input class="" type="text" id="fifth" maxlength="1"/>
+    <input class="" type="text" id="sixth" maxlength="1"/>
+  </div>
 {% endmacro %}

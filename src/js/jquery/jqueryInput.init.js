@@ -59,15 +59,13 @@ $(document).ready(function () {
 
   //End Input material
   //input clear
-  $('.input-clear').on('mousedown', function () {
-    var input = $(this).closest('.input-group').find('input');
+  $('.input-ic-clear').on('mousedown', function () {
+    var input = $(this).closest('.input-inner-wrap').find('.input');
     input.val('')
     input.trigger('input');
-    input.keyup();
-    input.focus();
   })
   $('.input-has-clear').on('paste keyup change', function () {
-    var inputClear = $(this).closest('.input-group').find('.input-clear');
+    var inputClear = $(this).closest('.input-inner-wrap').find('.input-ic-clear');
     if ($(this).val()) {
       inputClear.addClass('show');
     }

@@ -21,8 +21,7 @@
         .input-box {
           height: $value;
         }
-        & .select2-container .select2-selection--single,
-        & .select2-container .select2-selection--multiple {
+        & .select2-container .selection {
           min-height: $value;
         }
       }
@@ -52,17 +51,27 @@ select:invalid {
   color: $input-placeholder-color;
 }
 
-.textarea-autosize {
-  max-height: 200px;
-  transition: none !important;
-  &:not(.input-hadval) {
-    line-height: 1;
+.textarea {
+  &-group {
+    &.input-group-wrap {
+      align-items: flex-start;
+    }
+    > .input-extend-outside {
+      margin-top: calc(#{$fz-default-line-height}em + #{$input-label-margin-bottom});
+    }
   }
-  &::first-line {
-    font-family: inherit;
-    line-height: 1;
-    font-size: inherit;
-    font-weight: inherit;
+  &-autosize {
+    max-height: 200px;
+    transition: none !important;
+    &:not(.input-hadval) {
+      line-height: 1;
+    }
+    &::first-line {
+      font-family: inherit;
+      line-height: 1;
+      font-size: inherit;
+      font-weight: inherit;
+    }
   }
 }
 
@@ -74,8 +83,19 @@ select:invalid {
   border: 0;
   background-color: transparent;
   order: 2;
+  &-has-clear{
+    &:focus {
+      padding-right: 36px;
+    }
+  }
+  &-note {
+    margin-top: 4px;
+    font-size: 12px;
+  }
   &-frame {
     pointer-events: none;
+    position: relative;
+    transition: 0.2s all ease-in-out;
   }
   &:not(textarea) {
     text-overflow: ellipsis;
@@ -85,18 +105,32 @@ select:invalid {
   &::-ms-clear {
     display: none;
   }
+  &:focus {
+    ~ .input-extend .input-ic-clear.show {
+      display: flex !important;
+    }
+  }
+  &-box {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    > * {
+      min-width: 100%;
+    }
+  }
   &-ic {
     display: flex;
     align-items: center;
     justify-content: center;
     &-clear {
-      width: 26px;
-      &:only-child {
-        width: 16px;
-      }
+      position: absolute;
+      right: 100%;
+      width: 36px;
+      display: none !important;
       height: 24px;
       background-image: url("../media/icons-color/default/default/close.svg");
-      background-position: center left;
+      background-position: center right 12px;
       background-size: 16px;
       cursor: pointer;
       background-repeat: no-repeat;
@@ -104,6 +138,8 @@ select:invalid {
   }
   &-extend {
     display: flex;
+    position: relative;
+    z-index: 1;
     &-outside {
       &.input-extend-left {
         order: 0;
@@ -116,27 +152,16 @@ select:invalid {
       }
     }
     &-left {
-      padding-left: $input-space-left;
       .input-box {
-        &:not(:first-child) {
-          padding-left: $input-space-left;
-        }
+        padding-left: $input-space-left;
       }
     }
     &-right {
       order: 3;
-      padding-right: $input-space-right;
       .input-box {
-        &:not(:last-child) {
-          padding-right: $input-space-right;
-        }
+        padding-right: $input-space-right;
       }
     }
-  }
-  &-box {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
   }
   &-size {
     @include modifiers-input-linebar-ic($map-input-size);
@@ -148,6 +173,11 @@ select:invalid {
     flex-grow: 1;
     flex-basis: 0;
     cursor: text;
+    &-horizontal {
+      .input-extend-outside {
+        margin-top: 0 !important;
+      }
+    }
   }
   &-group-wrap {
     display: flex;
@@ -157,7 +187,6 @@ select:invalid {
     font-size: $input-label-font-size;
     font-weight: $input-label-font-weight;
     color: $input-label-color;
-
     .inner {
       transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
       margin-bottom: $input-label-margin-bottom;
@@ -205,7 +234,8 @@ select.input,
   flex-basis: 0;
   text-overflow: ellipsis;
   .selection {
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
   }
   .select2-selection--single {
@@ -214,6 +244,7 @@ select.input,
     overflow: hidden;
     align-items: center;
     background-color: $input-border-background;
+    width: 100%;
     .select2-selection__rendered {
       width: 100%;
       display: block;
@@ -225,6 +256,7 @@ select.input,
     }
   }
   .select2-selection--multiple {
+    width: 100%;
     height: auto !important;
   }
 }
@@ -232,9 +264,6 @@ select.input,
 .input-inner-wrap {
   display: -ms-grid;
   display: grid;
-  grid-template-areas:
-    "label label right"
-    "left main right";
   -ms-grid-columns: auto auto minmax(0, 1fr) auto auto;
   grid-template-columns: auto auto minmax(0, 1fr) auto auto;
 }
@@ -307,7 +336,9 @@ select.input,
   color: $color-danger;
   font-size: 12px;
   > * {
-    margin-top: 3px;
     margin-bottom: 0;
+  }
+  > *:not(:empty) {
+    margin-top: 4px;
   }
 }
