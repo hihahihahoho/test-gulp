@@ -61,34 +61,36 @@
   {{ base.ubox(data) }}
   <!-- end button.button -->
 {% endmacro %}
- 
+
 {% macro btnGroup(data) %}
   <!-- button.btnGroup -->
   {% set dataDefault = {
-    col: 'ubtn-group-col-md-3',
+    col: 'group-col-md-3 group-col-fill',
     gutterVertical: 8,
     gutterHorizontal: 8,
-    align: 'center'
+    align: 'center',
+    reverse: false
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
   {% set formClass %}
-    ubtn-group 
-    ubtn-group-{{ data.align }}
+    ubtn-group list-mb{{ data.gutterHorizontal }}
+    list-crop row row-{{ data.gutterVertical }}
+    {{ 'justify-content-' + data.align if data.align }}
     {{ data.col }}
     {{ data.extendClass if data.extendClass }}
+    {{ 'flex-row-reverse flex-' + data.reverse + '-row flex-wrap-reverse flex-' + data.reverse + '-wrap' if data.reverse }}
   {% endset %}
   <div class="{{ formClass }}" {{ data.extendAttr if data.extendAttr }}>
-    <div class="row row-{{ data.gutterVertical }} list-mb{{ data.gutterHorizontal }} list-crop">
-      {% for item in data.data %}
-        {% set class = '' %}
-        {% set class %}
-          {{ 'block-' + item.alignSelf if item.alignSelf }}
-        {% endset %}
-        <div class="{{ class }}">
-          {{ btn(item) }}
-        </div>
-      {% endfor %}
-    </div>
+    {% for item in data.data %}
+      {% set class = '' %}
+      {% set class %}
+        group-col-item
+        {{ 'block-' + item.alignSelf if item.alignSelf }}
+      {% endset %}
+      <div class="{{ class }}">
+        {{ btn(item) }}
+      </div>
+    {% endfor %}
   </div>
   <!-- end button.btnGroup -->
 {% endmacro %}

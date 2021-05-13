@@ -4,27 +4,29 @@
 
 {% macro pageModal(type) %}
   {% set dataModalContent %}
-  <div class="from-section form-vertical">
-    {{ form.input('Nội dung', textarea = 'true') }}
-  </div>
+    <div class="from-section form-vertical">
+      {{ form.input('Nội dung', textarea = 'true') }}
+    </div>
   {% endset %}
   {% set dataModal = {
     id: 'modalForm',
     title: 'Chưa chọn thông tin thụ hưởng',  
     content: dataModalContent,
-    button: [
-      { 
-        tagname: 'a',
-        title: 'Bỏ qua',
-        color: 'light-blue',
-        alignSelf: 'left' 
-      }, { 
-        tagname: 'a',
-        title: 'Tiếp tục',
-        color: 'primary',
-        modalDismiss: 'false' 
-      }
-    ]
+    button: {
+      data: [
+        { 
+          tagname: 'a',
+          title: 'Bỏ qua',
+          color: 'light-blue',
+          alignSelf: 'left' 
+        }, { 
+          tagname: 'a',
+          title: 'Tiếp tục',
+          color: 'primary',
+          modalDismiss: 'false' 
+        }
+      ]
+    }
   } %}
   {% if type == 'inline' %}
     {% set dataModal = dataModal | setAttribute('id', 'modalFormInline') %}
@@ -39,14 +41,16 @@
     alertType: 'success',
     title: 'Thành công',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    button: [
-      { 
-        tagname: 'a',
-        title: 'Đóng',
-        color: 'light-blue',
-        alignSelf: 'left' 
-      }
-    ]
+    button: {
+      data: [
+        { 
+          tagname: 'a',
+          title: 'Đóng',
+          color: 'lightblue',
+          alignSelf: 'left' 
+        }
+      ]
+    }
   }%}
 
   {% if type == 'inline' %}

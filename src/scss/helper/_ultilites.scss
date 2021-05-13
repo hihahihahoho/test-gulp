@@ -574,20 +574,6 @@ html {
   background-repeat: no-repeat;
 }
 
-.flex {
-  &-wrap {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  &-stretch {
-    display: flex;
-    flex-grow: 1;
-    overflow: auto;
-    flex-direction: column;
-  }
-}
-
 .flex-wrap > *:not(.flex-stretch) {
   flex: none;
 }

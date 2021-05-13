@@ -13,7 +13,6 @@
   {% set modalAnim = data.animation %}
   {% set modalPos = data.pos %}
   {% set modalCloseBtn = data.closeBtn %}
-  {% set modalButtonCol = data.buttonCol %}
 
   {% if not modalSize %}
     {% set modalSize = 'default' %}
@@ -21,7 +20,7 @@
 
   {% if modalAlertType %}
     {% set modalAlertType %}
-    <img src="media/graph/{{ data.alertType }}.svg" class="alert-modal-ic mb15" alt="">
+      <img src="media/graph/{{ data.alertType }}.svg" class="alert-modal-ic mb15" alt="">
     {% endset %}
   {% endif %}
 
@@ -47,23 +46,23 @@
 
   {% if modalCloseBtn == 'true' %}
     {% set modalHeader %}
-    <div class="row row-20 modal-title">
-      <div class="col">
-        <h5 class="">
-          <b>{{ data.title }}</b>
-        </h5>
+      <div class="row row-20 modal-title">
+        <div class="col">
+          <h5 class="">
+            <b>{{ data.title }}</b>
+          </h5>
+        </div>
+        <div class="col-auto text-right col-btn-close">
+          <a href="" data-dismiss="modal" class="link b close-modal-btn">Đóng</a>
+        </div>
       </div>
-      <div class="col-auto text-right col-btn-close">
-        <a href="" data-dismiss="modal" class="link b close-modal-btn">Đóng</a>
-      </div>
-    </div>
     {% endset %}
   {% else %}
     {% set modalHeader %}
-    {{ modalAlertType | safe }}
-    <h5 class="modal-title">
-      <b>{{ data.title }}</b>
-    </h5>
+      {{ modalAlertType | safe }}
+      <h5 class="modal-title">
+        <b>{{ data.title }}</b>
+      </h5>
     {% endset %}
   {% endif %}
 
@@ -80,32 +79,21 @@
           {{ data.content | safe }}
         </div>
         <div class="modal-footer justify-content-center">
-          {% if data.button %}
-            <div class="row row-15 justify-content-end">
-              {% if data.modalFooterContent %}
-                <div class="col-12">
-                  <div class="modal-footer-content">
-                    {{ data.modalFooterContent | safe }}
-                  </div>
-                </div>
-              {% endif %}
-              {% for item in data.button %}
-                {% set btnAlignSelf = '' %}
-                {% if item.alignSelf %}
-                  {% set btnAlignSelf = 'block-' + item.alignSelf %}
-                {% endif %}
-                <div class="{{ modalButtonCol }} {{ btnAlignSelf }}">
-                  {% if not item.modalDismiss %}
-                    {% if item.extendAttr %}
-                      {% set item = item|setAttribute('extendAttr', 'data-dismiss="modal" ' + item.extendAttr) %}
-                    {% else %}
-                      {% set item = item|setAttribute('extendAttr', 'data-dismiss="modal" ') %}
-                    {% endif %}
-                  {% endif %}
-                  {{ button.btn(item) }}
-                </div>
-              {% endfor %}
+          {% if data.modalFooterContent %}
+            <div class="modal-footer-content">
+              {{ data.modalFooterContent | safe }}
             </div>
+          {% endif %}
+          {% if data.button %}
+            {% set dataBtnDefault = {
+              col: 'group-col-md-3 group-col-fill',
+              gutterVertical: 8,
+              gutterHorizontal: 8,
+              align: 'center',
+              reverse: false
+            } %}
+            {% set dataBtn = data.button | mergeDeep(dataBtnDefault) %}
+            {{ button.btnGroup(dataBtn) }}
           {% endif %}
         </div>
       </div>
