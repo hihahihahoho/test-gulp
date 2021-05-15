@@ -1,18 +1,20 @@
 {% macro ubox(data) %}
   {% set dataDefault = {
-    id: undefinded,
+    id: false,
     tagname: 'div',
-    color: undefinded,
-    backgroundImage: undefinded,
+    color: false,
+    backgroundImage: false,
     size: 'default',
-    width: undefinded,
-    modal: undefinded,
-    href: undefinded,
+    width: false,
+    modal: false,
+    modalDismiss: false,
+    href: false,
     dropdown: false,
-    toast: undefinded,
-    extendAttr: undefinded,
-    extendClass: undefinded,
-    tooltip: undefinded,
+    rnc: false,
+    toast: false,
+    extendAttr: false,
+    extendClass: false,
+    tooltip: false,
     hover: false,
     active: false,
     content: content
@@ -20,33 +22,60 @@
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set class %}
-  {{ 'ubg-' + data.color if data.color }}
-  {{ 'ubox-size-' + data.size if data.size }}
-  {{ 'ubox-square' if data.shape == 'square' }}
-  {{ 'ubox-rounded' if data.shape == 'round' }}
-  {{ 'ubox-square ubox-rounded' if data.shape == 'circle' }}
-  {{ 'ugb-hover' if data.hover == true }}
-  {{ 'ugb-active' if data.active == true }}
-  {{ data.extendClass }} 
+    {{ 'ubg-' + data.color if data.color }}
+    {{ 'ubox-size-' + data.size if data.size }}
+    {{ 'ubox-square' if data.shape == 'square' }}
+    {{ 'ubox-rounded' if data.shape == 'round' }}
+    {{ 'ubox-square ubox-rounded' if data.shape == 'circle' }}
+    {{ 'ubg-hover' if data.hover == true }}
+    {{ 'ubg-active' if data.active == true }}
+    {{ data.extendClass if data.extendClass }}
   {% endset %}
 
   {% set attr %}
-  {{ 'id="' + data.id + '"' if data.id }}
-  {{ 'style="background-image: url(' + data.backgroundImage + ')"' if data.backgroundImage }}
-  {{ 'data-toggle="dropdown"' if data.dropdown }}
-  {{ 'data-toggle="modal" data-target="' + data.modal + '"' if data.modal }}
-  {{ 'data-toast="toast" toast-target="' + data.toast + '"' if data.toast }}
-  {{ 'data-tooltip="tooltip" title="' + data.tooltip + '"' if data.tooltip }}
-  {% if data.href or data.modal or data.toast %}
-    {% set data = data | setAttribute('tagname', 'a') %}
-  {% endif %}
-  {% if data.href %}
-    href="{{ data.href }}"
-  {% endif %}
-  {{ data.extendAttr }}
+    {{ 'id="' + data.id + '"' if data.id }}
+    {{ 'style="background-image: url(' + data.backgroundImage + ')"' if data.backgroundImage }}
+    {{ 'data-dismiss="modal"' if data.modalDismiss }}
+    {{ 'data-toggle="dropdown"' if data.dropdown }}
+    {{ 'data-toggle="modal" data-target="' + data.modal + '"' if data.modal }}
+    {{ 'data-toast="toast" toast-target="' + data.toast + '"' if data.toast }}
+    {{ 'data-tooltip="tooltip" title="' + data.tooltip + '"' if data.tooltip }}
+    {% if data.href or data.modal or data.modalDismiss or data.toast %}
+      {% set data = data | setAttribute('tagname', 'a') %}
+    {% endif %}
+    {% if data.href %}
+      href="{{ data.href }}"
+    {% endif %}
+    {% if data.rnc %}
+      {% set data = data | setAttribute('tagname', 'label') %}
+    {% endif %}
+    {{ 'for="' + data.rnc + '"' if data.rnc }}
+    {{ data.extendAttr if data.extendAttr }}
   {% endset %}
 
   <{{ data.tagname }} {{ attr }} class="{{ class }}">
     {{ data.content }}
   </{{ data.tagname }}>
+{% endmacro %}
+
+{% macro iconBox(data) %}
+  {% set dataDefault = {
+    shape: 'circle',
+    size: 'default',
+    color: 'primary'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set class %}
+    ubox ubox-ic
+    {{ data.extendClass }}
+  {% endset %}
+
+  {% set content %}
+    <img src="{{ data.icon }}" alt="" class='ic-default'>
+  {% endset %}
+  {% set data = data | setAttribute('extendClass', class) %}
+  {% set data = data | setAttribute('size', 'ic-' + data.size) %}
+  {% set data = data | setAttribute('content', content) %}
+  {{ ubox(data) }}
 {% endmacro %}

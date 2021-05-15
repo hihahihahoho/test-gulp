@@ -4,84 +4,99 @@
 {% import "macros/forms/_buttons.njk" as button %}
 {% import "macros/forms/_rnc.njk" as rnc %}
 {% import "macros/forms/_files-upload.njk" as file %}
+{% import "macros/_base.njk" as base %}
 
 {% macro modal(data) %}
-  {# Modal Varibles #}
-  {% set modalSize = data.size %}
-  {% set modalAlertType = data.alertType %}
-  {% set modalAlign = data.align %}
-  {% set modalAnim = data.animation %}
-  {% set modalPos = data.pos %}
-  {% set modalCloseBtn = data.closeBtn %}
+  <!-- modal.modal -->
+  {% set dataDefault = {
+    title: false,
+    id: false,
+    size: 'default',
+    alert: false,
+    align: false,
+    animation: 'fade',
+    pos: 'centered',
+    scrollable: true,
+    closeBtn: true,
+    extendClass: false,
+    headerContent: false
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
 
-  {% if not modalSize %}
-    {% set modalSize = 'default' %}
-  {% endif %}
+  {% set alert = {
+    'success': {
+      icon: 'media/graph/success-sm.svg',
+      color: 'success'
+    }, 
+    'error': {
+      icon: 'media/graph/success-sm.svg',
+      color: 'danger'
+    } 
+  } %}
 
-  {% if modalAlertType %}
-    {% set modalAlertType %}
-      <img src="media/graph/{{ data.alertType }}.svg" class="alert-modal-ic mb15" alt="">
+  {% set modalOuterClass %}
+    modal
+    {{ data.animation if data.animation }}
+    {{ 'text-' + data.align if data.align }}
+    {{ 'modal-alert modal-alert-' + data.alert if data.alert }}
+    {{ data.extendClass if data.extendClass }}
+  {% endset %}
+
+  {% set modalInnerClass %}
+    modal-dialog modal-dialog-{{ data.pos }}
+    modal-size-{{ data.size }}
+    {{ 'modal-dialog-scrollable' if data.scrollable }}
+  {% endset %}
+
+  {% set modalTitle %}
+    <h5 class="modal-title">
+      <b>{{ data.title }}</b>
+    </h5>
+  {% endset %}
+
+  {% set closeBtn %}
+    {{ button.btn({ shape: 'circle', color: 'transparent', extendClass: 'modal-close-btn' }) }}
+  {% endset %}
+
+  {% if data.alert %}
+    {% set modalHeader %}
+      <div class="modal-title-wrap list-mb16 list-crop">
+        {{ closeBtn }}
+        {{ base.iconBox({ icon: alert[data.alert].icon, color: alert[data.alert].color, extendClass: 'block-center' }) }}
+        {{ modalTitle }}
+      </div>
     {% endset %}
   {% endif %}
 
-  {% if not modalAlign %}
-    {% set modalAlign = 'left' %}
-  {% endif %}
-
-  {% if not modalCloseBtn %}
-    {% set modalCloseBtn = 'true' %}
-  {% endif %}
-
-  {% if not modalAnim %}
-    {% set modalAnim = 'fade' %}
-  {% endif %}
-
-  {% if not modalPos %}
-    {% set modalPos = 'centered' %}
-  {% endif %}
-
-  {% if not modalButtonCol %}
-    {% set modalButtonCol = 'col-auto' %}
-  {% endif %}
-
-  {% if modalCloseBtn == 'true' %}
+  {% if not data.alert %}
     {% set modalHeader %}
-      <div class="row row-20 modal-title">
+      <div class="row row-16 modal-title-wrap">
         <div class="col">
-          <h5 class="">
-            <b>{{ data.title }}</b>
-          </h5>
+          {{ modalTitle }}
         </div>
         <div class="col-auto text-right col-btn-close">
-          <a href="" data-dismiss="modal" class="link b close-modal-btn">Đóng</a>
+          {{ closeBtn }}
         </div>
       </div>
     {% endset %}
-  {% else %}
-    {% set modalHeader %}
-      {{ modalAlertType | safe }}
-      <h5 class="modal-title">
-        <b>{{ data.title }}</b>
-      </h5>
-    {% endset %}
   {% endif %}
 
-  <div class="modal {{ modalAnim }}" id="{{ data.id }}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" {{ data.extendAttr}}>
-    <div class="modal-dialog modal-dialog-{{ modalPos }} modal-size-{{ modalSize }} modal-dialog-scrollable {{ data.extendClass }}" role="document">
-      <div class="modal-content text-{{ modalAlign }}">
+  <div class="{{ modalOuterClass }}" id="{{ data.id }}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="{{ modalInnerClass }}" role="document">
+      <div class="modal-content">
         <div class="modal-header">
           <div class="modal-wrap">
-            {{ modalHeader | safe }}
-            {{ data.modalHeaderContent | safe }}
+            {{ modalHeader }}
+            {{ data.headerContent if data.headerContent }}
           </div>
         </div>
         <div class="modal-body">
-          {{ data.content | safe }}
+          {{ data.content }}
         </div>
         <div class="modal-footer justify-content-center">
-          {% if data.modalFooterContent %}
+          {% if data.footerContent %}
             <div class="modal-footer-content">
-              {{ data.modalFooterContent | safe }}
+              {{ data.footerContent }}
             </div>
           {% endif %}
           {% if data.button %}
@@ -90,7 +105,8 @@
               gutterVertical: 8,
               gutterHorizontal: 8,
               align: 'center',
-              reverse: false
+              reverse: false,
+              modalDismiss: true
             } %}
             {% set dataBtn = data.button | mergeDeep(dataBtnDefault) %}
             {{ button.btnGroup(dataBtn) }}
@@ -99,19 +115,20 @@
       </div>
     </div>
   </div>
+  <!-- end modal.modal -->
 {% endmacro %}
 
 {% macro modalAlert(data) %}
-  {% set data = data | setAttribute('align', 'center') %}
-  {% set data = data | setAttribute('closeBtn', 'false') %}
-  {% set data = data | setAttribute('buttonCol', 'col') %}
-  {% set data = data | setAttribute('size', 'alert-default') %}
-  {% if data.extendClass %}
-    {% set data = data | setAttribute('extendClass', 'modal-alert ' + data.extendClass) %}
-  {% else %}
-    {% set data = data | setAttribute('extendClass', 'modal-alert ') %}
-  {% endif %}
+  <!-- modal.modalAlert -->
+  {% set dataDefault = {
+    size: 'alert-default',
+    alert: false,
+    align: 'center',
+    pos: 'centered'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
   {{ modal(data) }}
+  <!-- end modal.modalAlert -->
 {% endmacro %}
 
 {% macro toast(value, type = 'success', id = '') %}

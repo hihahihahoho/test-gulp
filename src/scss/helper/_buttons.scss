@@ -161,7 +161,7 @@ button[disabled] {
   }
   &-col {
     @each $key, $value in $breakpoints {
-      @for $var from 1 to 6 {
+      @for $var from 1 to 8 {
         $name: "-" + $var;
         @if $key != "xs" {
           $name: "-" + $key + "-" + $var;
@@ -174,7 +174,7 @@ button[disabled] {
             @include media(">=#{$key}") {
               flex-grow: 0;
               width: 100 / $var * 1%;
-              min-width: 0;
+              min-width: 0 !important;
             }
             min-width: 50%;
             flex-grow: 1;

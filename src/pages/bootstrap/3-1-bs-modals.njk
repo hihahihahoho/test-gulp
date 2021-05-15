@@ -18,12 +18,12 @@
           tagname: 'a',
           title: 'Bỏ qua',
           color: 'light-blue',
-          alignSelf: 'left' 
+          alignSelf: 'left'
         }, { 
           tagname: 'a',
           title: 'Tiếp tục',
           color: 'primary',
-          modalDismiss: 'false' 
+          modalDismiss: false 
         }
       ]
     }
@@ -38,7 +38,7 @@
 {% macro pageModalAlert(type) %}
   {% set dataModal = {
     id: 'modalAlert',
-    alertType: 'success',
+    alert: 'success',
     title: 'Thành công',
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     button: {

@@ -69,7 +69,8 @@
     gutterVertical: 8,
     gutterHorizontal: 8,
     align: 'center',
-    reverse: false
+    reverse: false,
+    modalDismiss: false
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
   {% set formClass %}
@@ -88,6 +89,10 @@
         {{ 'block-' + item.alignSelf if item.alignSelf }}
       {% endset %}
       <div class="{{ class }}">
+        {% if item.modalDismiss == false %}
+        {% else %}
+          {% set item = item | setAttribute('modalDismiss', data.modalDismiss) %}
+        {% endif %}
         {{ btn(item) }}
       </div>
     {% endfor %}
