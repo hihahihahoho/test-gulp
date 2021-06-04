@@ -37,8 +37,11 @@ Features:
     ✔ Simplify button @done(21-04-27 17:12)
   Tooltip:
     ☐ Option full tooltip
-  ☐ Sửa table njk
-  ☐ Chart
-  ☐ Layout login
-  ☐ THêm tính năng dropdown không append ra ngoài
+    ☐ Sửa table njk
+    ☐ Chart
+    ☐ Layout login
+    ☐ THêm tính năng dropdown không append ra ngoài
+    ☐ Chỉnh lại tooltip độ rộng
+  Modal:
+    ☐ Thêm tắt modal bằng phím
 

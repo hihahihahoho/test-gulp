@@ -1,5 +1,4 @@
-
-if (iOS) {
+if (iOS()) {
   document.addEventListener('scroll', function () {
     if (iosInnerHeight() == window.innerHeight) {
       document.querySelector('body').classList.add('ios-nav-hide');

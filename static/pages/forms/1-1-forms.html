@@ -375,7 +375,7 @@
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
-                            <button class="ubg-primary ubox-size-button-xs ugb-hover ugb-active ubtn">
+                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
                               <div class="ubtn-inner">
                                 <span class="ubtn-text">button</span>
                               </div>
@@ -494,7 +494,7 @@
                 <div class="row row-20 justify-content-center mt16">
                   <div class="col-sm-4">
                     <!-- button.button -->
-                    <button class="ubg-primary ubox-size-button-default ugb-hover ugb-active ubtn">
+                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
                       <div class="ubtn-inner">
                         <span class="ubtn-text">Validate</span>
                       </div>
@@ -547,7 +547,7 @@
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
-                            <button class="ubg-primary ubox-size-button-xs ugb-hover ugb-active ubtn">
+                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
                               <div class="ubtn-inner">
                                 <span class="ubtn-text">button</span>
                               </div>
@@ -662,7 +662,7 @@
                 <div class="row row-20 justify-content-center mt16">
                   <div class="col-sm-4">
                     <!-- button.button -->
-                    <button class="ubg-primary ubox-size-button-default ugb-hover ugb-active ubtn">
+                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
                       <div class="ubtn-inner">
                         <span class="ubtn-text">Validate</span>
                       </div>
@@ -729,19 +729,25 @@
     </div>
   </div>
 </body>
+<!-- modal.modal -->
 <div class="modal fade" id="modalForm" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-size-default modal-dialog-scrollable" role="document">
-    <div class="modal-content text-left">
+    <div class="modal-content">
       <div class="modal-header">
         <div class="modal-wrap">
-          <div class="row row-20 modal-title">
+          <div class="row row-16 modal-title-wrap">
             <div class="col">
-              <h5 class="">
+              <h5 class="modal-title">
                 <b>Chưa chọn thông tin thụ hưởng</b>
               </h5>
             </div>
             <div class="col-auto text-right col-btn-close">
-              <a href="" data-dismiss="modal" class="link b close-modal-btn">Đóng</a>
+              <!-- button.button -->
+              <button class="ubg-transparent ubox-size-button-default ubox-square ubox-rounded ubg-hover ubg-active ubtn modal-close-btn">
+                <div class="ubtn-inner">
+                </div>
+              </button>
+              <!-- end button.button -->
             </div>
           </div>
         </div>
@@ -749,30 +755,15 @@
       <div class="modal-body">
       </div>
       <div class="modal-footer justify-content-center">
-        <div class="row row-15 justify-content-end">
-          <div class="col-auto block-left">
-            <!-- button.button -->
-            <a data-dismiss="modal" class="ubg-light-blue ubox-size-button-default ugb-hover ugb-active ubtn">
-              <div class="ubtn-inner">
-                <span class="ubtn-text">Bỏ qua</span>
-              </div>
-            </a>
-            <!-- end button.button -->
-          </div>
-          <div class="col-auto">
-            <!-- button.button -->
-            <a class="ubg-primary ubox-size-button-default ugb-hover ugb-active ubtn">
-              <div class="ubtn-inner">
-                <span class="ubtn-text">Tiếp tục</span>
-              </div>
-            </a>
-            <!-- end button.button -->
-          </div>
+        <!-- button.btnGroup -->
+        <div class="ubtn-group list-mb8 list-crop row row-8 justify-content-center group-col-md-3 group-col-fill flex-row-reverse flex-function () { for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) { args[_key2] = arguments[_key2]; } return obj[val].apply(obj, args); }-row flex-wrap-reverse flex-function () { for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) { args[_key2] = arguments[_key2]; } return obj[val].apply(obj, args); }-wrap">
         </div>
+        <!-- end button.btnGroup -->
       </div>
     </div>
   </div>
 </div>
+<!-- end modal.modal -->
 <!-- ie11polyfills -->
 <script src="js/vendors/ie11polyfills/ie11polyfills.bundles.js"></script>
 <!-- ie11polyfills -->
