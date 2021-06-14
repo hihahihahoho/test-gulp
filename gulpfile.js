@@ -1160,7 +1160,7 @@ function rev (cb) {
     .pipe(dest('./.temp/' + staticFolderName));
 }
 
-function pushFtp () {
+function pushFtp (cb) {
   var conn = ftp.create({
     host: process.env.FTP_HOST,
     user: process.env.FTP_USER,
@@ -1171,8 +1171,11 @@ function pushFtp () {
   console.log(`src: ./.temp/${staticFolderName}`)
   console.log(`dest: ${process.env.FTP_PATH}/${staticFolderName}`)
 
-  return gulp.src('./.temp/' + staticFolderName + '/**/*')
-    .pipe(conn.dest(process.env.FTP_PATH + `/${staticFolderName}`));
+  conn.rmdir(process.env.FTP_PATH + `/${staticFolderName}`, function () {
+    gulp.src('./.temp/' + staticFolderName + '/**/*')
+      .pipe(conn.dest(process.env.FTP_PATH + `/${staticFolderName}`));
+  });
+  cb()
 }
 
 // end production task
