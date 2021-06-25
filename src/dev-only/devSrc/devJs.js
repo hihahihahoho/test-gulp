@@ -59,14 +59,19 @@ window.addEventListener("load", event => {
   var isLoaded = image.complete && image.naturalHeight !== 0;
   var imgs = document.querySelectorAll('.ic-wrap img')
   imgs.forEach(function (img) {
-    if (colorThief.getColor(img)) {
-      var color = rgbToHex(colorThief.getColor(img)[0], colorThief.getColor(img)[1], colorThief.getColor(img)[2])
-      if (!calculateRatio(color, '#ffffff')) {
-        img.closest('.ic-wrap').style.backgroundColor = '#121f3E'
+    try {
+      if (colorThief.getColor(img)) {
+        var color = rgbToHex(colorThief.getColor(img)[0], colorThief.getColor(img)[1], colorThief.getColor(img)[2])
+        if (!calculateRatio(color, '#ffffff')) {
+          img.closest('.ic-wrap').style.backgroundColor = '#121f3E'
+        }
+        else {
+          img.closest('.ic-wrap').style.backgroundColor = ''
+        }
       }
-      else {
-        img.closest('.ic-wrap').style.backgroundColor = ''
-      }
+
+    } catch (e) {
+      console.log(e)
     }
   })
 
