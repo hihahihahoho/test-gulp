@@ -218,6 +218,7 @@ function settings () {
 }
 
 var postCssPlugins = [
+  cssvariables(),
   posCssRgb()
 ];
 

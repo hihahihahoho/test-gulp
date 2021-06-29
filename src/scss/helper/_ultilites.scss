@@ -854,3 +854,59 @@ html {
   }
 }
 //end arrow-anim
+
+.group {
+  &-col-fill {
+    .group-col-item {
+      flex-grow: 1;
+    }
+  }
+  &-center {
+    > .row {
+      justify-content: center;
+    }
+  }
+  &-col {
+    @each $key, $value in $breakpoints {
+      @for $var from 1 to 8 {
+        $name: "-" + $var;
+        @if $key != "xs" {
+          $name: "-" + $key + "-" + $var;
+        }
+        &#{$name} {
+          @include media("<#{$key}") {
+            // flex-wrap: wrap-reverse;
+          }
+          > .group-col-item {
+            @include media(">=#{$key}") {
+              flex-grow: 0;
+              width: 100 / $var * 1%;
+              min-width: 0 !important;
+            }
+            min-width: 50%;
+          }
+        }
+      }
+    }
+    @each $key, $value in $breakpoints {
+      &-#{$key} {
+        &-auto {
+          > .group-col-item {
+            @include media(">=#{$key}") {
+              width: auto !important;
+              flex-grow: 0 !important;
+              min-width: 0;
+            }
+            min-width: 50%;
+            flex-grow: 1;
+          }
+        }
+      }
+    }
+    &-fill {
+      > .group-col-item {
+        flex-grow: 1 !important;
+      }
+    }
+  }
+}

@@ -56,7 +56,9 @@
   {% endset %}
 
   {% set data = data | setAttribute('size', 'button-' + data.size) %}
-  {% set data = data | setAttribute('content', content) %}
+  {% if not data.content %}
+    {% set data = data | setAttribute('content', content) %}
+  {% endif %}
   {% set data = data | setAttribute('extendClass', class) %}
   {{ base.ubox(data) }}
   <!-- end button.button -->
@@ -65,7 +67,7 @@
 {% macro btnGroup(data) %}
   <!-- button.btnGroup -->
   {% set dataDefault = {
-    col: 'group-col-md-3 group-col-fill',
+    col: 'group-col-md-3',
     gutterVertical: 8,
     gutterHorizontal: 8,
     align: 'center',
@@ -98,4 +100,14 @@
     {% endfor %}
   </div>
   <!-- end button.btnGroup -->
+{% endmacro %}
+
+{% macro btnEye() %}
+  <!-- button.btnEye -->
+  {% set buttonContent %}
+    <input type="checkbox" class="hidden">
+    <div class="eye-slash"></div>
+  {% endset %}
+  {{ btn({ shape: 'square', color: 'transparent', size: 'xs', content: buttonContent, tagname: 'label', extendClass: 'input-eye' }) }}
+  <!-- end button.btnEye -->
 {% endmacro %}

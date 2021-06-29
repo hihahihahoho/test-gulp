@@ -11,7 +11,7 @@ Features:
   ✔ Sửa mở modal body overflow @done(21-02-04 10:59)
   ✔ Bỏ value trong select 2 @done(21-02-04 11:05)
   Tooltip:
-    ☐ Hide Tooltip on modal open
+    ✔ Hide Tooltip on modal open @done(21-06-29 16:43)
   Gulp:
     ☐ Lỗi ảnh lowercase build theme
     ☐ THêm inherit ở icons color
