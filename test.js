@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const { join } = require("lodash");
 const { argv } = require("yargs");
 
@@ -56,16 +58,8 @@ var voters = [
 
 // Include how many of the potential voters were in the ages 18-25, how many from 26-35, how many from 36-55, and how many of each of those age ranges actually voted. The resulting object containing this data should have 6 properties. See the example output at the bottom.
 
-var voterData = {
-  numYoungVotes: 0,
-  numYoungPeople: 0,
-  numMidVotesPeople: 0,
-  numMidsPeople: 0,
-  numOldVotesPeople: 0,
-  numOldsPeople: 0
-}
-
 var checkVoter = (t, condition) => {
+  t = t || 0
   return t = condition ? t + 1 : t
 }
 
@@ -77,6 +71,18 @@ voterResults = (t) => t.reduce((x, y) => {
   x.numOldVotesPeople = checkVoter(x.numOldVotesPeople, y.voted && y.age <= 55 && y.age >= 36)
   x.numOldsPeople = checkVoter(x.numOldsPeople, y.age <= 55 && y.age > 36)
   return x
-}, voterData)
+}, {})
 
-console.log(voterResults(voters)); // Returned value shown below:
+// console.log(voterResults(voters)); // Returned value shown below:
+
+var output = fs.readFileSync('test.txt', 'utf-8').trim().split('\n').map(line => line.trim().split('  ')).reduce((customers, y) => {
+  customers[y[0]] = customers[y[0]] || [];
+  customers[y[0]].push({
+    name: y[1],
+    price: y[2],
+    quantity: y[3]
+  });
+  return customers
+}, {})
+
+console.log('output', JSON.stringify(output, null, 2))
