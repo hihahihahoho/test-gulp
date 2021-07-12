@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const { join } = require("lodash");
+const { _ } = require("lodash");
 const { argv } = require("yargs");
 
 // reduce practice
@@ -85,4 +85,34 @@ var output = fs.readFileSync('test.txt', 'utf-8').trim().split('\n').map(line =>
   return customers
 }, {})
 
-console.log('output', JSON.stringify(output, null, 2))
+// console.log('output', JSON.stringify(output, null, 2))
+
+const obj1 = {
+  name: 'tung',
+  lastName: 'Nguyen',
+  address: {
+    city: 'Hanoi',
+    province: {
+      name: 'HBT',
+      location: 'South Hanoi',
+      size: {
+        height: 150
+      }
+    }
+  }
+}
+
+const obj2 = {
+  name: 'Oc',
+  address: {
+    city: 'Hai Phong',
+    province: {
+      color: 'blue',
+      size: {
+        width: 150
+      }
+    }
+  }
+}
+
+console.log(_.defaultsDeep(obj2, obj1).sort())
