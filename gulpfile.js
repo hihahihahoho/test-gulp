@@ -117,6 +117,8 @@ var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 var commitMessage = '';
 
+var ie11 = false;
+
 Array.prototype.diff = function (a) {
   return this.filter(function (i) { return a.indexOf(i) < 0; });
 };
@@ -133,8 +135,8 @@ function cssDiffer (cb) {
   const diff = cssDiff(cssA, cssB)
   fs.writeFile('./dist/themetest/theme.css', diff, () => { });
   gulp.src('./dist/themetest/theme.css')
-    .pipe(cleanCSS({level: 2}))
-    .pipe(postcss([posCssParent({selector: '.theme-vip'})]))
+    .pipe(cleanCSS({ level: 2 }))
+    .pipe(postcss([posCssParent({ selector: '.theme-vip' })]))
     .pipe(gulp.dest('./dist//themetest/'));
   cb()
 }
@@ -218,9 +220,10 @@ function settings () {
 }
 
 var postCssPlugins = [
-  cssvariables(),
   posCssRgb()
 ];
+
+ie11 && postCssPlugins.push(cssvariables())
 
 function postCss () {
   return gulp.src(desFolder + '/css/custom.bundles.css')
@@ -283,8 +286,8 @@ var themeColorMapText = '';
 var themeColorMapArr = {};
 var themeColorVarText = '';
 var themeColorVarTextArr = {};
+var themeColorVarTextArrVar = {};
 var themeTextVarText = '';
-var themeTextVarTextArr = {};
 
 var themeColorVarTextArr2 = {};
 var themeColorVarText2 = '';
@@ -295,7 +298,7 @@ function themeMapFunction (mapName, propName, propKey, themeName) {
     if (!/#|\./.test(mapName[propName])) {
       return themeColorMapArr[propName] += '\t' + propKey + ': ' + themeName + '-' + mapName[propName] + ',\n';
     } else {
-      return themeColorMapArr[propName] += '\t' + propKey + ': ' + mapName[propName] + ',\n';
+      return themeColorMapArr[propName] += '\t' + propKey + ': ' + (ie11 ? mapName[propName] : `var(--${propName == 'color' ? '' : 'color-'}${propName}-${propKey})`) + ',\n';
     }
   }
 }
@@ -304,8 +307,10 @@ function themeVarFunction (mapName, propName, propKey, themeName) {
   if (mapName[propName]) {
     var propNameTxt = propName + '-';
     !themeColorVarTextArr[propName] ? themeColorVarTextArr[propName] = '' : ''
+    !themeColorVarTextArrVar[propName] ? themeColorVarTextArrVar[propName] = '' : ''
     propName == 'color' ? propNameTxt = '' : ''
-    return themeColorVarTextArr[propName] += themeName + '-' + propNameTxt + propKey + ': ' + mapName[propName] + ';\n';
+    themeColorVarTextArr[propName] += themeName + '-' + propNameTxt + propKey + ': ' + mapName[propName] + ';\n';
+    return themeColorVarTextArrVar[propName] += themeName + '-' + propNameTxt + propKey + ': ' + (ie11 ? mapName[propName] : `var(--${propName == 'color' ? '' : 'color-'}${propName}-${propKey})`) + ';\n';
   }
 }
 
@@ -351,13 +356,22 @@ function theme () {
   //theme text
   themeTextMapText = '';
   themeTextVarText = '';
+  themeTextVarTextVar = '';
   themeText = require(gulpThemeSrc + 'gulp_themes_config.js').themeText;
-  var themeTextMapText = '\n$map-h-font: ' + JSON.stringify(themeText, null, "\t").replace(/{/g, '(').replace(/}/g, ')') + ';\n';
   for (var property in themeText) {
+    themeTextVarTextVar += '$fz-' + property + ': ' + (ie11 ? themeText[property]["font-size"] : `var(--fz-${property})`) + ';\n' + '$fz-' + property + '-line-height: ' + (ie11 ? themeText[property]["line-height"] : `var(--fz-${property}-line-height)`) + ';\n';
     themeTextVarText += '$fz-' + property + ': ' + themeText[property]["font-size"] + ';\n' + '$fz-' + property + '-line-height: ' + themeText[property]["line-height"] + ';\n';
   }
+  if (!ie11) {
+    for (const key in themeText) {
+      themeText[key]['font-size'] = `var(--fz-${key})`
+      themeText[key]['line-height'] = `var(--fz-${key}-line-height)`
+    }
+  }
+  var themeTextMapTextJsonString = JSON.stringify(themeText, null, "\t").replace(/{/g, '(').replace(/}/g, ')');
+  var themeTextMapText = '\n$map-h-font: ' + themeTextMapTextJsonString + ';\n';
 
-  var themeTextMapAllText = '//gtc-text-scss' + themeGlobVarText + themeTextMapText + themeTextVarText + '\n//end-gtc-text-scss';
+  var themeTextMapAllText = '//gtc-text-scss' + themeGlobVarText + themeTextMapText + themeTextVarTextVar + '\n//end-gtc-text-scss';
 
   var themeTextNjk = '{# gtc-text-njk #}\n{% set textName = [\n' + JSON.stringify(themeText, null, "\t") + '\n] %}\n{# end-gtc-text-njk #}';
 
@@ -367,7 +381,9 @@ function theme () {
   themeColorMapArr = {};
 
   themeColorVarText = '';
+  themeColorVarTextVar = '';
   themeColorVarTextArr = {};
+  themeColorVarTextArrVar = {};
 
   themeColor = require(gulpThemeSrc + 'gulp_themes_config.js').themeColor;
 
@@ -397,15 +413,19 @@ function theme () {
   for (var property in themeColorVarTextArr) {
     // themeColorVarText2 += '\n' + themeColorVarTextArr2[property] + '\n'
     themeColorVarText += '\n' + themeColorVarTextArr[property] + '\n'
+    themeColorVarTextVar += '\n' + themeColorVarTextArrVar[property] + '\n'
+
   }
   // end theme color
-
-  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + themeTextVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
-
   // themeColorVarText = themeColorVarText2;
 
-  themeColorTextAll = '//gtc-color-scss\n' + themeColorVarText + themeColorMapText + '\n//end-gtc-color-scss'
+  if (ie11) {
+    themeColorVarTextVar = themeColorVarText;
+  }
 
+  themeColorTextAll = '//gtc-color-scss\n' + themeColorVarTextVar + themeColorMapText + '\n//end-gtc-color-scss'
+
+  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + themeTextVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
 
   gulp.src([customCssSrcName + '/custom/css/0-gen-varibles.css'], { base: customCssSrcName + '/' })
     .pipe(replace(/(\/\*gtc-css\*\/)([\S\s]*?)(\/\*end-gtc-css\*\/)/, themeColorTextAllCss))
@@ -1155,7 +1175,7 @@ function rev (cb) {
   var globs = [
     staticFolder + '/**/*'
   ];
-   del('./.temp/' + staticFolderName);
+  del('./.temp/' + staticFolderName);
   return gulp.src(globs)
     .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"], dontUpdateReference: [/^\/favicon.ico$/g, ".html"] }))
     .pipe(dest('./.temp/' + staticFolderName));
