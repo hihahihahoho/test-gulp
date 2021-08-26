@@ -117,7 +117,7 @@ var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 var commitMessage = '';
 
-var ie11 = false;
+var ie11 = true;
 
 Array.prototype.diff = function (a) {
   return this.filter(function (i) { return a.indexOf(i) < 0; });
@@ -248,7 +248,8 @@ function genVarFilesFunc (srcPath, content) {
   };
 }
 
-function genStatic () {
+async function genStatic () {
+  await del(staticFolder + '/**/*');
   return gulp.src([desFolder + '/**/*', '!' + desFolder + '/dev-only{,/**}', '!' + desFolder + '/pages/theme/!(' + argv.src + ')/**'])
     .pipe(gulp.dest(staticFolder + '/'));
 }

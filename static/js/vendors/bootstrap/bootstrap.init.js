@@ -1,5 +1,9 @@
 //====================BOOTSTRAP INIT=================//
 
+// fix modal
+$.fn.modal.Constructor.prototype._enforceFocus = function() {};
+// end fix modal
+
 var scrollTargetModal = '.modal.show .modal-body';
 
 $(document).on('show.bs.modal', '.modal', function (event) {
@@ -20,11 +24,12 @@ $(document).ready(function () {
     $(id).toast('show')
   })
   $('.toast').toast({
-    delay: 300000
+    delay: 3000
   })
   $('.modal').on('shown.bs.modal', function (e) {
     if ($(window).width() < 769) {
-      BNS.on()
+      BNS.on();
+      $('[data-tooltip]').tooltip('hide');
     }
   });
   $('.modal').on('hide.bs.modal', function (e) {
