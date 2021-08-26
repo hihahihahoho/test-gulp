@@ -18,7 +18,7 @@ function hammerSelect2 (el) {
   })
   hammerSelect2.on('pan', (ev) => {
     if (panStartDown) {
-      if (select2Scroll.scrollTop < -5) {
+      if (select2Scroll.scrollTop < 0) {
         select2Scroll.style.overflow = 'hidden';
       } else {
         select2Scroll.style.overflow = '';
