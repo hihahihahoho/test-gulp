@@ -32,6 +32,7 @@ function hammerSelect2 (el) {
           el.select2('close')
         }
       } else {
+        select2Scroll.style.overflow = 'hidden';
         select2Con.style.transform = ``;
         select2Con.style.transition = ``
       }
