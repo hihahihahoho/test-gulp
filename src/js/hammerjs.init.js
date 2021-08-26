@@ -18,8 +18,8 @@ function hammerSelect2 (el) {
   })
   hammerSelect2.on('pan', (ev) => {
     if (panStartDown) {
-      select2Scroll.style.overflow = 'hidden';
       if (select2Scroll.scrollTop <= 0) {
+        select2Scroll.style.overflow = 'hidden';
         if (ev.deltaY > 0) {
           select2Con.style.transform = `translate3d(0, ${ev.distance}px, 0px)`;
           select2Con.style.transition = `none`
