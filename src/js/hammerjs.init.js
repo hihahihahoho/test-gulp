@@ -18,8 +18,12 @@ function hammerSelect2 (el) {
   })
   hammerSelect2.on('pan', (ev) => {
     if (panStartDown) {
-      if (select2Scroll.scrollTop <= 0) {
+      if (select2Scroll.scrollTop < -5) {
         select2Scroll.style.overflow = 'hidden';
+      } else {
+        select2Scroll.style.overflow = '';
+      }
+      if (select2Scroll.scrollTop <= 0) {
         if (ev.deltaY > 0) {
           select2Con.style.transform = `translate3d(0, ${ev.distance}px, 0px)`;
           select2Con.style.transition = `none`
@@ -32,12 +36,10 @@ function hammerSelect2 (el) {
           el.select2('close')
         }
       } else {
-        select2Scroll.style.overflow = '';
         select2Con.style.transform = ``;
         select2Con.style.transition = ``
       }
     } else {
-      select2Scroll.style.overflow = '';
       select2Con.style.transform = ``;
       select2Con.style.transition = ``
     }
