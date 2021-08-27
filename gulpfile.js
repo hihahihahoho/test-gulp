@@ -249,6 +249,7 @@ function genVarFilesFunc (srcPath, content) {
 }
 
 function genStatic () {
+  del.sync(staticFolder + '/**/*', { force: true });
   return gulp.src([desFolder + '/**/*', '!' + desFolder + '/dev-only{,/**}', '!' + desFolder + '/pages/theme/!(' + argv.src + ')/**'])
     .pipe(gulp.dest(staticFolder + '/'));
 }
