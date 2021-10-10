@@ -135,3 +135,8 @@ function getLightpickOption (el) {
   });
   lp.push(lpicker)
 });
+
+
+lp[0].on('selected', () => {
+  console.log('a')
+})
