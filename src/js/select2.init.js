@@ -47,11 +47,15 @@ $(document).ready(function () {
     if ($(window).width() >= 789) {
       if (navigator.userAgent.indexOf('MSIE') !== -1
         || navigator.appVersion.indexOf('Trident/') > -1) {
-        $('.select2-search input').prop('focus', false);
+        window.setTimeout(function () {
+          document.querySelector('.select2-search input').blur()
+        }, 0);
       }
     }
     if ($(window).width() < 789) {
-      $('.select2-search input').prop('focus', false);
+      window.setTimeout(function () {
+        document.querySelector('.select2-search input').blur()
+      }, 0);
     }
     if ($(window).width() <= 767) {
       clearTimeout(select2Timeout);

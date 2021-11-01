@@ -133,8 +133,8 @@ function cssDiffer (cb) {
   const diff = cssDiff(cssA, cssB)
   fs.writeFile('./dist/themetest/theme.css', diff, () => { });
   gulp.src('./dist/themetest/theme.css')
-    .pipe(cleanCSS({level: 2}))
-    .pipe(postcss([posCssParent({selector: '.theme-vip'})]))
+    .pipe(cleanCSS({ level: 2 }))
+    .pipe(postcss([posCssParent({ selector: '.theme-vip' })]))
     .pipe(gulp.dest('./dist//themetest/'));
   cb()
 }
@@ -308,26 +308,6 @@ function themeVarFunction (mapName, propName, propKey, themeName) {
     return themeColorVarTextArr[propName] += themeName + '-' + propNameTxt + propKey + ': ' + mapName[propName] + ';\n';
   }
 }
-
-// function themeMapFunction (mapName, propName, propKey, themeName) {
-//   if (mapName[propName]) {
-//     var propertyTxt
-//     propName == 'color' ? propertyTxt = 'color-' :  propertyTxt = 'color-' + propName + '-'
-//     !themeColorMapArr[propName] ? themeColorMapArr[propName] = '' : ''
-//     return themeColorMapArr[propName] += '\t' + propKey + ': var(--' + propertyTxt + propKey + '),\n';
-//   }
-// }
-
-// function themeVarFunction (mapName, propName, propKey, themeName) {
-//   if (mapName[propName]) {
-//     var propNameTxt = propName + '-';
-//     !themeColorVarTextArr[propName] ? themeColorVarTextArr[propName] = '' : ''
-//     propName == 'color' ? propNameTxt = '' : ''
-//     !themeColorVarTextArr2[propName] ? themeColorVarTextArr2[propName] = '' : ''
-//     themeColorVarTextArr2[propName] += themeName + '-' + propNameTxt + propKey + ': var(--' + themeName.replace('$', '') + '-' + propNameTxt + propKey + ');\n';
-//     return themeColorVarTextArr[propName] += themeName + '-' + propNameTxt + propKey + ': ' + mapName[propName] + ';\n';
-//   }
-// }
 
 function theme () {
   delete require.cache[require.resolve(gulpThemeSrc + 'gulp_themes_config.js')];
@@ -669,28 +649,33 @@ function media (cb) {
   cb();
 }
 function imageMinifyTemp (src, des) {
-  gulp.src(src)
-    .pipe(cache(image({
-      pngquant: ['--quality=70-80', '--speed=1'],
-      optipng: false,
-      zopflipng: true,
-      jpegRecompress: false,
-      mozjpeg: ['-quality', 90],
-      gifsicle: true,
-      svgo: false,
-      concurrent: 10,
-      quiet: true // defaults to false
-    })))
-    .pipe(cache(rename(function (path) {
-      path.basename = path.basename.toLowerCase();
-    })))
-    .pipe(replace('vector-effect="non-scaling-stroke"', ''))
-    .pipe(replace('stroke-width="1.5"', 'stroke-width="1.5" vector-effect="non-scaling-stroke"'))
-    .pipe(gulp.dest(des))
+  return new Promise((resolve) => {
+    gulp.src(src)
+      .pipe(cache(image({
+        pngquant: ['--quality=70-80', '--speed=1'],
+        optipng: false,
+        zopflipng: true,
+        jpegRecompress: false,
+        mozjpeg: ['-quality', 90],
+        gifsicle: true,
+        svgo: false,
+        concurrent: 10,
+        quiet: true // defaults to false
+      })))
+      .pipe(cache(rename(function (path) {
+        path.basename = path.basename.toLowerCase();
+      })))
+      .pipe(replace('vector-effect="non-scaling-stroke"', ''))
+      .pipe(replace('stroke-width="1.5"', 'stroke-width="1.5" vector-effect="non-scaling-stroke"'))
+      .pipe(gulp.dest(des))
+      .on('end', resolve)
+  })
 }
 
 function imageMinify (cb) {
-  imageMinifyTemp([defSourceName + '/media/**/*', '!' + defSourceName + '/media/icons-color/**/*'], desFolder + '/media/')
+  imageMinifyTemp([defSourceName + '/media/**/*', '!' + defSourceName + '/media/icons-color/**/*'], desFolder + '/media/').then(() => {
+    iconLink()
+  })
   if (fs.existsSync(themeSourceName + '/theme-custom/media/')) {
     imageMinifyTemp([themeSourceName + '/theme-custom/media/**/*'], desFolder + '/media/custom-media/')
   };
@@ -699,19 +684,13 @@ function imageMinify (cb) {
 
 function imageMinifyTheme (cb) {
   if (fs.existsSync(themeSourceName + '/media') && argv.src) {
-    setTimeout(function () {
-      imageMinifyTemp(themeSourceName + '/media/**/*', desFolder + '/media')
-    }, 300)
+    imageMinifyTemp(themeSourceName + '/media/**/*', desFolder + '/media')
   }
   if (fs.existsSync(themeSourceName + '/color-theme/' + argv.colorTheme + '/theme-custom/media')) {
-    setTimeout(function () {
-      imageMinifyTemp([themeSourceName + '/color-theme/' + argv.colorTheme + '/theme-custom/media/**/*'], desFolder + '/media/custom-media/')
-    }, 300)
+    imageMinifyTemp([themeSourceName + '/color-theme/' + argv.colorTheme + '/theme-custom/media/**/*'], desFolder + '/media/custom-media/')
   }
   if (fs.existsSync(themeSourceName + '/color-theme/' + argv.colorTheme + '/media') && argv.colorTheme) {
-    setTimeout(function () {
-      imageMinifyTemp(themeSourceName + '/color-theme/' + argv.colorTheme + '/media/**/*', desFolder + '/media')
-    }, 500)
+    imageMinifyTemp(themeSourceName + '/color-theme/' + argv.colorTheme + '/media/**/*', desFolder + '/media')
   }
   cb();
 }
@@ -858,19 +837,23 @@ function iconColor (cb) {
   var themeIconBase = new RegExp(themeIcon.default, "ig");
   var themeIconStroke = 'stroke-width="' + themeIconProps.stroke + '"';
 
-  for (var item in themeIcon) {
-    gulp.src(defSourceName + '/media/icons-color/**/*.svg')
-      .pipe(rename(function (path) {
-        path.basename = path.basename.toLowerCase();
-      }))
-      .pipe(replace(themeIconBase, themeIcon[item]))
-      .pipe(replace('vector-effect="non-scaling-stroke"', ''))
-      .pipe(replace('</svg>', '<style type="text/css" media="screen">path{vector-effect:non-scaling-stroke}</style></svg>'))
-      .pipe(replace(/(stroke-width=")([\S\s]*?)(")/, themeIconStroke))
-      .pipe(gulp.dest(desFolder + '/media/icons-color/' + item))
-  }
+  let promiseArray = [];
 
-  cb()
+  for (var item in themeIcon) {
+    promiseArray.push(new Promise((resolve, reject) => {
+      gulp.src(defSourceName + '/media/icons-color/**/*.svg')
+        .pipe(rename(function (path) {
+          path.basename = path.basename.toLowerCase();
+        }))
+        .pipe(replace(themeIconBase, themeIcon[item]))
+        .pipe(replace('vector-effect="non-scaling-stroke"', ''))
+        .pipe(replace('</svg>', '<style type="text/css" media="screen">path{vector-effect:non-scaling-stroke}</style></svg>'))
+        .pipe(replace(/(stroke-width=")([\S\s]*?)(")/, themeIconStroke))
+        .pipe(gulp.dest(desFolder + '/media/icons-color/' + item))
+        .on('end', resolve)
+    }))
+  }
+  return Promise.all(promiseArray)
 }
 
 function cleanIconColor (cb) {
@@ -1155,7 +1138,7 @@ function rev (cb) {
   var globs = [
     staticFolder + '/**/*'
   ];
-   del('./.temp/' + staticFolderName);
+  del('./.temp/' + staticFolderName);
   return gulp.src(globs)
     .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"], dontUpdateReference: [/^\/favicon.ico$/g, ".html"] }))
     .pipe(dest('./.temp/' + staticFolderName));
@@ -1205,7 +1188,7 @@ function watch () {
   gulp.watch('**/gulp_themes_config.js', theme)
   gulp.watch(gulpThemeSrc + 'gulp_icons-color-config.js', series(iconColor, iconLink, imageMinifyTheme))
   gulp.watch(sourceName + '/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
-  gulp.watch([defSourceName + '/media/**/*', themeSourceName + '/theme-custom/media/**/*', themeSourceName + `/color-theme/${argv.colorTheme}/media/**/*`, themeSourceName + '/media/', '!' + defSourceName + '/media/icons-color/**/*'], series(media, imageMinify, iconLink, iconLink, imageMinifyTheme))
+  gulp.watch([defSourceName + '/media/**/*', themeSourceName + '/theme-custom/media/**/*', themeSourceName + `/color-theme/${argv.colorTheme}/media/**/*`, themeSourceName + '/media/', '!' + defSourceName + '/media/icons-color/**/*'], series(media, imageMinify, imageMinifyTheme))
   gulp.watch(defSourceName + '/media/icons-color/**/*', series(iconColor, iconLink, imageMinifyTheme));
   gulp.watch(defSourceName + '/dev-only/devSrc/**/*', devOnly)
   gulp.watch([sourceName + '/dev-only/**/*.njk', sourceName + '/_imports/_gen-varibles.njk'], nunjucksDev)
