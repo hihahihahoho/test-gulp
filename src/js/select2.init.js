@@ -42,6 +42,8 @@ $(document).ready(function () {
       clearTimeout(select2Timeout);
     }
   }).on("select2:open", function () {
+    hammerSelect2($(this));
+
     $(this).parents('.form-group').addClass('input-focus')
     $(".select2-search--dropdown .select2-search__field").attr("placeholder", "Tìm kiếm...");
     if ($(window).width() >= 789) {
@@ -151,14 +153,6 @@ $(document).ready(function () {
     width: '100%'
   });
   //end template select-2
-  if (iOS()) {
-    if ($(window).width() < 992 && deviceIsMobile) {
-      $(document).on('touchstart', '.select2-results', function (e) {
-        setTimeout(function () {
-          $('input').blur();
-        }, 100)
-      });
-    }
-  }
+
 });
 //====================END SELECT2 INIT=================//

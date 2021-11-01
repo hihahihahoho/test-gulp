@@ -115,4 +115,11 @@ const obj2 = {
   }
 }
 
-console.log(_.defaultsDeep(obj2, obj1).sort())
+// console.log(_.defaultsDeep(obj2, obj1).sort())
+
+const person = ({ name, age }) => ({
+  getName: ({ middleName, lastName }) => console.log(`My name is ${middleName} ${lastName} ${name} ages of ${age}`)
+})
+
+let person1 = person({ name: 'tung', age: '27' });
+console.log(person1.getName({ middleName: 'Nguyen', lastName: 'Thanh' }))

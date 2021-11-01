@@ -579,11 +579,13 @@
                               <div class="p">Hiển thị</div>
                             </div>
                             <div class="col-auto">
+                              <!-- form.select -->
                               <div class="form-group">
                                 <div class="input-group-wrap input-default input-size-default input-group-vertical">
                                   <label class="input-inner-wrap">
-                                    <select class="input select-2 input-label-change" header-text="abc">
-                                      <option selected>
+                                    <select class="input select-2 input-label-change" } header-text="abc" data-placeholder="Chọn" data-minimum-results-for-search="Infinity">
+                                      <option value=""></option>
+                                      <option>
                                         Option 1
                                       </option>
                                       <option>
@@ -603,6 +605,7 @@
                                 </div>
                                 <div class="errorBlock"></div>
                               </div>
+                              <!-- end form.select -->
                             </div>
                             <div class="col-auto">
                               <div class="p">Bản ghi</div>
@@ -2638,6 +2641,10 @@
 <script src="js/vendors/croppie/croppie.bundles.js"></script>
 <script src="js/vendors/croppie/croppie.init.js"></script>
 <!-- croppie -->
+<!-- hammerjs -->
+<script src="js/vendors/hammerjs/hammerjs.bundles.js"></script>
+<script src="js/vendors/hammerjs/hammerjs.init.js"></script>
+<!-- hammerjs -->
 <!-- script use for this page only -->
 <!-- floatingScroll -->
 <script src="js/vendors/floatingScroll/floatingScroll.bundles.js"></script>

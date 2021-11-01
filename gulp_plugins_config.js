@@ -226,6 +226,15 @@ var pluginsDetail = {
       "src/js/iosInnerHeight.init.js"
     ]
   },
+  'hammerjs': {
+    "name": 'hammerjs',
+    "scripts": [
+      "node_modules/hammerjs/hammer.min.js"
+    ],
+    "init": [
+      "src/js/hammerjs.init.js"
+    ]
+  },
 }
 
 var plugins = {
@@ -253,7 +262,8 @@ var plugins = {
     pluginsDetail.wnumb,
     pluginsDetail.datatables,
     pluginsDetail.floatingScroll,
-    pluginsDetail.iosInnerHeight
+    pluginsDetail.iosInnerHeight,
+    pluginsDetail.hammerjs
   ]
 }
 

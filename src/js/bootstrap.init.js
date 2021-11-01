@@ -26,6 +26,9 @@ $(document).ready(function () {
   $('.toast').toast({
     delay: 3000
   })
+  $('.toast').on('show.bs.toast', function () {
+    $('.toast.show').toast('hide');
+  })
   $('.modal').on('shown.bs.modal', function (e) {
     if ($(window).width() < 769) {
       BNS.on();
