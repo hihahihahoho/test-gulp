@@ -1209,7 +1209,7 @@ function watch () {
   gulp.watch('**/gulp_themes_config.js', theme)
   gulp.watch(gulpThemeSrc + 'gulp_icons-color-config.js', series(iconColor, iconLink, imageMinifyTheme))
   gulp.watch(sourceName + '/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
-  gulp.watch([defSourceName + '/media/**/*', themeSourceName + '/theme-custom/media/**/*', themeSourceName + `/color-theme/${argv.colorTheme}/media/**/*`, themeSourceName + '/media/', '!' + defSourceName + '/media/icons-color/**/*'], series(media, imageMinify, imageMinifyTheme))
+  gulp.watch([defSourceName + '/media/**/*', themeSourceName + '/theme-custom/media/**/*', themeSourceName + `/color-theme/${argv.colorTheme}/media/**/*`, themeSourceName + '/media/', '!' + defSourceName + '/media/icons-color/**/*'], series(imageMinify, imageMinifyTheme))
   gulp.watch(defSourceName + '/media/icons-color/**/*', series(iconColor, iconLink, imageMinifyTheme));
   gulp.watch(defSourceName + '/dev-only/devSrc/**/*', devOnly)
   gulp.watch([sourceName + '/dev-only/**/*.njk', sourceName + '/_imports/_gen-varibles.njk'], nunjucksDev)
