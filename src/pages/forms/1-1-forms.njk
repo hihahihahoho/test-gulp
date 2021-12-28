@@ -45,7 +45,7 @@
                   title: 'abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc',
                   subTitle: 'abcte',
                   image: globalsVar.iconDemo,
-                  imageClass: 'ubox ubox-rounded'
+                  imageClass: 'ubox ubox-rounded ubox-size-button-xs'
                 }, {
                   title: 'abc',
                   subTitle: 'abcte'
@@ -106,6 +106,14 @@
             } %}
             {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.datepicker(inputData) }}
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            {% set inputData = {
+              title: 'Textarea',
+              textRight: 'VND'
+            } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
+            {{ form.textarea(inputData) }}
           </div>
           <div class="col-lg-12"></div>
         </div>

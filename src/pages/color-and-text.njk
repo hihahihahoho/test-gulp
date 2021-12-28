@@ -1,0 +1,26 @@
+{% extends "main/_layout-sidebar.njk" %}
+{% import "pages/components/_colors.njk" as color %}
+{% import "pages/components/_text.njk" as text %}
+
+{% set pageLink = file_path %}
+{% set pageTitle = 'Color and texts' %}
+
+{% block mainInner %}
+  <div class="box">
+    <div class="box__body">
+      {% if theme == 'vietcombank' %}
+        {{ colorTheme }}
+        <h1 class="green">{{ theme }}</h1>
+      {% endif %}
+      {% if theme == 'bidv' %}
+        <h1 class="green">{{ theme }}</h1>
+      {% endif %}
+      {{ text.text() }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      {{ color.color() }}
+    </div>
+  </div>
+{% endblock %}
