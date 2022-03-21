@@ -672,6 +672,9 @@ function media (cb) {
 function imageMinifyTemp (src, des) {
   return new Promise((resolve) => {
     gulp.src(src)
+      .pipe(rename(function (path) {
+        path.basename = path.basename.toLowerCase();
+      }))
       .pipe(cache(image({
         pngquant: ['--quality=70-80', '--speed=1'],
         optipng: false,
@@ -682,9 +685,6 @@ function imageMinifyTemp (src, des) {
         svgo: false,
         concurrent: 10,
         quiet: true // defaults to false
-      })))
-      .pipe(cache(rename(function (path) {
-        path.basename = path.basename.toLowerCase();
       })))
       .pipe(replace('vector-effect="non-scaling-stroke"', ''))
       .pipe(replace('stroke-width="1.5"', 'stroke-width="1.5" vector-effect="non-scaling-stroke"'))

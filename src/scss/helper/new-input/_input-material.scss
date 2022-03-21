@@ -139,6 +139,15 @@
             }
           }
         }
+        &:not(.input-extend-outside) {
+          &-right {
+          .input-box {
+            &:first-child {
+              padding-left: $input-space-left;
+            }
+          }
+        }
+        }
       }
       &:focus {
         ~ .input-frame {
