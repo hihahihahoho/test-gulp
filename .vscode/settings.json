@@ -3,10 +3,7 @@
     "**/dist/**/*": true,
     "**/static/**/*": true,
     // settingSearch
-"src/fonts/**/*": true,
-    "gulp_themes_config.js": true,
-    "gulp_icons-color-config.js": true,"src/custom/css": true,"src/scss": true,
-"theme/vietcombank": true,
+"theme/*": true,
 // endSettingSearch
   },
   "files.exclude": {
@@ -61,7 +58,7 @@
   },
   "vscode-opn.webServerProtocol": "http",
   "vscode-opn.webServerHostname": "localhost",
-  "vscode-opn.webServerPort": 3002,
+  "vscode-opn.webServerPort": 3000,
   "workbench.colorCustomizations": {
     "statusBar.background": "#61dafb",
     "statusBar.foreground": "#15202b",
@@ -77,10 +74,7 @@
     "titleBar.activeForeground": "#15202b",
     "titleBar.inactiveBackground": "#61dafb99",
     "titleBar.inactiveForeground": "#15202b99",
-    "editorGroup.border": "#93e6fc",
-    "panel.border": "#93e6fc",
     "sash.hoverBorder": "#93e6fc",
-    "sideBar.border": "#93e6fc",
     "statusBarItem.remoteBackground": "#61dafb",
     "statusBarItem.remoteForeground": "#15202b"
   },

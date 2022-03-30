@@ -1,0 +1,194 @@
+@mixin modifiers-input-material($map, $prefix: "-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{if($key != $base, #{$prefix}#{$key},
+      '') } {
+      @if type-of($value) == "map" {
+        @include modifiers-input-material($value, $separator);
+      } @else {
+        .input-label {
+          .inner {
+            bottom: -$value/2;
+          }
+        }
+        .textarea-autosize {
+          padding-top: ($value - $input-material-font-size)/2;
+          padding-bottom: ($value - $input-material-font-size)/2;
+        }
+      }
+    }
+  }
+}
+.input {
+  &-#{$inputMaterial2}.input-size {
+    @include modifiers-input-material($map-input-size);
+  }
+  &-#{$inputMaterial2} {
+    &.textarea {
+      &-group {
+        .input-extend-outside {
+          margin-top: 1em;
+        }
+      }
+    }
+    .input {
+      padding-left: 0;
+      &-frame {
+        -ms-grid-row: 1/3;
+        grid-row: 1/3;
+      }
+      &:not(:focus):not(select):not(.datepicker-range) {
+        padding-right: 0;
+      }
+      font-size: $input-material-font-size;
+      &::placeholder {
+        opacity: 0 !important;
+      }
+      &:focus {
+        &::placeholder {
+          opacity: 1 !important;
+        }
+      }
+      &:focus,
+      & ~ .select2-container--open,
+      & ~ .select2-container--focus,
+      &-hadval {
+        & ~ .input-label {
+          .inner {
+            bottom: 0;
+            transform: translateY(0);
+            max-width: 100%;
+          }
+        }
+      }
+      & ~ .select2 {
+        .select2-selection__placeholder {
+          opacity: 0 !important;
+        }
+      }
+      & ~ .select2-container--open,
+      & ~ .select2-container--focus {
+        .select2-selection__placeholder {
+          opacity: 1 !important;
+        }
+      }
+      &-frame {
+        &::after {
+          content: "";
+          height: 2px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 0;
+          margin: auto;
+          background-color: $color-primary;
+          transition: 0.2s all cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+        border: 1px solid $input-border-color;
+      }
+      &-ic {
+        &-clear {
+          background-position: center right;
+        }
+      }
+      &-note {
+        -ms-grid-column: 3;
+        grid-column: 3;
+        -ms-grid-row: 3;
+        grid-row: 3;
+      }
+      &-label {
+        -ms-grid-column: 3;
+        grid-column: 3;
+        -ms-grid-row: 1;
+        grid-row: 1;
+        align-items: baseline;
+        display: flex;
+        align-items: center;
+        position: relative;
+        font-size: $input-material-font-size-sm;
+        .inner {
+          transform-origin: left center;
+          transform: translateY(50%) scale($input-material-font-size/$input-material-font-size-sm);
+          max-width: 100/ ($input-material-font-size/$input-material-font-size-sm) * 1%;
+          position: absolute;
+          margin-bottom: 0;
+          pointer-events: none;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+          overflow: hidden;
+        }
+      }
+      &-extend {
+        &-left {
+          .input-box {
+            &:first-child {
+              padding-left: 0;
+            }
+            &:last-child {
+              padding-right: $input-space-left;
+            }
+          }
+        }
+        &-right {
+          .input-box {
+            &:last-child {
+              padding-right: 0;
+            }
+            &:first-child {
+              padding-left: $input-space-left;
+            }
+          }
+        }
+        &:not(.input-extend-outside) {
+          &-right {
+            .input-box {
+              &:first-child {
+                padding-left: $input-space-left;
+              }
+            }
+          }
+        }
+      }
+      &:focus {
+        ~ .input-frame {
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+      &:disabled {
+        ~ .input-frame {
+          border-bottom-style: dashed;
+        }
+      }
+    }
+    .select2-container {
+      background-position: center right;
+      .select2-selection--single {
+        .select2-selection__rendered {
+          padding-left: 0;
+          padding-right: $input-ic-box-width;
+        }
+      }
+    }
+    select.input {
+      background-position: center right;
+      padding-left: 0;
+      padding-right: $input-ic-box-width;
+      background-position: center right;
+    }
+    .datepicker {
+      &-single {
+        padding-right: $input-ic-box-width;
+        background-position: center right;
+      }
+      &-range {
+        padding-right: $input-ic-box-width;
+        background-position: center right;
+      }
+    }
+  }
+}
