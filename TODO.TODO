@@ -16,12 +16,13 @@ Features:
     ☐ Lỗi ảnh lowercase build theme
     ☐ THêm inherit ở icons color
   Input:
-    ☐ Thêm inputGroupTag
-    ☐ Option Sameplaceholder
-    ☐ Option Input tag
-    ☐ Thêm label
+    ✔ Thêm inputGroupTag @done(22-04-11 20:26)
+    ✔ Option Sameplaceholder @done(22-04-11 20:26)
+    ✔ Option Input tag @done(22-04-11 20:26)
+    ✔ Thêm label @done(22-04-11 20:26)
     ✔ Fix textarea placeholder @done(21-04-07 15:56)
-    ☐ Fix textarea size mobile
+    ✔ Fix textarea size mobile @done(22-04-11 19:09)
+    ✔ input material 2 @done(22-04-11 20:26)
   Checkbox:
     ✔ Thêm checkbox intermidiate @done(21-04-27 17:30)
     ✔ fix component @done(21-04-27 17:11)
@@ -44,4 +45,7 @@ Features:
     ☐ Chỉnh lại tooltip độ rộng
   Modal:
     ☐ Thêm tắt modal bằng phím
+  Components:
+    ☐ Tabs
+    ☐ input tag
 

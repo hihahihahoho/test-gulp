@@ -39,7 +39,7 @@ $input-placeholder-color: #707c93 !default;
 $input-color: $color-default !default;
 $input-font-weight: 500 !default;
 $input-font-size-mobile: 16px !default;
-$input-font-size: 14px !default;
+$input-font-size: 16px !default;
 
 $input-label-font-weight: 400 !default;
 $input-label-font-size: 14px !default;
@@ -58,3 +58,6 @@ $input-space-right: 10px !default;
 $input-material-font-size: 16px !default;
 $input-material-font-size-sm: 12px !default;
 $input-material-font-weight-sm: $input-label-font-weight !default;
+
+//===Input material2===
+$input-material-2-space-between: 7px;

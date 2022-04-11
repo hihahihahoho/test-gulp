@@ -32,7 +32,8 @@
           <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
               title: 'Input text',
-              textRight: 'VND'
+              textRight: 'VND',
+              textLeft: 'VND'
             } %}
             {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.input(inputData) }}
@@ -115,6 +116,15 @@
             {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.textarea(inputData) }}
           </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            {% set inputData = {
+              title: 'Textarea',
+              textRight: 'VND',
+              autosize: false
+            } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
+            {{ form.textarea(inputData) }}
+          </div>
           <div class="col-lg-12"></div>
         </div>
         <div class="row row-20 justify-content-center mt16">
@@ -129,8 +139,8 @@
 
 {% block mainInner %}
   {{ mainInputs('input default',{ required: true, placeholder: 'same'}) }}
-  {{ mainInputs('input material',{ style: 'material', required: true }) }}
-  {{ mainInputs('input material 2',{ style: 'material-2', required: true }) }}
+  {{ mainInputs('input material',{ style: 'material', required: true, placeholder: false }) }}
+  {{ mainInputs('input material 2',{ style: 'material-2', required: true, size: 'lg', placeholder: false }) }}
 {% endblock %}
 
 {% block modal %}

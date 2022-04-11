@@ -46,6 +46,7 @@
 
 {% macro iptSkeleton(data) %}
   {% set dataDefault = {
+    inputwraptag: 'div',
     orient: 'vertical',
     title: false,
     style: 'default',
@@ -186,7 +187,7 @@
 
   {% set mainContent %}
     <div class="input-group-wrap input-{{ data.style }} input-size-{{ data.size }} {{data.inputGroupExtendClass}} input-group-{{data.orient}}">
-      <label class="input-inner-wrap">
+      <{{ data.inputwraptag }} class="input-inner-wrap">
         {{ data.content }}
         {% if data.orient == 'vertical' %}
           {{ labelSection }}
@@ -198,7 +199,7 @@
           {{ iptExtend(dataIcon.right, pos = 'right', clear = data.clear) }}
         {% endif %}
         <div class="input-frame"></div>
-      </label>
+      </{{ data.inputwraptag }}>
       {% if contentOutsideLeft %}
         {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
       {% endif %}
@@ -310,14 +311,14 @@
   {% set inputAttr %}
     {{ 'id="' + data.id + '"' if data.id }}
     {{ 'rows="' + data.row + '"' if not data.autosize }}
-    {{ 'rows="1"' if data.autosize }}
+    {{ 'rows="1"' if data.autosize else 'rows="' + data.row + '"' }}
     {{ 'placeholder="' + placeholderText + '"' if data.placeholder }}
     {{ 'required' if data.required }}
     {{ 'disabled' if data.disabled }}
     {{ 'readonly' if data.readonly }}
     autocorrect="off" spellcheck="false"
   {% endset %}
-  
+
   {% set content %}
     <textarea class="{{ inputClass }}" {{ inputAttr }}>
       {{- data.value -}}
@@ -461,11 +462,12 @@
 
   {% set inputAttr %}
     {{ 'id="' + data.id + '"' if data.id }}
-    {{ 'multiple' if data.multiple }}}
-    header-text="{{ data.title if data.title else 'Chọn' }}"
-    
-    {{ 'data-placeholder="' + placeholderText + '"' if data.placeholder }}
-    {{ 'data-minimum-results-for-search="Infinity"' if not data.search }}
+    {{ 'multiple' if data.multiple }}
+    {% if data.lib == 'select-2' %}
+      header-text="{{ data.title if data.title else 'Chọn' }}"
+      {{ 'data-placeholder="' + placeholderText + '"' if data.placeholder }}
+      {{ 'data-minimum-results-for-search="Infinity"' if not data.search }}
+    {% endif %}
     {{ 'required' if data.required }}
     {{ 'disabled' if data.disabled }}
     {{ 'readonly' if data.readonly }}
@@ -477,8 +479,10 @@
         {% if data.lib == 'select-2' %}
           <option value=""></option>
         {% elseif data.lib == 'none' %}
-          <option value="{{ loop.index }}" disabled="disabled" selected="selected" hidden="hidden">{{ placeholderText }}</option>
+          <option value="" disabled="disabled" selected="selected" hidden="hidden">{{ placeholderText }}</option>
         {% endif %}
+      {% else %}
+        <option value="" disabled="disabled" selected="selected" hidden="hidden"></option>
       {% endif %}
       {% if data.option %}
         {% for item in data.option %}
@@ -488,7 +492,6 @@
             {{ 'dataimgclass="' + item.imageClass + '"' if item.imageClass }}
             {{ 'dataimg="' + item.image + '"' if item.image }}
             {{ 'datasub="' + item.subTitle + '"' if item.subTitle }}
-            {{ 'selected' if loop.index == 1 and not data.placeholder }}
             {{ 'selected' if loop.index == data.selected }}
           {% endset %}
           <option {{ attr }}>

@@ -5,14 +5,37 @@
       @if type-of($value) == "map" {
         @include modifiers-input-material($value, $separator);
       } @else {
+        .select2-container .selection {
+          padding-top: $value - $input-material-font-size - ($value - ($input-material-font-size + $input-material-font-size-sm + $input-material-2-space-between));
+        }
+        .input {
+          padding-left: $input-space-left;
+          padding-top: $value - $input-material-font-size - ($value - ($input-material-font-size + $input-material-font-size-sm + $input-material-2-space-between));
+          &:focus,
+          & ~ .select2-container--open,
+          & ~ .select2-container--focus,
+          &-hadval {
+            & ~ .input-label {
+              .inner {
+                bottom: -$value/2 + $input-material-2-space-between;
+              }
+            }
+          }
+        }
+        .textarea-autosize,
+        textarea {
+          padding-top: floor($value - $input-material-font-size - ($value - ($input-material-font-size + $input-material-font-size-sm + $input-material-2-space-between))/2) !important;
+          padding-bottom: ceil(($value - ($input-material-font-size + $input-material-font-size-sm + $input-material-2-space-between))/2);
+        }
         .input-label {
           .inner {
+            left: $input-space-left;
             bottom: -$value/2;
+            
           }
         }
         .textarea-autosize {
-          padding-top: ($value - $input-material-font-size)/2;
-          padding-bottom: ($value - $input-material-font-size)/2;
+          // padding-bottom: ($value - $input-material-font-size)/2;
         }
       }
     }
@@ -26,7 +49,7 @@
     &.textarea {
       &-group {
         .input-extend-outside {
-          margin-top: 1em;
+          margin-top: 0;
         }
       }
     }
@@ -41,7 +64,7 @@
       }
       font-size: $input-material-font-size;
       &::placeholder {
-        opacity: 0 !important;
+        color: transparent !important
       }
       &:focus {
         &::placeholder {
@@ -54,7 +77,6 @@
       &-hadval {
         & ~ .input-label {
           .inner {
-            bottom: 0;
             transform: translateY(0);
             max-width: 100%;
           }
@@ -84,6 +106,7 @@
           background-color: $color-primary;
           transition: 0.2s all cubic-bezier(0.075, 0.82, 0.165, 1);
         }
+        border-radius: $input-border-radius;
         border: 1px solid $input-border-color;
       }
       &-ic {
@@ -107,6 +130,7 @@
         align-items: center;
         position: relative;
         font-size: $input-material-font-size-sm;
+        line-height: 1;
         .inner {
           transform-origin: left center;
           transform: translateY(50%) scale($input-material-font-size/$input-material-font-size-sm);
@@ -125,7 +149,7 @@
         &-left {
           .input-box {
             &:first-child {
-              padding-left: 0;
+              padding-right: 0 !important;
             }
             &:last-child {
               padding-right: $input-space-left;
@@ -135,9 +159,6 @@
         &-right {
           .input-box {
             &:last-child {
-              padding-right: 0;
-            }
-            &:first-child {
               padding-left: $input-space-left;
             }
           }
@@ -166,10 +187,10 @@
       }
     }
     .select2-container {
-      background-position: center right;
+      background-position: center right $input-space-right;
       .select2-selection--single {
         .select2-selection__rendered {
-          padding-left: 0;
+          // padding-left: 0;
           padding-right: $input-ic-box-width;
         }
       }
@@ -178,7 +199,7 @@
       background-position: center right;
       padding-left: 0;
       padding-right: $input-ic-box-width;
-      background-position: center right;
+      background-position: center right $input-space-right;
     }
     .datepicker {
       &-single {

@@ -1,6 +1,9 @@
 //====================JQUERY INPUT=================//
 $(document).ready(function () {
   //Input material
+  $('.input-extend:not(.input-extend-outside)').on('click', function() {
+    $(this).closest('.input-group-wrap').find('.input').focus()
+  })
   $('.input-label-change:not(.static)').each(function () {
     if (!$(this).val()) {
       $(this).removeClass('input-hadval');

@@ -42,8 +42,3 @@
   min-height: calc(100% - 80px);
   max-height: calc(100% - 80px);
 }
-
-/* 
-.litepicker .container__days .day-item[lpcurrent=true] {
-  background-color: var(--color-primary);
-} */
