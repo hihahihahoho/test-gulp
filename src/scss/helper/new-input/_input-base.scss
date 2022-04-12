@@ -18,7 +18,7 @@
           height: $value;
         }
         .textarea-autosize,
-         textarea {
+        textarea {
           padding-top: ($value - $input-font-size)/2;
           padding-bottom: ($value - $input-font-size)/2;
         }
@@ -86,7 +86,7 @@ select:invalid {
   border: 0;
   background-color: transparent;
   order: 2;
-  &-has-clear{
+  &-has-clear {
     &:focus {
       padding-right: 36px;
     }
@@ -99,6 +99,8 @@ select:invalid {
     pointer-events: none;
     position: relative;
     transition: 0.2s all ease-in-out;
+    background-color: $input-background;
+    z-index: 1;
   }
   &:not(textarea) {
     text-overflow: ellipsis;
@@ -142,7 +144,7 @@ select:invalid {
   &-extend {
     display: flex;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     &-outside {
       &.input-extend-left {
         order: 0;
@@ -219,6 +221,10 @@ select:invalid {
     order: 1;
     flex-grow: 1;
     flex-basis: 0;
+    > *:not(.input-frame) {
+      z-index: 2;
+      position: relative;
+    }
   }
 }
 

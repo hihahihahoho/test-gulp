@@ -5,27 +5,8 @@
       @if type-of($value) == "map" {
         @include modifiers-input-material($value, $separator);
       } @else {
-        .select2-container .selection {
-          padding-top: $value - $input-material-font-size - ($value - ($input-material-font-size + $input-material-font-size-sm + $input-material-2-space-between));
-        }
         .input {
           padding-left: $input-space-left;
-          padding-top: $value - $input-material-font-size - ($value - ($input-material-font-size + $input-material-font-size-sm + $input-material-2-space-between));
-          &:focus,
-          & ~ .select2-container--open,
-          & ~ .select2-container--focus,
-          &-hadval {
-            & ~ .input-label {
-              .inner {
-                bottom: -$value/2 + $input-material-2-space-between;
-              }
-            }
-          }
-        }
-        .textarea-autosize,
-        textarea {
-          padding-top: floor($value - $input-material-font-size - ($value - ($input-material-font-size + $input-material-font-size-sm + $input-material-2-space-between))/2) !important;
-          padding-bottom: ceil(($value - ($input-material-font-size + $input-material-font-size-sm + $input-material-2-space-between))/2);
         }
         .input-label {
           .inner {
@@ -33,25 +14,17 @@
             bottom: -$value/2;
           }
         }
-        .textarea-autosize {
-          // padding-bottom: ($value - $input-material-font-size)/2;
-        }
       }
     }
   }
 }
 .input {
-  &-#{$inputMaterial2}.input-size {
+  &-#{$inputMaterial3}.input-size {
     @include modifiers-input-material($map-input-size);
   }
-  &-#{$inputMaterial2} {
-    .input {
-      line-height: normal !important;
-    }
-    textarea {
-      & ~ .input-label .inner {
-        background-color: white;
-      }
+  &-#{$inputMaterial3} {
+    .input-inner-wrap {
+      margin-top: 0.5em;
     }
     &.textarea {
       &-group {
@@ -71,7 +44,7 @@
       }
       font-size: $input-material-font-size;
       &::placeholder {
-        color: transparent !important;
+        color: transparent !important
       }
       &:focus {
         &::placeholder {
@@ -84,8 +57,13 @@
       &-hadval {
         & ~ .input-label {
           .inner {
-            transform: translateY(0);
+            bottom: 0%;
+            transform: translateY(50%);
             max-width: calc(100% - #{$input-space-left});
+            background-color: white;
+            z-index: 3;
+            padding: 0 5px;
+            margin-left: -5px;
           }
         }
       }
@@ -101,6 +79,7 @@
         }
       }
       &-frame {
+        background-color: transparent;
         &::after {
           content: "";
           height: 2px;
@@ -144,8 +123,8 @@
           position: absolute;
           margin-bottom: 0;
           pointer-events: none;
-          -webkit-line-clamp: 1;
-          line-clamp: 1;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
           -webkit-box-orient: vertical;
           display: -webkit-box;
           overflow: hidden;

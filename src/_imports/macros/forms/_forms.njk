@@ -455,6 +455,7 @@
   {% set inputClass %}
     input
     {{ data.lib if data.lib }}
+    {{ 'select-2-tag' if data.select2Tag }}
     {{ 'select-2-template' if data.option[0] | string == '[object Object]' }}
     {{ 'input-label-change' if data.labelChange }}
     {{ data.targetExtendClass if data.targetExtendClass }}
@@ -481,7 +482,7 @@
         {% elseif data.lib == 'none' %}
           <option value="" disabled="disabled" selected="selected" hidden="hidden">{{ placeholderText }}</option>
         {% endif %}
-      {% else %}
+      {% elseif not data.lib == 'select-2' %}
         <option value="" disabled="disabled" selected="selected" hidden="hidden"></option>
       {% endif %}
       {% if data.option %}
@@ -489,6 +490,7 @@
           {% set attr %}
             {{ 'value="' + data.valueName + loop.index + '"' if data.valueName }}
             {{ 'value="' + data.valueOption[loop.index - 1] + '"' if data.valueOption }}
+            {{ 'value="' + item.value + '"' if item.value }}
             {{ 'dataimgclass="' + item.imageClass + '"' if item.imageClass }}
             {{ 'dataimg="' + item.image + '"' if item.image }}
             {{ 'datasub="' + item.subTitle + '"' if item.subTitle }}

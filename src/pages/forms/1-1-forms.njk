@@ -40,7 +40,8 @@
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
-              title: 'Select',
+              title: 'Select 2',
+              search: true,
               option: [
                 {
                   title: 'abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc',
@@ -84,6 +85,35 @@
                   title: 'abc',
                   subTitle: 'abcte'
                 }
+              ]
+            } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
+            {{ form.select(inputData) }}
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            {% set inputData = {
+              title: 'Select 2 Multiple',
+              multiple: true,
+              search: true,
+              option: [
+                'abc abc abc abc abc abc abc abc abc abc abc abc, abc abc',
+                'data 2',
+                'data 3'
+              ]
+            } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
+            {{ form.select(inputData) }}
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            {% set inputData = {
+              title: 'Select 2 Multiple Tag',
+              multiple: true,
+              search: true,
+              select2Tag: true,
+              option: [
+                'abc abc abc abc abc abc abc abc abc abc abc abc, abc abc',
+                'data 2',
+                'data 3'
               ]
             } %}
             {% set inputData = inputData | mergeDeep(dataDefault) %}
@@ -138,9 +168,10 @@
 {% endmacro %}
 
 {% block mainInner %}
-  {{ mainInputs('input default',{ required: true, placeholder: 'same'}) }}
-  {{ mainInputs('input material',{ style: 'material', required: true, placeholder: false }) }}
+  {{ mainInputs('Input default',{ required: true, placeholder: 'same'}) }}
+  {{ mainInputs('Input material',{ style: 'material', required: true, placeholder: false }) }}
   {{ mainInputs('input material 2',{ style: 'material-2', required: true, size: 'lg', placeholder: false }) }}
+  {{ mainInputs('Input material 3',{ style: 'material-3', required: true, placeholder: false }) }}
 {% endblock %}
 
 {% block modal %}

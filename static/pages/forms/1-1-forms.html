@@ -343,14 +343,14 @@
           </div>
           <div class="box">
             <div class="box__body pb-0">
-              <h5 class="pb32">input default</h5>
+              <h5 class="pb32">Input default</h5>
               <form class="from-section form-vertical pb32">
                 <div class="row row-20 list-mb16 list-crop">
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.input -->
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
+                        <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" placeholder="Nhập input simple" required autocorrect="off">
                           <label class="input-label">
                             <div class="inner">
@@ -361,7 +361,7 @@
                             <div class="input-box input-ic-clear"></div>
                           </div>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="input-note">
                         Text note
@@ -374,7 +374,7 @@
                     <!-- form.textarea -->
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default textarea-group input-group-vertical">
-                        <label class="input-inner-wrap">
+                        <div class="input-inner-wrap">
                           <textarea class="input textarea-autosize input-label-change" rows="1" placeholder="Nhập input button" required autocorrect="off" spellcheck="false"></textarea>
                           <label class="input-label">
                             <div class="inner">
@@ -382,7 +382,7 @@
                             </div>
                           </label>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
@@ -406,13 +406,18 @@
                     <!-- form.input -->
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
+                        <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" placeholder="Nhập input text" required autocorrect="off">
                           <label class="input-label">
                             <div class="inner">
                               Input text
                             </div>
                           </label>
+                          <div class="input-extend input-extend-left">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
@@ -420,7 +425,7 @@
                             </div>
                           </div>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
@@ -430,8 +435,8 @@
                     <!-- form.select -->
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
-                          <select class="input select-2 select-2-template input-label-change" } header-text="Select" data-placeholder="Chọn select" data-minimum-results-for-search="Infinity" required>
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 select-2-template input-label-change" header-text="Select 2" data-placeholder="Chọn select 2" required>
                             <option value=""></option>
                             <option dataimgclass="ubox ubox-rounded ubox-size-button-xs" dataimg="media/icons-color/default/default/plannet.svg" datasub="abcte">
                               abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc
@@ -475,11 +480,11 @@
                           </select>
                           <label class="input-label">
                             <div class="inner">
-                              Select
+                              Select 2
                             </div>
                           </label>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
@@ -489,8 +494,66 @@
                     <!-- form.select -->
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
-                          <select class="input none input-label-change" } header-text="Select simple" data-placeholder="Chọn select simple" data-minimum-results-for-search="Infinity" required>
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 input-label-change" multiple header-text="Select 2 Multiple" data-placeholder="Chọn select 2 multiple" required>
+                            <option value=""></option>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
+                            </option>
+                            <option>
+                              data 2
+                            </option>
+                            <option>
+                              data 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2 Multiple
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-default input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 select-2-tag input-label-change" multiple header-text="Select 2 Multiple Tag" data-placeholder="Chọn select 2 multiple tag" required>
+                            <option value=""></option>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
+                            </option>
+                            <option>
+                              data 2
+                            </option>
+                            <option>
+                              data 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2 Multiple Tag
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-default input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input none input-label-change" required>
                             <option value="" disabled="disabled" selected="selected" hidden="hidden">
                               Chọn select simple
                             </option>
@@ -510,7 +573,7 @@
                             </div>
                           </label>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
@@ -520,7 +583,7 @@
                     <!-- form.datepicker -->
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
+                        <div class="input-inner-wrap">
                           <input type="" class="input lite-picker datepicker-range input-label-change" placeholder="same" header-text="Datepicker" lp-single-mode="false" required autocorrect="off">
                           <label class="input-label">
                             <div class="inner">
@@ -533,7 +596,7 @@
                             </div>
                           </div>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
@@ -543,7 +606,7 @@
                     <!-- form.textarea -->
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default textarea-group input-group-vertical">
-                        <label class="input-inner-wrap">
+                        <div class="input-inner-wrap">
                           <textarea class="input textarea-autosize input-label-change" rows="1" placeholder="Nhập textarea" required autocorrect="off" spellcheck="false"></textarea>
                           <label class="input-label">
                             <div class="inner">
@@ -556,7 +619,30 @@
                             </div>
                           </div>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.textarea -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.textarea -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-default input-size-default textarea-group input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <textarea class="input input-label-change" rows="3" rows="3" placeholder="Nhập textarea" required autocorrect="off" spellcheck="false"></textarea>
+                          <label class="input-label">
+                            <div class="inner">
+                              Textarea
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
@@ -580,14 +666,14 @@
           </div>
           <div class="box">
             <div class="box__body pb-0">
-              <h5 class="pb32">input material</h5>
+              <h5 class="pb32">Input material</h5>
               <form class="from-section form-vertical pb32">
                 <div class="row row-20 list-mb16 list-crop">
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.input -->
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
+                        <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
                           <label class="input-label">
                             <div class="inner">
@@ -598,7 +684,7 @@
                             <div class="input-box input-ic-clear"></div>
                           </div>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="input-note">
                         Text note
@@ -611,7 +697,7 @@
                     <!-- form.textarea -->
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default textarea-group input-group-vertical">
-                        <label class="input-inner-wrap">
+                        <div class="input-inner-wrap">
                           <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
                           <label class="input-label">
                             <div class="inner">
@@ -619,7 +705,7 @@
                             </div>
                           </label>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
@@ -643,13 +729,18 @@
                     <!-- form.input -->
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
+                        <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
                           <label class="input-label">
                             <div class="inner">
                               Input text
                             </div>
                           </label>
+                          <div class="input-extend input-extend-left">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
@@ -657,7 +748,7 @@
                             </div>
                           </div>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
@@ -667,9 +758,8 @@
                     <!-- form.select -->
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
-                          <select class="input select-2 select-2-template input-label-change" } header-text="Select" data-placeholder="Chọn" data-minimum-results-for-search="Infinity" required>
-                            <option value=""></option>
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 select-2-template input-label-change" header-text="Select 2" required>
                             <option dataimgclass="ubox ubox-rounded ubox-size-button-xs" dataimg="media/icons-color/default/default/plannet.svg" datasub="abcte">
                               abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc
                             </option>
@@ -712,11 +802,11 @@
                           </select>
                           <label class="input-label">
                             <div class="inner">
-                              Select
+                              Select 2
                             </div>
                           </label>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
@@ -726,11 +816,64 @@
                     <!-- form.select -->
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
-                          <select class="input none input-label-change" } header-text="Select simple" data-placeholder="Chọn" data-minimum-results-for-search="Infinity" required>
-                            <option value="" disabled="disabled" selected="selected" hidden="hidden">
-                              Chọn
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 input-label-change" multiple header-text="Select 2 Multiple" required>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
                             </option>
+                            <option>
+                              data 2
+                            </option>
+                            <option>
+                              data 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2 Multiple
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 select-2-tag input-label-change" multiple header-text="Select 2 Multiple Tag" required>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
+                            </option>
+                            <option>
+                              data 2
+                            </option>
+                            <option>
+                              data 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2 Multiple Tag
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input none input-label-change" required>
                             <option>
                               abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
                             </option>
@@ -747,7 +890,7 @@
                             </div>
                           </label>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
@@ -757,8 +900,8 @@
                     <!-- form.datepicker -->
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
-                        <label class="input-inner-wrap">
-                          <input type="" class="input lite-picker datepicker-range input-label-change" placeholder="dd/mm/yyyy" header-text="Datepicker" lp-single-mode="false" required autocorrect="off">
+                        <div class="input-inner-wrap">
+                          <input type="" class="input lite-picker datepicker-range input-label-change" header-text="Datepicker" lp-single-mode="false" required autocorrect="off">
                           <label class="input-label">
                             <div class="inner">
                               Datepicker
@@ -770,7 +913,7 @@
                             </div>
                           </div>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
@@ -780,7 +923,7 @@
                     <!-- form.textarea -->
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default textarea-group input-group-vertical">
-                        <label class="input-inner-wrap">
+                        <div class="input-inner-wrap">
                           <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
                           <label class="input-label">
                             <div class="inner">
@@ -793,7 +936,664 @@
                             </div>
                           </div>
                           <div class="input-frame"></div>
-                        </label>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.textarea -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.textarea -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material input-size-default textarea-group input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <textarea class="input input-label-change" rows="3" rows="3" required autocorrect="off" spellcheck="false"></textarea>
+                          <label class="input-label">
+                            <div class="inner">
+                              Textarea
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.textarea -->
+                  </div>
+                  <div class="col-lg-12"></div>
+                </div>
+                <div class="row row-20 justify-content-center mt16">
+                  <div class="col-sm-4">
+                    <!-- button.button -->
+                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
+                      <div class="ubtn-inner">
+                        <span class="ubtn-text">Validate</span>
+                      </div>
+                    </button>
+                    <!-- end button.button -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__body pb-0">
+              <h5 class="pb32">input material 2</h5>
+              <form class="from-section form-vertical pb32">
+                <div class="row row-20 list-mb16 list-crop">
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
+                          <label class="input-label">
+                            <div class="inner">
+                              Input simple
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="input-note">
+                        Text note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.input -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.textarea -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg textarea-group input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <label class="input-label">
+                            <div class="inner">
+                              Input button
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                        <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
+                          <div class="input-box input-extend-inner">
+                            <!-- button.button -->
+                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
+                              <div class="ubtn-inner">
+                                <span class="ubtn-text">button</span>
+                              </div>
+                            </button>
+                            <!-- end button.button -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="input-note">
+                        Text note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.textarea -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
+                          <label class="input-label">
+                            <div class="inner">
+                              Input text
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-left">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.input -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 select-2-template input-label-change" header-text="Select 2" required>
+                            <option dataimgclass="ubox ubox-rounded ubox-size-button-xs" dataimg="media/icons-color/default/default/plannet.svg" datasub="abcte">
+                              abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 input-label-change" multiple header-text="Select 2 Multiple" required>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
+                            </option>
+                            <option>
+                              data 2
+                            </option>
+                            <option>
+                              data 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2 Multiple
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 select-2-tag input-label-change" multiple header-text="Select 2 Multiple Tag" required>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
+                            </option>
+                            <option>
+                              data 2
+                            </option>
+                            <option>
+                              data 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2 Multiple Tag
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input none input-label-change" required>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
+                            </option>
+                            <option>
+                              abc
+                            </option>
+                            <option>
+                              Option 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select simple
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <input type="" class="input lite-picker datepicker-range input-label-change" header-text="Datepicker" lp-single-mode="false" required autocorrect="off">
+                          <label class="input-label">
+                            <div class="inner">
+                              Datepicker
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" alt="" class="ic-default">
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.datepicker -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.textarea -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg textarea-group input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <label class="input-label">
+                            <div class="inner">
+                              Textarea
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.textarea -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.textarea -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-2 input-size-lg textarea-group input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <textarea class="input input-label-change" rows="3" rows="3" required autocorrect="off" spellcheck="false"></textarea>
+                          <label class="input-label">
+                            <div class="inner">
+                              Textarea
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.textarea -->
+                  </div>
+                  <div class="col-lg-12"></div>
+                </div>
+                <div class="row row-20 justify-content-center mt16">
+                  <div class="col-sm-4">
+                    <!-- button.button -->
+                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
+                      <div class="ubtn-inner">
+                        <span class="ubtn-text">Validate</span>
+                      </div>
+                    </button>
+                    <!-- end button.button -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__body pb-0">
+              <h5 class="pb32">Input material 3</h5>
+              <form class="from-section form-vertical pb32">
+                <div class="row row-20 list-mb16 list-crop">
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
+                          <label class="input-label">
+                            <div class="inner">
+                              Input simple
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="input-note">
+                        Text note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.input -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.textarea -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default textarea-group input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <label class="input-label">
+                            <div class="inner">
+                              Input button
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                        <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
+                          <div class="input-box input-extend-inner">
+                            <!-- button.button -->
+                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
+                              <div class="ubtn-inner">
+                                <span class="ubtn-text">button</span>
+                              </div>
+                            </button>
+                            <!-- end button.button -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="input-note">
+                        Text note
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.textarea -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.input -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
+                          <label class="input-label">
+                            <div class="inner">
+                              Input text
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-left">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.input -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 select-2-template input-label-change" header-text="Select 2" required>
+                            <option dataimgclass="ubox ubox-rounded ubox-size-button-xs" dataimg="media/icons-color/default/default/plannet.svg" datasub="abcte">
+                              abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                            <option datasub="abcte">
+                              abc
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 input-label-change" multiple header-text="Select 2 Multiple" required>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
+                            </option>
+                            <option>
+                              data 2
+                            </option>
+                            <option>
+                              data 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2 Multiple
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input select-2 select-2-tag input-label-change" multiple header-text="Select 2 Multiple Tag" required>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
+                            </option>
+                            <option>
+                              data 2
+                            </option>
+                            <option>
+                              data 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select 2 Multiple Tag
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.select -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <select class="input none input-label-change" required>
+                            <option>
+                              abc abc abc abc abc abc abc abc abc abc abc abc, abc abc
+                            </option>
+                            <option>
+                              abc
+                            </option>
+                            <option>
+                              Option 3
+                            </option>
+                          </select>
+                          <label class="input-label">
+                            <div class="inner">
+                              Select simple
+                            </div>
+                          </label>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.select -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.datepicker -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <input type="" class="input lite-picker datepicker-range input-label-change" header-text="Datepicker" lp-single-mode="false" required autocorrect="off">
+                          <label class="input-label">
+                            <div class="inner">
+                              Datepicker
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic">
+                              <img src="media/icons-color/default/default/plannet.svg" alt="" class="ic-default">
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.datepicker -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.textarea -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default textarea-group input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <label class="input-label">
+                            <div class="inner">
+                              Textarea
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
+                      </div>
+                      <div class="errorBlock"></div>
+                    </div>
+                    <!-- end form.textarea -->
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <!-- form.textarea -->
+                    <div class="form-group">
+                      <div class="input-group-wrap input-material-3 input-size-default textarea-group input-group-vertical">
+                        <div class="input-inner-wrap">
+                          <textarea class="input input-label-change" rows="3" rows="3" required autocorrect="off" spellcheck="false"></textarea>
+                          <label class="input-label">
+                            <div class="inner">
+                              Textarea
+                            </div>
+                          </label>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-txt">
+                              VND
+                            </div>
+                          </div>
+                          <div class="input-frame"></div>
+                        </div>
                       </div>
                       <div class="errorBlock"></div>
                     </div>
