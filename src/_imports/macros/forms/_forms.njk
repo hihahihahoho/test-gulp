@@ -185,37 +185,81 @@
     {% endset %}
   {% endif %}
 
-  {% set mainContent %}
-    <div class="input-group-wrap input-{{ data.style }} input-size-{{ data.size }} {{data.inputGroupExtendClass}} input-group-{{data.orient}}">
-      <{{ data.inputwraptag }} class="input-inner-wrap">
-        {{ data.content }}
-        {% if data.orient == 'vertical' %}
-          {{ labelSection }}
-        {% endif %}
-        {% if contentLeft %}
-          {{ iptExtend(dataIcon.left, pos = 'left') }}
-        {% endif %}
-        {% if contentRight %}
-          {{ iptExtend(dataIcon.right, pos = 'right', clear = data.clear) }}
-        {% endif %}
-        <div class="input-frame"></div>
-      </{{ data.inputwraptag }}>
-      {% if contentOutsideLeft %}
-        {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
+  {% set dataInputMics %}
+    {% if data.errorBlock %}
+      {% if data.error %}
+        <div class="errorBlock">
+          <div class="error-inner">{{ data.error if data.error }}</div>
+        </div>
+      {% else %}
+        <div class="errorBlock"></div>
       {% endif %}
-      {% if contentOutsideRight %}
-        {{ iptExtend(dataIcon.outsideRight, framePos = 'outside', pos = 'right') }}
-      {% endif %}
-    </div>
+    {% endif %}
     {% if data.note %}
       <div class="input-note">
         {{ data.note }}
       </div>
     {% endif %}
-    {% if data.errorBlock %}
-      <div class="errorBlock"></div>
+    {% if data.noteBig %}
+      <div class="input-note-big">
+        {{ data.noteBig }}
+      </div>
     {% endif %}
   {% endset %}
+  {% if data.groupForm %}
+    {% set mainContent %}
+      {% if data.orient == 'vertical' %}
+        {{ labelSection }}
+      {% endif %}
+      {% set groupFormRowSpace %}
+        {% if data.groupForm.gutter %}
+          {{ data.groupForm.gutter }}
+        {% else %}
+          16
+        {% endif %}
+      {% endset %}
+      {% if not data.groupForm.colClass %}
+        {% set dataColClass = 'col-6' %}
+      {% else %}
+        {% set dataColClass = data.groupForm.colClass %}
+      {% endif %}
+      <div class="row row-{{ groupFormRowSpace | trim }} {{ data.groupForm.extendClass if data.groupForm.extendClass }}" {{ data.groupForm.extendAttr if data.groupForm.extendAttr }}>
+        {% for item in data.groupForm.data %}
+          <div class="{{ dataColClass }}">
+            {{ item }}
+          </div>
+        {% endfor %}
+        <div class="col-12">
+          {{ dataInputMics }}
+        </div>
+      </div>
+    {% endset %}
+  {% else %}
+    {% set mainContent %}
+      <div class="input-group-wrap input-{{ data.style }} input-size-{{ data.size }} {{data.inputGroupExtendClass}} input-group-{{data.orient}}">
+        <{{data.inputwraptag}} class="input-inner-wrap">
+          {{ data.content if data.content }}
+          {% if data.orient == 'vertical' %}
+            {{ labelSection }}
+          {% endif %}
+          {% if contentLeft %}
+            {{ iptExtend(dataIcon.left, pos = 'left') }}
+          {% endif %}
+          {% if contentRight %}
+            {{ iptExtend(dataIcon.right, pos = 'right', clear = data.clear) }}
+          {% endif %}
+          <div class="input-frame"></div>
+        </{{data.inputwraptag}}>
+        {% if contentOutsideLeft %}
+          {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
+        {% endif %}
+        {% if contentOutsideRight %}
+          {{ iptExtend(dataIcon.outsideRight, framePos = 'outside', pos = 'right') }}
+        {% endif %}
+      </div>
+      {{ dataInputMics }}
+    {% endset %}
+  {% endif %}
 
   <div class="form-group">
     {% if data.orient == 'vertical' %}
@@ -262,6 +306,7 @@
     input
     {{ 'input-label-change' if data.labelChange }}
     {{ 'input-has-clear' if data.clear }}
+    {{ 'input-tagify' if data.tagify }}
     {{ data.extendClass if data.extendClass }}
   {% endset %}
 
@@ -272,6 +317,7 @@
     {{ 'required' if data.required }}
     {{ 'disabled' if data.disabled }}
     {{ 'readonly' if data.readonly }}
+    {{ data.extendAttr if data.extendAttr }}
     autocorrect="off"
   {% endset %}
 
@@ -351,7 +397,8 @@
     lib: 'litepicker',
     labelChange: true,
     range: false,
-    placeholder: 'dd/mm/yyyy'
+    placeholder: 'dd/mm/yyyy',
+    rangeInput: 1
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
 
@@ -375,10 +422,31 @@
     autocorrect="off"
   {% endset %}
 
-  {% set content %}
-    <input type="{{ data.type }}" class="{{ inputClass }}" {{ inputAttr }}>
-  {% endset %}
-  {% set data = data | setAttribute('content', content) %}
+  {% if data.rangeInput == 2 and data.range == true %}
+    {% set inputStartAttr %}
+      {{ 'lp-single-mode="false"' if data.range }}
+      {{ 'header-text="' + data.title + '"' if data.title }}
+    {% endset %}
+    {% set groupFormClass %}
+      lite-picker-group
+    {% endset %}
+    {% set dataInput = {
+      groupForm: {
+        gutter: '16' if data.size == 'sm',
+        extendClass: groupFormClass,
+        data: [
+          input({placeholder: 'Từ', extendClass: 'lite-picker lite-picker-start cleave-birthday', clear: false, extendAttr: inputStartAttr, size: data.size, style: data.style }),
+          input({placeholder: 'Đến', extendClass: 'lite-picker-end cleave-birthday', clear: false, size: data.size, style: data.style })
+        ] 
+      }
+    } %}
+    {% set data = data | mergeDeep(dataInput) %}
+  {% else %}
+    {% set content %}
+      <input type="{{ data.type }}" class="{{ inputClass }}" {{ inputAttr }}>
+    {% endset %}
+    {% set data = data | setAttribute('content', content) %}
+  {% endif %}
   {{ iptSkeleton(data) }}
   <!-- end form.datepicker -->
 {% endmacro %}

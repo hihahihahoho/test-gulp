@@ -21,6 +21,15 @@
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
+              title: 'Tagify',
+              tagify: true,
+              placeholder: 'same'
+            } %}
+            {% set inputData = inputData | mergeDeep(dataDefault) %}
+            {{ form.input(inputData) }}
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            {% set inputData = {
               title: 'Input button',
               extendOutsideRight: contentInside,
               extendOutsideRightClass: 'col-md-4 col-auto',
@@ -95,11 +104,7 @@
               title: 'Select 2 Multiple',
               multiple: true,
               search: true,
-              option: [
-                'abc abc abc abc abc abc abc abc abc abc abc abc, abc abc',
-                'data 2',
-                'data 3'
-              ]
+              option: ['abc abc abc abc abc abc abc abc abc abc abc abc, abc abc', 'data 2', 'data 3']
             } %}
             {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.select(inputData) }}
@@ -110,11 +115,7 @@
               multiple: true,
               search: true,
               select2Tag: true,
-              option: [
-                'abc abc abc abc abc abc abc abc abc abc abc abc, abc abc',
-                'data 2',
-                'data 3'
-              ]
+              option: ['abc abc abc abc abc abc abc abc abc abc abc abc, abc abc', 'data 2', 'data 3']
             } %}
             {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.select(inputData) }}
@@ -131,12 +132,26 @@
           <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
               title: 'Datepicker',
+              value: '06/04/2022 - 14/04/2022',
               extendInsideRight: contentInside,
               range: true,
+              rangeInput: 2,
               iconRight: globalsVar.iconDemo
             } %}
             {% set inputData = inputData | mergeDeep(dataDefault) %}
             {{ form.datepicker(inputData) }}
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            {% set dataInput = {
+              title: 'Group form',
+              groupForm: {
+                data: [
+                  form.input({placeholder: 'Nhập 6 số đầu của thẻ'}),
+                  form.input({placeholder: 'Nhập 4 số cuối của thẻ'})
+                ]
+              }
+            } %}
+            {{ form.input(dataInput) }}
           </div>
           <div class="col-lg-4 col-md-6 col-sm-6">
             {% set inputData = {
@@ -172,6 +187,8 @@
   {{ mainInputs('Input material',{ style: 'material', required: true, placeholder: false }) }}
   {{ mainInputs('input material 2',{ style: 'material-2', required: true, size: 'lg', placeholder: false }) }}
   {{ mainInputs('Input material 3',{ style: 'material-3', required: true, placeholder: false }) }}
+  {{ mainInputs('Input default',{ required: true, placeholder: 'same', disabled: true}) }}
+  {{ mainInputs('Input default',{ style: 'material',required: true, placeholder: 'same', readonly: true}) }}
 {% endblock %}
 
 {% block modal %}

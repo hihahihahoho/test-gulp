@@ -5,6 +5,41 @@ Note:
   https://marketplace.visualstudio.com/items?itemName=eseom.nunjucks-template
   https://marketplace.visualstudio.com/items?itemName=lfurzewaddock.vscode-opn
 
+Start Project:
+  ☐ Favicon
+  ☐ Title header
+  ☐ Colors
+  ☐ Buttons
+    ☐ readonly
+    ☐ disabled
+    ☐ hover
+  ☐ Input
+    ☐ readonly
+    ☐ disabled
+    ☐ hover
+  ☐ Select
+    ☐ readonly
+    ☐ disabled
+    ☐ hover
+    ☐ Mobile
+  ☐ Datepicker
+    ☐ readonly
+    ☐ disabled
+    ☐ hover
+    ☐ Mobile
+  ☐ Checkbox
+    ☐ readonly
+    ☐ disabled
+    ☐ hover
+    ☐ checked
+    ☐ intermidiate
+  ☐ Modal
+    ☐ Alert
+    ☐ Toast
+    ☐ Modal normal
+  ☐ Tabs
+    ☐ Pills
+    ☐ Line
 
 Features:
   ✔ Sửa render sidebar đang lỗi @done(21-02-04 10:55)

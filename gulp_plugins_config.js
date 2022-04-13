@@ -235,6 +235,18 @@ var pluginsDetail = {
       "src/js/hammerjs.init.js"
     ]
   },
+  'tagify': {
+    "name": 'tagify',
+    "styles": [
+      "src/plugins/tagify/tagify.min.css"
+    ],
+    "scripts": [
+      "node_modules/@yaireo/tagify/dist/tagify.min.js"
+    ],
+    "init": [
+      "src/js/tagify.init.js"
+    ]
+  },
 }
 
 var plugins = {
@@ -263,7 +275,8 @@ var plugins = {
     pluginsDetail.datatables,
     pluginsDetail.floatingScroll,
     pluginsDetail.iosInnerHeight,
-    pluginsDetail.hammerjs
+    pluginsDetail.hammerjs,
+    pluginsDetail.tagify,
   ]
 }
 

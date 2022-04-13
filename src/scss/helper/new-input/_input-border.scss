@@ -25,12 +25,17 @@
       border: 1px solid $input-border-color;
     }
     .input {
-      &:focus {
+      &:focus:not([readonly]):not(:disabled) {
         ~ .input-frame {
           border-color: $color-primary;
         }
       }
       &:disabled {
+        ~ .input-frame {
+          background-color: $color-grey-2;
+        }
+      }
+      &[readonly] {
         ~ .input-frame {
           background-color: $color-grey-3;
         }

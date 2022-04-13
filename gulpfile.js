@@ -1135,7 +1135,7 @@ function purge () {
   return gulp.src([staticFolder + '/**/*.css', '!' + staticFolder + '/dev-only/**/*'])
     .pipe(purgecss({
       content: [staticFolder + '/**/*.{html,js,xml}'],
-      whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /d-block/, /col/, /select2/, /cr-vp-circle/, /swiper/, /noUi/, /medium-zoom/]
+      whitelistPatternsChildren: [/las/, /lar/, /lab/, /la-/, /.tooltip/, /modal/, /d-block/, /col/, /select2/, /cr-vp-circle/, /swiper/, /noUi/, /medium-zoom/, /href/, /input-frame/]
     }))
     .pipe(gulp.dest(staticFolder + '/'))
 }

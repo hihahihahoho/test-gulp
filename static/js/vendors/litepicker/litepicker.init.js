@@ -85,6 +85,10 @@ function getLightpickOption (el) {
   if (el.getAttribute("lp-single-mode") == 'false') {
     overideOpts = mergeObjects(optsRange, overideOpts);
   }
+  if (el.classList.contains('lite-picker-start')) {
+    console.log('a')
+    overideOpts.elementEnd = el.closest('.lite-picker-group').querySelector('.lite-picker-end');
+  }
   for (var key in attr) {
     var element = attr[key];
     if (typeof element === "object") {
@@ -133,10 +137,36 @@ function getLightpickOption (el) {
       })
     }
   });
+  // autofill
+  if (el.classList.contains('lite-picker-start')) {
+    var elVal;
+    var elValEnd;
+    var elEnd = el.closest('.lite-picker-group').querySelector('.lite-picker-end');
+    el.addEventListener('keyup', function () {
+      elVal = el.value;
+    });
+    elEnd.addEventListener('keyup', function () {
+      elValEnd = elEnd.value;
+    })
+    lpicker.on('preselect', function (date1, date2) {
+      if (!date2) {
+        lp[i].setDateRange(date1, date1)
+      } else {
+        lp[i].setDateRange(date1, date2)
+      }
+    }).on('hide', function (date1, date2) {
+      if (elVal && !elValEnd) {
+        el.value = elVal
+        elEnd.value = elVal;
+        lp[i].setDateRange(elVal, elVal)
+      }
+      if (elValEnd && !elVal) {
+        el.value = elValEnd
+        elEnd.value = elValEnd;
+        lp[i].setDateRange(elValEnd, elValEnd)
+      }
+    })
+  }
+  // autofill
   lp.push(lpicker)
 });
-
-
-lp[0].on('selected', () => {
-  console.log('a')
-})

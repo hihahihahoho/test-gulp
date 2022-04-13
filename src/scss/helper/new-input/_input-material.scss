@@ -39,15 +39,17 @@
       &::placeholder {
         opacity: 0 !important;
       }
-      &:focus {
+      &:focus:not([readonly]):not(:disabled) {
         &::placeholder {
           opacity: 1 !important;
         }
       }
-      &:focus,
+      &:focus:not([readonly]):not(:disabled),
       & ~ .select2-container--open,
       & ~ .select2-container--focus,
-      &-hadval {
+      &-hadval,
+      &.tagify--focus,
+      &.input-tagify.parsley-error {
         & ~ .input-label {
           .inner {
             bottom: 0;
@@ -150,7 +152,7 @@
           }
         }
       }
-      &:focus {
+      &:focus:not([readonly]):not(:disabled) {
         ~ .input-frame {
           &::after {
             width: 100%;
