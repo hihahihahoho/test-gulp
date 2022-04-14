@@ -87,6 +87,10 @@ function iOS () {
 
   return false;
 }
+
+document.querySelectorAll('input[type="checkbox"][indeterminate]').forEach(function(el) {
+  el.indeterminate = true;
+})
 //====================END JQUERY BASIC INIT=================//
 //====================MENU=================//
 var menuSettings = {

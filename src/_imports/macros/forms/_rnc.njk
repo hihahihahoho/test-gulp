@@ -98,7 +98,7 @@
 
 {% macro rncBox(data) %}
   {% set dataDefault = {
-    space: '10'
+    space: '12'
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
 
@@ -123,9 +123,11 @@
 
   {% set content %}
     <div class="{{ rncContentClass }}">
-      <div class="{{ rncIcWrapClass }}">
-        {{ rncSymbol(data) }}
-      </div>
+      {% if not data.hideSymbol %}
+        <div class="{{ rncIcWrapClass }}">
+          {{ rncSymbol(data) }}
+        </div>
+      {% endif %}
       <div class="{{ rncInnerClass }}">
         {{ data.content }}
       </div>

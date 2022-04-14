@@ -9,7 +9,7 @@
       <form class="form-section form-vertical pb32">
         <div class="row row-20 list-mb10">
           <div class="col-sm-4">
-            {{ rnc.checkbox({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet ', space: 15, valign: 'center'}) }}
+            {{ rnc.checkbox({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet', hideSymbol: true}) }}
           </div>
           <div class="col-sm-4">
             {{ rnc.checkbox({ title: 'test', iconPos: 1, isRequired: true, name: 'checkbox', form: true }) }}
@@ -18,7 +18,7 @@
             {{ rnc.checkboxIcon() }}
           </div>
           <div class="col-sm-2">
-            {{ rnc.checkboxIcon({ indeterminate: true, disabled: true }) }}
+            {{ rnc.checkbox({ title: 'Indeterminate', indeterminate: true }) }}
           </div>
         </div>
         <div class="row row-20 list-mb10 align-items-center">
@@ -34,7 +34,7 @@
       <form class="form-section form-vertical pb32">
         <div class="row row-20 list-mb10">
           <div class="col-sm-4">
-            {{ rnc.radio({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet ', space: 15, valign: 'center'}) }}
+            {{ rnc.radio({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet '}) }}
           </div>
           <div class="col-sm-4">
             {{ rnc.radio({ title: 'test', iconPos: 1, isRequired: true, name: 'radio', form: true }) }}
@@ -56,7 +56,7 @@
       <form class="form-section form-vertical pb32">
         <div class="row row-20 list-mb10">
           <div class="col-sm-4">
-            {{ rnc.switch({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet ', space: 15, valign: 'center'}) }}
+            {{ rnc.switch({ title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat egestas risus, vitae cursus magna cursus a. Sed velit diam, tincidunt quis tortor non, bibendum dapibus augue. Ut luctus malesuada laoreet '}) }}
           </div>
           <div class="col-sm-4">
             {{ rnc.switch({ title: 'test', iconPos: 1, isRequired: true, name: 'switch', form: true, disabled: true, checked: true }) }}

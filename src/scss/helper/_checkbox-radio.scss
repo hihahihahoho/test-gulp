@@ -1,6 +1,6 @@
 //=== RADIO AND CHECKBOX ========================
 $map-rnc-size: (
-  default: 18px,
+  default: 20px,
   xs: 16px,
   sm: 20px,
   md: 22px,
@@ -12,15 +12,16 @@ $rncRadioStyle2Name: "default" !default;
 $rncRadioStyle2Name: "2" !default;
 $rncRadioStyle1Name: "1" !default;
 
-$checkbox-border-radius: 50% !default;
+$checkbox-border-radius: 3px !default;
 $rnc-default-border: 1px solid $color-grey-2 !default;
 $rnc-default-bg-color: transparent !default;
 $rnc-active-color: $color-primary !default;
-$rnc-checkbox-ic-color: $color-primary !default;
-$rnc-active-border-color: rgba($color-primary, 0.2) !default;
-$rnc-active-bg-color: rgba($color-primary, 0.1) !default;
+$rnc-checkbox-ic-color: #fff !default;
+$rnc-active-border-color: $color-primary !default;
+$rnc-active-bg-color: $color-primary !default;
 $rnc-active-bg-color-radio: rgba($color-primary, 0.1) !default;
 $rnc-ripple-color: rgba($rnc-active-color, 0.1) !default;
+$rnc-indeterminate-bg-color: $color-primary !default;
 //=====Swich-ios======
 $switch-ic-size: 24px !default;
 $switch-ic-border-radius: $switch-ic-size / 2 !default;
@@ -33,6 +34,7 @@ $switch-text-color: $color-grey-1 !default;
 $switch-text-color-active: $color-default !default;
 $switch-ic-bg-color: white !default;
 $switch-ic-active-bg-color: white !default;
+$rnc-indeterminate-border-color: $color-primary !default;
 
 @mixin modifiers-rnc($map, $prefix: "-", $separator: "-", $base: "basic", $name: "") {
   @each $key, $value in $map {
@@ -222,6 +224,17 @@ $switch-ic-active-bg-color: white !default;
           }
         }
       }
+    }
+  }
+}
+
+input[type="checkbox"]:indeterminate {
+  ~ .rnc-content {
+    .checkbox-ic {
+      background-color: $rnc-indeterminate-bg-color;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-minus' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='%23ffffff' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cline x1='5' y1='12' x2='19' y2='12' /%3E%3C/svg%3E");
+      background-size: 16px;
+      border-color: $rnc-indeterminate-border-color;
     }
   }
 }

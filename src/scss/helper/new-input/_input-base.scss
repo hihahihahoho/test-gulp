@@ -90,7 +90,7 @@ select:invalid {
   &:hover:not(readonly):not(:focus):not(:disabled),
   &:not(readonly):not(:focus):not(:disabled) ~ .select2:hover {
     & ~ .input-frame {
-      border-color: #cdcdcd;
+      border-color: $input-hover-frame-border-color;
     }
   }
   &-has-clear {
