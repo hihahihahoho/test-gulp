@@ -9,7 +9,7 @@ $table-thead-bg-color: $color-invert;
 $table-font-size: 14px;
 $table-body-padding: 12px 5px;
 $table-border: 1px solid $color-grey-2;
-$table-hover-bg-color: lighten($color-yellow, 36);
+$table-hover-bg-color: $color-light-red;
 
 //===========pagination===========//
 $page-font: 13px;

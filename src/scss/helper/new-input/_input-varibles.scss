@@ -51,7 +51,7 @@ $input-label-margin-bottom: 7px !default;
 $input-error-font-size: 12px !default;
 $input-border-color: $border-base-color !default;
 $input-border-background: transparent !default;
-$input-border-color-focus: lighten($color-primary, 0.5) !default;
+$input-border-color-focus: $color-primary !default;
 
 $input-space-left: 10px !default;
 $input-space-right: 10px !default;

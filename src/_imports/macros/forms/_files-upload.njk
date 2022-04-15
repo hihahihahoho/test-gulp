@@ -1,2 +1,13 @@
 {% import "macros/forms/_forms.njk" as form %}
 
+{% macro uppy() %}
+  <div id="uppy"></div>
+{% endmacro %}
+
+{% macro dropzone(data) %}
+  <div class="dropzone-wrap dropzone-wrap-{{ data.id }}">
+    <div class="dropzone-preview row row-12 list-mb12 list-crop">
+      <div class="col dropzone drop-zone-col {{ data.id }}"></div>
+    </div>
+  </div>
+{% endmacro %}

@@ -247,6 +247,18 @@ var pluginsDetail = {
       "src/js/tagify.init.js"
     ]
   },
+  'dropzone': {
+    "name": 'dropzone',
+    "styles": [
+      "node_modules/dropzone/dist/dropzone.css"
+    ],
+    "scripts": [
+      "node_modules/dropzone/dist/dropzone-min.js"
+    ],
+    "init": [
+      "src/js/dropzone.init.js"
+    ]
+  }
 }
 
 var plugins = {
@@ -277,6 +289,7 @@ var plugins = {
     pluginsDetail.iosInnerHeight,
     pluginsDetail.hammerjs,
     pluginsDetail.tagify,
+    pluginsDetail.dropzone,
   ]
 }
 

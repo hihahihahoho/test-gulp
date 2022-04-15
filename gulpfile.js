@@ -117,7 +117,7 @@ var pluginsBundlesJsVal = [];
 var pluginsBundlesCssVal = [];
 var commitMessage = '';
 
-var ie11 = true;
+var ie11 = false;
 
 Array.prototype.diff = function (a) {
   return this.filter(function (i) { return a.indexOf(i) < 0; });
@@ -223,7 +223,7 @@ var postCssPlugins = [
   posCssRgb()
 ];
 
-ie11 && postCssPlugins.push(cssvariables())
+// ie11 && postCssPlugins.push(cssvariables())
 
 function postCss () {
   return gulp.src(desFolder + '/css/custom.bundles.css')

@@ -1,0 +1,166 @@
+.dropzone-preview:empty {
+  display: none;
+}
+
+.dropzone-wrap .dropzone {
+  flex-grow: 1;
+  flex-basis: 0;
+  border: 0;
+  height: auto;
+  min-height: 0;
+}
+
+.dz-details,
+.dz-progress,
+.dz-error-message,
+.dz-error-mark,
+.dz-success-mark {
+  position: absolute;
+}
+
+.dropzone-preview {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dz-preview {
+  min-width: 33%;
+  flex-basis: 0;
+  flex-grow: 1;
+  position: relative;
+  height: 120px;
+  order: 1;
+}
+
+.dz-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dz-image > img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.drop-zone-col {
+  order: 2;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.dz-progress {
+  height: 10px;
+  width: 90%;
+  bottom: 10px;
+  left: 5%;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.dz-upload {
+  background-color: var(--color-primary);
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+}
+.dz-progress {
+  display: none;
+}
+
+.dz-error-mark {
+  display: none;
+}
+
+.dz-details {
+  background: rgb(26, 30, 32);
+  background: linear-gradient(0deg, rgba(26, 30, 32, 0.9976851851851852) 0%, rgba(26, 30, 32, 0) 100%);
+  opacity: 0;
+  width: calc(100% - 12px);
+  padding: 10px;
+  bottom: 0;
+  left: 6px;
+  transition: 0.15s all linear;
+  border-radius: 0 0 12px 12px;
+  color: white;
+}
+
+.dz-filename {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dz-preview:hover .dz-details {
+  opacity: 1;
+}
+
+.dz-remove {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: #3c3e3f;
+  border: 3px solid #fafbfb;
+  border-radius: 50%;
+  top: -6px;
+  position: absolute;
+  right: -6px;
+  background-image: url("data:image/svg+xml,%3Csvg id='Ic_24px_Close' xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath id='Path_58' data-name='Path 58' d='M0,0H12V12H0Z' fill='none'/%3E%3Cline id='Line_42' data-name='Line 42' x1='6' y2='6' transform='translate(3 3)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3Cline id='Line_43' data-name='Line 43' x2='6' y2='6' transform='translate(3 3)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dz-success-mark {
+  display: none;
+}
+
+.dropzone-wrap .dropzone > .dz-message {
+  height: 120px;
+  border-radius: 16px;
+  background-color: var(--color-sub-primary);
+  min-height: 0;
+  border: 1px dashed var(--color-primary);
+  display: flex;
+  color: var(--color-primary);
+  align-items: center;
+  font-weight: 600;
+  margin: 0;
+  font-size: 13px;
+  justify-content: center;
+}
+
+.dropzone .dz-message > .dz-button {
+  margin: 0;
+  background-position: center top;
+  background-repeat: no-repeat;
+  height: 45px;
+  padding-top: 30px;
+}
+
+.group-dropzone {
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.dz-max-files-reached {
+  display: none;
+}
+
+.dz-error {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .group-dropzone {
+    padding: 15px;
+  }
+  .dz-preview {
+    min-width: 50%;
+  }
+}

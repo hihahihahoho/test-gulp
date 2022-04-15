@@ -28,6 +28,7 @@ input.forEach(el => {
       }, "click": (e) => {
         validateRemove(e.detail.tagify.DOM.originalInput)
       }, "remove": (e) => {
+        console.log(e)
         validateRemove(e.detail.tagify.DOM.originalInput)
       }, "blur": (e) => {
         validateRemove(e.detail.tagify.DOM.originalInput)

@@ -1,8 +1,11 @@
 {% extends "main/_layout-sidebar.njk" %}
 {% set pageLink = file_path %}
-{% set pageTitle = 'Uppy' %}
+{% set pageTitle = 'File upload' %}
 
 {% block css %}
+  <!-- dropzone -->
+  <link rel="stylesheet" href="css/vendors/dropzone/dropzone.bundles.css">
+  <!-- end dropzone -->
   <!-- uppy -->
   <link rel="stylesheet" href="css/vendors/uppy/uppy.bundles.css">
   <!-- end uppy -->
@@ -11,12 +14,25 @@
 {% block mainInner %}
   <div class="box">
     <div class="box__body pb-0">
-      <h5 class="pb32">Checkbox
+      <h5 class="pb32">Uppy
       </h5>
       <form class="from-section form-vertical pb32">
         <div class="row row-20">
           <div class="col-sm-6">
-            <div id="uppy"></div>
+            {{ file.uppy() }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body pb-0">
+      <h5 class="pb32">Dropzone
+      </h5>
+      <form class="from-section form-vertical pb32">
+        <div class="row row-20">
+          <div class="col-sm-6">
+            {{ file.dropzone({ id: 'dropzone1' }) }}
           </div>
         </div>
       </form>
@@ -25,6 +41,10 @@
 {% endblock %}
 
 {% block script %}
+  <!-- dropzone -->
+  <script src="/dist/js/vendors/dropzone/dropzone.bundles.js"></script>
+  <script src="/dist/js/vendors/dropzone/dropzone.init.js"></script>
+  <!-- dropzone -->
   <!-- uppy -->
   <script src="/dist/js/vendors/uppy/uppy.bundles.js"></script>
   <!-- uppy -->

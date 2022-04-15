@@ -79,8 +79,7 @@
         <div class="row row-20 list-mb10">
           {% set data = [
             {
-              title: 'Title',
-              subTitle: 'Sub > title'
+              title: 'Title'
             }, {
               title: 'Title',
               subTitle: 'Sub title'
@@ -98,10 +97,12 @@
                       {{ item.title }}
                       {{ loop.index }}
                     </div>
-                    <div class="sub-title h6">
-                      {{ item.subTitle }}
-                      {{ loop.index }}
-                    </div>
+                    {% if item.subTitle %}
+                      <div class="sub-title h6">
+                        {{ item.subTitle }}
+                        {{ loop.index }}
+                      </div>
+                    {% endif %}
                   {% endset %}
                   {% set objVal = {
                     type: 'checkbox',

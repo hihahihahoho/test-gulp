@@ -876,6 +876,9 @@ html {
         &#{$name} {
           @include media("<#{$key}") {
             // flex-wrap: wrap-reverse;
+            > .group-col-item {
+              flex: 1 0 auto
+            }
           }
           > .group-col-item {
             @include media(">=#{$key}") {
