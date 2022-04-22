@@ -3,7 +3,10 @@
     "**/dist/**/*": true,
     "**/static/**/*": true,
     // settingSearch
-"theme/*": true,
+"src/fonts/**/*": true,
+    "gulp_themes_config.js": true,
+    "gulp_icons-color-config.js": true,
+"theme/bidv": true,
 // endSettingSearch
   },
   "files.exclude": {
@@ -58,7 +61,7 @@
   },
   "vscode-opn.webServerProtocol": "http",
   "vscode-opn.webServerHostname": "localhost",
-  "vscode-opn.webServerPort": 3000,
+  "vscode-opn.webServerPort": 3002,
   "workbench.colorCustomizations": {
     "statusBar.background": "#61dafb",
     "statusBar.foreground": "#15202b",

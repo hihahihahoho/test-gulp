@@ -24,7 +24,7 @@
   {% endmacro %}
 </ul>
 
-{% macro media(files, title, width, id) %}
+{% macro media(files, title, width, id, masked) %}
   <div class="search-section" id="section{{ id }}">
     <h2>{{ title }}</h2>
     <div class="search-section-inner">
@@ -40,7 +40,7 @@
                     {% set iconLink = item2['path'] | replace('icons-color/', 'icons-color/default/') | lower %}
                     <li class="">
                       <label class="ic-wrap-label">
-                        <input type="radio" class="hidden icon-item searchMedia {{id}}" name="searchItem" value="{{ iconLink }}">
+                        <input type="radio" class="hidden icon-item searchMedia {{ 'searchMasked' if masked }} {{id}}" name="searchItem" value="{{ iconLink }}">
                         <div class="ic-wrap">
                           <div class="name hidden">{{ item2['name'] }}</div>
                           <div class="link hidden">{{ iconLink }}</div>
@@ -141,6 +141,18 @@
       </div>
     </div>
   </div>
+
+  {% set linkIconmask = globalsVarImg.linkIconmask[0]['children'] %}
+  {% set linkIcon = '' %}
+  {% for item in globalsVarImg.linkMedia[0]['children'] %}
+    {% if item['name'] == 'icons' %}
+      {% set linkIcon = item['children'] %}
+    {% endif %}
+  {% endfor %}
+
+  {% set linkMedia = globalsVarImg.linkMedia[0]['children'] %}
+
+  {{ media(linkIconmask, 'Icon Mask', '24', 'IconMask', true) }}
 
   {% set linkIconColor = globalsVarImg.linkIconColor[0]['children'] %}
   {% set linkIcon = '' %}

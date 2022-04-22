@@ -207,6 +207,10 @@ $(document).ready(function () {
     if ($('.searchMedia:checked').val()) {
       value = $('[name=colorPicker]:checked').val();
       nameFull = nameFull.replace(/\/icons-color\/(.*?)\//, '/icons-color/' + value + '/');
+      if ($('.searchMedia:checked').hasClass('searchMasked')) {
+        console.log('a')
+        nameFull = nameFull.replace(/media\/icons-mask\/\/(.*?)\//, '');
+      }
       $('.icon-info-group .img-holder > img').attr('src', nameFull);
       getColor = setTimeout(function () {
         var img = document.querySelector('.icon-info-group .img-holder > img')

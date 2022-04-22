@@ -79,6 +79,14 @@ $map-color-gradient: () !default;
         &.ubg-active:active {
           @include bg(map-get($map: $map-color-active, $key: $value));
         }
+        &-hover {
+          transition: 0.2s all linear;
+          &:hover {
+            @if map-has-key($map-color, $key) {
+              @include bg(map-get($map-color, $key));
+            }
+          }
+        }
         &.ubg-hover {
           transition: 0.2s all linear;
           &:hover {
@@ -98,7 +106,7 @@ $map-color-gradient: () !default;
           @if map-has-key($map-color-shadowOp, $key) {
             box-shadow: 0px 5px 30px 0 rgba($value, map-get($map: $map-color-shadowOp, $key: $key));
           } @else {
-            box-shadow: 0px 5px 30px 0 rgba($value, 0.2);
+            // box-shadow: 0px 5px 30px 0 rgba($value, 0.2);
           }
         }
         @if map-has-key($map-color-text, $key) {

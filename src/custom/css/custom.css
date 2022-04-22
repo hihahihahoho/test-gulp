@@ -42,3 +42,12 @@
   min-height: calc(100% - 80px);
   max-height: calc(100% - 80px);
 }
+
+.icm {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  -webkit-mask-size: 48px;
+  mask-size: 48px;
+}

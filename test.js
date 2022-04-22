@@ -122,4 +122,20 @@ const person = ({ name, age }) => ({
 })
 
 let person1 = person({ name: 'tung', age: '27' });
-console.log(person1.getName({ middleName: 'Nguyen', lastName: 'Thanh' }))
+// console.log(person1.getName({ middleName: 'Nguyen', lastName: 'Thanh' }))
+
+class Polygon {
+  constructor(...sides) {
+    this.sides = sides;
+  }
+  // Method
+  *getSides() {
+    for(const side of this.sides){
+      yield side;
+    }
+  }
+}
+
+const pentagon = new Polygon(1,2,3,4,5);
+
+console.log([...pentagon.getSides()]); // [1,2,3,4,5]// 100
