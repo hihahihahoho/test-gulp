@@ -1,16 +1,16 @@
-$emptySelector: '';
+$emptySelector: "";
 $map-font-size: (
   xs: 16px,
   sm: 18px,
   md: 22px,
-  lg: 24px
+  lg: 24px,
 ) !default;
 
 $map-font-ic: (
   xs: 14px,
   sm: 18px,
   md: 22px,
-  lg: 24px
+  lg: 24px,
 ) !default;
 
 $map-ic: (
@@ -18,7 +18,7 @@ $map-ic: (
   xs: 14px,
   sm: 18px,
   md: 22px,
-  lg: 24px
+  lg: 24px,
 ) !default;
 
 // $map-h-font: (
@@ -35,38 +35,38 @@ $map-h-font: (
     font-size: 32px,
     line-height: 1.1,
     768: (
-      font-size: 28px
+      font-size: 28px,
     ),
     480: (
-      font-size: 24px
-    )
+      font-size: 24px,
+    ),
   ),
   h2: (
     font-size: 24px,
     line-height: 1.1,
     480: (
-      font-size: 22px
-    )
+      font-size: 22px,
+    ),
   ),
   h3: (
-    font-size: 21px ,
+    font-size: 21px,
     line-height: 1.1,
     480: (
-      font-size: 20px
-    )
+      font-size: 20px,
+    ),
   ),
   h4: (
     font-size: 18px,
-    line-height: 1.3
+    line-height: 1.3,
   ),
   h5: (
     font-size: 16px,
-    line-height: 1.3
+    line-height: 1.3,
   ),
   h6: (
     font-size: 12px,
-    line-height: 1.3
-  )
+    line-height: 1.3,
+  ),
 ) !default;
 
 $map-font-weight: (
@@ -78,7 +78,7 @@ $map-font-weight: (
   6: 600,
   7: 700,
   8: 800,
-  9: 900
+  9: 900,
 );
 
 $map-text-align-breakpoint: (
@@ -104,13 +104,12 @@ $map-text-align-breakpoint: (
         @include modifiers-h-font-only-inner($value);
       }
     } @else {
-      @if $key == 'font-size' {
+      @if $key == "font-size" {
         #{$key}: #{$value};
       }
     }
   }
 }
-
 
 @mixin modifiers-text-align($map, $alignName, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
@@ -229,7 +228,7 @@ $map-text-align-breakpoint: (
 @mixin modifiers-h-font($map, $prefix: "", $separator: "", $base: "basic") {
   @each $key, $value in $map {
     &#{if($key != $base, #{$prefix}#{$key}, '')},
-    &.#{if($key != $base, #{$prefix}#{$key}, '')} {
+    &.#{if($key != $base, #{$prefix}#{$key}, "")} {
       margin: 0;
       @if type-of($value) == "map" {
         @include modifiers-h-font-inner($value);
@@ -294,15 +293,15 @@ $map-text-align-breakpoint: (
 }
 
 .fz {
-    @include modifiers-h-font-only($map-h-font);
-} 
+  @include modifiers-h-font-only($map-h-font);
+}
 
 @at-root {
   @include modifiers-h-font($map-h-font);
 }
 
 .weight {
-  @include modifiers($map-font-weight, "font-weight", $prefix: "",  $separator: "");
+  @include modifiers($map-font-weight, "font-weight", $prefix: "", $separator: "");
 }
 
 .b,
@@ -310,7 +309,8 @@ b {
   font-weight: bold;
 }
 
-p,.p {
+p,
+.p {
   font-size: $font-size-default;
   line-height: 1.3;
 }
@@ -330,4 +330,19 @@ button {
 
 select {
   cursor: pointer;
+}
+
+$map-icm: (
+  width: 14px,
+  sm: 18px,
+  md: 22px,
+  lg: 24px,
+);
+
+.icm {
+  display: inline-block;
+  background-repeat: no-repeat;
+  &-size {
+    @include modifiers($map-ic, ["width", 'height', '-webkit-mask-size', 'mask-size']);
+  }
 }

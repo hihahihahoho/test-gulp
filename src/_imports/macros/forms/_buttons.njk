@@ -36,7 +36,7 @@
     <div class="ubtn-inner">
       {% if data.iconLeft %}
         <span class="ubtn-ic ubtn-ic-left">
-          <img src="{{data.iconLeft}}" alt="" class="ic-{{ data.icSize }}">
+          <span class="icm {{ data.iconLeft }}"></span>
         </span>
       {% endif %}
       {% if data.title %}
@@ -49,7 +49,7 @@
       {% endif %}
       {% if data.iconRight %}
         <span class="ubtn-ic ubtn-ic-right">
-          <img src="{{data.iconRight}}" alt="" class="ic-{{ data.icSize }}">
+          <span class="icm {{ data.iconRight }}"></span>
         </span>
       {% endif %}
     </div>

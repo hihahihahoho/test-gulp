@@ -9,38 +9,41 @@ $map-box-width: (
 ) !default;
 $map-box-height: (
   avatar-sm: (
-    height: 36px
+    height: 36px,
   ),
   avatar-default: (
-    height: 44px
+    height: 44px,
   ),
   avatar-lg: (
-    height: 56px
+    height: 56px,
   ),
   ic-sm: (
-    height: 36px
+    height: 36px,
   ),
   ic-default: (
-    height: 44px
+    height: 44px,
   ),
   ic-lg: (
-    height: 56px
+    height: 56px,
   ),
   button-default: (
     height: 44px,
     font-size: 14px,
     padding: 12px,
+    icon-size: 24px,
     border-radius: 8px,
     font-weight: 500,
   ),
   button-sm: (
     height: 36px,
     font-size: 14px,
+    icon-size: 20px,
     padding: 8px,
     border-radius: 4px,
   ),
   button-xs: (
     height: 24px,
+    icon-size: 16px,
     font-size: 12px,
     padding: 4px,
     border-radius: 4px,
@@ -65,6 +68,16 @@ $map-box-height: (
           @if $key2 == "font-size" {
             .ubtn-inner {
               #{$key2}: $value2;
+            }
+          }
+          @if $key2 == "icon-size" {
+            .ubtn-ic {
+              .icm {
+                width: $value2;
+                height: $value2;
+                -webkit-mask-size: $value2;
+                mask-size: $value2;
+              }
             }
           }
         }

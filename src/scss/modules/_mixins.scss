@@ -160,13 +160,7 @@
 }
 
 // ---------------------- centering-content------------------------------
-@mixin grid(
-  $grid-class-name,
-  $grid-col-number: "null",
-  $grid-gutter-number: "null",
-  $grid-margin: "null",
-  $grid-vertical-align: null
-) {
+@mixin grid($grid-class-name, $grid-col-number: "null", $grid-gutter-number: "null", $grid-margin: "null", $grid-vertical-align: null) {
   @if $grid-col-number != "null" {
     .grid {
       &--#{$grid-class-name} {
@@ -340,28 +334,16 @@ $z-indexes: "outdated-browser", "modal", "site-header", "page-wrapper", "site-fo
   @return sin($angle) / cos($angle);
 }
 
-@function drop-shadow-converter(
-  $color: #000,
-  $opacity: 100,
-  $angle: 0,
-  $distance: 0,
-  $spread: 0,
-  $size: 0,
-  $is-text-shadow: false,
-  $inset: null
-) {
+@function drop-shadow-converter($color: #000, $opacity: 100, $angle: 0, $distance: 0, $spread: 0, $size: 0, $is-text-shadow: false, $inset: null) {
   // calculate angle Γêá
   $__ang: (180 - $angle) * 3.14 / 180; //convert to radians
   // vertical shadow: offset-y = Sin(Γêá) * Hypotenuse
   $__offset-y: round(sin($__ang) * $distance); // horizontal shadow: offset-x = Cos(Γêá) * Hypotenuse
-  $__offset-x: round(
-    cos($__ang) * $distance
-  ); // spread-radius equals the Photoshop Size multiplied by the Photoshop Spread percentage
+  $__offset-x: round(cos($__ang) * $distance); // spread-radius equals the Photoshop Size multiplied by the Photoshop Spread percentage
   $__spread-rad: $size * $spread / 100; // blur-radius is equal to the Photoshop Size minus the <spread-radius>
   $__blur-rad: $size - $__spread-rad; // variable for scope context
   @if $is-text-shadow {
-    @return $__offset-x $__offset-y $__blur-rad $__spread-rad
-      rgba(red($color), green($color), blue($color), $opacity / 100) $inset;
+    @return $__offset-x $__offset-y $__blur-rad $__spread-rad rgba(red($color), green($color), blue($color), $opacity / 100) $inset;
   } @else {
     @return $__offset-x $__offset-y $__blur-rad rgba(red($color), green($color), blue($color), $opacity / 100) $inset;
   }
@@ -515,8 +497,7 @@ $z-indexes: "outdated-browser", "modal", "site-header", "page-wrapper", "site-fo
 @function str-replace($string, $search, $replace: "") {
   $index: str-index($string, $search);
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace +
-      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
   }
   @return $string;
 }
@@ -532,57 +513,32 @@ $z-indexes: "outdated-browser", "modal", "site-header", "page-wrapper", "site-fo
 @function materialLabelCal($input-size) {
   $labelHeight: labelHeightCal();
   $labelScale: $input-material-font-size-sm/$input-material-font-size;
-  @return ceil(
-    (-($input-size - $labelHeight)/2 - $labelHeight - $labelHeight * (1 - $labelScale)/2) / $labelHeight * 100%
-  );
+  @return ceil((-($input-size - $labelHeight)/2 - $labelHeight - $labelHeight * (1 - $labelScale)/2) / $labelHeight * 100%);
 }
 
 @function materialLabelCal2($input-size) {
   $labelHeight: labelHeightCal();
   $labelScale: $input-material-font-size-sm/$input-material-font-size;
-  @return ceil(
-    (-($input-size - $labelHeight)/2 - $labelHeight/2 - $labelHeight * (1 - $labelScale)/2 - 3) / $labelHeight * 100%
-  );
+  @return ceil((-($input-size - $labelHeight)/2 - $labelHeight/2 - $labelHeight * (1 - $labelScale)/2 - 3) / $labelHeight * 100%);
 }
 
 @function material2InsideInputCal($input-size) {
-  @return (
-      $input-size - $input-material-font-size-sm * 1.2 - $input-material-2-space-between - $input-material-font-size *
-        1.2
-    )/2;
+  @return ($input-size - $input-material-font-size-sm * 1.2 - $input-material-2-space-between - $input-material-font-size * 1.2)/2;
 }
 
 @function material2InsideInputCalRound($input-size) {
-  @return floor(
-    $input-size -
-      (
-        (
-            $input-size - $input-material-font-size-sm * 1.2 - $input-material-2-space-between -
-              $input-material-font-size * 1.2
-          )/2
-      ) * 2 - $input-material-font-size * 1.2
-  );
+  @return floor($input-size - (($input-size - $input-material-font-size-sm * 1.2 - $input-material-2-space-between - $input-material-font-size * 1.2)/2) * 2 - $input-material-font-size * 1.2);
 }
 
 @function textareaMaterial2InsideInputCalRound($input-size) {
-  @return floor(
-    $input-size -
-      (
-        (
-            $input-size - $input-material-font-size-sm * 1.2 - $input-material-2-space-between -
-              $input-material-font-size * 1.2
-          )/3
-      ) * 2 - $input-material-font-size * 1.2
-  );
+  @return floor($input-size - (($input-size - $input-material-font-size-sm * 1.2 - $input-material-2-space-between - $input-material-font-size * 1.2)/3) * 2 - $input-material-font-size * 1.2);
 }
 
 @function material2LabelCal($input-size) {
   $labelHeight: label2HeightCal();
   $labelSpaceTop: material2InsideInputCal($input-size);
   $labelScale: $input-material-font-size-sm/$input-material-font-size;
-  @return ceil(
-    (-($input-size - $labelHeight)/2 + $labelSpaceTop - $labelHeight * (1 - $labelScale)/2) / $labelHeight * 100%
-  );
+  @return ceil((-($input-size - $labelHeight)/2 + $labelSpaceTop - $labelHeight * (1 - $labelScale)/2) / $labelHeight * 100%);
 }
 
 // zindex
@@ -595,7 +551,7 @@ $z-index: (
   btn-text: 2,
   input-line-bar: 2,
   input-material: 1,
-  datepicker: -1
+  datepicker: -1,
 );
 @function z-index($key) {
   @return map-get($z-index, $key);
@@ -618,7 +574,13 @@ $z-index: (
       @if type-of($value) == "map" {
         @include modifiers($value, $attribute, $separator);
       } @else {
-        #{$attribute}: $value;
+        @if type-of($attribute) == "list" {
+          @each $keyAttribute in $attribute {
+            #{$keyAttribute}: $value;
+          }
+        } @else {
+          #{$attribute}: $value;
+        }
       }
     }
   }
@@ -649,42 +611,52 @@ $z-index: (
   @return true;
 }
 
-@mixin bg($value){
-  @if type_of($value) == 'color' {
+@mixin bg($value) {
+  @if type_of($value) == "color" {
     background-color: $value;
-  }
-  @else if type_of($value) == 'string' {
+  } @else if type_of($value) == "string" {
     background: $value;
   }
 }
 
-@mixin colorDiff($cssProp, $value, $fallback){
-  @if type_of($value) == 'color' {
+@mixin colorDiff($cssProp, $value, $fallback) {
+  @if type_of($value) == "color" {
     #{$cssProp}: $value;
-  }
-  @else if type_of($value) == 'string' {
+  } @else if type_of($value) == "string" {
     #{$cssProp}: $fallback;
   }
 }
 
-@function recursive-map-merge($map1, $map2, $config:() ) {
-	@if (type-of($map1) == map or (type-of($map1) == list and length($map1) == 0)) and (type-of($map2) == map or (type-of($map2) == list and length($map2) == 0)) {
-		$result: $map1;
-		@each $key, $value in $map2 {
-			@if (type-of(map-get($result, $key)) == map and type-of($value) == map) {
-				$result: map-merge($result, ($key: recursive-map-merge(map-get($result, $key), $value)));
-			}
-			@else if (map-get($config, "merge-lists") and type-of(map-get($result, $key)) == list and type-of($value) == list) {
-				$result: map-merge($result, ($key: join(map-get($result, $key), $value)));
-			}
-			@else {
-				$result: map-merge($result, ($key: $value));
-			}
-		}
-		@return $result;
-	}
-	@else {
-		@warn "recursive-map-merge() expects it\'s parameters to be map types!";
-		@return null;
-	}
+@function recursive-map-merge($map1, $map2, $config: ()) {
+  @if (type-of($map1) == map or (type-of($map1) == list and length($map1) == 0)) and (type-of($map2) == map or (type-of($map2) == list and length($map2) == 0)) {
+    $result: $map1;
+    @each $key, $value in $map2 {
+      @if (type-of(map-get($result, $key)) == map and type-of($value) == map) {
+        $result: map-merge(
+          $result,
+          (
+            $key: recursive-map-merge(map-get($result, $key), $value),
+          )
+        );
+      } @else if (map-get($config, "merge-lists") and type-of(map-get($result, $key)) == list and type-of($value) == list) {
+        $result: map-merge(
+          $result,
+          (
+            $key: join(map-get($result, $key), $value),
+          )
+        );
+      } @else {
+        $result: map-merge(
+          $result,
+          (
+            $key: $value,
+          )
+        );
+      }
+    }
+    @return $result;
+  } @else {
+    @warn "recursive-map-merge() expects it\'s parameters to be map types!";
+    @return null;
+  }
 }

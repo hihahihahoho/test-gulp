@@ -207,10 +207,6 @@ $(document).ready(function () {
     if ($('.searchMedia:checked').val()) {
       value = $('[name=colorPicker]:checked').val();
       nameFull = nameFull.replace(/\/icons-color\/(.*?)\//, '/icons-color/' + value + '/');
-      if ($('.searchMedia:checked').hasClass('searchMasked')) {
-        console.log('a')
-        nameFull = nameFull.replace(/media\/icons-mask\/\/(.*?)\//, '');
-      }
       $('.icon-info-group .img-holder > img').attr('src', nameFull);
       getColor = setTimeout(function () {
         var img = document.querySelector('.icon-info-group .img-holder > img')
@@ -229,7 +225,12 @@ $(document).ready(function () {
 
     }
     $('[name=searchItem]:checked').parents('.ic-wrap-label').attr('data-clipboard-text', value);
-    $(this).parents('label').attr('data-clipboard-text', value).trigger('click');
+    if ($('.searchMedia:checked').hasClass('searchMasked')) {
+      var newValue = value.replace('media/icons-mask/', '').replace('/', '_').replace('.svg', '')
+      $(this).parents('label').attr('data-clipboard-text', newValue).trigger('click');
+    } else {
+      $(this).parents('label').attr('data-clipboard-text', value).trigger('click');
+    }
   });
   $('.langSelect').on('change', function () {
     var langHTML = $(this).parents('.info-group').find('.langHTML');
