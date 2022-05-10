@@ -19,9 +19,6 @@
 
 /*end init*/
 
-body {
-  touch-action: manipulation;
-}
 .main {
   display: -webkit-box;
   display: -ms-flexbox;
