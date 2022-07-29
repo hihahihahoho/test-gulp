@@ -1,16 +1,12 @@
 {% extends "_varibles.njk" %}
 
+{% import "macros/_base.njk" as base %}
 {% import "macros/forms/_forms.njk" as form %}
 {% import "macros/forms/_buttons.njk" as button %}
 {% import "macros/forms/_rnc.njk" as rnc %}
 {% import "macros/forms/_files-upload.njk" as file %}
 
-{% macro labelStatus(title, color = 'primary', size = settingLabelStatusDefault.size) %}
-  <!-- util.labelStatus -->
-  <label class="ulabel-status ulabel-size-{{size}} up ubg-{{ color }}">{{ title }}</label>
-  <!-- end util.labelStatus -->
+{% macro labelStatusCustom(value, data) %}
+  {% set data = data | mergeDeep(labelStatusCustomVal[value]) %}
+  {{ base.labelStatus(data) }}
 {% endmacro %}
-
-{% macro labelStatusCustom(value) %}
-  {{ labelStatus(title = labelStatusCustomVal[value].main, color = labelStatusCustomVal[value].color) }}
-{% endmacro %} 

@@ -3,7 +3,7 @@
 {% import "_varibles.njk" as globalsVar %}
 
 {% extends "_varibles.njk" %}
-{% set dataSelectDefualt = ['Option 1', 'Option 2', 'Option 3'] %}
+{% set dataSelectDefualt = ['Option 1'] %}
 
 {% macro iptExtend(dataIcon, pos, framePos, clear) %}
   {% set class %}
@@ -26,7 +26,7 @@
 
     {% if dataIcon.icon %}
       <div class="input-box input-ic">
-        <img src="{{ dataIcon.icon }}" alt="" class="ic-default">
+        <span class="icm icm-size-{{ dataIcon.icSize if dataIcon.icSize else 'default' }} {{ dataIcon.icon }} {{ dataIcon.iconExtendClass }}"></span>
       </div>
     {% endif %}
 
@@ -99,13 +99,16 @@
     left: {
       iconFont: data.iconFontLeft,
       icon: data.iconLeft,
+      iconExtendClass: data.iconLeftExtendClass,
       text: data.textLeft,
       extend: data.extendLeft,
+      icSize: data.icSize,
       class: data.extendLeftClass
     },
     right: {
       iconFont: data.iconFontRight,
       icon: data.iconRight,
+      iconExtendClass: data.iconRightExtendClass,
       text: data.textRight,
       extend: data.extendRight,
       class: data.extendRightClass
@@ -174,14 +177,14 @@
 
   {% if data.title %}
     {% set labelSection %}
-      <label class="input-label {{ 'input-label-horizontal input-size-' + data.size + '-label' if data.orient == 'horizontal' }}">
+      <div class="input-label {{ 'input-label-horizontal input-size-' + data.size + '-label' if data.orient == 'horizontal' }}">
         <div class="inner">
+          {{ data.title }}
           {% if data.requiredSymbol %}
             <span class="color-danger">*</span>
           {% endif %}
-          {{ data.title }}
         </div>
-      </label>
+      </div>
     {% endset %}
   {% endif %}
 
@@ -248,7 +251,10 @@
           {% if contentRight %}
             {{ iptExtend(dataIcon.right, pos = 'right', clear = data.clear) }}
           {% endif %}
-          <div class="input-frame"></div>
+          <div class="input-frame {{ 'ubg-' + data.color if data.color }}"></div>
+          {% if contentInsideRight %}
+            {{ iptExtend(dataIcon.insideRight, framePos = 'inside-out', pos = 'right') }}
+          {% endif %}
         </{{data.inputwraptag}}>
         {% if contentOutsideLeft %}
           {{ iptExtend(dataIcon.outsideLeft, framePos = 'outside', pos = 'left') }}
@@ -329,11 +335,66 @@
   <!-- end form.input -->
 {% endmacro %}
 
+{% macro inputDropzone(data) %}
+  <!-- form.inputDropzone -->
+  {% if data | isStr %}
+    {% set data = {
+      title: data
+    } %}
+  {% endif %}
+  {% set dataDefault = {
+    clear: false,
+    labelChange: true,
+    placeholder: 'Tải hóa đơn (hỗ trợ .png, .pdf, ...)'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+
+  {% set inputClass %}
+    input dropzone-wrap
+    {{ 'input-label-change' if data.labelChange }}
+    {{ 'input-has-clear' if data.clear }}
+    {{ 'input-tagify' if data.tagify }}
+    {{ data.extendClass if data.extendClass }}
+  {% endset %}
+
+  {% set inputAttr %}
+    {{ 'value="' + data.value + '"' if data.value }}
+    {{ 'required' if data.required }}
+    {{ 'disabled' if data.disabled }}
+    {{ 'readonly' if data.readonly }}
+    {{ data.extendAttr if data.extendAttr }}
+    autocorrect="off"
+  {% endset %}
+
+  {% set content %}
+    <div type="{{ data.type }}" class="{{ inputClass }}" {{ inputAttr }}>
+      <div class="dropzone-preview"></div>
+      <div class="dropzone drop-zone-preview dropzoneid" id="{{ data.id }}" dz-maxfiles="{{ data.maxFiles }}">
+        <div class="dz-message" data-dz-message="data-dz-message">
+          <div class="row row-8">
+            <div class="col-auto">
+              {{ button.btn({ title: 'Chọn ảnh', color: 'line-primary', size: 'xs' }) }}
+            </div>
+            <div class="col ellipsis">
+              <div class="color-default-d">
+                {{ data.placeholder }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endset %}
+  {% set data = data | setAttribute('content', content) %}
+  {{ iptSkeleton(data) }}
+  <!-- end form.inputDropzone -->
+{% endmacro %}
+
 {% macro textarea(data) %}
   <!-- form.textarea -->
   {% set dataDefault = {
     inputGroupExtendClass: 'textarea-group',
-    clear: false,
+    clear: true,
     labelChange: true,
     samePlaceholderText: 'Nhập',
     autosize: true,
@@ -408,17 +469,22 @@
     {{ 'datepicker-single' if not data.range }}
     {{ 'datepicker-range' if data.range }}
     {{ 'input-label-change' if data.labelChange }}
+    {{ data.extendClass if data.extendClass }}
   {% endset %}
 
   {% set inputAttr %}
     {{ 'id="' + data.id + '"' if data.id }}
     {{ 'placeholder="' + data.placeholder + '"' if data.placeholder }}
     {{ 'header-text="' + data.title + '"' if data.title }}
+    {{ 'header-text="' + data.headerText + '"' if data.headerText }}
     {{ 'lp-single-mode="false"' if data.range }}
     {{ 'value="' + data.value + '"' if data.value }}
     {{ 'required' if data.required }}
     {{ 'disabled' if data.disabled }}
     {{ 'readonly' if data.readonly }}
+    {{ 'lp-format="' + data.format + '"' if data.format }}
+    {{ 'lp-min-date="' + data.minDate + '"' if data.minDate }}
+    {{ 'lp-format-luxon="' + data.formatLuxon + '"' if data.formatLuxon }}
     autocorrect="off"
   {% endset %}
 
@@ -509,9 +575,7 @@
     lib: 'select-2',
     samePlaceholderText: 'Chọn',
     placeholder: 'Chọn',
-    option: [
-      'Option 1', 'Option 2', 'Option 3'
-    ],
+    option: ['Option 1'],
     selected: false
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
@@ -527,6 +591,7 @@
     {{ 'select-2-template' if data.option[0] | string == '[object Object]' }}
     {{ 'input-label-change' if data.labelChange }}
     {{ data.targetExtendClass if data.targetExtendClass }}
+    {{ data.extendClass if data.extendClass }}
   {% endset %}
 
   {% set inputAttr %}
@@ -576,8 +641,16 @@
     </select>
   {% endset %}
 
-  {% set data = data | setAttribute('content', content) %}
-  {{ iptSkeleton(data) }}
+  {% if data.selectButton %}
+    {% set data = data | setAttribute('title', content) %}
+    {% set data = data | setAttribute('tagname', 'label') %}
+
+    {{ button.btn(data) }}
+  {% else %}
+    {% set data = data | setAttribute('content', content) %}
+
+    {{ iptSkeleton(data) }}
+  {% endif %}
   <!-- end form.select -->
 {% endmacro %}
 
@@ -595,4 +668,269 @@
     <div class="errorBlock"></div>
   </div>
   <!-- end form.otp -->
+{% endmacro %}
+
+{% macro label(data) %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="form-group">
+    <label class="input-label">
+      <div class="inner">
+        {{ data.title }}
+        {% if data.requiredSymbol %}
+          <span class="color-danger">*</span>
+        {% endif %}
+      </div>
+    </label>
+    {{ data.value }}
+  </div>
+{% endmacro %}
+
+{% macro labelRncTextGroup(data) %}
+  {% set value %}
+    {% set rncGroupText = {
+      type: data.type,
+      colClass: 'col-auto',
+      rowClass: 'row-32 list-mb8 list-crop',
+      data: data.data
+    } %}
+    {% set data = data | mergeDeep(rncGroupText) %}
+    {{ rnc.rncGroupText(data) }}
+  {% endset %}
+  {% set data = data | setAttribute('value', value) %}
+  {{ label(data) }}
+{% endmacro %}
+
+{% macro inputPassword(data) %}
+  {% set dataDefault = {
+    orient: 'vertical',
+    title: 'Mật khẩu',
+    type: 'password',
+    extendRight: button.btnEye(),
+    placeholder: 'same'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ input(data) }}
+{% endmacro %}
+
+{% macro alertBox(data) %}
+  {% set dataDefault = {
+    type: 'info'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="alert-box alert-box-{{ data.type }}">
+    {% if data.content %}
+      <div class="alert-box-title">
+        <div class="row row-12">
+          <div class="col-auto ic">
+            <div class="icm icm-default_{{ data.type }}-circle icm-size-default ubg-{{ data.type }} d-block"></div>
+          </div>
+          <div class="col content weight5">
+            {{ data.content }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}
+
+{% macro dropzoneItem(data) %}
+  <div class="dropzone-box">
+    {% if data.subTitle %}
+      <div class="p text-center dropzone-box-title mb16">
+        {{ data.subTitle }}
+      </div>
+    {% endif %}
+    <div class="dropzone-wrap dropzone-file {{ 'dropzone-error' if data.errorMess }}">
+      <div class="dropzone-preview"></div>
+      <div class="dropzone drop-zone-preview dropzoneid" id="{{ data.id }}" dz-maxfiles="{{ data.maxFiles }}"></div>
+    </div>
+    <div class="errorBlock">
+      {% if data.errorMess %}
+        <ul aria-hidden="false" class="parsley-errors-list filled">
+          <li class="parsley-required">
+            {{ data.errorMess }}
+          </li>
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro dropzone(data) %}
+  {% set value %}
+    {% if data.data %}
+      <div class="row row-24 list-mb12 list-crop">
+        {% for item in data.data %}
+          <div class="{{ data.col if data.col }} {{ item.col if item.col }} {{ item.extendClass if item.extendClass }}">
+            {{ dropzoneItem(item) }}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      {{ dropzoneItem(data) }}
+    {% endif %}
+  {% endset %}
+  {{ label({ title: data.title, value: value }) }}
+{% endmacro %}
+
+{% macro dropzonResultBoxItem(data) %}
+  <div class="dropzone-box">
+    {% if data.title %}
+      <div class="p dropzone-box-title mb16">
+        {{ data.title }}
+      </div>
+    {% endif %}
+    <div class="dropzone-wrap dropzone-file">
+      <div class="dropzone-preview">
+        {% for item in data.data %}
+          {% set dataDefault = {
+            title: 'hoadon',
+            type: 'png',
+            img: 'media/img/default/img32x32.svg'
+          } %}
+          {% set item = item | mergeDeep(dataDefault) %}
+          {% if item.type == 'pdf' %}
+            {% set item = item | setAttribute('img', 'media/icons-mask/default/file.svg') %}
+          {% endif %}
+          <div class="dz-preview dz-image-preview">
+            <div class="dz-image img-zoom-modal"><img alt="" src="{{ item.img }}" class="{{ 'dz-ic' if item.type == 'pdf' }} img-zoom-modal-img"></div>
+            <div class="dz-details">
+              <div class="dz-filename">
+                <span data-dz-name="">{{ item.title }}.{{ item.type }}</span></div>
+            </div>
+            <div class="dz-download">
+              <a class="link weight5 link-style-underline text-nowrap pointer">Tải về</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro dropzonResultBox(data) %}
+  {% set value %}
+    {% if data.data %}
+      <div class="row row-24 list-mb12 list-crop">
+        {% for item in data.data %}
+          <div class="{{ data.col if data.col }} {{ item.col if item.col }} {{ item.extendClass if item.extendClass }}">
+            {{ dropzonResultBoxItem(item) }}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      {{ dropzonResultBoxItem(data) }}
+    {% endif %}
+  {% endset %}
+  {{ label({ title: data.title, value: value }) }}
+{% endmacro %}
+
+{% macro labelGroupItem(data) %}
+  {% set dataDefault = {
+    titleCol: 'col-sm-4 col-5',
+    valueCol: 'col-sm-8 col-7'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="form-group-label">
+    <div class="row list-mb8 list-crop form-label {{ 'align-items-' + data.align if data.align }}">
+      <div class="{{ data.titleCol }}">
+        <div class="label-title {{ data.titleExtendClass if data.titleExtendClass }}">
+          {{ data.title }}
+        </div>
+      </div>
+      <div class="{{ data.valueCol }}">
+        <div class="label-value {{ data.valueExtendClass if data.valueExtendClass }}">
+          {{ data.value }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro labelBig(data) %}
+  <div class="form-group-label">
+    <div class="label-title mb4">{{ data.title }}</div>
+    <div class="label-value h2 {{data.extendValueClass }}">{{ data.value }}</div>
+  </div>
+{% endmacro %}
+
+{% macro labelBigGroup(data) %}
+  {% set dataDefault = {
+    col: 'col-xl-3 col-6'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="row list-mb20 list-crop">
+    {% for item in data.data %}
+      <div class="{{ data.col }}">
+        {{ labelBig(item) }}
+      </div>
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro labelGroupSingle(data) %}
+  <div class="list-mb16 list-crop">
+    {% for item in data.data %}
+      {% set item = item | setAttribute('titleCol', data.titleCol) %}
+      {% set item = item | setAttribute('valueCol', data.valueCol) %}
+      {% set item = item | mergeDeep(data.options) %}
+      {{ labelGroupItem(item) }}
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro labelGroup(data) %}
+  {% set dataDefault = {
+    colLeft: 'col-xl-5 col-md-6 list-mb16 list-crop',
+    colRight: 'offset-xl-1 col-xl-5 col-md-6 list-mb16 list-crop'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="form">
+    <div class="row list-mt16 list-crop">
+      {% for item in data.left %}
+        {% set item = item | setAttribute('titleCol', data.titleCol) %}
+        {% set item = item | setAttribute('valueCol', data.valueCol) %}
+        <div class="{{ data.colLeft }}">
+          {{ labelGroupItem(item) }}
+        </div>
+        {% if data.right %}
+          <div class="{{ data.colRight }}">
+            {% if data.right[loop.index - 1] %}
+              {{ labelGroupItem(data.right[loop.index -1]) }}
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro inputMoney(data) %}
+  {% set dataDefault = {
+    title: 'Số tiền',
+    textRight: 'VND',
+    extendClass: 'cleave-number'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ input(data) }}
+{% endmacro %}
+
+{% macro inputSearch(data) %}
+  {% set dataDefault = {
+    iconLeft: 'icm-default_search',
+    iconLeftExtendClass: 'ubg-default'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ input(data) }}
+{% endmacro %}
+
+{% macro rncItemBoxIconGroupLabel(data) %}
+  {% set content %}
+    {{ rnc.rncItemBoxIconGroup(data) }}
+  {% endset %}
+  {% set dataLabel = {
+    value: content
+  } %}
+  {% set dataLabel = dataLabel | mergeDeep(data.label) %}
+  {{ label(dataLabel) }}
 {% endmacro %}

@@ -87,13 +87,7 @@ var pluginsDetail = {
       "node_modules/bootstrap/dist/css/bootstrap.min.css"
     ],
     "scripts": [
-      "node_modules/bootstrap/js/dist/util.js",
-      "node_modules/bootstrap/js/dist/modal.js",
-      "node_modules/bootstrap/js/dist/dropdown.js",
-      "node_modules/bootstrap/js/dist/tooltip.js",
-      "node_modules/bootstrap/js/dist/popover.js",
-      "node_modules/bootstrap/js/dist/tab.js",
-      "node_modules/bootstrap/js/dist/toast.js"
+      "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
     ],
     "init": [
       "src/js/bootstrap.init.js"

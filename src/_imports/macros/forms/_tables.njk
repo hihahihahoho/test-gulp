@@ -1,231 +1,274 @@
 {% extends "_varibles.njk" %}
 
-{% import "macros/_utilities.njk" as util %}
 {% import "macros/forms/_forms.njk" as form %}
 {% import "macros/forms/_buttons.njk" as button %}
-{% import "macros/forms/_dropdown.njk" as dropdown %}
 {% import "macros/forms/_rnc.njk" as rnc %}
-{% import "macros/forms/_files-upload.njk" as file %}
 
-{% macro pagination(justify = 'center') %}
+{% macro pagination(data) %}
   <!-- tables.pagination -->
-  <div class="pagination justify-content-{{ justify }}">
-    <div class="ripple pagination-item pagination-first legitRipple">Đầu</div>
-    <div class="ripple pagination-item pagination-back legitRipple"></div>
-    <div class="ripple pagination-item pagination-number legitRipple">1</div>
-    <div class="ripple pagination-item pagination-number legitRipple">2</div>
-    <div class="ripple pagination-item pagination-number pagination-active legitRipple">3</div>
-    <div class="pagination-item pagination-dots">...</div>
-    <div class="ripple pagination-item pagination-number legitRipple">102</div>
-    <div class="ripple pagination-item pagination-next legitRipple"></div>
-    <div class="ripple pagination-item pagination-last legitRipple">Cuối</div>
+  {% set dataDefault = {
+    justify: 'center',
+    page: '3'
+  } %}
+  {% if data == true %}
+    {% set data = dataDefault %}
+  {% else %}
+    {% set data = data | mergeDeep(dataDefault) %}
+  {% endif %}
+  <div class="pagination justify-content-{{ data.justify }}">
+    {% if data.page == 'multi' %}
+      <div class="pagination-item pagination-back disabled"></div>
+      <div class="pagination-item pagination-number">1</div>
+      <div class="pagination-item pagination-number">2</div>
+      <div class="pagination-item pagination-number pagination-active">3</div>
+      <div class="pagination-item pagination-dots">...</div>
+      <div class="pagination-item pagination-number">102</div>
+      <div class="pagination-item pagination-next"></div>
+    {% endif %}
+    {% if data.page == '3' %}
+      <div class="pagination-item pagination-back pagination-item-disabled"></div>
+      <div class="pagination-item pagination-number pagination-active">1</div>
+      <div class="pagination-item pagination-number">2</div>
+      <div class="pagination-item pagination-number">3</div>
+      <div class="pagination-item pagination-next"></div>
+    {% endif %}
+    {% if data.page == '1' %}
+      <div class="pagination-item pagination-back pagination-item-disabled"></div>
+      <div class="pagination-item pagination-number pagination-active">1</div>
+      <div class="pagination-item pagination-next pagination-item-disabled"></div>
+    {% endif %}
   </div>
   <!-- tables.pagination -->
 {% endmacro %}
 
-{% macro tableUlt(value) %}
-  <!-- tables.tableUlt -->
-  <div class="row row-5 flex-nowrap">
-    {% for item in value %}
+{% macro record(justify = 'end') %}
+  <!-- tables.record -->
+  <div class="record-number">
+    <div class="row row-8 align-items-center justify-content-center">
       <div class="col-auto">
-        {% if item == '' %}
-          <div class="ubtn-circle-size-xs-2 ubtn-square"></div>
-        {% else %}
-          {% if settingTableUltVal[item].dropdown %}
-            {% set dropdownToggle %}
-            {{ button.btn(icon = '/dist/media/icons/svg2/' + settingTableUltVal[item].ic , size = 'xs-2', shape = 'square', icSize = 'sm', color = 'grey-4', extendAttr = 'data-toggle="dropdown"', tagname = 'a', tooltip = settingTableUltVal[item].tooltip ) }}
-            {% endset %}
-            {{ dropdown.dropdown(toggle = dropdownToggle, value = settingTableUltVal[item].dropdown, pos = 'right' ) }}
-          {% else %}
-            {{ button.btn(icon = '/dist/media/icons/svg2/' + settingTableUltVal[item].ic, size = 'xs-2', shape = 'square', icSize = 'sm', color = 'grey-4', modal = settingTableUltVal[item].modal, href = settingTableUltVal[item].href, tagname = 'a', tooltip = settingTableUltVal[item].tooltip ) }}
-          {% endif %}
-        {% endif %}
+        Hiển thị
       </div>
+      <div class="col-auto">
+        {{ form.select({ size: 'xs', option: [5, 10, 15, 20, 25], selected: '1' }) }}
+      </div>
+      <div class="col-auto">
+        bản ghi
+      </div>
+    </div>
+  </div>
+  <!-- tables.record -->
+{% endmacro %}
+
+{% macro tableUlt(data) %}
+  <!-- tables.tableUlt -->
+  <div class="ult-wrap">
+    {% for item in data %}
+      {% set dataDefault = {
+        size: 'sm',
+        icSize: 'md',
+        btnIcon: true,
+        color: 'transaprent',
+        shape: 'square'
+      } %}
+      {% set dataButtonItem = item %}
+      {% if item.type == 'blank' %}
+        <div class="ubox-size-button-sm ubox-square ubox-holder"></div>
+      {% else %}
+        {% set dataButton = {} %}
+        {% set dataDefault = dataDefault | mergeDeep(settingTableUltVal[item.type]) %}
+        {% set dataButton = dataDefault | mergeDeep(item) %}
+        {{ button.btn(dataButton) }}
+      {% endif %}
+
     {% endfor %}
   </div>
   <!-- end tables.tableUlt -->
 {% endmacro %}
 
-{% macro tableRow(type, value, indexNum, indexWidth = settingTableDefault.indexWidth, ultsWidth = settingTableDefault.ultsWidth, ultsTxt = settingTableDefault.ultsTxt, tableUlt, rowChild) %}
-  <tr>
-    {% if rowChild %}
-      {% if type == 'th' %}
-        <th width="30" class="no_sort"></th>
-      {% else %}
-        <{{ type }} class="details-control"></{{ type }}>
-      {% endif %}
-    {% endif %}
-    {% if indexNum %}
-      {% if type == 'th' %}
-        <th width="{{ indexWidth }}" class="text-center">STT</th>
-      {% else  %}
-        <{{ type }} class="text-center">{{indexNum}}</{{ type }}>
-      {% endif %}
-    {% endif %}
-    {% for i in value %}
-      {% if tableUlt and loop.index == value.length%}
-        {% set addAttr = 'class="table-ults"' %}
-      {% endif %}
-
-      {% if i == 'ults' %}
-        {% set addAttr = 'width="' + ultsWidth + '" class="table-ults"' %}
-      {% endif %}
-
-      <{{ type }} {{ addAttr | safe }}>
-        {% if i == 'ults' %}
-          {{ ultsTxt | safe}}
-        {% else %}
-          {{ i | safe}}
+{% macro tableRecordPagination(data) %}
+  {% set dataDefault = {
+    pagination: true,
+    record: true
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="record-and-pagination">
+    <div class="row align-items-center list-mb16 list-crop justify-content-between">
+      <div class="col-md-auto">
+        {{ record() }}
+        {% if data.record %}{% endif %}
+      </div>
+      <div class="col-md-auto">
+        {% if data.pagination %}
+          {{ pagination(data.pagination) }}
         {% endif %}
-      </{{ type }}>
-    {% endfor %}
-  </tr>
-{% endmacro %}
-
-{% macro table(value, index = 'true', id, style = settingTableDefault.style, border = settingTableDefault.border, striped = settingTableDefault.striped, hover = settingTableDefault.hover, tableWrapSize = settingTableDefault.tableWrapSize, stickyUlt = 'false', stickyHeader = settingTableDefault.stickyHeader, stickyFooter = settingTableDefault.stickyFooter, extendClass, extendAttr, tableLib = settingTableDefault.tableLib, tableFooter = settingTableDefault.tableFooter, rowLoop = 1, rowChild, custom) %}
-  <!-- tables.table -->
-  {% if id %}
-    {% set idText = 'id="' + id + '"' %}
-  {% endif %}
-  {% if stickyUlt == 'true' %}
-    {% set stickyUltText = 'table-sticky-ult' %}
-  {% endif %}
-  {% if stickyHeader == 'true' %}
-    {% set stickyHeaderText = 'table-sticky-header' %}
-  {% endif %}
-  {% if stickyFooter == 'true' %}
-    {% set stickyFooterText = 'table-sticky-footer' %}
-  {% endif %}
-  {% if hover == 'true' %}
-    {% set hoverText = 'table-hover' %}
-  {% endif %}
-  {% if striped == 'true' %}
-    {% set stripedText = 'table-zebra' %}
-  {% endif %}
-  {% if tableLib == 'datatables' %}
-    {% set tableLibText = 'data-table' %}
-    {% set tableWrapSize = 'none' %}
-  {% endif %}
-  <div class="table-wraper">
-    <div class="table-wraper-inner {{ stickyUltText }} {{ stickyHeaderText }} table-border-{{ border }} {{ stickyFooterText }}">
-      <div class="table-wraper-size table-wraper-{{ tableWrapSize }}">
-        <table class="table table-{{ style }} {{ stripedText }} {{ hoverText }} {{ tableLibText }} {{ extendClass }}" {{ extendAttr | safe }} {{ idText | safe }}>
-          {% if custom %}
-            {{ custom | safe }}
-          {% else %}
-            {% set tableUlt = 'false' %}
-            {% if 'ults' in value.thead %}
-              {% set tableUlt = 'true' %}
-            {% endif %}
-            {% if value.thead %}
-              <thead>
-                {% for item in value.thead %}
-                  {{ tableRow('th', value = item, indexNum = loop.index, rowChild = rowChild) }}
-                {% endfor %}
-              </thead>
-            {% endif %}
-
-            {% if value.tbody %}
-              <tbody>
-                {% for i in range(0, rowLoop) -%}
-                  {% for item in value.tbody %}
-                    {{ tableRow('td', value = item, indexNum = loop.index, tableUlt = tableUlt, rowChild = rowChild) }}
-                  {% endfor %}
-                {% endfor %}
-              </tbody>
-            {% endif %}
-
-            {% if value.tfoot %}
-              <tfoot>
-                {% for item in value.tfoot %}
-                  {{ tableRow('td', value = item, indexNum = loop.index) }}
-                {% endfor %}
-              </tfoot>
-            {% endif %}
-          {% endif %}
-        </table>
       </div>
     </div>
-    {% if tableLib == 'none' and tableFooter == 'true' %}
-      <div class="table-footer">
-        <div class="row row-10 align-items-center justify-content-md-between justify-content-center list-mv10">
-          <div class="col-auto">
-            <div class="row row-10 flex-nowrap align-items-center">
-              <div class="col-auto">
-                <div class="p">Hiển thị</div>
-              </div>
-              <div class="col-auto">
-                {% set selectVal = ['5', ' 10', '20', '50', '100'] %}
-                {{ form.select({title: 'abc'}) }}
-              </div>
-              <div class="col-auto">
-                <div class="p">Bản ghi</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-auto">
-            {{ pagination() }}
-          </div>
-        </div>
-      </div>
-    {% endif %}
   </div>
-  <!-- end tables.table -->
 {% endmacro %}
 
+{% macro tableRow(data, dataMain) %}
+  {% set celltagname = 'td' %}
+  {% if data.type == 'thead' %}
+    {% set celltagname = 'th' %}
+  {% endif %}
+  <{{ data.type }}>
+    {% for item in data.data %}
+      <tr>
+        {% if dataMain.rnc %}
+          <{{celltagname}} class="checkbox-cell">
+            {% if not loop.index in dataMain.rncFalse %}
+              {% set checked = true if loop.index in dataMain.rncChecked and celltagname == 'td' else 
+                false %}
+              {% if not(data.type == 'thead' and not dataMain.checkAll) %}
+                {# {{ rnc.rncIconOnly({ type: dataMain.rnc, checked: checked }) }} #}
+              {% endif %}
+            {% endif %}
+          </{{celltagname}}>
+        {% endif %}
 
-{% extends "_varibles.njk" %}
+        {% if dataMain.index %}
+          <{{celltagname}}>
+            {% if data.type == 'thead' %}
+              {{ dataMain.indexText }}
+            {% endif %}
 
-{% import "macros/_utilities.njk" as util %}
-{% import "macros/forms/_forms.njk" as form %}
-{% import "macros/forms/_buttons.njk" as button %}
-{% import "macros/forms/_dropdown.njk" as dropdown %}
-{% import "macros/forms/_rnc.njk" as rnc %}
-{% import "macros/forms/_files-upload.njk" as file %}
+            {% if data.type == 'tbody' %}
+              {{ loop.index }}
+            {% endif %}
+          </{{celltagname}}>
+        {% endif %}
 
-{% macro pagination(justify = 'center') %}
-  <!-- tables.pagination -->
-  <div class="pagination justify-content-{{ justify }}">
-    <div class="ripple pagination-item pagination-first legitRipple">Đầu</div>
-    <div class="ripple pagination-item pagination-back legitRipple"></div>
-    <div class="ripple pagination-item pagination-number legitRipple">1</div>
-    <div class="ripple pagination-item pagination-number legitRipple">2</div>
-    <div class="ripple pagination-item pagination-number pagination-active legitRipple">3</div>
-    <div class="pagination-item pagination-dots">...</div>
-    <div class="ripple pagination-item pagination-number legitRipple">102</div>
-    <div class="ripple pagination-item pagination-next legitRipple"></div>
-    <div class="ripple pagination-item pagination-last legitRipple">Cuối</div>
-  </div>
-  <!-- tables.pagination -->
+        {% for item2 in item %}
+          {% if dataMain.ult and loop.index == item.length and data.type == 'tbody' %}
+            {% set stickyUltClass %}
+              sticky-ult
+              {{ item2.extendClass if item2.extendClass }}
+            {% endset %}
+          {% endif %}
+
+          {% set cellAttr %}
+            {{ 'colspan="' + item2.colspan + '"' if item2.colspan }}
+            {{ 'rowspan="' + item2.rowspan + '"' if item2.rowspan }}
+            {{ item2.extendAttr + '"' if item2.extendAttr }}
+          {% endset %}
+
+          {% set cellClass %}
+            {% if dataMain.sort and data.type == 'thead' %}
+              sort
+              {{ 'sort-asc' if loop.index == 1 or loop.index == 0 }}
+              {{ 'sort-desc' if loop.index == 2 }}
+              {{ 'sort-no' if loop.index > 2 }}
+            {% endif %}
+            {{ item2.extendClass if item2.extendClass }}
+            {{ stickyUltClass if stickyUltClass }}
+            {% if condition %}{% endif %}
+          {% endset %}
+
+          <{{celltagname}} {{ cellAttr }} class="{{ cellClass }}">
+            {% if item2 | string == '[object Object]' %}
+              {{ item2.title }}
+            {% else %}
+              {{ item2 }}
+            {% endif %}
+
+            {% if item2.ult %}
+              {{ tableUlt(item2.ult) }}
+            {% endif %}
+          </{{celltagname}}>
+        {% endfor %}
+
+        {% if dataMain.ult and data.type == 'thead' %}
+          {% set class %}
+            {{ 'sticky-ult' if dataMain.stickyUlt }}
+          {% endset %}
+          {% set celltagname = 'th' %}
+          <{{celltagname}} class="{{ class }}">
+            {{ dataMain.ultText }}
+          </{{celltagname}}>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </{{ data.type }}>
 {% endmacro %}
-{% macro tableNewRow(data) %}
-  <tr>
-    
-  </tr>
-{% endmacro %}
 
-{% macro tableNew(data) %}
+{% macro table(data) %}
   <!-- tables.table -->
   {% set dataDefault = {
     id: false,
     index: true,
+    indexText: 'STT',
+    ult: true,
+    ultText: 'Thao tác',
+    stickyUlt: true,
     strip: true,
-    stickyUlt: true
+    responsive: true,
+    paginationRecord: {
+      pagination: {
+        page: 'multi'
+      }
+    },
+    record: true,
+    rnc: false,
+    rncFalse: [],
+    rncChecked: [],
+    checkAll: true,
+    hideTableTop: false,
+    sort: true
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set class %}
     table-wrap
+    {{ 'table-responsive-new' if data.responsive }}
+    {{ 'table-vertical-scroll' if data.viewmore }}
+  {% endset %}
+
+  {% set tableClass %}
+    table
     {{ 'table-sticky-ult' if data.stickyUlt }}
-    {{ 'table-strip' if data.strip }}
+    {{ 'table-striped' if data.strip }}
+    {{ data.extendClass if data.extendClass }}
   {% endset %}
 
   <div class="{{ class }}">
+    {% if not data.hideTableTop %}
+      {% if data.record or data.button %}
+        <div class="table-top {{ tableTopExtendClass if data.tableTopExtendClass }}">
+          <div class="row align-items-center list-mb16 list-crop">
+            <div class="col">
+              Tổng số bản ghi:
+              <span class="weight5 color-primary">1000</span>
+            </div>
+            {% if data.button %}
+              {% for item in data.button %}
+                <div class="col-auto">
+                  {{ button.btn(item) }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
     <div class="table-wrap-inner">
-      <table>
-        {% for item, key in data.data %}{% endfor %}
+      <table class="{{ tableClass }}">
+        {% for item in data.data %}
+          {{ tableRow(item, data) }}
+        {% endfor %}
       </table>
+      {% if data.viewmore %}
+        <div class="table-wrap-inner-footer">
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              {{ button.btn({ title: 'Xem thêm bản ghi', color: 'tertiary', size: 'sm' }) }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
     </div>
+    {% if data.paginationRecord %}
+      {{ tableRecordPagination(data.paginationRecord) }}
+    {% endif %}
   </div>
   <!-- end tables.table -->
 {% endmacro %}

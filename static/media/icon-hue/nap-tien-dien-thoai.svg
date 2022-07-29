@@ -1,4 +1,5 @@
 <svg id="Group_1" data-name="Group 1" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+<defs xmlns="http://www.w3.org/2000/svg"><style>svg:not(:target) > g:not(:target) > *, svg:not(:target) > *:not(g:nth-child(2):last-child) { display: none }:target { display: inline !important } </style></defs>
   <rect id="Rectangle_11006" data-name="Rectangle 11006" width="48" height="48" fill="none"/>
   <g id="Group_17" data-name="Group 17" transform="translate(10 6)">
     <path id="Path_334" data-name="Path 334" d="M23.919,2h4.175a6.414,6.414,0,0,0-6.263,6.545V31.454A6.414,6.414,0,0,0,28.094,38H23.919a6.414,6.414,0,0,1-6.262-6.546V8.545A6.414,6.414,0,0,1,23.919,2Z" transform="translate(-17.594 -2)" fill="rgba(0,0,0,0.3)"/>

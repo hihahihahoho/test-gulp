@@ -340,8 +340,11 @@ $map-icm: (
 );
 
 .icm {
-  display: inline-block;
   background-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
   &-size {
     @include modifiers($map-ic, ["width", 'height', '-webkit-mask-size', 'mask-size']);
   }

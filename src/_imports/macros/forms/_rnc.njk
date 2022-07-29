@@ -1,4 +1,35 @@
 {% extends "_varibles.njk" %}
+{% import "macros/_base.njk" as base %}
+
+{% macro rncGroupText(data) %}
+  {% set dataDefault = {
+    required: false,
+    type: false,
+    colClass: false,
+    rowClass: false,
+    name: data.type + '1'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="form-group">
+    <div class="row {{ data.rowClass if data.rowClass }}">
+      {% for item in data.data %}
+        {% set dataRnc = {
+          name: data.name,
+          type: data.type
+        } %}
+
+        {% if item | isStr %}
+          {% set dataRnc = dataRnc | setAttribute('title', item) %}
+        {% else %}
+          {% set dataRnc = dataRnc | mergeDeep(item) %}
+        {% endif %}
+
+        <div class="{{ data.colClass }}">{{ rncText(dataRnc) }}</div>
+      {% endfor %}
+    </div>
+    <div class="errorBlock"></div>
+  </div>
+{% endmacro %}
 
 {% macro rncSymbol(data) %}
   {% set dataDefault = {
@@ -49,6 +80,7 @@
     rnc
     {{ data.type }}
     {{ 'type-' + data.type }}
+    {{ data.extendLabelClassDev }}
     {{ data.extendLabelClass }}
   {% endset %}
 
@@ -59,7 +91,7 @@
     {{ 'id="' + data.id + '"' if data.id }}
     {{ 'name="' + data.name + '"' if data.name }}
     {{ 'value="' + data.value + '"' if data.value }}
-    {{ 'required' if data.isRequired }}
+    {{ 'required' if data.required }}
     {{ 'checked' if data.checked }}
     {{ 'indeterminate' if data.indeterminate }}
     {{ 'disabled' if data.disabled }}
@@ -192,3 +224,65 @@
   {% set data = data | setAttribute('type', 'switch') %}
   {{ rncIconOnly(data) }}
 {% endmacro %}
+
+{% macro rncItemBoxIcon(data) %}
+  {% set dataDefault = {
+    extendLabelClassDev: 'rnc-item-box',
+    rncItemstyle: 'iconText',
+    icon: {
+      size: 'xls',
+      extendClass: 'avatar-border-radius'
+    }
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% set content %}
+    {% if data.rncItemstyle == 'iconText' %}
+      <div class="rnc-item-box-wrap">
+        <div class="row row-12 align-items-center">
+          <div class="col-auto">
+            {{ base.icon(data.icon) }}
+          </div>
+          <div class="col">
+            <div class="title ellipsis-2 weight5">{{ data.title }}</div>
+            <div class="color-default-s">{{ data.sub }}</div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    {% if data.rncItemstyle == 'textBig' %}
+      <div class="rnc-item-box-wrap rnc-item-box-wrap-text-big">
+        <div class="checked-text">
+          <div class="h3">{{ data.title }}</div>
+        </div>
+      </div>
+      {% if data.sub %}
+        <div class="h6 color-default-s mt4 text-center">
+          {{ data.sub }}
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endset %}
+  {% set data = data | setAttribute('content', content) %}
+  {{ rncInput(data) }}
+{% endmacro %}
+
+{% macro rncItemBoxIconGroup(data) %}
+  {% set dataDefault = {
+    gutterH: '24',
+    gutterV: '24',
+    col: 'col-md-4'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="rnc-box-group">
+    <div class="row {{ 'row-' + data.gutterH if data.gutterH }} {{ 'list-mb' + data.gutterV + ' list-crop' if data.gutterV }}">
+      {% for item in data.data %}
+        <div class="{{ data.col }}">
+          {% set itemData = item | mergeDeep(data.itemOption) %}
+          {{ rncItemBoxIcon(item) }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="errorBlock"></div>
+  </div>
+{% endmacro %}
+

@@ -110,15 +110,18 @@ $map-color-gradient: () !default;
           }
         }
         @if map-has-key($map-color-text, $key) {
-          & .ubtn-inner {
+          & .ubox-inner {
             color: map-get($map-color-text, $key);
           }
-          & .ubtn-ic > .icm {
+          &.uborder {
+            border: 1px solid map-get($map-color-border, $key);
+          }
+          & .ubox-ic > .icm {
             background-color: map-get($map-color-text, $key);
           }
           color: map-get($map-color-text, $key);
         } @else {
-          & .ubtn-inner {
+          & .ubox-inner {
             color: white;
           }
           color: white;

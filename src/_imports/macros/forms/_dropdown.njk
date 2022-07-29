@@ -1,90 +1,86 @@
 {% extends "_varibles.njk" %}
+{% import "macros/forms/_buttons.njk" as button %}
+{% import "macros/_base.njk" as base %}
 
-{% macro dropdown(value, size, toggle, pos, icPos, itemAlign, icSize = settingDropdownDefault.icSize) %}
-  <!-- dropdown.dropdown -->  
-  {% if not pos %}
-    {% set pos = settingDropdownDefault.pos %}
-  {% endif %}
-
-  {% if not itemAlign %}
-    {% set itemAlign = settingDropdownDefault.itemAlign %}
-  {% endif %}
-
-  {% if not icSize %}
-    {% set icSize = settingDropdownDefault.icSize %}
-  {% endif %}
-
-  {% if not size %}
-    {% set size = settingDropdownDefault.size %}
-  {% endif %}
-
-  {% if icPos == 'right' %}
-    {% set icPosText = 'order-1' %}
-  {% endif %}
-
+{% macro dropdown(data) %}
+  <!-- dropdown.dropdown -->
+  {% set dataDefault = {
+    size: 'default',
+    itemAlign: 'center',
+    pos: 'left',
+    icSize: 'default',
+    itemSize: 'default',
+    toggle: button.btn({ iconLeft: 'media/icons-color/default/solid/dots-v.svg', opacity: 'text-secondary-dark', shape: 'square', color: 'transparent', size: 'sm', dropdown: true })
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
   <div class="dropdown">
-    {{ toggle | safe }}
-    <ul class="dropdown-menu dropdown-menu-{{ pos }} dropdown-size-{{ size }}" aria-labelledby="dropdownMenuButton">
-      {% for item in value %}
-        {% set hrefAttr = '' %}
-        {% set modalAttr = '' %}
-        {% set toastAttr = '' %}
-
-        {% if item.href %}
-          {% set tagname = 'a' %}
-          {% set hrefAttr %}
-          href ="{{ item.href }}"
-          {% endset %}
-        {% endif %}
-
-        {% if item.modal %}
-          {% set tagname = 'a' %}
-          {% set modalAttr %}
-          data-toggle="modal" data-target="{{ item.modal }}"
-          {% endset %}
-        {% endif %}
-
-        {% if item.toast %}
-          {% set tagname = 'a' %}
-          {% set toastAttr %}
-          data-toast="toast" toast-target="{{ item.toast }}"
-          {% endset %}
-        {% endif %}
-
-        {% if item.break == 'true' %}
-          <li class="seperatetor ubg-{{ settingDropdownDefault.seperatetorColor }}"></li>
-        {% elseif item.custom %}
-          <li>
-            {{ item.custom   | safe }}
-          </li>
-        {% else %}
-          <li>
-            <a class="dropdown-it ubg-invert ubg-hover" {{ modalAttr | safe }} {{ toastAttr | safe }} {{ hrefAttr | safe }}>
-              {% if item | string == '[object Object]' %}
-                <div class="row row-10 align-items-{{ itemAlign }}">
-                  {% if item.icon %}
-                    <div class="col-auto {{ icPosText }}">
-                      <img src="{{ item.icon | safe }}" alt="" class="ic-{{icSize}}">
-                    </div>
+    {{ data.toggle }}
+    <div class="dropdown-menu dropdown-menu-{{ data.pos }} dropdown-size-{{ data.size }} {{ data.extendClass if data.extendClass }} {{ 'dropdown-mobile' if data.dropdownMobile }}" aria-labelledby="dropdownMenuButton">
+      {% if data.dropdownMobile %}
+        <div class="dropdown-mobile-header">
+          {{ data.headerMobileContent }}
+          {{ button.btn({ size: 'smd', iconLeft: 'icm-default_close', color: 'transparent', closeDropdown: true, shape: 'square' }) }}
+        </div>
+      {% endif %}
+      <ul class="dropdown-menu-inner {{ data.extendInnerClass if data.extendInnerClass }}">
+        {% for item in data.data %}
+          {% if item.break == 'true' %}
+            <li class="seperatetor"></li>
+          {% elseif item.custom %}
+            <li>
+              {{ item.custom  }}
+            </li>
+          {% else %}
+            <li>
+              {% set content %}
+                {% if item | string == '[object Object]' %}
+                  {% if item.editable %}
+                    <input type="file" id="p-upload" value="Choose a file" accept="image/*" class="hidden">
                   {% endif %}
-                  {% if item.main %}
-                    <div class="col">
-                      <div class="txt-main">{{ item.main | safe }}</div>
-                      {% if item.sub %}
-                        <div class="txt-sub h6">{{ item.sub | safe }}</div>
-                      {% endif %}
-                    </div>
-                  {% endif %}
-                </div>
-              {% else %}
-                <div class="txt-main">{{ item | safe }}</div>
-              {% endif %}
-            </a>
-          </li>
-        {% endif %}
-
-      {% endfor %}
-    </ul>
+                  <div class="row row-8 align-items-{{ data.itemAlign }}">
+                    {% if item.icon %}
+                      <div class="col-auto {{ 'order' + data.icPos if data.icPos }}">
+                        {% set dataDefault = {
+                          block: true
+                        } %}
+                        {% set dropdownItemIcon = item.icon | mergeDeep(dataDefault) %}
+                        {{ base.icon(dropdownItemIcon) }}
+                      </div>
+                    {% endif %}
+                    {% if item.title %}
+                      <div class="col">
+                        <div class="txt-main">{{ item.title }}</div>
+                        {% if item.subTitle %}
+                          <div class="txt-sub h6">{{ item.subTitle }}</div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% else %}
+                  <div class="txt-main">{{ item }}</div>
+                {% endif %}
+              {% endset %}
+              {% set dataItem = item %}
+              {% set dataItem = dataItem | setAttribute('size', 'dropdown-it-' + data.itemSize ) %}
+              {% set dataItemDefault = {
+                content: content,
+                extendClass: 'dropdown-it'
+              } %}
+              {% set dataItem = dataItem | mergeDeep(dataItemDefault) %}
+              {{ base.ubox(dataItem) }}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% if data.dropdownFooter %}
+        <div class="dropdown-menu-footer">
+          {{ data.dropdownFooter }}
+        </div>
+      {% endif %}
+    </div>
+    {% if data.dropdownMobile %}
+      <div class="dropdown-backdrop"></div>
+    {% endif %}
   </div>
   <!-- end dropdown.dropdown -->
 {% endmacro %}

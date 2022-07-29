@@ -1,10 +1,11 @@
 {% macro ubox(data) %}
   {% set dataDefault = {
     id: false,
+    noMinHeight: false,
     tagname: 'div',
     color: false,
     backgroundImage: false,
-    size: 'default',
+    size: false,
     width: false,
     modal: false,
     modalDismiss: false,
@@ -22,24 +23,34 @@
   {% set data = data | mergeDeep(dataDefault) %}
 
   {% set class %}
+    ubox
     {{ 'ubg-' + data.color if data.color }}
+    {{ 'uborder' if data.borderColor }}
     {{ 'ubox-size-' + data.size if data.size }}
+    {{ 'no-min-height' if data.noMinHeight }}
+    {{ 'ubox-min-width' + data.minWidth if data.minWidth }}
     {{ 'ubox-square' if data.shape == 'square' }}
     {{ 'ubox-rounded' if data.shape == 'round' }}
     {{ 'ubox-square ubox-rounded' if data.shape == 'circle' }}
+    {{ 'uborder-radius-' + data.borderRadius if data.borderRadius }}
     {{ 'ubg-hover' if data.hover == true }}
     {{ 'ubg-active' if data.active == true }}
+    {{ 'justify-content' + data.justifyContent if data.justifyContent }}
+    {{ 'closeDropdown' if data.closeDropdown }}
+    {{ data.extendDevClass if data.extendDevClass }}
     {{ data.extendClass if data.extendClass }}
   {% endset %}
 
   {% set attr %}
     {{ 'id="' + data.id + '"' if data.id }}
     {{ 'style="background-image: url(' + data.backgroundImage + ')"' if data.backgroundImage }}
-    {{ 'data-dismiss="modal"' if data.modalDismiss }}
-    {{ 'data-toggle="dropdown"' if data.dropdown }}
-    {{ 'data-toggle="modal" data-target="' + data.modal + '"' if data.modal }}
+    {{ 'data-bs-dismiss="modal"' if data.modalDismiss and not data.href }}
+    {{ 'data-bs-toggle="dropdown"' if data.dropdown }}
+    {{ 'data-bs-auto-close="outside"' if data.dropdownCloseOutside }}
+    {{ 'data-bs-toggle="modal" data-bs-target="' + data.modal + '"' if data.modal }}
     {{ 'data-toast="toast" toast-target="' + data.toast + '"' if data.toast }}
-    {{ 'data-tooltip="tooltip" title="' + data.tooltip + '"' if data.tooltip }}
+    {{ 'data-bs-tooltip="tooltip" title="' + data.tooltip + '"' if data.tooltip }}
+    {{ 'disabled' if data.disabled }}
     {% if data.href or data.modal or data.modalDismiss or data.toast %}
       {% set data = data | setAttribute('tagname', 'a') %}
     {% endif %}
@@ -50,6 +61,7 @@
       {% set data = data | setAttribute('tagname', 'label') %}
     {% endif %}
     {{ 'for="' + data.rnc + '"' if data.rnc }}
+    {{ data.extendDevAttr if data.extendDevAttr }}
     {{ data.extendAttr if data.extendAttr }}
   {% endset %}
 
@@ -58,24 +70,184 @@
   </{{ data.tagname }}>
 {% endmacro %}
 
-{% macro iconBox(data) %}
+{% macro icon(data) %}
   {% set dataDefault = {
-    shape: 'circle',
-    size: 'default',
-    color: 'primary'
+    size: 'xs',
+    color: 'default',
+    tagname: 'div',
+    bgImageStyle: 'cover',
+    div: 3
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
-
   {% set class %}
-    ubox ubox-ic
-    {{ data.extendClass }}
+    uicon
+    {% if data.icon %}
+      {{ 'icm' if 'icm-' in data.icon }}
+      {{ 'icmg' if 'icmg-' in data.icon }}
+      {% if 'icm-' in data.icon %}
+        {{ 'ubg-' + data.color if data.color }}
+      {% endif %}
+      {{ data.icon }}
+      {{ 'd-block' if data.block }}
+    {% endif %}
+    {% if data.bgImage or data.image %}
+      bg-img-{{ data.bgImageStyle }}
+    {% endif %}
+    {{ 'block-' + data.pos if data.pos }}
+    {{ data.extendDevClass if data.extendDevClass }}
+    {{ data.extendClass if data.extendClass }}
   {% endset %}
-
+  {% set attr %}
+    {{ 'style="background-image: url(' + data.bgImage + ')"' if data.bgImage }}
+  {% endset %}
   {% set content %}
-    <img src="{{ data.icon }}" alt="" class='ic-default'>
+    {% if data.icon %}
+      {% if 'icmg-' in data.icon %}
+        {% for item in range(0, data.div) %}
+          <div></div>
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+    {% if data.image %}
+      <img class="uicon-image" src="{{ data.image }}" alt="">
+    {% endif %}
   {% endset %}
-  {% set data = data | setAttribute('extendClass', class) %}
-  {% set data = data | setAttribute('size', 'ic-' + data.size) %}
+  {% set data = data | setAttribute('extendDevClass', class) %}
+  {% set data = data | setAttribute('extendDevAttr', attr) %}
   {% set data = data | setAttribute('content', content) %}
   {{ ubox(data) }}
+{% endmacro %}
+
+{% macro uBoxIconText(data) %}
+  {% set dataDefault = {
+    boxLayout: 'box'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% if data.iconLeft %}
+    {% set iconLeft %}
+      <span class="ubox-ic ubox-ic-left">
+        {% set dataIconLeftDefault = {
+          size: false,
+          color: false
+        } %}
+        {% if data.iconLeft | isDict() %}
+          {% set dataIconLeft = data.iconLeft | mergeDeep(dataIconLeftDefault) %}
+          {{ icon(dataIconLeft) }}
+        {% else %}
+          {% set dataIconLeftDefault = dataIconLeftDefault | setAttribute('icon', data.iconLeft) %}
+          {{ icon(dataIconLeftDefault) }}
+        {% endif %}
+      </span>
+    {% endset %}
+  {% endif %}
+  {% if data.iconRight %}
+    {% set iconRight %}
+      <span class="ubox-ic ubox-ic-left">
+        {% set dataIconRightDefault = {
+          size: false,
+          color: false
+        } %}
+        {% if data.iconRight | isDict() %}
+          {% set dataIconRight = data.iconRight | mergeDeep(dataIconRightDefault) %}
+          {{ icon(dataIconRight) }}
+        {% else %}
+          {% set dataIconRightDefault = dataIconRightDefault | setAttribute('icon', data.iconRight) %}
+          {{ icon(dataIconRightDefault) }}
+        {% endif %}
+      </span>
+    {% endset %}
+  {% endif %}
+  {% set title %}
+    {% if data.title %}
+      {% set uboxTextClass %}
+        ubox-text
+        {{ data.text.fontSize }}
+        {{ 'color-' + data.text.color if data.text.color}}
+      {% endset %}
+      <span class="{{ uboxTextClass }}">{{ data.title }}</span>
+    {% endif %}
+  {% endset %}
+  {% set content %}
+    {% if data.boxLayout == 'box' %}
+      <div class="ubox-inner">
+        {{ iconLeft }}
+        {{ title }}
+        {{ iconRight }}
+      </div>
+    {% endif %}
+    {% if data.boxLayout == 'row' %}
+      {% if data.iconLeft or data.iconRight %}
+        <div class="row {{ 'row-' + data.gutterH if data.gutterH }}">
+          {% if data.iconLeft %}
+            <div class="col-auto">
+              {{ iconLeft }}
+            </div>
+          {% endif %}
+          <div class="col">
+            {{ title }}
+          </div>
+          {% if data.iconRight %}
+            <div class="col-auto">
+              {{ iconRight }}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        {{ title }}
+      {% endif %}
+    {% endif %}
+  {% endset %}
+
+  {% if not data.content %}
+    {% set data = data | setAttribute('content', content) %}
+  {% endif %}
+  {{ ubox(data) }}
+{% endmacro %}
+
+{% macro link(data) %}
+  {% set dataDefault = {
+    tagname: 'a',
+    extendDevClass: 'link d-inline-flex',
+    boxLayout: 'row',
+    gutterH: '8'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ uBoxIconText(data) }}
+{% endmacro %}
+
+{% macro labelStatus(data) %}
+  {% set dataDefault = {
+    tagname: 'label',
+    size: 'xs',
+    extendDevClass: 'ulabel',
+    shape: 'round',
+    borderColor: true,
+    gutterH: '8'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ uBoxIconText(data) }}
+{% endmacro %}
+
+{% macro tag(data) %}
+  {% set dataDefault = {
+    tagname: 'label',
+    size: 'xs',
+    extendDevClass: 'utag',
+    shape: 'round',
+    borderColor: true,
+    gutterH: '8'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ uBoxIconText(data) }}
+{% endmacro %}
+
+{% macro avatar(data) %}
+  {% set dataDefault = {
+    extendDevClass: 'uavatar',
+    color: false,
+    shape: 'square',
+    noMinHeight: true
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ icon(data) }}
 {% endmacro %}

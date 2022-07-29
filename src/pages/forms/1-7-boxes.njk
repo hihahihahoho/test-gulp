@@ -1,12 +1,11 @@
 {% extends "main/_layout-sidebar.njk" %}
 {% set pageLink = file_path %}
-{% set pageTitle = 'Buttons' %}
+{% set pageTitle = 'Boxes' %}
 
 {% block mainInner %}
   <div class="box">
     <div class="box__body">
       <div class="btn-groups">
-        <img src="media/icon-hue/nap-tien-dien-thoai.svg" alt="">
         <div class="row row-10">
           <div class="flex-grow-1 flex-sm-grow-0 col-auto">
             {{ button.btn({ iconLeft: 'icm-default_plannet', shape: 'circle', tooltip: 'test' }) }}
@@ -53,7 +52,22 @@
     </div>
   </div>
   <div class="box">
-    <div class="box__body ubg-primary-hover">
+    <div class="box__body">
+      {{ base.link({ title: 'Title link', extendClass: 'text-decoration-underline' }) }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      {{ util.labelStatusCustom('choDuyet', { tooltip: 'Chờ duyệt' }) }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      {{ base.avatar({ image: 'media/img/1491086209404.png', size: 'default' }) }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
       {% set data = {
         col: 'group-col-lg-4 group-col-md-3',
         data: [
@@ -69,6 +83,44 @@
         ]
       } %}
       {{ button.btnGroup(data) }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      {% set dataTab = {
+        itemOptions: {
+          size: 'default',
+          extendClass: 'no-ph'
+        },
+        data: [
+          {
+            title: 'Tab 1'
+          }, {
+            title: 'Tab 2'
+          }
+        ]
+      } %}
+      {{ tab.tab(dataTab) }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="box__body">
+      {% set dataTab = {
+        itemOptions: {
+          size: 'sm',
+          shape: 'round',
+          color: 'line-primary',
+          hover: true
+        },
+        data: [
+          {
+            title: 'Tab 1'
+          }, {
+            title: 'Tab 2'
+          }
+        ]
+      } %}
+      {{ tab.tab(dataTab) }}
     </div>
   </div>
 

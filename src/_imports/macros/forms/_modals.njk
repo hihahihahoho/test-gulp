@@ -25,13 +25,20 @@
 
   {% set alert = {
     'success': {
-      icon: 'media/graph/success-sm.svg',
-      color: 'success'
-    }, 
+      icon: 'media/graph/success.svg'
+    },
     'error': {
-      icon: 'media/graph/success-sm.svg',
-      color: 'danger'
-    } 
+      icon: 'media/graph/error.svg'
+    },
+    'lock': {
+      icon: 'media/graph/lock.svg'
+    },
+    'unlock': {
+      icon: 'media/graph/unlock.svg'
+    },
+    'delete': {
+      icon: 'media/graph/delete.svg'
+    }
   } %}
 
   {% set modalOuterClass %}
@@ -49,20 +56,20 @@
   {% endset %}
 
   {% set modalTitle %}
-    <h5 class="modal-title">
-      <b>{{ data.title }}</b>
-    </h5>
+    <h4 class="modal-title text-center">
+      {{ data.title }}
+    </h4>
   {% endset %}
 
   {% set closeBtn %}
-    {{ button.btn({ shape: 'circle', color: 'transparent', extendClass: 'modal-close-btn' }) }}
+    {{ button.btn({iconLeft: iconDefault.toastClose , size: 'md', color: 'transparent', shape: 'circle', extendClass: 'modal-close-btn', modalDismiss: true}) }}
   {% endset %}
 
   {% if data.alert %}
     {% set modalHeader %}
       <div class="modal-title-wrap list-mb16 list-crop">
         {{ closeBtn }}
-        {{ base.iconBox({ icon: alert[data.alert].icon, color: alert[data.alert].color, extendClass: 'block-center' }) }}
+        {# {{ base.iconBox({ icon: alert[data.alert].icon, extendClass: 'block-center', color: 'transaprent', size: 'xxl' }) }} #}
         {{ modalTitle }}
       </div>
     {% endset %}
@@ -70,14 +77,8 @@
 
   {% if not data.alert %}
     {% set modalHeader %}
-      <div class="row row-16 modal-title-wrap">
-        <div class="col">
-          {{ modalTitle }}
-        </div>
-        <div class="col-auto text-right col-btn-close">
-          {{ closeBtn }}
-        </div>
-      </div>
+      {{ modalTitle }}
+      {{ closeBtn }}
     {% endset %}
   {% endif %}
 
@@ -88,30 +89,40 @@
           <div class="modal-wrap">
             {{ modalHeader }}
             {{ data.headerContent if data.headerContent }}
+            {% if data.search %}
+              <div class="row justify-content-center pt16"><div class="col-md-11">{{ form.inputSearch({ placeholder: 'Tìm kiếm' }) }}</div></div>
+            {% endif %}
           </div>
         </div>
-        <div class="modal-body">
-          {{ data.content }}
-        </div>
-        <div class="modal-footer justify-content-center">
-          {% if data.footerContent %}
-            <div class="modal-footer-content">
-              {{ data.footerContent }}
-            </div>
-          {% endif %}
-          {% if data.button %}
-            {% set dataBtnDefault = {
-              col: 'group-col-md-3 group-col-fill',
-              gutterVertical: 8,
-              gutterHorizontal: 8,
-              align: 'center',
-              reverse: false,
-              modalDismiss: true
-            } %}
-            {% set dataBtn = data.button | mergeDeep(dataBtnDefault) %}
-            {{ button.btnGroup(dataBtn) }}
-          {% endif %}
-        </div>
+        {% if data.content %}
+          <div class="modal-body color-default-s">
+            {{ data.content }}
+          </div>
+        {% endif %}
+        {% if not data.hideFooter %}
+          <div class="modal-footer justify-content-center">
+            {% if data.footerContent %}
+              <div class="modal-footer-content">
+                {{ data.footerContent }}
+              </div>
+            {% endif %}
+            {% if data.button %}
+              {% set dataBtnDefault = {
+                col: 'group-col-2 group-col-fill',
+                gutterVertical: 12,
+                gutterHorizontal: 12,
+                align: 'center',
+                reverse: false,
+                modalDismiss: true,
+                buttonGeneralOption: {
+                  size: 'md'
+                }
+              } %}
+              {% set dataBtn = data.button | mergeDeep(dataBtnDefault) %}
+              {{ button.btnGroup(dataBtn) }}
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -122,7 +133,7 @@
   <!-- modal.modalAlert -->
   {% set dataDefault = {
     size: 'alert-default',
-    alert: false,
+    alert: 'success',
     align: 'center',
     pos: 'centered'
   } %}
@@ -131,18 +142,26 @@
   <!-- end modal.modalAlert -->
 {% endmacro %}
 
-{% macro toast(value, type = 'success', id = '') %}
-  <div class="toast" id="{{ id }}" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-body">
-      <div class="row row-15 align-items-center">
-        <div class="col-auto">
-          <img src="/dist/media/graph/{{ type }}-sm.svg" alt="">
-        </div>
-        <div class="col flex-grow-1">{{ value }}</div>
-        <div class="col-auto">
-          {{ button.btn({iconLeft: iconDefault.toastClose , size: 'sm', color: 'invert', shape: 'circle', extendAttr: 'data-dismiss="toast" aria-label="Close"'}) }}
+{% macro toast(data) %}
+  {% set dataDefault = {
+    type: 'success'
+  } %}
+  <div class="toast-container">
+    {% for item in data %}
+      {% set item = item | mergeDeep(dataDefault) %}
+      <div class="toast toast-{{ item.type }}" id="{{ item.id }}" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body">
+          <div class="row row-12 align-items-center">
+            <div class="col-auto">
+              <div class="icm icm-default_{{ item.type }}-circle icm-size-default ubg-{{ item.type }} d-block"></div>
+            </div>
+            <div class="col flex-grow-1">{{ item.content }}</div>
+            <div class="col-auto">
+              {{ button.btn({iconLeft: iconDefault.toastClose , size: 'sm', color: 'transparent', shape: 'circle', extendAttr: 'data-bs-dismiss="toast" aria-label="Close"'}) }}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    {% endfor %}
   </div>
 {% endmacro %}

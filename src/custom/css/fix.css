@@ -1,0 +1,30 @@
+.tooltip.show {
+  opacity: 1;
+}
+
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::before,
+.bs-tooltip-bottom .arrow::before {
+  border-bottom-color: white;
+}
+
+.tooltip .tooltip-arrow {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0 !important;
+  transform: none !important;
+  right: 0;
+}
+
+.bs-tooltip-auto[data-popper-placement^="top"] .tooltip-arrow::before,
+.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: white;
+}
+
+.tooltip[data-popper-placement^="bottom"] .tooltip-arrow {
+  bottom: auto;
+  top: 1px;
+}
+.tooltip[data-popper-placement^="bottom"] .tooltip-arrow::before {
+  border-bottom-color: white;
+  border-width: 0 0.4rem 0.4rem;
+}

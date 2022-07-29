@@ -1,15 +1,32 @@
-{% macro tab(data, active = 1, id = 'tab', navLinkWidth = 'fill') %}
+{% import "macros/_base.njk" as base %}
+{% macro tab(data) %}
+  {% set dataDefault = {
+    id: 'tab',
+    active: 1,
+    style: 'line',
+    button: false,
+    gutterH: 16,
+    gutterV: 16,
+    itemCol: 'col-auto'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
   <!-- tab.tab -->
-  <div class="nav-wrap">
-    <nav class="nav nav-style-default nav-{{ navLinkWidth }}">
-      {% for item in data %}
-        {% set activeClass = '' %}
-        {% if loop.index == active %}
-          {% set activeClass = 'active' %}
-        {% endif %}
-        <a class="nav-link {{ activeClass }}" data-toggle="tab" href="#{{id}}{{loop.index}}">{{item}}</a>
+  <div class="nav-wrap {{ data.extendClass if data.extendClass }}">
+    <div class="nav nav-style-{{ data.style }} {{ data.navExtendClass if data.navExtendClass }} {{ 'row row-' + data.gutterH if data.gutterH }} {{ 'list-crop list-mb' + data.gutterV if data.gutterV }}" id="{{data.id}}" role="tablist">
+      {% for item in data.data %}
+        {% set activeClass %}
+          {% if item | isStr() %}
+            {{ 'active' if data.active == loop.index}}
+          {% else %}
+            {{ 'active' if item.active }}
+          {% endif %}
+        {% endset %}
+        <div class="nav-link {{ activeClass }} {{ data.itemCol if data.itemCol }}" data-bs-toggle="tab" data-bs-target="#{{ data.id + '-' + loop.index }}" role="tab" aria-selected="true">
+          {% set itemData = item | mergeDeep(data.itemOptions) %}
+          {{ base.uBoxIconText(item) }}
+        </div>
       {% endfor %}
-    </nav>
+    </div>
   </div>
   <!-- end tab.tab -->
 {% endmacro %}

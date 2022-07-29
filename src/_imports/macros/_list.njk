@@ -1,0 +1,215 @@
+{% import "macros/_base.njk" as base %}
+{% import "macros/_utilities.njk" as util %}
+{% import "macros/forms/_forms.njk" as form %}
+{% import "macros/forms/_modals.njk" as modal %}
+{% import "macros/forms/_buttons.njk" as button %}
+{% import "macros/forms/_dropdown.njk" as dropdown %}
+{% import "macros/forms/_tables.njk" as table %}
+{% import "macros/forms/_rnc.njk" as rnc %}
+{% import "macros/forms/_tabs.njk" as tab %}
+{% import "macros/forms/_files-upload.njk" as file %}
+{% import "macros/_custom.njk" as custom %}
+{% import "_varibles.njk" as globalsVar %}
+
+{% macro core(data) %}
+  {% set dataDefault = {
+    size: 'default',
+    hover: false,
+    itemOptions: {
+      tagname: 'div'
+    }
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% set class %}
+    list list-size-{{ data.size }}
+    {{ 'list-style-' + data.style if data.style  }}
+    {{ 'list-style-crop' if data.crop  }}
+    {{ 'list-hover' if data.hover  }}
+    {{ data.extendDevClass if data.extendDevClass }}
+    {{ data.extendClass if data.extendClass }}
+  {% endset %}
+  {% set attr %}
+    {{ data.extendDevAttr if data.extendDevAttr }}
+    {{ data.extendAttr if data.extendAttr }}
+  {% endset %}
+
+  <div class="{{ class }}" {{ attr }}>
+    {% for item in data.data %}
+      {% set itemData = item | setAttribute('extendDevClass', 'list-item') %}
+      {{ base.ubox(itemData) }}
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro listText(data) %}
+  {% set dataDefault = {
+    size: 'default',
+    gutterH: '12',
+    icon: {
+      size: 'default'
+    }
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% for item in data.data %}
+    {% set content %}
+      {{ item.title }}
+    {% endset %}
+    {% set item = item | setAttribute('content', content) %}
+  {% endfor %}
+  {{ core(data) }}
+{% endmacro %}
+
+{% macro listIcon(data) %}
+  {% set dataDefault = {
+    size: 'default',
+    gutterH: '12',
+    icon: {
+      size: 'default'
+    }
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% for item in data.data %}
+    {% if not item.exclude %}
+      {% set content %}
+        <div class="row row-{{ data.gutterH }} align-items-center">
+          {% if item.icon or item.image %}
+            <div class="col-auto">
+              {% set item = item | mergeDeep(data.icon) %}
+              {{ base.icon(item) }}
+            </div>
+          {% endif %}
+          <div class="col">
+            <div class="title">
+              {{ item.title }}
+            </div>
+          </div>
+        </div>
+      {% endset %}
+      {% set item = item | setAttribute('content', content) %}
+    {% endif %}
+  {% endfor %}
+  {{ core(data) }}
+{% endmacro %}
+
+{% macro listInfo(data) %}
+  {% set dataDefault = {
+    size: 'default',
+    gutterH: '16',
+    gutterV: '16',
+    extendDevClass: 'list-info-item-horizontal'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% for item in data.data %}
+    {% set itemDefault = {
+      titleExtendClass: 'color-default-s'
+    } %}
+    {% set item = item | mergeDeep(itemDefault) %}
+    {% set content %}
+      <div class="row row-{{ data.gutterH }} {{ 'list-mb' + data.gutterV + ' list-crop' if data.gutterV }} align-items-center">
+        {% if item.title %}
+          <div class="col-auto title {{ item.titleExtendClass }}">
+            {{ item.title }}
+          </div>
+        {% endif %}
+        <div class="col value {{ item.valueExtendClass }}">
+          <div class="value">
+            {{ item.value }}
+          </div>
+        </div>
+      </div>
+    {% endset %}
+    {% set item = item | setAttribute('content', content) %}
+  {% endfor %}
+  {{ core(data) }}
+{% endmacro %}
+
+{% macro listCreditCard(data) %}
+  {% set dataDefault = {
+    size: 'lg',
+    gutterH: '16',
+    crop: true,
+    style: 'border',
+    extendDevClass: 'list-credit-card'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% for item in data.data %}
+    {% set content %}
+      <div class="row row-{{ data.gutterH }} {{ 'list-mb' + data.gutterV + ' list-crop' if data.gutterV }} align-items-center">
+        <div class="col-auto">
+          <div class="logo-brands-large-square">
+            <img src="{{ item.icon }}" alt="">
+          </div>
+        </div>
+        <div class="col">
+          {% if item.title %}
+            <div class="h6 up color-default-s mb2">{{ item.title }}</div>
+          {% endif %}
+          {% if item.value %}
+            <div class="weight5 text-break">{{ item.value }}</div>
+          {% endif %}
+        </div>
+        <div class="col-auto">
+          {{ button.btn({ title: 'Xoá thẻ', modal: '#modalDelete', size: 'sm', color: 'trim-h-transparent', iconRight: 'icm-solid_trash' }) }}
+        </div>
+      </div>
+    {% endset %}
+    {% set item = item | setAttribute('content', content) %}
+  {% endfor %}
+  {{ core(data) }}
+{% endmacro %}
+
+{% macro listButtonIconArrow(data) %}
+  {% set dataDefault = {
+    size: 'default',
+    gutterH: '12',
+    gutterV: '12',
+    extendDevClass: 'list-button-icon-arrow'
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {% for item in data.data %}
+    {% set itemDefault = {
+      titleExtendClass: 'color-default-s'
+    } %}
+    {% set item = item | mergeDeep(itemDefault) %}
+    {% set content %}
+      <div class="row row-{{ data.gutterH }} {{ 'list-mb' + data.gutterV + ' list-crop' if data.gutterV }} align-items-center">
+        {% if item.image %}
+          <div class="col-auto">{{ base.icon({ image: item.image, size: 'xls', extendClass: 'ubg-default-bg border-radius-xs' }) }}</div>
+        {% endif %}
+        <div class="col h4 {{ item.valueExtendClass }}">
+          {{ item.title }}
+        </div>
+      </div>
+    {% endset %}
+    {% set item = item | setAttribute('content', content) %}
+  {% endfor %}
+  {{ core(data) }}
+{% endmacro %}
+
+{% macro pttt(data) %}
+  {% set dataPTTT = {
+    extendClass: 'list-mb12 list-crop',
+    data: [
+      {
+        image: 'media/graph/pttt/vnpayqr.svg',
+        title: 'Ứng dụng Mobile Banking quét mã <span class="vnpay-color-red">VN</span><span class="vnpay-color-blue">PAY</span><sup class="vnpay-color-red">QR</sup>',
+        href: data.href
+      }, {
+        image: 'media/graph/pttt/bank.svg',
+        title: 'Thẻ ATM và tài khoản ngân hàng',
+        listTagname: 'button',
+        modal: '#modalATM'
+      }, {
+        image: 'media/graph/pttt/card.svg',
+        title: 'Thẻ thanh toán quốc tế',
+        listTagname: 'button',
+        modal: '#modalCreditCard'
+      }, {
+        image: 'media/graph/pttt/vivnpay.svg',
+        title: 'Ví điện tử',
+        href: data.href
+      }
+    ]
+  } %}
+  {{ listButtonIconArrow(dataPTTT) }}
+{% endmacro %}

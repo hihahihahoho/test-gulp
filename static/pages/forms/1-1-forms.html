@@ -74,7 +74,7 @@
       </a>
     </div>
     <div class="sidebar__list">
-      <a class="sidebar__item" href="index.html">
+      <a class="sidebar__item" href="pages/index.html">
         <div class="ic">
           <img src="media/icons-color/default/default/plannet.svg" alt="">
         </div>
@@ -82,7 +82,7 @@
       </a>
     </div>
     <div class="sidebar__list">
-      <a class="sidebar__item" href="components.html">
+      <a class="sidebar__item" href="pages/components.html">
         <div class="ic">
           <img src="media/icons-color/default/default/plannet.svg" alt="">
         </div>
@@ -90,7 +90,7 @@
       </a>
     </div>
     <div class="sidebar__list">
-      <a class="sidebar__item" href="color-and-text.html">
+      <a class="sidebar__item" href="pages/color-and-text.html">
         <div class="ic">
           <img src="media/icons-color/default/default/plannet.svg" alt="">
         </div>
@@ -357,11 +357,11 @@
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" placeholder="Nhập input simple" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -381,11 +381,11 @@
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear input-tagify" placeholder="Nhập tagify" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Tagify
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -401,20 +401,23 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" placeholder="Nhập input button" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" placeholder="Nhập input button" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Input button
                             </div>
-                          </label>
+                          </div>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
-                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
-                              <div class="ubtn-inner">
-                                <span class="ubtn-text">button</span>
+                            <button class="ubox ubg-primary ubox-size-xs ubg-hover ubg-active justify-contentcenter ubtn">
+                              <div class="ubox-inner">
+                                <span class="ubox-text">button</span>
                               </div>
                             </button>
                             <!-- end button.button -->
@@ -434,11 +437,11 @@
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" placeholder="Nhập input text" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input text
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-left">
                             <div class="input-box input-ic-txt">
                               VND
@@ -504,11 +507,11 @@
                               abc
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -533,11 +536,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -562,11 +565,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple Tag
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -589,15 +592,12 @@
                             <option>
                               abc
                             </option>
-                            <option>
-                              Option 3
-                            </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -608,11 +608,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.datepicker -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Datepicker
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16 lite-picker-group">
                         <div class="col-6">
                           <!-- form.input -->
@@ -650,11 +650,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.input -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Group form
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16">
                         <div class="col-6">
                           <!-- form.input -->
@@ -700,13 +700,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" placeholder="Nhập textarea" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" placeholder="Nhập textarea" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -723,13 +724,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input input-label-change" rows="3" rows="3" placeholder="Nhập textarea" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input input-label-change input-has-clear" rows="3" rows="3" placeholder="Nhập textarea" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -746,9 +748,9 @@
                 <div class="row row-20 justify-content-center mt16">
                   <div class="col-sm-4">
                     <!-- button.button -->
-                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
-                      <div class="ubtn-inner">
-                        <span class="ubtn-text">Validate</span>
+                    <button class="ubox ubg-primary ubox-size-default ubg-hover ubg-active justify-contentcenter ubtn">
+                      <div class="ubox-inner">
+                        <span class="ubox-text">Validate</span>
                       </div>
                     </button>
                     <!-- end button.button -->
@@ -768,11 +770,11 @@
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -792,11 +794,11 @@
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear input-tagify" placeholder="Nhập tagify" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Tagify
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -812,20 +814,23 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Input button
                             </div>
-                          </label>
+                          </div>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
-                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
-                              <div class="ubtn-inner">
-                                <span class="ubtn-text">button</span>
+                            <button class="ubox ubg-primary ubox-size-xs ubg-hover ubg-active justify-contentcenter ubtn">
+                              <div class="ubox-inner">
+                                <span class="ubox-text">button</span>
                               </div>
                             </button>
                             <!-- end button.button -->
@@ -845,11 +850,11 @@
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input text
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-left">
                             <div class="input-box input-ic-txt">
                               VND
@@ -914,11 +919,11 @@
                               abc
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -942,11 +947,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -970,11 +975,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple Tag
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -994,15 +999,12 @@
                             <option>
                               abc
                             </option>
-                            <option>
-                              Option 3
-                            </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -1013,11 +1015,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.datepicker -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Datepicker
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16 lite-picker-group">
                         <div class="col-6">
                           <!-- form.input -->
@@ -1055,11 +1057,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.input -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Group form
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16">
                         <div class="col-6">
                           <!-- form.input -->
@@ -1105,13 +1107,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -1128,13 +1131,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input input-label-change" rows="3" rows="3" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input input-label-change input-has-clear" rows="3" rows="3" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -1151,9 +1155,9 @@
                 <div class="row row-20 justify-content-center mt16">
                   <div class="col-sm-4">
                     <!-- button.button -->
-                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
-                      <div class="ubtn-inner">
-                        <span class="ubtn-text">Validate</span>
+                    <button class="ubox ubg-primary ubox-size-default ubg-hover ubg-active justify-contentcenter ubtn">
+                      <div class="ubox-inner">
+                        <span class="ubox-text">Validate</span>
                       </div>
                     </button>
                     <!-- end button.button -->
@@ -1173,11 +1177,11 @@
                       <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -1197,11 +1201,11 @@
                       <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear input-tagify" placeholder="Nhập tagify" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Tagify
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -1217,20 +1221,23 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material-2 input-size-lg textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Input button
                             </div>
-                          </label>
+                          </div>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
-                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
-                              <div class="ubtn-inner">
-                                <span class="ubtn-text">button</span>
+                            <button class="ubox ubg-primary ubox-size-xs ubg-hover ubg-active justify-contentcenter ubtn">
+                              <div class="ubox-inner">
+                                <span class="ubox-text">button</span>
                               </div>
                             </button>
                             <!-- end button.button -->
@@ -1250,11 +1257,11 @@
                       <div class="input-group-wrap input-material-2 input-size-lg input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input text
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-left">
                             <div class="input-box input-ic-txt">
                               VND
@@ -1319,11 +1326,11 @@
                               abc
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -1347,11 +1354,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -1375,11 +1382,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple Tag
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -1399,15 +1406,12 @@
                             <option>
                               abc
                             </option>
-                            <option>
-                              Option 3
-                            </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -1418,11 +1422,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.datepicker -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Datepicker
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16 lite-picker-group">
                         <div class="col-6">
                           <!-- form.input -->
@@ -1460,11 +1464,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.input -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Group form
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16">
                         <div class="col-6">
                           <!-- form.input -->
@@ -1510,13 +1514,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material-2 input-size-lg textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -1533,13 +1538,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material-2 input-size-lg textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input input-label-change" rows="3" rows="3" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input input-label-change input-has-clear" rows="3" rows="3" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -1556,9 +1562,9 @@
                 <div class="row row-20 justify-content-center mt16">
                   <div class="col-sm-4">
                     <!-- button.button -->
-                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
-                      <div class="ubtn-inner">
-                        <span class="ubtn-text">Validate</span>
+                    <button class="ubox ubg-primary ubox-size-default ubg-hover ubg-active justify-contentcenter ubtn">
+                      <div class="ubox-inner">
+                        <span class="ubox-text">Validate</span>
                       </div>
                     </button>
                     <!-- end button.button -->
@@ -1578,11 +1584,11 @@
                       <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -1602,11 +1608,11 @@
                       <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear input-tagify" placeholder="Nhập tagify" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Tagify
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -1622,20 +1628,23 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material-3 input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Input button
                             </div>
-                          </label>
+                          </div>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
-                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
-                              <div class="ubtn-inner">
-                                <span class="ubtn-text">button</span>
+                            <button class="ubox ubg-primary ubox-size-xs ubg-hover ubg-active justify-contentcenter ubtn">
+                              <div class="ubox-inner">
+                                <span class="ubox-text">button</span>
                               </div>
                             </button>
                             <!-- end button.button -->
@@ -1655,11 +1664,11 @@
                       <div class="input-group-wrap input-material-3 input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" required autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input text
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-left">
                             <div class="input-box input-ic-txt">
                               VND
@@ -1724,11 +1733,11 @@
                               abc
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -1752,11 +1761,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -1780,11 +1789,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple Tag
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -1804,15 +1813,12 @@
                             <option>
                               abc
                             </option>
-                            <option>
-                              Option 3
-                            </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -1823,11 +1829,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.datepicker -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Datepicker
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16 lite-picker-group">
                         <div class="col-6">
                           <!-- form.input -->
@@ -1865,11 +1871,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.input -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Group form
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16">
                         <div class="col-6">
                           <!-- form.input -->
@@ -1915,13 +1921,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material-3 input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -1938,13 +1945,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material-3 input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input input-label-change" rows="3" rows="3" required autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input input-label-change input-has-clear" rows="3" rows="3" required autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -1961,9 +1969,9 @@
                 <div class="row row-20 justify-content-center mt16">
                   <div class="col-sm-4">
                     <!-- button.button -->
-                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
-                      <div class="ubtn-inner">
-                        <span class="ubtn-text">Validate</span>
+                    <button class="ubox ubg-primary ubox-size-default ubg-hover ubg-active justify-contentcenter ubtn">
+                      <div class="ubox-inner">
+                        <span class="ubox-text">Validate</span>
                       </div>
                     </button>
                     <!-- end button.button -->
@@ -1983,11 +1991,11 @@
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" placeholder="Nhập input simple" required disabled autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -2007,11 +2015,11 @@
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear input-tagify" placeholder="Nhập tagify" required disabled autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Tagify
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -2027,20 +2035,23 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" placeholder="Nhập input button" required disabled autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" placeholder="Nhập input button" required disabled autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Input button
                             </div>
-                          </label>
+                          </div>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
-                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
-                              <div class="ubtn-inner">
-                                <span class="ubtn-text">button</span>
+                            <button class="ubox ubg-primary ubox-size-xs ubg-hover ubg-active justify-contentcenter ubtn">
+                              <div class="ubox-inner">
+                                <span class="ubox-text">button</span>
                               </div>
                             </button>
                             <!-- end button.button -->
@@ -2060,11 +2071,11 @@
                       <div class="input-group-wrap input-default input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" placeholder="Nhập input text" required disabled autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input text
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-left">
                             <div class="input-box input-ic-txt">
                               VND
@@ -2130,11 +2141,11 @@
                               abc
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -2159,11 +2170,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -2188,11 +2199,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple Tag
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -2215,15 +2226,12 @@
                             <option>
                               abc
                             </option>
-                            <option>
-                              Option 3
-                            </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -2234,11 +2242,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.datepicker -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Datepicker
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16 lite-picker-group">
                         <div class="col-6">
                           <!-- form.input -->
@@ -2276,11 +2284,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.input -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Group form
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16">
                         <div class="col-6">
                           <!-- form.input -->
@@ -2326,13 +2334,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" placeholder="Nhập textarea" required disabled autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" placeholder="Nhập textarea" required disabled autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -2349,13 +2358,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-default input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input input-label-change" rows="3" rows="3" placeholder="Nhập textarea" required disabled autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input input-label-change input-has-clear" rows="3" rows="3" placeholder="Nhập textarea" required disabled autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -2372,9 +2382,9 @@
                 <div class="row row-20 justify-content-center mt16">
                   <div class="col-sm-4">
                     <!-- button.button -->
-                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
-                      <div class="ubtn-inner">
-                        <span class="ubtn-text">Validate</span>
+                    <button class="ubox ubg-primary ubox-size-default ubg-hover ubg-active justify-contentcenter ubtn">
+                      <div class="ubox-inner">
+                        <span class="ubox-text">Validate</span>
                       </div>
                     </button>
                     <!-- end button.button -->
@@ -2394,11 +2404,11 @@
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" placeholder="Nhập input simple" required readonly autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -2418,11 +2428,11 @@
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear input-tagify" placeholder="Nhập tagify" required readonly autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Tagify
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
                             <div class="input-box input-ic-clear"></div>
                           </div>
@@ -2438,20 +2448,23 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" placeholder="Nhập input button" required readonly autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" placeholder="Nhập input button" required readonly autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Input button
                             </div>
-                          </label>
+                          </div>
+                          <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                         <div class="input-extend col-md-4 col-auto input-extend-outside input-extend-outside input-extend-right">
                           <div class="input-box input-extend-inner">
                             <!-- button.button -->
-                            <button class="ubg-primary ubox-size-button-xs ubg-hover ubg-active ubtn">
-                              <div class="ubtn-inner">
-                                <span class="ubtn-text">button</span>
+                            <button class="ubox ubg-primary ubox-size-xs ubg-hover ubg-active justify-contentcenter ubtn">
+                              <div class="ubox-inner">
+                                <span class="ubox-text">button</span>
                               </div>
                             </button>
                             <!-- end button.button -->
@@ -2471,11 +2484,11 @@
                       <div class="input-group-wrap input-material input-size-default input-group-vertical">
                         <div class="input-inner-wrap">
                           <input type="" class="input input-label-change input-has-clear" placeholder="Nhập input text" required readonly autocorrect="off">
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Input text
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-left">
                             <div class="input-box input-ic-txt">
                               VND
@@ -2541,11 +2554,11 @@
                               abc
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -2570,11 +2583,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -2599,11 +2612,11 @@
                               data 3
                             </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select 2 Multiple Tag
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -2626,15 +2639,12 @@
                             <option>
                               abc
                             </option>
-                            <option>
-                              Option 3
-                            </option>
                           </select>
-                          <label class="input-label">
+                          <div class="input-label">
                             <div class="inner">
                               Select simple
                             </div>
-                          </label>
+                          </div>
                           <div class="input-frame"></div>
                         </div>
                       </div>
@@ -2645,11 +2655,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.datepicker -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Datepicker
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16 lite-picker-group">
                         <div class="col-6">
                           <!-- form.input -->
@@ -2687,11 +2697,11 @@
                   <div class="col-lg-4 col-md-6 col-sm-6">
                     <!-- form.input -->
                     <div class="form-group">
-                      <label class="input-label">
+                      <div class="input-label">
                         <div class="inner">
                           Group form
                         </div>
-                      </label>
+                      </div>
                       <div class="row row-16">
                         <div class="col-6">
                           <!-- form.input -->
@@ -2737,13 +2747,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input textarea-autosize input-label-change" rows="1" placeholder="Nhập textarea" required readonly autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input textarea-autosize input-label-change input-has-clear" rows="1" placeholder="Nhập textarea" required readonly autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -2760,13 +2771,14 @@
                     <div class="form-group">
                       <div class="input-group-wrap input-material input-size-default textarea-group input-group-vertical">
                         <div class="input-inner-wrap">
-                          <textarea class="input input-label-change" rows="3" rows="3" placeholder="Nhập textarea" required readonly autocorrect="off" spellcheck="false"></textarea>
-                          <label class="input-label">
+                          <textarea class="input input-label-change input-has-clear" rows="3" rows="3" placeholder="Nhập textarea" required readonly autocorrect="off" spellcheck="false"></textarea>
+                          <div class="input-label">
                             <div class="inner">
                               Textarea
                             </div>
-                          </label>
+                          </div>
                           <div class="input-extend input-extend-right">
+                            <div class="input-box input-ic-clear"></div>
                             <div class="input-box input-ic-txt">
                               VND
                             </div>
@@ -2783,9 +2795,9 @@
                 <div class="row row-20 justify-content-center mt16">
                   <div class="col-sm-4">
                     <!-- button.button -->
-                    <button class="ubg-primary ubox-size-button-default ubg-hover ubg-active ubtn">
-                      <div class="ubtn-inner">
-                        <span class="ubtn-text">Validate</span>
+                    <button class="ubox ubg-primary ubox-size-default ubg-hover ubg-active justify-contentcenter ubtn">
+                      <div class="ubox-inner">
+                        <span class="ubox-text">Validate</span>
                       </div>
                     </button>
                     <!-- end button.button -->
@@ -2856,28 +2868,24 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="modal-wrap">
-          <div class="row row-16 modal-title-wrap">
-            <div class="col">
-              <h5 class="modal-title">
-                <b>Chưa chọn thông tin thụ hưởng</b>
-              </h5>
-            </div>
-            <div class="col-auto text-right col-btn-close">
-              <!-- button.button -->
-              <button class="ubg-transparent ubox-size-button-default ubox-square ubox-rounded ubg-hover ubg-active ubtn modal-close-btn">
-                <div class="ubtn-inner">
+          <h4 class="modal-title text-center">
+            Chưa chọn thông tin thụ hưởng
+          </h4>
+          <!-- button.button -->
+          <a data-bs-dismiss="modal" class="ubox ubg-transparent ubox-size-md ubox-square ubox-rounded ubg-hover ubg-active justify-contentcenter ubtn modal-close-btn">
+            <div class="ubox-inner">
+              <span class="ubox-ic ubox-ic-left">
+                <div class="ubox uicon media/icons-color/default/default/close.svg">
                 </div>
-              </button>
-              <!-- end button.button -->
+              </span>
             </div>
-          </div>
+          </a>
+          <!-- end button.button -->
         </div>
-      </div>
-      <div class="modal-body">
       </div>
       <div class="modal-footer justify-content-center">
         <!-- button.btnGroup -->
-        <div class="ubtn-group list-mb8 list-crop row row-8 justify-content-center group-col-md-3 group-col-fill flex-row-reverse flex-function () { for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) { args[_key2] = arguments[_key2]; } return obj[val].apply(obj, args); }-row flex-wrap-reverse flex-function () { for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) { args[_key2] = arguments[_key2]; } return obj[val].apply(obj, args); }-wrap">
+        <div class="ubtn-group list-mb8 list-crop row row-8 justify-content-center group-col-2 group-col-fill flex-row-reverse flex-function () { for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) { args[_key2] = arguments[_key2]; } return obj[val].apply(obj, args); }-row flex-wrap-reverse flex-function () { for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) { args[_key2] = arguments[_key2]; } return obj[val].apply(obj, args); }-wrap">
         </div>
         <!-- end button.btnGroup -->
       </div>

@@ -1,0 +1,64 @@
+{% extends "_varibles.njk" %}
+{% import "macros/_base.njk" as base %}
+
+{% macro accordionCore(data) %}
+  {% set dataDefault = {
+    show: true
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="accordion-item-default {{ 'accordion-item-show' if data.show }} {{ data.itemExtendDevClass }}">
+    <div class="acc-header  {{ data.itemHeaderExtendDevClass }}">
+      <div class="acc-toggle {{ 'collapsed' if not data.show }} {{ data.itemToggleExtendDevClass }}" data-bs-toggle="collapse" data-bs-target="#{{ data.id }}" aria-expanded="true" aria-controls="{{ data.id }}">
+        {{ data.header }}
+      </div>
+    </div>
+    <div id="{{ data.id }}" class="acc-collapse collapse {{ data.itemCollapseExtendDevClass }} {{ 'show' if data.show }}" {{ 'data-bs-parent="' + data.parrentId + '"' if data.parrentId }}>
+      <div class="acc-content {{ data.itemCollapseContentExtendDevClass }}">
+        {{ data.content }}
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro accordionCoreGroup(data) %}
+  {% set dataDefault = {
+    id: 'accordionGroup',
+    group: true
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  <div class="acc-group {{ data.extendClass }} {{ 'row row-' + data.gutterH if data.gutterH }} {{ 'list-crop list-mb' + data.gutterV if data.gutterV }}" {{ 'id="' + data.id + '"' if data.group }}>
+    {% for item in data.data %}
+      {% set itemData = item | mergeDeep(data.itemOption) %}
+      {% if data.group %}
+        {% set itemData = item | setAttribute('parrentId','#' + data.id) %}
+      {% endif %}
+      {% set itemData = item | setAttribute('id', data.id + '-' + loop.index) %}
+      {{ accordionCore(itemData) }}
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro accordionBoxGroup(data) %}
+  {% for item in data.data %}
+    {% set header %}
+      <div class="row row-16 align-items-center">
+        <div class="col h4">{{ item.title }}</div>
+        <div class="col-auto">
+          <div class="ic-arrow">{{ base.icon({ icon: 'icm-default_arrow-small-down', color: 'default', block: true }) }}</div>
+        </div>
+      </div>
+    {% endset %}
+    {% set item = item | setAttribute('header', header) %}
+  {% endfor %}
+  {% set dataDefault = {
+      itemOption: {
+        itemExtendDevClass: 'box box-border box-sm',
+        itemToggleExtendDevClass: 'box__header',
+        itemCollapseContentExtendDevClass: 'box__body',
+        header: header,
+        show: false
+      }
+    } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ accordionCoreGroup(data) }}
+{% endmacro %}

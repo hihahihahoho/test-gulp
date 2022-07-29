@@ -29,23 +29,23 @@ var theme = {
     },
     h4: {
       'font-size': '18px',
-      'line-height': '1.3',
+      'line-height': '1.35',
     },
     h5: {
       'font-size': '16px',
-      'line-height': '1.3',
+      'line-height': '1.35',
     },
     h6: {
       'font-size': '12px',
-      'line-height': '1.3',
+      'line-height': '1.35',
     },
     p: {
       'font-size': '14px',
-      'line-height': '1.3',
+      'line-height': '1.35',
     },
     default: {
       'font-size': '14px',
-      'line-height': '1.3',
+      'line-height': '1.35',
     },
   },
   color: {
@@ -89,8 +89,7 @@ var theme = {
           color: '#3f3bec',
           hover: '#3935D4',
           active: '#312FBA',
-          text: '#ffffff',
-          shadowOp: '0.3'
+          text: '#ffffff'
         },
         'light-blue': {
           color: '#E5E5FF',
@@ -122,7 +121,8 @@ var theme = {
           color: '#FFE3D9',
           hover: '#FFD9CC',
           active: '#FFD0BF',
-          text: 'orange'
+          text: 'orange',
+          border: '#ffcdbc'
         },
         'green': {
           color: '#2ED573',

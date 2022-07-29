@@ -3,51 +3,6 @@ $btn-font-size: $font-size-default !default;
 $btn-line-border-thick: 1px !default;
 $btn-disable-opactiy: 0.4 !default;
 $btn-shadow: true !default;
-$map-btn-prop: (
-  default: (
-    space: 8px,
-    icon: 24px,
-  ),
-  sm: (
-    space: 6px,
-    icon: 20px,
-  ),
-  xs: (
-    space: 6px,
-    icon: 16px,
-  ),
-) !default;
-
-@mixin modifiers-btn-prop($map, $prefix: ".ubox-size-button-", $separator: "-", $base: "basic") {
-  @each $key, $value in $map {
-    &#{$prefix}#{$key} {
-      @if type-of($value) == "map" {
-        @each $key2, $value2 in $value {
-          @if $key2 == "space" {
-            .ubtn-text:not(:only-child):last-child {
-              padding-left: $value2;
-              padding-right: $value2/2;
-            }
-            .ubtn-text:not(:only-child):first-child {
-              padding-right: $value2;
-              padding-left: $value2/2;
-            }
-            .ubtn-text:not(:only-child):not(:first-child):not(:last-child) {
-              padding-left: $value2;
-              padding-right: $value2;
-            }
-          }
-          @if $key2 == "icon" {
-            &:not(.ubox-square) .ic-default {
-              width: $value2;
-              height: $value2;
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 button::after,
 button::before {
@@ -70,17 +25,16 @@ button::before {
   width: 100%;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-  @include modifiers-btn-prop($map-btn-prop);
 }
 
-.ubtn {
+.ubox {
   max-width: 100%;
   img {
     @include z-index(btn-img);
     position: relative;
   }
   &-ic {
-    display: inline-block;
+    // display: inline-block;
     flex: 0 0 auto;
     width: auto;
     max-width: 100%;
@@ -151,6 +105,6 @@ button[disabled] {
   opacity: $btn-disable-opactiy;
 }
 
-.ubtn-min-width-auto {
+.ubox-min-width-auto {
   width: auto;
 }

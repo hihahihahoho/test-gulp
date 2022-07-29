@@ -2,11 +2,6 @@
 {% import "macros/_base.njk" as base %}
 
 {% macro btn(data) %}
-  {% if data | isStr %}
-    {% set data = {
-      title: data
-    } %}
-  {% endif %}
   <!-- button.button -->
   {% set dataDefault = {
     title: undefinded,
@@ -19,6 +14,7 @@
     icSize: 'default',
     hover: true,
     active: true,
+    extendDevClass: 'ubtn',
     text: {
       fontSize: undefinded,
       color: undefinded,
@@ -26,41 +22,7 @@
     }
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
-
-  {% set class %}
-    ubtn
-    {{ data.extendClass }}
-  {% endset %}
-
-  {% set content %}
-    <div class="ubtn-inner">
-      {% if data.iconLeft %}
-        <span class="ubtn-ic ubtn-ic-left">
-          <span class="icm {{ data.iconLeft }}"></span>
-        </span>
-      {% endif %}
-      {% if data.title %}
-        {% set ubtnTextClass %}
-          ubtn-text
-          {{ data.text.fontSize }}
-          {{ 'color-' + data.text.color if data.text.color}}
-        {% endset %}
-        <span class="{{ ubtnTextClass | safe }}">{{ data.title }}</span>
-      {% endif %}
-      {% if data.iconRight %}
-        <span class="ubtn-ic ubtn-ic-right">
-          <span class="icm {{ data.iconRight }}"></span>
-        </span>
-      {% endif %}
-    </div>
-  {% endset %}
-
-  {% set data = data | setAttribute('size', 'button-' + data.size) %}
-  {% if not data.content %}
-    {% set data = data | setAttribute('content', content) %}
-  {% endif %}
-  {% set data = data | setAttribute('extendClass', class) %}
-  {{ base.ubox(data) }}
+  {{ base.uBoxIconText(data) }}
   <!-- end button.button -->
 {% endmacro %}
 
@@ -68,20 +30,21 @@
   <!-- button.btnGroup -->
   {% set dataDefault = {
     col: 'group-col-md-3',
-    gutterVertical: 8,
-    gutterHorizontal: 8,
+    gutterV: 8,
+    gutterH: 8,
     align: 'center',
     reverse: false,
     modalDismiss: false
   } %}
   {% set data = data | mergeDeep(dataDefault) %}
   {% set formClass %}
-    ubtn-group list-mb{{ data.gutterHorizontal }}
-    list-crop row row-{{ data.gutterVertical }}
+    ubtn-group list-mb{{ data.gutterH }}
+    list-crop row row-{{ data.gutterV }}
     {{ 'justify-content-' + data.align if data.align }}
     {{ data.col }}
     {{ data.extendClass if data.extendClass }}
     {{ 'flex-row-reverse flex-' + data.reverse + '-row flex-wrap-reverse flex-' + data.reverse + '-wrap' if data.reverse }}
+    {{ 'group-btn-scroll' if data.scroll }}
   {% endset %}
   <div class="{{ formClass }}" {{ data.extendAttr if data.extendAttr }}>
     {% for item in data.data %}
@@ -89,13 +52,21 @@
       {% set class %}
         group-col-item
         {{ 'block-' + item.alignSelf if item.alignSelf }}
+        {{ item.col if item.col }}
       {% endset %}
       <div class="{{ class }}">
+        {% if data.itemOptions %}
+          {% set item = item | mergeDeep(data.itemOptions) %}
+        {% endif %}
         {% if item.modalDismiss == false %}
         {% else %}
           {% set item = item | setAttribute('modalDismiss', data.modalDismiss) %}
         {% endif %}
-        {{ btn(item) }}
+        {% if item.customContent %}
+          {{ item.customContent }}
+        {% else %}
+          {{ btn(item) }}
+        {% endif %}
       </div>
     {% endfor %}
   </div>
@@ -106,8 +77,24 @@
   <!-- button.btnEye -->
   {% set buttonContent %}
     <input type="checkbox" class="hidden">
-    <div class="eye-slash"></div>
+    <span class="eye-slash"></span>
+    <span class="icm icm-size-default icm-default_eye ubg-default-s"></span>
   {% endset %}
-  {{ btn({ shape: 'square', color: 'transparent', size: 'xs', content: buttonContent, tagname: 'label', extendClass: 'input-eye' }) }}
+  {{ btn({ shape: 'square', color: 'transparent', size: 'sm', content: buttonContent, tagname: 'label', extendClass: 'input-eye' }) }}
   <!-- end button.btnEye -->
+{% endmacro %}
+
+{% macro tag(data) %}
+  <!-- button.btnTag -->
+  {% set dataDefault = {
+    tagname: 'div',
+    extendClass: 'ubtn-tag',
+    size: 'sm',
+    color: 'sub-primary',
+    hover: false,
+    active: false
+  } %}
+  {% set data = data | mergeDeep(dataDefault) %}
+  {{ btn(data) }}
+  <!-- end button.btnTag -->
 {% endmacro %}

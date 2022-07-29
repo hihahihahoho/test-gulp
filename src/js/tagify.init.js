@@ -18,6 +18,9 @@ input.forEach(el => {
       pattern: "Không đúng định dạng, vui lòng kiểm tra lại",
       duplicate: "Trùng",
     },
+    validate: (tagData) => {
+      return tagData.value == 'false' ?  false : true
+    },
     callbacks: {
       "change": (e) => {
         e.detail.tagify.DOM.originalInput.closest('.input-inner-wrap').querySelector('input').classList.add('input-hadval')

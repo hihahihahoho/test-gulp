@@ -1,0 +1,9 @@
+/* nav */
+.nav-link {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.no-ph.ubox-size-default {
+  min-width: 0;
+}
+/* end nav */

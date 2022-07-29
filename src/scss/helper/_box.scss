@@ -8,47 +8,104 @@ $map-box-width: (
   xl: 200px,
 ) !default;
 $map-box-height: (
-  avatar-sm: (
-    height: 36px,
-  ),
-  avatar-default: (
-    height: 44px,
-  ),
-  avatar-lg: (
-    height: 56px,
-  ),
-  ic-sm: (
-    height: 36px,
-  ),
-  ic-default: (
-    height: 44px,
-  ),
-  ic-lg: (
-    height: 56px,
-  ),
-  button-default: (
-    height: 44px,
-    font-size: 14px,
-    padding: 12px,
+  default: (
+    min-height: 44px,
     icon-size: 24px,
-    border-radius: 8px,
-    font-weight: 500,
-  ),
-  button-sm: (
-    height: 36px,
     font-size: 14px,
-    icon-size: 20px,
-    padding: 8px,
-    border-radius: 4px,
+    padding: 4px 12px,
+    border-radius: 8px,
+    space: 8px,
   ),
-  button-xs: (
-    height: 24px,
+  xs1: (
+    min-height: 18px,
     icon-size: 16px,
     font-size: 12px,
-    padding: 4px,
+    padding: 4px 8px,
     border-radius: 4px,
+    space: 4px,
+  ),
+  xs: (
+    min-height: 24px,
+    icon-size: 16px,
+    font-size: 12px,
+    padding: 2px 8px,
+    border-radius: 4px,
+    space: 4px,
+  ),
+  sm: (
+    min-height: 32px,
+    font-size: 14px,
+    icon-size: 20px,
+    padding: 4px 8px,
+    border-radius: 4px,
+    space: 4px,
+  ),
+  md: (
+    min-height: 36px,
+    font-size: 14px,
+    icon-size: 20px,
+    padding: 4px 8px,
+    border-radius: 4px,
+    space: 4px,
+  ),
+  lg: (
+    min-height: 40px,
+    font-size: 14px,
+    icon-size: 20px,
+    padding: 4px 8px,
+    border-radius: 8px,
+    space: 8px,
+  ),
+  xl: (
+    min-height: 44px,
+    font-size: 14px,
+    icon-size: 24px,
+    padding: 4px 8px,
+    border-radius: 8px,
+    space: 8px,
+  ),
+  xl1: (
+    min-height: 48px,
+    font-size: 16px,
+    icon-size: 24px,
+    padding: 4px 8px,
+    border-radius: 8px,
+    space: 8px,
+  ),
+  xl2: (
+    min-height: 56px,
+    font-size: 16px,
+    icon-size: 24px,
+    padding: 4px 8px,
+    border-radius: 8px,
+    space: 8px,
   ),
 ) !default;
+
+@mixin modifiers-btn-prop($map, $prefix: ".ubox-size-", $separator: "-", $base: "basic") {
+  @each $key, $value in $map {
+    &#{$prefix}#{$key} {
+      @if type-of($value) == "map" {
+        @each $key2, $value2 in $value {
+          @if $key2 == "space" {
+            .ubox-text:not(:only-child):last-child {
+              padding-left: $value2;
+              padding-right: $value2/2;
+            }
+            .ubox-text:not(:only-child):first-child {
+              padding-right: $value2;
+              padding-left: $value2/2;
+            }
+            .ubox-text:not(:only-child):not(:first-child):not(:last-child) {
+              padding-left: $value2;
+              padding-right: $value2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 @mixin modifiers-box-height($map, $attribute, $prefix: "-", $separator: "-", $base: "basic") {
   @each $key, $value in $map {
@@ -56,28 +113,47 @@ $map-box-height: (
       @if type-of($value) == "map" {
         @each $key2, $value2 in $value {
           #{$key2}: $value2;
-          @if $key2 == "height" {
+          @if $key2 == "min-height" {
+            &.no-min-height {
+              height: $value2;
+            }
             min-width: $value2;
             &.ubox-square {
               width: $value2;
             }
             &.ubox-rounded {
               border-radius: $value2/2;
+              > .uicon-image {
+                border-radius: $value2/2;
+              }
+            }
+            &.icm {
+              width: $value2;
+              height: $value2;
+              -webkit-mask-size: $value2;
+              mask-size: $value2;
             }
           }
+
           @if $key2 == "font-size" {
-            .ubtn-inner {
+            .ubox-inner {
               #{$key2}: $value2;
             }
           }
+
+          @if $key2 == "border-radius" {
+            > .uicon-image {
+              border-radius: $value2;
+            }
+          }
+
           @if $key2 == "icon-size" {
-            .ubtn-ic {
-              .icm {
-                width: $value2;
-                height: $value2;
-                -webkit-mask-size: $value2;
-                mask-size: $value2;
-              }
+            .icm,
+            img {
+              width: $value2;
+              height: $value2;
+              -webkit-mask-size: $value2;
+              mask-size: $value2;
             }
           }
         }
@@ -100,7 +176,7 @@ $map-box-height: (
 .ubox {
   display: flex;
   align-items: center;
-  justify-content: center;
+  @include modifiers-btn-prop($map-box-height);
   &-square {
     padding: 0 !important;
   }
@@ -109,5 +185,22 @@ $map-box-height: (
   }
   &-min-width {
     @include modifiers($map-box-width, "min-width");
+  }
+}
+
+.row {
+  .ubox-text {
+    min-height: 100%;
+  }
+}
+
+.bg-img-cover {
+  background-position: center;
+  background-size: cover;
+  & > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-width: none;
   }
 }

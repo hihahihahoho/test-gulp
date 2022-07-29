@@ -1,51 +1,59 @@
 //====================BOOTSTRAP INIT=================//
 
-// fix modal
-$.fn.modal.Constructor.prototype._enforceFocus = function() {};
-// end fix modal
+var modalEls = document.querySelectorAll('.modal')
+if (modalEls) {
+  modalEls.forEach(el => {
+    el.addEventListener('shown.bs.modal', function (event) {
+      window.innerWidth < 769 ? BNS.on() : ''
+    })
+    el.addEventListener('hide.bs.modal', function (event) {
+      window.innerWidth < 769 ? BNS.off() : ''
+    })
+  })
+}
 
-var scrollTargetModal = '.modal.show .modal-body';
+document.querySelectorAll('[data-toast="toast"]').forEach(el => {
+  var elID = el.getAttribute('toast-target').replace('#', '');
+  el.addEventListener('click', () => {
+    console.log(el)
+    var bsAlert = new bootstrap.Toast(document.getElementById(elID));//inizialize it
+    bsAlert.show();
+  })
+})
 
-$(document).on('show.bs.modal', '.modal', function (event) {
-  var zIndex = 1040 + (10 * $('.modal:visible').length);
-  $(this).css('z-index', zIndex);
-  setTimeout(function () {
-    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-  }, 0);
+const closeDropdown = document.querySelectorAll('.closeDropdown')
+closeDropdown.forEach((el) => {
+  el.addEventListener('click', () => {
+    bootstrap.Dropdown.getInstance(el.closest('.dropdown').querySelector('[data-bs-toggle="dropdown"]')).hide()
+  })
 });
-$(document).ready(function () {
-  $('[data-tooltip]').tooltip({
-    container: 'body',
-    boundary: 'window',
-    html: true
-  });
-  $('[data-toast=toast]').on('click', function () {
-    var id = $(this).attr('toast-target');
-    $(id).toast('show')
-  })
-  $('.toast').toast({
-    delay: 3000
-  })
-  $('.toast').on('show.bs.toast', function () {
-    $('.toast.show').toast('hide');
-  })
-  $('.modal').on('shown.bs.modal', function (e) {
-    if ($(window).width() < 769) {
-      BNS.on();
-      $('[data-tooltip]').tooltip('hide');
-    }
-  });
-  $('.modal').on('hide.bs.modal', function (e) {
-    if ($(window).width() < 769) {
-      BNS.off()
-    }
-  });
+document.querySelectorAll('.collapse').forEach(el => {
+  bootstrap.Dropdown.getInstance(el.addEventListener('show.bs.collapse', function () {
+    el.closest('.accordion-item-default').classList.add('accordion-item-show')
+  }))
+  bootstrap.Dropdown.getInstance(el.addEventListener('hide.bs.collapse', function () {
+    el.closest('.accordion-item-default').classList.remove('accordion-item-show')
+  }))
+})
 
-  $(document).on('click', '.dropdown-click', function (e) {
-    e.stopPropagation();
-  });
-  console.log($.fn.dropdown.Constructor.Default)
-  $('[data-toggle=dropdown]').dropdown({
+
+const dropDownMobileEl = document.querySelectorAll('.dropdown-mobile')
+dropDownMobileEl.forEach((el) => {
+  if (deviceIsMobile) {
+    let dropDownMobileElToggle = el.closest('.dropdown').querySelector('[data-bs-toggle="dropdown"]');
+    dropDownMobileElToggle.addEventListener('show.bs.dropdown', function () {
+      BNS.on()
+    })
+    dropDownMobileElToggle.addEventListener('hide.bs.dropdown', function () {
+      BNS.off()
+    })
+  }
+})
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-tooltip="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl, {
+    html: true,
     popperConfig: {
       modifiers: {
         preventOverflow: {
@@ -55,35 +63,5 @@ $(document).ready(function () {
       },
     }
   })
-});
-(function () {
-  // hold onto the drop down menu                                             
-  var dropdownMenu;
-
-  // and when you show it, move it to the body                                     
-  $(window).on('show.bs.dropdown', function (e) {
-
-    // grab the menu        
-    dropdownMenu = $(e.target).find('.dropdown-menu');
-
-    // detach it and append it to the body
-    $('body').append(dropdownMenu.detach());
-
-    // grab the new offset position
-    var eOffset = $(e.target).offset();
-
-    // make sure to place it where it would normally go (this could be improved)
-    dropdownMenu.css({
-      'display': 'block',
-      'top': eOffset.top + $(e.target).outerHeight(),
-      'left': eOffset.left
-    });
-  });
-
-  // and when you hide it, reattach the drop down, and hide it normally                                                   
-  $(window).on('hide.bs.dropdown', function (e) {
-    $(e.target).append(dropdownMenu.detach());
-    dropdownMenu.hide();
-  });
-})();
+})
 //====================END BOOTSTRAP INIT=================//

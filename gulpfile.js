@@ -167,7 +167,6 @@ function buildTheme (cb) {
   themePushFtpName = themeName.map((element) => {
     return element.replace('devTheme', 'pushFtpTheme');
   });
-  console.log(themeName)
   themeName.reduce(function (p, cmd) {
     return p.then(function (results) {
       console.log(`Start building ${cmd}`)
@@ -304,13 +303,19 @@ function themeMapFunction (mapName, propName, propKey, themeName) {
   }
 }
 
-function themeVarFunction (mapName, propName, propKey, themeName) {
+function themeVarFunction (mapName, propName, propKey, themeName, mapBigName) {
+  if (mapBigName) {
+    var propVar = mapBigName[mapName[propName]] ? mapBigName[mapName[propName]].color : mapName[propName]
+  } else {
+    var propVar = mapName[propName]
+  }
+
   if (mapName[propName]) {
     var propNameTxt = propName + '-';
     !themeColorVarTextArr[propName] ? themeColorVarTextArr[propName] = '' : ''
     !themeColorVarTextArrVar[propName] ? themeColorVarTextArrVar[propName] = '' : ''
     propName == 'color' ? propNameTxt = '' : ''
-    themeColorVarTextArr[propName] += themeName + '-' + propNameTxt + propKey + ': ' + mapName[propName] + ';\n';
+    themeColorVarTextArr[propName] += themeName + '-' + propNameTxt + propKey + ': ' + propVar + ';\n';
     return themeColorVarTextArrVar[propName] += themeName + '-' + propNameTxt + propKey + ': ' + (ie11 ? mapName[propName] : `var(--${propName == 'color' ? '' : 'color-'}${propName}-${propKey})`) + ';\n';
   }
 }
@@ -320,6 +325,7 @@ function theme () {
 
   //theme globalScss
   themeGlobVarText = '\n';
+  themeGlobVarTextVar = '\n';
   themeGlob = require(gulpThemeSrc + 'gulp_themes_config.js').globalScss;
   if (themeGlob) {
     Object.keys(themeGlob).forEach(key => {
@@ -329,7 +335,8 @@ function theme () {
         themeGlobVarText += text;
 
       } else {
-        themeGlobVarText += `$${key}: ${value};\n`;
+        themeGlobVarText += `$${key}: var(--${key});\n`;
+        themeGlobVarTextVar += `\t--${key}: ${value};\n`;
       }
     });
   }
@@ -374,7 +381,7 @@ function theme () {
     var themeColorMap = themeColor.default.normal[property]
     for (var property1 in themeColorMap) {
       themeMapFunction(themeColorMap, property1, property, '$color');
-      themeVarFunction(themeColorMap, property1, property, '$color');
+      themeVarFunction(themeColorMap, property1, property, '$color', themeColor.default.normal);
     }
   }
   for (var property in themeColor.default.level) {
@@ -382,7 +389,7 @@ function theme () {
     var colorMap = themeColor.default.normal[colorMap]
     for (var property1 in colorMap) {
       themeMapFunction(colorMap, property1, property, '$color');
-      themeVarFunction(colorMap, property1, property, '$color');
+      themeVarFunction(colorMap, property1, property, '$color', themeColor.default.normal);
     }
   }
   for (var property in themeColorMapArr) {
@@ -391,9 +398,6 @@ function theme () {
     themeColorMapText += '\n$map-color' + propertyTxt + ': (\n' + themeColorMapArr[property] + ');\n'
   }
 
-  console.log(themeColorVarTextArr['color'].split(';\n'))
-
-
   for (var property in themeColorVarTextArr) {
     // themeColorVarText2 += '\n' + themeColorVarTextArr2[property] + '\n'
     themeColorVarText += '\n' + themeColorVarTextArr[property] + '\n'
@@ -401,17 +405,22 @@ function theme () {
 
   }
 
+
   // end theme color
   // themeColorVarText = themeColorVarText2;
 
   if (ie11) {
     themeColorVarTextVar = themeColorVarText;
   }
+  var iconGroupTree = ''
+  if (fs.existsSync(sourceName + '/media/icon-stack/')) {
+    iconGroupTree = dirTree(sourceName + '/media/icon-stack/', { normalizePath: true }).children.map(item => { return `\t"${item.name.replace('.svg', '')}"` }).join(',\n');
+    iconGroupTree = `$icmg: (\n${iconGroupTree},\n);\n\n`
+  }
 
-  themeColorTextAll = '//gtc-color-scss\n' + themeColorVarTextVar + themeColorMapText + '\n//end-gtc-color-scss'
+  themeColorTextAll = '//gtc-color-scss\n' + iconGroupTree + themeColorVarTextVar + themeColorMapText + '\n//end-gtc-color-scss'
 
-  themeColorTextAllCss = '/*gtc-css*/\n:root {\n' + themeColorVarText.replace(/\$/g, '\t--') + themeTextVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
-
+  themeColorTextAllCss = '/*gtc-css*/\n:root,::before,::after {\n' + themeGlobVarTextVar + themeColorVarText.replace(/\$/g, '\t--') + themeTextVarText.replace(/\$/g, '\t--') + '}\n/*end-gtc-css*/';
   gulp.src([customCssSrcName + '/custom/css/0-gen-varibles.css'], { base: customCssSrcName + '/' })
     .pipe(replace(/(\/\*gtc-css\*\/)([\S\s]*?)(\/\*end-gtc-css\*\/)/, themeColorTextAllCss))
     .pipe(gulp.dest(customCssSrcName + '/'))
@@ -561,14 +570,14 @@ function customCss () {
   }
 
   gulp.src(srcArrTheme)
-      .pipe(sourcemaps.init())
-      .pipe(changed(customCssSrcName + '/custom/css/**/*.css'))
-      .pipe(replace('/' + desFolderName + '/', '../'))
-      .pipe(concat('theme.css'))
-      .pipe(postcss(postCssPlugins))
-      .pipe(sourcemaps.write('./map'))
-      .pipe(gulp.dest(desFolder + '/css'))
-      .pipe(browserSync.stream({ match: '**/*.css' }));
+    .pipe(sourcemaps.init())
+    .pipe(changed(customCssSrcName + '/custom/css/**/*.css'))
+    .pipe(replace('/' + desFolderName + '/', '../'))
+    .pipe(concat('theme.css'))
+    .pipe(postcss(postCssPlugins))
+    .pipe(sourcemaps.write('./map'))
+    .pipe(gulp.dest(desFolder + '/css'))
+    .pipe(browserSync.stream({ match: '**/*.css' }));
   var srcArr = [customCssSrcName + '/custom/css/**/*.css']
   var filterCss = filter('**/!(0-gen-varibles.css)');
 
@@ -688,10 +697,13 @@ function media (cb) {
 }
 function imageMinifyTemp (src, des) {
   return new Promise((resolve) => {
+    var imgFilter = filter(['**', 'src/media/icon-stack/**/*.svg'], { restore: true });
+    var imgNrzFilter = filter(['**', '!**/*-nrz.*'], { restore: true });
     gulp.src(src)
       .pipe(rename(function (path) {
         path.basename = path.basename.toLowerCase();
       }))
+      .pipe(imgNrzFilter)
       .pipe(cache(image({
         pngquant: ['--quality=70-80', '--speed=1'],
         optipng: false,
@@ -703,8 +715,12 @@ function imageMinifyTemp (src, des) {
         concurrent: 10,
         quiet: true // defaults to false
       })))
+      .pipe(imgNrzFilter.restore)
       .pipe(replace('vector-effect="non-scaling-stroke"', ''))
       .pipe(replace('stroke-width="1.5"', 'stroke-width="1.5" vector-effect="non-scaling-stroke"'))
+      .pipe(imgFilter)
+      .pipe(replace(/>/, '>\n<defs xmlns="http://www.w3.org/2000/svg"><style>svg:not(:target) > g:not(:target) > *, svg:not(:target) > *:not(g:nth-child(2):last-child) { display: none }:target { display: inline !important } </style></defs>'))
+      .pipe(imgFilter.restore)
       .pipe(gulp.dest(des))
       .on('end', resolve)
   })
@@ -1245,7 +1261,8 @@ function watch () {
   });
   gulp.watch(customScssSrcName + '/scss/**/*.scss', style);
   gulp.watch(gulpPluginSrc + 'gulp_plugins_config.js', parallel(pluginsBundlesJS, pluginsBundlesCss, pluginsInitJS, series(cleanVendorsJs, parallel(pluginsVendorsJS, pluginsVendorsCss, pluginsVendorsInitJS))))
-  gulp.watch('**/gulp_themes_config.js', theme)
+  gulp.watch(['**/gulp_themes_config.js', sourceName + '/media/icon-stack/**/*'], theme)
+  gulp.watch([sourceName + '/media/icons-mask/**/*'], cssImage)
   gulp.watch(gulpThemeSrc + 'gulp_icons-color-config.js', series(iconColor, iconLink, imageMinifyTheme))
   gulp.watch(sourceName + '/plugins/**/*', parallel(pluginsBundlesCss, pluginsBundlesJS, pluginsVendorsJS, pluginsVendorsCss))
   gulp.watch([defSourceName + '/media/**/*', themeSourceName + '/theme-custom/media/**/*', themeSourceName + `/color-theme/${argv.colorTheme}/media/**/*`, themeSourceName + '/media/', '!' + defSourceName + '/media/icons-color/**/*'], series(imageMinify, imageMinifyTheme))
